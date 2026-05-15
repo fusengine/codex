@@ -1,0 +1,154 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/guard-state-files.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/enforce-html-css-only.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-design-skill.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright__browser_navigate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-inspiration-read.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright__browser_take_screenshot",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/require-scroll-before-screenshot.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__gemini-design__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__gemini-design__create_frontend",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-design-system.ts"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-skill-read.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright__browser_take_screenshot",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-screenshot.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__playwright__|mcp__gemini-design__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-design.ts"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-state-init.ts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

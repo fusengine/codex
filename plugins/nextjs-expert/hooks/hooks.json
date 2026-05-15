@@ -1,0 +1,62 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-nextjs-skill.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-nextjs-solid.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-nextjs-modular.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-duplication.ts"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-skill-read.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

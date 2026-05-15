@@ -1,0 +1,7 @@
+# swiftui-core
+
+> [← back](../index.md)
+
+├── [references/](./references/index.md) — 5 files
+├── [templates/](./templates/index.md)
+└── [SKILL.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/swift-apple-expert/skills/swiftui-core/SKILL.md) — SwiftUI fundamentals for all Apple platforms. Use when build

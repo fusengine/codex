@@ -1,0 +1,20 @@
+{
+  "name": "codex-rules",
+  "version": "1.0.7",
+  "description": "Global rules for all Codex CLI sessions: APEX workflow, SOLID/DRY enforcement, project detection, agent delegation, frontend/git standards",
+  "author": {
+    "name": "Fusengine",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Codex Rules",
+    "shortDescription": "Global APEX/SOLID/DRY rules and project detection",
+    "developerName": "Fusengine"
+  }
+}

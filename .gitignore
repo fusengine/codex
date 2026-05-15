@@ -1,0 +1,35 @@
+# Bun
+node_modules/
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+/tmp/
+*.backup-*
+
+# Reports (regenerated)
+plugins/migration-report.json
+plugins/py-to-bun-report.json
+plugins/scrub-report.json
+plugins/validate-bun-report.json
+
+# Plugin-bundled node_modules and lockfiles inside source plugins
+plugins/*/scripts/node_modules/
+plugins/*/scripts/bun.lock
+plugins/*/statusline/node_modules/
+plugins/*/statusline/dist/
+plugins/*/statusline/bun.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Local Codex/Claude session state
+.claude/

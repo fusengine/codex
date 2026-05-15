@@ -1,0 +1,42 @@
+# 800-guides
+
+> [← back](../index.md)
+
+├── [010-data-migration.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/010-data-migration.md) — Learn how to perform data migrations using the expand and co
+├── [020-implementing-schema-changes.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/020-implementing-schema-changes.md) — Learn how to use Prisma Migrate effectively when collaborati
+├── [030-migrate-from-typeorm.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/030-migrate-from-typeorm.md) — Learn how to migrate from TypeORM to Prisma ORM
+├── [040-migrate-from-sequelize.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/040-migrate-from-sequelize.md) — Learn how to migrate from Sequelize to Prisma ORM
+├── [050-migrate-from-mongoose.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/050-migrate-from-mongoose.md) — Learn how to migrate from Mongoose to Prisma ORM
+├── [060-migrate-from-drizzle.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/060-migrate-from-drizzle.md) — Learn how to migrate from Drizzle to Prisma ORM
+├── [070-cloudflare-d1.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/070-cloudflare-d1.md) — Learn how to use Prisma ORM with Cloudflare D1
+├── [080-turborepo.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/080-turborepo.md) — Learn step-by-step how to integrate Prisma ORM with Turborep
+├── [090-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/090-nextjs.md) — Learn how to use Prisma ORM in a Next.js app and deploy it t
+├── [100-nuxt.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/100-nuxt.md) — A step-by-step guide to setting up and using Prisma ORM and 
+├── [130-docker.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/130-docker.md) — Learn step-by-step configure a Prisma ORM app in Docker
+├── [140-use-prisma-in-pnpm-workspaces.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/140-use-prisma-in-pnpm-workspaces.md) — Learn step-by-step how to integrate Prisma ORM in a pnpm wor
+├── [150-multiple-databases.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/150-multiple-databases.md) — Learn how to use multiple Prisma Clients in a single app to 
+├── [160-tanstack-start.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/160-tanstack-start.md) — Learn how to use Prisma ORM in a TanStack Start app
+├── [170-react-router-7.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/170-react-router-7.md) — Learn how to use Prisma ORM and Prisma Postgres in a React R
+├── [180-solid-start.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/180-solid-start.md) — Learn how to use Prisma ORM in a SolidStart app
+├── [190-data-dog.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/190-data-dog.md) — Learn how to configure Datadog tracing for a Prisma ORM proj
+├── [190-sveltekit.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/190-sveltekit.md) — Learn how to use Prisma ORM in a SvelteKit app
+├── [200-clerk-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/200-clerk-nextjs.md) — Learn how to use Prisma ORM in a Next.js app with Clerk Auth
+├── [210-shopify.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/210-shopify.md) — Learn how to use Prisma Postgres with Shopify
+├── [220-astro.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/220-astro.md) — Learn how to use Prisma ORM in an Astro app
+├── [230-betterauth-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/230-betterauth-nextjs.md) — Learn how to use Prisma ORM in a Next.js app with Better Aut
+├── [240-management-api.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/240-management-api.md) — Learn how to use the Prisma Postgres Management API to provi
+├── [300-supabase-accelerate.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/300-supabase-accelerate.md) — Learn how to set up PostgreSQL on Supabase with Prisma Accel
+├── [310-neon-accelerate.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/310-neon-accelerate.md) — Learn how to set up PostgreSQL on Neon with Prisma Accelerat
+├── [320-permit-io-access-control.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/320-permit-io-access-control.md) — Learn how to implement access control with Prisma ORM with P
+├── [330-github-actions.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/330-github-actions.md) — Provision and manage Prisma Postgres databases per pull requ
+├── [330-management-api-basic.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/330-management-api-basic.md) — Learn how to get started with the Prisma Management API
+├── [340-ai-sdk-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/340-ai-sdk-nextjs.md) — Build a chat application with AI SDK, Prisma, and Next.js to
+├── [350-authjs-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/350-authjs-nextjs.md) — Learn how to use Prisma ORM in a Next.js app with Auth.js
+├── [360-embed-studio-nextjs.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/360-embed-studio-nextjs.md) — Learn how to embed Prisma Studio directly in your Next.js ap
+├── [370-bun.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/370-bun.md) — Learn how to use Prisma ORM in a Bun application with Prisma
+├── [380-vercel-app-deployment.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/380-vercel-app-deployment.md) — Learn how to programmatically deploy applications with Verce
+├── [390-hono.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/390-hono.md) — Learn how to use Prisma ORM in a Hono app
+├── [400-betterauth-astro.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/400-betterauth-astro.md) — Learn how to use Prisma ORM in an Astro app with Better Auth
+├── [400-deno-integration.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/400-deno-integration.md)
+├── [999-making-guides.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/999-making-guides.md) — Learn how to write clear, consistent, and helpful guides for
+└── [index.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/800-guides/index.md)

@@ -1,0 +1,161 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-and-inject-apex.ts"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-subagent-context.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/explore-cache-check.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/doc-cache-inject.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/lessons-cache-inject.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/test-cache-inject.ts"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-bash-write.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/enforce-apex-phases.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-apex-context.ts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-sniper-lessons.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-test-results.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-doc-from-transcript.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-analytics-save.ts"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-solid-compliance.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*context7|mcp__.*exa|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-doc-consultation.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "TaskCreate|TaskUpdate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/sync-task-tracking.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

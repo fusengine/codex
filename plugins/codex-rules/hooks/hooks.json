@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-rules.ts ${CODEX_PLUGIN_ROOT}"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-rules.ts ${CODEX_PLUGIN_ROOT}"
+          }
+        ]
+      }
+    ]
+  }
+}

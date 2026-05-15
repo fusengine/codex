@@ -1,0 +1,28 @@
+{
+  "name": "commit-pro",
+  "version": "1.2.16",
+  "description": "Professional git commits with Conventional Commits, GitHub Flow branch enforcement, auto PR creation, security validation, and auto-detection",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "commit",
+    "conventional-commits",
+    "security",
+    "automation"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Commit Pro",
+    "shortDescription": "Smart conventional commits with security validation",
+    "developerName": "Fusengine"
+  },
+  "mcpServers": "./.mcp.json"
+}

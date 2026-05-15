@@ -1,0 +1,251 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/bash-write-guard.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/git-guard.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/install-guard.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/security-guard.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/pre-commit-guard.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/enforce-interfaces.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/enforce-file-size.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/require-solid-read.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-tool-use/require-apex-agents.ts"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/track-agent-calls.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Glob|Grep|Read|WebSearch|WebFetch|mcp__context7__query-docs|mcp__context7__resolve-library-id|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa|mcp__exa__deep_researcher_start",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/track-subagent-research.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__context7__query-docs|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/cache-mcp-result.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/auto-document-reads.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/track-solid-reads.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/enforce-file-size.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/track-session-changes.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/post-edit-typescript.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/post-tool-use/log-tool-failure.ts"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/session-start/inject-codex-md.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/session-start/load-dev-context.ts"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/session-start/cleanup-session-states.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/subagent-start/inject-context-cache.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/instructions-loaded/validate-rules-loaded.ts"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/user-prompt/read-codex-md.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/user-prompt/detect-creation-intent.ts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/subagent-stop/track-agent-memory.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/task-completed/validate-task-solid.ts"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay ${CODEX_PLUGIN_ROOT}/song/finish.mp3"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/session-end/cleanup-session.ts"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay ${CODEX_PLUGIN_ROOT}/song/permission-need.mp3"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pre-compact/save-apex-state.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

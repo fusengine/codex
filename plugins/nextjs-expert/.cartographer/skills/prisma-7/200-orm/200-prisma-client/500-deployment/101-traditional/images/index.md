@@ -1,0 +1,20 @@
+# images
+
+> [← back](../index.md)
+
+├── [heroku-architecture.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/heroku-architecture.png)
+├── [heroku-deployed.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/heroku-deployed.png)
+├── [koyeb-app-creation.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/koyeb-app-creation.png)
+├── [koyeb-architecture.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/koyeb-architecture.png)
+├── [koyeb-deployed.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/koyeb-deployed.png)
+├── [railway-deploying.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/railway-deploying.png)
+├── [railway-env-vars.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/railway-env-vars.png)
+├── [railway-final-product.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/railway-final-product.png)
+├── [railway-networking.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/railway-networking.png)
+├── [sevalla-app-creation.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-app-creation.png)
+├── [sevalla-app-internal-connection.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-app-internal-connection.png)
+├── [sevalla-choose-repository.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-choose-repository.png)
+├── [sevalla-create-database.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-create-database.png)
+├── [sevalla-database-studio.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-database-studio.png)
+├── [sevalla-name-application.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-name-application.png)
+└── [sevalla-web-terminal.png](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/nextjs-expert/skills/prisma-7/200-orm/200-prisma-client/500-deployment/101-traditional/images/sevalla-web-terminal.png)

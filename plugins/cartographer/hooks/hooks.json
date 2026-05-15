@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/generate_map.ts ${CODEX_PLUGIN_ROOT}/.. ${CODEX_PLUGIN_ROOT}/../.cartographer || true; bun ${CODEX_PLUGIN_ROOT}/scripts/generate_project_map.ts || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-enrichment.ts || true"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "codex-plugins",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fusengine plugin ecosystem migrated to Codex CLI",
+  "scripts": {
+    "migrate": "bun run scripts/migrate.ts",
+    "validate": "bun run scripts/validate.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "yaml": "^2.6.0",
+    "smol-toml": "^1.3.0"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.4.0"
+  }
+}
