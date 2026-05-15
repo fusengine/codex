@@ -7,30 +7,41 @@
 
 > **Codex CLI plugin marketplace.** 19 expert plugins (APEX workflow, SOLID/DRY enforcement, framework specialists, MCP integrations) conformes à la doc officielle Codex CLI (`developers.openai.com/codex`).
 
-## Quick Start
+## Installation (3 commandes)
 
 ```bash
-git clone <repo> codex-plugins
-cd codex-plugins
-./setup.sh
+git clone https://github.com/fusengine/codex.git
+cd codex
+./setup.sh           # macOS / Linux
+# .\setup.ps1        # Windows
 ```
 
-The installer (`scripts/install-codex.ts`, Bun) :
+C'est tout. Le script installe les dépendances Bun, enregistre le marketplace, active les hooks, copie `AGENTS.md` et active les 19 plugins.
 
-1. `codex plugin marketplace add ./` — enregistre le marketplace local
-2. Écrit `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml` (requis pour hooks plugin-scoped)
-3. Copie `AGENTS.md` → `$CODEX_HOME/AGENTS.md` (avec prompt overwrite)
-4. Auto-active les 19 plugins via `[plugins."NAME@fusengine-codex"] enabled = true` (workaround Codex CLI < 0.131 sans `codex plugin add`)
-5. Rapporte les MCP servers bundlés et les variables d'env manquantes
+**Prérequis** : [Bun](https://bun.sh) et [codex CLI](https://developers.openai.com/codex/cli) 0.130+.
 
-Variables d'environnement requises pour activer tous les MCP :
+### Variables d'environnement MCP (optionnel)
+
+À exporter **avant** `./setup.sh` pour activer les MCP correspondants :
+
 ```bash
-export GEMINI_DESIGN_API_KEY="..."
-export CONTEXT7_API_KEY="..."
-export EXA_API_KEY="..."
-export MAGIC_API_KEY="..."
-export NEURAL_MEMORY_HOST="..."     # memory-neural (Graphiti/Qdrant)
+export GEMINI_DESIGN_API_KEY="..."   # design-expert
+export CONTEXT7_API_KEY="..."        # documentation lookup
+export EXA_API_KEY="..."             # web search
+export MAGIC_API_KEY="..."           # 21st.dev components
+export NEURAL_MEMORY_HOST="..."      # memory-neural (Graphiti/Qdrant)
 ```
+
+Le setup affiche un rapport en fin d'install indiquant exactement quelles variables sont manquantes.
+
+### Ce que fait `setup.sh`
+
+1. `bun install` — installe les deps de l'installer
+2. `codex plugin marketplace add ./` (ou patch `~/.codex/config.toml` si codex CLI absent)
+3. Active `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml`
+4. Copie `AGENTS.md` → `~/.codex/AGENTS.md` (prompt overwrite si existant)
+5. Auto-active les 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
+6. Rapport MCP + env vars manquantes
 
 ## Inventaire des 19 plugins
 
