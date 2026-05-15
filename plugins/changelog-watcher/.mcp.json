@@ -1,7 +1,9 @@
 {
   "exa": {
-    "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,get_code_context_exa,deep_researcher_start,deep_researcher_check&exaApiKey=${EXA_API_KEY}",
-    "http_headers": {}
+    "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,get_code_context_exa,deep_researcher_start,deep_researcher_check",
+    "env_http_headers": {
+      "x-api-key": "${EXA_API_KEY}"
+    }
   },
   "sequential-thinking": {
     "command": "npx",

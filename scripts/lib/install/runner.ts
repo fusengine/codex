@@ -11,6 +11,9 @@ import { installAgentsMd } from "./agents-md";
 import { ensureFeaturesEnabled } from "./features";
 import { enableAllPlugins } from "./enable-plugins";
 import { reportMcp } from "./mcp";
+import { promptApiKeys } from "./env-prompt";
+import { configureShellAutoLoad } from "./shell-install";
+import { configureMcpServers } from "./mcp-configurator";
 
 export interface SetupOptions {
 	projectRoot: string;
@@ -66,5 +69,8 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
 	await maybeInstallPlugins(opts, mode);
+	await promptApiKeys(opts.codexHome);
+	await configureShellAutoLoad();
+	await configureMcpServers(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await reportMcp(join(opts.projectRoot, "plugins"));
 }
