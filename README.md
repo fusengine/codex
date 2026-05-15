@@ -16,32 +16,38 @@ cd codex
 # .\setup.ps1        # Windows
 ```
 
-C'est tout. Le script installe les dépendances Bun, enregistre le marketplace, active les hooks, copie `AGENTS.md` et active les 19 plugins.
+C'est tout. Le script installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 19 plugins, **prompte interactivement les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
 
 **Prérequis** : [Bun](https://bun.sh) et [codex CLI](https://developers.openai.com/codex/cli) 0.130+.
 
-### Variables d'environnement MCP (optionnel)
+### Clés API MCP (proposées interactivement à l'install)
 
-À exporter **avant** `./setup.sh` pour activer les MCP correspondants :
+Le setup demande clé par clé (skip = Entrée vide). URLs d'inscription affichées en placeholder. Stockées dans `~/.codex/.env` (chmod 600), auto-sourcées par le shell loader.
 
-```bash
-export GEMINI_DESIGN_API_KEY="..."   # design-expert
-export CONTEXT7_API_KEY="..."        # documentation lookup
-export EXA_API_KEY="..."             # web search
-export MAGIC_API_KEY="..."           # 21st.dev components
-export NEURAL_MEMORY_HOST="..."      # memory-neural (Graphiti/Qdrant)
-```
+| Variable | Serveur MCP | Inscription |
+|---|---|---|
+| `CONTEXT7_API_KEY` | context7 — documentation lookup | https://context7.com |
+| `EXA_API_KEY` | exa — web search & research | https://exa.ai |
+| `MAGIC_API_KEY` | 21st.dev magic — UI generation | https://21st.dev |
+| `GEMINI_API_KEY` | gemini-design — AI frontend | https://aistudio.google.com/apikey |
+| `NEURAL_MEMORY_HOST` | memory-neural (Graphiti/Qdrant) | local |
+| `GITHUB_TOKEN` | GitHub MCP | https://github.com/settings/tokens |
 
-Le setup affiche un rapport en fin d'install indiquant exactement quelles variables sont manquantes.
+Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes dans l'env sont détectées et le prompt skip.
 
-### Ce que fait `setup.sh`
+### Ce que fait `setup.sh` (pipeline complet)
 
-1. `bun install` — installe les deps de l'installer
+1. `bun install` — deps de l'installer
 2. `codex plugin marketplace add ./` (ou patch `~/.codex/config.toml` si codex CLI absent)
 3. Active `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml`
 4. Copie `AGENTS.md` → `~/.codex/AGENTS.md` (prompt overwrite si existant)
 5. Auto-active les 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
-6. Rapport MCP + env vars manquantes
+6. **Prompt interactif** des clés API → `~/.codex/.env` (chmod 600)
+7. **Installe l'auto-loader shell** (fish conf.d / append rc / pwsh profile)
+8. **Résout les `${VAR}`** des plugin `.mcp.json` et écrit blocs `[mcp_servers.X]` statiques dans `~/.codex/config.toml` (entre markers idempotents)
+9. Rapport MCP final + env vars manquantes
+
+> **Pourquoi cette résolution ?** Codex CLI 0.130.x ne fait pas d'interpolation `${VAR}` dans les plugin `.mcp.json` ([openai/codex#19582](https://github.com/openai/codex/issues/19582)). Le configurator résout côté install pour écrire des valeurs statiques que Codex consomme directement.
 
 ## Inventaire des 19 plugins
 
