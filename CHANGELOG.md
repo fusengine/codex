@@ -5,6 +5,14 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-05-17
+
+### Fixed
+- `scripts/lib/install/mcp-catalog.ts` : alignement byte-identique avec `claude-plugins/scripts/mcp/mcp.json` (référence).
+  - Drop `graphiti` + `qdrant` du catalogue installable (absents de claude-plugins ; ils crashaient au démarrage de Codex avec `empty host` car les `${URL_*}` n'étaient jamais résolus depuis `memory-neural/.mcp.json`).
+  - `gemini-design` : `apiKeyEnv` `GEMINI_API_KEY` → `GEMINI_DESIGN_API_KEY`, `apiKeyUrl` → `https://gemini-design-mcp.com`.
+  - Catalogue final : **22 MCPs** (= claude-plugins 1:1), au lieu de 24.
+
 ## [1.2.1] - 2026-05-17
 
 ### Fixed
