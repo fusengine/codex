@@ -1,6 +1,6 @@
 ---
 name: solid-go
-description: SOLID principles for Go 1.23+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY.
+description: "SOLID principles for Go 1.23+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY."
 ---
 
 

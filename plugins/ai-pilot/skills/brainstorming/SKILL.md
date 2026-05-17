@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: Use when user requests creative work - creating features, building components, adding functionality, or modifying behavior. Activates BEFORE APEX Analyze phase to refine requirements through structured questioning.
+description: "Use when user requests creative work - creating features, building components, adding functionality, or modifying behavior. Activates BEFORE APEX Analyze phase to refine requirements through structured questioning."
 ---
 
 

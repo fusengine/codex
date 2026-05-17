@@ -1,6 +1,6 @@
 ---
 name: seo-audit
-description: Use when running a full-site SEO audit via /seo audit. Covers parallel sub-agent orchestration, business-type detection, SEO Health Score 0-100, prioritized action plan.
+description: "Use when running a full-site SEO audit via /seo audit. Covers parallel sub-agent orchestration, business-type detection, SEO Health Score 0-100, prioritized action plan."
 ---
 
 

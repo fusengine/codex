@@ -1,6 +1,6 @@
 ---
 name: solid-swift
-description: SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 lines, protocols separated, @Observable, actors, Preview-driven development. Features Modular MANDATORY.
+description: "SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 lines, protocols separated, @Observable, actors, Preview-driven development. Features Modular MANDATORY."
 ---
 
 

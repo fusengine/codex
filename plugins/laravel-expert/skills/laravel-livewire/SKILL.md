@@ -1,6 +1,6 @@
 ---
 name: laravel-livewire
-description: Livewire 4 reactive components on Laravel 13 - wire:model, actions, events, Volt, Folio. Use when building reactive UI without JavaScript.
+description: "Livewire 4 reactive components on Laravel 13 - wire:model, actions, events, Volt, Folio. Use when building reactive UI without JavaScript."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: test
-description: Test commit. Use for add tests,update tests,test coverage,unit test,spec. (migré depuis slash command)
+description: "Test commit. Use for add tests,update tests,test coverage,unit test,spec. (migré depuis slash command)"
 ---
 
 # Test Commit

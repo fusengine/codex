@@ -1,6 +1,6 @@
 ---
 name: exploration
-description: Codebase exploration techniques for rapid discovery, architecture analysis, pattern detection, and dependency mapping.
+description: "Codebase exploration techniques for rapid discovery, architecture analysis, pattern detection, and dependency mapping."
 ---
 
 

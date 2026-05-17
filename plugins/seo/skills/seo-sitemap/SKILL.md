@@ -1,6 +1,6 @@
 ---
 name: seo-sitemap
-description: Use when analyzing or generating XML sitemaps. Covers sitemap.xml, sitemap-news.xml, sitemap-image.xml, sitemap-video.xml, robots.txt, URL coverage checks, sitemap index pattern.
+description: "Use when analyzing or generating XML sitemaps. Covers sitemap.xml, sitemap-news.xml, sitemap-image.xml, sitemap-video.xml, robots.txt, URL coverage checks, sitemap index pattern."
 ---
 
 

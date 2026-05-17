@@ -1,6 +1,6 @@
 ---
 name: build-distribution
-description: App build, code signing, TestFlight, and App Store distribution for all Apple platforms. Use when preparing releases, configuring signing, uploading to TestFlight, or submitting to App Store.
+description: "App build, code signing, TestFlight, and App Store distribution for all Apple platforms. Use when preparing releases, configuring signing, uploading to TestFlight, or submitting to App Store."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: react-i18n
-description: react-i18next for React 19 - useTranslation hook, TypeScript Selector API, namespaces, pluralization, lazy loading, Suspense integration. Use when implementing translations in React apps (not Next.js).
+description: "react-i18next for React 19 - useTranslation hook, TypeScript Selector API, namespaces, pluralization, lazy loading, Suspense integration. Use when implementing translations in React apps (not Next.js)."
 ---
 
 

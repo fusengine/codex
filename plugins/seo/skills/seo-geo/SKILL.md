@@ -1,6 +1,6 @@
 ---
 name: seo-geo
-description: Use when optimizing for AI search engines (Generative Engine Optimization 2026). Covers Google AI Overviews, ChatGPT, Perplexity, Codex, Gemini, Copilot, LLM-readiness scoring 0-100, llms.txt.
+description: "Use when optimizing for AI search engines (Generative Engine Optimization 2026). Covers Google AI Overviews, ChatGPT, Perplexity, Codex, Gemini, Copilot, LLM-readiness scoring 0-100, llms.txt."
 ---
 
 

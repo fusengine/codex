@@ -1,6 +1,6 @@
 ---
 name: laravel-blade
-description: Create Blade templates with components, slots, layouts, and directives. Use when building views, reusable components, or templating.
+description: "Create Blade templates with components, slots, layouts, and directives. Use when building views, reusable components, or templating."
 ---
 
 

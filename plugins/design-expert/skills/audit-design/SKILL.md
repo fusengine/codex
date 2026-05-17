@@ -1,6 +1,6 @@
 ---
 name: audit-design
-description: Audit existing HTML/CSS design quality. Checks WCAG contrast, font compliance, OKLCH tokens, state coverage, anti-AI-slop. No generation — validation only. (migré depuis slash command)
+description: "Audit existing HTML/CSS design quality. Checks WCAG contrast, font compliance, OKLCH tokens, state coverage, anti-AI-slop. No generation — validation only. (migré depuis slash command)"
 ---
 
 # /design:audit — Design Quality Audit (Phases 5→6)

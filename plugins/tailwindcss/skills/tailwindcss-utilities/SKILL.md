@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-utilities
-description: Complete reference for Tailwind CSS utility classes
+description: "Complete reference for Tailwind CSS utility classes"
 ---
 
 

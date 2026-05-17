@@ -1,6 +1,6 @@
 ---
 name: astro-6
-description: Expert Astro 6 framework — routing, output modes, middleware, Vite Environment API, Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5.
+description: "Expert Astro 6 framework — routing, output modes, middleware, Vite Environment API, Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5."
 ---
 
 

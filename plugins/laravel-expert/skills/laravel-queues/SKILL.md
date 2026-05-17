@@ -1,6 +1,6 @@
 ---
 name: laravel-queues
-description: Laravel 13 background jobs - PHP Attributes (#[Queue], #[Connection], #[Tries], #[Backoff]), workers, batches, chains, middleware, Queue::route() centralised routing. Use for async tasks.
+description: "Laravel 13 background jobs - PHP Attributes (#[Queue], #[Connection], #[Tries], #[Backoff]), workers, batches, chains, middleware, Queue::route() centralised routing. Use for async tasks."
 ---
 
 

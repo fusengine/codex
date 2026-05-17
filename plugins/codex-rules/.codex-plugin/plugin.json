@@ -10,7 +10,6 @@
   "homepage": "https://github.com/fusengine/agents",
   "license": "MIT",
   "keywords": [],
-  "skills": "./skills/",
   "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Codex Rules",

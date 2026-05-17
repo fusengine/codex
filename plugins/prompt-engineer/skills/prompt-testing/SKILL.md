@@ -1,6 +1,6 @@
 ---
 name: prompt-testing
-description: A/B testing and performance metrics for prompts
+description: "A/B testing and performance metrics for prompts"
 ---
 
 

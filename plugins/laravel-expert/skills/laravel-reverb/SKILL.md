@@ -1,6 +1,6 @@
 ---
 name: laravel-reverb
-description: Implement real-time WebSocket communication with Laravel Reverb. Use when adding live updates, chat, notifications, or presence features.
+description: "Implement real-time WebSocket communication with Laravel Reverb. Use when adding live updates, chat, notifications, or presence features."
 ---
 
 

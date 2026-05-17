@@ -1,6 +1,6 @@
 ---
 name: agent-design
-description: Design AI agents with recommended patterns and architectures
+description: "Design AI agents with recommended patterns and architectures"
 ---
 
 

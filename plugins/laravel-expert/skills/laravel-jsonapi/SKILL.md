@@ -1,6 +1,6 @@
 ---
 name: laravel-jsonapi
-description: Use when building JSON:API compliant endpoints in Laravel 13 using the first-party `JsonApiResource` base class. Covers sparse fieldsets, inclusion, links, and response headers.
+description: "Use when building JSON:API compliant endpoints in Laravel 13 using the first-party `JsonApiResource` base class. Covers sparse fieldsets, inclusion, links, and response headers."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: better-auth
-description: Complete Better Auth - 40+ OAuth providers, 20+ plugins, all adapters, all frameworks. Use when implementing authentication, login, OAuth, 2FA, magic links, SSO, Stripe, SCIM, or session management.
+description: "Complete Better Auth - 40+ OAuth providers, 20+ plugins, all adapters, all frameworks. Use when implementing authentication, login, OAuth, 2FA, magic links, SSO, Stripe, SCIM, or session management."
 ---
 
 

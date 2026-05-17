@@ -1,6 +1,6 @@
 ---
 name: seo-schema
-description: Use when detecting, validating, or generating Schema.org JSON-LD markup. Covers Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe.
+description: "Use when detecting, validating, or generating Schema.org JSON-LD markup. Covers Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe."
 ---
 
 

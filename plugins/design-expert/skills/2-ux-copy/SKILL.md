@@ -1,6 +1,6 @@
 ---
 name: ux-copy
-description: Phase 2: Write microcopy guide: CTA labels, error messages, empty states, form placeholders — all aligned with identity personality and audience from Phase 0.
+description: "Phase 2: Write microcopy guide: CTA labels, error messages, empty states, form placeholders — all aligned with identity personality and audience from Phase 0."
 ---
 
 

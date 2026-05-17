@@ -1,6 +1,6 @@
 ---
 name: laravel-attributes
-description: Use when migrating Eloquent models, Jobs, Console commands, Controllers, API Resources, Validation, Factories or Seeders to native PHP 8.3 attributes introduced in Laravel 13. Covers all 7 categories of first-party attributes.
+description: "Use when migrating Eloquent models, Jobs, Console commands, Controllers, API Resources, Validation, Factories or Seeders to native PHP 8.3 attributes introduced in Laravel 13. Covers all 7 categories of first-party attributes."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: prompt-creation
-description: Techniques and templates for creating optimal prompts following Anthropic conventions
+description: "Techniques and templates for creating optimal prompts following Anthropic conventions"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: nextjs-server-components
-description: React Server Components patterns for Next.js 16. Server vs Client boundaries, async components, data fetching, serialization rules, streaming with Suspense.
+description: "React Server Components patterns for Next.js 16. Server vs Client boundaries, async components, data fetching, serialization rules, streaming with Suspense."
 ---
 
 

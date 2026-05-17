@@ -1,6 +1,6 @@
 ---
 name: laravel-scout
-description: Implement full-text search with Laravel Scout. Use when adding search to Eloquent models with Meilisearch, Algolia, or database driver.
+description: "Implement full-text search with Laravel Scout. Use when adding search to Eloquent models with Meilisearch, Algolia, or database driver."
 ---
 
 

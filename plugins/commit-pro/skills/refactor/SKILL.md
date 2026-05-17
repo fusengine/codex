@@ -1,6 +1,6 @@
 ---
 name: refactor
-description: Refactor commit. Use for refactoring,restructure,reorganize,clean up code. (migré depuis slash command)
+description: "Refactor commit. Use for refactoring,restructure,reorganize,clean up code. (migré depuis slash command)"
 ---
 
 # Refactor Commit

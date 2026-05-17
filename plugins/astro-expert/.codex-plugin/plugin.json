@@ -20,7 +20,6 @@
     "starlight"
   ],
   "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Astro Expert",
     "shortDescription": "Astro 6 framework specialist with Islands Architecture",

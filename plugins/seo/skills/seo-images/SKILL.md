@@ -1,6 +1,6 @@
 ---
 name: seo-images
-description: Use when optimizing images for SEO. Covers alt text, descriptive filenames, modern formats (WebP/AVIF), lazy loading, responsive sizing (srcset), ImageObject schema.
+description: "Use when optimizing images for SEO. Covers alt text, descriptive filenames, modern formats (WebP/AVIF), lazy loading, responsive sizing (srcset), ImageObject schema."
 ---
 
 

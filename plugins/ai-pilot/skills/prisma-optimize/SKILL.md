@@ -1,6 +1,6 @@
 ---
 name: prisma-optimize
-description: Optimize Prisma queries with automated analysis,N+1 detection,index recommendations,and performance patterns based on official documentation (migré depuis slash command)
+description: "Optimize Prisma queries with automated analysis,N+1 detection,index recommendations,and performance patterns based on official documentation (migré depuis slash command)"
 ---
 
 # 🚀 Prisma Query Optimization

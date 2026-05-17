@@ -1,6 +1,6 @@
 ---
 name: designing-systems
-description: Phase 1: Browse 4 catalog sites via Playwright, write CSS-precise observations (oklch values, font-size clamp, grid ratios, border-radius, shadows), declare reference site + 3 elements. Feed specs to Gemini context.
+description: "Phase 1: Browse 4 catalog sites via Playwright, write CSS-precise observations (oklch values, font-size clamp, grid ratios, border-radius, shadows), declare reference site + 3 elements. Feed specs to Gemini context."
 ---
 
 

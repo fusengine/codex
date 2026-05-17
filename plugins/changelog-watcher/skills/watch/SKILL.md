@@ -1,6 +1,6 @@
 ---
 name: watch
-description: Check for Codex CLI updates,detect breaking changes,analyze plugin compatibility,and optionally gather community pulse via Exa. (migré depuis slash command)
+description: "Check for Codex CLI updates,detect breaking changes,analyze plugin compatibility,and optionally gather community pulse via Exa. (migré depuis slash command)"
 ---
 
 # Watch - Codex CLI Update Tracker

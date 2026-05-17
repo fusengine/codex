@@ -1,6 +1,6 @@
 ---
 name: changelog-scan
-description: Scan Codex CLI changelog for new versions, features, and changes. Fetches official docs, parses release notes, and generates structured update report.
+description: "Scan Codex CLI changelog for new versions, features, and changes. Fetches official docs, parses release notes, and generates structured update report."
 ---
 
 

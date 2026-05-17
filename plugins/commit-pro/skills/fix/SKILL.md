@@ -1,6 +1,6 @@
 ---
 name: fix
-description: Quick bugfix commit. Use for fix bug,bugfix,patch,hotfix,correct error. (migré depuis slash command)
+description: "Quick bugfix commit. Use for fix bug,bugfix,patch,hotfix,correct error. (migré depuis slash command)"
 ---
 
 # Quick Fix Commit

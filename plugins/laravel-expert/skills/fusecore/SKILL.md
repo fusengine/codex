@@ -1,6 +1,6 @@
 ---
 name: fusecore
-description: FuseCore Modular Architecture - Laravel 13 modular monolith with auto-discovery, React 19 integration, and SOLID principles. Use when creating modules, understanding FuseCore structure, or implementing features in FuseCore projects.
+description: "FuseCore Modular Architecture - Laravel 13 modular monolith with auto-discovery, React 19 integration, and SOLID principles. Use when creating modules, understanding FuseCore structure, or implementing features in FuseCore projects."
 ---
 
 

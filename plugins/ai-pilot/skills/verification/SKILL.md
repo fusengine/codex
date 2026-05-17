@@ -1,6 +1,6 @@
 ---
 name: verification
-description: Use when marking a task as complete, finishing a feature, or claiming a bug is fixed. Ensures functional resolution is verified with evidence before closing.
+description: "Use when marking a task as complete, finishing a feature, or claiming a bug is fixed. Ensures functional resolution is verified with evidence before closing."
 ---
 
 

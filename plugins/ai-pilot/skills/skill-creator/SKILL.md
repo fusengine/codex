@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: Use when creating new skills, restructuring existing skills, or improving skill documentation. Generates SKILL.md + references/ structure with proper patterns.
+description: "Use when creating new skills, restructuring existing skills, or improving skill documentation. Generates SKILL.md + references/ structure with proper patterns."
 ---
 
 

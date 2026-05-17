@@ -1,6 +1,6 @@
 ---
 name: dependency-audit
-description: Audit project dependencies for known vulnerabilities using ecosystem-specific tools (npm audit, composer audit, pip-audit, cargo audit, etc).
+description: "Audit project dependencies for known vulnerabilities using ecosystem-specific tools (npm audit, composer audit, pip-audit, cargo audit, etc)."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: shadcn-migration
-description: Migration guide between Radix UI and Base UI primitives for shadcn/ui. Covers step-by-step migration, API transformations, and validation checklists.
+description: "Migration guide between Radix UI and Base UI primitives for shadcn/ui. Covers step-by-step migration, API transformations, and validation checklists."
 ---
 
 

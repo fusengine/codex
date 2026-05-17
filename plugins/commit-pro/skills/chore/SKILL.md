@@ -1,6 +1,6 @@
 ---
 name: chore
-description: Chore commit. Use for maintenance,deps,dependencies,config,cleanup,housekeeping. (migré depuis slash command)
+description: "Chore commit. Use for maintenance,deps,dependencies,config,cleanup,housekeeping. (migré depuis slash command)"
 ---
 
 # Chore Commit

@@ -23,7 +23,6 @@ const CATEGORY_OF: Record<string, string> = {
 	"core-guards": "Security",
 	"design-expert": "Design",
 	"laravel-expert": "Framework",
-	"memory-neural": "Productivity",
 	"nextjs-expert": "Framework",
 	"prompt-engineer": "Productivity",
 	"react-expert": "Framework",
@@ -37,19 +36,23 @@ const CATEGORY_OF: Record<string, string> = {
 
 async function fixMarketplace() {
 	const data = JSON.parse(await Bun.file(MARKETPLACE).text());
+	delete data.$schema;
 	data.interface = data.interface ?? { displayName: "Fusengine Codex Plugins" };
-	data.plugins = data.plugins.map((p: { name: string; source: string; version: string }) => {
-		const folder = p.source.replace(/^\.\/plugins\//, "");
-		return {
-			name: p.name,
-			source: { source: "local", path: p.source },
-			version: p.version,
-			category: CATEGORY_OF[folder] ?? "Productivity",
-			policy: { installation: "AVAILABLE", authentication: "ON_INSTALL" },
-		};
-	});
+	data.plugins = data.plugins.map(
+		(p: { name?: string; source: string | { path: string }; version: string }) => {
+			const path = typeof p.source === "string" ? p.source : p.source.path;
+			const folder = path.replace(/^\.\/plugins\//, "");
+			return {
+				name: folder,
+				source: { source: "local", path },
+				version: p.version,
+				category: CATEGORY_OF[folder] ?? "Productivity",
+				policy: { installation: "AVAILABLE", authentication: "ON_INSTALL" },
+			};
+		},
+	);
 	await Bun.write(MARKETPLACE, JSON.stringify(data, null, 2));
-	console.log(`[OK] marketplace.json: ${data.plugins.length} entries fixed`);
+	console.log(`[OK] marketplace.json: ${data.plugins.length} entries fixed (names aligned on folder)`);
 }
 
 async function fixPluginManifests() {

@@ -1,6 +1,6 @@
 ---
 name: wip
-description: Work in progress commit. Use for wip,save work,quick save,checkpoint. (migré depuis slash command)
+description: "Work in progress commit. Use for wip,save work,quick save,checkpoint. (migré depuis slash command)"
 ---
 
 # WIP Commit

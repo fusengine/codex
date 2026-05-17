@@ -1,6 +1,6 @@
 ---
 name: amend
-description: Amend last commit safely. Use for amend,fix last commit,update commit,modify commit. (migré depuis slash command)
+description: "Amend last commit safely. Use for amend,fix last commit,update commit,modify commit. (migré depuis slash command)"
 ---
 
 # Amend Last Commit

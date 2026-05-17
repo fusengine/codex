@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-custom-styles
-description: @utility, @variant, @apply, custom CSS
+description: "@utility, @variant, @apply, custom CSS"
 ---
 
 

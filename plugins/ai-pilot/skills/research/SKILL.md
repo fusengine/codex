@@ -1,6 +1,6 @@
 ---
 name: research
-description: Technical research methodology using Context7, Exa, and Sequential Thinking for documentation, best practices, and complex investigations.
+description: "Technical research methodology using Context7, Exa, and Sequential Thinking for documentation, best practices, and complex investigations."
 ---
 
 

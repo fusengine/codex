@@ -1,6 +1,6 @@
 ---
 name: laravel-auth
-description: Use when implementing user authentication, API tokens, social login, or authorization. Covers Sanctum, Passport, Socialite, Fortify, policies, and gates for Laravel 13.
+description: "Use when implementing user authentication, API tokens, social login, or authorization. Covers Sanctum, Passport, Socialite, Fortify, policies, and gates for Laravel 13."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: guardrails
-description: Security techniques and quality control for prompts and agents
+description: "Security techniques and quality control for prompts and agents"
 ---
 
 

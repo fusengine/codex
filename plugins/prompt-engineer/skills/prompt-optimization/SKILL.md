@@ -1,6 +1,6 @@
 ---
 name: prompt-optimization
-description: Analyze and improve existing prompts for better performance
+description: "Analyze and improve existing prompts for better performance"
 ---
 
 

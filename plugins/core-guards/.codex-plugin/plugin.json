@@ -19,7 +19,6 @@
     "linter",
     "pre-commit"
   ],
-  "skills": "./skills/",
   "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Core Guards",

@@ -1,6 +1,6 @@
 ---
 name: seo-internal-linking
-description: Use when designing internal linking strategy. Covers pillar/cluster architecture, anchor text optimization, link distribution, orphan page detection, click depth, broken link audit.
+description: "Use when designing internal linking strategy. Covers pillar/cluster architecture, anchor text optimization, link distribution, orphan page detection, click depth, broken link audit."
 ---
 
 

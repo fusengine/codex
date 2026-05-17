@@ -1,6 +1,6 @@
 ---
 name: design
-description: Full design pipeline: Identity → Research → System → Generate → Motion → Audit → Review. Generates production-ready HTML/CSS via Gemini Design MCP with OKLCH tokens, approved typography, and Playwright-driven inspiration. (migré depuis slash command)
+description: "Full design pipeline: Identity → Research → System → Generate → Motion → Audit → Review. Generates production-ready HTML/CSS via Gemini Design MCP with OKLCH tokens, approved typography, and Playwright-driven inspiration. (migré depuis slash command)"
 ---
 
 # /design — Full Design Pipeline (Phases 0→6)

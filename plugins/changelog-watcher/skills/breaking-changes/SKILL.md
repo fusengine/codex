@@ -1,6 +1,6 @@
 ---
 name: breaking-changes
-description: Detect breaking changes in Codex CLI updates by comparing current API surface against changelog. Maps impacts to specific plugin files.
+description: "Detect breaking changes in Codex CLI updates by comparing current API surface against changelog. Maps impacts to specific plugin files."
 ---
 
 

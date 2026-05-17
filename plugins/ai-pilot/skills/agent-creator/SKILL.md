@@ -1,6 +1,6 @@
 ---
 name: agent-creator
-description: Use when creating expert agents. Generates agent.md with frontmatter, hooks, required sections, and skill references.
+description: "Use when creating expert agents. Generates agent.md with frontmatter, hooks, required sections, and skill references."
 ---
 
 

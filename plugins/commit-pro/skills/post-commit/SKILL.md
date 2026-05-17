@@ -1,6 +1,6 @@
 ---
 name: post-commit
-description: Universal post-commit actions. CHANGELOG update and git tag for all repos. Plugin version bumping for marketplace repos. Triggered after any code commit (except wip/amend/undo).
+description: "Universal post-commit actions. CHANGELOG update and git tag for all repos. Plugin version bumping for marketplace repos. Triggered after any code commit (except wip/amend/undo)."
 ---
 
 

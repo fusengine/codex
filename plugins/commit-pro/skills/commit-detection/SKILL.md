@@ -1,6 +1,6 @@
 ---
 name: commit-detection
-description: Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing.
+description: "Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing."
 ---
 
 

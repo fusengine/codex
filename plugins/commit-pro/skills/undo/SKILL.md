@@ -1,6 +1,6 @@
 ---
 name: undo
-description: Undo last commit safely. Use for undo commit,revert,uncommit,cancel commit. (migré depuis slash command)
+description: "Undo last commit safely. Use for undo commit,revert,uncommit,cancel commit. (migré depuis slash command)"
 ---
 
 # Undo Last Commit

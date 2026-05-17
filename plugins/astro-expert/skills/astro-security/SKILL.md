@@ -1,6 +1,6 @@
 ---
 name: astro-security
-description: Use when configuring Content Security Policy (CSP) in Astro 6, setting security headers, managing script/style hashes, using nonces, or implementing experimentalStaticHeaders for adapter deployments.
+description: "Use when configuring Content Security Policy (CSP) in Astro 6, setting security headers, managing script/style hashes, using nonces, or implementing experimentalStaticHeaders for adapter deployments."
 ---
 
 

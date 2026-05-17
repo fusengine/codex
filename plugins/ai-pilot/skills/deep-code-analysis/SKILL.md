@@ -1,6 +1,6 @@
 ---
 name: deep-code-analysis
-description: Comprehensive codebase investigation using research-expert for documentation,explore-codebase for structure,and deep analysis. Perfect for understanding complex systems. (migré depuis slash command)
+description: "Comprehensive codebase investigation using research-expert for documentation,explore-codebase for structure,and deep analysis. Perfect for understanding complex systems. (migré depuis slash command)"
 ---
 
 # Deep Code Analysis

@@ -1,6 +1,6 @@
 ---
 name: swiftui-core
-description: SwiftUI fundamentals for all Apple platforms. Use when building views, navigation, data persistence, or state management with SwiftUI across iOS, macOS, iPadOS, watchOS, visionOS.
+description: "SwiftUI fundamentals for all Apple platforms. Use when building views, navigation, data persistence, or state management with SwiftUI across iOS, macOS, iPadOS, watchOS, visionOS."
 ---
 
 

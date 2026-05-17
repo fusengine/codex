@@ -1,6 +1,6 @@
 ---
 name: memory
-description: Neural memory operations - search,store,stats,consolidate (migré depuis slash command)
+description: "Neural memory operations - search,store,stats,consolidate (migré depuis slash command)"
 ---
 
 # Neural Memory Operations

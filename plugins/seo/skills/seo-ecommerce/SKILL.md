@@ -1,6 +1,6 @@
 ---
 name: seo-ecommerce
-description: Use when optimizing e-commerce SEO. Covers product schema with AggregateRating, faceted navigation rules, category page intro, out-of-stock handling, internal search, marketplace SEO (Amazon, Etsy, eBay).
+description: "Use when optimizing e-commerce SEO. Covers product schema with AggregateRating, faceted navigation rules, category page intro, out-of-stock handling, internal search, marketplace SEO (Amazon, Etsy, eBay)."
 ---
 
 

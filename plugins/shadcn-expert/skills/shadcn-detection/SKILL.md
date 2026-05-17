@@ -1,6 +1,6 @@
 ---
 name: shadcn-detection
-description: Detect whether a project uses Radix UI or Base UI as shadcn/ui primitives. Analyzes package.json, components.json, imports, and data attributes to determine the primitive library in use.
+description: "Detect whether a project uses Radix UI or Base UI as shadcn/ui primitives. Analyzes package.json, components.json, imports, and data attributes to determine the primitive library in use."
 ---
 
 

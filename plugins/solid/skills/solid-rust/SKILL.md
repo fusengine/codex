@@ -1,6 +1,6 @@
 ---
 name: solid-rust
-description: SOLID principles for Rust 2024+. Files < 100 lines, traits separated, modular architecture. Modules MANDATORY.
+description: "SOLID principles for Rust 2024+. Files < 100 lines, traits separated, modular architecture. Modules MANDATORY."
 ---
 
 

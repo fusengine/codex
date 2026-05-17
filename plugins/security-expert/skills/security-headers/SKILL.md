@@ -1,6 +1,6 @@
 ---
 name: security-headers
-description: Verify and configure HTTP security headers (CSP, HSTS, CORS, X-Frame-Options, etc). Checks current configuration and generates framework-specific fixes.
+description: "Verify and configure HTTP security headers (CSP, HSTS, CORS, X-Frame-Options, etc). Checks current configuration and generates framework-specific fixes."
 ---
 
 

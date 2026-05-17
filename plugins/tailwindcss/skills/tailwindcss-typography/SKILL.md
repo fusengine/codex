@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-typography
-description: Typography utilities Tailwind CSS v4.1. Font (font-sans, font-serif, font-mono, font-size, font-weight), Text (text-color, text-align, text-wrap, text-shadow NEW), Letter/Line spacing, Decoration, Transform.
+description: "Typography utilities Tailwind CSS v4.1. Font (font-sans, font-serif, font-mono, font-size, font-weight), Text (text-color, text-align, text-wrap, text-shadow NEW), Letter/Line spacing, Decoration, Transform."
 ---
 
 

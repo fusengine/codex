@@ -1,6 +1,6 @@
 ---
 name: laravel-upgrade-v13
-description: Use when upgrading a Laravel 12 application to Laravel 13.0. Covers PHP 8.3 requirement, composer commands, breaking changes (PHPUnit 12, Pest 4, VerifyCsrfToken → PreventRequestForgery, cache prefixes, serializable_classes, pheanstalk 8.0+), Attributes migration (Eloquent + Queue), Symfony 7.4/8.0 upgrade, and Laravel Boost MCP automated upgrade.
+description: "Use when upgrading a Laravel 12 application to Laravel 13.0. Covers PHP 8.3 requirement, composer commands, breaking changes (PHPUnit 12, Pest 4, VerifyCsrfToken → PreventRequestForgery, cache prefixes, serializable_classes, pheanstalk 8.0+), Attributes migration (Eloquent + Queue), Symfony 7.4/8.0 upgrade, and Laravel Boost MCP automated upgrade."
 ---
 
 

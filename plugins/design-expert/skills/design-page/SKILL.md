@@ -1,6 +1,6 @@
 ---
 name: design-page
-description: New page in existing project. Skips identity (design-system.md exists). Browses 2 sites for inspiration, then generates via Gemini with existing tokens. (migré depuis slash command)
+description: "New page in existing project. Skips identity (design-system.md exists). Browses 2 sites for inspiration, then generates via Gemini with existing tokens. (migré depuis slash command)"
 ---
 
 # /design:page — New Page (Phases 1→6)

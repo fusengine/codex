@@ -1,6 +1,6 @@
 ---
 name: prisma-7
-description: Prisma 7 ORM with Rust-free client, 90% smaller bundles, TypedSQL, Omit API, and ESM-first architecture. Use when working with database, schema, migrations, queries, or relations.
+description: "Prisma 7 ORM with Rust-free client, 90% smaller bundles, TypedSQL, Omit API, and ESM-first architecture. Use when working with database, schema, migrations, queries, or relations."
 ---
 
 

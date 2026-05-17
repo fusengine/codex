@@ -1,6 +1,6 @@
 ---
 name: seo-sxo
-description: Use when optimizing search experience (SXO). Covers intent matching, user personas, user stories, page-type analysis, dwell time, scroll depth, pogo-sticking prevention.
+description: "Use when optimizing search experience (SXO). Covers intent matching, user personas, user stories, page-type analysis, dwell time, scroll depth, pogo-sticking prevention."
 ---
 
 

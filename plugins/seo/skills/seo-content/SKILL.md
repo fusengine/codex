@@ -1,6 +1,6 @@
 ---
 name: seo-content
-description: Use when analyzing content quality. Covers E-E-A-T scoring (Experience, Expertise, Authoritativeness, Trustworthiness), anti-cannibalization, keyword distribution, AI content disclosure, search intent matching.
+description: "Use when analyzing content quality. Covers E-E-A-T scoring (Experience, Expertise, Authoritativeness, Trustworthiness), anti-cannibalization, keyword distribution, AI content disclosure, search intent matching."
 ---
 
 

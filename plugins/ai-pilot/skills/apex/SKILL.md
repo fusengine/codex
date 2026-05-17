@@ -1,6 +1,6 @@
 ---
 name: apex
-description: APEX Methodology - The systematic Analyze-Plan-Execute-eLicit-eXamine approach for intelligent development. Eliminates hallucinations,errors,and bugs to produce clean,maintainable code. (migré depuis slash command)
+description: "APEX Methodology - The systematic Analyze-Plan-Execute-eLicit-eXamine approach for intelligent development. Eliminates hallucinations,errors,and bugs to produce clean,maintainable code. (migré depuis slash command)"
 ---
 
 # APEX: Analyze-Plan-Execute-eLicit-eXamine

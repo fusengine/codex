@@ -1,6 +1,6 @@
 ---
 name: prompt-history
-description: Manage history of created and optimized prompts (migré depuis slash command)
+description: "Manage history of created and optimized prompts (migré depuis slash command)"
 ---
 
 # /prompt history

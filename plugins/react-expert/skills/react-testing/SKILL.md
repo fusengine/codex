@@ -1,6 +1,6 @@
 ---
 name: react-testing
-description: Testing Library for React 19 - render, screen, userEvent, waitFor, Suspense. Use when writing tests for React components with Vitest.
+description: "Testing Library for React 19 - render, screen, userEvent, waitFor, Suspense. Use when writing tests for React components with Vitest."
 ---
 
 

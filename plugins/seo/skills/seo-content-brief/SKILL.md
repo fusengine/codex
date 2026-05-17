@@ -1,6 +1,6 @@
 ---
 name: seo-content-brief
-description: Use when generating detailed SEO content briefs. Covers target keywords, search intent, outline (H2/H3), word count, internal links, schema requirements, GEO readiness checklist.
+description: "Use when generating detailed SEO content briefs. Covers target keywords, search intent, outline (H2/H3), word count, internal links, schema requirements, GEO readiness checklist."
 ---
 
 

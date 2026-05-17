@@ -1,6 +1,6 @@
 ---
 name: create-pull-request
-description: Auto-generate Pull Request with comprehensive description,test plan,and changelog. Uses gh CLI for creation. (migré depuis slash command)
+description: "Auto-generate Pull Request with comprehensive description,test plan,and changelog. Uses gh CLI for creation. (migré depuis slash command)"
 ---
 
 # Create Pull Request

@@ -1,6 +1,6 @@
 ---
 name: laravel-migrations
-description: Laravel 13 database migrations - Schema Builder, columns, indexes, foreign keys, seeders, pgvector. Use when designing database schema or managing migrations.
+description: "Laravel 13 database migrations - Schema Builder, columns, indexes, foreign keys, seeders, pgvector. Use when designing database schema or managing migrations."
 ---
 
 

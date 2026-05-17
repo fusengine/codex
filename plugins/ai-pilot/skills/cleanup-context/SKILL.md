@@ -1,6 +1,6 @@
 ---
 name: cleanup-context
-description: Memory optimization - removes duplicates,consolidates knowledge,and cleans memory banks for better performance. (migré depuis slash command)
+description: "Memory optimization - removes duplicates,consolidates knowledge,and cleans memory banks for better performance. (migré depuis slash command)"
 ---
 
 # Cleanup Context

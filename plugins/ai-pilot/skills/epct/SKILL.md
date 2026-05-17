@@ -1,6 +1,6 @@
 ---
 name: epct
-description: Systematic Explore-Plan-Code-Test methodology for structured development. Ensures comprehensive approach to feature implementation. (migré depuis slash command)
+description: "Systematic Explore-Plan-Code-Test methodology for structured development. Ensures comprehensive approach to feature implementation. (migré depuis slash command)"
 ---
 
 # EPCT: Explore-Plan-Code-Test

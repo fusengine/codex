@@ -1,6 +1,6 @@
 ---
 name: react-tanstack-router
-description: TanStack Router - 100% type-safe routing, file-based routes, loaders, search params. Use when implementing routing in React apps (NOT Next.js).
+description: "TanStack Router - 100% type-safe routing, file-based routes, loaders, search params. Use when implementing routing in React apps (NOT Next.js)."
 ---
 
 

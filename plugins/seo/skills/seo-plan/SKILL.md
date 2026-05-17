@@ -1,6 +1,6 @@
 ---
 name: seo-plan
-description: Use when building a strategic SEO roadmap by business type. Covers SaaS, local, e-commerce, publisher, agency playbooks and 90-day prioritized roadmaps.
+description: "Use when building a strategic SEO roadmap by business type. Covers SaaS, local, e-commerce, publisher, agency playbooks and 90-day prioritized roadmaps."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: react-forms
-description: TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation, async validation, arrays, nested fields, React 19 Server Actions
+description: "TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation, async validation, arrays, nested fields, React 19 Server Actions"
 ---
 
 

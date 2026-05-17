@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Smart conventional commit with security validation,branch flow enforcement,and auto-detection. Use for git commit,commit changes,save work,stage and commit. (migré depuis slash command)
+description: "Smart conventional commit with security validation,branch flow enforcement,and auto-detection. Use for git commit,commit changes,save work,stage and commit. (migré depuis slash command)"
 ---
 
 # Smart Conventional Commit

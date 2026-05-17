@@ -1,6 +1,6 @@
 ---
 name: astro-actions
-description: Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety.
+description: "Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety."
 ---
 
 

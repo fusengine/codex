@@ -1,6 +1,6 @@
 ---
 name: laravel-i18n
-description: Laravel localization - __(), trans_choice(), lang files, JSON translations, pluralization, middleware, formatting. Use when implementing translations.
+description: "Laravel localization - __(), trans_choice(), lang files, JSON translations, pluralization, middleware, formatting. Use when implementing translations."
 ---
 
 

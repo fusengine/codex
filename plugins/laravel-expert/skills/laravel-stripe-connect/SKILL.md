@@ -1,6 +1,6 @@
 ---
 name: laravel-stripe-connect
-description: Build marketplaces and platforms with Stripe Connect. Use when implementing multi-vendor payments, seller onboarding, commissions, payouts, or split payments.
+description: "Build marketplaces and platforms with Stripe Connect. Use when implementing multi-vendor payments, seller onboarding, commissions, payouts, or split payments."
 ---
 
 

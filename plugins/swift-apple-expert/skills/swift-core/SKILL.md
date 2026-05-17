@@ -1,6 +1,6 @@
 ---
 name: swift-core
-description: Swift 6 fundamentals for all Apple platforms. Use when implementing concurrency, architecture, testing, i18n, or performance optimization across iOS, macOS, iPadOS, watchOS, visionOS.
+description: "Swift 6 fundamentals for all Apple platforms. Use when implementing concurrency, architecture, testing, i18n, or performance optimization across iOS, macOS, iPadOS, watchOS, visionOS."
 ---
 
 

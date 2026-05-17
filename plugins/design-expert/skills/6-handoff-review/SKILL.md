@@ -1,6 +1,6 @@
 ---
 name: handoff-review
-description: Phase 6: Serve via python3 -m http.server 8899, screenshot light mode (fullPage), toggle .dark class + screenshot dark mode, compare 3 declared elements [expected vs present], fix gaps with modify_frontend (max 2 cycles), report.
+description: "Phase 6: Serve via python3 -m http.server 8899, screenshot light mode (fullPage), toggle .dark class + screenshot dark mode, compare 3 declared elements [expected vs present], fix gaps with modify_frontend (max 2 cycles), report."
 ---
 
 

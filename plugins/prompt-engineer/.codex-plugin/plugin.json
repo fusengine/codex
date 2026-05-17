@@ -23,7 +23,6 @@
     "llm"
   ],
   "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Prompt Engineer",
     "shortDescription": "Expert AI prompt creation and optimization",

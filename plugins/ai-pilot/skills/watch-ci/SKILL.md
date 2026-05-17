@@ -1,6 +1,6 @@
 ---
 name: watch-ci
-description: Monitor CI/CD pipeline and automatically fix failures. Watches GitHub Actions runs and applies fixes when tests fail. (migré depuis slash command)
+description: "Monitor CI/CD pipeline and automatically fix failures. Watches GitHub Actions runs and applies fixes when tests fail. (migré depuis slash command)"
 ---
 
 # Watch CI/CD

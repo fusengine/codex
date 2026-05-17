@@ -1,6 +1,6 @@
 ---
 name: laravel-vite
-description: Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks, optimization. Use when configuring frontend build pipeline.
+description: "Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks, optimization. Use when configuring frontend build pipeline."
 ---
 
 

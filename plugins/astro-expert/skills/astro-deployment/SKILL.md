@@ -1,6 +1,6 @@
 ---
 name: astro-deployment
-description: Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration.
+description: "Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: map-ecosystem
-description: Enrich auto-generated .cartographer/ maps with full descriptions from source files.
+description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files."
 ---
 
 

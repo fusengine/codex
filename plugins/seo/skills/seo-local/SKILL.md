@@ -1,6 +1,6 @@
 ---
 name: seo-local
-description: Use when optimizing local SEO. Covers Google Business Profile, NAP consistency, citations, reviews acquisition, Local Pack ranking, location pages, LocalBusiness schema.
+description: "Use when optimizing local SEO. Covers Google Business Profile, NAP consistency, citations, reviews acquisition, Local Pack ranking, location pages, LocalBusiness schema."
 ---
 
 

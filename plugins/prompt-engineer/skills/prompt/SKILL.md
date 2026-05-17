@@ -1,6 +1,6 @@
 ---
 name: prompt
-description: Create or optimize prompts using best practices (migré depuis slash command)
+description: "Create or optimize prompts using best practices (migré depuis slash command)"
 ---
 
 # /prompt Command

@@ -1,6 +1,6 @@
 ---
 name: laravel-testing
-description: Write tests with Pest 4/PHPUnit 12, feature tests, unit tests, mocking, fakes, and factories. Use when testing controllers, services, models, or implementing TDD on Laravel 13.
+description: "Write tests with Pest 4/PHPUnit 12, feature tests, unit tests, mocking, fakes, and factories. Use when testing controllers, services, models, or implementing TDD on Laravel 13."
 ---
 
 

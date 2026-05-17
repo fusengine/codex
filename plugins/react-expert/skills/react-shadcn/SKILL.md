@@ -1,6 +1,6 @@
 ---
 name: react-shadcn
-description: shadcn/ui for React with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components.
+description: "shadcn/ui for React with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components."
 ---
 
 

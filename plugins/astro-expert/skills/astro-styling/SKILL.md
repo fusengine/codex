@@ -1,6 +1,6 @@
 ---
 name: astro-styling
-description: Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors.
+description: "Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors."
 ---
 
 

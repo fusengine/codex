@@ -1,6 +1,6 @@
 ---
 name: scan
-description: Launch a comprehensive security audit on the current project. Detects vulnerabilities,scans dependencies,checks OWASP Top 10,and generates a structured report. (migré depuis slash command)
+description: "Launch a comprehensive security audit on the current project. Detects vulnerabilities,scans dependencies,checks OWASP Top 10,and generates a structured report. (migré depuis slash command)"
 ---
 
 # Security Scan

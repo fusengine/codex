@@ -1,6 +1,6 @@
 ---
 name: visionos
-description: visionOS platform-specific development with spatial computing, RealityKit, immersive spaces, and volumes. Use when building Vision Pro apps, 3D experiences, or mixed reality features.
+description: "visionOS platform-specific development with spatial computing, RealityKit, immersive spaces, and volumes. Use when building Vision Pro apps, 3D experiences, or mixed reality features."
 ---
 
 

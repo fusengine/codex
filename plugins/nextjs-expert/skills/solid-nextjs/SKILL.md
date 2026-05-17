@@ -1,6 +1,6 @@
 ---
 name: solid-nextjs
-description: This skill should be used when the user asks about "SOLID principles", Next.js architecture, modular structure, code organization, file size limits, interface separation, or "JSDoc documentation". Enforces files < 100 lines with mandatory JSDoc and separated interfaces.
+description: "This skill should be used when the user asks about \"SOLID principles\", Next.js architecture, modular structure, code organization, file size limits, interface separation, or \"JSDoc documentation\". Enforces files < 100 lines with mandatory JSDoc and separated interfaces."
 ---
 
 

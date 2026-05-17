@@ -1,6 +1,6 @@
 ---
 name: nextjs-shadcn
-description: shadcn/ui for Next.js App Router with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components.
+description: "shadcn/ui for Next.js App Router with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components."
 ---
 
 

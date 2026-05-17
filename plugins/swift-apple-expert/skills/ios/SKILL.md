@@ -1,6 +1,6 @@
 ---
 name: ios
-description: iOS platform-specific development with XcodeBuildMCP tools for simulator, device, UI automation, and debugging. Use when building iPhone apps, testing on simulator/device, or automating UI interactions.
+description: "iOS platform-specific development with XcodeBuildMCP tools for simulator, device, UI automation, and debugging. Use when building iPhone apps, testing on simulator/device, or automating UI interactions."
 ---
 
 

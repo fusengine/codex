@@ -1,6 +1,6 @@
 ---
 name: astro-assets
-description: Image and asset optimization in Astro 6 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task.
+description: "Image and asset optimization in Astro 6 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task."
 ---
 
 

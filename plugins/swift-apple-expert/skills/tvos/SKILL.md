@@ -1,6 +1,6 @@
 ---
 name: tvos
-description: tvOS platform-specific development with focus system, large screen UI, Siri Remote, and media playback. Use when building Apple TV apps, video streaming, or living room experiences.
+description: "tvOS platform-specific development with focus system, large screen UI, Siri Remote, and media playback. Use when building Apple TV apps, video streaming, or living room experiences."
 ---
 
 

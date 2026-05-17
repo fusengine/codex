@@ -1,6 +1,6 @@
 ---
 name: code-quality
-description: Code quality validation with linters, SOLID principles, DRY detection, error detection, and architecture compliance across all languages.
+description: "Code quality validation with linters, SOLID principles, DRY detection, error detection, and architecture compliance across all languages."
 ---
 
 

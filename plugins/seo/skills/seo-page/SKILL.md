@@ -1,6 +1,6 @@
 ---
 name: seo-page
-description: Use when analyzing a single page via /seo page. Covers meta extraction, schema validation, header hierarchy, content quality, and GEO readiness for one URL or local file.
+description: "Use when analyzing a single page via /seo page. Covers meta extraction, schema validation, header hierarchy, content quality, and GEO readiness for one URL or local file."
 ---
 
 

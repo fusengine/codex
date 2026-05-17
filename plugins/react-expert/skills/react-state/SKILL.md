@@ -1,6 +1,6 @@
 ---
 name: react-state
-description: Zustand v5 state management for React. Use when implementing global state, stores, persist, or client-side state.
+description: "Zustand v5 state management for React. Use when implementing global state, stores, persist, or client-side state."
 ---
 
 

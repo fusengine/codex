@@ -1,6 +1,6 @@
 ---
 name: seo-technical
-description: Use when auditing technical SEO. Covers robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, HTTPS, redirects chains.
+description: "Use when auditing technical SEO. Covers robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, HTTPS, redirects chains."
 ---
 
 

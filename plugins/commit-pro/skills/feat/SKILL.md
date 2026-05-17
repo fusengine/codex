@@ -1,6 +1,6 @@
 ---
 name: feat
-description: Quick feature commit. Use for new feature,add feature,implement,create new. (migré depuis slash command)
+description: "Quick feature commit. Use for new feature,add feature,implement,create new. (migré depuis slash command)"
 ---
 
 # Quick Feature Commit

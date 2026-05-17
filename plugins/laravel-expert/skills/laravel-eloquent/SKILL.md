@@ -1,6 +1,6 @@
 ---
 name: laravel-eloquent
-description: Complete Eloquent ORM for Laravel 13 - PHP Attributes (#[Table], #[Fillable], #[Casts]), models, relationships, queries, observers, factories. Use when working with database models.
+description: "Complete Eloquent ORM for Laravel 13 - PHP Attributes (#[Table], #[Fillable], #[Casts]), models, relationships, queries, observers, factories. Use when working with database models."
 ---
 
 

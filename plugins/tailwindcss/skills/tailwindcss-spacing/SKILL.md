@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-spacing
-description: Spacing utilities Tailwind CSS v4.1. Margin (m-*, mx-*, my-*, mt-*, mr-*, mb-*, ml-*, -m-* negative, m-auto), Padding (p-*, px-*, py-*, pt-*, pr-*, pb-*, pl-*), Space between (space-x-*, space-y-*).
+description: "Spacing utilities Tailwind CSS v4.1. Margin (m-*, mx-*, my-*, mt-*, mr-*, mb-*, ml-*, -m-* negative, m-auto), Padding (p-*, px-*, py-*, pt-*, pr-*, pb-*, pl-*), Space between (space-x-*, space-y-*)."
 ---
 
 

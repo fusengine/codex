@@ -1,6 +1,6 @@
 ---
 name: map
-description: Refresh and display the ecosystem map of all installed plugins, agents, skills, commands, and hooks. (migré depuis slash command)
+description: "Refresh and display the ecosystem map of all installed plugins, agents, skills, commands, and hooks. (migré depuis slash command)"
 ---
 
 # /map — Ecosystem Map

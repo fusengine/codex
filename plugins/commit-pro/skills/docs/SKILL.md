@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Documentation commit. Use for update docs,documentation,readme,jsdoc,comments. (migré depuis slash command)
+description: "Documentation commit. Use for update docs,documentation,readme,jsdoc,comments. (migré depuis slash command)"
 ---
 
 # Documentation Commit
