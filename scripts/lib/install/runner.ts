@@ -23,9 +23,21 @@ export interface SetupOptions {
 	skipPluginInstall: boolean;
 }
 
+async function isMarketplaceRegistered(opts: SetupOptions): Promise<boolean> {
+	const path = join(opts.codexHome, "config.toml");
+	const file = Bun.file(path);
+	if (!(await file.exists())) return false;
+	const src = await file.text();
+	return new RegExp(`^\\[marketplaces\\.${opts.marketplaceName}\\]`, "m").test(src);
+}
+
 async function registerMarketplace(opts: SetupOptions): Promise<"cli" | "config"> {
 	const s = p.spinner();
 	s.start("Registering marketplace…");
+	if (await isMarketplaceRegistered(opts)) {
+		s.stop(`Marketplace '${opts.marketplaceName}' already registered — skipping add`);
+		return (await hasCodexCli()) ? "cli" : "config";
+	}
 	if (await hasCodexCli()) {
 		await addMarketplace(opts.projectRoot);
 		s.stop("Marketplace registered via codex CLI");
