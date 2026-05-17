@@ -49,7 +49,7 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 ```swift
 Button("Watch Now") { }
     .buttonStyle(.bordered)
-    .glassEffect(.regular)  // Glass effect on focus
+    .glassEffect(.regular)
 
 TabView {
     // Tab bar with Liquid Glass
