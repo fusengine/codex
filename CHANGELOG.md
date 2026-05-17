@@ -5,6 +5,13 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-05-17
+
+### Fixed
+- `scripts/lib/install/mcp-key-prompt.ts` : **ajouté pour de vrai** (le v1.2.0 prétendait l'avoir mais le fichier n'avait jamais été écrit). Port direct de `claude-plugins/scripts/src/services/mcp-key-prompt.ts` — prompt uniquement les clés des MCPs sélectionnés, après la multiselect.
+- `scripts/lib/install/runner-finalize.ts` : enchaîne maintenant `selectMcpServers` → `promptMissingKeys(selected)` → `configureMcpServers`. Avant : configure direct sans demander les clés manquantes du subset choisi.
+- `scripts/lib/install/runner.ts` : drop l'appel `promptApiKeys` upfront (et son import). Avant : l'installeur demandait TOUTES les clés API du catalogue avant même que l'utilisateur ait choisi quels MCPs activer — exactement l'inverse du flow claude-plugins.
+
 ## [1.2.0] - 2026-05-17
 
 ### Added — parity with claude-plugins installer
