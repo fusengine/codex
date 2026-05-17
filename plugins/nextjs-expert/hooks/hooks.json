@@ -2,38 +2,38 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-nextjs-skill.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-nextjs-skill.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-nextjs-solid.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-nextjs-solid.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-nextjs-modular.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-nextjs-modular.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-duplication.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/detect-duplication.ts"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
           }
         ]
       },
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
           }
         ]
       }

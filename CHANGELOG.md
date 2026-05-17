@@ -5,6 +5,31 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.5] - 2026-05-17
+
+### Fixed
+- `plugins/core-guards/hooks/hooks.json` : 2 références cassées vers fichiers renommés lors de la migration Claude → Codex.
+  - `scripts/session-start/inject-codex-md.ts` → `scripts/session-start/inject-agents-md.ts`
+  - `scripts/user-prompt/read-codex-md.ts` → `scripts/user-prompt/read-agents-md.ts`
+- Conséquence : les hooks `SessionStart` et `UserPromptSubmit` exitaient code 1 (`Module not found "scripts/session-start/inject-codex-md.ts"`) à chaque démarrage de session Codex. Diagnostic reproduit en lançant manuellement `bun scripts/session-start/inject-codex-md.ts` depuis le cache plugin.
+
+## [1.2.5] - 2026-05-17
+
+### Fixed
+- **Hook matchers + scripts adaptés pour Codex apply_patch internal tool** :
+  - 15 plugin `hooks.json` : `${CODEX_PLUGIN_ROOT}` (n'existe pas dans Codex) → `${PLUGIN_ROOT}` (natif binaire 0.130) via `scripts/fix-plugin-root.ts`.
+  - 12 plugin `hooks.json` : matcher `"apply_patch"` → `"Write|Edit|apply_patch"` (anticipation PR #18391 + alias fusengine/codex-agent) via `scripts/fix-apply-patch-matcher.ts`.
+  - 5 scripts core-guards adaptés au format V4A apply_patch : `enforce-file-size.py`, `enforce-interfaces.py`, `enforce-gemini-mcp.py`, `require-apex-agents.py`, `require-solid-read.py` parsent désormais `tool_input.command` (raw patch body avec `*** Add/Update/Delete File:` markers) en plus du format Claude `tool_input.file_path`.
+- **Renames cassés post-migration Claude → Codex** dans `core-guards/hooks/hooks.json` :
+  - `scripts/session-start/inject-codex-md.ts` → `scripts/session-start/inject-agents-md.ts`
+  - `scripts/user-prompt/read-codex-md.ts` → `scripts/user-prompt/read-agents-md.ts`
+  - Corrige les "SessionStart hook (failed) exit code 1" + "UserPromptSubmit hook (failed) exit code 1" loggés à chaque session start.
+- `codex-rules/scripts/inject-rules.ts` : wrapper Bun→Python forward maintenant `process.argv.slice(2)` (avant : args droppés → "Missing plugin root argument"). Fallback `PLUGIN_ROOT` env si argv vide.
+
+### Notes
+- **Codex 0.130 ne fire toujours PAS PreToolUse/PostToolUse sur apply_patch** (issue #16732, PR #18391 merged à main mais absente de cette release). Les 5 scripts enforce/require sont prêts à intercepter dès qu'une release contient le fix. Vérifiable via `~/.codex/logs/enforce-file-size.log` (créé au premier fire réel).
+- Référence : `fusengine/codex-agent` utilise matcher `Write|Edit` standalone → **aussi affecté par #16732 en 0.130** (vérifié empirique : leur `check-solid-from-transcript.py` filtre `name in ("Write","Edit")`, skip aussi le nom Codex `apply_patch`).
+
 ## [1.2.4] - 2026-05-17
 
 ### Fixed

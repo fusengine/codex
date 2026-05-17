@@ -2,20 +2,20 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-skill-loaded.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-skill-loaded.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-react-solid.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-react-solid.ts"
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
           }
         ]
       },
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
           }
         ]
       }

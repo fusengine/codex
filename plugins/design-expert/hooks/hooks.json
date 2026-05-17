@@ -2,47 +2,38 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/guard-state-files.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/guard-state-files.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/enforce-html-css-only.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/enforce-html-css-only.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-design-skill.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-design-skill.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pipeline-gate.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "mcp_tool_call",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-inspiration-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/pipeline-gate.ts"
           }
         ]
       },
@@ -51,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/require-scroll-before-screenshot.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-inspiration-read.ts"
           }
         ]
       },
@@ -60,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/require-scroll-before-screenshot.ts"
           }
         ]
       },
@@ -69,7 +60,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-design-system.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp_tool_call",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-design-system.ts"
           }
         ]
       }
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
           }
         ]
       },
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-screenshot.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-screenshot.ts"
           }
         ]
       },
@@ -98,16 +98,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-design.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-design.ts"
           }
         ]
       }
@@ -118,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
           }
         ]
       },
@@ -127,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-state-init.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-init.ts"
           }
         ]
       }
@@ -137,7 +137,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
           }
         ]
       },
@@ -145,7 +145,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
           }
         ]
       }

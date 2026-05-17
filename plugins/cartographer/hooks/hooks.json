@@ -6,18 +6,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/generate_map.ts ${CODEX_PLUGIN_ROOT}/.. ${CODEX_PLUGIN_ROOT}/../.cartographer || true; bun ${CODEX_PLUGIN_ROOT}/scripts/generate_project_map.ts || true"
+            "command": "bun ${PLUGIN_ROOT}/scripts/generate_map.ts ${PLUGIN_ROOT}/.. ${PLUGIN_ROOT}/../.cartographer || true; bun ${PLUGIN_ROOT}/scripts/generate_project_map.ts || true"
           }
         ]
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-enrichment.ts || true"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-enrichment.ts || true"
           }
         ]
       }

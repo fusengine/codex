@@ -1,27 +1,54 @@
 #!/usr/bin/env python3
-"""PreToolUse hook: Block edits to files > 100 lines (SOLID enforcement)."""
+"""PreToolUse: block writes that would push code files past 100 lines.
+Handles Claude (Write/Edit, tool_input.file_path) and Codex (apply_patch,
+tool_input.command = raw V4A body)."""
 import json
 import os
 import re
 import sys
 
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro)$'
-SOLID_MAP = {
-    'ts': 'react', 'tsx': 'react', 'js': 'react', 'jsx': 'react',
-    'php': 'laravel-expert/skills/solid-php/',
-    'swift': 'swift-apple-expert/skills/solid-swift/',
-}
+MAX = 100
 
 
-def get_solid_ref(fp):
-    """Get SOLID reference path for file."""
+def solid_ref(fp):
     ext = fp.rsplit('.', 1)[-1] if '.' in fp else ''
     if ext in ('ts', 'tsx', 'js', 'jsx'):
         d = os.path.dirname(fp)
-        if any(os.path.isfile(os.path.join(d, c)) for c in ['next.config.js', 'next.config.ts']):
-            return 'nextjs-expert/skills/solid-nextjs/'
-        return 'react-expert/skills/solid-react/'
-    return SOLID_MAP.get(ext, 'generic/')
+        nx = any(os.path.isfile(os.path.join(d, c)) for c in ('next.config.js', 'next.config.ts'))
+        return 'nextjs-expert/skills/solid-nextjs/' if nx else 'react-expert/skills/solid-react/'
+    return {'php': 'laravel-expert/skills/solid-php/',
+            'swift': 'swift-apple-expert/skills/solid-swift/'}.get(ext, 'generic/')
+
+
+def parse_v4a(body):
+    """Yield (action, path, added_lines) from a V4A apply_patch body."""
+    p, a, n = None, None, 0
+    for line in body.splitlines():
+        h = re.match(r'^\*\*\*\s+(Add|Update|Delete) File:\s+(.+)$', line)
+        if h:
+            if p:
+                yield (a, p, n)
+            a, p, n = h.group(1).lower(), h.group(2).strip(), 0
+        elif a in ('add', 'update') and line.startswith('+') and not line.startswith('+++'):
+            n += 1
+    if p:
+        yield (a, p, n)
+
+
+def deny(path, proj):
+    if not path or not re.search(CODE_EXT, path) or proj <= MAX:
+        return None
+    return (f"BLOCKED: '{os.path.basename(path)}' would be {proj} lines (max {MAX}). "
+            f"Read SOLID at ~/.codex/plugins/cache/fusengine-codex/{solid_ref(path)} "
+            f"and split into modules <90 lines.")
+
+
+def projected(action, path, adds):
+    if action == 'add':
+        return adds
+    cur = sum(1 for _ in open(path, encoding='utf-8')) if os.path.isfile(path) else 0
+    return cur + adds
 
 
 def main():
@@ -29,37 +56,30 @@ def main():
         data = json.load(sys.stdin)
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
-    # Skip file size enforcement for read-only agents (Explore, Plan)
-    agent_type = data.get("agent_type", "")
-    if agent_type in ("Explore", "Plan"):
+    if data.get('agent_type') in ('Explore', 'Plan'):
         sys.exit(0)
     tool = data.get('tool_name', '')
-    fp = data.get('tool_input', {}).get('file_path', '')
-    content = data.get('tool_input', {}).get('new_string', '') or data.get('tool_input', {}).get('content', '')
-    if not fp or not re.search(CODE_EXT, fp) or not os.path.isfile(fp):
-        sys.exit(0)
-    try:
-        with open(fp, encoding='utf-8') as f:
-            cur_lines = sum(1 for _ in f)
-    except OSError:
-        sys.exit(0)
-    if cur_lines <= 100:
-        sys.exit(0)
-    if tool == 'Edit':
-        sys.exit(0)
-    if tool == 'Write' and content:
-        new_lines = content.count('\n') + 1
-        if new_lines <= 100:
-            sys.exit(0)
-    fname = os.path.basename(fp)
-    ref = get_solid_ref(fp)
-    plugins = '~/.codex/plugins/marketplaces/fusengine-plugins/plugins'
-    reason = (f"BLOCKED: '{fname}' has {cur_lines} lines (max: 100). TO SPLIT: "
-              f"1) Read SOLID rules: {plugins}/{ref} "
-              f"2) Create new module files (<90 lines each) "
-              f"3) Use Write to replace '{fname}' with <100 lines version.")
-    print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
-        "permissionDecision": "deny", "permissionDecisionReason": reason}}))
+    ti = data.get('tool_input', {})
+    reasons = []
+    if tool == 'apply_patch':
+        body = ti.get('command') or ti.get('input') or ti.get('patch') or ''
+        for action, path, adds in parse_v4a(body):
+            if action == 'delete':
+                continue
+            r = deny(path, projected(action, path, adds))
+            if r:
+                reasons.append(r)
+    else:
+        fp = ti.get('file_path', '')
+        content = ti.get('new_string') or ti.get('content') or ''
+        proj = (content.count('\n') + 1) if (tool == 'Write' and content) else (
+            sum(1 for _ in open(fp, encoding='utf-8')) if os.path.isfile(fp) else 0)
+        r = deny(fp, proj)
+        if r:
+            reasons.append(r)
+    if reasons:
+        print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
+            "permissionDecision": "deny", "permissionDecisionReason": ' | '.join(reasons)}}))
     sys.exit(0)
 
 

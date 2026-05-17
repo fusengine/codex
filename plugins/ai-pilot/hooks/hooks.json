@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-and-inject-apex.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/detect-and-inject-apex.ts"
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-subagent-context.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/inject-subagent-context.ts"
           }
         ]
       },
@@ -25,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/explore-cache-check.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/explore-cache-check.ts"
           }
         ]
       },
@@ -34,7 +34,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/doc-cache-inject.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/doc-cache-inject.ts"
           }
         ]
       },
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/lessons-cache-inject.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/lessons-cache-inject.ts"
           }
         ]
       },
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/test-cache-inject.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/test-cache-inject.ts"
           }
         ]
       }
@@ -63,16 +63,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-bash-write.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/detect-bash-write.ts"
           }
         ]
       },
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/enforce-apex-phases.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/enforce-apex-phases.ts"
           }
         ]
       },
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-apex-context.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/inject-apex-context.ts"
           }
         ]
       }
@@ -91,7 +91,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-sniper-lessons.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-sniper-lessons.ts"
           }
         ]
       },
@@ -99,7 +99,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-test-results.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-test-results.ts"
           }
         ]
       },
@@ -107,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-doc-from-transcript.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-doc-from-transcript.ts"
           }
         ]
       },
@@ -115,7 +115,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
           }
         ]
       },
@@ -123,18 +123,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/cache-analytics-save.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-analytics-save.ts"
           }
         ]
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-solid-compliance.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-compliance.ts"
           }
         ]
       },
@@ -143,7 +143,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-doc-consultation.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-doc-consultation.ts"
           }
         ]
       },
@@ -152,7 +152,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/sync-task-tracking.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/sync-task-tracking.ts"
           }
         ]
       }

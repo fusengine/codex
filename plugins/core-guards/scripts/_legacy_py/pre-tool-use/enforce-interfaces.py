@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""PreToolUse hook: Block interfaces/types in component/view files (SOLID)."""
+"""PreToolUse: block interfaces/types in component/view files (SOLID).
+Handles Claude (Write/Edit file_path+content) and Codex (apply_patch V4A body)."""
 import json
 import re
 import sys
@@ -20,26 +21,58 @@ RULES = [
 ]
 
 
+def parse_v4a(body):
+    """Yield (path, added_lines_text) from V4A apply_patch body."""
+    p, a, buf = None, None, []
+    for line in body.splitlines():
+        h = re.match(r'^\*\*\*\s+(Add|Update|Delete) File:\s+(.+)$', line)
+        if h:
+            if p and a != 'delete':
+                yield (p, '\n'.join(buf))
+            a, p, buf = h.group(1).lower(), h.group(2).strip(), []
+        elif a in ('add', 'update') and line.startswith('+') and not line.startswith('+++'):
+            buf.append(line[1:])
+    if p and a != 'delete':
+        yield (p, '\n'.join(buf))
+
+
+def deny(fp, content):
+    for path_pat, content_pat, msg in RULES:
+        if not re.search(path_pat, fp):
+            continue
+        for line in content.splitlines():
+            if re.search(content_pat, line):
+                return f"SOLID VIOLATION ({fp}): {msg}"
+    return None
+
+
 def main():
     try:
         data = json.load(sys.stdin)
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
-    fp = data.get('tool_input', {}).get('file_path', '')
-    content = data.get('tool_input', {}).get('content', '')
-    if not fp or not content:
-        sys.exit(0)
-
-    for path_pat, content_pat, msg in RULES:
-        if re.search(path_pat, fp):
-            for line in content.splitlines():
-                if re.search(content_pat, line):
-                    print(json.dumps({"hookSpecificOutput": {
-                        "hookEventName": "PreToolUse",
-                        "permissionDecision": "deny",
-                        "permissionDecisionReason": f"SOLID VIOLATION: {msg}"
-                    }}))
-                    sys.exit(0)
+    tool = data.get('tool_name', '')
+    ti = data.get('tool_input', {})
+    reasons = []
+    if tool == 'apply_patch':
+        body = ti.get('command') or ti.get('input') or ti.get('patch') or ''
+        for path, added in parse_v4a(body):
+            r = deny(path, added)
+            if r:
+                reasons.append(r)
+    else:
+        fp = ti.get('file_path', '')
+        content = ti.get('content') or ti.get('new_string') or ''
+        if fp and content:
+            r = deny(fp, content)
+            if r:
+                reasons.append(r)
+    if reasons:
+        print(json.dumps({"hookSpecificOutput": {
+            "hookEventName": "PreToolUse",
+            "permissionDecision": "deny",
+            "permissionDecisionReason": ' | '.join(reasons),
+        }}))
     sys.exit(0)
 
 

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-rules.ts ${CODEX_PLUGIN_ROOT}"
+            "command": "bun ${PLUGIN_ROOT}/scripts/inject-rules.ts ${PLUGIN_ROOT}"
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/inject-rules.ts ${CODEX_PLUGIN_ROOT}"
+            "command": "bun ${PLUGIN_ROOT}/scripts/inject-rules.ts ${PLUGIN_ROOT}"
           }
         ]
       }

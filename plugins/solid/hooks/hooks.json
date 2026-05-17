@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/detect-project.ts",
+            "command": "bun ${PLUGIN_ROOT}/scripts/detect-project.ts",
             "timeout": 5
           }
         ]
@@ -14,11 +14,11 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/validate-solid.ts",
+            "command": "bun ${PLUGIN_ROOT}/scripts/validate-solid.ts",
             "timeout": 10
           }
         ]
@@ -26,11 +26,11 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "apply_patch",
+        "matcher": "Write|Edit|apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/check-file-size.ts",
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-file-size.ts",
             "timeout": 10
           }
         ]

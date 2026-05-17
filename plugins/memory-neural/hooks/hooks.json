@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/auto-capture-error.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/auto-capture-error.ts"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/track-memory-ops.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/track-memory-ops.ts"
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/recall-on-session.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/recall-on-session.ts"
           }
         ]
       }
@@ -36,7 +36,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_PLUGIN_ROOT}/scripts/capture-agent-lesson.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/capture-agent-lesson.ts"
           }
         ]
       }
