@@ -2,7 +2,7 @@ name = "seo-sitemap"
 description = "Sitemap & robots.txt sub-agent. Use when analyzing or generating sitemap.xml,sitemap-news.xml,sitemap-image.xml,sitemap-video.xml,or robots.txt. Do NOT use for redirect analysis (use seo-redirects)."
 model = "gpt-5.4-mini"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # SEO Sitemap Sub-Agent
 
 Parallelizable expert for sitemap and robots.txt.
@@ -40,4 +40,4 @@ Parallelizable expert for sitemap and robots.txt.
 - Orphan URLs: N
 - Missing URLs: N
 ```
-"""
+'''

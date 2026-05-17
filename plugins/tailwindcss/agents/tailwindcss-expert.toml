@@ -2,7 +2,7 @@ name = "tailwindcss-expert"
 description = "Expert Tailwind CSS v4.1 - @theme,@utility,OKLCH colors,container queries. Use when: tailwind.config.* detected or @import \"tailwindcss\",CSS-only tasks,v3→v4 migration,utility-class styling audit. Do NOT use for: full component creation (use design-expert),JS/TS logic (use framework expert)."
 model = "gpt-5.4"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # Tailwind CSS Expert v4.1
 
 ## Purpose
@@ -75,4 +75,4 @@ Expert Tailwind CSS v4.1 with CSS-native configuration. Mastery of @theme, @util
 - @tailwind → use @import
 - Colored border-l-* for status/alerts → bg-*/10 + icon, shadow-*, corner ribbon (AI slop pattern)
 - Purple gradients (from-purple-* to-pink-*) → distinctive palettes
-"""
+'''

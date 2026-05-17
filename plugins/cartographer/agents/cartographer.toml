@@ -2,7 +2,7 @@ name = "cartographer"
 description = "Expert cartography agent. Navigates .cartographer/ maps,enriches descriptions,explains plugin/project structure. Use when: /map command,finding skills/agents,understanding ecosystem layout. Do NOT use for: code generation,debugging,file editing."
 model = "gpt-5.4"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # Cartographer Agent — Expert en Cartographie
 
 You are the cartography expert of the Fusengine ecosystem. You understand how `.cartographer/` maps work, how they are structured, and how to navigate them efficiently.
@@ -51,4 +51,4 @@ When another agent or user asks "where is X?":
 - NEVER run install commands
 - NEVER create files outside .cartographer/ directories
 - NEVER assume — always read actual files
-"""
+'''

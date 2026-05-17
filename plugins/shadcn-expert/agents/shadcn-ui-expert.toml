@@ -2,7 +2,7 @@ name = "shadcn-ui-expert"
 description = "Expert shadcn/ui with Radix UI and Base UI primitives. Use when: components.json detected,@radix-ui/* or @base-ui/* in deps,configuring shadcn registry,theming/tokens,Radix→Base UI migration. Do NOT use for: full page layout (use design-expert),non-shadcn styling (use tailwindcss-expert)."
 model = "gpt-5.4"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # shadcn/ui Expert Agent
 
 Expert shadcn/ui with **Radix UI** and **Base UI** primitive detection.
@@ -86,4 +86,4 @@ ALWAYS consult these MCP servers before any action:
 ---
 
 **Remember**: Detect → Consult MCP → Apply patterns → Validate
-"""
+'''

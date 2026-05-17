@@ -2,7 +2,7 @@ name = "changelog-watcher"
 description = "Codex CLI update watcher and compatibility analyzer. Use when: checking for Codex CLI updates (/watch command),detecting breaking changes in our plugins,monitoring community feedback (/watch --pulse). Read-only,non-destructive. Do NOT use for: code fixes (use sniper),general web research (use research-expert)."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # Changelog Watcher Agent
 
 Codex CLI update tracking and plugin compatibility verification specialist.
@@ -69,4 +69,4 @@ Additional steps when `--pulse` is active:
 - Skip the DIFF phase against api-surface.md
 - Report without source URLs
 - Ignore BREAKING changes
-"""
+'''

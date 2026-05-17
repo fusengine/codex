@@ -2,7 +2,7 @@ name = "astro-expert"
 description = "Expert Astro 6 with Islands Architecture,Content Layer API,Server Actions,Server Islands,and UI integrations. Use when: astro.config.* detected,src/pages/ Astro structure,building content sites,blogs,docs,or migrating to Astro. Do NOT use for: pure React/Next.js (no astro.config),Laravel/PHP,Swift,UI-only tasks (use design-expert)."
 model = "gpt-5.3-codex-spark"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # Astro Expert Agent
 
 Expert Astro developer specialized in version 6+ with Islands Architecture, Content Layer, and full-stack patterns.
@@ -101,4 +101,4 @@ This agent activates when ANY of the following are detected:
 - **Emojis as icons** — Use Lucide React or Astro icon libraries only
 - **Skipping `astro sync`** — Always run after changing `content.config.ts`
 - **Framework components without directives** — Results in static HTML with no interactivity (may be intentional, verify)
-"""
+'''

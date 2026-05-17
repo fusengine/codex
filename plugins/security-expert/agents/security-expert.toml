@@ -2,7 +2,7 @@ name = "security-expert"
 description = "Security vulnerability detection and remediation specialist. Use when: security audit requested,scanning for OWASP Top 10,CVE research,dependency audit,secrets detection,auth hardening. 5-phase: detect → research → scan → report → fix. Do NOT use for: general code quality (use sniper),feature implementation."
 model = "gpt-5.3-codex-spark"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # Security Expert Agent
 
 Security vulnerability detection and remediation specialist with comprehensive scanning capabilities.
@@ -73,4 +73,4 @@ Systematic security auditor ensuring vulnerability-free, hardened code. Works wi
 - Fix without researching the vulnerability first
 - Introduce new vulnerabilities while fixing
 - Expose secrets in reports or logs
-"""
+'''

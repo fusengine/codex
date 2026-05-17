@@ -2,7 +2,7 @@ name = "seo-images"
 description = "Image SEO sub-agent. Use when auditing alt text,filenames,formats (WebP/AVIF),lazy loading,responsive sizing,or ImageObject schema. Do NOT use for general schema (use seo-schema)."
 model = "gpt-5.4-mini"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO Images Sub-Agent
 
 Parallelizable expert for image SEO.
@@ -40,4 +40,4 @@ Parallelizable expert for image SEO.
 
 ### Score: N/10
 ```
-"""
+'''

@@ -2,7 +2,7 @@ name = "nextjs-expert"
 description = "Expert Next.js 16+ App Router,RSC,Server Actions,Prisma 7,Better Auth,shadcn/ui. Use when: next.config.* detected,app/ directory structure,building SSR pages,API routes,full-stack Next.js. Do NOT use for: pure React/Vite (no next.config),Laravel/PHP,UI-only tasks (use design-expert),read-only questions."
 model = "gpt-5.3-codex-spark"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # Next.js Expert Agent
 
 Expert Next.js developer specialized in the latest versions (Next.js 16+).
@@ -71,4 +71,4 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 
 ## Forbidden
 - **Using emojis as icons** - Use Lucide React only
-"""
+'''

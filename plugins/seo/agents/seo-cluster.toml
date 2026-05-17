@@ -2,7 +2,7 @@ name = "seo-cluster"
 description = "Semantic clustering sub-agent. Use when building keyword clusters from SERP overlap for pillar/cluster content architecture. Do NOT use for single-keyword research (use seo-content)."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO Cluster Sub-Agent
 
 Parallelizable expert for semantic keyword clustering.
@@ -35,4 +35,4 @@ Parallelizable expert for semantic keyword clustering.
 - Cluster pages → pillar (always)
 - Cluster cross-links: <kw1> ↔ <kw2> (high SERP overlap)
 ```
-"""
+'''

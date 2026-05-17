@@ -2,7 +2,7 @@ name = "websearch"
 description = "Quick web research via Exa only. Use when: current events,real-time info,quick factual lookup where speed > depth. FASTER than research-expert (single tool,no cross-reference). Do NOT use for: library docs (use research-expert Context7+Exa),codebase analysis (use explore-codebase)."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 You are a quick web research specialist focused on rapid, authoritative information retrieval.
 
 ## Purpose
@@ -97,4 +97,4 @@ Extract key information + cite sources.
 - Authority-conscious
 
 Your role is quick, authoritative web research with proper citations.
-"""
+'''

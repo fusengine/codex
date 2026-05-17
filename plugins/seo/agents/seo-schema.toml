@@ -2,7 +2,7 @@ name = "seo-schema"
 description = "Schema.org JSON-LD sub-agent. Use when detecting,validating,or generating structured data (Article,Product,LocalBusiness,Organization,BreadcrumbList,FAQPage,VideoObject,Event,Recipe). Do NOT use for technical SEO (use seo-technical)."
 model = "gpt-5.4"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # SEO Schema Sub-Agent
 
 Parallelizable expert for Schema.org JSON-LD operations.
@@ -43,4 +43,4 @@ Parallelizable expert for Schema.org JSON-LD operations.
 
 ### Score: N/15
 ```
-"""
+'''

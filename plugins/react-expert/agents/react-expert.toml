@@ -2,7 +2,7 @@ name = "react-expert"
 description = "Expert React 19 with Vite/CRA,hooks,TanStack Router,Zustand,Testing Library. Use when: package.json has React but NO next.config.*,Vite/CRA bundler,SPA architecture. Do NOT use for: Next.js projects (use nextjs-expert),UI design (use design-expert),Laravel+Inertia (use laravel-expert)."
 model = "gpt-5.3-codex-spark"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 # React Expert Agent
 
 Expert React developer specialized in React 19+ with modern ecosystem.
@@ -48,4 +48,4 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 - **Using emojis as icons** - Use Lucide React only
 - **Colored border-left as indicator** - Use shadow, background gradient, glassmorphism, or corner ribbon
 - **Purple gradients** - Avoid generic purple/pink gradients (AI slop)
-"""
+'''

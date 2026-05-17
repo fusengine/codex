@@ -2,7 +2,7 @@ name = "seo-geo"
 description = "GEO (Generative Engine Optimization) sub-agent. Use when scoring LLM-readiness for AI Overviews,ChatGPT,Perplexity,Codex,Gemini,Copilot. Do NOT use for traditional SEO ranking (use seo-content + seo-technical)."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO GEO Sub-Agent
 
 Parallelizable expert for Generative Engine Optimization.
@@ -47,4 +47,4 @@ Parallelizable expert for Generative Engine Optimization.
 
 ### Score: N/20
 ```
-"""
+'''

@@ -2,7 +2,7 @@ name = "seo-content"
 description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience,Expertise,Authoritativeness,Trustworthiness),detecting cannibalization,analyzing keyword distribution,or auditing AI content disclosure. Do NOT use for technical SEO or schema."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO Content Sub-Agent
 
 Parallelizable expert for content quality analysis.
@@ -46,4 +46,4 @@ Parallelizable expert for content quality analysis.
 
 ### Score: N/20
 ```
-"""
+'''

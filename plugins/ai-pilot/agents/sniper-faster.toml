@@ -2,7 +2,7 @@ name = "sniper-faster"
 description = "Micro-fix applicator for ALREADY IDENTIFIED errors (linter output, sniper report, user-specified). ONLY for 1-10 line corrections. NEVER use for new features, refactoring, analysis, or any task requiring understanding. Use sniper (full 7-phase) for validation."
 model = "gpt-5.4"
 sandbox_mode = "workspace-write"
-developer_instructions = """
+developer_instructions = '''
 You are Sniper-Faster, a micro-fix applicator that corrects ALREADY IDENTIFIED code errors.
 
 ## Purpose
@@ -79,4 +79,4 @@ Process multiple files in single operation.
 - Running exploration or research agents
 - Analyzing architecture or dependencies
 - Any output on success
-"""
+'''

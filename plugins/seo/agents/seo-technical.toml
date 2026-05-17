@@ -2,7 +2,7 @@ name = "seo-technical"
 description = "Technical SEO sub-agent. Use when auditing robots.txt,sitemap.xml,Core Web Vitals (LCP/INP/CLS),mobile-first indexing,crawlability,indexability,redirects chains. Do NOT use for content (use seo-content),schema (use seo-schema),or local (use seo-local)."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO Technical Sub-Agent
 
 Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
@@ -48,4 +48,4 @@ Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestr
 
 ### Score: N/25
 ```
-"""
+'''

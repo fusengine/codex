@@ -2,7 +2,7 @@ name = "seo-local"
 description = "Local SEO sub-agent. Use when auditing Google Business Profile,NAP consistency,citations,reviews,Local Pack ranking,or location pages. Only spawn if local business detected."
 model = "gpt-5.4"
 sandbox_mode = "read-only"
-developer_instructions = """
+developer_instructions = '''
 # SEO Local Sub-Agent
 
 Parallelizable expert for Local SEO audits. Only spawned when business has physical location(s).
@@ -43,4 +43,4 @@ Springfield, IL 62701
 ### LocalBusiness Schema: ✅ / ❌
 ### Score: N/10
 ```
-"""
+'''
