@@ -6,7 +6,6 @@ import { writeMarketplaceFallback } from "./marketplace-fallback";
 import { installAgentsMd } from "./agents-md";
 import { ensureFeaturesEnabled } from "./features";
 import { enableAllPlugins } from "./enable-plugins";
-import { promptApiKeys } from "./env-prompt";
 import { promptCodexConfig } from "./config-prompt";
 import { installAgents } from "./install-agents";
 import { configureShellAutoLoad } from "./shell-install";
@@ -87,7 +86,6 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await scanAndPrepare(join(opts.projectRoot, "plugins"));
 	await installAgents(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await promptCodexConfig(opts.codexHome);
-	await promptApiKeys(opts.codexHome);
 	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);
 	await runMcpStep(opts.codexHome, join(opts.projectRoot, "plugins"));

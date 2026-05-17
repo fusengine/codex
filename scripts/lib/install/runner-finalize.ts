@@ -6,13 +6,16 @@
 import { selectMcpServers } from "./mcp-select";
 import { MCP_CATALOG } from "./mcp-catalog";
 import { configureMcpServers } from "./mcp-configurator";
+import { promptMissingKeys } from "./mcp-key-prompt";
 
 /**
- * Prompt the user to pick MCP servers from the catalog, then wire the
- * selection into ~/.codex/config.toml (resolving plugin .mcp.json ${VAR}s).
+ * Select MCP servers, prompt ONLY for keys needed by the selection,
+ * then wire the result into ~/.codex/config.toml (resolving ${VAR}s).
  */
 export async function runMcpStep(codexHome: string, pluginsDir: string): Promise<void> {
 	const available = Object.keys(MCP_CATALOG);
 	const selected = await selectMcpServers(codexHome, available);
+	if (selected.size === 0) return;
+	await promptMissingKeys(codexHome, selected);
 	await configureMcpServers(codexHome, pluginsDir, selected);
 }
