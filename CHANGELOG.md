@@ -5,6 +5,27 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.4] - 2026-05-17
+
+### Fixed
+- `~/.codex/.env` est désormais l'**unique source de vérité** pour les clés API MCP. Drop du fallback `process.env` à 3 endroits :
+  - `mcp-select.ts:hasKey()` : ne checke plus que `env[apiKeyEnv]` → un MCP avec clé absente de `.env` montre `⚠ no key` même si exporté dans le shell.
+  - `mcp-key-prompt.ts:missing filter` : prompt déclenché si clé absente de `.env`, même si shell l'a → toutes les clés finissent saisies et sauvegardées dans `.codex/.env` (chmod 600).
+  - `mcp-configurator.ts:resolveStr()` : `${VAR}` résolus uniquement depuis `.env` → garantit que les valeurs écrites dans `config.toml` viennent de la source persistée, pas d'un shell volatile.
+- Conséquence : les clés exportées dans `~/.claude/.env` (ou `~/.config/fish/config.fish`, etc.) ne **leakent plus** dans la config Codex via process.env. Migration : à la première install après v1.2.4, l'installeur prompt pour toutes les clés et les sauve dans `~/.codex/.env`.
+
+## [1.2.3] - 2026-05-17
+
+### Fixed
+- **12 plugin `.mcp.json` alignés byte-identique sur `claude-plugins/scripts/mcp/mcp.json`** (single source of truth, vérifié via `jq` lignes 86-136). Plugins concernés : ai-pilot, design-expert, nextjs-expert, react-expert, tailwindcss, laravel-expert, prompt-engineer, security-expert, shadcn-expert, solid, swift-apple-expert, changelog-watcher.
+- **context7** : `${CONTEXT7_API_KEY}` passé en flag CLI `--api-key` dans `args` (forme prioritaire d'après doc context7.com), drop `env` block.
+- **exa** : `${EXA_API_KEY}` inline dans l'URL `&exaApiKey=…`, drop `env_http_headers` (match claude-plugins HTTP form).
+- **magic** : env var interne `API_KEY` → `MAGIC_API_KEY` (= claude reference + nom attendu par `@21st-dev/magic`).
+- **gemini-design** (5 plugins, déjà v1.2.2 catalog) : env interne `GEMINI_API_KEY` → `API_KEY`, shell ref `${GEMINI_API_KEY}` → `${GEMINI_DESIGN_API_KEY}` (= claude reference + ce que `gemini-design-mcp` lit).
+
+### Notes
+- `promptMissingKeys` (v1.2.1) demande désormais `GEMINI_DESIGN_API_KEY` au lieu de `GEMINI_API_KEY`. Si tu avais déjà exporté `GEMINI_API_KEY` dans ton shell, renomme-la (ou laisse l'installeur t'en redemander une dans `~/.codex/.env`).
+
 ## [1.2.2] - 2026-05-17
 
 ### Fixed

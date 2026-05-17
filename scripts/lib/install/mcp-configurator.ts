@@ -22,7 +22,7 @@ interface ServerCfg {
 }
 
 function resolveStr(s: string, env: Record<string, string>): string {
-	return s.replace(/\$\{([A-Z_][A-Z0-9_]*)\}/g, (_, v) => env[v] ?? process.env[v] ?? "");
+	return s.replace(/\$\{([A-Z_][A-Z0-9_]*)\}/g, (_, v) => env[v] ?? "");
 }
 
 function resolveCfg(srv: ServerCfg, env: Record<string, string>): ServerCfg {

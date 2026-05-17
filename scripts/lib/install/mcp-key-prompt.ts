@@ -11,7 +11,7 @@ export async function promptMissingKeys(codexHome: string, selected: Set<string>
 	const missing = [...selected]
 		.map((name) => ({ name, meta: MCP_CATALOG[name] }))
 		.filter(({ meta }) => meta?.requiresApiKey && meta.apiKeyEnv)
-		.filter(({ meta }) => !env[meta.apiKeyEnv!] && !process.env[meta.apiKeyEnv!]);
+		.filter(({ meta }) => !env[meta.apiKeyEnv!]);
 
 	if (missing.length === 0) return;
 

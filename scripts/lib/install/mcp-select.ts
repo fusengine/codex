@@ -7,7 +7,7 @@ import { loadEnvFile } from "./env-file";
 
 function hasKey(env: Record<string, string>, meta: McpMeta): boolean {
 	if (!meta.requiresApiKey || !meta.apiKeyEnv) return true;
-	return !!(env[meta.apiKeyEnv] || process.env[meta.apiKeyEnv]);
+	return !!env[meta.apiKeyEnv];
 }
 
 function buildOptions(env: Record<string, string>, available: string[]) {
