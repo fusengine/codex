@@ -16,4 +16,12 @@ export const API_KEYS: EnvKey[] = [
 	{ name: "GEMINI_API_KEY", description: "Gemini — AI frontend (gemini-design-mcp)", url: "https://aistudio.google.com/apikey" },
 	{ name: "NEURAL_MEMORY_HOST", description: "memory-neural — Graphiti/Qdrant host (e.g. http://localhost:8000)", url: "" },
 	{ name: "GITHUB_TOKEN", description: "GitHub — repos, PRs, issues", url: "https://github.com/settings/tokens" },
+	{ name: "SUPABASE_ACCESS_TOKEN", description: "Supabase — database, auth, storage", url: "https://supabase.com/dashboard/account/tokens" },
+	{ name: "SLACK_TOKEN", description: "Slack — messages, channels, workspace", url: "https://api.slack.com/apps" },
+	{ name: "SENTRY_AUTH_TOKEN", description: "Sentry — error tracking & debugging", url: "https://sentry.io/settings/auth-tokens" },
+	{ name: "STRIPE_SECRET_KEY", description: "Stripe — payments, invoices, subscriptions", url: "https://dashboard.stripe.com/apikeys" },
+	{ name: "NOTION_TOKEN", description: "Notion — pages, databases, knowledge base", url: "https://www.notion.so/my-integrations" },
+	{ name: "BRAVE_API_KEY", description: "Brave Search — private web search", url: "https://brave.com/search/api" },
+	{ name: "REPLICATE_API_TOKEN", description: "Replicate — run 1000+ AI models", url: "https://replicate.com/account/api-tokens" },
+	{ name: "DATABASE_URL", description: "Postgres MCP — connection string", url: "" },
 ];

@@ -2,7 +2,7 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "bash",
         "hooks": [
           {
             "type": "command",
@@ -11,7 +11,7 @@
         ]
       },
       {
-        "matcher": "mcp__graphiti|mcp__qdrant",
+        "matcher": "mcp_tool_call",
         "hooks": [
           {
             "type": "command",

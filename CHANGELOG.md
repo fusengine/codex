@@ -5,6 +5,29 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-05-17
+
+### Added — parity with claude-plugins installer
+
+- `scripts/lib/install/backup.ts` + `fs-helpers.ts` : snapshot `~/.codex/config.toml` + `~/.codex/.env` + `~/.codex/AGENTS.md` avant modification, restoration on failure.
+- `scripts/lib/install/setup-plugins.ts` : orchestration centralisée des étapes plugin par plugin (manifest validation, agents.toml install, hooks wiring, MCP merge), pilotée par `runner.ts`.
+- `scripts/lib/install/mcp-catalog.ts` : +12 serveurs MCP au catalogue installable (`astro-docs`, `filesystem`, `playwright`, `postgres`, `github`, `supabase`, `slack`, `sentry`, `stripe`, `notion`, `brave-search`, `replicate`) — total 24 MCPs.
+- `scripts/lib/install/env-shell.ts` (+ helpers fish/zsh/bash/pwsh) : installateurs shell auto-loader extraits du runner, idempotents avec markers.
+- `scripts/lib/install/perf-env.ts` : prompt interactif `@clack/prompts` pour les toggles env Codex **binary-verified** (`RUST_LOG=error`, `CODEX_TUI_ROUNDED=1`, `GIT_OPTIONAL_LOCKS=0`) persistés dans `~/.codex/.env`. Marqueur `_FUSENGINE_PERF_ASKED` pour skip re-prompt. **Pas d'équivalent Codex** pour `CLAUDE_CODE_FORK_SUBAGENT` / `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` / `DISABLE_AUTOUPDATER` — vérifié via `strings $(which codex)` 0.130.0.
+- `scripts/lib/install/plugin-scanner.ts` : scan `plugins/*/hooks/hooks.json` + `.mcp.json` + manifest, retourne `PluginInfo[]` (counts events / handlers / mcp servers / skills / agents). Rapport diagnostic affiché en fin de `runner.ts` après `reportMcp`.
+- `plugins/core-guards/statusline/dist/` : build statusline préservée pour quand/si le runtime Codex ajoutera le support des statuslines custom (suivi : issue #17827, parent open, aucun PR — statusline custom NON supporté par Codex 0.130).
+
+### Changed
+
+- `scripts/lib/install/runner.ts` : ajout étape `promptPerfEnv` (entre shell-install et MCP) et rapport `scanPlugins` en fin de pipeline après `reportMcp`.
+- `plugins/core-guards/statusline/_shared/` : analyse de doublons effectuée — seul `apex_constants.ts` est un vrai doublon de `apex-constants.ts` (renommage snake/kebab). Les 4 autres fichiers snake_case (`cache_compactor.ts`, `cache_io.ts`, `mcp_response.ts`, `state_manager.ts`) sont uniques, pas de doublon. Aucune suppression effectuée (action bloquée).
+- `plugins/commit-pro/` : restauration des assets perdus à la migration claude→codex initiale — `commands/` (10 fichiers), `CHANGELOG.md`, `LICENSE`, `README.md`. Pas de hooks restaurés à ce stade.
+- README v1.2.0 : section « Manques connus » → tout coché, liste des 12 MCPs ajoutés (24 total), exemple output `plugin-scanner`.
+
+### Notes
+
+- Codex CLI n'a **aucun** équivalent des perf vars Claude Code (`CLAUDE_CODE_FORK_SUBAGENT`, `CLAUDE_CODE_ATTRIBUTION_HEADER`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_AUTOUPDATER`) — confirmé via `strings $(which codex)` 0.130.0. Pas de toggle telemetry ni autoupdate côté CLI (telemetry server-side / account settings). `perf-env.ts` se limite donc aux 3 vars Codex réellement reconnues par le binaire : `RUST_LOG`, `CODEX_TUI_ROUNDED`, `GIT_OPTIONAL_LOCKS`.
+
 ## [1.1.2] - 2026-05-17
 
 ### Fixed

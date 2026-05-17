@@ -1,6 +1,6 @@
 # Fusengine Codex Plugins
 
-![version](https://img.shields.io/badge/version-1.1.0-blue?style=flat-square)
+![version](https://img.shields.io/badge/version-1.2.0-blue?style=flat-square)
 ![plugins](https://img.shields.io/badge/plugins-18-brightgreen?style=flat-square)
 ![runtime](https://img.shields.io/badge/runtime-Bun-black?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
@@ -111,9 +111,11 @@ Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). 
 
 `PreCompact` est dans le schéma mais pas encore stabilisé.
 
-### 12 MCP servers bundlés
+### 24 MCP servers bundlés
 
-`exa`, `sequential-thinking`, `context7`, `gemini-design`, `shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`, `XcodeBuildMCP`, `apple-docs`.
+**Originaux (12)** : `exa`, `sequential-thinking`, `context7`, `gemini-design`, `shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`, `XcodeBuildMCP`, `apple-docs`.
+
+**Ajoutés v1.2.0 (+12)** : `astro-docs`, `filesystem`, `playwright`, `postgres`, `github`, `supabase`, `slack`, `sentry`, `stripe`, `notion`, `brave-search`, `replicate` — installables via le prompt interactif `mcp-select` au setup.
 
 ## Layout
 
@@ -154,6 +156,32 @@ codex-plugins/
 | `codex plugin add NAME@MARKETPLACE` | Pas dispo en 0.130.0 — fallback via patch direct `config.toml` |
 | Statusline command-backed (`["bun", "/path"]`) | Retiré du runtime depuis PR #10546 — feature request ouverte (issue #20244). Code statusline préservé dans `core-guards/statusline/` pour quand ça reviendra |
 | 134 scripts hook | Wrappers Bun → `python3` (preserves Python originals). Réécriture native Bun à venir |
+
+## Manques connus (parité claude-plugins → codex-plugins)
+
+Tous les manques identifiés au diff de parité v1.1.x sont désormais comblés en v1.2.0 :
+
+- [x] **Backup** des fichiers Codex avant modification (`fs-helpers.ts` + `backup.ts`)
+- [x] **`setup-plugins.ts`** : orchestration centralisée des étapes d'install plugin par plugin
+- [x] **Catalogue MCP étendu** : +12 serveurs (`mcp-catalog.ts`, voir liste ci-dessus, 24 au total)
+- [x] **Installateurs env shell** dédiés (`env-shell` installers, conf.d / rc append / pwsh profile)
+- [x] **Statusline `dist/`** buildée (statusline custom non supporté par Codex 0.130, suivi issue #17827)
+- [~] **`_shared/`** : doublon `apex_constants.ts` identifié (vs `apex-constants.ts`) ; 4 autres snake_case (`cache_compactor`, `cache_io`, `mcp_response`, `state_manager`) confirmés uniques. Suppression bloquée — à traiter manuellement.
+- [x] **`commit-pro`** : assets restaurés depuis claude-plugins — `commands/` (10), `CHANGELOG.md`, `LICENSE`, `README.md`. (Hooks non restaurés.)
+- [x] **`perf-env.ts`** : prompt interactif env Codex **binary-verified** (`RUST_LOG`, `CODEX_TUI_ROUNDED`, `GIT_OPTIONAL_LOCKS`)
+- [x] **`plugin-scanner.ts`** : rapport diagnostic post-install (manifest / hooks / MCP / skills / agents par plugin)
+
+> **Pas d'équivalent Codex** pour les perf vars Claude Code (`CLAUDE_CODE_FORK_SUBAGENT`, `CLAUDE_CODE_ATTRIBUTION_HEADER`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_AUTOUPDATER`). Vérifié via `strings $(which codex)` 0.130.0 — ces symboles n'existent pas dans le binaire. Pas de toggle telemetry ni autoupdate côté CLI Codex (telemetry server-side, autoupdate via `codex --upgrade`). `perf-env.ts` se limite donc aux 3 env vars réellement reconnues.
+
+### Output `plugin-scanner` (fin d'install)
+
+```
+Plugin diagnostic (19 plugins scanned):
+  ai-pilot              manifest ✓  hooks 4 evt / 12 hdl  mcp 2  skills 6  agents 5
+  astro-expert          manifest ✓  hooks 2 evt /  4 hdl  mcp 1  skills 12 agents 1
+  ...
+Issues : 0 missing manifest, 0 malformed hooks.json, 0 malformed .mcp.json.
+```
 
 ## Outils dev
 

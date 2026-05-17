@@ -1,8 +1,4 @@
-/**
- * runner.ts — Orchestrates Codex setup steps.
- * Reference: developers.openai.com/codex/plugins/build,
- *            developers.openai.com/codex/cli/reference
- */
+/** runner.ts — Orchestrates Codex setup steps (developers.openai.com/codex). */
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import { hasCodexCli, addMarketplace, listPlugins, addPlugin, supportsPluginAdd } from "./codex-cli";
@@ -10,12 +6,16 @@ import { writeMarketplaceFallback } from "./marketplace-fallback";
 import { installAgentsMd } from "./agents-md";
 import { ensureFeaturesEnabled } from "./features";
 import { enableAllPlugins } from "./enable-plugins";
-import { reportMcp } from "./mcp";
 import { promptApiKeys } from "./env-prompt";
 import { promptCodexConfig } from "./config-prompt";
 import { installAgents } from "./install-agents";
 import { configureShellAutoLoad } from "./shell-install";
-import { configureMcpServers } from "./mcp-configurator";
+import { backupConfig } from "./backup";
+import { scanAndPrepare } from "./setup-plugins";
+import { promptPerfEnv } from "./perf-env";
+import { scanPlugins } from "./plugin-scanner";
+import { reportMcp } from "./mcp";
+import { runMcpStep } from "./runner-finalize";
 
 export interface SetupOptions {
 	projectRoot: string;
@@ -79,14 +79,19 @@ async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): 
 }
 
 export async function runCodexSetup(opts: SetupOptions): Promise<void> {
+	await backupConfig(opts.codexHome);
 	const mode = await registerMarketplace(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
 	await maybeInstallPlugins(opts, mode);
+	await scanAndPrepare(join(opts.projectRoot, "plugins"));
 	await installAgents(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await promptCodexConfig(opts.codexHome);
 	await promptApiKeys(opts.codexHome);
 	await configureShellAutoLoad();
-	await configureMcpServers(opts.codexHome, join(opts.projectRoot, "plugins"));
+	await promptPerfEnv(opts.codexHome);
+	await runMcpStep(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await reportMcp(join(opts.projectRoot, "plugins"));
+	const plugins = scanPlugins(join(opts.projectRoot, "plugins"));
+	p.log.info(`Scanned ${plugins.length} plugins`);
 }

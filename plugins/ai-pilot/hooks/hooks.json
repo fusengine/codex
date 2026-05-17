@@ -59,7 +59,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "bash",
         "hooks": [
           {
             "type": "command",
@@ -68,7 +68,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -77,7 +77,7 @@
         ]
       },
       {
-        "matcher": "Task",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -130,7 +130,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -139,7 +139,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*context7|mcp__.*exa|Read",
+        "matcher": "mcp_tool_call",
         "hooks": [
           {
             "type": "command",
@@ -148,7 +148,7 @@
         ]
       },
       {
-        "matcher": "TaskCreate|TaskUpdate",
+        "matcher": "update_plan",
         "hooks": [
           {
             "type": "command",

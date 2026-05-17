@@ -2,7 +2,7 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "mcp__.*exa|WebFetch|WebSearch",
+        "matcher": "mcp_tool_call|web_search",
         "hooks": [
           {
             "type": "command",

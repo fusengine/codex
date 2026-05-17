@@ -63,7 +63,7 @@ function stripPrior(content: string): string {
 	return `${content.slice(0, s).trimEnd()}\n${content.slice(e + END.length).trimStart()}`;
 }
 
-export async function configureMcpServers(codexHome: string, pluginsRoot: string): Promise<void> {
+export async function configureMcpServers(codexHome: string, pluginsRoot: string, selected?: Set<string>): Promise<void> {
 	const env = loadEnvFile(codexHome);
 	const servers = new Map<string, ServerCfg>();
 	for (const e of await readdir(pluginsRoot, { withFileTypes: true })) {
@@ -72,11 +72,18 @@ export async function configureMcpServers(codexHome: string, pluginsRoot: string
 		if (!(await f.exists())) continue;
 		const cfg = (await f.json()) as Record<string, ServerCfg>;
 		for (const [name, srv] of Object.entries(cfg)) {
-			if (!servers.has(name)) servers.set(name, resolveCfg(srv, env));
+			if (selected && !selected.has(name)) continue;
+			if (servers.has(name)) continue;
+			const resolved = resolveCfg(srv, env);
+			if (srv.url && !resolved.url) {
+				p.log.warn(`Skip MCP '${name}': url placeholder unresolved (missing env var)`);
+				continue;
+			}
+			servers.set(name, resolved);
 		}
 	}
 	if (servers.size === 0) {
-		p.log.info("No MCP servers to configure");
+		p.log.info("No MCP servers selected");
 		return;
 	}
 	const path = join(codexHome, "config.toml");
