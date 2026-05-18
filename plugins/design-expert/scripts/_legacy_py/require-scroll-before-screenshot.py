@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
 TRACKING_DIR = os.path.join(CACHE_DIR, "skill-tracking")
 

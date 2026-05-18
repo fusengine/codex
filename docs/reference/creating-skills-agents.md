@@ -96,13 +96,13 @@ hooks:
     - matcher: "Write|Edit"
       hooks:
         - type: command
-          command: "bash ${CLAUDE_PLUGIN_ROOT}/scripts/validate.sh"
+          command: "bash ${PLUGIN_ROOT}/scripts/validate.sh"
 ---
 ```
 
 ### Required Sections
 
-1. **Agent Workflow (MANDATORY)** - use `TeamCreate` to spawn 3 agents
+1. **Agent Workflow** - describe when to use available Codex subagents and how to scope ownership
 2. **MANDATORY SKILLS USAGE** - Skill mapping table
 3. **SOLID Rules** - Reference to solid-[stack]
 4. **Local Documentation** - Skill paths
@@ -116,7 +116,7 @@ hooks:
 2. **References < 150 lines** - Templates unlimited
 3. **Always register** - marketplace.json + plugin.json
 4. **Always validate** - Run sniper after creation
-5. **Use $CLAUDE_PLUGIN_ROOT** - Never hard-code paths
+5. **Use $PLUGIN_ROOT** - Never hard-code paths
 
 ---
 

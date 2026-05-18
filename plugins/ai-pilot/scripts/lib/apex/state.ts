@@ -7,7 +7,7 @@ import { mkdir, rmdir } from "node:fs/promises";
 import { readJsonFile, writeJsonFile } from "../core";
 import type { AuthEntry } from "./doc-helpers";
 
-const HOME = process.env.HOME ?? "";
+const CODEX_HOME = process.env.CODEX_HOME ?? `${process.env.HOME}/.codex`;
 
 /** Default empty APEX state structure */
 const DEFAULT_STATE = {
@@ -42,12 +42,12 @@ export async function acquireLock(
 /** Get the state file path for today */
 export function stateFilePath(): string {
   const today = new Date().toISOString().slice(0, 10);
-  return `${HOME}/.codex/logs/00-apex/${today}-state.json`;
+  return `${CODEX_HOME}/fusengine/logs/00-apex/${today}-state.json`;
 }
 
 /** Ensure state directory exists and return its path */
 export async function ensureStateDir(): Promise<string> {
-  const dir = `${HOME}/.codex/logs/00-apex`;
+  const dir = `${CODEX_HOME}/fusengine/logs/00-apex`;
   await mkdir(dir, { recursive: true });
   return dir;
 }

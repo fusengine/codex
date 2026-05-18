@@ -18,7 +18,7 @@ CACHED_TOOLS = {
     "mcp__exa__web_search_exa": ("query",),
     "mcp__exa__get_code_context_exa": ("query", "libraryName"),
 }
-BASE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache", "sessions")
+BASE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "sessions")
 
 
 def _short_name(tool_name: str) -> str:

@@ -7,7 +7,7 @@
 | Command | Plugin | Description |
 |---------|--------|-------------|
 | `/apex` | fuse-ai-pilot | Full APEX workflow |
-| `/apex-quick` | fuse-ai-pilot | Skip Analyze, direct Execute |
+| `/apex-quick` | fuse-ai-pilot | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
 | `/research` | fuse-ai-pilot | Technical research |
 | `/exploration` | fuse-ai-pilot | Codebase discovery |
 

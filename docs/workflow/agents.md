@@ -31,7 +31,7 @@
 
 | Agent | Plugin | Description |
 |-------|--------|-------------|
-| `changelog-watcher` | fuse-changelog | Claude Code update tracking, breaking changes, community pulse |
+| `changelog-watcher` | fuse-changelog | Codex CLI update tracking, breaking changes, community pulse |
 
 ## Utility Agents
 
@@ -42,7 +42,10 @@
 
 ## Agent Teams
 
-Agents can work in parallel via `TeamCreate` with separate context windows. The lead delegates tasks with exclusive file ownership per teammate.
+Agents can work in parallel when the active Codex runtime exposes a subagent or
+team capability. Do not assume a fixed tool name; use app `spawn_agent`, CLI
+slash commands, or project tooling as available. Keep file ownership exclusive
+per teammate.
 
 See [Agent Teams](agent-teams.md) for delegation rules, anti-patterns, and examples.
 
@@ -54,10 +57,10 @@ Agents are launched automatically based on project detection, or manually:
 User: "Use nextjs-expert to fix the routing"
 ```
 
-Or via Task tool:
+Or via the available subagent tool:
 ```typescript
-Task({
-  subagent_type: "fuse-nextjs:nextjs-expert",
+spawn_agent({
+  agent_type: "nextjs-expert",
   prompt: "Fix the routing issue"
 })
 ```

@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from design_checks import run_all_checks
 from pipeline_checks import load_state, save_state
 
-_CACHE = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+_CACHE = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 _FLAG = os.path.join(_CACHE, "design-agent-active")
 
 

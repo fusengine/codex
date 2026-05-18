@@ -15,7 +15,7 @@ const RULES: [RegExp, string][] = [
 	[/\bCLAUDE_PLUGIN_ROOT\b/g, "PLUGIN_ROOT"],
 	[/\bCLAUDE_PLUGIN_DATA\b/g, "PLUGIN_DATA"],
 	[/~\/\.claude\b/g, "~/.codex"],
-	[/\.claude\/(logs|fusengine-cache|memories|state)/g, ".codex/$1"],
+	[/\.claude\/(logs|fusengine|memories|state)/g, ".codex/$1"],
 	[/\bCLAUDE\.md\b/g, "AGENTS.md"],
 	[/\bCLAUDE_PROJECT_DIR\b/g, "CODEX_PROJECT_DIR"],
 ];

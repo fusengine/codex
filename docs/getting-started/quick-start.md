@@ -49,12 +49,12 @@ Claude:
 | Command | Description |
 |---------|-------------|
 | `/apex` | Full APEX workflow |
-| `/apex-quick` | Skip analyze, direct code |
+| `/apex-quick` | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
 | `/commit` | Smart conventional commit |
 | `/research` | Research with Context7/Exa |
 
 ## Tips
 
-1. **Let Claude detect** - Don't specify agent, let it auto-detect
-2. **Use APEX for features** - Skip for trivial fixes
+1. **Let Codex detect** - Don't specify agent, let it auto-detect
+2. **Use APEX for every task** - Full for risky work, Quick for trivial/read-only
 3. **Trust sniper** - It catches errors before you

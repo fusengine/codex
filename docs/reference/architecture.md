@@ -74,7 +74,7 @@ fusengine-plugins/
 ## Runtime Cache Structure
 
 ```
-~/.claude/fusengine-cache/
+${CODEX_HOME:-~/.codex}/fusengine/
 ├── explore/{project-hash}/        # Architecture snapshots (TTL: 4h)
 │   ├── metadata.json              # Hash, timestamp, file count
 │   └── snapshot.md                # Full architecture report

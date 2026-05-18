@@ -18,7 +18,7 @@ APEX workflow orchestrator with sniper validation and research capabilities.
 | Command | Description |
 |---------|-------------|
 | `/apex` | Full APEX workflow |
-| `/apex-quick` | Skip Analyze, direct Execute |
+| `/apex-quick` | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
 | `/research` | Technical research |
 | `/exploration` | Codebase discovery |
 | `/code-quality` | Linters, SOLID validation, DRY detection |
@@ -27,7 +27,7 @@ APEX workflow orchestrator with sniper validation and research capabilities.
 ## Skills
 
 - `apex` - Full APEX methodology
-- `apex-quick` - Quick flow
+- `apex-quick` - Quick APEX flow
 - `research` - Research methodology
 - `exploration` - Discovery techniques
 - `code-quality` - Validation with DRY detection (jscpd)
@@ -36,12 +36,12 @@ APEX workflow orchestrator with sniper validation and research capabilities.
 - `agent-creator` - Create expert agents with frontmatter, hooks, skills
 - `react-effects-audit` - Audit React useEffect anti-patterns (9 rules from "You Might Not Need an Effect")
 
-## Cache System (fusengine-cache)
+## Cache System (fusengine)
 
 4-level persistent cache to reduce redundant operations and save tokens (60-75% savings).
 
 ```
-~/.claude/fusengine-cache/
+${CODEX_HOME:-~/.codex}/fusengine/
 ├── explore/{project-hash}/    # Architecture snapshots
 │   ├── metadata.json
 │   └── snapshot.md
@@ -87,7 +87,7 @@ All scripts are in `scripts/` with shared `lib/` modules.
 | `check-solid-compliance.sh` | PostToolUse | SOLID validation on Write/Edit |
 | `check-solid-from-transcript.sh` | SubagentStop | SOLID check from agent transcript |
 | `track-doc-consultation.sh` | PostToolUse | Track documentation reads |
-| `sync-task-tracking.ts` | PostToolUse | Sync TaskCreate/TaskUpdate |
+| `sync-task-tracking.ts` | PostToolUse | Sync task tracking when supported |
 
 ### Lessons Format (per-timestamp)
 

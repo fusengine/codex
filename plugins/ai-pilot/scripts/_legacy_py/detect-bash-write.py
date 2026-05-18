@@ -43,7 +43,7 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    if event.get("tool_name") != "Bash":
+    if event.get("tool_name") not in ("Bash", "bash"):
         sys.exit(0)
 
     command: str = event.get("tool_input", {}).get("command", "")

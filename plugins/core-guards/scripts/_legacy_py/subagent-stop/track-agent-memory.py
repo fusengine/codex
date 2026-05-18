@@ -6,7 +6,7 @@ import re
 import sys
 from datetime import datetime, timezone
 
-STATE_DIR = os.path.join(os.path.expanduser('~'), '.claude', 'fusengine-cache', 'sessions')
+STATE_DIR = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'sessions')
 MEMORY_DIR = os.path.expanduser('~/.codex/memory/agents')
 SKIP_AGENTS = (
     r'(sniper|sniper-faster|explore-codebase|research-expert|claude-code-guide|Explore|Plan)'

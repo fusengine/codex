@@ -1,8 +1,8 @@
 /**
  * Codex → Codex hook event mapping.
- * Codex supports 6 events: SessionStart, PreToolUse, PostToolUse,
- * UserPromptSubmit, PermissionRequest, Stop. PreCompact exists in schema
- * but is not yet stabilized (kept as-is).
+ * Codex plugin hooks use stable events only: SessionStart, PreToolUse,
+ * PostToolUse, UserPromptSubmit, PermissionRequest, Stop. PreCompact may
+ * exist in internal schemas but is intentionally skipped for plugin hooks.
  * Sources: developers.openai.com/codex/hooks + issue openai/codex#21753
  */
 export const EVENT_MAP: Record<string, string> = {
@@ -18,13 +18,12 @@ export const EVENT_MAP: Record<string, string> = {
 	TaskCompleted: "Stop",
 	PostToolUseFailure: "PostToolUse",
 	InstructionsLoaded: "SessionStart",
-	PreCompact: "PreCompact",
 };
 
 /**
  * Codex-specific events with NO Codex equivalent (skipped with warning).
  */
-export const UNSUPPORTED_EVENTS = new Set(["TeammateIdle", "Notification"]);
+export const UNSUPPORTED_EVENTS = new Set(["TeammateIdle", "Notification", "PreCompact"]);
 
 /**
  * Rewrite a Codex hook command string for the Bun-based Codex runtime.

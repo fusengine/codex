@@ -36,7 +36,7 @@ Display memory statistics:
 1. Call mcp__graphiti__get_status for graph stats
 2. Report: node count, edge count, episode count
 3. Show last consolidation timestamp
-4. Show log file sizes from ~/.codex/logs/00-memory/
+4. Show log file sizes from ~/.codex/fusengine/logs/00-memory/
 
 ### consolidate
 Force episodic to semantic consolidation:

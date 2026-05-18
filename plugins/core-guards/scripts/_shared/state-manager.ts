@@ -17,7 +17,7 @@ import { randomBytes } from "node:crypto";
 
 /** Resolve the state directory lazily so HOME overrides are honoured. */
 export function stateDir(): string {
-	return join(homedir(), ".codex", "fusengine-cache", "sessions");
+	return join(homedir(), ".codex", "fusengine", "sessions");
 }
 
 const SID_RE = /^[a-zA-Z0-9_-]{1,128}$/;

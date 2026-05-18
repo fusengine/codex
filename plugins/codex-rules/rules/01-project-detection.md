@@ -1,17 +1,20 @@
 ## Project Detection -> Domain Agent
 
-Scan: `~/.codex/plugins/marketplaces/fusengine-plugins/plugins/*/` + `~/.codex/agents/*.md`
+Scan the active workspace first. When installed plugin metadata is needed, use
+`${PLUGIN_ROOT}` from hooks or the installed cache path:
+`~/.codex/plugins/cache/fusengine-codex/<plugin>/<version>/`.
 
 | Project Indicator | Agent |
 |-------------------|-------|
-| `next.config.*`, `app/layout.tsx` | `fuse-nextjs:nextjs-expert` |
-| `composer.json` + `artisan` | `fuse-laravel:laravel-expert` |
-| `package.json` + React | `fuse-react:react-expert` |
-| `Package.swift`, `*.xcodeproj` | `fuse-swift-apple-expert:swift-expert` |
-| `tailwind.config.*` | `fuse-tailwindcss:tailwindcss-expert` |
-| `components.json`, `@radix-ui/*` | `fuse-shadcn-ui:shadcn-ui-expert` |
-| Custom `~/.codex/agents/*.md` | Use matching custom agent |
-| **No match** | `general-purpose` |
+| `next.config.*`, `app/layout.tsx` | `nextjs-expert` when available |
+| `composer.json` + `artisan` | `laravel-expert` when available |
+| `package.json` + React | `react-expert` when available |
+| `Package.swift`, `*.xcodeproj` | `swift-expert` when available |
+| `tailwind.config.*`, `@import "tailwindcss"` | `tailwindcss-expert` when available |
+| `components.json`, `@radix-ui/*`, `@base-ui/*` | `shadcn-ui-expert` when available |
+| Custom Codex agent/skill metadata | Use the matching custom capability |
+| **No match** | Use the default available coding agent |
 
-Priority: Custom > Framework (Next.js > React) > UI library > `general-purpose`
-**FORBIDDEN:** `general-purpose` when domain agent exists.
+Priority: Custom > Framework (Next.js > React) > UI library > default.
+Prefer a domain expert when it exists, but do not assume a fixed agent name is
+registered in every Codex runtime.

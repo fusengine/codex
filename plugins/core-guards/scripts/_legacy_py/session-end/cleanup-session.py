@@ -8,7 +8,7 @@ import time
 
 def main():
     tracking_dir = os.path.join(
-        os.path.expanduser('~'), '.claude', 'fusengine-cache', 'session-tmp'
+        os.path.expanduser('~'), '.claude', 'fusengine', 'session-tmp'
     )
     if os.path.isdir(tracking_dir):
         now = time.time()
@@ -20,7 +20,7 @@ def main():
                 pass
 
     now = time.time()
-    cache_base = os.path.join(os.path.expanduser('~'), '.claude', 'fusengine-cache')
+    cache_base = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine')
     for pattern in ['claude_solid_reads_*', 'claude_session_changes_*']:
         for f in glob.glob(os.path.join(cache_base, pattern)):
             try:

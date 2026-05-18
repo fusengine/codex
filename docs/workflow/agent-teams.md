@@ -1,111 +1,56 @@
-# Agent Teams (Delegation)
+# Agent Teams
 
-Coordinate multiple Claude Code agents working in true parallel with separate context windows.
+Use agent teams only when the active Codex runtime exposes a subagent/team
+capability and the task benefits from parallel work.
 
-## Enable
+## When To Use Agents
 
-```json
-// ~/.claude/settings.json
-{
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
-}
-```
+| Situation | Recommendation |
+|-----------|----------------|
+| Read-only lookup | Inspect locally and answer directly |
+| Small scoped edit | Lead edits directly and validates |
+| Broad codebase audit | Spawn explorers/researchers with bounded prompts |
+| Multi-file implementation | Split by exclusive file ownership |
+| User explicitly asks for a team | Use the available Codex subagent interface |
 
-Or via the installer: `setup.sh` prompts to enable automatically.
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────┐
-│              LEAD (Coordinator)              │
-│  TeamCreate → TaskCreate → SendMessage      │
-│  mode: "delegate" (NEVER writes code)       │
-├──────────┬──────────┬───────────────────────┤
-│ Agent A  │ Agent B  │ Agent C               │
-│ Own ctx  │ Own ctx  │ Own ctx               │
-│ Own files│ Own files│ Own files             │
-└──────────┴──────────┴───────────────────────┘
-```
-
-Each agent runs in its own context window with isolated memory.
+Do not assume a fixed interface such as `TeamCreate`, `TaskCreate`, `/agent`, or
+`spawn_agents_on_csv`. Codex runtimes may expose app `spawn_agent`, CLI slash
+commands, or project-specific orchestration tools.
 
 ## Delegation Rules
 
-### 1. Lead = Coordinator ONLY
-
-The lead agent orchestrates but **NEVER implements**. Use `mode: "delegate"` to restrict the lead to coordination-only tools (TeamCreate, TaskCreate, SendMessage).
-
-### 2. File Ownership
-
-Each teammate owns distinct files. **Two agents editing the same file leads to overwrites.**
-
-```
-Agent A → src/components/Header.tsx, src/hooks/useHeader.ts
-Agent B → src/components/Footer.tsx, src/hooks/useFooter.ts
-Agent C → src/services/api.ts, src/utils/helpers.ts
-```
-
-### 3. Well-Scoped Tasks
-
-Every `TaskCreate` must specify:
-- **Target files** - Which files to create/modify
-- **Expected output** - What the result should look like
-- **Acceptance criteria** - How to validate success
-- **Dependencies** - `addBlockedBy` for task ordering
-
-### 4. Mandatory TaskUpdate
-
-Teammates MUST call `TaskUpdate` with `status: "completed"` when done. Forgetting this blocks dependent tasks indefinitely.
-
-### 5. Max 4 Teammates
-
-Beyond 4 agents, coordination overhead exceeds parallelism gains.
-
-## APEX Integration
-
-Agent Teams power the **Analyze** phase of APEX:
-
-```
-TeamCreate → spawn 3 teammates:
-├── explore-codebase  (architecture mapping)
-├── research-expert   (documentation lookup)
-└── [domain-expert]   (framework-specific analysis)
-```
-
-Results are synthesized by the lead before the **Plan** phase.
+1. **Exclusive file ownership** - no two agents should edit the same file.
+2. **Well-scoped tasks** - define target files, expected output, and validation.
+3. **Small teams** - keep parallelism low enough to review and integrate.
+4. **Critical path stays local** - do not delegate the immediate blocker when
+   the lead can finish it safely.
+5. **Final integration** - the lead reviews agent output and runs validation.
 
 ## Anti-Patterns
 
 | Pattern | Problem | Fix |
 |---------|---------|-----|
-| Lead implements code | Defeats delegation purpose | Use `mode: "delegate"` |
-| Shared file edits | Overwrites between agents | Assign exclusive file ownership |
-| Vague tasks | Agents waste tokens guessing | Specify files + criteria |
-| Missing TaskUpdate | Dependent tasks blocked forever | Always mark `completed` |
-| 5+ teammates | Overhead > gains | Cap at 4 agents max |
+| Fixed tool assumptions | Not portable across Codex app, CLI, and API | Use available runtime tools |
+| Shared file edits | Conflict-prone integration | Assign exclusive write scopes |
+| Delegating trivial edits | Slower and noisier | Edit locally |
+| Vague prompts | Agents guess and diverge | Specify files, output, and checks |
+| Skipping integration review | Broken combined result | Review diffs and validate |
 
-## Known Limitations
-
-- `/resume` does not restore in-process teammates
-- One team per session (no nested teams)
-- Teammates cannot spawn their own teams
-- High token usage (~4x single agent for 4 teammates)
-
-## Example Workflow
+## Example
 
 ```
-1. TeamCreate("feature-auth")
-2. TaskCreate("Implement login form")
-   → files: src/components/LoginForm.tsx
-   → criteria: Zod validation, shadcn/ui
-3. TaskCreate("Implement auth API")
-   → files: src/services/auth.ts
-   → criteria: Better Auth integration
-4. TaskCreate("Add auth tests")
-   → files: src/__tests__/auth.test.ts
-   → blockedBy: [task-1, task-2]
-5. Spawn teammates → assign tasks → TaskUpdate on completion
-6. Lead runs sniper for final validation
+Goal: audit plugin hook compatibility.
+
+Agent A:
+- Scope: plugins/*/hooks/hooks.json
+- Output: invalid events, matchers, missing scripts
+
+Agent B:
+- Scope: installer scripts
+- Output: install/cache/config risks
+
+Lead:
+- Integrates findings
+- Applies scoped fixes
+- Runs validation
 ```

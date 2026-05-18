@@ -8,8 +8,12 @@ import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 
 export async function hasCodexCli(): Promise<boolean> {
-	const proc = Bun.spawnSync(["which", "codex"], { stderr: "pipe", stdout: "pipe" });
-	return proc.exitCode === 0;
+	try {
+		const proc = Bun.spawnSync(["codex", "--version"], { stderr: "pipe", stdout: "pipe" });
+		return proc.exitCode === 0;
+	} catch {
+		return false;
+	}
 }
 
 /**

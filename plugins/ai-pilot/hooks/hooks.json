@@ -59,7 +59,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "bash",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -68,7 +68,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -130,7 +130,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -139,7 +139,7 @@
         ]
       },
       {
-        "matcher": "mcp_tool_call",
+        "matcher": "mcp__.*",
         "hooks": [
           {
             "type": "command",

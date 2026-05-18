@@ -7,13 +7,13 @@ import re
 # Paths where file writes are always allowed (internal plugin cache)
 # Cross-platform: expanduser resolves ~ on macOS/Linux/Windows
 SAFE_WRITE_PATHS = [
-    os.path.normpath(os.path.expanduser('~/.claude/fusengine-cache')),
-    os.path.normpath(os.path.expanduser('~/.claude/logs')),
+    os.path.normpath(os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine')),
+    os.path.normpath(os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs')),
 ]
 
 _SAFE_RAW = [
-    '~/.claude/fusengine-cache',
-    '~/.claude/logs',
+    '~/.codex/fusengine',
+    '~/.codex/fusengine/logs',
 ]
 
 

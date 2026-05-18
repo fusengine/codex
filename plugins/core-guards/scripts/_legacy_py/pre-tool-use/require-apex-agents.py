@@ -11,12 +11,15 @@ from apex_agent_helpers import (  # pylint: disable=wrong-import-position
     check_brainstorm_done,
     check_required_agents,
 )
+sys.path.insert(0, os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..', '..', '..', '..', '_shared', 'scripts')))
+from hook_output import emit_pre_tool  # pylint: disable=wrong-import-position,import-error
 
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro)$'
 EXEMPT_PATTERNS = [
     r'\.claude-plugin/', r'\.codex-plugin/', r'CHANGELOG\.md$', r'marketplace\.json$',
-    r'/\.claude/(apex|memory|logs|fusengine-cache)/',
-    r'/\.codex/(apex|memory|logs|fusengine-cache)/',
+    r'/\.claude/(apex|memory|logs|fusengine)/',
+    r'/\.codex/(apex|memory|fusengine)/',
 ]
 
 
@@ -34,11 +37,7 @@ def files_in(tool, ti):
 
 
 def deny(reason):
-    print(json.dumps({"hookSpecificOutput": {
-        "hookEventName": "PreToolUse",
-        "permissionDecision": "deny",
-        "permissionDecisionReason": reason,
-    }}))
+    emit_pre_tool("deny", reason, script_name="require-apex-agents")
     sys.exit(0)
 
 

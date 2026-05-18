@@ -1,13 +1,15 @@
 /**
  * features.ts — Ensure plugin hooks are enabled in ~/.codex/config.toml.
  * Codex defaults plugin_hooks=false; without it, plugin-bundled hooks never run.
- * Reference: developers.openai.com/codex/config-reference
+ * Reference: developers.openai.com/codex/config-basic#feature-flags
  */
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
 
-function addLine(block: string, line: string): string {
-	if (new RegExp(`^${line.split("=")[0].trim()}\\s*=`, "m").test(block)) return block;
+function setFeature(block: string, key: string, value: string): string {
+	const line = `${key} = ${value}`;
+	const pattern = new RegExp(`^\\s*${key}\\s*=.*$`, "m");
+	if (pattern.test(block)) return block.replace(pattern, line);
 	return block.replace(/^(\[features\])/m, `$1\n${line}`);
 }
 
@@ -22,10 +24,10 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 	const file = Bun.file(configPath);
 	const existing = (await file.exists()) ? await file.text() : "";
 
-	let next = existing;
+	let next = existing.replace(/^\s*codex_hooks\s*=.*\n?/gm, "");
 	if (/^\s*\[features\]/m.test(next)) {
-		next = addLine(next, "hooks = true");
-		next = addLine(next, "plugin_hooks = true");
+		next = setFeature(next, "hooks", "true");
+		next = setFeature(next, "plugin_hooks", "true");
 	} else {
 		next = next.trimEnd() + "\n\n[features]\nhooks = true\nplugin_hooks = true\n";
 	}

@@ -38,7 +38,7 @@ Parse patterns from changelog:
 
 ## State File
 
-Location: `~/.codex/logs/00-changelog/{date}-state.json`
+Location: `~/.codex/fusengine/logs/00-changelog/{date}-state.json`
 
 ## References
 

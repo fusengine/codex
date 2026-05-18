@@ -7,7 +7,7 @@ _SHARED = os.path.join(os.path.expanduser("~"), ".claude", "plugins",
 sys.path.insert(0, _SHARED)
 from hook_output import allow_pass
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
 ALLOWED_EXT = re.compile(r'\.(html|css|md|json)$')
 EXEMPT_DIRS = ("node_modules/", "dist/", "build/", ".claude/")

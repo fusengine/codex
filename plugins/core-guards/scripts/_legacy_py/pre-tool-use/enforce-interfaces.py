@@ -2,8 +2,13 @@
 """PreToolUse: block interfaces/types in component/view files (SOLID).
 Handles Claude (Write/Edit file_path+content) and Codex (apply_patch V4A body)."""
 import json
+import os
 import re
 import sys
+
+sys.path.insert(0, os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..', '..', '..', '..', '_shared', 'scripts')))
+from hook_output import emit_pre_tool  # pylint: disable=wrong-import-position,import-error
 
 RULES = [
     (r'\.(tsx|jsx|vue|svelte)$', r'^(export )?(interface|type) [A-Z]',
@@ -68,11 +73,7 @@ def main():
             if r:
                 reasons.append(r)
     if reasons:
-        print(json.dumps({"hookSpecificOutput": {
-            "hookEventName": "PreToolUse",
-            "permissionDecision": "deny",
-            "permissionDecisionReason": ' | '.join(reasons),
-        }}))
+        emit_pre_tool("deny", ' | '.join(reasons), script_name="enforce-interfaces")
     sys.exit(0)
 
 

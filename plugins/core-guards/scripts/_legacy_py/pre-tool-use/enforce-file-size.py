@@ -7,6 +7,10 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..', '..', '..', '..', '_shared', 'scripts')))
+from hook_output import emit_pre_tool  # pylint: disable=wrong-import-position,import-error
+
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro)$'
 MAX = 100
 
@@ -78,8 +82,7 @@ def main():
         if r:
             reasons.append(r)
     if reasons:
-        print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
-            "permissionDecision": "deny", "permissionDecisionReason": ' | '.join(reasons)}}))
+        emit_pre_tool("deny", ' | '.join(reasons), script_name="enforce-file-size")
     sys.exit(0)
 
 

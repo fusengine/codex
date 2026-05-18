@@ -73,7 +73,8 @@ Servers with `[✓]` have API keys configured. Servers with `[⚠ key missing]` 
 
 ## Configuration
 
-API keys are stored in `~/.claude/.env`:
+API keys are stored in the shell environment or a Codex-managed env file under
+`${CODEX_HOME:-~/.codex}`:
 
 ```bash
 # Core (used by plugins)

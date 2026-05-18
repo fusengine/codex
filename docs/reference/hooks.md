@@ -1,143 +1,92 @@
 # Hooks System
 
-Automatic enforcement of APEX methodology and SOLID principles through Claude Code hooks.
+Automatic enforcement of APEX, SOLID, safety, and notification behavior through
+Codex plugin hooks.
 
 ## Overview
 
-The hooks system ensures that agents:
-1. **Consult skills** before writing code
-2. **Follow APEX methodology** (Analyze → Plan → Execute → eXamine)
-3. **Respect SOLID principles** (files < 100 lines, interfaces separated)
+The hooks system helps agents:
+1. Consult relevant skills before risky changes.
+2. Follow APEX where it is useful.
+3. Validate SOLID/DRY rules.
+4. Surface blocking feedback through Codex hook output.
 
 ## Architecture
 
 ```
-~/.claude/settings.json
-       │
-       ▼
-scripts/hooks-loader.ts  ← Bun + SOLID (10x faster)
-       │
-       ▼
-plugins/*/hooks/hooks.json  ← Auto-detected
-       │
-       ▼
-plugins/*/scripts/*.ts|*.sh  ← Executed in parallel
+~/.codex/config.toml
+       |
+       v
+plugins/*/hooks/hooks.json
+       |
+       v
+plugins/*/scripts/*.ts|*.sh|*.py
+```
+
+Plugin hooks require:
+
+```toml
+[features]
+hooks = true
+plugin_hooks = true
 ```
 
 ## Installation
 
 ### macOS / Linux
+
 ```bash
-~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh
+./setup.sh
 ```
 
-### Windows (PowerShell)
+### Windows
+
 ```powershell
-~\.claude\plugins\marketplaces\fusengine-plugins\setup.ps1
+.\setup.ps1
 ```
 
-This installs:
-- **Hooks loader** in `~/.claude/settings.json`
-- **API keys** configuration (interactive prompts)
-- **Shell config** (bash/zsh/fish/PowerShell)
+The installer writes Codex configuration under `${CODEX_HOME:-~/.codex}` and
+caches local plugins under:
 
-All plugin hooks are automatically detected and loaded.
+```
+~/.codex/plugins/cache/fusengine-codex/<plugin>/<version>/
+```
 
-## Hook Types
+## Stable Hook Events
+
+Register only stable Codex plugin hook events:
 
 | Hook | Trigger | Purpose |
 |------|---------|---------|
-| **SessionStart** | Session starts | Load context, inject CLAUDE.md, cleanup states |
-| **UserPromptSubmit** | User sends message | Detect project type, inject APEX instruction |
-| **PreToolUse** | Before Write/Edit/Bash | Block if skill not consulted, validate git/install, enforce APEX phases |
-| **PostToolUse** | After Write/Edit | Validate SOLID compliance, track changes, cache doc results |
-| **SubagentStart** | Subagent starts | Inject cached context (explore, doc, lessons) |
-| **SubagentStop** | Subagent completes | Track agent memory, cache lessons, cache docs from transcript |
-| **Stop** | Claude finishes responding | Play completion sound notification |
-| **PermissionRequest** | Permission dialog shown | Play sound for ALL permission prompts |
-| **Notification** | Permission/idle/elicitation | Play sound alerts for user attention |
-| **PreCompact** | Before context compression | Save APEX state, preserve task decisions |
-| **SessionEnd** | Session closes | Cleanup temp files, save session stats |
-| **Setup** | Plugin first-run | Validate API keys and dependencies |
+| `SessionStart` | Session starts | Load context and cleanup state |
+| `UserPromptSubmit` | User sends a message | Detect project type and inject guidance |
+| `PreToolUse` | Before tool execution | Block unsafe or invalid actions |
+| `PostToolUse` | After tool execution | Validate results and track changes |
+| `PermissionRequest` | Permission prompt shown | Notify user |
+| `Stop` | Turn finishes | Cleanup and completion notification |
 
-## Plugins with Hooks
+Do not register `PreCompact` for plugin hooks until Codex stabilizes it.
 
-| Plugin | PreToolUse | PostToolUse | UserPromptSubmit | SessionStart | SubagentStart | SubagentStop | Stop | Notification | PreCompact | SessionEnd | Setup |
-|--------|------------|-------------|------------------|--------------|---------------|--------------|------|--------------|------------|------------|-------|
-| **ai-pilot** | APEX phases, APEX context | SOLID check, Doc tracking, Task sync | APEX injection | - | Context inject, Explore cache, Doc cache inject, Lessons inject, Test cache inject | Sniper lessons, Test results, Doc from transcript, SOLID from transcript | - | - | - | Analytics save | - |
-| **core-guards** | Git, Install, Security, Pre-commit, Interfaces, File size, SOLID read | File size, Session tracking, Doc reads, SOLID reads, TS validation | CLAUDE.md injection | Context, Cleanup | - | Memory | Sound | Sounds | APEX state | Cleanup, Stats | API keys |
-| **react-expert** | Block without skill | React SOLID validation | - | - | - | - | - | - | - | - | - |
-| **nextjs-expert** | Block without skill | Next.js SOLID validation | - | - | - | - | - | - | - | - | - |
-| **laravel-expert** | Block without skill | Laravel SOLID validation | - | - | - | - | - | - | - | - | - |
-| **swift-apple-expert** | Block without skill | Swift SOLID validation | - | - | - | - | - | - | - | - | - |
-| **tailwindcss** | Block without skill | Tailwind best practices | - | - | - | - | - | - | - | - | - |
-| **design-expert** | Block without skill | Accessibility check | - | - | - | - | - | - | - | - | - |
+## Adding Hooks To A Plugin
 
-## Loader Architecture (v2.0 - Bun + SOLID)
+1. Create the hook directories:
 
-```
-scripts/
-├── hooks-loader.ts            ← Entry point
-├── install-hooks.ts           ← Installation + API keys
-├── package.json
-├── src/
-│   ├── interfaces/
-│   │   ├── hooks.ts           ← Hook interfaces
-│   │   └── env.ts             ← EnvKey interface
-│   ├── config/
-│   │   └── api-keys.ts        ← API keys configuration
-│   ├── services/
-│   │   ├── plugin-scanner.ts  ← Scan plugins, extract hooks
-│   │   ├── hook-executor.ts   ← Execute hooks in PARALLEL
-│   │   ├── settings-manager.ts← Manage settings.json
-│   │   └── env-manager.ts     ← API keys & shell config
-│   └── __tests__/
-│       ├── api-keys.test.ts
-│       ├── env-manager.test.ts
-│       ├── fs-helpers.test.ts
-│       ├── hook-executor.test.ts
-│       ├── install-hooks.test.ts
-│       ├── plugin-scanner.test.ts
-│       └── settings-manager.test.ts
-└── env-shell/
-    ├── claude-env.bash
-    ├── claude-env.zsh
-    ├── claude-env.fish
-    └── claude-env.ps1
-```
-
-### Testing
-
-```bash
-bun test           # Run 81 tests
-bun test --watch   # Watch mode
-```
-
-### Performance
-
-| Version | Execution | Speed |
-|---------|-----------|-------|
-| v1.0 (bash+jq) | Sequential | 280ms |
-| **v2.0 (Bun)** | **Parallel** | **100ms** |
-
-## Adding Hooks to a New Plugin
-
-1. Create the hooks directory:
 ```bash
 mkdir -p plugins/my-plugin/hooks plugins/my-plugin/scripts
 ```
 
 2. Create `hooks/hooks.json`:
+
 ```json
 {
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/my-check.sh"
+            "command": "bun ${PLUGIN_ROOT}/scripts/my-check.ts"
           }
         ]
       }
@@ -146,71 +95,65 @@ mkdir -p plugins/my-plugin/hooks plugins/my-plugin/scripts
 }
 ```
 
-3. Create your script in `scripts/my-check.sh`
+3. Create the script under `scripts/`.
 
-4. Make it executable:
-```bash
-chmod +x plugins/my-plugin/scripts/*.sh
-```
+The plugin runtime provides `PLUGIN_ROOT` and `PLUGIN_DATA`. Legacy Claude env
+vars are allowed only in migration compatibility code.
 
-The hooks loader will automatically detect and load your new hooks.
+## Script Input
 
-## Script Input Format
-
-Hooks receive JSON input via stdin:
+Hooks receive JSON input through stdin:
 
 ```json
 {
-  "tool_name": "Write",
+  "tool_name": "apply_patch",
   "tool_input": {
-    "file_path": "/path/to/file.tsx",
-    "content": "file content..."
+    "file_path": "/path/to/file.ts"
   }
 }
 ```
 
 ## Script Output
 
-### To Allow (exit 0)
+Allow:
+
 ```bash
 exit 0
 ```
 
-### To Block (exit 2)
+Block:
+
 ```bash
-echo "Your blocking message here" >&2
+echo "Blocking message" >&2
 exit 2
 ```
 
-### To Add Context (exit 0 with JSON)
+Add context:
+
 ```bash
-echo '{"additionalContext": "Your context here"}'
+echo '{"additionalContext": "Context for the model"}'
 exit 0
 ```
 
+Prefer structured helper output when available so Codex receives both
+`systemMessage` and log entries.
+
 ## Troubleshooting
 
-### Hooks not loading
+Check feature flags:
+
 ```bash
-# Check if hooks-loader.ts is in settings.json
-cat ~/.claude/settings.json | jq '.hooks.PreToolUse'
-
-# Re-run installation (macOS/Linux)
-~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh
-
-# Re-run installation (Windows PowerShell)
-~\.claude\plugins\marketplaces\fusengine-plugins\setup.ps1
+codex features list | rg 'hooks|plugin_hooks'
 ```
 
-### Hook not executing
+Check installed cache:
+
 ```bash
-# Test the hook manually
-echo '{"tool_name":"Write","tool_input":{"file_path":"test.tsx"}}' | \
-  bun ~/.claude/plugins/marketplaces/fusengine-plugins/scripts/hooks-loader.ts PreToolUse
+find ~/.codex/plugins/cache/fusengine-codex -maxdepth 3 -name hooks.json
 ```
 
-### Debug mode
-Add to your hook script:
+Run validation from the source repository:
+
 ```bash
-echo "[DEBUG] Hook triggered: $TOOL_NAME on $FILE_PATH" >&2
+bun run validate
 ```

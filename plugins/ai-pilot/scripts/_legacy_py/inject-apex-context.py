@@ -34,7 +34,7 @@ def load_task_state(task_file: str) -> tuple[str, str, str, str]:
 def build_context(task_id: str, subject: str, phase: str, docs: str) -> str:
     """Build the APEX context string for injection."""
     return (
-        f"⚠️ APEX MODE - Read .claude/apex/AGENTS.md for rules\n\n"
+        f"⚠️ APEX MODE - Read .codex/apex/AGENTS.md for rules\n\n"
         f"Current: Task #{task_id} - {subject} (Phase: {phase})\n"
         f"Docs consulted: {docs}\n\n"
         f"Agent must:\n"

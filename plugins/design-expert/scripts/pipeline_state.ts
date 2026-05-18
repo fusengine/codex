@@ -3,7 +3,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-export const CACHE_DIR = join(homedir(), ".codex", "fusengine-cache");
+export const CACHE_DIR = join(homedir(), ".codex", "fusengine");
 export const MIN_SCREENSHOTS: Record<string, number> = { full: 4, page: 2, component: 0 };
 
 export interface DesignState {

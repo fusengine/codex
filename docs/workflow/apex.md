@@ -1,101 +1,99 @@
 # APEX Methodology
 
-**A**nalyze → **P**lan → **E**xecute → e**L**icit → e**X**amine
+**A**nalyze -> **P**lan -> **E**xecute -> e**L**icit -> e**X**amine
 
 ## Overview
 
+APEX is mandatory for every task. It is a workflow, not a hard dependency on one
+orchestration API. Use the Codex tools available in the current runtime.
+
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     APEX WORKFLOW                               │
-├─────────────────────────────────────────────────────────────────┤
-│  A - Analyze    → TeamCreate (explore + research + expert)      │
-│  P - Plan       → Break down tasks (TaskCreate)                 │
-│  E - Execute    → Write code (expert agent)                     │
-│  L - eLicit     → Self-review (75 techniques)                   │
-│  X - eXamine    → Validate (sniper agent)                       │
-└─────────────────────────────────────────────────────────────────┘
+Brainstorm -> required for new features, broad refactors, ambiguous decisions
+Analyze    -> always required: local exploration, docs, optional agents
+Plan       -> always required: concise tasks tied to files and checks
+Execute    -> scoped edits or answer following project patterns
+eLicit     -> required for non-trivial changes
+Verify     -> always required: functional evidence
+eXamine    -> required after code/config changes
 ```
 
 ## Phases
 
-### A - Analyze (via TeamCreate)
+### A - Analyze
 
-Use `TeamCreate` to spawn 3 teammates in true parallel (separate contexts):
-- `explore-codebase` - Map structure, find patterns
-- `research-expert` - Documentation, best practices
-- `[domain-expert]` - Framework-specific analysis
+Always explore locally with `rg`, file reads, and project documentation. Use
+subagents/research when the task is broad, risky, or benefits from parallel
+work.
 
-Each agent works in its own context window, results synthesized by team lead.
+Typical inputs:
+- `explore-codebase` for architecture mapping
+- `research-expert` for official docs and best practices
+- domain expert for framework-specific analysis
 
 ### P - Plan
 
-Use `TaskCreate` to break down with dependencies (`addBlockedBy`):
-- Task list with estimates
-- Files < 100 lines each
-- Edge cases identified
-- `TaskUpdate` tracks status: pending → in_progress → completed
+Always create a short task list with:
+- target files
+- dependencies
+- edge cases
+- validation commands
 
 ### E - Execute
 
-Code with domain expert:
-- `nextjs-expert`, `laravel-expert`, `react-expert`, etc.
-- Follow SOLID rules from `skills/solid-*/`
-- JSDoc/PHPDoc mandatory
+Implement with the relevant domain patterns:
+- `nextjs-expert`, `laravel-expert`, `react-expert`, etc. when available
+- SOLID and DRY rules from `skills/solid-*/`
+- tests proportional to risk
 
-### L - eLicit (Self-Review)
+### L - eLicit
 
-Expert self-reviews before sniper:
+Self-review before final validation:
 
 | Mode | Flag | Description |
 |------|------|-------------|
-| Auto | `--auto` | Auto-select techniques |
-| Manual | `--manual` | Choose from 5 options |
+| Auto | `--auto` | Auto-select review techniques |
+| Manual | `--manual` | User chooses techniques |
 | Skip | `--skip-elicit` | Go directly to eXamine |
 
-**75 techniques** in 12 categories (Security, Performance, Architecture, etc.)
+### Verify
+
+Always verify the result. For read-only answers, cite the local files, commands,
+or docs used as evidence. For changes, run functional checks.
 
 ### X - eXamine
 
-Sniper validation:
-1. Run linters (eslint, prettier, tsc)
-2. Run tests
-3. Build verification
-4. **Zero errors required**
+Run the checks that prove the change:
+1. Linters/formatters when configured
+2. Typecheck for typed projects
+3. Focused tests
+4. Build or smoke test when user-facing behavior changed
+5. Sniper/code-quality validation when available
 
-## Commands
+## APEX Depth
 
-| Command | Description |
-|---------|-------------|
-| `/apex <task>` | Full APEX workflow |
-| `/apex-quick <task>` | Skip Analyze, direct Execute |
+**Full APEX for:**
+- new feature, component, or file
+- multi-file changes
+- architecture modification
+- refactoring or migration
+- debugging unclear failures
 
-**Flags:**
-- `--quick` - Skip Analyze phase
-- `--skip-elicit` - Skip eLicit phase
-- `--no-sniper` - Skip eXamine (not recommended)
+**Quick APEX for:**
+- questions and explanations
+- trivial fixes
+- read-only search/debug
+- simple git inspection
 
-## When to Use APEX
-
-**ALWAYS if:**
-- New feature, component, file
-- Multi-file changes (>2 files)
-- Architecture modification
-- Refactoring, migration
-
-**SKIP if:**
-- Questions, explanations
-- Trivial fix (1-3 lines)
-- Read-only (search, debug)
-- Simple git (status, log)
+Quick APEX still includes Analyze, Plan, Execute/Answer, and Verify. It may skip
+Brainstorm and eLicit only when there is no ambiguity and no meaningful change
+risk.
 
 ## Tracking
 
-APEX tracks consultations in `.claude/apex/`:
+APEX state may be stored in `.codex/apex/`:
 
 ```
-project/.claude/apex/
-├── task.json              # Task state
-└── docs/                  # Auto-generated summaries
+project/.codex/apex/
+├── task.json
+└── docs/
 ```
-
-This prevents infinite loops (hooks don't re-ask for docs already consulted).

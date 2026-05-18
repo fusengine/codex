@@ -1,10 +1,10 @@
 # fuse-changelog
 
-Claude Code update watcher and plugin compatibility analyzer.
+Codex CLI update watcher and plugin compatibility analyzer.
 
 ## Overview
 
-Monitors Claude Code releases, detects breaking changes affecting the plugin ecosystem, and gathers community feedback via Exa.
+Monitors Codex CLI releases, detects breaking changes affecting the plugin ecosystem, and gathers community feedback via Exa.
 
 ## Agent
 
@@ -16,7 +16,7 @@ Monitors Claude Code releases, detects breaking changes affecting the plugin eco
 
 | Skill | Description |
 |-------|-------------|
-| `changelog-scan` | Fetch and parse official Claude Code changelog |
+| `changelog-scan` | Fetch and parse official Codex CLI changelog |
 | `breaking-changes` | Detect API surface changes affecting plugins |
 | `community-pulse` | Gather community sentiment via Exa search |
 
@@ -24,7 +24,7 @@ Monitors Claude Code releases, detects breaking changes affecting the plugin eco
 
 | Command | Description |
 |---------|-------------|
-| `/watch` | Check for Claude Code updates and compatibility |
+| `/watch` | Check for Codex CLI updates and compatibility |
 
 ## Modes
 

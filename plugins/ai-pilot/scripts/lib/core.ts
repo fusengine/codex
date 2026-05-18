@@ -48,9 +48,10 @@ export function projectHash(projectPath: string): string {
   return hashText(projectPath);
 }
 
-/** Get the fusengine-cache base directory path */
+/** Get the fusengine base directory path */
 export function cacheBaseDir(): string {
-  return `${process.env.HOME}/.codex/fusengine-cache`;
+  const codexHome = process.env.CODEX_HOME ?? `${process.env.HOME}/.codex`;
+  return `${codexHome}/fusengine`;
 }
 
 /** Ensure a directory exists, creating parents as needed */

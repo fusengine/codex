@@ -22,7 +22,7 @@
 - [design](plugins/design.md) - UI/UX with shadcn/ui
 - [shadcn](plugins/shadcn.md) - shadcn/ui expert with Radix/Base UI detection
 - [security](plugins/security.md) - Security audit, OWASP, CVE research
-- [changelog](plugins/changelog.md) - Claude Code update watcher, community pulse
+- [changelog](plugins/changelog.md) - Codex CLI update watcher, community pulse
 - [solid](plugins/solid.md) - SOLID principles
 - [prompt-engineer](plugins/prompt-engineer.md) - Prompt optimization
 

@@ -2,7 +2,7 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "mcp_tool_call|web_search",
+        "matcher": "mcp__.*|web_search",
         "hooks": [
           {
             "type": "command",

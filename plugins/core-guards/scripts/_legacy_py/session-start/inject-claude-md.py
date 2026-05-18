@@ -5,7 +5,7 @@ import os
 import sys
 from datetime import datetime
 
-LOG_DIR = os.path.expanduser('~/.codex/logs')
+LOG_DIR = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs')
 LOG_FILE = os.path.join(LOG_DIR, 'hooks.log')
 
 

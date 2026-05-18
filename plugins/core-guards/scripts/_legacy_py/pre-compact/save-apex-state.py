@@ -30,7 +30,7 @@ def main():
             pass
 
     print(json.dumps({"additionalContext":
-        "APEX state saved before compaction. Previous task state preserved in .claude/apex/backups/"}))
+        "APEX state saved before compaction. Previous task state preserved in .codex/apex/backups/"}))
     sys.exit(0)
 
 

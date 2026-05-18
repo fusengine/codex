@@ -6,7 +6,7 @@ import os
 import sys
 from datetime import datetime, timezone
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 
 
 def _detect_mode(data: dict) -> str:

@@ -1,6 +1,6 @@
 # Neural Memory (fuse-memory)
 
-Bio-inspired persistent memory for Claude Code using Graphiti + Qdrant.
+Bio-inspired persistent memory for Codex using Graphiti + Qdrant.
 
 ## Architecture
 
@@ -21,7 +21,7 @@ This plugin uses **hooks + MCP + rules only**. All existing agents automatically
 |------|---------|--------|
 | PostToolUse (Bash) | Bash exit_code != 0 | Auto-capture error to Graphiti + instruct Qdrant store |
 | SessionStart | Session begins | Recall relevant lessons from Graphiti |
-| PostToolUse (MCP) | graphiti/qdrant calls | Log operations to ~/.claude/logs/00-memory/ |
+| PostToolUse (MCP) | graphiti/qdrant calls | Log operations to ${CODEX_HOME:-~/.codex}/fusengine/logs/00-memory/ |
 
 ## MCP Servers
 

@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from _shared.cache_io import load_index
 from _shared.state_manager import sanitize_session_id
 
-BASE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache", "sessions")
+BASE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "sessions")
 DEFAULT_TTL_MIN = 30
 
 

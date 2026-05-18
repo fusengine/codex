@@ -2,7 +2,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "bash",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -23,7 +23,7 @@
         ]
       },
       {
-        "matcher": "bash",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -32,7 +32,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -41,7 +41,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -50,7 +50,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -59,7 +59,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -79,7 +79,7 @@
         ]
       },
       {
-        "matcher": "bash|web_search|mcp_tool_call",
+        "matcher": "Bash|mcp__.*",
         "hooks": [
           {
             "type": "command",
@@ -88,7 +88,7 @@
         ]
       },
       {
-        "matcher": "mcp_tool_call",
+        "matcher": "mcp__.*",
         "hooks": [
           {
             "type": "command",
@@ -110,7 +110,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -212,7 +212,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ${PLUGIN_ROOT}/song/finish.mp3"
+            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/finish.mp3"
           }
         ]
       },
@@ -231,18 +231,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ${PLUGIN_ROOT}/song/permission-need.mp3"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-compact/save-apex-state.ts"
+            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/permission-need.mp3"
           }
         ]
       }

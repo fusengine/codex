@@ -4,8 +4,8 @@
  */
 import { readJsonFile, writeJsonFile, ensureDir } from "../core";
 
-const HOME = process.env.HOME ?? "";
-const SESSIONS_DIR = `${HOME}/.codex/fusengine-cache/sessions`;
+const CODEX_HOME = process.env.CODEX_HOME ?? `${process.env.HOME}/.codex`;
+const SESSIONS_DIR = `${CODEX_HOME}/fusengine/sessions`;
 const TRIVIAL_EDIT_WINDOW_MS = 120_000; // 2 minutes
 
 /** Shape of the trivial edits tracking data */

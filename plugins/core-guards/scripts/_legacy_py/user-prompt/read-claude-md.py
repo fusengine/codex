@@ -8,7 +8,7 @@ import subprocess
 import sys
 from datetime import datetime
 
-LOG_DIR = os.path.expanduser("~/.codex/logs")
+LOG_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "logs")
 LOG_FILE = os.path.join(LOG_DIR, "hooks.log")
 
 
@@ -52,7 +52,7 @@ def build_apex_instruction(project_type):
     """Build APEX workflow instruction."""
     return (
         f"INSTRUCTION: This is a development task. Use APEX methodology:\n\n"
-        f"**TRACKING FILE**: [project]/.claude/apex/task.json\n\n"
+        f"**TRACKING FILE**: [project]/.codex/apex/task.json\n\n"
         f"1. **ANALYZE** (3 AGENTS IN PARALLEL):\n"
         f"   - explore-codebase + research-expert + general-purpose\n"
         f"   - Project type: {project_type}\n\n"

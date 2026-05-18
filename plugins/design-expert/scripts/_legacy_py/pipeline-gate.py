@@ -16,7 +16,7 @@ from pipeline_checks import (
     check_playwright_navigate, load_state, save_state,
 )
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
 
 

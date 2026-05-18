@@ -8,7 +8,7 @@ import os
 from datetime import datetime, timezone
 
 TRACKING_DIR = os.path.join(
-    os.path.expanduser("~"), ".claude", "fusengine-cache", "skill-tracking"
+    os.path.expanduser("~"), ".claude", "fusengine", "skill-tracking"
 )
 
 

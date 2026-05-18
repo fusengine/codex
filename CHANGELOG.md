@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `codex-rules/scripts/inject-rules.ts` : wrapper Bun→Python forward maintenant `process.argv.slice(2)` (avant : args droppés → "Missing plugin root argument"). Fallback `PLUGIN_ROOT` env si argv vide.
 
 ### Notes
-- **Codex 0.130 ne fire toujours PAS PreToolUse/PostToolUse sur apply_patch** (issue #16732, PR #18391 merged à main mais absente de cette release). Les 5 scripts enforce/require sont prêts à intercepter dès qu'une release contient le fix. Vérifiable via `~/.codex/logs/enforce-file-size.log` (créé au premier fire réel).
+- **Codex 0.130 ne fire toujours PAS PreToolUse/PostToolUse sur apply_patch** (issue #16732, PR #18391 merged à main mais absente de cette release). Les 5 scripts enforce/require sont prêts à intercepter dès qu'une release contient le fix. Vérifiable via `~/.codex/fusengine/logs/enforce-file-size.log` (créé au premier fire réel).
 - Référence : `fusengine/codex-agent` utilise matcher `Write|Edit` standalone → **aussi affecté par #16732 en 0.130** (vérifié empirique : leur `check-solid-from-transcript.py` filtre `name in ("Write","Edit")`, skip aussi le nom Codex `apply_patch`).
 
 ## [1.2.4] - 2026-05-17
@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `mcp-select.ts:hasKey()` : ne checke plus que `env[apiKeyEnv]` → un MCP avec clé absente de `.env` montre `⚠ no key` même si exporté dans le shell.
   - `mcp-key-prompt.ts:missing filter` : prompt déclenché si clé absente de `.env`, même si shell l'a → toutes les clés finissent saisies et sauvegardées dans `.codex/.env` (chmod 600).
   - `mcp-configurator.ts:resolveStr()` : `${VAR}` résolus uniquement depuis `.env` → garantit que les valeurs écrites dans `config.toml` viennent de la source persistée, pas d'un shell volatile.
-- Conséquence : les clés exportées dans `~/.claude/.env` (ou `~/.config/fish/config.fish`, etc.) ne **leakent plus** dans la config Codex via process.env. Migration : à la première install après v1.2.4, l'installeur prompt pour toutes les clés et les sauve dans `~/.codex/.env`.
+- Conséquence : les clés exportées dans `~/.codex/.env` (ou `~/.config/fish/config.fish`, etc.) ne **leakent plus** dans la config Codex via process.env. Migration : à la première install après v1.2.4, l'installeur prompt pour toutes les clés et les sauve dans `~/.codex/.env`.
 
 ## [1.2.3] - 2026-05-17
 
@@ -110,7 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/fix-conformance.ts:fixMarketplace()` : dérive `name` depuis `source.path` au lieu de garder `p.name` (alignement idempotent).
 - `scripts/lib/install/features.ts` : auto-injecte `suppress_unstable_features_warning = true` via nouvel helper `ensureRootKey()`.
 - `scripts/lib/install/runner.ts` : wire `promptCodexConfig` entre `maybeInstallPlugins` et `promptApiKeys`.
-- README : bump v1.1.0, table d'inventaire à 18 plugins, section « Config Codex » documentée.
+- README : bump v1.1.0, table d'inventaire à 19 plugins, section « Config Codex » documentée.
 
 ### Removed
 - Plugin `memory-neural` (encore en dev) — retiré de `marketplace.json`, `CATEGORY_OF`, et `~/.codex/config.toml`.
@@ -125,7 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `hooks/hooks.json` per plugin with 6 Codex official events (`SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`).
 - `.mcp.json` per plugin (14 plugins) — Codex format (direct map, no `type` field, `http_headers` for HTTP servers).
 - `.agents/plugins/marketplace.json` Codex marketplace registry with object-form `source: {source:"local", path}`, `policy.installation`, `policy.authentication`, `category`, `interface`.
-- `AGENTS.md` global rules (Codex equivalent of `CLAUDE.md`, auto-loaded at session start).
+- `AGENTS.md` global rules (Codex equivalent of `AGENTS.md`, auto-loaded at session start).
 - `setup.sh` + `scripts/install-codex.ts` (Bun + `@clack/prompts`) interactive installer.
 - Installer steps: marketplace registration, `[features] hooks=true, plugin_hooks=true`, AGENTS.md copy, auto-enable 19 plugins, MCP report.
 - 134 Bun → Python wrappers in `plugins/*/scripts/` for hook scripts that couldn't be fully transpiled.
@@ -133,9 +133,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `core-guards/statusline/` + `core-guards/song/` directories preserved for future Codex statusline support (issue #20244).
 
 ### Changed
-- Variable `${CLAUDE_PLUGIN_ROOT}` → `${PLUGIN_ROOT}` (Codex native, with `CLAUDE_PLUGIN_ROOT` alias preserved by Codex runtime).
+- Variable `${PLUGIN_ROOT}` → `${PLUGIN_ROOT}` (Codex native, with `PLUGIN_ROOT` alias preserved by Codex runtime).
 - Hook event mapping: `SubagentStart` → `SessionStart`, `SubagentStop`/`SessionEnd`/`TaskCompleted` → `Stop`, `PostToolUseFailure` → `PostToolUse`, `InstructionsLoaded` → `SessionStart`.
-- Path conventions: `~/.claude/` → `~/.codex/`, `CLAUDE.md` → `AGENTS.md`, `.claude-plugin/` → `.codex-plugin/`.
+- Path conventions: `~/.codex/` → `~/.codex/`, `AGENTS.md` → `AGENTS.md`, `.claude-plugin/` → `.codex-plugin/`.
 - Agent models migrated to documented Codex model names (`gpt-5.3-codex-spark`, `gpt-5.4`, `gpt-5.4-mini`).
 - 137 Python scripts converted to Bun TypeScript stubs (regex-based transpilation), then 134 replaced with Bun→Python wrappers when syntax was incompatible.
 - MCP servers `headers` → `http_headers`, no `type: "stdio"` field (inferred by Codex from `command`/`url`).
@@ -148,9 +148,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Validated against binary `codex-aarch64-apple-darwin` 0.130.0
 - `VALID_AUTH_POLICIES = {"ON_INSTALL", "ON_USE"}` — our value `"ON_INSTALL"` is default.
 - `VALID_INSTALL_POLICIES = {"NOT_AVAILABLE", "AVAILABLE", "INSTALLED_BY_DEFAULT"}` — our value `"AVAILABLE"` is default.
-- Hook event enum const: `SessionStart, PreToolUse, PostToolUse, UserPromptSubmit, PermissionRequest, Stop, PreCompact, PostCompact` — all our events covered.
+- Hook event enum const includes `PreCompact` / `PostCompact`, but plugins now register only stable events: `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `PermissionRequest`, `Stop`.
 - SessionStart matcher values: `startup, resume, clear` — our hooks use these.
-- Env vars `PLUGIN_ROOT, PLUGIN_DATA, CLAUDE_PLUGIN_ROOT, CLAUDE_PLUGIN_DATA` confirmed.
+- Env vars `PLUGIN_ROOT, PLUGIN_DATA, PLUGIN_ROOT, CLAUDE_PLUGIN_DATA` confirmed.
 - Manifest paths `.codex-plugin/plugin.json` AND `.claude-plugin/plugin.json` both accepted (legacy compat).
 
 ### Tested in production (user's `~/.codex/`)

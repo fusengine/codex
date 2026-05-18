@@ -11,7 +11,7 @@ import os
 import sys
 
 FLAG_DIR = os.path.join(
-    os.path.expanduser("~"), ".claude", "fusengine-cache")
+    os.path.expanduser("~"), ".claude", "fusengine")
 FLAG_FILE = os.path.join(FLAG_DIR, "design-agent-active")
 
 

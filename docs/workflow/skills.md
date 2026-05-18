@@ -7,7 +7,7 @@
 | Skill | Description |
 |-------|-------------|
 | `apex` | Full APEX workflow |
-| `apex-quick` | Quick flow, single expert |
+| `apex-quick` | Quick APEX flow for trivial/read-only tasks |
 | `research` | Technical research methodology |
 | `exploration` | Codebase discovery techniques |
 | `code-quality` | Validation with linters, DRY detection (jscpd) |

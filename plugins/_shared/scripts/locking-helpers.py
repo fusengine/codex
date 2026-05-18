@@ -9,7 +9,7 @@ import time
 from typing import Any, Callable
 
 LOCKS_DIR = os.environ.get("LOCKS_DIR", os.path.join(
-    os.path.expanduser("~"), ".claude", "fusengine-cache", "locks"))
+    os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "locks"))
 
 
 def is_locked(lock_name: str) -> bool:

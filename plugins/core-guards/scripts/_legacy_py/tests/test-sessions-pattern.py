@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Test: validate the fusengine-cache/sessions DENY_PATTERNS entry."""
+"""Test: validate the fusengine/sessions DENY_PATTERNS entry."""
 import re
 import sys
 
-PATTERN = r'fusengine-cache/sessions'
+PATTERN = r'fusengine/sessions'
 
 CASES = [
     # (command, should_match, label)
-    ('cat ~/.codex/fusengine-cache/sessions/abc.json', True, 'read session file'),
-    ('echo x > ~/.codex/fusengine-cache/sessions/foo', True, 'write session file'),
-    ('rm -rf ~/.codex/fusengine-cache/sessions/', True, 'delete sessions dir'),
-    ('ls fusengine-cache/sessions', True, 'ls sessions relative'),
+    ('cat ~/.codex/fusengine/sessions/abc.json', True, 'read session file'),
+    ('echo x > ~/.codex/fusengine/sessions/foo', True, 'write session file'),
+    ('rm -rf ~/.codex/fusengine/sessions/', True, 'delete sessions dir'),
+    ('ls fusengine/sessions', True, 'ls sessions relative'),
     ('bun run test', False, 'safe bun run'),
     ('git status', False, 'safe git'),
     ('npx eslint .', False, 'safe eslint'),
-    ('ls ~/.codex/fusengine-cache/', False, 'parent dir only'),
+    ('ls ~/.codex/fusengine/', False, 'parent dir only'),
 ]
 
 

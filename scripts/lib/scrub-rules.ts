@@ -21,7 +21,7 @@ const RULES: Rule[] = [
 	{ pattern: /\.codex\/plugins\/marketplaces\b/g, replacement: ".codex/marketplaces" },
 	{ pattern: /\.codex\/plugins\b/g, replacement: ".codex/plugins" },
 	{ pattern: /\.codex\/agents\b/g, replacement: ".codex/agents" },
-	{ pattern: /\.codex\/logs\b/g, replacement: ".codex/logs" },
+	{ pattern: /\.codex\/logs\b/g, replacement: ".codex/fusengine/logs" },
 	{ pattern: /\.codex-plugin\b/g, replacement: ".codex-plugin" },
 	{ pattern: /\bCLAUDE\.md\b/g, replacement: "AGENTS.md" },
 	{ pattern: /\bclaude-plugins\b/g, replacement: "codex-plugins" },

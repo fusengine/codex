@@ -48,12 +48,12 @@ def _cleanup_changes_file(cache_base, max_age):
 
 def main():
     """Run all cleanup tasks on session start."""
-    cache_base = os.path.join(os.path.expanduser('~'), '.claude', 'fusengine-cache')
+    cache_base = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine')
     state_dir = os.path.join(cache_base, 'sessions')
     _cleanup_old_files(state_dir, 'session-*.json', 86400)
     _cleanup_changes_file(cache_base, 21600)
-    _trim_log_file(os.path.expanduser('~/.codex/logs/hooks.log'), 10485760, 5000)
-    apex_dir = os.path.expanduser('~/.codex/logs/00-apex')
+    _trim_log_file(os.path.join(os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs'), 'hooks.log'), 10485760, 5000)
+    apex_dir = os.path.join(os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs'), '00-apex')
     _cleanup_old_files(apex_dir, 'ref-cache-*.json', 86400)
     sys.exit(0)
 

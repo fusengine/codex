@@ -15,6 +15,7 @@ import { promptPerfEnv } from "./perf-env";
 import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
+import { installPluginCache } from "./plugin-cache";
 
 export interface SetupOptions {
 	projectRoot: string;
@@ -49,15 +50,16 @@ async function registerMarketplace(opts: SetupOptions): Promise<"cli" | "config"
 }
 
 async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): Promise<void> {
-	if (opts.skipPluginInstall || mode !== "cli") return;
-	if (!(await supportsPluginAdd())) {
+	if (opts.skipPluginInstall) return;
+	if (mode !== "cli" || !(await supportsPluginAdd())) {
 		const proceed = await p.confirm({
-			message: "Codex 0.130.x cannot `plugin add` via CLI. Auto-enable all 19 plugins by patching config.toml?",
+			message: "Codex plugin add unavailable. Cache and enable all plugins locally?",
 			initialValue: true,
 		});
 		if (!p.isCancel(proceed) && proceed) {
+			const cached = await installPluginCache(opts.projectRoot, opts.codexHome, opts.marketplaceName);
 			const added = await enableAllPlugins(opts.projectRoot, opts.codexHome, opts.marketplaceName);
-			p.log.success(`enabled ${added} plugins via direct config.toml patch`);
+			p.log.success(`cached ${cached} plugins and enabled ${added} config entries`);
 		}
 		return;
 	}
@@ -79,11 +81,11 @@ async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): 
 
 export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await backupConfig(opts.codexHome);
+	await scanAndPrepare(join(opts.projectRoot, "plugins"));
 	const mode = await registerMarketplace(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
 	await maybeInstallPlugins(opts, mode);
-	await scanAndPrepare(join(opts.projectRoot, "plugins"));
 	await installAgents(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await promptCodexConfig(opts.codexHome);
 	await configureShellAutoLoad();

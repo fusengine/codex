@@ -33,3 +33,4 @@ plugins/*/statusline/bun.lock
 
 # Local Codex/Claude session state
 .claude/
+.cartographer/

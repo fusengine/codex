@@ -2,88 +2,87 @@
 
 ## Prerequisites
 
-- **Bun** - Install from [bun.sh](https://bun.sh)
-- **Claude Code** - Anthropic CLI
+- **Codex CLI / Codex app**
+- **Bun** - install from [bun.sh](https://bun.sh)
 
 ## 1. Add Marketplace
 
+When the installed Codex CLI supports plugin marketplace commands:
+
 ```bash
-/plugin marketplace add fusengine/agents
+codex plugin marketplace add <path-or-repo>
 ```
 
 ## 2. Install Plugins
 
-**All plugins:**
+Install the required Fusengine plugins with the Codex plugin command when
+available:
+
 ```bash
-/plugin install fuse-ai-pilot fuse-commit-pro fuse-laravel fuse-nextjs fuse-react fuse-swift-apple-expert fuse-solid fuse-tailwindcss fuse-design fuse-prompt-engineer
+codex plugin add ai-pilot@fusengine-codex
+codex plugin add codex-rules@fusengine-codex
 ```
 
-**Or select specific:**
-```bash
-/plugin install fuse-ai-pilot fuse-nextjs  # Just AI pilot + Next.js
-```
+If the local CLI does not support plugin installation yet, run the repository
+installer. It caches local plugin bundles and enables them in Codex config.
 
 ## 3. Run Setup
 
 ### macOS / Linux
 
 ```bash
-~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh
+./setup.sh
 ```
 
-### Windows (PowerShell)
+### Windows
 
 ```powershell
-~\.claude\plugins\marketplaces\fusengine-plugins\setup.ps1
+.\setup.ps1
 ```
 
-This installs:
-- **Hooks** (PreToolUse, PostToolUse, etc.) via Bun
-- **CLAUDE.md** (global rules)
-- **API keys** (interactive prompts if missing)
-- **Shell config** (bash/zsh/fish/PowerShell)
-- **Statusline**
-- **MCP servers** (interactive selection of 27 servers)
+The setup writes configuration under `${CODEX_HOME:-~/.codex}` and installs:
 
-## 4. MCP Server Selection
+- Codex feature flags for hooks and plugin hooks
+- plugin cache entries under `~/.codex/plugins/cache/`
+- AGENTS.md rules
+- optional MCP configuration
+- shell environment helpers
 
-During setup, you'll see an interactive MCP server selector:
+## 4. Enable Plugin Hooks
 
-```
-◆  Install MCP servers to global scope?
-│  ● Yes / ○ No
+The installer should set these flags automatically:
 
-◆  Select MCP servers to install globally:
-│  ◻ sequential-thinking  Dynamic problem-solving with step-by-step reasoning
-│  ◻ memory               Knowledge graph-based persistent memory system
-│  ◻ filesystem           Secure local file operations with configurable access
-│  ◻ context7 [✓]         Up-to-date documentation for any library
-│  ◻ exa [⚠ key missing]  Advanced AI-powered web search and research
+```toml
+[features]
+hooks = true
+plugin_hooks = true
 ```
 
-- `[✓]` = API key configured
-- `[⚠ key missing]` = requires API key (will still work, just configure key later)
-
-Use arrow keys to navigate, space to select, enter to confirm.
-
-See [MCP Servers Reference](../reference/mcp-servers.md) for full list of 27 available servers.
-
-## 5. Restart Claude Code
+Manual configuration lives in:
 
 ```bash
-exit
-claude
+${CODEX_HOME:-$HOME/.codex}/config.toml
 ```
 
-## 6. Verify Installation
+## 5. Verify Installation
 
 ```bash
-/plugin list  # Shows installed plugins
+codex features list | rg 'hooks|plugin_hooks'
+bun run validate
 ```
 
-## Manual API Keys Configuration
+Expected:
 
-If you skipped API keys during setup, edit `~/.claude/.env`:
+- `hooks` enabled
+- `plugin_hooks` enabled
+- validation passes
+
+## Manual API Keys
+
+If you skipped API keys during setup, configure the environment expected by the
+MCP server you enabled, then restart Codex.
+
+Common keys:
 
 ```bash
 export CONTEXT7_API_KEY="ctx7sk-xxx"
@@ -92,23 +91,23 @@ export MAGIC_API_KEY="xxx"
 export GEMINI_DESIGN_API_KEY="xxx"
 ```
 
-Then re-run setup or restart your terminal.
-
 ## Troubleshooting
 
-### Bun not found
+### Bun Not Found
+
 ```bash
-# Install Bun
 curl -fsSL https://bun.sh/install | bash
 ```
 
-### Hooks not working
+### Hooks Not Working
+
 ```bash
-# Re-run setup
-~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh  # or setup.ps1 on Windows
+codex features list | rg 'hooks|plugin_hooks'
+bun run validate
 ```
 
-### Check settings.json
+### Check Config
+
 ```bash
-cat ~/.claude/settings.json | grep hooks-loader
+sed -n '/\\[features\\]/,/^\\[/p' "${CODEX_HOME:-$HOME/.codex}/config.toml"
 ```

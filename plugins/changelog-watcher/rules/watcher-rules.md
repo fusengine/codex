@@ -52,7 +52,7 @@ Every report MUST include:
 
 ## State Management
 
-- State stored in `~/.codex/logs/00-changelog/`
+- State stored in `~/.codex/fusengine/logs/00-changelog/`
 - One state file per day: `{date}-state.json`
 - Research log: `{date}-research.json`
 - Never delete previous state files (history)

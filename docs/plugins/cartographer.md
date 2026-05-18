@@ -7,7 +7,7 @@ Auto-generates navigable multi-level maps of the plugin ecosystem and project fi
 At every session start, the cartographer runs two scripts:
 
 1. **`generate_map.py`** — Scans all installed plugins, generates:
-   - Global plugin map: `~/.claude/plugins/.../. cartographer/index.md`
+   - Global plugin map: `~/.codex/plugins/.../. cartographer/index.md`
    - Per-plugin map: `plugins/{name}/.cartographer/index.md`
 
 2. **`generate_project_map.py`** — Scans the current project (if detected), generates:
@@ -68,8 +68,8 @@ Project cartography only runs when a real project is detected (has `package.json
 ## Agent Integration
 
 All 21 agents have a `## Cartography` section instructing them to read their maps before acting:
-- **Your skills**: `${CLAUDE_PLUGIN_ROOT}/.cartographer/index.md`
-- **All plugins**: `${CLAUDE_PLUGIN_ROOT}/../.cartographer/index.md`
+- **Your skills**: `${PLUGIN_ROOT}/.cartographer/index.md`
+- **All plugins**: `${PLUGIN_ROOT}/../.cartographer/index.md`
 - **Project files**: `.cartographer/project/index.md`
 
 ## Scripts

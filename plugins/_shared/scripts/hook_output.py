@@ -1,17 +1,16 @@
-"""Shared hook output helpers for Claude Code PreToolUse/PostToolUse hooks.
-
-Official format: hookSpecificOutput with permissionDecision (allow/deny/ask).
-"""
+"""Shared Codex hook output helpers."""
 import json
+from hook_log import log_hook, summary
 
 
-def emit_pre_tool(decision, reason, context=None):
+def emit_pre_tool(decision, reason, context=None, script_name=None):
     """Emit PreToolUse hookSpecificOutput JSON to stdout.
 
     Args:
-        decision: 'allow', 'deny', or 'ask'.
-        reason: Shown to user (allow/ask) or Claude (deny).
+        decision: 'allow' or 'deny'.
+        reason: Shown to Codex as the hook decision reason.
         context: Optional additionalContext visible to Claude.
+        script_name: Optional hook name for systemMessage + hook log.
     """
     output = {
         "hookEventName": "PreToolUse",
@@ -20,23 +19,32 @@ def emit_pre_tool(decision, reason, context=None):
     }
     if context:
         output["additionalContext"] = context
-    print(json.dumps({"hookSpecificOutput": output}))
+    payload = {"hookSpecificOutput": output}
+    if script_name:
+        payload["systemMessage"] = f"{script_name}: {summary(reason)}"
+        log_hook(script_name, f"{decision}: {summary(reason)}")
+    print(json.dumps(payload))
 
 
-def emit_post_tool(context):
+def emit_post_tool(context, script_name=None):
     """Emit PostToolUse hookSpecificOutput JSON to stdout.
 
     Args:
         context: additionalContext string visible to Claude.
     """
-    print(json.dumps({"hookSpecificOutput": {
+    payload = {"hookSpecificOutput": {
         "hookEventName": "PostToolUse",
         "additionalContext": context,
-    }}))
+    }}
+    if script_name:
+        payload["systemMessage"] = f"{script_name}: {summary(context)}"
+        log_hook(script_name, f"post: {summary(context)}")
+    print(json.dumps(payload))
 
 
 def allow_pass(script_name, detail="pass"):
     """Output PreToolUse allow with systemMessage for user visibility."""
+    log_hook(script_name, f"allow: {detail}")
     print(json.dumps({
         "systemMessage": f"{script_name}: {detail}",
         "hookSpecificOutput": {
@@ -48,6 +56,7 @@ def allow_pass(script_name, detail="pass"):
 
 def post_pass(script_name, detail="ok"):
     """Output PostToolUse success with systemMessage for user visibility."""
+    log_hook(script_name, f"post: {detail}")
     print(json.dumps({
         "systemMessage": f"{script_name}: {detail}",
         "hookSpecificOutput": {"hookEventName": "PostToolUse"},

@@ -9,7 +9,7 @@ sys.path.insert(0, _SHARED)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hook_output import allow_pass
 from pipeline_checks import load_state, save_state
-_FLAG_FILE = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache", "design-agent-active")
+_FLAG_FILE = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "design-agent-active")
 FORBIDDEN_FONTS = ("Inter", "Roboto", "Arial", "Open Sans")
 OKLCH_RE = re.compile(r"oklch\(\s*[\d.]+%?\s+0\.0*[1-9]")
 URL_RE = re.compile(r"https?://")

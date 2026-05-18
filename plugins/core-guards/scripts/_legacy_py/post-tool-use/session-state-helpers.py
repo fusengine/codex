@@ -6,8 +6,8 @@ import re
 import sys
 from datetime import datetime, timezone
 
-STATE_DIR = os.path.join(os.path.expanduser('~'), '.claude', 'fusengine-cache', 'sessions')
-LOG_DIR = os.path.expanduser('~/.codex/logs')
+STATE_DIR = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'sessions')
+LOG_DIR = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs')
 LOG_FILE = os.path.join(LOG_DIR, 'hooks.log')
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|vue|svelte|astro)$'
 

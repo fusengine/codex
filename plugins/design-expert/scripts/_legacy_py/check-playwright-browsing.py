@@ -11,7 +11,7 @@ from screenshot_counts import count_agent_screenshots, count_screenshots
 from pipeline_checks import load_state, save_state
 from playwright_helpers import deny_block, is_exempt, find_design_system
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
 MIN_SCREENSHOTS = 4
 DENY_MSG = ("BLOCKED: Only {count}/{min} Playwright screenshots. Browse 4 sites BEFORE writing. "

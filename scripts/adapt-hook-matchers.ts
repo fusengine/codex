@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 /**
  * adapt-hook-matchers.ts — Map Claude tool names to Codex 0.130 tool names.
- * Verified via `strings $(which codex)`: bash, exec, apply_patch, view_image,
- * web_search, update_plan, mcp_tool_call.
+ * Codex tool names include Bash, apply_patch, web_search, update_plan,
+ * and MCP tool names as mcp__server__tool.
  */
 import { readdir, stat } from "node:fs/promises";
 import { homedir } from "node:os";
@@ -13,7 +13,7 @@ const REPO = join(ROOT, "plugins");
 const CACHE = join(homedir(), ".codex", "plugins", "cache", "fusengine-codex");
 
 const TOKEN_MAP: Record<string, string> = {
-	Bash: "bash", bash: "bash", shell: "bash",
+	Bash: "Bash", bash: "Bash", shell: "Bash",
 	Write: "apply_patch", Edit: "apply_patch", MultiEdit: "apply_patch",
 	NotebookEdit: "apply_patch", apply_patch: "apply_patch",
 	Read: "", Glob: "", Grep: "", LS: "", Task: "", Agent: "",
@@ -26,7 +26,7 @@ const TOKEN_MAP: Record<string, string> = {
 function remapToken(tok: string): string {
 	const trim = tok.trim();
 	if (!trim) return "";
-	if (trim.startsWith("mcp__")) return "mcp_tool_call";
+	if (trim === "mcp_tool_call" || trim.startsWith("mcp__")) return "mcp__.*";
 	if (trim in TOKEN_MAP) return TOKEN_MAP[trim];
 	return trim;
 }

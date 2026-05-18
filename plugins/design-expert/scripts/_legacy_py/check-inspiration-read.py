@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.join(os.path.expanduser("~"),
 from hook_output import allow_pass
 
 _HOME = os.path.expanduser("~")
-_CACHE = os.path.join(_HOME, ".claude", "fusengine-cache")
+_CACHE = os.path.join(_HOME, ".claude", "fusengine")
 TRACKING_DIR = os.path.join(_CACHE, "skill-tracking")
 FLAG_FILE = os.path.join(_CACHE, "design-agent-active")
 KNOWN_DOMAINS = (

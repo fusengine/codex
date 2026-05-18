@@ -5,7 +5,7 @@
 ![runtime](https://img.shields.io/badge/runtime-Bun-black?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
-> **Codex CLI plugin marketplace.** 18 expert plugins (APEX workflow, SOLID/DRY enforcement, framework specialists, MCP integrations) conformes à la doc officielle Codex CLI (`developers.openai.com/codex`).
+> **Codex CLI plugin marketplace.** 19 expert plugins (APEX workflow, SOLID/DRY enforcement, framework specialists, MCP integrations) conformes à la doc officielle Codex CLI (`developers.openai.com/codex`).
 
 ## Installation (3 commandes)
 
@@ -16,7 +16,7 @@ cd codex
 # .\setup.ps1        # Windows
 ```
 
-C'est tout. Le script installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 18 plugins, **prompte interactivement la config Codex** (model, reasoning effort, personality, approval policy, sandbox mode) et **les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
+C'est tout. Le script installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 19 plugins, **prompte interactivement la config Codex** (model, reasoning effort, personality, approval policy, sandbox mode) et **les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
 
 **Prérequis** : [Bun](https://bun.sh) et [codex CLI](https://developers.openai.com/codex/cli) 0.130+.
 
@@ -53,7 +53,7 @@ Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes d
 2. `codex plugin marketplace add ./` (ou patch `~/.codex/config.toml` si codex CLI absent)
 3. Active `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml`
 4. Copie `AGENTS.md` → `~/.codex/AGENTS.md` (prompt overwrite si existant)
-5. Auto-active les 18 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
+5. Auto-active les 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
 6. **Prompt interactif config Codex** (model, reasoning_effort, personality, approval_policy, sandbox_mode) + auto-set `suppress_unstable_features_warning = true`
 7. **Prompt interactif** des clés API → `~/.codex/.env` (chmod 600)
 8. **Installe l'auto-loader shell** (fish conf.d / append rc / pwsh profile)
@@ -62,7 +62,7 @@ Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes d
 
 > **Pourquoi cette résolution ?** Codex CLI 0.130.x ne fait pas d'interpolation `${VAR}` dans les plugin `.mcp.json` ([openai/codex#19582](https://github.com/openai/codex/issues/19582)). Le configurator résout côté install pour écrire des valeurs statiques que Codex consomme directement.
 
-## Inventaire des 18 plugins
+## Inventaire des 19 plugins
 
 Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). Cf doc Codex : *"Outer folder name and `plugin.json` name are always the same normalized plugin name"*.
 
@@ -77,6 +77,7 @@ Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). 
 | `core-guards` | `core-guards` | 1.1.26 | Pre-tool-use safety + SOLID enforcement hooks + statusline |
 | `design-expert` | `design-expert` | 2.1.23 | UI designer 7-phase pipeline + OKLCH tokens + Gemini Design MCP |
 | `laravel-expert` | `laravel-expert` | 1.2.0 | Laravel 12, Eloquent, Livewire, Reverb, Stripe |
+| `memory-neural` | `memory-neural` | 1.0.0 | Persistent neural memory with Graphiti + Qdrant |
 | `nextjs-expert` | `nextjs-expert` | 1.1.16 | Next.js 16, RSC, Server Actions, Prisma 7, Better Auth |
 | `prompt-engineer` | `prompt-engineer` | 1.1.6 | Prompt + agent design, A/B testing, guardrails |
 | `react-expert` | `react-expert` | 1.0.13 | React 19, TanStack Router, Zustand, Testing Library |
@@ -97,7 +98,7 @@ Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). 
 | Skill | `skills/<name>/SKILL.md` (frontmatter strict: `name`, `description`) | `developers.openai.com/codex/skills` |
 | Subagent | `agents/<name>.toml` (TOML, `sandbox_mode`, `developer_instructions`) | `developers.openai.com/codex/subagents` |
 | Hooks | `hooks/hooks.json` — 6 events officiels | `developers.openai.com/codex/hooks` |
-| Hook env vars | `${PLUGIN_ROOT}`, `${PLUGIN_DATA}` (alias `${CLAUDE_PLUGIN_ROOT}` préservé) | id. |
+| Hook env vars | `${PLUGIN_ROOT}`, `${PLUGIN_DATA}` | id. |
 | MCP servers | `.mcp.json` (direct map, pas de wrapper, pas de `type` field) | PR #18780 |
 | AGENTS.md | Auto-loaded depuis `~/.codex/AGENTS.md` + walk git root → CWD | `developers.openai.com/codex/guides/agents-md` |
 
@@ -109,7 +110,8 @@ Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). 
 - `PermissionRequest` — quand approbation requise
 - `Stop` — fin de turn
 
-`PreCompact` est dans le schéma mais pas encore stabilisé.
+`PreCompact` ne doit pas être enregistré par les plugins tant que l'événement
+n'est pas stabilisé côté Codex.
 
 ### 24 MCP servers bundlés
 

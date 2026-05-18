@@ -8,9 +8,8 @@ import os
 import re
 import tempfile
 
-STATE_DIR = os.path.join(
-    os.path.expanduser('~'), '.claude', 'fusengine-cache', 'sessions'
-)
+CODEX_HOME = os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex'))
+STATE_DIR = os.path.join(CODEX_HOME, 'fusengine', 'sessions')
 
 _SID_RE = re.compile(r'^[a-zA-Z0-9_-]{1,128}$')
 

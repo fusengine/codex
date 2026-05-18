@@ -33,7 +33,7 @@ def _infer_level(fp):
 
 def load_ref_index(skill_dir):
     """Load and cache reference metadata from frontmatters."""
-    cache_dir = os.path.expanduser('~/.claude/logs/00-apex')
+    cache_dir = os.path.join(os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'logs'), '00-apex')
     os.makedirs(cache_dir, exist_ok=True)
     h = hashlib.sha256(skill_dir.encode()).hexdigest()[:16]
     cache_path = os.path.join(cache_dir, f'ref-cache-{h}.json')

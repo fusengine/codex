@@ -7,7 +7,7 @@ import sys
 import time
 from datetime import datetime, timezone
 
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".claude", "fusengine-cache")
+CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 MAX_AGE_DAYS = 7
 
 
