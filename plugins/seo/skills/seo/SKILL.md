@@ -56,12 +56,26 @@ When user invokes `/seo audit <url>`:
 ```
 PHASE 1: ANALYZE   → Extract content, detect intent
 PHASE 2: RESEARCH  → SERP analysis, 2026 trends, AI platforms
-PHASE 3: KEYWORDS  → Extract with anti-cannibalization
+PHASE 3: KEYWORDS  → Run Content Intelligence scripts when available, then extract with anti-cannibalization
 PHASE 4: STRUCTURE → Meta, OG, Twitter Cards, Hn, schema, alt
 PHASE 5: CONTENT   → Write SEO+GEO optimized content
 PHASE 6: VALIDATE  → SEO + GEO compliance checklists
 PHASE 7: DRIFT     → Compare to git HEAD (diff-seo.ts)
 ```
+
+## Content Intelligence Rules
+
+Run `scripts/analyze-keywords.ts` before content recommendations when it is available in the active repo or installed SEO plugin. Use its output before manual recommendations for keyword coverage, semantic distribution, local modifiers, and cannibalization risk.
+
+- Meta title must be 60 characters or less.
+- Meta description must be 150 characters or less.
+- Do not include the company or brand name in the meta title unless the client explicitly asks. If branding is useful, present it as an optional or exception variant.
+- Meta title and H1 should be semantically similar, but they do not need to be identical.
+- Meta title and H1 need the primary keyword or a strong variant.
+- H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
+- Avoid repeating the exact keyword across every heading.
+- Localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms. Do not dump locations as city lists.
+- Keyword stuffing must be diagnosed from multiple signals: exact repetition, repeated n-grams, local modifier repetition, weak semantic diversity, thin content, and unnatural placement. Do not use a fixed density threshold alone.
 
 ## Reference Library (legacy 10 categories)
 
@@ -91,10 +105,25 @@ references/
 | `parse-hreflang.ts` | Validate hreflang tags |
 | `diff-seo.ts` | SEO drift via `git diff` |
 | `geo-score.ts` | LLM-readiness scoring (0-100) |
+| `analyze-keywords.ts` | Content Intelligence keyword, semantic, local modifier, and stuffing signal analysis |
+| `track-rank.ts` | Live rank tracking for a query/domain/location, including competitor URLs above the target |
+| `cannibalization-audit.ts` | Detect competing same-domain URLs targeting the same keyword or intent |
+
+### Content Intelligence Commands
+
+Run from the SEO plugin root when the scripts are available:
+
+```bash
+bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
+bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+```
+
+Use Serper-backed commands to check the target site's real Google position, identify competitor pages above it, and verify whether ranking loss comes from competitors or same-domain cannibalization.
 
 ## Differentiation
 
-- **Local-first**: zero Google APIs, zero DataForSEO/Moz, zero Python
+- **Local-first core**: offline checks by default; Serper is used for live Google position checks, competitor positions, and cannibalization evidence
 - **Framework-native**: delegates implementation to `fuse-astro`, `fuse-nextjs`, `fuse-laravel`
 - **GEO-first**: AI Overviews/ChatGPT/Perplexity as primary target, not afterthought
 - **TS/Bun stack**: all scripts in TypeScript, executed by Bun

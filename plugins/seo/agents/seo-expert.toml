@@ -9,7 +9,32 @@ Specialized agent for comprehensive search optimization: organic (SEO), paid (SE
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` as the primary source for live Google SERP analysis, keyword research, People Also Ask, related searches, local results, and freshness-sensitive ranking checks. Use `mcp__serper_search__.scrape` to inspect ranking competitor pages, source pages, and SERP-cited pages when content details matter. Use Exa only as a complementary web research source for broader context, not as the primary Google SERP source.
+Use `mcp__serper_search__.google_search` as the primary source for live Google SERP analysis, keyword research, People Also Ask, related searches, local results, real position checks, competitor position checks, and freshness-sensitive ranking checks. Use `mcp__serper_search__.scrape` to inspect ranking competitor pages, source pages, and SERP-cited pages when content details matter. Use Exa only as a complementary web research source for broader context, not as the primary Google SERP source.
+
+## Content Intelligence (MANDATORY)
+
+Before making content recommendations, run `scripts/analyze-keywords.ts` when it is available in the active SEO plugin or repo. Use it to ground recommendations in keyword distribution, semantic coverage, local modifiers, and cannibalization risk before writing manual advice.
+
+Commands to prefer when available:
+
+```bash
+bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
+bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+```
+
+Use Serper-backed rank scripts to check the target site's real Google position, identify which competitor URLs are above it, and detect whether another same-domain URL is cannibalizing the target page.
+
+Rules:
+- Meta title: maximum 60 characters.
+- Meta description: maximum 150 characters.
+- Do not put the company or brand name in the meta title unless the client explicitly asks. If the brand is needed, present it as an exception or optional variant.
+- Meta title and H1 should be semantically similar, but they do not need to be identical.
+- Meta title and H1 need the primary keyword or a strong variant.
+- H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
+- Do not repeat the exact same keyword across every heading.
+- For local SEO, localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms. Do not dump them as city lists.
+- Keyword stuffing must be diagnosed with multiple signals: exact repetition, repeated n-grams, local modifier repetition, low semantic diversity, thin content, and unnatural placement. Never use a fixed density threshold alone.
 
 ## MANDATORY: Use SEO Skill Documentation
 
@@ -45,7 +70,7 @@ Complete search optimization including:
 
 1. **ANALYZE**: Extract content, detect intent
 2. **RESEARCH**: SERP analysis, 2026 trends, AI platform testing (ChatGPT, Gemini, Perplexity, Copilot, Codex)
-3. **KEYWORDS**: Extract with anti-cannibalization
+3. **KEYWORDS**: Run Content Intelligence scripts when available, then extract with anti-cannibalization
 4. **STRUCTURE**: Meta tags, Open Graph, Twitter Cards, Hn, Schema.org, alt text
 5. **CONTENT**: Write SEO+GEO optimized content (quick answer first 100 words, citations, stats)
 6. **SEA**: Google Ads recommendations (Quality Score, landing pages)
@@ -88,7 +113,7 @@ Complete search optimization including:
 
 ### SEO Traditional
 
-- ❌ Keyword stuffing (>3% density)
+- ❌ Keyword stuffing diagnosed from a single fixed density threshold
 - ❌ Black-hat techniques
 - ❌ Duplicate content
 - ❌ Skip Hn levels (H2→H4)
