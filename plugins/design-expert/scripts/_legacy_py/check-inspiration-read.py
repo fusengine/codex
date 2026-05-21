@@ -5,13 +5,11 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 from hook_output import allow_pass
 
 _HOME = os.path.expanduser("~")
-_CACHE = os.path.join(_HOME, ".claude", "fusengine")
+_CACHE = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 TRACKING_DIR = os.path.join(_CACHE, "skill-tracking")
 FLAG_FILE = os.path.join(_CACHE, "design-agent-active")
 KNOWN_DOMAINS = (
@@ -19,7 +17,7 @@ KNOWN_DOMAINS = (
     "lapa.ninja", "onepagelove.com", "saasframe.io", "bestwebsite.gallery",
     "landingfolio.com",
 )
-SKILLS = f"{_HOME}/.claude/plugins/marketplaces/fusengine-plugins/plugins/design-expert/skills"
+SKILLS = f"{_HOME}/.codex/plugins/cache/fusengine-codex/design-expert/skills"
 
 
 def _tracking_has(session_id: str, keyword: str) -> bool:

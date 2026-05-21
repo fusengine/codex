@@ -2,8 +2,7 @@
 """Block Write/Edit and Gemini MCP calls if < 4 Playwright screenshots taken."""
 import json, os, sys
 
-_SHARED = os.path.join(os.path.expanduser("~"), ".claude", "plugins",
-    "marketplaces", "fusengine-plugins", "plugins", "_shared", "scripts")
+_SHARED = os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts"))
 sys.path.insert(0, _SHARED)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hook_output import allow_pass

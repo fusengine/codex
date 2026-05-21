@@ -38,11 +38,14 @@ install_posix() {
     cat >> "$rc" <<'EOF'
 
 # fusengine-codex — Load API keys
-if [ -f ~/.codex/.env ]; then
+_codex_home="${CODEX_HOME:-$HOME/.codex}"
+_codex_env_file="$_codex_home/.env"
+if [ -f "$_codex_env_file" ]; then
     set -a
-    . ~/.codex/.env
+    . "$_codex_env_file"
     set +a
 fi
+unset _codex_home _codex_env_file
 EOF
     echo -e "  ${GREEN}$shell: Installed ($rc)${NC}"
 }
@@ -68,11 +71,18 @@ install_powershell() {
     cat >> "$file" <<'PWSH'
 
 # fusengine-codex — Load API keys
-$codexEnvFile = "$HOME/.codex/.env"
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
+$codexEnvFile = Join-Path $codexHome ".env"
 if (Test-Path $codexEnvFile) {
     Get-Content $codexEnvFile | ForEach-Object {
-        if ($_ -match '^export\s+(\w+)=["\x27]?([^"\x27]*)["\x27]?$') {
-            [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
+        $line = $_.Trim()
+        if (-not $line -or $line.StartsWith("#")) { return }
+        $line = $line -replace '^\s*export\s+', ''
+        if ($line -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
+            $name = $Matches[1]
+            $value = ($Matches[2] -replace '\s+#.*$', '').Trim()
+            $value = $value.Trim('"').Trim("'")
+            [System.Environment]::SetEnvironmentVariable($name, $value, "Process")
         }
     }
 }

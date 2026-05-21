@@ -8,7 +8,7 @@ description: "Implement full-text search with Laravel Scout. Use when adding sea
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing model and search patterns
 2. **fuse-ai-pilot:research-expert** - Verify Scout docs via Context7

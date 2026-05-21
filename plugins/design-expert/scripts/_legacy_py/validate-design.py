@@ -6,9 +6,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 from hook_output import post_pass
 
 sys.path.insert(0, os.path.dirname(__file__))

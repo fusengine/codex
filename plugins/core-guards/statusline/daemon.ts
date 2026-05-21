@@ -2,7 +2,7 @@
 /**
  * OAuth Usage Daemon - Background process that fetches API every 2 minutes
  *
- * @description Writes to ~/.claude/statusline-data/usage-cache.json
+ * @description Writes to ${CODEX_HOME:-~/.codex}/statusline-data/usage-cache.json
  * Statusline reads from cache — zero API calls at render time.
  * Auto-exits if PID file is deleted or after 24h.
  */
@@ -15,7 +15,7 @@ import { removeDaemonPid, saveDaemonPid } from "./src/services/daemon-manager";
 import { saveErrorState } from "./src/services/error-state";
 import { clearFailReason, fetchUsage, getLastFailReason } from "./src/services/oauth-fetch";
 
-const DATA_DIR = join(homedir(), ".claude", "statusline-data");
+const DATA_DIR = join(process.env.CODEX_HOME ?? join(homedir(), ".codex"), "statusline-data");
 const PID_FILE = join(DATA_DIR, "daemon.pid");
 const USAGE_FILE = join(DATA_DIR, "usage-cache.json");
 const MAX_LIFETIME_MS = 24 * 60 * 60 * 1000;

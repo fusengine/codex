@@ -159,15 +159,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-start/inject-context-cache.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
             "command": "bun ${PLUGIN_ROOT}/scripts/instructions-loaded/validate-rules-loaded.ts"
           }
         ]
@@ -192,14 +183,6 @@
       }
     ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-stop/track-agent-memory.ts"
-          }
-        ]
-      },
       {
         "hooks": [
           {

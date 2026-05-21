@@ -12,7 +12,7 @@ related-skills: glassmorphism-advanced, generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use `TeamCreate` to spawn 3 agents:
+Before implementation, use the available Codex subagent capability when it materially helps:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing variant patterns
 2. **fuse-ai-pilot:research-expert** - cva/class-variance-authority docs

@@ -1,4 +1,5 @@
 /** runner.ts — Orchestrates Codex setup steps (developers.openai.com/codex). */
+import { lstat } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import { hasCodexCli, addMarketplace, listPlugins, addPlugin, supportsPluginAdd } from "./codex-cli";
@@ -22,6 +23,10 @@ export interface SetupOptions {
 	codexHome: string;
 	marketplaceName: string;
 	skipPluginInstall: boolean;
+}
+
+async function pathExists(path: string): Promise<boolean> {
+	try { await lstat(path); return true; } catch { return false; }
 }
 
 async function isMarketplaceRegistered(opts: SetupOptions): Promise<boolean> {
@@ -86,7 +91,8 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
 	await maybeInstallPlugins(opts, mode);
-	await installAgents(opts.codexHome, join(opts.projectRoot, "plugins"));
+	const cachedPluginsRoot = join(opts.codexHome, "plugins", "cache", opts.marketplaceName);
+	await installAgents(opts.codexHome, (await pathExists(cachedPluginsRoot)) ? cachedPluginsRoot : join(opts.projectRoot, "plugins"));
 	await promptCodexConfig(opts.codexHome);
 	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);

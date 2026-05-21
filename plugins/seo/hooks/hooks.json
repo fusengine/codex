@@ -1,3 +1,15 @@
 {
-  "hooks": {}
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/hooks/validate-seo.ts"
+          }
+        ]
+      }
+    ]
+  }
 }

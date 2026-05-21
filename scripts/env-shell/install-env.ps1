@@ -19,7 +19,7 @@ if (-not (Test-Path $envFile)) {
     Write-Host "  @'"
     Write-Host "  export CONTEXT7_API_KEY=`"ctx7sk-xxx`""
     Write-Host "  export EXA_API_KEY=`"xxx`""
-    Write-Host "  export GEMINI_API_KEY=`"xxx`""
+    Write-Host "  export GEMINI_DESIGN_API_KEY=`"xxx`""
     Write-Host "  '@ | Set-Content `"$envFile`""
     Write-Host ""
 }
@@ -34,12 +34,19 @@ if ((Test-Path $profileFile) -and (Select-String -Path $profileFile -Pattern "co
 } else {
     $loaderScript = @'
 
-# fusengine-codex — Load API keys from ~/.codex/.env
-$codexEnvFile = "$HOME\.codex\.env"
+# fusengine-codex — Load API keys from ${env:CODEX_HOME:-$HOME\.codex}\.env
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
+$codexEnvFile = Join-Path $codexHome ".env"
 if (Test-Path $codexEnvFile) {
     Get-Content $codexEnvFile | ForEach-Object {
-        if ($_ -match '^export\s+(\w+)=["\x27]?([^"\x27]*)["\x27]?$') {
-            [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
+        $line = $_.Trim()
+        if (-not $line -or $line.StartsWith("#")) { return }
+        $line = $line -replace '^\s*export\s+', ''
+        if ($line -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
+            $name = $Matches[1]
+            $value = ($Matches[2] -replace '\s+#.*$', '').Trim()
+            $value = $value.Trim('"').Trim("'")
+            [System.Environment]::SetEnvironmentVariable($name, $value, "Process")
         }
     }
 }

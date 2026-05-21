@@ -59,7 +59,7 @@ def main() -> None:
         sys.exit(0)
 
     project_root = os.environ.get("CODEX_PROJECT_DIR") or os.getcwd()
-    apex_dir = os.path.join(project_root, ".claude", "apex")
+    apex_dir = os.path.join(project_root, ".codex", "apex")
 
     if not os.path.isdir(apex_dir):
         sys.exit(0)

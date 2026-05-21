@@ -99,17 +99,17 @@ export REPLICATE_API_TOKEN="xxx"
 Install a specific MCP server manually:
 
 ```bash
-claude mcp add-json --scope=user sequential-thinking '{"command":"npx","args":["-y","@modelcontextprotocol/server-sequential-thinking"],"type":"stdio"}'
+codex plugin marketplace add <path-or-repo>; configure MCP in ~/.codex/config.toml # sequential-thinking '{"command":"npx","args":["-y","@modelcontextprotocol/server-sequential-thinking"],"type":"stdio"}'
 ```
 
 List installed MCP servers:
 
 ```bash
-claude mcp list
+codex mcp list
 ```
 
 Remove an MCP server:
 
 ```bash
-claude mcp remove sequential-thinking
+edit ~/.codex/config.toml and remove the sequential-thinking server
 ```

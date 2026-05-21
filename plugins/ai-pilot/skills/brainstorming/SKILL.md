@@ -12,7 +12,7 @@ description: "Use when user requests creative work - creating features, building
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY brainstorming session, use `TeamCreate` to spawn agents:
+Before ANY brainstorming session, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Understand project context, patterns, constraints
 2. **fuse-ai-pilot:research-expert** - Fetch best practices and documentation

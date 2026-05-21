@@ -8,7 +8,7 @@ description: "Component patterns for shadcn/ui with both Radix UI and Base UI pr
 
 ## Agent Workflow (MANDATORY)
 
-Before component work, use `TeamCreate` to spawn agents:
+Before component work, use the available Codex subagent capability when it materially helps:
 
 1. **fuse-ai-pilot:explore-codebase** - Find existing components
 2. **fuse-ai-pilot:research-expert** - Verify component APIs via Context7

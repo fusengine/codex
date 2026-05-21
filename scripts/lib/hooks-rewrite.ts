@@ -12,8 +12,6 @@ export const EVENT_MAP: Record<string, string> = {
 	UserPromptSubmit: "UserPromptSubmit",
 	PermissionRequest: "PermissionRequest",
 	Stop: "Stop",
-	SubagentStart: "SessionStart",
-	SubagentStop: "Stop",
 	SessionEnd: "Stop",
 	TaskCompleted: "Stop",
 	PostToolUseFailure: "PostToolUse",
@@ -23,7 +21,13 @@ export const EVENT_MAP: Record<string, string> = {
 /**
  * Codex-specific events with NO Codex equivalent (skipped with warning).
  */
-export const UNSUPPORTED_EVENTS = new Set(["TeammateIdle", "Notification", "PreCompact"]);
+export const UNSUPPORTED_EVENTS = new Set([
+	"SubagentStart",
+	"SubagentStop",
+	"TeammateIdle",
+	"Notification",
+	"PreCompact",
+]);
 
 /**
  * Rewrite a Codex hook command string for the Bun-based Codex runtime.

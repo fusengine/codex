@@ -8,7 +8,7 @@ description: "react-i18next for React 19 - useTranslation hook, TypeScript Selec
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing i18n setup and translation patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa

@@ -10,9 +10,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_skill_common import (
     deny_block, find_project_root, mcp_research_done, skill_was_consulted)
@@ -21,7 +19,7 @@ from laravel_skill_triggers import detect_required_skills, specific_skill_consul
 from modular_detection import is_fusecore_project
 
 PLUGINS_DIR = os.path.expanduser(
-    "~/.codex/plugins/marketplaces/fusengine-plugins/plugins")
+    "~/.codex/plugins/cache/fusengine-codex")
 
 
 def main() -> None:

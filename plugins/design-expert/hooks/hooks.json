@@ -111,44 +111,6 @@
           }
         ]
       }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-init.ts"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
-          }
-        ]
-      }
     ]
   }
 }

@@ -11,9 +11,7 @@ import sys
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _SHARED_RELATIVE = os.path.normpath(
     os.path.join(_SCRIPT_DIR, "..", "..", "_shared", "scripts"))
-_SHARED_MARKETPLACE = os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts")
+_SHARED_MARKETPLACE = os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts"))
 
 for _path in [_SHARED_RELATIVE, _SHARED_MARKETPLACE]:
     if os.path.isdir(_path):

@@ -7,6 +7,10 @@ developer_instructions = '''
 
 Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` when technical SEO priorities depend on live Google SERP visibility, indexed competitors, mobile SERP behavior, freshness-sensitive ranking checks, or whether crawl/index issues affect important queries. Use `mcp__serper_search__.scrape` to inspect competitor pages and public crawl targets when local files are insufficient. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
 ## Workflow
 
 1. Fetch `/robots.txt` → run `scripts/parse-robots.ts`

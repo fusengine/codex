@@ -2,17 +2,39 @@
 // with `bun build --no-bundle`, replace it with a Bun wrapper that runs the
 // original Python preserved in _legacy_py/.
 import { readdir, stat } from "node:fs/promises";
-import { join, relative, dirname } from "node:path";
+import { dirname, join, relative } from "node:path";
 
 const wrapper = (relPathFromHere: string) =>
 	`#!/usr/bin/env bun
 /* Bun → Python wrapper. Original preserved at _legacy_py/${relPathFromHere}. */
-import { join, dirname } from "node:path";
+import { existsSync } from "node:fs";
+import { homedir } from "node:os";
+import { basename, dirname, join } from "node:path";
 const here = dirname(import.meta.path);
 const py = join(here, ${JSON.stringify(relPathFromHere)});
+
+function findPluginRoot(start: string): string {
+	let dir = start;
+	while (dir !== dirname(dir)) {
+		if (existsSync(join(dir, ".codex-plugin", "plugin.json"))) return dir;
+		dir = dirname(dir);
+	}
+	return dirname(here);
+}
+
+const pluginRoot = findPluginRoot(here);
+const codexHome = process.env.CODEX_HOME ?? join(homedir(), ".codex");
+const sharedScripts = join(pluginRoot, "..", "_shared", "scripts");
+const pythonPath = [sharedScripts, process.env.PYTHONPATH].filter(Boolean).join(":");
 const proc = Bun.spawn(["python3", py], {
 	stdin: "inherit", stdout: "inherit", stderr: "inherit",
-	env: process.env,
+	env: {
+		...process.env,
+		CODEX_HOME: codexHome,
+		PLUGIN_ROOT: process.env.PLUGIN_ROOT ?? pluginRoot,
+		PLUGIN_DATA: process.env.PLUGIN_DATA ?? join(codexHome, "fusengine", "plugins", basename(pluginRoot)),
+		PYTHONPATH: pythonPath,
+	},
 });
 process.exit(await proc.exited);
 `;

@@ -10,7 +10,7 @@ tvOS-specific development for Apple TV living room experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing tvOS patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest tvOS 26 docs via Context7/Exa

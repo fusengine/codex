@@ -61,7 +61,7 @@ hooks: ...
 # Agent Title
 
 ## Agent Workflow (MANDATORY)
-... (uses TeamCreate)
+... (uses available Codex subagent capability when exposed)
 
 ## MANDATORY SKILLS USAGE
 ...

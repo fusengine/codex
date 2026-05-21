@@ -59,7 +59,7 @@ src/
 **Automatic installation (recommended):**
 
 ```bash
-~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh
+${CODEX_HOME:-~/.codex}/plugins/cache/fusengine-codex/core-guards/<version>/setup.sh
 ```
 
 This script automatically installs hooks AND statusline.
@@ -67,17 +67,17 @@ This script automatically installs hooks AND statusline.
 **Manual installation:**
 
 ```bash
-cd ~/.claude/plugins/marketplaces/fusengine-plugins/plugins/core-guards/statusline
+cd ${CODEX_HOME:-~/.codex}/plugins/cache/fusengine-codex/core-guards/<version>/statusline
 bun install
 ```
 
-Then add to `~/.claude/settings.json`:
+Then add to `${CODEX_HOME:-~/.codex}/config.toml`:
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "bun ~/.claude/plugins/marketplaces/fusengine-plugins/plugins/core-guards/statusline/src/index.ts",
+    "command": "bun ${CODEX_HOME:-~/.codex}/plugins/cache/fusengine-codex/core-guards/<version>/statusline/src/index.ts",
     "padding": 0
   }
 }

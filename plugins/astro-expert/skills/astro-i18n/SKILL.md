@@ -8,7 +8,7 @@ description: "Use when implementing internationalization in Astro, configuring i
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing routing, content collections, and locale files
 2. **fuse-ai-pilot:research-expert** - Verify latest Astro i18n docs via Context7/Exa

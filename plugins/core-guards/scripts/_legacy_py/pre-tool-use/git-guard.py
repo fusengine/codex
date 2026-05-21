@@ -19,7 +19,7 @@ def is_ralph_mode():
     """Check if Ralph mode is active."""
     if os.environ.get('RALPH_MODE') == '1':
         return True
-    if os.path.isfile('.claude/ralph/prd.json'):
+    if os.path.isfile('.codex/ralph/prd.json'):
         return True
     try:
         branch = subprocess.check_output(

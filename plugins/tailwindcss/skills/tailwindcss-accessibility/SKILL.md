@@ -10,7 +10,7 @@ Accessible-by-default patterns using Tailwind CSS v4.1 utility classes.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing a11y patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest WCAG 2.2 guidelines

@@ -21,5 +21,10 @@
 
     "types": ["bun-types"]
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts", "plugins/**/*.ts"],
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "plugins/core-guards/statusline/**"
+  ]
 }

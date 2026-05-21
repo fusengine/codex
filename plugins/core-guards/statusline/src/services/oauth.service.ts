@@ -14,7 +14,7 @@ export { getErrorCooldownLeft, getLastFailReason } from "./error-state";
 export type { OAuthFailReason } from "./oauth-fetch";
 export { formatUsage } from "./oauth-formatter";
 
-const USAGE_FILE = join(homedir(), ".claude", "statusline-data", "usage-cache.json");
+const USAGE_FILE = join(process.env.CODEX_HOME ?? join(homedir(), ".codex"), "statusline-data", "usage-cache.json");
 
 interface PersistedCache {
 	data: OAuthUsageResponse;

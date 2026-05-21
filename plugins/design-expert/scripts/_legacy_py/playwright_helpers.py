@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-EXEMPT_DIRS = ("node_modules/", "dist/", "build/", ".claude/")
+EXEMPT_DIRS = ("node_modules/", "dist/", "build/", ".codex/")
 
 
 def deny_block(reason: str) -> None:

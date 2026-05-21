@@ -8,7 +8,7 @@ description: "Design tokens and theming for shadcn/ui. Covers CSS variables, OKL
 
 ## Agent Workflow (MANDATORY)
 
-Before theming work, use `TeamCreate`:
+Before theming work, use the available Codex subagent capability when it materially helps:
 
 1. **fuse-ai-pilot:explore-codebase** - Find existing theme tokens
 2. **fuse-ai-pilot:research-expert** - Verify OKLCH patterns via Context7

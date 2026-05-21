@@ -8,7 +8,7 @@ description: "Use when styling Astro components with scoped CSS, CSS Modules, Ta
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing styles, integrations, and patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa

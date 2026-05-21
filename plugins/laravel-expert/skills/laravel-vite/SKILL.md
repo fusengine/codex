@@ -8,7 +8,7 @@ description: "Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks,
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing vite.config.js, package.json
 2. **fuse-ai-pilot:research-expert** - Verify latest Vite docs via Context7

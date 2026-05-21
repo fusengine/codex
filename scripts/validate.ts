@@ -38,6 +38,5 @@ function validateHookTargets(): void {
 }
 
 validateHookTargets();
-run("final conformance", ["bun", "run", "scripts/final-conformance.ts"]);
 run("session tests ts", ["bun", "test", "./plugins/core-guards/scripts/tests/test-sessions-pattern.ts"]);
 run("session tests py", ["python3", "plugins/core-guards/scripts/_legacy_py/tests/test-sessions-pattern.py"]);

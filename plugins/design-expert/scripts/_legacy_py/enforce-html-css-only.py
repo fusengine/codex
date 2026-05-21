@@ -2,15 +2,14 @@
 """PreToolUse: Block design-expert from writing non-HTML/CSS files."""
 import json, os, re, sys
 
-_SHARED = os.path.join(os.path.expanduser("~"), ".claude", "plugins",
-    "marketplaces", "fusengine-plugins", "plugins", "_shared", "scripts")
+_SHARED = os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts"))
 sys.path.insert(0, _SHARED)
 from hook_output import allow_pass
 
 CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
 ALLOWED_EXT = re.compile(r'\.(html|css|md|json)$')
-EXEMPT_DIRS = ("node_modules/", "dist/", "build/", ".claude/")
+EXEMPT_DIRS = ("node_modules/", "dist/", "build/", ".codex/")
 
 DENY_MSG = (
     "BLOCKED: design-expert can only write .html, .css, .md, and .json files. "

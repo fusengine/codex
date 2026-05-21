@@ -8,7 +8,7 @@ description: "Complete Eloquent ORM for Laravel 13 - PHP Attributes (#[Table], #
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Inspect existing models, mixed property/attribute usage
 2. **fuse-ai-pilot:research-expert** - Verify Laravel 13 Eloquent + Attributes docs via Context7

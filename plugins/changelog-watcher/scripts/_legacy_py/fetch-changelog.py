@@ -15,8 +15,7 @@ DOCS_BASE = "https://code.claude.com/docs/en"
 
 def main() -> None:
     """Fetch changelog, detect versions, save state."""
-    state_dir = os.path.join(os.path.expanduser("~"),
-                             ".claude", "logs", "00-changelog")
+    state_dir = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "logs", "00-changelog")
     os.makedirs(state_dir, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     state_file = os.path.join(state_dir, f"{today}-state.json")

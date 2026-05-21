@@ -8,7 +8,7 @@ description: "Use when implementing user authentication, API tokens, social logi
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing auth setup, guards, policies
 2. **fuse-ai-pilot:research-expert** - Verify latest Laravel 13 auth docs via Context7

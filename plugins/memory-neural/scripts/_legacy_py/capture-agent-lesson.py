@@ -29,8 +29,7 @@ def _agent_severity(name: str) -> int:
 
 def main() -> None:
     """Main entry for agent lesson capture."""
-    log_dir = os.path.join(os.path.expanduser("~"),
-                           ".claude", "logs", "00-memory")
+    log_dir = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "logs", "00-memory")
     os.makedirs(log_dir, exist_ok=True)
 
     try:

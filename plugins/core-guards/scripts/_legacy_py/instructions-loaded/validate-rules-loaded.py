@@ -17,7 +17,7 @@ def main():
     memory_type = data.get("memory_type", "")
 
     # Log to debug file
-    log_dir = Path.home() / ".claude" / "logs" / "instructions-loaded"
+    log_dir = Path.home() / ".codex" / "logs" / "instructions-loaded"
     log_dir.mkdir(parents=True, exist_ok=True)
     session_id = data.get("session_id", "unknown")
     log_file = log_dir / f"{session_id}.log"

@@ -23,6 +23,7 @@ export const MCP_CATALOG: Record<string, McpMeta> = {
 	postgres: { description: "PostgreSQL natural-language queries", requiresApiKey: false, default: false },
 	context7: { description: "Up-to-date library documentation", requiresApiKey: true, apiKeyEnv: "CONTEXT7_API_KEY", apiKeyUrl: "https://context7.com", default: true },
 	exa: { description: "AI web search + research", requiresApiKey: true, apiKeyEnv: "EXA_API_KEY", apiKeyUrl: "https://exa.ai", default: true },
+	"serper-search": { description: "Google Search + webpage scraping via Serper", requiresApiKey: true, apiKeyEnv: "SERPER_API_KEY", apiKeyUrl: "https://serper.dev" },
 	magic: { description: "21st.dev UI generation", requiresApiKey: true, apiKeyEnv: "MAGIC_API_KEY", apiKeyUrl: "https://21st.dev", default: true },
 	"gemini-design": { description: "Gemini AI frontend generation", requiresApiKey: true, apiKeyEnv: "GEMINI_DESIGN_API_KEY", apiKeyUrl: "https://gemini-design-mcp.com", default: true },
 	github: { description: "GitHub repos, PRs, issues, code review", requiresApiKey: true, apiKeyEnv: "GITHUB_TOKEN", apiKeyUrl: "https://github.com/settings/tokens" },

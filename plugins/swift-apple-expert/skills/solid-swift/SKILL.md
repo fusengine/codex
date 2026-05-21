@@ -8,7 +8,7 @@ description: "SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 li
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing architecture
 2. **fuse-ai-pilot:research-expert** - Verify Swift/Apple docs via Apple Docs MCP + Context7

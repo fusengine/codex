@@ -30,7 +30,7 @@ related-skills: <related-skill-a>, <related-skill-b>
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing <domain> patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest <library> docs via Context7/Exa

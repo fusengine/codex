@@ -8,7 +8,7 @@ description: "Integrate Stripe and Paddle payments with Laravel Cashier. Use whe
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing billing setup, User model
 2. **fuse-ai-pilot:research-expert** - Verify latest Cashier docs via Context7

@@ -8,7 +8,7 @@ import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-const DATA_DIR = join(homedir(), ".claude", "statusline-data");
+const DATA_DIR = join(process.env.CODEX_HOME ?? join(homedir(), ".codex"), "statusline-data");
 const PID_FILE = join(DATA_DIR, "daemon.pid");
 
 /** @returns true if process with given PID is alive (POSIX signal 0) */

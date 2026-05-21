@@ -60,10 +60,10 @@ ${CODEX_HOME:-~/.codex}/fusengine/
 
 | Cache | Source | TTL | Injection | Savings |
 |-------|--------|-----|-----------|---------|
-| **Explore** | `explore-codebase` agent | 24h | SubagentStart → explore-codebase | ~85% |
-| **Documentation** | Context7/Exa synthesis | 7d | SubagentStart → research-expert | ~90% |
-| **Lessons** | Sniper Edit corrections | 30d | SubagentStart → all agents | ~50-70% |
-| **Tests** | Sniper test results | 48h | SubagentStart → sniper | ~60% |
+| **Explore** | `explore-codebase` agent | 24h | Codex subagent lifecycle (not currently exposed to plugin hooks) → explore-codebase | ~85% |
+| **Documentation** | Context7/Exa synthesis | 7d | Codex subagent lifecycle (not currently exposed to plugin hooks) → research-expert | ~90% |
+| **Lessons** | Sniper Edit corrections | 30d | Codex subagent lifecycle (not currently exposed to plugin hooks) → all agents | ~50-70% |
+| **Tests** | Sniper test results | 48h | Codex subagent lifecycle (not currently exposed to plugin hooks) → sniper | ~60% |
 
 ### Cache Scripts (TypeScript/Bun)
 
@@ -71,21 +71,21 @@ All scripts are in `scripts/` with shared `lib/` modules.
 
 | Script | Hook | Role |
 |--------|------|------|
-| `explore-cache-check.ts` | SubagentStart | Inject cached architecture for explore-codebase |
-| `doc-cache-inject.ts` | SubagentStart | Inject cached doc summaries for research-expert |
-| `cache-doc-from-transcript.ts` | SubagentStop | Extract synthesis from research-expert transcript |
-| `lessons-cache-inject.ts` | SubagentStart | Inject known error patterns for all agents |
-| `cache-sniper-lessons.ts` | SubagentStop | Extract Edit corrections from sniper transcript |
+| `explore-cache-check.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Inject cached architecture for explore-codebase |
+| `doc-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Inject cached doc summaries for research-expert |
+| `cache-doc-from-transcript.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Extract synthesis from research-expert transcript |
+| `lessons-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Inject known error patterns for all agents |
+| `cache-sniper-lessons.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Extract Edit corrections from sniper transcript |
 | `promote-global-lessons.ts` | Background | Promote lessons seen 3+ times to _global/ |
-| `test-cache-inject.ts` | SubagentStart | Inject previous test results for sniper |
-| `cache-test-results.ts` | SubagentStop | Save sniper test results with file hashes |
+| `test-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Inject previous test results for sniper |
+| `cache-test-results.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Save sniper test results with file hashes |
 | `cache-analytics-save.ts` | SessionEnd | Save cache hit/miss analytics |
-| `inject-subagent-context.ts` | SubagentStart | Inject general context to all subagents |
+| `inject-subagent-context.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | Inject general context to all subagents |
 | `inject-apex-context.sh` | PreToolUse | Inject APEX context for Task tool |
 | `enforce-apex-phases.ts` | PreToolUse | Enforce APEX phase ordering |
 | `detect-and-inject-apex.ts` | UserPromptSubmit | Auto-detect APEX triggers |
 | `check-solid-compliance.sh` | PostToolUse | SOLID validation on Write/Edit |
-| `check-solid-from-transcript.sh` | SubagentStop | SOLID check from agent transcript |
+| `check-solid-from-transcript.sh` | Codex subagent lifecycle (not currently exposed to plugin hooks) | SOLID check from agent transcript |
 | `track-doc-consultation.sh` | PostToolUse | Track documentation reads |
 | `sync-task-tracking.ts` | PostToolUse | Sync task tracking when supported |
 
@@ -108,9 +108,9 @@ Each sniper run creates a `{timestamp}.json` with Edit-extracted corrections:
 | Hook Type | Count | Scripts |
 |-----------|-------|---------|
 | UserPromptSubmit | 1 | detect-and-inject-apex |
-| SubagentStart | 5 | inject-subagent-context, explore-cache-check, doc-cache-inject, lessons-cache-inject, test-cache-inject |
+| Codex subagent lifecycle (not currently exposed to plugin hooks) | 5 | inject-subagent-context, explore-cache-check, doc-cache-inject, lessons-cache-inject, test-cache-inject |
 | PreToolUse | 2 | enforce-apex-phases, inject-apex-context |
-| SubagentStop | 4 | cache-sniper-lessons, cache-test-results, cache-doc-from-transcript, check-solid-from-transcript |
+| Codex subagent lifecycle (not currently exposed to plugin hooks) | 4 | cache-sniper-lessons, cache-test-results, cache-doc-from-transcript, check-solid-from-transcript |
 | PostToolUse | 3 | check-solid-compliance, track-doc-consultation, sync-task-tracking |
 | SessionEnd | 1 | cache-analytics-save |
 

@@ -7,6 +7,10 @@ developer_instructions = '''
 
 Parallelizable expert for Generative Engine Optimization.
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` to verify Google AI Overview-adjacent SERPs, PAA, related searches, query intent, and freshness-sensitive ranking context. Use `mcp__serper_search__.scrape` to inspect pages surfaced in SERPs before scoring citation quality, quick answers, and structured content. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
 ## Workflow
 
 1. Fetch page

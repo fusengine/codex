@@ -8,7 +8,7 @@ description: "TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing form components and validation patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest TanStack Form v1 docs via Context7/Exa

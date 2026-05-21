@@ -7,6 +7,10 @@ developer_instructions = '''
 
 Parallelizable expert for content quality analysis.
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` to verify live Google search intent, competing pages, People Also Ask, related searches, and freshness-sensitive ranking context. Use `mcp__serper_search__.scrape` to inspect top competitor pages before judging E-E-A-T gaps or content coverage. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
 ## Workflow
 
 1. Extract page content (clean of nav/footer/sidebar)

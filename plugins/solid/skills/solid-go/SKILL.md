@@ -8,7 +8,7 @@ description: "SOLID principles for Go 1.23+. Files < 100 lines, interfaces separ
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing architecture
 2. **fuse-ai-pilot:research-expert** - Verify Go docs via Context7
