@@ -21,7 +21,7 @@ def main():
         or ""
     )
 
-    state_dir = os.path.join(os.path.expanduser("~"), ".claude", "logs", "00-security")
+    state_dir = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "logs", "00-security")
     os.makedirs(state_dir, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     state_file = os.path.join(state_dir, f"{today}-state.json")

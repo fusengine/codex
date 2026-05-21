@@ -20,10 +20,10 @@ async function fetchXml(i: string): Promise<string> {
 
 /** Parse and validate sitemap XML. Returns structured report. */
 function parseSitemap(xml: string): Report {
-  const parser = new XMLParser({
-    ignoreAttributes: false,
-    isArray: (_n, jpath) => ["urlset.url", "sitemapindex.sitemap"].includes(jpath),
-  });
+	const parser = new XMLParser({
+		ignoreAttributes: false,
+		isArray: (_n, jpath) => ["urlset.url", "sitemapindex.sitemap"].includes(String(jpath)),
+	});
   const parsed = parser.parse(xml);
   const issues: string[] = [];
   const report: Report = { type: "unknown", urlCount: 0, issues, entries: [] };

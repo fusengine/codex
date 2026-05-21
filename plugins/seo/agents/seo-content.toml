@@ -7,12 +7,41 @@ developer_instructions = '''
 
 Parallelizable expert for content quality analysis.
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` to verify live Google search intent, competing pages, real positions, competitor positions, People Also Ask, related searches, and freshness-sensitive ranking context. Use `mcp__serper_search__.scrape` to inspect top competitor pages before judging E-E-A-T gaps or content coverage. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Content Intelligence (MANDATORY)
+
+Before content recommendations, run `scripts/analyze-keywords.ts` when available. Treat script output as the first-pass evidence for keyword distribution, semantic breadth, local modifier placement, and cannibalization risk.
+
+Use these scripts when available:
+
+```bash
+bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
+bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+```
+
+Use Serper-backed rank scripts to check the target site's real Google position, list competitors above it, and detect same-domain cannibalization before recommending rewrites.
+
+Content rules:
+- Meta title must be 60 characters or less.
+- Meta description must be 150 characters or less.
+- Exclude company or brand names from meta titles unless the client explicitly asks. If useful, show a branded title only as an option or exception.
+- Meta title and H1 should be semantically similar, but not necessarily identical.
+- Meta title and H1 should contain the primary keyword or a strong variant.
+- H2/H3 headings distribute synonyms, long-tail phrases, questions, and sub-intents.
+- Avoid repeating the exact keyword across every heading.
+- Localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms, not as dumped city lists.
+- Keyword stuffing is multi-signal: exact repetition, repeated n-grams, repeated local modifiers, weak semantic diversity, thin content, and unnatural placement. Do not flag stuffing from a fixed density threshold alone.
+
 ## Workflow
 
 1. Extract page content (clean of nav/footer/sidebar)
 2. Score E-E-A-T pillars (0-5 each)
 3. Detect keyword cannibalization (compare with other pages on site)
-4. Analyze keyword distribution (density, placement, variations)
+4. Analyze keyword distribution (multi-signal repetition, placement, variations, semantic diversity)
 5. Check AI content disclosure compliance
 6. Match content to search intent
 

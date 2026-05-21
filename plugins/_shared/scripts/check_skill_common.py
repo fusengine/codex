@@ -27,7 +27,7 @@ def skill_was_consulted(framework: str, session_id: str,
     tracking = os.path.join(TRACKING_DIR, f"{framework}-{session_id}")
     if os.path.isfile(tracking):
         return True
-    task_file = os.path.join(project_root, ".claude", "apex", "task.json")
+    task_file = os.path.join(project_root, ".codex", "apex", "task.json")
     if os.path.isfile(task_file):
         try:
             with open(task_file, encoding="utf-8") as f:

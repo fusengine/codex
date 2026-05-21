@@ -17,8 +17,8 @@ from hook_output import emit_pre_tool  # pylint: disable=wrong-import-position,i
 
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro)$'
 EXEMPT_PATTERNS = [
-    r'\.claude-plugin/', r'\.codex-plugin/', r'CHANGELOG\.md$', r'marketplace\.json$',
-    r'/\.claude/(apex|memory|logs|fusengine)/',
+    r'\.codex-plugin/', r'CHANGELOG\.md$', r'marketplace\.json$',
+    r'/\.codex/(apex|memory|logs|fusengine)/',
     r'/\.codex/(apex|memory|fusengine)/',
 ]
 

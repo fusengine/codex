@@ -9,9 +9,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_skill_common import (
     deny_block, find_project_root, mcp_research_done, skill_was_consulted)
@@ -24,7 +22,7 @@ NEXTJS_RE = r"(use client|use server|NextRequest|NextResponse)"
 IMPORT_RE = r"(from ['\"]next|getServerSideProps|getStaticProps)"
 FILE_RE = r"(page|layout|loading|error|route|middleware)\.(ts|tsx)$"
 _P = os.path.expanduser(
-    "~/.codex/plugins/marketplaces/fusengine-plugins/plugins")
+    "~/.codex/plugins/cache/fusengine-codex")
 
 
 def _is_ts_file(path: str) -> bool:

@@ -7,6 +7,10 @@ developer_instructions = '''
 
 Parallelizable expert for sitemap and robots.txt.
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` when sitemap or robots.txt decisions depend on indexed competitors, freshness-sensitive SERP visibility, query coverage, or discovering important public URLs. Use `mcp__serper_search__.scrape` to inspect ranking pages when URL coverage or content type is unclear. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
 ## Workflow
 
 1. Fetch `/robots.txt` and `/sitemap.xml`

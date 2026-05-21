@@ -8,7 +8,7 @@ description: "Use when configuring Content Security Policy (CSP) in Astro 6, set
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing security config, adapters, headers
 2. **fuse-ai-pilot:research-expert** - Verify latest Astro 6 CSP docs via Context7/Exa

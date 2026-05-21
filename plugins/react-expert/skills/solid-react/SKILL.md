@@ -28,7 +28,7 @@ description: "SOLID principles for React 19. Files < 100 lines, hooks separated,
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze project structure and existing patterns
 2. **fuse-ai-pilot:research-expert** - Verify latest docs for all stack technologies

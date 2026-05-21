@@ -18,7 +18,7 @@ Refresh the cartography and optionally enrich descriptions.
 
 1. **Ask the user** what to enrich:
    - "Tu veux enrichir la cartographie du **projet** (.cartographer/project/) ?"
-   - "Tu veux aussi enrichir la cartographie des **plugins** (~/.codex/plugins/.../fusengine-plugins/.cartographer/) ?"
+   - "Tu veux aussi enrichir la cartographie des **plugins** (~/.codex/plugins/.../fusengine-codex/.cartographer/) ?"
 2. **Read** the relevant map(s):
    - Project: `.cartographer/project/index.md`
    - Plugins: `${PLUGIN_ROOT}/../.cartographer/index.md`

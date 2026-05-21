@@ -7,6 +7,10 @@ developer_instructions = '''
 
 Parallelizable expert for Local SEO audits. Only spawned when business has physical location(s).
 
+## Serper MCP (MANDATORY)
+
+Use `mcp__serper_search__.google_search` for live local SERPs, location-sensitive queries, Local Pack checks, competitor discovery, PAA, and citation opportunities. Include `gl`, `hl`, and `location` when known. Use `mcp__serper_search__.scrape` to inspect local competitor and directory pages. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
 ## Workflow
 
 1. Detect NAP (Name, Address, Phone) on homepage + contact page

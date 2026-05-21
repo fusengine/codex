@@ -16,8 +16,8 @@ related: templates/migration-guide.md
 | `PreToolUse` | ai-pilot, security-expert, core-guards |
 | `PostToolUse` | ai-pilot, security-expert, changelog-watcher, core-guards |
 | `UserPromptSubmit` | ai-pilot, core-guards |
-| `SubagentStart` | ai-pilot |
-| `SubagentStop` | ai-pilot, core-guards |
+| `SessionStart` | ai-pilot |
+| `Stop` | ai-pilot, core-guards |
 | `SessionStart` | core-guards |
 | `SessionEnd` | ai-pilot, core-guards |
 | `Stop` | core-guards |
@@ -25,7 +25,7 @@ related: templates/migration-guide.md
 | `TaskCompleted` | core-guards |
 | `PostToolUseFailure` | core-guards |
 | `PermissionRequest` | core-guards |
-| `PreCompact` | core-guards |
+| `unsupported PreCompact` | core-guards |
 | `InstructionsLoaded` | core-guards |
 | `Notification` | core-guards |
 
@@ -45,7 +45,7 @@ related: templates/migration-guide.md
 }
 ```
 
-### PostToolUse / SubagentStop / UserPromptSubmit (top-level)
+### PostToolUse / Stop / UserPromptSubmit (top-level)
 
 ```json
 {

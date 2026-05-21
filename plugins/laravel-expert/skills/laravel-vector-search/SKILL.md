@@ -8,7 +8,7 @@ description: "Use when implementing semantic / vector search in Laravel 13 with 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check current DB driver (must be PostgreSQL) and existing embedding columns
 2. **fuse-ai-pilot:research-expert** - Verify pgvector extension version and HNSW vs IVFFlat tradeoffs

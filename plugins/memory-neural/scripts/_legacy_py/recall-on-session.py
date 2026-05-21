@@ -33,8 +33,7 @@ def _detect_project_type() -> str:
 
 def main() -> None:
     """Main entry for session start recall."""
-    log_dir = os.path.join(os.path.expanduser("~"),
-                           ".claude", "logs", "00-memory")
+    log_dir = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "logs", "00-memory")
     os.makedirs(log_dir, exist_ok=True)
 
     project_type = _detect_project_type()

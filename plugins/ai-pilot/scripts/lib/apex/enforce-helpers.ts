@@ -5,7 +5,7 @@
 import type { RouteResult } from "../interfaces/ref-router.interface";
 
 const HOME = process.env.HOME ?? "";
-const PLUGINS_DIR = `${HOME}/.codex/marketplaces/fusengine-plugins/plugins`;
+const PLUGINS_DIR = `${process.env.CODEX_HOME ?? `${HOME}/.codex`}/plugins/cache/fusengine-codex`;
 
 /**
  * Detect framework from file path extension and content patterns.

@@ -12,8 +12,9 @@ export interface EnvKey {
 export const API_KEYS: EnvKey[] = [
 	{ name: "CONTEXT7_API_KEY", description: "Context7 — documentation lookup", url: "https://context7.com" },
 	{ name: "EXA_API_KEY", description: "Exa — AI web search & research", url: "https://exa.ai" },
+	{ name: "SERPER_API_KEY", description: "Serper — Google Search API", url: "https://serper.dev" },
 	{ name: "MAGIC_API_KEY", description: "Magic 21st.dev — UI generation", url: "https://21st.dev" },
-	{ name: "GEMINI_API_KEY", description: "Gemini — AI frontend (gemini-design-mcp)", url: "https://aistudio.google.com/apikey" },
+	{ name: "GEMINI_DESIGN_API_KEY", description: "Gemini — AI frontend (gemini-design-mcp)", url: "https://aistudio.google.com/apikey" },
 	{ name: "NEURAL_MEMORY_HOST", description: "memory-neural — Graphiti/Qdrant host (e.g. http://localhost:8000)", url: "" },
 	{ name: "GITHUB_TOKEN", description: "GitHub — repos, PRs, issues", url: "https://github.com/settings/tokens" },
 	{ name: "SUPABASE_ACCESS_TOKEN", description: "Supabase — database, auth, storage", url: "https://supabase.com/dashboard/account/tokens" },

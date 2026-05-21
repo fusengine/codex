@@ -2,7 +2,7 @@
 
 ## How It Works
 
-1. **Project Detection** - Claude detects your project type automatically
+1. **Project Detection** - Codex detects your project type automatically
 2. **Agent Selection** - Launches the matching expert agent
 3. **Skills Loading** - Agent reads its framework skills + SOLID rules
 4. **Research** - Consults Context7/Exa for documentation
@@ -15,7 +15,7 @@
 ```
 User: "Add user authentication"
 
-Claude:
+Codex:
 1. Detects: Next.js project → nextjs-expert
 2. Launches: explore-codebase + research-expert (parallel)
 3. Plans: Implementation steps
@@ -27,7 +27,7 @@ Claude:
 ```
 User: "Fix the typo in login.tsx"
 
-Claude:
+Codex:
 1. Skips APEX (trivial fix)
 2. Fixes directly
 3. Validates: sniper checks
@@ -37,7 +37,7 @@ Claude:
 ```
 User: "commit"
 
-Claude:
+Codex:
 1. Runs /fuse-commit-pro:commit
 2. Analyzes changes
 3. Creates conventional commit

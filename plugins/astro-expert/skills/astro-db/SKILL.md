@@ -10,7 +10,7 @@ Type-safe SQL database built into Astro, powered by libSQL/Turso. Use for struct
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing db/config.ts, tables, and Actions
 2. **fuse-ai-pilot:research-expert** - Verify Astro DB API via Context7/Exa

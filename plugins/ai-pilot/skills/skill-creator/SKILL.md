@@ -8,7 +8,7 @@ description: "Use when creating new skills, restructuring existing skills, or im
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY skill creation, use `TeamCreate` to spawn 3 agents:
+Before ANY skill creation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing skills, analyze structure
 2. **fuse-ai-pilot:research-expert** - Fetch latest official documentation online

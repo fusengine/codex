@@ -6,7 +6,7 @@ from pathlib import Path
 
 def find_marketplace_plugins() -> Path:
     """Auto-detect marketplace plugins dir containing cartographer."""
-    mp = Path.home() / ".claude" / "plugins" / "marketplaces"
+    mp = Path.home() / ".codex" / "plugins" / "marketplaces"
     if mp.is_dir():
         for marketplace in sorted(mp.iterdir()):
             plugins = marketplace / "plugins"
@@ -20,8 +20,8 @@ def find_marketplace_plugins() -> Path:
 
 
 def read_plugin_meta(plugin_path: Path) -> tuple[str, str]:
-    """Read version and name from .claude-plugin/plugin.json."""
-    pj = plugin_path / ".claude-plugin" / "plugin.json"
+    """Read version and name from .codex-plugin/plugin.json."""
+    pj = plugin_path / ".codex-plugin" / "plugin.json"
     if not pj.is_file():
         return "", ""
     try:

@@ -8,7 +8,7 @@ description: "Use when applying SOLID principles and clean architecture to Astro
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze project structure, naming, and existing patterns
 2. **fuse-ai-pilot:research-expert** - Verify Astro 6 architecture best practices via Context7/Exa

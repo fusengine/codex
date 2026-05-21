@@ -5,9 +5,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 try:
     from tracking import track_skill_read
 except ImportError:

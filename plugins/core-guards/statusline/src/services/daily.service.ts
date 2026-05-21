@@ -9,7 +9,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import type { DailySpend } from "../interfaces";
 
-const DATA_DIR = join(homedir(), ".claude", "statusline-data");
+const DATA_DIR = join(process.env.CODEX_HOME ?? join(homedir(), ".codex"), "statusline-data");
 const DAILY_FILE = join(DATA_DIR, "daily-spend.json");
 
 interface DailyData {

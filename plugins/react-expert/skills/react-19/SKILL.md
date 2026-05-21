@@ -8,7 +8,7 @@ description: "React 19.2 features - use(), useOptimistic, useActionState, useEff
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing React patterns and component structure
 2. **fuse-ai-pilot:research-expert** - Verify latest React 19.2 docs via Context7/Exa

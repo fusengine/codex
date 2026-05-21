@@ -10,7 +10,7 @@ App build, signing, and distribution for all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY distribution, use `TeamCreate` to spawn 3 agents:
+Before ANY distribution, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing build configuration
 2. **fuse-ai-pilot:research-expert** - Verify latest App Store requirements

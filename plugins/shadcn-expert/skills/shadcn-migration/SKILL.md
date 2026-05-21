@@ -8,7 +8,7 @@ description: "Migration guide between Radix UI and Base UI primitives for shadcn
 
 ## Agent Workflow (MANDATORY)
 
-Before migration, use `TeamCreate` to spawn agents:
+Before migration, use the available Codex subagent capability when it materially helps:
 
 1. **fuse-ai-pilot:explore-codebase** - Inventory all affected components
 2. **fuse-ai-pilot:research-expert** - Verify migration patterns via Context7

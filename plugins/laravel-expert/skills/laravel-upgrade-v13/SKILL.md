@@ -10,7 +10,7 @@ Centralized upgrade path from Laravel 12.46 to Laravel 13.0 (released March 17, 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY upgrade, use `TeamCreate` to spawn 3 agents:
+Before ANY upgrade, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
 2. **fuse-ai-pilot:research-expert** — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)

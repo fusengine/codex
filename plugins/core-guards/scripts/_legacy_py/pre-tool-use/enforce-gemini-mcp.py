@@ -6,7 +6,7 @@ import re
 import sys
 
 UI_EXT = re.compile(r'\.(tsx|jsx|vue|svelte)$')
-EXEMPT_DIRS = re.compile(r'(node_modules|dist|build|\.next|\.claude|\.codex)/')
+EXEMPT_DIRS = re.compile(r'(node_modules|dist|build|\.next|\.codex)/')
 
 TAILWIND_PATTERNS = [
     r'\bflex\b', r'\bgrid\b', r'\bp-\d', r'\bpx-\d', r'\bpy-\d',

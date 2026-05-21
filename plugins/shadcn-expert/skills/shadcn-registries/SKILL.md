@@ -8,7 +8,7 @@ description: "Configure shadcn/ui registries, components.json, and CLI commands.
 
 ## Agent Workflow (MANDATORY)
 
-Before registry configuration, use `TeamCreate`:
+Before registry configuration, use the available Codex subagent capability when it materially helps:
 
 1. **fuse-ai-pilot:explore-codebase** - Find existing components.json
 2. **fuse-ai-pilot:research-expert** - Verify latest CLI options via Context7

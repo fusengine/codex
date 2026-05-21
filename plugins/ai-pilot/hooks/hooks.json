@@ -10,53 +10,6 @@
         ]
       }
     ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/inject-subagent-context.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/explore-cache-check.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/doc-cache-inject.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/lessons-cache-inject.ts"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/test-cache-inject.ts"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -87,38 +40,6 @@
       }
     ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/cache-sniper-lessons.ts"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/cache-test-results.ts"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/cache-doc-from-transcript.ts"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
-          }
-        ]
-      },
       {
         "hooks": [
           {

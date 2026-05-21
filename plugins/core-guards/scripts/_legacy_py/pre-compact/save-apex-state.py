@@ -10,7 +10,7 @@ from datetime import datetime
 
 def main():
     project_root = os.getcwd()
-    apex_dir = os.path.join(project_root, '.claude', 'apex')
+    apex_dir = os.path.join(project_root, '.codex', 'apex')
     state_file = os.path.join(apex_dir, 'task.json')
     backup_dir = os.path.join(apex_dir, 'backups')
 

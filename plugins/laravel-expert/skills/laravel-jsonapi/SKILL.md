@@ -8,7 +8,7 @@ description: "Use when building JSON:API compliant endpoints in Laravel 13 using
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Inventory existing `JsonResource` classes to migrate
 2. **fuse-ai-pilot:research-expert** - Check JSON:API v1.1 spec for required headers and structure

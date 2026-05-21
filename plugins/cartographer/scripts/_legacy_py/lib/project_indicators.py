@@ -75,7 +75,7 @@ PROJECT_INDICATORS = {
 EXCLUDE_DIRS = {
     "node_modules", ".git", ".next", ".nuxt", "dist", "build",
     ".output", "vendor", "__pycache__", ".venv", "venv",
-    ".cartographer", ".claude", ".ruff_cache", ".DS_Store",
+    ".cartographer", ".codex", ".ruff_cache", ".DS_Store",
     "coverage", ".turbo", ".vercel", ".netlify",
     "Pods", "DerivedData", ".build", ".swiftpm",
 }

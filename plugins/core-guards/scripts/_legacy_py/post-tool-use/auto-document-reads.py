@@ -62,7 +62,7 @@ def main():
     if not root:
         sys.exit(0)
     fw = detect_framework(root)
-    task_file = os.path.join(root, '.claude', 'apex', 'task.json')
+    task_file = os.path.join(root, '.codex', 'apex', 'task.json')
     cur = '1'
     if os.path.isfile(task_file):
         try:
@@ -70,7 +70,7 @@ def main():
                 cur = json.load(f).get('current_task', '1')
         except (json.JSONDecodeError, OSError):
             pass
-    doc_dir = os.path.join(root, '.claude', 'apex', 'docs')
+    doc_dir = os.path.join(root, '.codex', 'apex', 'docs')
     os.makedirs(doc_dir, exist_ok=True)
     doc_file = os.path.join(doc_dir, f'task-{cur}-{fw}.md')
     ts = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')

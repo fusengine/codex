@@ -1,7 +1,7 @@
 # Fusengine Codex Plugins
 
 ![version](https://img.shields.io/badge/version-1.2.0-blue?style=flat-square)
-![plugins](https://img.shields.io/badge/plugins-18-brightgreen?style=flat-square)
+![plugins](https://img.shields.io/badge/plugins-19-brightgreen?style=flat-square)
 ![runtime](https://img.shields.io/badge/runtime-Bun-black?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
@@ -42,7 +42,7 @@ Le setup demande clé par clé (skip = Entrée vide). URLs d'inscription affich�
 | `CONTEXT7_API_KEY` | context7 — documentation lookup | https://context7.com |
 | `EXA_API_KEY` | exa — web search & research | https://exa.ai |
 | `MAGIC_API_KEY` | 21st.dev magic — UI generation | https://21st.dev |
-| `GEMINI_API_KEY` | gemini-design — AI frontend | https://aistudio.google.com/apikey |
+| `GEMINI_DESIGN_API_KEY` | gemini-design — AI frontend | https://aistudio.google.com/apikey |
 | `GITHUB_TOKEN` | GitHub MCP | https://github.com/settings/tokens |
 
 Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes dans l'env sont détectées et le prompt skip.
@@ -113,7 +113,7 @@ Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). 
 `PreCompact` ne doit pas être enregistré par les plugins tant que l'événement
 n'est pas stabilisé côté Codex.
 
-### 24 MCP servers bundlés
+### 22 MCP servers bundlés
 
 **Originaux (12)** : `exa`, `sequential-thinking`, `context7`, `gemini-design`, `shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`, `XcodeBuildMCP`, `apple-docs`.
 

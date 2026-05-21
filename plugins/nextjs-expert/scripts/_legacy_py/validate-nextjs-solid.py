@@ -6,9 +6,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.expanduser("~"),
-    ".claude", "plugins", "marketplaces", "fusengine-plugins",
-    "plugins", "_shared", "scripts"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 # pylint: disable=wrong-import-position
 from check_skill_common import find_project_root
 from hook_output import allow_pass

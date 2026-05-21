@@ -8,7 +8,7 @@ import time
 
 def main():
     tracking_dir = os.path.join(
-        os.path.expanduser('~'), '.claude', 'fusengine', 'session-tmp'
+        os.path.expanduser('~'), '.codex', 'fusengine', 'session-tmp'
     )
     if os.path.isdir(tracking_dir):
         now = time.time()

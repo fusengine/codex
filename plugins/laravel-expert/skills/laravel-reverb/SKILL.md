@@ -8,7 +8,7 @@ description: "Implement real-time WebSocket communication with Laravel Reverb. U
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing broadcasting patterns
 2. **fuse-ai-pilot:research-expert** - Verify Reverb docs via Context7

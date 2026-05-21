@@ -8,7 +8,7 @@ description: "Use when creating expert agents. Generates agent.md with frontmatt
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY agent creation, use `TeamCreate` to spawn 3 agents:
+Before ANY agent creation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Check existing agents, analyze patterns
 2. **fuse-ai-pilot:research-expert** - Fetch latest agent conventions

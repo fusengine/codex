@@ -11,7 +11,7 @@ import { TIME_INTERVALS } from "../constants";
 import type { FiveHourUsage, SubscriptionType } from "../interfaces";
 import { detectSubscription, getMaxTokens } from "./subscription.service";
 
-const DATA_DIR = join(homedir(), ".claude", "statusline-data");
+const DATA_DIR = join(process.env.CODEX_HOME ?? join(homedir(), ".codex"), "statusline-data");
 const USAGE_FILE = join(DATA_DIR, "usage.json");
 
 interface UsageData {

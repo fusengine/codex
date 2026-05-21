@@ -21,7 +21,7 @@ interface Srv {
 
 function normalize(name: string, s: Srv): Srv {
 	if (name === "gemini-design") {
-		return { command: s.command, args: s.args, env: { GEMINI_API_KEY: "${GEMINI_API_KEY}" } };
+		return { command: s.command, args: s.args, env: { API_KEY: "${GEMINI_DESIGN_API_KEY}" } };
 	}
 	if (name === "magic") {
 		const args = (s.args ?? []).filter((a) => !/^API_KEY=/.test(a) && !/\$\{MAGIC_API_KEY\}/.test(a));

@@ -3,8 +3,8 @@
 ## Repository Structure
 
 ```
-fusengine-plugins/
-├── .claude-plugin/
+codex-plugins/
+├── .codex-plugin/
 │   └── marketplace.json         # Central plugin registry
 ├── docs/
 │   ├── getting-started/
@@ -94,7 +94,7 @@ Each plugin is isolated with its own agents, commands, skills, hooks, and script
 
 ### 2. Centralized Registry
 
-All plugin metadata is defined in `.claude-plugin/marketplace.json`. No per-plugin configuration files.
+Each plugin defines metadata in `.codex-plugin/plugin.json`; marketplace aggregation lives under `.agents/plugins/marketplace.json`.
 
 ### 3. fuse- Namespace
 

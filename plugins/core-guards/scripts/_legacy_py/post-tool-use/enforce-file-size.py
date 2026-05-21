@@ -50,7 +50,7 @@ def main():
     if lines > 100:
         filename = os.path.basename(file_path)
         solid_ref = get_solid_reference(file_path)
-        plugins = '~/.codex/plugins/marketplaces/fusengine-plugins/plugins'
+        plugins = '~/.codex/plugins/cache/fusengine-codex'
         reason = (
             f"SOLID VIOLATION: '{filename}' has {lines} lines (max: 100). "
             f"ACTION REQUIRED: 1) Read SOLID principles: {plugins}/{solid_ref} "
