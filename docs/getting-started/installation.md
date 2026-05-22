@@ -10,7 +10,7 @@
 When the installed Codex CLI supports plugin marketplace commands:
 
 ```bash
-codex plugin marketplace add <path-or-repo>
+codex plugin marketplace add https://github.com/fusengine/codex.git
 ```
 
 ## 2. Install Plugins
@@ -23,21 +23,22 @@ codex plugin add ai-pilot@fusengine-codex
 codex plugin add codex-rules@fusengine-codex
 ```
 
-If the local CLI does not support plugin installation yet, run the repository
-installer. It caches local plugin bundles and enables them in Codex config.
+If the local CLI does not support plugin installation yet, run the marketplace
+checkout installer. It caches local plugin bundles and enables them in Codex
+config.
 
 ## 3. Run Setup
 
 ### macOS / Linux
 
 ```bash
-./setup.sh
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.sh
 ```
 
 ### Windows
 
 ```powershell
-.\setup.ps1
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.ps1
 ```
 
 The setup writes configuration under `${CODEX_HOME:-~/.codex}` and installs:

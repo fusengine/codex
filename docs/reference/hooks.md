@@ -36,13 +36,13 @@ plugin_hooks = true
 ### macOS / Linux
 
 ```bash
-./setup.sh
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.sh
 ```
 
 ### Windows
 
 ```powershell
-.\setup.ps1
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.ps1
 ```
 
 The installer writes Codex configuration under `${CODEX_HOME:-~/.codex}` and

@@ -7,16 +7,21 @@
 
 > **Codex CLI plugin marketplace.** 19 expert plugins (APEX workflow, SOLID/DRY enforcement, framework specialists, MCP integrations) conformes à la doc officielle Codex CLI (`developers.openai.com/codex`).
 
-## Installation (3 commandes)
+## Installation
 
 ```bash
-git clone https://github.com/fusengine/codex.git
-cd codex
-./setup.sh           # macOS / Linux
-# .\setup.ps1        # Windows
+codex plugin marketplace add https://github.com/fusengine/codex.git
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.sh
 ```
 
-C'est tout. Le script installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 19 plugins, **prompte interactivement la config Codex** (model, reasoning effort, personality, approval policy, sandbox mode) et **les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
+Windows PowerShell:
+
+```powershell
+codex plugin marketplace add https://github.com/fusengine/codex.git
+~/.codex/.tmp/marketplaces/fusengine-codex/setup.ps1
+```
+
+C'est tout. Le script s'exécute depuis le checkout marketplace temporaire de Codex, installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 19 plugins, **prompte interactivement la config Codex** (model, reasoning effort, personality, approval policy, sandbox mode) et **les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
 
 **Prérequis** : [Bun](https://bun.sh) et [codex CLI](https://developers.openai.com/codex/cli) 0.130+.
 
@@ -50,7 +55,7 @@ Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes d
 ### Ce que fait `setup.sh` (pipeline complet)
 
 1. `bun install` — deps de l'installer
-2. `codex plugin marketplace add ./` (ou patch `~/.codex/config.toml` si codex CLI absent)
+2. `codex plugin marketplace add https://github.com/fusengine/codex.git` (ou patch `~/.codex/config.toml` si codex CLI absent)
 3. Active `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml`
 4. Copie `AGENTS.md` → `~/.codex/AGENTS.md` (prompt overwrite si existant)
 5. Auto-active les 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
