@@ -5,7 +5,10 @@
 ![runtime](https://img.shields.io/badge/runtime-Bun-black?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
-> **Codex CLI plugin marketplace.** 19 expert plugins (APEX workflow, SOLID/DRY enforcement, framework specialists, MCP integrations) conformes à la doc officielle Codex CLI (`developers.openai.com/codex`).
+> **Codex CLI plugin marketplace.** 19 expert plugins for APEX workflow,
+> SOLID/DRY enforcement, framework specialists, and MCP integrations. The
+> implementation follows the official Codex CLI documentation at
+> `developers.openai.com/codex`.
 
 ## Installation
 
@@ -21,184 +24,214 @@ codex plugin marketplace add https://github.com/fusengine/codex.git
 ~/.codex/.tmp/marketplaces/fusengine-codex/setup.ps1
 ```
 
-C'est tout. Le script s'exécute depuis le checkout marketplace temporaire de Codex, installe les dépendances, enregistre le marketplace, active les hooks, copie `AGENTS.md`, active les 19 plugins, **prompte interactivement la config Codex** (model, reasoning effort, personality, approval policy, sandbox mode) et **les clés API MCP**, installe un **auto-loader shell** (`~/.config/fish/conf.d/codex-env.fish` ou `~/.zshrc`/`~/.bashrc`/profile PowerShell) et résout les `${VAR}` des plugins dans `~/.codex/config.toml`.
+That is all. The script runs from the temporary Codex marketplace checkout,
+installs dependencies, registers the marketplace, enables hooks, copies
+`AGENTS.md`, enables the 19 plugins, prompts for Codex configuration (model,
+reasoning effort, personality, approval policy, sandbox mode) and MCP API keys,
+installs a shell autoloader (`~/.config/fish/conf.d/codex-env.fish`,
+`~/.zshrc`, `~/.bashrc`, or the PowerShell profile), and resolves plugin
+`${VAR}` placeholders into static values in `~/.codex/config.toml`.
 
-**Prérequis** : [Bun](https://bun.sh) et [codex CLI](https://developers.openai.com/codex/cli) 0.130+.
+**Prerequisites:** [Bun](https://bun.sh) and
+[Codex CLI](https://developers.openai.com/codex/cli) 0.130+.
 
-### Config Codex (proposée interactivement à l'install)
+### Codex Config
 
-Le setup propose les clés top-level de `~/.codex/config.toml`. `(skip)` garde la valeur existante.
+The setup prompts for top-level `~/.codex/config.toml` keys. `(skip)` preserves
+the existing value.
 
-| Clé | Valeurs | Source doc |
+| Key | Values | Docs |
 |---|---|---|
 | `model` | gpt-5.5, gpt-5.4, gpt-5.4-mini, gpt-5-pro | [config-sample](https://developers.openai.com/codex/config-sample) |
-| `model_reasoning_effort` | minimal, low, medium, high, xhigh | id. |
-| `personality` | none, friendly, pragmatic | id. |
-| `approval_policy` | untrusted, on-request, never | id. |
-| `sandbox_mode` | read-only, workspace-write, danger-full-access | id. |
-| `suppress_unstable_features_warning` | auto-set `true` (silence le warning `plugin_hooks` under-dev) | id. |
+| `model_reasoning_effort` | minimal, low, medium, high, xhigh | same |
+| `personality` | none, friendly, pragmatic | same |
+| `approval_policy` | untrusted, on-request, never | same |
+| `sandbox_mode` | read-only, workspace-write, danger-full-access | same |
+| `suppress_unstable_features_warning` | auto-set `true` to silence the `plugin_hooks` under-development warning | same |
 
-### Clés API MCP (proposées interactivement à l'install)
+### MCP API Keys
 
-Le setup demande clé par clé (skip = Entrée vide). URLs d'inscription affichées en placeholder. Stockées dans `~/.codex/.env` (chmod 600), auto-sourcées par le shell loader.
+The setup prompts key by key. Empty input skips a key. Signup URLs are shown as
+placeholders. Values are stored in `~/.codex/.env` with `chmod 600` and are
+loaded by the shell autoloader.
 
-| Variable | Serveur MCP | Inscription |
+| Variable | MCP server | Signup |
 |---|---|---|
-| `CONTEXT7_API_KEY` | context7 — documentation lookup | https://context7.com |
-| `EXA_API_KEY` | exa — web search & research | https://exa.ai |
-| `MAGIC_API_KEY` | 21st.dev magic — UI generation | https://21st.dev |
-| `GEMINI_DESIGN_API_KEY` | gemini-design — AI frontend | https://aistudio.google.com/apikey |
+| `CONTEXT7_API_KEY` | context7 documentation lookup | https://context7.com |
+| `EXA_API_KEY` | exa web search and research | https://exa.ai |
+| `MAGIC_API_KEY` | 21st.dev magic UI generation | https://21st.dev |
+| `GEMINI_DESIGN_API_KEY` | gemini-design AI frontend | https://aistudio.google.com/apikey |
 | `GITHUB_TOKEN` | GitHub MCP | https://github.com/settings/tokens |
 
-Tu peux aussi pré-exporter avant `./setup.sh` — les clés déjà présentes dans l'env sont détectées et le prompt skip.
+You can pre-export keys before running `setup.sh`; existing environment values
+are detected and the prompt is skipped.
 
-### Ce que fait `setup.sh` (pipeline complet)
+### What `setup.sh` Does
 
-1. `bun install` — deps de l'installer
-2. `codex plugin marketplace add https://github.com/fusengine/codex.git` (ou patch `~/.codex/config.toml` si codex CLI absent)
-3. Active `[features] hooks=true, plugin_hooks=true` dans `~/.codex/config.toml`
-4. Copie `AGENTS.md` → `~/.codex/AGENTS.md` (prompt overwrite si existant)
-5. Auto-active les 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
-6. **Prompt interactif config Codex** (model, reasoning_effort, personality, approval_policy, sandbox_mode) + auto-set `suppress_unstable_features_warning = true`
-7. **Prompt interactif** des clés API → `~/.codex/.env` (chmod 600)
-8. **Installe l'auto-loader shell** (fish conf.d / append rc / pwsh profile)
-9. **Résout les `${VAR}`** des plugin `.mcp.json` et écrit blocs `[mcp_servers.X]` statiques dans `~/.codex/config.toml` (entre markers idempotents)
-10. Rapport MCP final + env vars manquantes
+1. `bun install` - installer dependencies
+2. `codex plugin marketplace add https://github.com/fusengine/codex.git` (or
+   direct `~/.codex/config.toml` patch when Codex CLI is unavailable)
+3. Enables `[features] hooks=true, plugin_hooks=true` in `~/.codex/config.toml`
+4. Copies `AGENTS.md` to `~/.codex/AGENTS.md` with overwrite prompt
+5. Enables the 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
+6. Prompts for Codex config and auto-sets `suppress_unstable_features_warning`
+7. Prompts for API keys and writes `~/.codex/.env` with `chmod 600`
+8. Installs the shell autoloader
+9. Resolves `${VAR}` placeholders from plugin `.mcp.json` files into static
+   `[mcp_servers.X]` blocks in `~/.codex/config.toml`
+10. Prints the final MCP report and missing environment variables
 
-> **Pourquoi cette résolution ?** Codex CLI 0.130.x ne fait pas d'interpolation `${VAR}` dans les plugin `.mcp.json` ([openai/codex#19582](https://github.com/openai/codex/issues/19582)). Le configurator résout côté install pour écrire des valeurs statiques que Codex consomme directement.
+> **Why resolve variables during setup?** Codex CLI 0.130.x does not interpolate
+> `${VAR}` in plugin `.mcp.json` files
+> ([openai/codex#19582](https://github.com/openai/codex/issues/19582)). The
+> configurator resolves values during installation so Codex receives static
+> config entries.
 
-## Inventaire des 19 plugins
+## Plugin Inventory
 
-Le `name` du marketplace correspond au folder name (kebab-case, sans préfixe). Cf doc Codex : *"Outer folder name and `plugin.json` name are always the same normalized plugin name"*.
+The marketplace `name` matches the folder name (kebab-case, no prefix). Codex
+docs require the outer folder name and `plugin.json` name to be the same
+normalized plugin name.
 
 | Folder | Manifest name | Version | Description |
 |---|---|---|---|
 | `ai-pilot` | `ai-pilot` | 1.2.24 | APEX workflow, sniper, research-expert, explore-codebase, websearch |
-| `astro-expert` | `astro-expert` | 1.0.6 | Astro 6 — Islands, Content Layer, Actions, Server Islands |
-| `cartographer` | `cartographer` | 1.0.6 | Auto-generated plugin & project maps |
-| `changelog-watcher` | `changelog-watcher` | 1.0.7 | Codex CLI changelog watcher + breaking-change detection |
+| `astro-expert` | `astro-expert` | 1.0.6 | Astro 6: Islands, Content Layer, Actions, Server Islands |
+| `cartographer` | `cartographer` | 1.0.6 | Auto-generated plugin and project maps |
+| `changelog-watcher` | `changelog-watcher` | 1.0.7 | Codex CLI changelog watcher and breaking-change detection |
 | `codex-rules` | `codex-rules` | 1.0.7 | Global APEX / SOLID / DRY rules injection |
 | `commit-pro` | `commit-pro` | 1.2.16 | Conventional commits, security check, version bump, tag, push |
-| `core-guards` | `core-guards` | 1.1.26 | Pre-tool-use safety + SOLID enforcement hooks + statusline |
-| `design-expert` | `design-expert` | 2.1.23 | UI designer 7-phase pipeline + OKLCH tokens + Gemini Design MCP |
+| `core-guards` | `core-guards` | 1.1.26 | Pre-tool-use safety, SOLID enforcement hooks, statusline |
+| `design-expert` | `design-expert` | 2.1.23 | UI designer 7-phase pipeline, OKLCH tokens, Gemini Design MCP |
 | `laravel-expert` | `laravel-expert` | 1.2.0 | Laravel 12, Eloquent, Livewire, Reverb, Stripe |
-| `memory-neural` | `memory-neural` | 1.0.0 | Persistent neural memory with Graphiti + Qdrant |
+| `memory-neural` | `memory-neural` | 1.0.0 | Persistent neural memory with Graphiti and Qdrant |
 | `nextjs-expert` | `nextjs-expert` | 1.1.16 | Next.js 16, RSC, Server Actions, Prisma 7, Better Auth |
-| `prompt-engineer` | `prompt-engineer` | 1.1.6 | Prompt + agent design, A/B testing, guardrails |
+| `prompt-engineer` | `prompt-engineer` | 1.1.6 | Prompt and agent design, A/B testing, guardrails |
 | `react-expert` | `react-expert` | 1.0.13 | React 19, TanStack Router, Zustand, Testing Library |
 | `security-expert` | `security-expert` | 1.0.11 | OWASP Top 10, CVE research, dependency audit, security headers |
 | `seo` | `seo` | 1.0.2 | SEO / SEA / GEO 2026, AI Overviews, structured data |
-| `shadcn-expert` | `shadcn-expert` | 1.0.10 | shadcn/ui (Radix + Base UI), theming, registries |
+| `shadcn-expert` | `shadcn-expert` | 1.0.10 | shadcn/ui, Radix, Base UI, theming, registries |
 | `solid` | `solid` | 1.0.10 | Multi-language SOLID orchestrator |
-| `swift-apple-expert` | `swift-apple-expert` | 1.1.12 | Swift 6.2 + SwiftUI for all Apple platforms |
-| `tailwindcss` | `tailwindcss` | 1.1.3 | Tailwind v4.1 — Oxide engine, OKLCH, container queries |
+| `swift-apple-expert` | `swift-apple-expert` | 1.1.12 | Swift 6.2 and SwiftUI for all Apple platforms |
+| `tailwindcss` | `tailwindcss` | 1.1.3 | Tailwind v4.1, Oxide engine, OKLCH, container queries |
 
-## Conventions Codex CLI utilisées
+## Codex CLI Conventions
 
-| Concept | Implémentation | Source doc |
+| Concept | Implementation | Docs |
 |---|---|---|
 | Plugin manifest | `.codex-plugin/plugin.json` | `developers.openai.com/codex/plugins/build` |
-| Plugin name = folder name | enforced via `fix-conformance.ts` | id. |
-| Marketplace registry | `.agents/plugins/marketplace.json` (objet `source: {source:"local", path}`) | id. |
-| Skill | `skills/<name>/SKILL.md` (frontmatter strict: `name`, `description`) | `developers.openai.com/codex/skills` |
-| Subagent | `agents/<name>.toml` (TOML, `sandbox_mode`, `developer_instructions`) | `developers.openai.com/codex/subagents` |
-| Hooks | `hooks/hooks.json` — 6 events officiels | `developers.openai.com/codex/hooks` |
-| Hook env vars | `${PLUGIN_ROOT}`, `${PLUGIN_DATA}` | id. |
-| MCP servers | `.mcp.json` (direct map, pas de wrapper, pas de `type` field) | PR #18780 |
-| AGENTS.md | Auto-loaded depuis `~/.codex/AGENTS.md` + walk git root → CWD | `developers.openai.com/codex/guides/agents-md` |
+| Plugin name = folder name | enforced via `fix-conformance.ts` | same |
+| Marketplace registry | `.agents/plugins/marketplace.json` (`source: {source:"local", path}`) | same |
+| Skill | `skills/<name>/SKILL.md` with strict `name` and `description` frontmatter | `developers.openai.com/codex/skills` |
+| Subagent | `agents/<name>.toml` with `sandbox_mode` and `developer_instructions` | `developers.openai.com/codex/subagents` |
+| Hooks | `hooks/hooks.json` with 6 stable events | `developers.openai.com/codex/hooks` |
+| Hook env vars | `${PLUGIN_ROOT}`, `${PLUGIN_DATA}` | same |
+| MCP servers | `.mcp.json` direct map, no wrapper, no `type` field | PR #18780 |
+| AGENTS.md | Auto-loaded from `~/.codex/AGENTS.md` plus Git root to CWD walk | `developers.openai.com/codex/guides/agents-md` |
 
-### 6 hook events Codex utilisés
-- `SessionStart` — au boot d'une session (matcher : `startup`, `resume`, `clear`)
-- `UserPromptSubmit` — submission du prompt utilisateur
-- `PreToolUse` — avant exécution d'un tool (matcher = regex sur tool name)
-- `PostToolUse` — après exécution
-- `PermissionRequest` — quand approbation requise
-- `Stop` — fin de turn
+### 6 Codex Hook Events
 
-`PreCompact` ne doit pas être enregistré par les plugins tant que l'événement
-n'est pas stabilisé côté Codex.
+- `SessionStart` - session boot (`startup`, `resume`, `clear`)
+- `UserPromptSubmit` - user prompt submission
+- `PreToolUse` - before tool execution (matcher = regex on tool name)
+- `PostToolUse` - after tool execution
+- `PermissionRequest` - when approval is required
+- `Stop` - end of turn
 
-### 22 MCP servers bundlés
+Do not register `PreCompact` for plugin hooks until Codex stabilizes it.
 
-**Originaux (12)** : `exa`, `sequential-thinking`, `context7`, `gemini-design`, `shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`, `XcodeBuildMCP`, `apple-docs`.
+### 22 Bundled MCP Servers
 
-**Ajoutés v1.2.0 (+12)** : `astro-docs`, `filesystem`, `playwright`, `postgres`, `github`, `supabase`, `slack`, `sentry`, `stripe`, `notion`, `brave-search`, `replicate` — installables via le prompt interactif `mcp-select` au setup.
+**Originals (12):** `exa`, `sequential-thinking`, `context7`, `gemini-design`,
+`shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`,
+`XcodeBuildMCP`, `apple-docs`.
+
+**Added in v1.2.0 (+12):** `astro-docs`, `filesystem`, `playwright`,
+`postgres`, `github`, `supabase`, `slack`, `sentry`, `stripe`, `notion`,
+`brave-search`, `replicate`. They are installable through the interactive
+`mcp-select` prompt during setup.
 
 ## Layout
 
-```
+```text
 codex-plugins/
-├── AGENTS.md                          ← règles globales Codex
-├── setup.sh                           ← entry point install
-├── package.json                       ← Bun, type: module
-├── tsconfig.json                      ← Bun strict
-├── .agents/plugins/marketplace.json   ← registre 19 plugins
-├── plugins/                           ← 19 plugins
+├── AGENTS.md                          # global Codex rules
+├── setup.sh                           # install entry point
+├── package.json                       # Bun, type: module
+├── tsconfig.json                      # Bun strict
+├── .agents/plugins/marketplace.json   # 19-plugin registry
+├── plugins/                           # 19 plugins
 │   └── <plugin>/
 │       ├── .codex-plugin/plugin.json
 │       ├── skills/<name>/SKILL.md
 │       ├── agents/<name>.toml
 │       ├── hooks/hooks.json
-│       ├── .mcp.json                  ← si MCP servers
-│       ├── scripts/                   ← Bun TS + Bun→Python wrappers
-│       │   └── _legacy_py/            ← originaux Python (archive)
-│       └── .cartographer/             ← maps auto
-└── scripts/                           ← outillage Bun
-    ├── migrate.ts                     ← claude-plugins → codex-plugins
-    ├── install-codex.ts               ← entry installer
-    ├── convert-py-to-bun.ts           ← transpileur regex .py → .ts
-    ├── fix-conformance.ts             ← align manifests/models/marketplace
-    ├── fix-real-issues.ts             ← fix interface/matchers post-audit
-    ├── fix-legacy-py-paths.ts         ← patch ~/.claude → ~/.codex dans _legacy_py
-    ├── final-conformance.ts           ← SKILL.md cleanup + wrappers
-    ├── migrate-mcp.ts                 ← mcp.json.bak → .mcp.json Codex
+│       ├── .mcp.json                  # when MCP servers exist
+│       ├── scripts/                   # Bun TS + Bun-to-Python wrappers
+│       │   └── _legacy_py/            # archived Python originals
+│       └── .cartographer/             # generated maps
+└── scripts/                           # Bun tooling
+    ├── migrate.ts                     # claude-plugins to codex-plugins
+    ├── install-codex.ts               # installer entry
+    ├── convert-py-to-bun.ts           # regex-based .py to .ts converter
+    ├── fix-conformance.ts             # align manifests/models/marketplace
+    ├── fix-real-issues.ts             # fix interfaces/matchers after audit
+    ├── fix-legacy-py-paths.ts         # patch ~/.claude to ~/.codex in _legacy_py
+    ├── final-conformance.ts           # SKILL.md cleanup and wrappers
+    ├── migrate-mcp.ts                 # mcp.json.bak to .mcp.json
     └── lib/
-        └── install/                   ← runner, marketplace, features, agents-md, enable-plugins, mcp
+        └── install/                   # runner, marketplace, features, agents-md, enable-plugins, mcp
 ```
 
-## Limitations connues (Codex CLI 0.130.x)
+## Known Limitations (Codex CLI 0.130.x)
 
-| Limite | Statut |
+| Limit | Status |
 |---|---|
-| `codex plugin add NAME@MARKETPLACE` | Pas dispo en 0.130.0 — fallback via patch direct `config.toml` |
-| Statusline command-backed (`["bun", "/path"]`) | Retiré du runtime depuis PR #10546 — feature request ouverte (issue #20244). Code statusline préservé dans `core-guards/statusline/` pour quand ça reviendra |
-| 134 scripts hook | Wrappers Bun → `python3` (preserves Python originals). Réécriture native Bun à venir |
+| `codex plugin add NAME@MARKETPLACE` | Not available in 0.130.0; fallback patches `config.toml` directly |
+| Command-backed statusline (`["bun", "/path"]`) | Removed from runtime since PR #10546; feature request open (issue #20244). Statusline code is preserved in `core-guards/statusline/` for future support |
+| 134 hook scripts | Bun wrappers call `python3` and preserve Python originals. Native Bun rewrite is pending |
 
-## Manques connus (parité claude-plugins → codex-plugins)
+## Known Gaps (claude-plugins to codex-plugins parity)
 
-Tous les manques identifiés au diff de parité v1.1.x sont désormais comblés en v1.2.0 :
+All gaps identified in the v1.1.x parity diff are closed in v1.2.0:
 
-- [x] **Backup** des fichiers Codex avant modification (`fs-helpers.ts` + `backup.ts`)
-- [x] **`setup-plugins.ts`** : orchestration centralisée des étapes d'install plugin par plugin
-- [x] **Catalogue MCP étendu** : +12 serveurs (`mcp-catalog.ts`, voir liste ci-dessus, 24 au total)
-- [x] **Installateurs env shell** dédiés (`env-shell` installers, conf.d / rc append / pwsh profile)
-- [x] **Statusline `dist/`** buildée (statusline custom non supporté par Codex 0.130, suivi issue #17827)
-- [~] **`_shared/`** : doublon `apex_constants.ts` identifié (vs `apex-constants.ts`) ; 4 autres snake_case (`cache_compactor`, `cache_io`, `mcp_response`, `state_manager`) confirmés uniques. Suppression bloquée — à traiter manuellement.
-- [x] **`commit-pro`** : assets restaurés depuis claude-plugins — `commands/` (10), `CHANGELOG.md`, `LICENSE`, `README.md`. (Hooks non restaurés.)
-- [x] **`perf-env.ts`** : prompt interactif env Codex **binary-verified** (`RUST_LOG`, `CODEX_TUI_ROUNDED`, `GIT_OPTIONAL_LOCKS`)
-- [x] **`plugin-scanner.ts`** : rapport diagnostic post-install (manifest / hooks / MCP / skills / agents par plugin)
+- [x] Codex file backups before modification (`fs-helpers.ts` + `backup.ts`)
+- [x] `setup-plugins.ts`: centralized per-plugin install orchestration
+- [x] Expanded MCP catalog: +12 servers (`mcp-catalog.ts`, 24 total)
+- [x] Dedicated shell environment installers (conf.d / rc append / PowerShell profile)
+- [x] Built `dist/` statusline (custom statusline not supported by Codex 0.130; tracked in issue #17827)
+- [~] `_shared/`: duplicate `apex_constants.ts` identified versus `apex-constants.ts`; four other snake_case files are confirmed unique. Manual cleanup remains.
+- [x] `commit-pro`: assets restored from claude-plugins (`commands/`, `CHANGELOG.md`, `LICENSE`, `README.md`). Hooks were not restored.
+- [x] `perf-env.ts`: binary-verified Codex environment prompt (`RUST_LOG`, `CODEX_TUI_ROUNDED`, `GIT_OPTIONAL_LOCKS`)
+- [x] `plugin-scanner.ts`: post-install diagnostic report (manifest / hooks / MCP / skills / agents per plugin)
 
-> **Pas d'équivalent Codex** pour les perf vars Claude Code (`CLAUDE_CODE_FORK_SUBAGENT`, `CLAUDE_CODE_ATTRIBUTION_HEADER`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_AUTOUPDATER`). Vérifié via `strings $(which codex)` 0.130.0 — ces symboles n'existent pas dans le binaire. Pas de toggle telemetry ni autoupdate côté CLI Codex (telemetry server-side, autoupdate via `codex --upgrade`). `perf-env.ts` se limite donc aux 3 env vars réellement reconnues.
+> There is no Codex equivalent for Claude Code performance variables
+> (`CLAUDE_CODE_FORK_SUBAGENT`, `CLAUDE_CODE_ATTRIBUTION_HEADER`,
+> `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_AUTOUPDATER`). This was
+> verified with `strings $(which codex)` on 0.130.0; those symbols do not exist
+> in the binary. Codex has no CLI telemetry toggle or autoupdate toggle
+> equivalent; telemetry is server-side and upgrades use `codex --upgrade`.
+> `perf-env.ts` is limited to the three recognized environment variables.
 
-### Output `plugin-scanner` (fin d'install)
+### `plugin-scanner` Output
 
-```
+```text
 Plugin diagnostic (19 plugins scanned):
-  ai-pilot              manifest ✓  hooks 4 evt / 12 hdl  mcp 2  skills 6  agents 5
-  astro-expert          manifest ✓  hooks 2 evt /  4 hdl  mcp 1  skills 12 agents 1
+  ai-pilot              manifest OK  hooks 4 evt / 12 hdl  mcp 2  skills 6  agents 5
+  astro-expert          manifest OK  hooks 2 evt /  4 hdl  mcp 1  skills 12 agents 1
   ...
-Issues : 0 missing manifest, 0 malformed hooks.json, 0 malformed .mcp.json.
+Issues: 0 missing manifest, 0 malformed hooks.json, 0 malformed .mcp.json.
 ```
 
-## Outils dev
+## Dev Tools
 
 ```bash
-bun run migrate            # re-générer plugins/* depuis ../claude-plugins/
-bun run scripts/convert-py-to-bun.ts    # py → ts batch
+bun run migrate                         # regenerate plugins/* from ../claude-plugins/
+bun run scripts/convert-py-to-bun.ts    # batch py to ts conversion
 bun run scripts/fix-conformance.ts      # align manifests/models/marketplace
-bun run scripts/migrate-mcp.ts          # mcp.json.bak → .mcp.json Codex
+bun run scripts/migrate-mcp.ts          # mcp.json.bak to .mcp.json
 ```
 
 ## License
 
-MIT — voir [LICENSE](LICENSE) (à venir).
+MIT. See [LICENSE](LICENSE) when available.
