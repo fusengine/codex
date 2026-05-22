@@ -2,10 +2,53 @@
  * Helpers for enforce-apex-phases: framework detection and skill source mapping.
  * Extracted to keep the main hook file under 100 lines.
  */
+import { existsSync, readdirSync } from "node:fs";
+import { dirname, join } from "node:path";
 import type { RouteResult } from "../interfaces/ref-router.interface";
 
 const HOME = process.env.HOME ?? "";
 const PLUGINS_DIR = `${process.env.CODEX_HOME ?? `${HOME}/.codex`}/plugins/cache/fusengine-codex`;
+
+function findSourcePluginsDir(start: string): string | undefined {
+  let dir = start;
+  while (dir !== dirname(dir)) {
+    const pluginsDir = join(dir, "plugins");
+    if (existsSync(join(pluginsDir, "ai-pilot", "scripts"))) return pluginsDir;
+    dir = dirname(dir);
+  }
+  return undefined;
+}
+
+function findInstalledPluginRoot(pluginName: string): string | undefined {
+  const pluginDir = join(PLUGINS_DIR, pluginName);
+  if (!existsSync(pluginDir)) return undefined;
+  const versions = readdirSync(pluginDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && existsSync(join(pluginDir, entry.name, "skills")))
+    .map((entry) => entry.name)
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  const latest = versions.at(-1);
+  return latest ? join(pluginDir, latest) : undefined;
+}
+
+function findPluginRoot(pluginName: string): string | undefined {
+  const sourcePlugins = findSourcePluginsDir(dirname(import.meta.path));
+  if (sourcePlugins && existsSync(join(sourcePlugins, pluginName, "skills"))) {
+    return join(sourcePlugins, pluginName);
+  }
+  return findInstalledPluginRoot(pluginName);
+}
+
+function skillPath(pluginName: string, skillName: string): string {
+  const root = findPluginRoot(pluginName);
+  if (root) return join(root, "skills", skillName, "SKILL.md");
+  return join(PLUGINS_DIR, pluginName, "<version>", "skills", skillName, "SKILL.md");
+}
+
+function skillDir(pluginName: string, skillName: string): string {
+  const root = findPluginRoot(pluginName);
+  if (root) return join(root, "skills", skillName);
+  return join(PLUGINS_DIR, pluginName, "<version>", "skills", skillName);
+}
 
 /**
  * Detect framework from file path extension and content patterns.
@@ -36,16 +79,16 @@ export function detectFramework(filePath: string, content: string): string {
  */
 export function getSkillSource(framework: string): string {
   const map: Record<string, string> = {
-    react: `${PLUGINS_DIR}/react-expert/skills/react-19/SKILL.md`,
-    nextjs: `${PLUGINS_DIR}/nextjs-expert/skills/nextjs-16/SKILL.md`,
-    swift: `${PLUGINS_DIR}/swift-apple-expert/skills/swiftui-components/SKILL.md`,
-    laravel: `${PLUGINS_DIR}/laravel-expert/skills/laravel-eloquent/SKILL.md`,
-    tailwind: `${PLUGINS_DIR}/tailwindcss/skills/tailwindcss-v4/SKILL.md`,
-    generic: `${PLUGINS_DIR}/solid/skills/solid-generic/SKILL.md`,
-    java: `${PLUGINS_DIR}/solid/skills/solid-java/SKILL.md`,
-    go: `${PLUGINS_DIR}/solid/skills/solid-go/SKILL.md`,
-    ruby: `${PLUGINS_DIR}/solid/skills/solid-ruby/SKILL.md`,
-    rust: `${PLUGINS_DIR}/solid/skills/solid-rust/SKILL.md`,
+    react: skillPath("react-expert", "react-19"),
+    nextjs: skillPath("nextjs-expert", "nextjs-16"),
+    swift: skillPath("swift-apple-expert", "swiftui-core"),
+    laravel: skillPath("laravel-expert", "laravel-eloquent"),
+    tailwind: skillPath("tailwindcss", "tailwindcss-v4"),
+    generic: skillPath("solid", "solid-generic"),
+    java: skillPath("solid", "solid-java"),
+    go: skillPath("solid", "solid-go"),
+    ruby: skillPath("solid", "solid-ruby"),
+    rust: skillPath("solid", "solid-rust"),
   };
   return map[framework] ?? "mcp__context7__query-docs";
 }
@@ -56,17 +99,17 @@ export function getSkillSource(framework: string): string {
  */
 export function getSkillDir(framework: string): string {
   const map: Record<string, string> = {
-    react: `${PLUGINS_DIR}/react-expert/skills/solid-react`,
-    nextjs: `${PLUGINS_DIR}/nextjs-expert/skills/solid-nextjs`,
-    swift: `${PLUGINS_DIR}/swift-apple-expert/skills/solid-swift`,
-    laravel: `${PLUGINS_DIR}/laravel-expert/skills/solid-php`,
-    generic: `${PLUGINS_DIR}/solid/skills/solid-generic`,
-    java: `${PLUGINS_DIR}/solid/skills/solid-java`,
-    go: `${PLUGINS_DIR}/solid/skills/solid-go`,
-    ruby: `${PLUGINS_DIR}/solid/skills/solid-ruby`,
-    rust: `${PLUGINS_DIR}/solid/skills/solid-rust`,
+    react: skillDir("react-expert", "solid-react"),
+    nextjs: skillDir("nextjs-expert", "solid-nextjs"),
+    swift: skillDir("swift-apple-expert", "solid-swift"),
+    laravel: skillDir("laravel-expert", "solid-php"),
+    generic: skillDir("solid", "solid-generic"),
+    java: skillDir("solid", "solid-java"),
+    go: skillDir("solid", "solid-go"),
+    ruby: skillDir("solid", "solid-ruby"),
+    rust: skillDir("solid", "solid-rust"),
   };
-  return map[framework] ?? `${PLUGINS_DIR}/solid/skills/solid-generic`;
+  return map[framework] ?? skillDir("solid", "solid-generic");
 }
 
 /**

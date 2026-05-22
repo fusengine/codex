@@ -17,6 +17,9 @@ import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
 import { installPluginCache } from "./plugin-cache";
+import { installRuntimeShared } from "./runtime-shared";
+import { cleanupDeprecatedCodexFlags } from "./cleanup-deprecated-flags";
+import { inspectInstalledState, summarizeInstalledState } from "./installed-state";
 
 export interface SetupOptions {
 	projectRoot: string;
@@ -54,6 +57,15 @@ async function registerMarketplace(opts: SetupOptions): Promise<"cli" | "config"
 	return "config";
 }
 
+function reportInstalledState(opts: SetupOptions): void {
+	const states = inspectInstalledState(opts.projectRoot, opts.codexHome, opts.marketplaceName);
+	const summary = summarizeInstalledState(states);
+	p.log.info(`Installed state: current=${summary.current}, missing=${summary.missing}, stale=${summary.stale}, broken=${summary.broken}`);
+	for (const state of states.filter((item) => item.status !== "current").slice(0, 8)) {
+		p.log.warn(`${state.name}: ${state.status} (${state.reasons.join("; ")})`);
+	}
+}
+
 async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): Promise<void> {
 	if (opts.skipPluginInstall) return;
 	if (mode !== "cli" || !(await supportsPluginAdd())) {
@@ -86,8 +98,11 @@ async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): 
 
 export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await backupConfig(opts.codexHome);
+	cleanupDeprecatedCodexFlags(opts.codexHome);
 	await scanAndPrepare(join(opts.projectRoot, "plugins"));
+	await installRuntimeShared(opts.projectRoot, opts.codexHome);
 	const mode = await registerMarketplace(opts);
+	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
 	await maybeInstallPlugins(opts, mode);

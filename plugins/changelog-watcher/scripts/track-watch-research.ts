@@ -18,8 +18,12 @@ function findPluginRoot(start: string): string {
 
 const pluginRoot = findPluginRoot(here);
 const codexHome = process.env.CODEX_HOME ?? join(homedir(), ".codex");
-const sharedScripts = join(pluginRoot, "..", "_shared", "scripts");
-const pythonPath = [sharedScripts, process.env.PYTHONPATH].filter(Boolean).join(":");
+const sharedScripts = [
+	process.env.FUSENGINE_SYS ? join(process.env.FUSENGINE_SYS, "shared", "scripts") : "",
+	join(codexHome, "fusengine-sys", "shared", "scripts"),
+	join(pluginRoot, "..", "_shared", "scripts"),
+].filter(Boolean);
+const pythonPath = [...sharedScripts, process.env.PYTHONPATH].filter(Boolean).join(":");
 
 const proc = Bun.spawn(["python3", py], {
 	stdin: "inherit",
