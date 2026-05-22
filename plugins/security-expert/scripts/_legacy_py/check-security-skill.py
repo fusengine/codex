@@ -6,17 +6,16 @@ import re
 import sys
 from datetime import date
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import first_edit_target
+
 
 def main():
     """Check if security skill was consulted before Write/Edit."""
     data = json.load(sys.stdin)
-    tool_name = data.get("tool_name", "")
-    file_path = data.get("tool_input", {}).get("file_path", "")
-
-    if tool_name not in ("Write", "Edit"):
-        sys.exit(0)
-
-    if not re.search(r"\.(ts|tsx|js|jsx|py|php|swift|go|rs|rb|java)$", file_path):
+    target = first_edit_target(
+        data, r"\.(ts|tsx|js|jsx|py|php|swift|go|rs|rb|java)$")
+    if not target:
         sys.exit(0)
 
     state_dir = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "logs", "00-security")

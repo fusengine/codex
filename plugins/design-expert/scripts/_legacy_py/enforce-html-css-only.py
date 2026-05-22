@@ -5,6 +5,7 @@ import json, os, re, sys
 _SHARED = os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts"))
 sys.path.insert(0, _SHARED)
 from hook_output import allow_pass
+from edit_targets import iter_edit_targets
 
 CACHE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine")
 FLAG_FILE = os.path.join(CACHE_DIR, "design-agent-active")
@@ -35,16 +36,18 @@ def main() -> None:
         sys.exit(0)
     if design_agent_id and current_agent_id != design_agent_id:
         sys.exit(0)
-    fp = (data.get("tool_input") or {}).get("file_path", "")
-    if not fp:
-        sys.exit(0)
-    if any(d in fp for d in EXEMPT_DIRS):
-        sys.exit(0)
-    if ALLOWED_EXT.search(fp):
-        allow_pass("enforce-html-css-only", f"allowed: {os.path.basename(fp)}")
-        return
-    print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
-        "permissionDecision": "deny", "permissionDecisionReason": DENY_MSG}}))
+    checked = False
+    for target in iter_edit_targets(data):
+        fp = target.get("file_path", "")
+        if not fp or any(d in fp for d in EXEMPT_DIRS):
+            continue
+        checked = True
+        if not ALLOWED_EXT.search(fp):
+            print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
+                "permissionDecision": "deny", "permissionDecisionReason": DENY_MSG}}))
+            return
+    if checked:
+        allow_pass("enforce-html-css-only", "allowed design files")
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@ function validateHookTargets(): void {
 		const data = JSON.parse(readFileSync(file, "utf8"));
 		for (const entries of Object.values(data.hooks ?? {}) as any[]) {
 			for (const entry of entries) {
-				if (/mcp_tool_call|^bash$|Write|Edit/.test(entry.matcher ?? "")) {
+				if (/mcp_tool_call|^bash$/.test(entry.matcher ?? "")) {
 					throw new Error(`${file}: invalid matcher '${entry.matcher}'`);
 				}
 				for (const hook of entry.hooks ?? []) {

@@ -5,6 +5,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
+
 
 def count_loc(file_path):
     """Count lines of code excluding comments and blank lines."""
@@ -40,27 +43,25 @@ def main():
         sys.exit(0)
 
     data = json.load(sys.stdin)
-    file_path = (
-        data.get("tool_input", {}).get("file_path")
-        or data.get("tool_input", {}).get("filePath")
-        or ""
-    )
-    if not file_path or not os.path.isfile(file_path):
-        sys.exit(0)
-
-    loc = count_loc(file_path)
     limit = int(os.environ.get("SOLID_FILE_LIMIT", "100"))
+    for target in iter_edit_targets(data):
+        file_path = target.get("file_path", "")
+        if not file_path or not os.path.isfile(file_path):
+            continue
 
-    if loc > limit:
-        filename = os.path.basename(file_path)
-        reason = (f"SOLID: {filename} has {loc} lines (limit: {limit})."
-                  " Consider splitting into smaller modules.")
-        print(json.dumps({
-            "hookSpecificOutput": {
-                "hookEventName": "PostToolUse",
-                "additionalContext": reason,
-            }
-        }))
+        loc = count_loc(file_path)
+
+        if loc > limit:
+            filename = os.path.basename(file_path)
+            reason = (f"SOLID: {filename} has {loc} lines (limit: {limit})."
+                      " Consider splitting into smaller modules.")
+            print(json.dumps({
+                "hookSpecificOutput": {
+                    "hookEventName": "PostToolUse",
+                    "additionalContext": reason,
+                }
+            }))
+            break
 
     sys.exit(0)
 

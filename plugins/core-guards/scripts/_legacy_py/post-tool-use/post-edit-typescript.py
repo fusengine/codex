@@ -10,6 +10,10 @@ import shutil
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.abspath(os.path.join(
+    os.path.dirname(__file__), "..", "..", "..", "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
+
 TS_EXTENSIONS = ('.ts', '.tsx')
 TIMEOUT_SEC = 10
 
@@ -21,47 +25,53 @@ def main():
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
 
-    file_path = data.get('tool_input', {}).get('file_path', '')
-    if not file_path or not file_path.endswith(TS_EXTENSIONS):
-        sys.exit(0)
-    if not os.path.isfile(file_path):
+    file_paths = [
+        target.get('file_path', '')
+        for target in iter_edit_targets(data)
+        if target.get('file_path', '').endswith(TS_EXTENSIONS)
+        and os.path.isfile(target.get('file_path', ''))
+    ]
+    if not file_paths:
         sys.exit(0)
 
     issues = []
 
     if shutil.which('eslint'):
-        try:
-            result = subprocess.run(
-                ['eslint', '--no-fix', '--format', 'compact', file_path],
-                capture_output=True, text=True, timeout=TIMEOUT_SEC,
-                check=False,
-            )
-            if result.returncode != 0 and result.stdout.strip():
-                issues.append(f"ESLint:\n{result.stdout.strip()}")
-        except (subprocess.TimeoutExpired, OSError):
-            pass
+        for file_path in file_paths:
+            try:
+                result = subprocess.run(
+                    ['eslint', '--no-fix', '--format', 'compact', file_path],
+                    capture_output=True, text=True, timeout=TIMEOUT_SEC,
+                    check=False,
+                )
+                if result.returncode != 0 and result.stdout.strip():
+                    issues.append(f"ESLint:\n{result.stdout.strip()}")
+            except (subprocess.TimeoutExpired, OSError):
+                pass
 
     if shutil.which('prettier'):
-        try:
-            result = subprocess.run(
-                ['prettier', '--check', file_path],
-                capture_output=True, text=True, timeout=TIMEOUT_SEC,
-                check=False,
-            )
-            if result.returncode != 0:
-                issues.append(
-                    f"Prettier: {os.path.basename(file_path)} needs formatting"
+        for file_path in file_paths:
+            try:
+                result = subprocess.run(
+                    ['prettier', '--check', file_path],
+                    capture_output=True, text=True, timeout=TIMEOUT_SEC,
+                    check=False,
                 )
-        except (subprocess.TimeoutExpired, OSError):
-            pass
+                if result.returncode != 0:
+                    issues.append(
+                        f"Prettier: {os.path.basename(file_path)} needs formatting"
+                    )
+            except (subprocess.TimeoutExpired, OSError):
+                pass
 
     if issues:
         report = ' | '.join(issues)
+        names = ', '.join(os.path.basename(fp) for fp in file_paths)
         print(json.dumps({
             "hookSpecificOutput": {
                 "hookEventName": "PostToolUse",
                 "additionalContext": (
-                    f"Lint issues in {os.path.basename(file_path)}: {report}"
+                    f"Lint issues in {names}: {report}"
                 )
             }
         }))

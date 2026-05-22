@@ -5,6 +5,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
+
 
 def deny_solid(reason):
     """Output deny decision and exit."""
@@ -62,27 +65,17 @@ def main():
         sys.exit(0)
 
     data = json.load(sys.stdin)
-    file_path = (
-        data.get("tool_input", {}).get("file_path")
-        or data.get("tool_input", {}).get("filePath")
-        or ""
-    )
-    if not file_path:
-        sys.exit(0)
-
-    content = (
-        data.get("tool_input", {}).get("content")
-        or data.get("tool_input", {}).get("new_string")
-        or ""
-    )
-
     validators = {
         "nextjs": check_nextjs, "laravel": check_laravel,
         "swift": check_swift, "go": check_go, "python": check_python,
     }
     validator = validators.get(ptype)
     if validator:
-        validator(file_path, content)
+        for target in iter_edit_targets(data):
+            file_path = target.get("file_path", "")
+            content = target.get("content", "")
+            if file_path and content:
+                validator(file_path, content)
 
     sys.exit(0)
 

@@ -11,6 +11,7 @@ import re
 import sys
 
 from check_skill_common import deny_block
+from edit_targets import iter_edit_targets
 from hook_output import allow_pass
 from _duplication_patterns import (
     _KEYWORDS, _TS_PAT, _PHP_PAT, _TS_EXTENSIONS, _grep_dupes,
@@ -36,33 +37,31 @@ def main() -> None:
         data = json.load(sys.stdin)
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
-    if data.get("tool_name") not in ("Write", "Edit"):
-        sys.exit(0)
-    ti = data.get("tool_input") or {}
-    content = ti.get("content") or ti.get("new_string") or ""
-    fp = ti.get("file_path", "")
-    if not content or not fp:
-        sys.exit(0)
-    ext = os.path.splitext(fp)[1].lower()
-    if ext not in (*_TS_EXTENSIONS, ".php"):
-        sys.exit(0)
-    cwd = data.get("cwd") or os.path.dirname(fp) or "."
-    names = _extract_names(content, ext)
-    dupes = _grep_dupes(names, cwd, ext, fp)
-    if dupes:
-        preview = ", ".join(sorted(names)[:5])
-        files = ", ".join(dupes[:3])
-        if len(dupes) > 3:
-            files += f" (+{len(dupes) - 3} more)"
-        if len(dupes) == 1:
-            allow_pass(
-                "detect_duplication",
-                f"DRY WARNING: [{preview}] may exist in: {files}. "
-                f"Check if you can reuse existing code.")
-        else:
-            deny_block(
-                f"DRY BLOCKED: [{preview}] already exist in: {files}. "
-                f"Import and reuse existing code instead of rewriting.")
+    cwd = data.get("cwd") or os.getcwd()
+    for target in iter_edit_targets(data):
+        fp = target.get("file_path", "")
+        content = target.get("content", "")
+        if not content or not fp:
+            continue
+        ext = os.path.splitext(fp)[1].lower()
+        if ext not in (*_TS_EXTENSIONS, ".php"):
+            continue
+        names = _extract_names(content, ext)
+        dupes = _grep_dupes(names, cwd, ext, fp)
+        if dupes:
+            preview = ", ".join(sorted(names)[:5])
+            files = ", ".join(dupes[:3])
+            if len(dupes) > 3:
+                files += f" (+{len(dupes) - 3} more)"
+            if len(dupes) == 1:
+                allow_pass(
+                    "detect_duplication",
+                    f"DRY WARNING: [{preview}] may exist in: {files}. "
+                    f"Check if you can reuse existing code.")
+            else:
+                deny_block(
+                    f"DRY BLOCKED: [{preview}] already exist in: {files}. "
+                    f"Import and reuse existing code instead of rewriting.")
 
 
 if __name__ == "__main__":

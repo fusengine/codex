@@ -9,6 +9,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 # pylint: disable=wrong-import-position
 from check_skill_common import find_project_root
+from edit_targets import iter_edit_targets, target_content
 from hook_output import allow_pass
 from validate_solid_common import (
     count_code_lines, deny_solid_violation, get_full_file_content)
@@ -51,24 +52,21 @@ def main() -> None:
         data = json.load(sys.stdin)
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
-    tool_name = data.get("tool_name", "")
-    tool_input = data.get("tool_input") or {}
-    file_path = tool_input.get("file_path", "")
-    if tool_name not in ("Write", "Edit"):
-        sys.exit(0)
-    if not re.search(r"\.(tsx|ts|jsx|js)$", file_path):
-        sys.exit(0)
-    if re.search(r"/(node_modules|dist|build|\.next)/", file_path):
-        sys.exit(0)
-    if not _is_nextjs_project(file_path):
-        sys.exit(0)
-    content = tool_input.get("content") or tool_input.get("new_string") or ""
-    if not content:
-        sys.exit(0)
-    full_file = get_full_file_content(tool_name, file_path, content)
-    violations = _check_violations(file_path, content, full_file)
-    if violations:
-        deny_solid_violation(file_path, violations)
+    for target in iter_edit_targets(data):
+        file_path = target.get("file_path", "")
+        if not re.search(r"\.(tsx|ts|jsx|js)$", file_path):
+            continue
+        if re.search(r"/(node_modules|dist|build|\.next)/", file_path):
+            continue
+        if not _is_nextjs_project(file_path):
+            continue
+        content = target.get("content", "")
+        if not content:
+            continue
+        full_file = target_content(target, prefer_existing=True)
+        violations = _check_violations(file_path, content, full_file)
+        if violations:
+            deny_solid_violation(file_path, violations)
     allow_pass("validate-nextjs-solid", "SOLID ok")
 
 

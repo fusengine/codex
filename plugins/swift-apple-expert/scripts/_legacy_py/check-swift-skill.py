@@ -13,7 +13,8 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_skill_common import (
-    deny_block, find_project_root, mcp_research_done, skill_was_consulted)
+    deny_block, find_project_root, first_edit_target, mcp_research_done,
+    skill_was_consulted)
 from hook_output import allow_pass
 from swift_skill_triggers import detect_required_skills, specific_skill_consulted
 
@@ -28,16 +29,13 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_input = data.get("tool_input") or {}
-    file_path = tool_input.get("file_path", "")
-    if data.get("tool_name") not in ("Write", "Edit"):
+    target = first_edit_target(data, r"\.swift$",
+                               r"/(\.build|DerivedData|Pods)/")
+    if not target:
         sys.exit(0)
-    if not file_path.endswith(".swift"):
-        sys.exit(0)
-    if re.search(r"/(\.build|DerivedData|Pods)/", file_path):
-        sys.exit(0)
+    file_path = target["file_path"]
 
-    content = tool_input.get("content") or tool_input.get("new_string") or ""
+    content = target["content"]
     session_id = data.get("session_id") or f"fallback-{os.getpid()}"
     project_root = find_project_root(
         os.path.dirname(file_path),

@@ -8,6 +8,8 @@ import json
 import os
 import sys
 
+from edit_targets import first_edit_target, iter_edit_targets
+
 
 def find_project_root(start_dir: str, *markers: str) -> str:
     """Find project root by walking up and checking for marker files."""

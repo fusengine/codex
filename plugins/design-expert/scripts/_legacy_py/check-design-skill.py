@@ -13,7 +13,8 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_skill_common import (
-    deny_block, find_project_root, mcp_research_done, skill_was_consulted)
+    deny_block, find_project_root, first_edit_target, mcp_research_done,
+    skill_was_consulted)
 from hook_output import allow_pass
 from design_skill_triggers import detect_required_skills, specific_skill_consulted
 
@@ -28,17 +29,14 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_input = data.get("tool_input") or {}
-    file_path = tool_input.get("file_path", "")
-    if data.get("tool_name") not in ("Write", "Edit"):
+    target = first_edit_target(data, r"\.(tsx|jsx|css|scss|html)$",
+                               r"/(node_modules|dist|build)/")
+    if not target:
         sys.exit(0)
-    if not re.search(r"\.(tsx|jsx|css|scss|html)$", file_path):
-        sys.exit(0)
+    file_path = target["file_path"]
     # design-expert writes vanilla HTML/CSS — skip Tailwind skill checks
     # but do NOT skip entirely: other hooks (Gemini check) still need to run
     if re.search(r"\.(html|css)$", file_path):
-        sys.exit(0)
-    if re.search(r"/(node_modules|dist|build)/", file_path):
         sys.exit(0)
     UI_PATH_PATTERNS = (
         r"(components|ui|styles|page|layout|content|view|feature"
@@ -46,7 +44,7 @@ def main() -> None:
     )
     path_match = re.search(UI_PATH_PATTERNS, file_path)
 
-    content = tool_input.get("content") or tool_input.get("new_string") or ""
+    content = target["content"]
     has_jsx_tailwind = bool(re.search(
         r'className\s*=.*(?:flex|grid|p-|m-|bg-|text-|rounded'
         r'|shadow|border|gap-|w-|h-)', content))

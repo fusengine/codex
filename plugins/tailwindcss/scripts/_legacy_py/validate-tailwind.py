@@ -6,6 +6,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
 from hook_output import post_pass
 from project_detect import is_tailwind_project
 
@@ -17,46 +18,42 @@ def main():
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_name = data.get("tool_name", "")
-    file_path = data.get("tool_input", {}).get("file_path", "")
-
-    if tool_name not in ("Write", "Edit"):
-        sys.exit(0)
-    if not re.search(r"\.(css|tsx|jsx)$", file_path):
-        sys.exit(0)
-    if not os.path.isfile(file_path):
-        sys.exit(0)
-    if not is_tailwind_project(file_path):
-        sys.exit(0)
-
     warnings = []
+    for target in iter_edit_targets(data):
+        file_path = target.get("file_path", "")
+        if not re.search(r"\.(css|tsx|jsx)$", file_path):
+            continue
+        if not os.path.isfile(file_path):
+            continue
+        if not is_tailwind_project(file_path):
+            continue
 
-    try:
-        with open(file_path, encoding="utf-8") as f:
-            content = f.read()
-    except OSError:
-        sys.exit(0)
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                content = f.read()
+        except OSError:
+            continue
 
-    if file_path.endswith(".css"):
-        if re.search(r"@tailwind (base|components|utilities)", content):
-            warnings.append(
-                "Tailwind v4: @tailwind directives are deprecated"
-                " - use @import 'tailwindcss'."
-            )
-        apply_count = len(re.findall(r"@apply", content))
-        if apply_count > 10:
-            warnings.append(
-                f"Excessive @apply usage ({apply_count})"
-                " - prefer utility classes directly."
-            )
+        if file_path.endswith(".css"):
+            if re.search(r"@tailwind (base|components|utilities)", content):
+                warnings.append(
+                    "Tailwind v4: @tailwind directives are deprecated"
+                    " - use @import 'tailwindcss'."
+                )
+            apply_count = len(re.findall(r"@apply", content))
+            if apply_count > 10:
+                warnings.append(
+                    f"Excessive @apply usage ({apply_count})"
+                    " - prefer utility classes directly."
+                )
 
-    if re.search(r"\.(tsx|jsx)$", file_path):
-        long_classes = len(re.findall(r'className="[^"]{150,}"', content))
-        if long_classes > 0:
-            warnings.append(
-                f"Very long className ({long_classes} lines)"
-                " - extract to @utility or use cn()."
-            )
+        if re.search(r"\.(tsx|jsx)$", file_path):
+            long_classes = len(re.findall(r'className="[^"]{150,}"', content))
+            if long_classes > 0:
+                warnings.append(
+                    f"Very long className ({long_classes} lines)"
+                    " - extract to @utility or use cn()."
+                )
 
     if warnings:
         print(json.dumps({

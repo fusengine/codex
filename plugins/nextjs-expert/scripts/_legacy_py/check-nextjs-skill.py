@@ -12,7 +12,8 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_skill_common import (
-    deny_block, find_project_root, mcp_research_done, skill_was_consulted)
+    deny_block, find_project_root, first_edit_target, mcp_research_done,
+    skill_was_consulted)
 from hook_output import allow_pass
 from nextjs_skill_triggers import detect_required_skills, specific_skill_consulted
 from shadcn_patterns import is_shadcn_project
@@ -39,11 +40,12 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_input = data.get("tool_input") or {}
-    fp = tool_input.get("file_path", "")
-    if data.get("tool_name") not in ("Write", "Edit"):
+    target = first_edit_target(data, r"\.(tsx|ts|jsx|js)$",
+                               r"/(node_modules|dist|build|\.next)/")
+    if not target:
         sys.exit(0)
-    content = tool_input.get("content") or tool_input.get("new_string") or ""
+    fp = target["file_path"]
+    content = target["content"]
     if not _is_ts_file(fp):
         sys.exit(0)
 

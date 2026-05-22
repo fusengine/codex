@@ -7,6 +7,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
 from hook_output import allow_pass
 
 
@@ -43,47 +44,43 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_name = data.get("tool_name", "")
-    tool_input = data.get("tool_input") or {}
-    file_path = tool_input.get("file_path", "")
+    for target in iter_edit_targets(data):
+        file_path = target.get("file_path", "")
+        if not re.search(r"\.(tsx|ts|jsx|js)$", file_path):
+            continue
+        if re.search(r"/(node_modules|dist|build)/", file_path):
+            continue
 
-    if tool_name not in ("Write", "Edit"):
-        sys.exit(0)
-    if not re.search(r"\.(tsx|ts|jsx|js)$", file_path):
-        sys.exit(0)
-    if re.search(r"/(node_modules|dist|build)/", file_path):
-        sys.exit(0)
+        content = target.get("content", "")
+        # Skip Next.js code (handled by nextjs-expert)
+        if re.search(r"(use client|use server|NextRequest|NextResponse|from ['\"]next)", content):
+            continue
+        if not content:
+            continue
 
-    content = tool_input.get("content") or tool_input.get("new_string") or ""
-    # Skip Next.js code (handled by nextjs-expert)
-    if re.search(r"(use client|use server|NextRequest|NextResponse|from ['\"]next)", content):
-        sys.exit(0)
-    if not content:
-        sys.exit(0)
+        line_count = count_code_lines(content)
+        violations = []
 
-    line_count = count_code_lines(content)
-    violations = []
-
-    if line_count > 100:
-        violations.append(
-            f"File has {line_count} lines (limit: 100). "
-            "Split to hooks/, components/, or utils/."
-        )
-
-    if "/components/" in file_path:
-        if re.search(r"^(export )?(interface|type) [A-Z]", content, re.MULTILINE):
+        if line_count > 100:
             violations.append(
-                "Interface/type in component. Move to src/interfaces/ or src/types/."
+                f"File has {line_count} lines (limit: 100). "
+                "Split to hooks/, components/, or utils/."
             )
 
-    if re.search(r"^export (function|const) use[A-Z]", content, re.MULTILINE):
-        if "/hooks/" not in file_path:
-            violations.append(
-                "Custom hook defined outside hooks/ directory. Move to hooks/."
-            )
+        if "/components/" in file_path:
+            if re.search(r"^(export )?(interface|type) [A-Z]", content, re.MULTILINE):
+                violations.append(
+                    "Interface/type in component. Move to src/interfaces/ or src/types/."
+                )
 
-    if violations:
-        deny_solid_violation(file_path, violations)
+        if re.search(r"^export (function|const) use[A-Z]", content, re.MULTILINE):
+            if "/hooks/" not in file_path:
+                violations.append(
+                    "Custom hook defined outside hooks/ directory. Move to hooks/."
+                )
+
+        if violations:
+            deny_solid_violation(file_path, violations)
     allow_pass("validate-react-solid", "SOLID ok")
 
 

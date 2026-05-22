@@ -7,6 +7,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from edit_targets import iter_edit_targets
 from hook_output import post_pass
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -39,36 +40,34 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    tool_name = data.get("tool_name", "")
-    file_path = (data.get("tool_input") or {}).get("file_path", "")
+    warnings = []
+    for target in iter_edit_targets(data):
+        file_path = target.get("file_path", "")
 
-    if tool_name not in ("Write", "Edit"):
-        sys.exit(0)
+        # Auto-advance state when design-system.md is written
+        if os.path.basename(file_path) == "design-system.md":
+            if os.path.isfile(_FLAG):
+                try:
+                    with open(_FLAG, encoding="utf-8") as f:
+                        _advance_state_for_ds(f.read().strip())
+                except OSError:
+                    pass
+            post_pass("validate-design", "design-system.md → phase 3")
+            return
 
-    # Auto-advance state when design-system.md is written
-    if os.path.basename(file_path) == "design-system.md":
-        if os.path.isfile(_FLAG):
-            try:
-                with open(_FLAG, encoding="utf-8") as f:
-                    _advance_state_for_ds(f.read().strip())
-            except OSError:
-                pass
-        post_pass("validate-design", "design-system.md → phase 3")
-        return
+        if not re.search(r"\.(tsx|jsx|css)$", file_path):
+            continue
 
-    if not re.search(r"\.(tsx|jsx|css)$", file_path):
-        sys.exit(0)
+        if not os.path.isfile(file_path):
+            continue
 
-    if not os.path.isfile(file_path):
-        sys.exit(0)
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                content = f.read()
+        except OSError:
+            continue
 
-    try:
-        with open(file_path, encoding="utf-8") as f:
-            content = f.read()
-    except OSError:
-        sys.exit(0)
-
-    warnings = run_all_checks(content)
+        warnings.extend(run_all_checks(content))
 
     if warnings:
         print(json.dumps({
