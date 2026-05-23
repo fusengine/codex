@@ -22,7 +22,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",

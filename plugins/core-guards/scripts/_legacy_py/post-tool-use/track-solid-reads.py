@@ -17,42 +17,58 @@ FRAMEWORK_MAP = {
 }
 
 
+def file_paths_from_payload(data):
+    tool_name = data.get("tool_name", "")
+    tool_input = data.get("tool_input", {})
+    file_path = tool_input.get("file_path", "")
+    if tool_name == "Read" and file_path:
+        return [file_path]
+    command = tool_input.get("command", "") or tool_input.get("input", "")
+    if not command:
+        return []
+    if not re.search(r"\b(cat|sed|nl|less|head|tail|bat|rg|grep)\b", command):
+        return []
+    return re.findall(
+        r"(?:~|/|\.)?[^\s\x22\x27]*solid-[^\s\x22\x27]+/(?:references/[^\s\x22\x27]+|SKILL\.md)",
+        command,
+    )
+
+
 def main():
     try:
         data = json.load(sys.stdin)
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
 
-    tool_name = data.get('tool_name', '')
-    file_path = data.get('tool_input', {}).get('file_path', '')
-    session_id = data.get('session_id', '') or 'unknown'
-
-    if tool_name != 'Read' or not file_path:
-        sys.exit(0)
-    if not re.search(r'solid-[^/]+/(references/|SKILL\.md)', file_path):
-        sys.exit(0)
-
-    framework = ''
-    for key, val in FRAMEWORK_MAP.items():
-        if key in file_path:
-            framework = val
-            break
-    if not framework:
+    session_id = data.get("session_id", "") or "unknown"
+    paths = file_paths_from_payload(data)
+    if not paths:
         sys.exit(0)
 
     state = load_session_state(session_id)
-    solid_reads = state.setdefault('solid_reads', [])
+    solid_reads = state.setdefault("solid_reads", [])
 
-    solid_reads.append({
-        'timestamp': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'framework': framework,
-        'session': session_id,
-        'file': file_path,
-    })
+    for file_path in paths:
+        if not re.search(r"solid-[^/]+/(references/|SKILL\.md)", file_path):
+            continue
+        framework = ""
+        for key, val in FRAMEWORK_MAP.items():
+            if key in file_path:
+                framework = val
+                break
+        if not framework:
+            continue
+        solid_reads.append({
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "framework": framework,
+            "session": session_id,
+            "file": file_path,
+        })
 
     save_session_state(session_id, state)
     sys.exit(0)
 
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -6,11 +6,37 @@ import re
 import sys
 from datetime import datetime, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from _shared.state_manager import load_session_state, save_session_state
+
 STATE_DIR = os.path.join(os.environ.get('CODEX_HOME', os.path.join(os.path.expanduser('~'), '.codex')), 'fusengine', 'sessions')
 MEMORY_DIR = os.path.expanduser('~/.codex/memory/agents')
 SKIP_AGENTS = (
     r'(sniper|sniper-faster|explore-codebase|research-expert|claude-code-guide|Explore|Plan)'
 )
+
+
+def _agent_quality(agent_type, message):
+    if re.search(r'sniper', agent_type, re.IGNORECASE):
+        return 'sufficient' if message.strip().startswith('PASS') else 'insufficient'
+    return 'sufficient'
+
+
+def _record_agent(data, timestamp):
+    session_id = data.get('session_id', 'unknown') or 'unknown'
+    agent_type = data.get('agent_type', data.get('subagent_type', 'unknown'))
+    message = data.get('last_assistant_message', '') or ''
+    state = load_session_state(session_id)
+    agents = state.setdefault('agents', [])
+    agents.append({
+        'timestamp': timestamp,
+        'type': agent_type,
+        'agent_id': data.get('agent_id', 'unknown'),
+        'tool_name': 'SubagentStop',
+        'response_length': len(message),
+        'quality': _agent_quality(agent_type, message),
+    })
+    save_session_state(session_id, state)
 
 
 def main():
@@ -27,6 +53,7 @@ def main():
     agent_type = data.get('agent_type', data.get('subagent_type', 'unknown'))
     session_id = data.get('session_id', 'unknown')
     timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    _record_agent(data, timestamp)
 
     memory_file = os.path.join(MEMORY_DIR, 'agent-history.jsonl')
     try:

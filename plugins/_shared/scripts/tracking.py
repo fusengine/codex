@@ -4,13 +4,14 @@
 Importable functions (no main).
 """
 
+import json
 import os
 from datetime import datetime, timezone
 
 CODEX_HOME = os.environ.get(
     "CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")
 )
-TRACKING_DIR = os.path.join(CODEX_HOME, "fusengine", "skill-tracking")
+APEX_DIR = os.path.join(CODEX_HOME, "fusengine", "logs", "00-apex")
 
 
 def _utc_now() -> str:
@@ -18,21 +19,51 @@ def _utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _state_file() -> str:
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return os.path.join(APEX_DIR, f"{today}-state.json")
+
+
+def _load_state(path: str) -> dict:
+    if not os.path.isfile(path):
+        return {"$schema": "apex-state-v1", "target": {}, "authorizations": {}}
+    try:
+        with open(path, encoding="utf-8") as f:
+            state = json.load(f)
+        return state if isinstance(state, dict) else {}
+    except (json.JSONDecodeError, OSError):
+        return {"$schema": "apex-state-v1", "target": {}, "authorizations": {}}
+
+
+def _record_source(framework: str, session_id: str, source: str) -> None:
+    os.makedirs(APEX_DIR, exist_ok=True)
+    path = _state_file()
+    state = _load_state(path)
+    auth = state.setdefault("authorizations", {})
+    entry = auth.setdefault(framework, {})
+    entry["doc_consulted"] = _utc_now()
+    sources = entry.get("sources", [])
+    if source not in sources:
+        sources.append(source)
+    entry["sources"] = sources
+    entry["source"] = source
+    for key in ("doc_sessions", "sessions"):
+        sessions = entry.get(key, [])
+        if session_id and session_id not in sessions:
+            sessions.append(session_id)
+        entry[key] = sessions
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2, ensure_ascii=False)
+
+
 def track_skill_read(framework: str, skill: str, topic: str,
                      session_id: str = "") -> None:
     """Track a skill read event."""
     if not session_id:
         session_id = str(os.getpid())
-    os.makedirs(TRACKING_DIR, exist_ok=True)
-    ts = _utc_now()
-    line = f"{ts} SKILL:{skill} {topic}\n"
-    path = os.path.join(TRACKING_DIR, f"{framework}-{session_id}")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(line)
+    _record_source(framework, session_id, f"{skill}:{topic}")
     if framework != "generic":
-        generic = os.path.join(TRACKING_DIR, f"generic-{session_id}")
-        with open(generic, "a", encoding="utf-8") as f:
-            f.write(line)
+        _record_source("generic", session_id, f"{skill}:{topic}")
 
 
 def track_mcp_research(source: str, tool: str, query: str,
@@ -49,13 +80,6 @@ def track_mcp_research(source: str, tool: str, query: str,
                    ("laravel", "laravel"), ("php", "laravel")]:
         if kw in q:
             framework = fw
-    os.makedirs(TRACKING_DIR, exist_ok=True)
-    ts = _utc_now()
-    line = f"{ts} {source}:{tool} {query}\n"
-    path = os.path.join(TRACKING_DIR, f"{framework}-{session_id}")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(line)
+    _record_source(framework, session_id, f"{source}:{tool}")
     if framework != "generic":
-        generic = os.path.join(TRACKING_DIR, f"generic-{session_id}")
-        with open(generic, "a", encoding="utf-8") as f:
-            f.write(line)
+        _record_source("generic", session_id, f"{source}:{tool}")

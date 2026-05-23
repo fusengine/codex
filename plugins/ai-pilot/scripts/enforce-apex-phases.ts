@@ -22,8 +22,13 @@ async function deny(reason: string): Promise<void> {
   await emitPreToolDeny("enforce-apex-phases", reason);
 }
 
-function isAuthorized(auth: (AuthEntry & { doc_consulted?: string }) | undefined, sessionId: string): boolean {
-  if (!auth?.doc_consulted || !resolveSessions(auth).includes(sessionId)) return false;
+function isAuthorized(
+  auth: (AuthEntry & { doc_consulted?: string }) | undefined,
+  sessionId: string,
+): boolean {
+  if (!auth?.doc_consulted || !resolveSessions(auth).includes(sessionId)) {
+    return false;
+  }
   const readEpoch = new Date(auth.doc_consulted).getTime();
   return !Number.isNaN(readEpoch) && (Date.now() - readEpoch) < 120_000;
 }

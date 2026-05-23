@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""PreToolUse: block interfaces/types in component/view files (SOLID).
-Handles Claude (Write/Edit file_path+content) and Codex (apply_patch V4A body)."""
+"""PreToolUse: enforce separated contracts for typed code."""
 import json
 import os
 import re
@@ -8,6 +7,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', '..', '..', '..', '_shared', 'scripts')))
+from interface_rules import contract_violation  # pylint: disable=wrong-import-position,import-error
 from hook_output import emit_pre_tool  # pylint: disable=wrong-import-position,import-error
 
 RULES = [
@@ -42,6 +42,9 @@ def parse_v4a(body):
 
 
 def deny(fp, content):
+    reason = contract_violation(fp, content)
+    if reason:
+        return f"SOLID VIOLATION ({fp}): {reason}"
     for path_pat, content_pat, msg in RULES:
         if not re.search(path_pat, fp):
             continue

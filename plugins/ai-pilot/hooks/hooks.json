@@ -2,10 +2,58 @@
   "hooks": {
     "UserPromptSubmit": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
             "command": "bun ${PLUGIN_ROOT}/scripts/detect-and-inject-apex.ts"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/inject-subagent-context.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "explore-codebase",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/explore-cache-check.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "research-expert",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/doc-cache-inject.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/lessons-cache-inject.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "sniper",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/test-cache-inject.ts"
           }
         ]
       }
@@ -21,7 +69,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|apply_patch",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
@@ -30,7 +78,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Task",
         "hooks": [
           {
             "type": "command",
@@ -39,8 +87,47 @@
         ]
       }
     ],
+    "SubagentStop": [
+      {
+        "matcher": "sniper",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-sniper-lessons.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "sniper",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-test-results.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "research-expert",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/cache-doc-from-transcript.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -60,7 +147,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__.*context7|mcp__.*exa|Bash",
         "hooks": [
           {
             "type": "command",
@@ -69,7 +156,7 @@
         ]
       },
       {
-        "matcher": "update_plan",
+        "matcher": "TaskCreate|TaskUpdate",
         "hooks": [
           {
             "type": "command",

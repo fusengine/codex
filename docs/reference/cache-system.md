@@ -35,11 +35,11 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 24 hours |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/explore/{hash}/` |
-| Capture | Codex subagent lifecycle (not currently exposed to plugin hooks) (`explore-cache-check.ts`) |
+| Capture | `SubagentStart` (`explore-cache-check.ts`) |
 | Format | `metadata.json` + `snapshot.md` |
 
 **Flow**:
-1. `explore-codebase` starts → Codex subagent lifecycle (not currently exposed to plugin hooks) fires `explore-cache-check.ts`
+1. `explore-codebase` starts → `SubagentStart` fires `explore-cache-check.ts`
 2. If cache hit (< 24h old) → inject snapshot via `additionalContext`, agent skips scan
 3. If cache miss → agent runs normally, saves result for next time
 
@@ -51,8 +51,8 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 7 days |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/doc/{hash}/` |
-| Capture | Codex subagent lifecycle (not currently exposed to plugin hooks) (`cache-doc-from-transcript.ts`) |
-| Inject | Codex subagent lifecycle (not currently exposed to plugin hooks) (`doc-cache-inject.ts`) |
+| Capture | `SubagentStop` (`cache-doc-from-transcript.ts`) |
+| Inject | `SubagentStart` (`doc-cache-inject.ts`) |
 | Format | `index.json` manifest + `docs/{doc-hash}.md` synthesis files |
 | Limits | Max 15 docs, max 20KB/doc |
 
@@ -85,14 +85,14 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 30 days |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/lessons/{hash}/` |
-| Capture | Codex subagent lifecycle (not currently exposed to plugin hooks) (`cache-sniper-lessons.ts`) |
-| Inject | Codex subagent lifecycle (not currently exposed to plugin hooks) (`lessons-cache-inject.ts`) → ALL agents |
+| Capture | `SubagentStop` (`cache-sniper-lessons.ts`) |
+| Inject | `SubagentStart` (`lessons-cache-inject.ts`) → ALL agents |
 | Promotion | `promote-global-lessons.ts` → `_global/{stack}.json` (3+ occurrences) |
 | Format | Per-timestamp JSON files (`{timestamp}.json`) |
 | Limits | Auto-cleanup files > 30 days, top 10 injected |
 
 **Flow**:
-1. Sniper finishes → Codex subagent lifecycle (not currently exposed to plugin hooks) fires `cache-sniper-lessons.ts`
+1. Sniper finishes with `SubagentStop` → `cache-sniper-lessons.ts`
 2. Script reads `agent_transcript_path` (JSONL)
 3. Extracts all Edit tool_use entries (file, old_string, new_string)
 4. Categorizes errors by code diff analysis (missing_directive, type_any, etc.)
@@ -132,8 +132,8 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 48 hours |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/tests/{hash}/` |
-| Capture | Codex subagent lifecycle (not currently exposed to plugin hooks) (`cache-test-results.ts`) |
-| Inject | Codex subagent lifecycle (not currently exposed to plugin hooks) (`test-cache-inject.ts`) → sniper |
+| Capture | `SubagentStop` (`cache-test-results.ts`) |
+| Inject | `SubagentStart` (`test-cache-inject.ts`) → sniper |
 | Format | `results.json` with file checksums |
 
 **Flow**:
@@ -148,7 +148,7 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 | Property | Value |
 |----------|-------|
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/analytics/` |
-| Capture | SessionEnd (`cache-analytics-save.ts`) |
+| Capture | `Stop` (`cache-analytics-save.ts`) |
 | Format | `sessions.jsonl` (one event per line) |
 
 **Event format**:
@@ -177,15 +177,15 @@ All scripts are TypeScript (Bun runtime) with shared `lib/` modules.
 
 | Script | Hook Type | Trigger |
 |--------|-----------|---------|
-| `explore-cache-check.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | explore-codebase agent |
-| `doc-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | research-expert agent |
-| `cache-doc-from-transcript.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | research-expert agent |
-| `lessons-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | All agents |
-| `cache-sniper-lessons.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | sniper agent |
+| `explore-cache-check.ts` | `SubagentStart` | explore-codebase agent |
+| `doc-cache-inject.ts` | `SubagentStart` | research-expert agent |
+| `cache-doc-from-transcript.ts` | `SubagentStop` | research-expert agent |
+| `lessons-cache-inject.ts` | `SubagentStart` | All agents |
+| `cache-sniper-lessons.ts` | `SubagentStop` | sniper agent |
 | `promote-global-lessons.ts` | Background | After sniper lessons capture |
-| `test-cache-inject.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | sniper agent |
-| `cache-test-results.ts` | Codex subagent lifecycle (not currently exposed to plugin hooks) | sniper agent |
-| `cache-analytics-save.ts` | SessionEnd | All sessions |
+| `test-cache-inject.ts` | `SubagentStart` | sniper agent |
+| `cache-test-results.ts` | `SubagentStop` | sniper agent |
+| `cache-analytics-save.ts` | `Stop` | All sessions |
 
 ## Shared Library (`lib/`)
 

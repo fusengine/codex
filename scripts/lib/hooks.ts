@@ -1,10 +1,11 @@
 import { join, basename } from "node:path";
 import { mkdir } from "node:fs/promises";
-import { EVENT_MAP, UNSUPPORTED_EVENTS, rewriteCommand } from "./hooks-rewrite";
+import { EVENT_MAP, UNSUPPORTED_EVENTS, rewriteCommand, rewriteMatcher } from "./hooks-rewrite";
 
 interface ClaudeHookEntry {
 	type: string;
-	command: string;
+	command?: string;
+	prompt?: string;
 	timeout?: number;
 }
 
@@ -28,20 +29,27 @@ function filterHooks(
 	warnings: string[],
 ) {
 	return hooks
-		.filter((h) => {
+		.map((h) => {
+			if (h.type === "prompt" && claudeEvent === "Stop" && h.prompt?.includes("APEX workflow")) {
+				return {
+					type: "command",
+					command: "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/task-completed/validate-apex-workflow.py",
+					...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
+				};
+			}
 			if (h.type !== "command" || typeof h.command !== "string") {
 				warnings.push(
 					`${plugin}: ${claudeEvent} hook type='${h.type}' skipped (Codex only supports type='command')`,
 				);
-				return false;
+				return null;
 			}
-			return true;
+			return {
+				type: "command",
+				command: rewriteCommand(h.command),
+				...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
+			};
 		})
-		.map((h) => ({
-			type: "command",
-			command: rewriteCommand(h.command),
-			...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
-		}));
+		.filter((h) => h !== null);
 }
 
 /**
@@ -79,7 +87,7 @@ export async function transformHooks(
 		}
 		const rewritten = matchers
 			.map((m) => ({
-				matcher: m.matcher ?? "",
+				matcher: rewriteMatcher(m.matcher ?? ""),
 				hooks: filterHooks(m.hooks, plugin, claudeEvent, warnings),
 			}))
 			.filter((m) => m.hooks.length > 0);

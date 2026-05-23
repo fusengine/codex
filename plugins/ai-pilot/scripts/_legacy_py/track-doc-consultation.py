@@ -64,11 +64,10 @@ def main() -> None:
         t_auth = auth.setdefault(target_fw, {}) if target_fw and target_fw != framework else None
         if t_auth is not None:
             t_auth["doc_consulted"] = ts
-        # Update source + doc_sessions for online doc (context7/exa)
-        if source != "skill":
-            _update_doc_sessions(fw_auth, sid, source, tool)
-            if t_auth is not None:
-                _update_doc_sessions(t_auth, sid, source, tool)
+        # Update source + doc_sessions for every supported doc source.
+        _update_doc_sessions(fw_auth, sid, source, tool)
+        if t_auth is not None:
+            _update_doc_sessions(t_auth, sid, source, tool)
         # Migrate old session -> sessions[] with dedup (both fw + target)
         for entry in [fw_auth] + ([t_auth] if t_auth else []):
             old = entry.pop("session", None)

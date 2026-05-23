@@ -2,11 +2,10 @@
 import { lstat } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
-import { hasCodexCli, addMarketplace, listPlugins, addPlugin, supportsPluginAdd } from "./codex-cli";
+import { hasCodexCli, addMarketplace } from "./codex-cli";
 import { writeMarketplaceFallback } from "./marketplace-fallback";
 import { installAgentsMd } from "./agents-md";
 import { ensureFeaturesEnabled } from "./features";
-import { enableAllPlugins } from "./enable-plugins";
 import { promptCodexConfig } from "./config-prompt";
 import { installAgents } from "./install-agents";
 import { configureShellAutoLoad } from "./shell-install";
@@ -16,10 +15,10 @@ import { promptPerfEnv } from "./perf-env";
 import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
-import { installPluginCache } from "./plugin-cache";
+import { installPluginsStrict } from "./plugin-install";
 import { installRuntimeShared } from "./runtime-shared";
 import { cleanupDeprecatedCodexFlags } from "./cleanup-deprecated-flags";
-import { inspectInstalledState, summarizeInstalledState } from "./installed-state";
+import { assertInstalledState, inspectInstalledState, summarizeInstalledState } from "./installed-state";
 
 export interface SetupOptions {
 	projectRoot: string;
@@ -66,36 +65,6 @@ function reportInstalledState(opts: SetupOptions): void {
 	}
 }
 
-async function maybeInstallPlugins(opts: SetupOptions, mode: "cli" | "config"): Promise<void> {
-	if (opts.skipPluginInstall) return;
-	if (mode !== "cli" || !(await supportsPluginAdd())) {
-		const proceed = await p.confirm({
-			message: "Codex plugin add unavailable. Cache and enable all plugins locally?",
-			initialValue: true,
-		});
-		if (!p.isCancel(proceed) && proceed) {
-			const cached = await installPluginCache(opts.projectRoot, opts.codexHome, opts.marketplaceName);
-			const added = await enableAllPlugins(opts.projectRoot, opts.codexHome, opts.marketplaceName);
-			p.log.success(`cached ${cached} plugins and enabled ${added} config entries`);
-		}
-		return;
-	}
-	const proceed = await p.confirm({
-		message: `Install all plugins from ${opts.marketplaceName} now?`,
-		initialValue: true,
-	});
-	if (p.isCancel(proceed) || !proceed) return;
-	const plugins = await listPlugins(opts.projectRoot);
-	for (const name of plugins) {
-		try {
-			await addPlugin(name, opts.marketplaceName);
-			p.log.success(`installed ${name}`);
-		} catch (e) {
-			p.log.warn(`${name}: ${(e as Error).message}`);
-		}
-	}
-}
-
 export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await backupConfig(opts.codexHome);
 	cleanupDeprecatedCodexFlags(opts.codexHome);
@@ -105,7 +74,11 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
-	await maybeInstallPlugins(opts, mode);
+	await installPluginsStrict(opts, mode);
+	if (!opts.skipPluginInstall) {
+		assertInstalledState(opts.projectRoot, opts.codexHome, opts.marketplaceName);
+		p.log.success("plugin installation verified");
+	}
 	const cachedPluginsRoot = join(opts.codexHome, "plugins", "cache", opts.marketplaceName);
 	await installAgents(opts.codexHome, (await pathExists(cachedPluginsRoot)) ? cachedPluginsRoot : join(opts.projectRoot, "plugins"));
 	await promptCodexConfig(opts.codexHome);

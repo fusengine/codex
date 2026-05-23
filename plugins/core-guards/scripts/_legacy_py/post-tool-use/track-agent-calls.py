@@ -16,12 +16,14 @@ def main():
         sys.exit(0)
 
     tool_name = data.get('tool_name', '')
-    if tool_name != 'Agent':
+    is_spawn = tool_name == 'Agent' or tool_name.endswith('.spawn_agent') or tool_name == 'spawn_agent'
+    if not is_spawn:
         sys.exit(0)
 
     sid = data.get('session_id', '') or 'unknown'
     agent_type = (
         data.get('agent_type', '')
+        or data.get('tool_input', {}).get('agent_type', '')
         or data.get('tool_input', {}).get('subagent_type', '')
     )
     agent_id = data.get('agent_id', '')
@@ -41,7 +43,7 @@ def main():
         'agent_id': agent_id,
         'prompt_preview': prompt,
         'response_length': response_length,
-        'quality': 'sufficient' if response_length > 500 else 'insufficient',
+        'quality': 'sufficient' if tool_name != 'Agent' or response_length > 500 else 'insufficient',
     })
 
     save_session_state(sid, state)

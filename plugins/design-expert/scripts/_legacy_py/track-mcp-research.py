@@ -8,42 +8,10 @@ import sys
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from tracking import track_mcp_research
 
-
-_FRAMEWORK_MAP = [
-    (["react"], "react"),
-    (["next"], "nextjs"),
-    (["tailwind"], "tailwind"),
-    (["laravel", "php"], "laravel"),
-    (["swift", "swiftui", "ios"], "swift"),
-    (["design", "shadcn", " ui"], "design"),
-]
-
-
-def detect_framework(query: str) -> str:
-    """Detect framework from query string."""
-    q = query.lower()
-    for keywords, framework in _FRAMEWORK_MAP:
-        if any(kw in q for kw in keywords):
-            return framework
-    return "generic"
-
-
-def track_mcp_research(source: str, tool: str, query: str, session_id: str) -> None:
-    """Write tracking entry to TRACKING_DIR."""
-    from tracking import TRACKING_DIR
-    tracking_dir = TRACKING_DIR
-    os.makedirs(tracking_dir, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    framework = detect_framework(query)
-    entry = f"{timestamp} {source}:{tool} {query}\n"
-    tracking_file = os.path.join(tracking_dir, f"{framework}-{session_id}")
-    with open(tracking_file, "a", encoding="utf-8") as f:
-        f.write(entry)
-    if framework != "generic":
-        generic = os.path.join(tracking_dir, f"generic-{session_id}")
-        with open(generic, "a", encoding="utf-8") as f:
-            f.write(entry)
+CODEX_HOME = os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex"))
+AGENT_TRACKING_DIR = os.path.join(CODEX_HOME, "fusengine", "skill-tracking")
 
 
 def main() -> None:
@@ -81,10 +49,9 @@ def main() -> None:
 
     # Per-agent tracking for design hooks
     if agent_id and ("playwright" in tool_name or "gemini-design" in tool_name):
-        from tracking import TRACKING_DIR
-        os.makedirs(TRACKING_DIR, exist_ok=True)
+        os.makedirs(AGENT_TRACKING_DIR, exist_ok=True)
         ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        agent_file = os.path.join(TRACKING_DIR, f"agent-{agent_id}")
+        agent_file = os.path.join(AGENT_TRACKING_DIR, f"agent-{agent_id}")
         with open(agent_file, "a", encoding="utf-8") as f:
             f.write(f"{ts} {source}:{tool_name} {query}\n")
 

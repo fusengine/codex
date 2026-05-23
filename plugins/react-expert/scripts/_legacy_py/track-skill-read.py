@@ -5,25 +5,12 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from shell_read_paths import skill_doc_path_from_payload
+from tracking import track_skill_read
 
 FRAMEWORK = "react"
-
-
-def track_skill_read(framework: str, skill: str, topic: str, session_id: str) -> None:
-    """Write tracking entry to TRACKING_DIR."""
-    from tracking import TRACKING_DIR
-    tracking_dir = TRACKING_DIR
-    os.makedirs(tracking_dir, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    entry = f"{timestamp} SKILL:{skill} {topic}\n"
-    with open(os.path.join(tracking_dir, f"{framework}-{session_id}"), "a", encoding="utf-8") as f:
-        f.write(entry)
-    if framework != "generic":
-        with open(os.path.join(tracking_dir, f"generic-{session_id}"), "a", encoding="utf-8") as f:
-            f.write(entry)
 
 
 def main() -> None:
@@ -33,10 +20,7 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         sys.exit(0)
 
-    if data.get("tool_name") != "Read":
-        sys.exit(0)
-
-    file_path = (data.get("tool_input") or {}).get("file_path", "")
+    file_path = skill_doc_path_from_payload(data)
     if not re.search(r"skills/.*\.(md|txt)$", file_path):
         sys.exit(0)
 

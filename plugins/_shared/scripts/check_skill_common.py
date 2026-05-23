@@ -1,14 +1,48 @@
 #!/usr/bin/env python3
-"""check-skill-common.py - Common skill check functions.
-
-Importable functions (no main).
-"""
-
 import json
 import os
 import sys
-
+import time
+from datetime import datetime, timezone
 from edit_targets import first_edit_target, iter_edit_targets
+from mcp_research import mcp_research_done
+
+
+def _apex_state_file() -> str:
+    codex_home = os.environ.get(
+        "CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")
+    )
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return os.path.join(
+        codex_home, "fusengine", "logs", "00-apex", f"{today}-state.json"
+    )
+
+
+def _load_apex_authorization(framework: str) -> dict:
+    state_file = _apex_state_file()
+    if not os.path.isfile(state_file):
+        return {}
+    try:
+        with open(state_file, encoding="utf-8") as f:
+            state = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+    auth = state.get("authorizations", {})
+    entry = auth.get(framework, {})
+    return entry if isinstance(entry, dict) else {}
+
+
+def _session_authorized(entry: dict, session_id: str, ttl: int = 120) -> bool:
+    sessions = entry.get("doc_sessions") or entry.get("sessions") or []
+    if session_id not in sessions:
+        return False
+    try:
+        ts = datetime.strptime(
+            entry.get("doc_consulted", ""), "%Y-%m-%dT%H:%M:%SZ"
+        )
+    except ValueError:
+        return False
+    return ttl >= time.time() - ts.replace(tzinfo=timezone.utc).timestamp()
 
 
 def find_project_root(start_dir: str, *markers: str) -> str:
@@ -24,53 +58,19 @@ def find_project_root(start_dir: str, *markers: str) -> str:
 
 def skill_was_consulted(framework: str, session_id: str,
                         project_root: str) -> bool:
-    """Check if a skill was consulted (session tracking or APEX)."""
-    from tracking import TRACKING_DIR
-    tracking = os.path.join(TRACKING_DIR, f"{framework}-{session_id}")
-    if os.path.isfile(tracking):
-        return True
-    task_file = os.path.join(project_root, ".codex", "apex", "task.json")
-    if os.path.isfile(task_file):
-        try:
-            with open(task_file, encoding="utf-8") as f:
-                data = json.load(f)
-            task_id = str(data.get("current_task", "1"))
-            task = data.get("tasks", {}).get(task_id, {})
-            doc = task.get("doc_consulted", {}).get(framework, {})
-            if isinstance(doc, dict) and doc.get("consulted") is True:
-                return True
-        except (json.JSONDecodeError, OSError):
-            pass
-    return False
+    """Check if a skill was consulted in APEX 00-apex state."""
+    entry = _load_apex_authorization(framework)
+    return _session_authorized(entry, session_id)
 
 
 def specific_skill_consulted(framework: str, skill_name: str,
                              session_id: str) -> bool:
-    """Check if a specific skill was read by scanning tracking file contents."""
-    from tracking import TRACKING_DIR
-    tracking = os.path.join(TRACKING_DIR, f"{framework}-{session_id}")
-    if not os.path.isfile(tracking):
+    """Check if a specific skill was read in APEX 00-apex state."""
+    entry = _load_apex_authorization(framework)
+    if not _session_authorized(entry, session_id):
         return False
-    try:
-        with open(tracking, encoding="utf-8") as f:
-            content = f.read()
-        return f"skills/{skill_name}/" in content
-    except OSError:
-        return False
-
-
-def mcp_research_done(session_id: str) -> bool:
-    """Check if MCP research (Context7/Exa) was done in this session."""
-    from tracking import TRACKING_DIR
-    generic = os.path.join(TRACKING_DIR, f"generic-{session_id}")
-    if not os.path.isfile(generic):
-        return False
-    try:
-        with open(generic, encoding="utf-8") as f:
-            content = f.read()
-        return "context7:" in content and "exa:" in content
-    except OSError:
-        return False
+    return any(f"skills/{skill_name}/" in str(source)
+               for source in entry.get("sources", []))
 
 
 def deny_block(reason: str) -> None:

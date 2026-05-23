@@ -7,6 +7,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
 try:
+    from shell_read_paths import skill_doc_path_from_payload
     from tracking import track_skill_read
 except ImportError:
     sys.exit(0)
@@ -15,12 +16,7 @@ except ImportError:
 def main():
     """Track Read tool calls on skill files."""
     data = json.load(sys.stdin)
-    tool_name = data.get("tool_name", "")
-
-    if tool_name != "Read":
-        sys.exit(0)
-
-    file_path = data.get("tool_input", {}).get("file_path", "")
+    file_path = skill_doc_path_from_payload(data)
     if not re.search(r"skills/.*\.(md|txt)$", file_path):
         sys.exit(0)
 

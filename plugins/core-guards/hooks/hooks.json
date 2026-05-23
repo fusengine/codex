@@ -2,6 +2,33 @@
   "hooks": {
     "PreToolUse": [
       {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/webfetch-cache-lookup.py"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__context7__query-docs|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/mcp-cache-lookup.py"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__context7__query-docs|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/limit-mcp-verbosity.py"
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -70,7 +97,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "",
+        "matcher": "spawn_agent|multi_agent_v1.spawn_agent",
         "hooks": [
           {
             "type": "command",
@@ -79,7 +106,7 @@
         ]
       },
       {
-        "matcher": "Bash|mcp__.*",
+        "matcher": "Bash|mcp__.*|mcp__context7__query-docs|mcp__context7__resolve-library-id|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa|mcp__exa__deep_researcher_start",
         "hooks": [
           {
             "type": "command",
@@ -88,7 +115,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__context7__query-docs|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa",
         "hooks": [
           {
             "type": "command",
@@ -97,7 +124,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -127,6 +154,15 @@
         ]
       },
       {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/post-tool-use/webfetch-cache-store.py"
+          }
+        ]
+      },
+      {
         "matcher": "",
         "hooks": [
           {
@@ -151,6 +187,10 @@
           {
             "type": "command",
             "command": "bun ${PLUGIN_ROOT}/scripts/session-start/cleanup-session-states.ts"
+          },
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/session-start/cleanup-old-caches.py"
           }
         ]
       },
@@ -166,6 +206,7 @@
     ],
     "UserPromptSubmit": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -174,6 +215,7 @@
         ]
       },
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -182,8 +224,40 @@
         ]
       }
     ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-start/inject-context-cache.ts"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-stop/track-agent-memory.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/teammate-idle/validate-teammate-output.ts"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -192,6 +266,7 @@
         ]
       },
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -200,6 +275,17 @@
         ]
       },
       {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/task-completed/validate-apex-workflow.py",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -215,6 +301,33 @@
           {
             "type": "command",
             "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/permission-need.mp3"
+          }
+        ]
+      },
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/permission-need.mp3"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/need-human.mp3"
+          }
+        ]
+      },
+      {
+        "matcher": "elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/need-human.mp3"
           }
         ]
       }

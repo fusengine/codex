@@ -38,7 +38,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__playwright__browser_navigate",
         "hooks": [
           {
             "type": "command",
@@ -47,7 +47,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__playwright__browser_take_screenshot",
         "hooks": [
           {
             "type": "command",
@@ -56,7 +56,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__gemini-design__",
         "hooks": [
           {
             "type": "command",
@@ -65,7 +65,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__gemini-design__create_frontend",
         "hooks": [
           {
             "type": "command",
@@ -76,7 +76,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -85,7 +85,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__playwright__browser_take_screenshot",
         "hooks": [
           {
             "type": "command",
@@ -94,7 +94,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*",
+        "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__playwright__|mcp__gemini-design__",
         "hooks": [
           {
             "type": "command",
@@ -108,6 +108,46 @@
           {
             "type": "command",
             "command": "bun ${PLUGIN_ROOT}/scripts/validate-design.ts"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "design",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "design",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-init.ts"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "design",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "design",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
           }
         ]
       }

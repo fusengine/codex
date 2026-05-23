@@ -3,8 +3,13 @@
 
 import os
 import re
+import sys
 import time
 from typing import Optional, Tuple
+
+sys.path.insert(0, os.path.abspath(os.path.join(
+    os.environ.get("PLUGIN_ROOT", os.getcwd()), "..", "_shared", "scripts")))
+from shell_read_paths import skill_doc_path_from_payload  # pylint: disable=wrong-import-position
 
 
 def detect_framework(query: str) -> str:
@@ -52,5 +57,8 @@ def extract_tool_info(data: dict) -> Optional[Tuple[str, str, str]]:
         fp = data.get("tool_input", {}).get("file_path", "")
         if not re.search(r"skills/.*\.md$", fp):
             return None
+        return "skill", fp, tool
+    fp = skill_doc_path_from_payload(data)
+    if fp and re.search(r"skills/.*\.(md|txt)$", fp):
         return "skill", fp, tool
     return None
