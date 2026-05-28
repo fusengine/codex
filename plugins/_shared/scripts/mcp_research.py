@@ -50,5 +50,15 @@ def _apex_mcp_research_done(session_id, ttl=180):
 
 
 def mcp_research_done(session_id):
-    """Check if recent MCP research from Context7 and Exa was done."""
-    return _apex_mcp_research_done(session_id)
+    """Check if recent MCP research from Context7 and Exa was done.
+
+    Falls back to the session rollout when the APEX state is empty, because
+    per-tool PostToolUse hooks do not fire in code_mode (openai/codex#19385).
+    """
+    if _apex_mcp_research_done(session_id):
+        return True
+    try:
+        from rollout_evidence import doc_consulted
+        return doc_consulted(session_id)
+    except Exception:
+        return False

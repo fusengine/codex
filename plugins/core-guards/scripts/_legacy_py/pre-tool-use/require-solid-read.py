@@ -3,6 +3,7 @@ import json, os, re, sys, time
 from datetime import datetime, timezone
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '_shared', 'scripts'))
 from ref_router import route_references
+from rollout_evidence import solid_ref_read
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from _shared.state_manager import load_session_state, save_session_state
 CODE_EXT = r'\.(ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro)$'
@@ -78,7 +79,10 @@ def main():
         if not re.search(CODE_EXT, fp):
             continue
         fw = framework(fp)
-        if not fw or already_read(sid, fw):
+        skill_dir = resolve_skill_dir(SKILL_MAP.get(fw, ''))
+        # code_mode-proof: accept SOLID ref read via shell/Read seen in the
+        # rollout, since PostToolUse may not fire in code_mode (openai/codex#19385)
+        if not fw or already_read(sid, fw) or solid_ref_read(sid, skill_dir):
             continue
         state = load_session_state(sid)
         ts = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')

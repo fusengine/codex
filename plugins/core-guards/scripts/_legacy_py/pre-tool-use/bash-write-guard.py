@@ -26,7 +26,6 @@ DENY_PATTERNS = [
     (r'\bperl\b[^|]*\s-[pi]i?\b', 'perl in-place edit'),
     (r'\bawk\b[^|]*-i\s*inplace', 'awk in-place edit'),
     (r'\bpatch\b', 'patch file modification'),
-    (r'\.codex/fusengine/sessions|fusengine/sessions', 'Session state tampering — hook bypass prevention'),
 ]
 
 NODE_WRITES = r'writeFile|appendFile|createWriteStream|fs\.(write|rename|unlink|mkdir|rmdir|copyFile)|execSync|spawnSync|child_process'  # pylint: disable=line-too-long
@@ -65,11 +64,11 @@ def main():
     stripped = cmd.strip()
     if any(stripped.startswith(p) for p in SAFE_PREFIXES) and not has_file_redirect(stripped):
         sys.exit(0)
-    # Reading the doc/MCP cache under context/mcp/ is legitimate — it is how the APEX
-    # doc gate is satisfied. Only block writes/mutations of session state (handled by
-    # the patterns below), never pure reads (sed -n, cat, head…) of the cache.
-    if 'context/mcp/' in cmd and not has_file_redirect(cmd) and not re.search(
-            r'\bsed\b[^|]*\s-i|\b(rm|mv|cp|tee|truncate|dd|chmod|chown)\b', cmd):
+    # Reading the doc/MCP cache or APEX state is legitimate; only block mutations.
+    if 'context/mcp/' in cmd or 'fusengine/sessions' in cmd:
+        if has_file_redirect(cmd) or re.search(
+                r'\bsed\b[^|]*\s-i|\b(rm|mv|cp|tee|truncate|dd|chmod|chown)\b', cmd):
+            output_decision('deny', 'Session/cache state mutation — Use Edit/Write tools instead')
         sys.exit(0)
     for pattern, desc in DENY_PATTERNS:
         if re.search(pattern, cmd):

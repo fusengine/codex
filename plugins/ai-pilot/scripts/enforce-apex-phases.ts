@@ -10,6 +10,7 @@ import type { HookInput } from "./lib/interfaces/hook.interface";
 import { detectFramework, getSkillSource, getSkillDir, formatRoutedDeny } from "./lib/apex/enforce-helpers";
 import { findProjectRoot } from "./lib/apex/fs-helpers";
 import { isDocConsulted, formatDocDeny, resolveSessions, type AuthEntry } from "./lib/apex/doc-helpers";
+import { docConsultedInTranscript } from "./lib/apex/rollout-evidence";
 import { routeReferences } from "./lib/apex/ref-router";
 import { incrementTrivialEditCounter } from "./lib/apex/trivial-edit-counter";
 import { editTargets } from "./lib/apex/edit-targets";
@@ -34,6 +35,10 @@ function isAuthorized(
 }
 
 async function checkTarget(filePath: string, content: string, sessionId: string): Promise<void> {
+  // code_mode-proof: the rollout is ground truth when per-tool PostToolUse never
+  // fired (openai/codex#19385). If both doc sources appear there within the TTL,
+  // the consultation happened — allow, regardless of the state file.
+  if (docConsultedInTranscript(sessionId)) return;
   const projectRoot = findProjectRoot(filePath.replace(/\/[^/]+$/, ""));
   const framework = detectFramework(filePath, content);
   await ensureStateDir();
