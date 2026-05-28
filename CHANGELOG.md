@@ -5,6 +5,22 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.9] - 2026-05-29
+
+### Added
+
+- SEO plugin 2026 overhaul (seo 1.0.3): new seo-entity skill (entity/semantic SEO, Knowledge Graph, salience, schema about/sameAs/knowsAbout); local vs global intent (5 layers) with intent/CTA mapping; buyer-state long-tail (L1-L4) and citation eligibility; per-H2 answer capsules; conversion levers; quantified GEO impacts; AI-crawler allowlist in robots-default.
+
+### Fixed
+
+- SEO plugin (seo 1.0.3): wired the validate-seo PostToolUse hook (previously dead), corrected the Serper MCP tool name, repointed dead skill paths to real sibling skills, de-hardcoded localities to placeholders; sub-agents now consult their skill and seo-expert gained a script toolbox plus request routing.
+- codex-rules (codex-rules 1.0.8): inject-rules now emits a dynamic hookEventName (SessionStart vs UserPromptSubmit) so per-prompt rule re-injection is no longer rejected, plus a non-dict stdin guard.
+- Invalid model gpt-5.3-codex-spark replaced with gpt-5.4-mini (solid 1.0.11, ai-pilot 1.2.27); verified against the codex 0.135 binary model list.
+
+### Changed
+
+- AGENTS.md: dropped the redundant discovery meta line (Codex already embeds the AGENTS.md spec in its base instructions).
+
 ## [1.2.8] - 2026-05-28
 
 ### Fixed
