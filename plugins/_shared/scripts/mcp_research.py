@@ -28,7 +28,7 @@ def _entry_recent(entry, session_id, now, ttl):
     return ttl >= now - ts.replace(tzinfo=timezone.utc).timestamp()
 
 
-def _apex_mcp_research_done(session_id, ttl=120):
+def _apex_mcp_research_done(session_id, ttl=180):
     """Check APEX 00-apex state for recent Context7 + Exa consultation."""
     state_file = _state_file()
     if not os.path.isfile(state_file):

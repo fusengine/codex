@@ -1,7 +1,7 @@
 /**
  * enforce-apex-phases.ts - PreToolUse hook.
  * Blocks Write/Edit/apply_patch on code files unless documentation was consulted
- * within the same session and within the last 2 minutes.
+ * within the same session and within the last 3 minutes.
  */
 import { readStdin } from "./lib/core";
 import { emitPreToolDeny } from "./lib/hook-output";
@@ -30,7 +30,7 @@ function isAuthorized(
     return false;
   }
   const readEpoch = new Date(auth.doc_consulted).getTime();
-  return !Number.isNaN(readEpoch) && (Date.now() - readEpoch) < 120_000;
+  return !Number.isNaN(readEpoch) && (Date.now() - readEpoch) < 180_000;
 }
 
 async function checkTarget(filePath: string, content: string, sessionId: string): Promise<void> {
@@ -48,7 +48,7 @@ async function checkTarget(filePath: string, content: string, sessionId: string)
       await saveState(statePath, state);
       const routed = await routeReferences(filePath, content, getSkillDir(framework));
       await deny(routed ? formatRoutedDeny(framework, filePath, routed) :
-        `APEX: Read doc first (expires every 2min) for ${framework}! Source: ${getSkillSource(framework)}`);
+        `APEX: Read doc first (expires every 3min) for ${framework}! Source: ${getSkillSource(framework)}`);
       return;
     }
     if (!isDocConsulted(state.authorizations, sessionId)) await deny(formatDocDeny(framework));

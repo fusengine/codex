@@ -19,6 +19,10 @@ plugins/py-to-bun-report.json
 plugins/scrub-report.json
 plugins/validate-bun-report.json
 
+# Python lint cache
+.ruff_cache/
+plugins/**/.ruff_cache/
+
 # Plugin-bundled node_modules and lockfiles inside source plugins
 plugins/*/scripts/node_modules/
 plugins/*/scripts/bun.lock

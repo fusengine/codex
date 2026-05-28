@@ -21,13 +21,17 @@ def main():
         sys.exit(0)
 
     sid = data.get('session_id', '') or 'unknown'
+    ti = data.get('tool_input', {}) or {}
+    # Codex `spawn_agent` and Claude `Agent` both name the sub-agent via
+    # `agent_type`; `subagent_type` is the legacy Claude key.
     agent_type = (
         data.get('agent_type', '')
-        or data.get('tool_input', {}).get('agent_type', '')
-        or data.get('tool_input', {}).get('subagent_type', '')
+        or ti.get('agent_type', '')
+        or ti.get('subagent_type', '')
     )
     agent_id = data.get('agent_id', '')
-    prompt = (data.get('tool_input', {}).get('prompt') or '')[:100]
+    # Codex `spawn_agent` carries the task as `message`/`task`; Claude uses `prompt`.
+    prompt = (ti.get('prompt') or ti.get('message') or ti.get('task') or '')[:100]
 
     # Extract quality metrics from tool response
     tool_response = data.get('tool_response', '')

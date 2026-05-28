@@ -8,7 +8,7 @@ import sys
 # Add _shared/scripts to path for safe_paths module import
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 '..', '..', '..', '_shared', 'scripts'))
-from safe_paths import is_safe_write_path, is_safe_command_target, has_safe_write_target  # pylint: disable=wrong-import-position
+from safe_paths import is_safe_write_path, is_safe_command_target, has_safe_write_target, extract_redirect_target  # pylint: disable=wrong-import-position
 
 CODE_EXT = re.compile(r'\.(ts|tsx|js|jsx|py|php|swift|go|rs|rb|java|vue|svelte|astro|css)\b')
 
@@ -65,13 +65,22 @@ def main():
     stripped = cmd.strip()
     if any(stripped.startswith(p) for p in SAFE_PREFIXES) and not has_file_redirect(stripped):
         sys.exit(0)
+    # Reading the doc/MCP cache under context/mcp/ is legitimate — it is how the APEX
+    # doc gate is satisfied. Only block writes/mutations of session state (handled by
+    # the patterns below), never pure reads (sed -n, cat, head…) of the cache.
+    if 'context/mcp/' in cmd and not has_file_redirect(cmd) and not re.search(
+            r'\bsed\b[^|]*\s-i|\b(rm|mv|cp|tee|truncate|dd|chmod|chown)\b', cmd):
+        sys.exit(0)
     for pattern, desc in DENY_PATTERNS:
         if re.search(pattern, cmd):
             output_decision('deny', f"{desc} — Use Edit/Write tools instead")
     if has_file_redirect(cmd):
         if is_safe_write_path(cmd):
             sys.exit(0)
-        if CODE_EXT.search(cmd):
+        # Only deny when the redirect *target* is a code file — not when a code
+        # extension merely appears elsewhere (e.g. `grep --include=*.ts ... > out.txt`).
+        target = extract_redirect_target(cmd) or ''
+        if CODE_EXT.search(target):
             output_decision('deny', 'Bash redirect to code file — Use Write/Edit tools (enforces APEX + SOLID specs)')
         output_decision('ask', 'Shell redirect to file detected. Authorize?')
     if re.search(r'\bnode\s+-e\b', cmd) and re.search(NODE_WRITES, cmd):

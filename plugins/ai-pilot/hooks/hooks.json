@@ -147,7 +147,7 @@
         ]
       },
       {
-        "matcher": "mcp__.*context7|mcp__.*exa|Bash",
+        "matcher": "context7|exa|Bash",
         "hooks": [
           {
             "type": "command",

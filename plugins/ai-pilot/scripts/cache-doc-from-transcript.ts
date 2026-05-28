@@ -9,7 +9,9 @@ import type { HookInput } from "./lib/interfaces/hook.interface";
 import type { CacheIndex, CacheEntry } from "./lib/interfaces/cache.interface";
 import { extractAllFilePaths, detectProjectFromPaths } from "./lib/cache/project-detect";
 
-const TOOL_PATTERN = /context7__query-docs|exa__get_code_context|exa__web_search/;
+// Matches Claude (mcp__exa__web_search_exa) and Codex (web_search_exa,
+// _web_search_exa, mcp__context7__query_docs) tool ids via substring.
+const TOOL_PATTERN = /context7|web_search_exa|get_code_context/;
 const MAX_DOC_SIZE = 20480;
 const MIN_TEXT_SIZE = 200;
 const MAX_DOCS = 15;
@@ -24,6 +26,24 @@ async function extractSynthesis(path: string): Promise<{ text: string; libraries
   for (const line of lines) {
     try {
       const entry = JSON.parse(line);
+      // Codex rollout format: { type: "response_item", payload: {...} }
+      const p = entry?.payload;
+      if (entry?.type === "response_item" && p && typeof p === "object") {
+        if (p.type === "function_call" && TOOL_PATTERN.test(p.name ?? "")) {
+          let args: Record<string, unknown> = {};
+          try { args = JSON.parse(typeof p.arguments === "string" ? p.arguments : "{}"); } catch { /* noop */ }
+          const lib = String(args.libraryId ?? args.libraryName ?? args.query ?? "");
+          if (lib && !libraries.includes(lib)) libraries.push(lib);
+        }
+        if (p.type === "message" && p.role === "assistant" && Array.isArray(p.content)) {
+          const text = p.content
+            .map((c: { text?: unknown }) => (typeof c?.text === "string" ? c.text : ""))
+            .join("\n").trim();
+          if (text.length > synthesis.length) synthesis = text;
+        }
+        continue;
+      }
+      // Claude native format: entry.message.content[]
       const role = entry?.type ?? entry?.role;
       const contents = entry?.message?.content;
       if (!Array.isArray(contents)) continue;

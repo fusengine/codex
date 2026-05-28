@@ -13,11 +13,17 @@ from _shared.cache_io import atomic_write, load_index
 from _shared.mcp_response import extract_text as _extract_text
 from _shared.state_manager import sanitize_session_id
 
-CACHED_TOOLS = {
-    "mcp__context7__query-docs": ("query", "topic", "libraryName"),
-    "mcp__exa__web_search_exa": ("query",),
-    "mcp__exa__get_code_context_exa": ("query", "libraryName"),
-}
+def _query_keys(tool_name: str):
+    """Map any Claude/Codex MCP tool id to its query fields via substring match.
+    Codex exposes exa tools under variable names (web_search_exa, _web_search_exa,
+    mcp__exa__web_search_exa) and context7 as query_docs/query-docs."""
+    if "get_code_context_exa" in tool_name:
+        return ("query", "libraryName")
+    if "web_search_exa" in tool_name:
+        return ("query",)
+    if "context7" in tool_name and "query" in tool_name:
+        return ("query", "topic", "libraryName")
+    return None
 BASE_DIR = os.path.join(os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex")), "fusengine", "sessions")
 
 
@@ -50,9 +56,10 @@ def main() -> None:
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
     tool_name = data.get("tool_name", "")
-    if tool_name not in CACHED_TOOLS:
+    keys = _query_keys(tool_name)
+    if keys is None:
         sys.exit(0)
-    query = _extract_query(data.get("tool_input") or {}, CACHED_TOOLS[tool_name])
+    query = _extract_query(data.get("tool_input") or {}, keys)
     if not query:
         sys.exit(0)
     try:
