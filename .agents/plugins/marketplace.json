@@ -1,6 +1,6 @@
 {
   "name": "fusengine-codex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fusengine plugin ecosystem for Codex CLI: expert agents, APEX workflow, SOLID/DRY enforcement, cartography, security",
   "author": {
     "name": "Fusengine",
@@ -15,7 +15,7 @@
         "source": "local",
         "path": "./plugins/ai-pilot"
       },
-      "version": "1.2.25",
+      "version": "1.2.26",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -93,7 +93,7 @@
         "source": "local",
         "path": "./plugins/core-guards"
       },
-      "version": "1.1.27",
+      "version": "1.1.28",
       "category": "Security",
       "policy": {
         "installation": "AVAILABLE",

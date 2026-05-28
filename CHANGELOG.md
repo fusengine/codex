@@ -5,6 +5,15 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.7] - 2026-05-28
+
+### Fixed
+
+- Codex code_mode "tourne en rond": per-tool Pre/PostToolUse hooks do not fire in code_mode (openai/codex#19385), so the APEX gates never saw the Context7/Exa consultation or SOLID reads done by subagents and blocked edits forever. Gates now fall back to the session rollout tree (main + child subagent rollouts, linked via session_id).
+- `enforce-apex-phases` doc gate, `mcp_research` (all per-framework check-skill gates) and `require-solid-read` read evidence from the rollout when state is empty (ai-pilot 1.2.26, core-guards 1.1.28, suite 1.0.2).
+- `bash-write-guard`: allow reads of APEX state/cache, block only mutations (fixes the "session state tampering" false-positive on `sed -n`/`cat` reads).
+- Proven end-to-end via real `codex exec` runs (file created, no infinite loop).
+
 ## [1.2.6] - 2026-05-28
 
 ### Fixed
