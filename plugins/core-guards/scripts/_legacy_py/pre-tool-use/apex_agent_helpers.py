@@ -7,12 +7,12 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from _shared.state_manager import load_session_state, save_session_state
 
-AGENT_TTL_SECONDS = 120
+AGENT_TTL_SECONDS = 180
 REQUIRED_AGENTS = ['explore-codebase', 'research-expert']
 
 
 def check_required_agents(sid):
-    """Check if BOTH required agents were called within TTL (2min)."""
+    """Check if BOTH required agents were called within TTL (3min)."""
     state = load_session_state(sid)
     if not state:
         return False, REQUIRED_AGENTS[:]
@@ -20,7 +20,7 @@ def check_required_agents(sid):
 
 
 def _scan_agents(state):
-    """Scan agent/MCP entries within TTL (2min). Matches lead + subagent via substring."""
+    """Scan agent/MCP entries within TTL (3min). Matches lead + subagent via substring."""
     agents = state.get('agents', [])
     if not agents:
         return False, REQUIRED_AGENTS[:]
@@ -64,5 +64,4 @@ def check_brainstorm_done(sid):
         if 'brainstorming' in entry.get('type', ''):
             return entry.get('quality', '') == 'sufficient'
     return False
-
 

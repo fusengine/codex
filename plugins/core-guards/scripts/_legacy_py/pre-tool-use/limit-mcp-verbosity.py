@@ -5,9 +5,6 @@ from __future__ import annotations
 import json
 import sys
 
-EXA_SEARCH = "mcp__exa__web_search_exa"
-EXA_CODE = "mcp__exa__get_code_context_exa"
-CONTEXT7 = "mcp__context7__query-docs"
 MAX_NUM_RESULTS = 3
 MAX_TOKENS = 2000
 
@@ -48,11 +45,13 @@ def cap_fields(tool_input: dict, caps: tuple[tuple[str, int], ...]) -> dict | No
 
 
 def compute_update(tool_name: str, tool_input: dict) -> dict | None:
-    if tool_name == EXA_SEARCH:
+    # Substring match: Codex exposes exa tools under variable names
+    # (web_search_exa, _web_search_exa, mcp__exa__web_search_exa).
+    if "web_search_exa" in tool_name:
         return cap_exa_search(tool_input)
-    if tool_name == EXA_CODE:
+    if "get_code_context_exa" in tool_name:
         return cap_fields(tool_input, (("numResults", MAX_NUM_RESULTS), ("tokensNum", MAX_TOKENS)))
-    if tool_name == CONTEXT7:
+    if "context7" in tool_name and "query" in tool_name:
         return cap_fields(tool_input, (("tokens", MAX_TOKENS),))
     return None
 

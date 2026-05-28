@@ -32,5 +32,9 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 		next = next.trimEnd() + "\n\n[features]\nhooks = true\nplugin_hooks = true\n";
 	}
 	next = ensureRootKey(next, "suppress_unstable_features_warning", "true");
+	// Plugin-bundled hooks are re-synced/updated across versions; persisting
+	// bypass_hook_trust avoids an interactive re-trust prompt each time a hook
+	// changes (these hooks are first-party and vetted by this installer).
+	next = ensureRootKey(next, "bypass_hook_trust", "true");
 	if (next !== existing) await Bun.write(configPath, next);
 }

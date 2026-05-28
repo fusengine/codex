@@ -1,16 +1,1 @@
-{
-  "graphiti": {
-    "url": "http://${NEURAL_MEMORY_HOST}:8000/mcp/"
-  },
-  "qdrant": {
-    "command": "uvx",
-    "args": [
-      "mcp-server-qdrant"
-    ],
-    "env": {
-      "QDRANT_URL": "http://${NEURAL_MEMORY_HOST}:6333",
-      "COLLECTION_NAME": "claude_lessons",
-      "EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2"
-    }
-  }
-}
+{}

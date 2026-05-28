@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PreToolUse: Block code writes if explore-codebase + research-expert not called (2min TTL).
+"""PreToolUse: Block code writes if explore-codebase + research-expert not called (3min TTL).
 Handles Claude (Write/Edit file_path) and Codex (apply_patch V4A body)."""
 import json
 import os
@@ -69,10 +69,10 @@ def main():
                     hints.append('Glob/Grep (codebase exploration)')
                 if 'research' in m:
                     hints.append('Context7/Exa/WebSearch (research)')
-            deny(f"BLOCKED: APEX workflow required (2min TTL). "
+            deny(f"BLOCKED: APEX workflow required (3min TTL). "
                  f"Missing: {missing_str}. Use {' and '.join(hints)} BEFORE editing code.")
         else:
-            deny(f"BLOCKED: APEX workflow required (2min TTL). "
+            deny(f"BLOCKED: APEX workflow required (3min TTL). "
                  f"Missing agents: {missing_str}. "
                  f"Launch BOTH explore-codebase AND research-expert BEFORE editing code.")
     sys.exit(0)

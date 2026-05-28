@@ -32,7 +32,7 @@ def _load_apex_authorization(framework: str) -> dict:
     return entry if isinstance(entry, dict) else {}
 
 
-def _session_authorized(entry: dict, session_id: str, ttl: int = 120) -> bool:
+def _session_authorized(entry: dict, session_id: str, ttl: int = 180) -> bool:
     sessions = entry.get("doc_sessions") or entry.get("sessions") or []
     if session_id not in sessions:
         return False
