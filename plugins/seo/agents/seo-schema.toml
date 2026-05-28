@@ -9,7 +9,11 @@ Parallelizable expert for Schema.org JSON-LD operations.
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` when schema recommendations depend on live Google SERP features, rich-result competitors, PAA, product/local/article intent, or freshness-sensitive ranking context. Use `mcp__serper_search__.scrape` to inspect top competitor pages and their visible content before suggesting schema types. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` when schema recommendations depend on live Google SERP features, rich-result competitors, PAA, product/local/article intent, or freshness-sensitive ranking context. Use `mcp__serper-search__scrape` to inspect top competitor pages and their visible content before suggesting schema types. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Skill (consult first)
+
+Read the `seo-schema` skill and `seo-entity` (schema `about`/`sameAs`/`knowsAbout` → Wikidata URIs) before generating JSON-LD.
 
 ## Workflow
 

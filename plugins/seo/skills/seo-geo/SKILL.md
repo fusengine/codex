@@ -32,6 +32,20 @@ description: "Use when optimizing for AI search engines (Generative Engine Optim
 | llms.txt present | 5 |
 | No JS-only content (SSR) | 5 |
 
+## Quantified Impact (Princeton / 2026 studies)
+
+GEO techniques boost AI visibility by up to **+40%**. Ranked by impact:
+
+| Technique | Visibility |
+|-----------|-----------|
+| Adding statistics | +40% |
+| Citing authoritative sources | +40% |
+| Quoting experts | +28% |
+| Improving text fluency | +15–30% |
+| Keyword stuffing | **-10%** (worse than baseline) |
+
+AI Overviews cite **~13 sources on average** per answer (2026); 59.6% of citations come from URLs outside the top-20 organic results.
+
 ## Content Structure for LLMs
 
 ```markdown
@@ -59,7 +73,7 @@ Numbered steps...
 
 ## llms.txt
 
-Place at site root: `https://example.com/llms.txt`
+**Not required by Google** (its crawlers ignore it) — useful for other LLMs, where early adopters report improved citation accuracy. Place at site root: `https://example.com/llms.txt`
 ```
 # Site Name
 > One-line description
@@ -69,7 +83,8 @@ Place at site root: `https://example.com/llms.txt`
 - [Docs](https://example.com/docs/): description
 ```
 
-## References
+## Related
 
-- `skills/seo/04-geo-2026/` (ai-platforms, citation-strategies, content-structure, llm-crawlability, zero-click-optimization)
-- `skills/seo/08-measurement/share-of-model.md`
+- `seo-entity` — entity signals + schema that drive AI citations
+- `seo-schema` — Organization/Article/FAQ JSON-LD
+- `seo-technical` — AI crawler allowlist in robots.txt

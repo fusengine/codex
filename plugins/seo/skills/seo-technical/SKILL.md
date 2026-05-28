@@ -27,6 +27,8 @@ description: "Use when auditing technical SEO. Covers robots.txt, sitemap.xml, C
 - Canonical points to indexable URL
 - No `nofollow` on internal navigation
 
-## References
+## Related
 
-- `skills/seo/05-technical-seo/` (core-web-vitals, crawlability, mobile-first, structured-data-testing)
+- `seo-sitemap` — sitemap structure + robots.txt sitemap reference
+- `seo-redirects` — redirect chains, HTTPS, status codes
+- `seo-geo` — AI crawler allowlist for robots.txt

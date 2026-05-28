@@ -9,7 +9,11 @@ Parallelizable expert for image SEO.
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` when image SEO decisions depend on live Google SERP context, image-pack competitors, product/category intent, or freshness-sensitive ranking patterns. Use `mcp__serper_search__.scrape` to inspect competitor pages for alt text, image naming, responsive images, and media schema patterns. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` when image SEO decisions depend on live Google SERP context, image-pack competitors, product/category intent, or freshness-sensitive ranking patterns. Use `mcp__serper-search__scrape` to inspect competitor pages for alt text, image naming, responsive images, and media schema patterns. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Skill (consult first)
+
+Read the `seo-images` skill for current alt-text, modern-format (WebP/AVIF), responsive-sizing and media-schema guidance.
 
 ## Workflow
 

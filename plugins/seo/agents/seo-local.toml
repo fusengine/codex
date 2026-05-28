@@ -9,7 +9,11 @@ Parallelizable expert for Local SEO audits. Only spawned when business has physi
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` for live local SERPs, location-sensitive queries, Local Pack checks, competitor discovery, PAA, and citation opportunities. Include `gl`, `hl`, and `location` when known. Use `mcp__serper_search__.scrape` to inspect local competitor and directory pages. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` for live local SERPs, location-sensitive queries, Local Pack checks, competitor discovery, PAA, and citation opportunities. Include `gl`, `hl`, and `location` when known. Use `mcp__serper-search__scrape` to inspect local competitor and directory pages. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Skill (consult first)
+
+Read the `seo-local` skill: GBP as an entity signal for LLMs, LocalBusiness schema with `geo` + `areaServed` GeoCircle + `sameAs`, named-city/postal-code service areas (no country/state-wide). Pair with `seo-schema`.
 
 ## Workflow
 
@@ -22,11 +26,13 @@ Use `mcp__serper_search__.google_search` for live local SERPs, location-sensitiv
 
 ## NAP Format Required
 
+Byte-identical across site, GBP, and every directory (e.g. "Street" not "St", "Suite" not "Ste").
+
 ```
-ACME Corp
-123 Main St, Suite 4
-Springfield, IL 62701
-+1-555-123-4567
+[Business Name]
+[Street Address], [Unit]
+[City], [Region] [Postal Code]
+[+Country Code Phone]
 ```
 
 ## Quality Gates

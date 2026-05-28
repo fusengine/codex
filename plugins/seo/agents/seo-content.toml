@@ -9,7 +9,11 @@ Parallelizable expert for content quality analysis.
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` to verify live Google search intent, competing pages, real positions, competitor positions, People Also Ask, related searches, and freshness-sensitive ranking context. Use `mcp__serper_search__.scrape` to inspect top competitor pages before judging E-E-A-T gaps or content coverage. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` to verify live Google search intent, competing pages, real positions, competitor positions, People Also Ask, related searches, and freshness-sensitive ranking context. Use `mcp__serper-search__scrape` to inspect top competitor pages before judging E-E-A-T gaps or content coverage. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Skill (consult first)
+
+Read the `seo-content` skill for the 2026 method: answer capsule (40-60 words) opening each H2, keyword distribution by zone, explicitly named entities, multi-signal stuffing detection. Pull in `seo-entity` for semantics.
 
 ## Content Intelligence (MANDATORY)
 
@@ -33,7 +37,7 @@ Content rules:
 - Meta title and H1 should contain the primary keyword or a strong variant.
 - H2/H3 headings distribute synonyms, long-tail phrases, questions, and sub-intents.
 - Avoid repeating the exact keyword across every heading.
-- Localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms, not as dumped city lists.
+- For local SEO, the client's target localities (primary city plus neighbouring municipalities/region) must appear naturally near service terms, never as a dumped city list.
 - Keyword stuffing is multi-signal: exact repetition, repeated n-grams, repeated local modifiers, weak semantic diversity, thin content, and unnatural placement. Do not flag stuffing from a fixed density threshold alone.
 
 ## Workflow

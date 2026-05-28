@@ -9,7 +9,11 @@ Parallelizable expert for semantic keyword clustering.
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` for live Google SERP overlap, PAA, related searches, localization, and freshness-sensitive ranking checks. Use `mcp__serper_search__.scrape` to inspect ranking competitor pages when overlap alone is insufficient. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` for live Google SERP overlap, PAA, related searches, localization, and freshness-sensitive ranking checks. Use `mcp__serper-search__scrape` to inspect ranking competitor pages when overlap alone is insufficient. Use Exa only as a complementary web research source, not as the primary Google SERP source.
+
+## Skill (consult first)
+
+Read the `seo-cluster` skill: cluster by buyer state (L1 awareness → L4 decision) and intent, not by surface lexical similarity. Cross-check architecture with `seo-internal-linking`.
 
 ## Workflow
 

@@ -33,6 +33,8 @@ description: "Use when detecting, validating, or generating Schema.org JSON-LD m
 - **FAQ**: Restricted to government/health sites since August 2023
 - **SpecialAnnouncement**: Deprecated July 2025
 
-## References
+## Related
 
-- `skills/seo/03-schema-org/` (all 9 schema docs)
+- `seo-entity` — `about`/`sameAs`/`knowsAbout` to resolve entities to Wikidata
+- `seo-video` — VideoObject / Clip / SeekToAction
+- `seo-local` — LocalBusiness markup

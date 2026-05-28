@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * cannibalization-audit.ts - Detect same-domain SERP cannibalization via Serper.
- * Usage: bun cannibalization-audit.ts <keyword> <domain> [--target-url https://...] [--gl ch] [--hl fr] [--location "Montreux, Switzerland"] [--pages 3] [--format json|markdown]
+ * Usage: bun cannibalization-audit.ts <keyword> <domain> [--target-url https://...] [--gl ch] [--hl fr] [--location "City, Region, Country"] [--pages 3] [--format json|markdown]
  */
 type Format = "json" | "markdown";
 interface Args { keyword: string; domain: string; targetUrl?: string; gl?: string; hl?: string; location?: string; pages: number; format: Format }
@@ -10,7 +10,7 @@ interface Hit extends Organic { rank: number; page: number; domain: string; norm
 
 function usage(message?: string): never {
   if (message) console.error(`Error: ${message}`);
-  console.error("Usage: bun cannibalization-audit.ts <keyword> <domain> [--target-url https://...] [--gl ch] [--hl fr] [--location \"Montreux, Switzerland\"] [--pages 3] [--format json|markdown]");
+  console.error("Usage: bun cannibalization-audit.ts <keyword> <domain> [--target-url https://...] [--gl ch] [--hl fr] [--location \"City, Region, Country\"] [--pages 3] [--format json|markdown]");
   process.exit(1);
 }
 

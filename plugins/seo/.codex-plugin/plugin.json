@@ -1,7 +1,7 @@
 {
   "name": "seo",
   "version": "1.0.2",
-  "description": "SEO/GEO 2026 plugin for Codex CLI. Local-first, framework-aware, zero third-party APIs. Covers technical SEO, schema markup, E-E-A-T, AI Overviews optimization, local SEO, sitemaps, hreflang, internal linking, content briefs, semantic clustering, and search experience optimization.",
+  "description": "SEO/GEO 2026 plugin for Codex CLI. Local-first core; optional live Google SERP via Serper (SERPER_API_KEY), framework-aware. Covers technical SEO, schema markup, E-E-A-T, AI Overviews optimization, local SEO, sitemaps, hreflang, internal linking, content briefs, semantic clustering, and search experience optimization.",
   "author": {
     "name": "Fusengine",
     "url": "https://github.com/fusengine"

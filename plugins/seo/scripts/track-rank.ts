@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * track-rank.ts - Track a domain or URL in Google SERPs via Serper.
- * Usage: bun track-rank.ts <keyword> <domain-or-url> [--gl ch] [--hl fr] [--location "Montreux, Switzerland"] [--pages 3] [--target-url https://...] [--format json|markdown]
+ * Usage: bun track-rank.ts <keyword> <domain-or-url> [--gl ch] [--hl fr] [--location "City, Region, Country"] [--pages 3] [--target-url https://...] [--format json|markdown]
  */
 type Format = "json" | "markdown";
 interface Args { keyword: string; subject: string; gl?: string; hl?: string; location?: string; pages: number; format: Format; targetUrl?: string }
@@ -10,7 +10,7 @@ interface Ranked extends Organic { page: number; rank: number; domain: string; e
 
 function usage(message?: string): never {
   if (message) console.error(`Error: ${message}`);
-  console.error("Usage: bun track-rank.ts <keyword> <domain-or-url> [--gl ch] [--hl fr] [--location \"Montreux, Switzerland\"] [--pages 3] [--target-url https://...] [--format json|markdown]");
+  console.error("Usage: bun track-rank.ts <keyword> <domain-or-url> [--gl ch] [--hl fr] [--location \"City, Region, Country\"] [--pages 3] [--target-url https://...] [--format json|markdown]");
   process.exit(1);
 }
 

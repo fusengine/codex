@@ -8,7 +8,7 @@ description: "Use when running SEO, GEO, schema, Core Web Vitals, sitemap, hrefl
 
 **Invocation:** `/seo $1 $2` where `$1` is the command and `$2` is the URL or local path.
 
-Comprehensive SEO + GEO 2026 analysis across all industries (SaaS, local services, e-commerce, publishers, agencies). Orchestrates 19 sub-skills and 8 parallel sub-agents. Local-first, zero third-party APIs.
+Comprehensive SEO + GEO 2026 analysis across all industries (SaaS, local services, e-commerce, publishers, agencies). Orchestrates 21 sub-skills and 8 parallel sub-agents. Local-first core; Serper optional for live SERP/positions.
 
 ## Quick Reference
 
@@ -74,23 +74,35 @@ Run `scripts/analyze-keywords.ts` before content recommendations when it is avai
 - Meta title and H1 need the primary keyword or a strong variant.
 - H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
 - Avoid repeating the exact keyword across every heading.
-- Localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms. Do not dump locations as city lists.
+- The client's target localities (primary [city] + neighbouring municipalities/[region]) must appear naturally near service terms, never as a dumped city list.
 - Keyword stuffing must be diagnosed from multiple signals: exact repetition, repeated n-grams, local modifier repetition, weak semantic diversity, thin content, and unnatural placement. Do not use a fixed density threshold alone.
 
-## Reference Library (legacy 10 categories)
+## Sub-Skills (21 — one folder per skill)
+
+Each capability is a sibling skill under `plugins/seo/skills/`. Invoke the matching skill directly; there is no shared `references/NN-*/` tree.
 
 ```
-references/
-├── 01-seo-foundations/   → research workflow, SEO vs GEO
-├── 02-onpage-seo/        → meta tags, OG, Twitter, headers, alt
-├── 03-schema-org/        → 9 schema types (templates ready)
-├── 04-geo-2026/          → AI platforms, citations, zero-click
-├── 05-technical-seo/     → CWV, mobile-first, crawlability
-├── 06-content-strategy/  → E-E-A-T, anti-cannibalization, keywords
-├── 07-sea-google-ads/    → Quality Score, landing pages (optional)
-├── 08-measurement/       → GEO tracking, Share of Model
-├── 09-checklists/        → pre-publication, technical audit
-└── 10-local-seo/         → GBP, NAP, citations, Local Pack
+seo                  → this orchestrator
+seo-audit            → full-site audit, parallel sub-agents, Health Score
+seo-page             → single-page deep analysis
+seo-technical        → robots, CWV, crawlability, mobile-first
+seo-schema           → JSON-LD detect/validate/generate
+seo-content          → E-E-A-T, anti-cannibalization, answer capsules
+seo-content-brief    → content brief + buyer-state long-tail layering
+seo-cluster          → SERP-overlap + buyer-state clustering
+seo-internal-linking → pillar/cluster, anchors, orphan/depth audit
+seo-featured-snippets→ position 0 + AI Overviews input
+seo-sxo              → search experience optimization
+seo-geo              → AI Overviews / ChatGPT / Perplexity / Codex readiness
+seo-entity           → entity-based SEO, knowledge graph, sameAs, semantic depth
+seo-plan             → strategic roadmaps by business type
+seo-ecommerce        → product schema, faceted nav, marketplace
+seo-local            → GBP, NAP, citations, Local Pack
+seo-images           → alt text, formats, lazy loading
+seo-video            → VideoObject, transcripts
+seo-sitemap          → sitemap.xml / robots.txt
+seo-hreflang         → i18n / multilingual
+seo-redirects        → 301/302, migration, chains
 ```
 
 ## Scripts Available (`scripts/`)

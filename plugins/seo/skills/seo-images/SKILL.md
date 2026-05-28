@@ -23,6 +23,7 @@ description: "Use when optimizing images for SEO. Covers alt text, descriptive f
 | Content | WebP | 100 KB | 75 |
 | Thumbnail | WebP | 30 KB | 70 |
 
-## References
+## Related
 
-- `skills/seo/02-onpage-seo/alt-text-images.md`
+- `seo-schema` — ImageObject JSON-LD
+- `seo-sitemap` — sitemap-image.xml

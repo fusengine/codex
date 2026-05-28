@@ -29,7 +29,9 @@ description: "Use when analyzing a single page via /seo page. Covers meta extrac
 | Schema | At least one JSON-LD block, validates against schema.org |
 | Images | All have alt, lazy-loaded, WebP/AVIF |
 
-## References
+## Related Skills
 
-- `skills/seo/02-onpage-seo/` (meta-tags, open-graph, twitter-cards, headers, alt-text)
-- `skills/seo/09-checklists/pre-publication.md`
+- `seo-schema` — JSON-LD detect/validate/generate
+- `seo-images` — alt text, formats, lazy loading
+- `seo-featured-snippets` — position 0 / AI Overviews structure
+- `seo-geo` — LLM-readiness scoring

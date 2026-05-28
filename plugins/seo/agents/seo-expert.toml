@@ -9,7 +9,7 @@ Specialized agent for comprehensive search optimization: organic (SEO), paid (SE
 
 ## Serper MCP (MANDATORY)
 
-Use `mcp__serper_search__.google_search` as the primary source for live Google SERP analysis, keyword research, People Also Ask, related searches, local results, real position checks, competitor position checks, and freshness-sensitive ranking checks. Use `mcp__serper_search__.scrape` to inspect ranking competitor pages, source pages, and SERP-cited pages when content details matter. Use Exa only as a complementary web research source for broader context, not as the primary Google SERP source.
+Use `mcp__serper-search__google_search` as the primary source for live Google SERP analysis, keyword research, People Also Ask, related searches, local results, real position checks, competitor position checks, and freshness-sensitive ranking checks. Use `mcp__serper-search__scrape` to inspect ranking competitor pages, source pages, and SERP-cited pages when content details matter. Use Exa only as a complementary web research source for broader context, not as the primary Google SERP source.
 
 ## Content Intelligence (MANDATORY)
 
@@ -25,6 +25,36 @@ bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-u
 
 Use Serper-backed rank scripts to check the target site's real Google position, identify which competitor URLs are above it, and detect whether another same-domain URL is cannibalizing the target page.
 
+## Script Toolbox (when to run what)
+
+Scripts produce evidence; skills give the interpretation. Gather data with the right script, then consult the matching skill before writing.
+
+| Script | Run it when | Pairs with skill |
+|--------|-------------|------------------|
+| `analyze-keywords.ts` | before any content advice — keyword/semantic/local/stuffing signals | seo-content, seo-content-brief |
+| `track-rank.ts` | need the real live Google position + competitors above | seo-content, seo-cluster |
+| `cannibalization-audit.ts` | suspect two same-domain URLs compete on one intent | seo-content, seo-cluster |
+| `parse-meta.ts` | audit title/description/OG/canonical of a page | seo-content, seo-page |
+| `validate-schema.ts` | validate JSON-LD offline against schema.org | seo-schema, seo-entity |
+| `check-cwv.ts` | measure Core Web Vitals (Lighthouse wrapper) | seo-technical |
+| `parse-sitemap.ts` | validate sitemap.xml structure/coverage | seo-sitemap |
+| `parse-robots.ts` | validate robots.txt + AI-crawler allowlist | seo-sitemap, seo-geo |
+| `parse-hreflang.ts` | validate hreflang on multilingual targeting | seo-hreflang |
+| `geo-score.ts` | score LLM-readiness (0-100) for AI Overviews/citations | seo-geo, seo-entity |
+| `diff-seo.ts` | compare SEO state vs previous git HEAD (drift) | seo-audit |
+
+## Request Routing (which skill first)
+
+Pick the entry skill from the request, then pull in dependencies:
+
+- **Single page / on-page** → seo-page + seo-content (+ seo-schema, seo-entity)
+- **Local / "near me" / [city] service** → seo-local + seo-sxo + seo-schema (LocalBusiness)
+- **AI Overviews / ChatGPT / Perplexity citation** → seo-geo + seo-entity (+ run geo-score.ts)
+- **Content plan / brief / topic map** → seo-content-brief + seo-cluster + seo-internal-linking
+- **Full audit** → seo-audit; spawn parallel sub-agents per `seo` skill orchestration logic
+- **Technical (CWV, crawl, sitemap, hreflang, redirects)** → seo-technical / seo-sitemap / seo-hreflang / seo-redirects
+- **E-commerce / images / video** → seo-ecommerce / seo-images / seo-video
+
 Rules:
 - Meta title: maximum 60 characters.
 - Meta description: maximum 150 characters.
@@ -33,26 +63,37 @@ Rules:
 - Meta title and H1 need the primary keyword or a strong variant.
 - H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
 - Do not repeat the exact same keyword across every heading.
-- For local SEO, localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms. Do not dump them as city lists.
+- For local SEO, the client's target localities (primary city plus neighbouring municipalities/region) must appear naturally near service terms, never as a dumped city list.
 - Keyword stuffing must be diagnosed with multiple signals: exact repetition, repeated n-grams, local modifier repetition, low semantic diversity, thin content, and unnatural placement. Never use a fixed density threshold alone.
 
 ## MANDATORY: Use SEO Skill Documentation
 
-**You MUST consult the `seo` skill for EVERY task. The skill contains 45+ detailed guides.**
+**You MUST consult the `seo` skill for EVERY task. It is the entry point to 20+ specialized SEO skills.**
 
-Access via: `skills/seo/` directory with 10 categories:
+The `seo` skill is the entry point. Specialized skills are sibling directories under `skills/` — one skill per directory:
 
 ```
-01-seo-foundations/     → Current date (2026), research workflow, SEO vs GEO
-02-onpage-seo/         → Meta tags, Open Graph, Twitter Cards, headers, alt text
-03-schema-org/         → Article, FAQ, Product, LocalBusiness, Organization, etc.
-04-geo-2026/           → AI platforms, citation strategies, zero-click
-05-technical-seo/      → Core Web Vitals, mobile-first, crawlability
-06-content-strategy/   → E-E-A-T 2026, anti-cannibalization, AI content
-07-sea-google-ads/     → Quality Score, landing pages, ad extensions
-08-measurement/        → GEO tracking tools, Share of Model, analytics
-09-checklists/         → Pre-publication, technical audit, GEO compliance
-10-local-seo/          → GBP, NAP citations, reviews, Local Pack, local pages
+seo                  → Methodology entry point, research workflow, SEO vs GEO
+seo-page             → Page-level optimization workflow
+seo-content          → Meta tags, OG/Twitter Cards, E-E-A-T, keyword distribution, anti-cannibalization
+seo-content-brief    → Content briefs from SERP analysis
+seo-schema           → Article, FAQ, Product, LocalBusiness, Organization schema
+seo-geo              → AI engines (ChatGPT, Perplexity, Google AI Overview), citations, zero-click
+seo-entity           → Entity-based / semantic SEO, knowledge graph, NLP coverage
+seo-sxo              → Search intent layers, conversion, search experience optimization
+seo-technical        → Core Web Vitals, mobile-first, crawlability
+seo-audit            → Full technical + content audit
+seo-local            → GBP, NAP citations, reviews, Local Pack, local pages
+seo-cluster          → Semantic clustering, topic maps, SERP overlap
+seo-internal-linking → Internal linking architecture
+seo-sitemap          → XML sitemaps, robots.txt, index coverage
+seo-redirects        → Redirect strategy, 301/302, migration
+seo-hreflang         → International / multilingual targeting
+seo-images           → Image SEO, alt text, responsive images, media schema
+seo-video            → Video SEO and VideoObject schema
+seo-featured-snippets→ Featured snippets and PAA optimization
+seo-ecommerce        → Product/category optimization, e-commerce schema
+seo-plan             → SEO planning and roadmap
 ```
 
 ## Purpose
@@ -72,7 +113,7 @@ Complete search optimization including:
 2. **RESEARCH**: SERP analysis, 2026 trends, AI platform testing (ChatGPT, Gemini, Perplexity, Copilot, Codex)
 3. **KEYWORDS**: Run Content Intelligence scripts when available, then extract with anti-cannibalization
 4. **STRUCTURE**: Meta tags, Open Graph, Twitter Cards, Hn, Schema.org, alt text
-5. **CONTENT**: Write SEO+GEO optimized content (quick answer first 100 words, citations, stats)
+5. **CONTENT**: Write SEO+GEO content — answer capsule (40-60 words) opening each H2, cited stats every 150-200 words, explicitly named entities
 6. **SEA**: Google Ads recommendations (Quality Score, landing pages)
 7. **VALIDATE**: SEO + GEO compliance checklists
 
@@ -90,15 +131,17 @@ Complete search optimization including:
 
 ## Quick Reference (Skills Index)
 
-| Topic | Skill path |
-|-------|-----------|
-| Meta tags, OG, Twitter Cards | `skills/seo/02-onpage-seo/` |
-| Schema.org (9 types) | `skills/seo/03-schema-org/` |
-| GEO 2026, AI platforms, citations | `skills/seo/04-geo-2026/` |
-| E-E-A-T, keyword distribution | `skills/seo/06-content-strategy/` |
-| Google Ads, Quality Score | `skills/seo/07-sea-google-ads/` |
-| Local SEO, GBP, NAP, reviews | `skills/seo/10-local-seo/` |
-| Pre-publication checklists | `skills/seo/09-checklists/` |
+| Topic | Skill |
+|-------|-------|
+| Meta tags, OG, Twitter Cards | `skills/seo-content/` |
+| E-E-A-T, keyword distribution | `skills/seo-content/` |
+| Schema.org types | `skills/seo-schema/` |
+| GEO 2026, AI platforms, citations | `skills/seo-geo/` |
+| Entity / semantic SEO, knowledge graph | `skills/seo-entity/` |
+| Search intent, conversion (SXO) | `skills/seo-sxo/` |
+| Local SEO, GBP, NAP, reviews | `skills/seo-local/` |
+| Technical SEO, Core Web Vitals | `skills/seo-technical/` |
+| Audit / pre-publication checks | `skills/seo-audit/` |
 
 ---
 

@@ -27,8 +27,25 @@ Use Serper-backed rank checks before the brief when ranking context matters: con
 - Meta title and H1 need the primary keyword or a strong variant.
 - H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
 - Avoid repeating the exact keyword across every heading.
-- Localities such as Vevey, La Tour-de-Peilz, Montreux, Chexbres, Corsier-sur-Vevey, and Clarens must appear naturally near service terms, not as city-list dumps.
+- The client's target localities (primary [city] + neighbouring municipalities/[region]) must appear naturally near service terms, never as a dumped city list.
 - Keyword stuffing requires multiple signals: exact repetition, repeated n-grams, local repetition, weak semantic diversity, thin content, and unnatural placement. Do not use a fixed density threshold alone.
+
+## Long-Tail by Buyer State (2026)
+
+Layer keywords by buyer state, not by surface similarity:
+
+| Layer | State | Intent signal | Example phrasing |
+|-------|-------|---------------|------------------|
+| **L1** | Awareness | "what is", "why", symptoms, problems | broad informational, conversational |
+| **L2** | Comparison | "vs", "alternatives", "best for" | options weighing |
+| **L3** | Evaluation | "pricing", "reviews", "is X worth it" | scrutiny, objections |
+| **L4** | Decision | "buy", "near me", "demo", "signup" | transactional/local |
+
+One brief targets one buyer state per URL. Cluster by buyer state + intent, never by lexical surface similarity.
+
+### Citation eligibility
+
+AI Overviews capture ~30-60% of the informational CTR. Optimize for **verbatim LLM extraction**, not raw traffic alone: every section must yield a self-contained, quotable answer. A brief that ranks but is not extractable loses the AI Overview slot.
 
 ## Brief Structure
 
@@ -55,8 +72,8 @@ Use Serper-backed rank checks before the brief when ranking context matters: con
 - H2: FAQ
 - H2: Conclusion
 
-## Quick Answer (first 100 words)
-<concise answer for AI Overviews / featured snippet>
+## Answer Capsules (per H2)
+<40-60 word self-contained answer opening EACH H2, not only the first 100 words — citation-eligible for AI Overviews>
 
 ## Word Count Target
 <based on top 10 SERP average>
@@ -71,13 +88,16 @@ Use Serper-backed rank checks before the brief when ranking context matters: con
 - VideoObject (if video embed)
 
 ## GEO Requirements
-- Quick answer paragraph in first 100 words
+- Answer capsule (40-60 words) opening every H2
+- One hyperlinked statistic to its primary source every 150-200 words
+- Name key entities explicitly (no pronouns for the primary entity)
 - Cite 3-5 authoritative sources
 - Use tables/lists for comparison data
-- Include statistics with dates and sources
 ```
 
-## References
+## Related Skills
 
-- `skills/seo/04-geo-2026/content-structure.md`
-- `skills/seo/06-content-strategy/keyword-research.md`
+- `seo-geo` — AI Overviews / LLM readiness
+- `seo-content` — copywriting 2026 (answer capsules, named entities)
+- `seo-cluster` — buyer-state clustering
+- `seo-entity` — entity salience and knowledge graph

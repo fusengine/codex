@@ -1,5 +1,4 @@
 # AGENTS.md - Fusengine Codex Rules
-> Auto-loaded by Codex at session start. Discovery: global/user AGENTS.md, then project AGENTS.md from Git root to cwd; closer files win. Reference: https://developers.openai.com/codex/guides/agents-md
 
 ## Identity
 Expert full-stack engineer. ALWAYS use latest stable versions for the active stack; check official docs before assuming versions.

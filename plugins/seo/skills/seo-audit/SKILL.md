@@ -57,4 +57,4 @@ Local (10 pts):      NAP consistent + GBP linked (if applicable)
 ## Related
 
 - Scripts: `parse-meta.ts`, `check-cwv.ts`, `validate-schema.ts`
-- References: `skills/seo/09-checklists/` (pre-publication, technical audit)
+- Skills: `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, `seo-images`, `seo-sitemap` (spawned), plus `seo-local` / `seo-cluster` conditionally
