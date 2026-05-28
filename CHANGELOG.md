@@ -5,6 +5,15 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.8] - 2026-05-28
+
+### Fixed
+
+- Codex check-skill gates (laravel/react/nextjs/swift/tailwind/shadcn/design) could block edits forever in code_mode: deny hints pointed at non-versioned skill folders absent from the cache, and skill-consultation evidence was read from state that per-tool hooks never write in code_mode (openai/codex#19385).
+- `skill_paths.skill_md` resolves the cache version segment (semantic) so hints point at the real SKILL.md; `check_skill_common` falls back to the session rollout tree (main + child subagent rollouts) for base and specific skill consultation; `rollout_evidence` gains `skill_read`.
+- `bash-write-guard` closes shell write evasions of the gated edit tools: the built-in patch shim, `git apply`, and in-place stream editors with combined flags (e.g. `perl -0pi`).
+- Proven via real `codex exec`: laravel controller created, no infinite loop (15 → 5 transient blocks).
+
 ## [1.2.7] - 2026-05-28
 
 ### Fixed
