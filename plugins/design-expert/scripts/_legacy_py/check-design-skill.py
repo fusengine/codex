@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from design_skill_triggers import detect_required_skills, specific_skill_consulted
 
 PLUGINS_DIR = os.path.expanduser(
@@ -59,8 +60,8 @@ def main() -> None:
     if not skill_was_consulted("design", session_id, project_root):
         deny_block(
             "BLOCKED: Design skill not consulted. READ ONE: "
-            f"1) {PLUGINS_DIR}/design-expert/skills/3-generating-components/SKILL.md"
-            f" | 2) {PLUGINS_DIR}/design-expert/skills/1-designing-systems/SKILL.md"
+            f"1) {skill_md('design-expert', '3-generating-components')}"
+            f" | 2) {skill_md('design-expert', '1-designing-systems')}"
             " | 3) Use mcp__context7__query-docs. After reading, retry.")
 
     # Phase 2: Domain skills (component/UI/style files)
@@ -69,7 +70,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/design-expert/skills/{s}/SKILL.md"
+            f"{skill_md('design-expert', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from swift_skill_triggers import detect_required_skills, specific_skill_consulted
 
 PLUGINS_DIR = os.path.expanduser(
@@ -45,8 +46,8 @@ def main() -> None:
     if not skill_was_consulted("swift", session_id, project_root):
         deny_block(
             "BLOCKED: Swift skill not consulted. READ ONE: "
-            f"1) {PLUGINS_DIR}/swift-apple-expert/skills/solid-swift/SKILL.md"
-            f" | 2) {PLUGINS_DIR}/swift-apple-expert/skills/swiftui-core/SKILL.md"
+            f"1) {skill_md('swift-apple-expert', 'solid-swift')}"
+            f" | 2) {skill_md('swift-apple-expert', 'swiftui-core')}"
             " | 3) Use mcp__context7__query-docs (topic: swiftui). After reading, retry.")
 
     # Phase 2: Domain skills (platform/framework detection)
@@ -55,7 +56,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/swift-apple-expert/skills/{s}/SKILL.md"
+            f"{skill_md('swift-apple-expert', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

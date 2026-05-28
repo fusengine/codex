@@ -23,7 +23,7 @@ DENY_PATTERNS = [
     (r'python3?\s+-\s*<<', 'Python heredoc input'),
     (r'python3?\s+-c\s', 'Python inline script'),
     (r'\bsed\b[^|]*\s-i', 'sed in-place edit'),
-    (r'\bperl\b[^|]*\s-[pi]i?\b', 'perl in-place edit'),
+    (r'\bperl\b[^|]*\s-\w*i', 'perl in-place edit'),
     (r'\bawk\b[^|]*-i\s*inplace', 'awk in-place edit'),
     (r'\bpatch\b', 'patch file modification'),
 ]
@@ -61,10 +61,12 @@ def main():
     cmd = data.get('tool_input', {}).get('command', '')
     if not cmd:
         sys.exit(0)
+    if re.search(r'\bapply_patch\b', cmd) or (re.search(r'\bgit\s+apply\b', cmd)
+            and not re.search(r'--(check|stat|numstat|summary)\b', cmd)):
+        output_decision('deny', 'apply_patch/git apply via shell bypasses the gated apply_patch tool — use the tool')
     stripped = cmd.strip()
     if any(stripped.startswith(p) for p in SAFE_PREFIXES) and not has_file_redirect(stripped):
         sys.exit(0)
-    # Reading the doc/MCP cache or APEX state is legitimate; only block mutations.
     if 'context/mcp/' in cmd or 'fusengine/sessions' in cmd:
         if has_file_redirect(cmd) or re.search(
                 r'\bsed\b[^|]*\s-i|\b(rm|mv|cp|tee|truncate|dd|chmod|chown)\b', cmd):
@@ -76,8 +78,7 @@ def main():
     if has_file_redirect(cmd):
         if is_safe_write_path(cmd):
             sys.exit(0)
-        # Only deny when the redirect *target* is a code file — not when a code
-        # extension merely appears elsewhere (e.g. `grep --include=*.ts ... > out.txt`).
+        # Deny only when the redirect target itself is a code file.
         target = extract_redirect_target(cmd) or ''
         if CODE_EXT.search(target):
             output_decision('deny', 'Bash redirect to code file — Use Write/Edit tools (enforces APEX + SOLID specs)')

@@ -15,6 +15,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from nextjs_skill_triggers import detect_required_skills, specific_skill_consulted
 from shadcn_patterns import is_shadcn_project
 from modular_detection import is_nextjs_modular
@@ -59,8 +60,8 @@ def main() -> None:
     if has_nx and not skill_was_consulted("nextjs", sid, root):
         deny_block(
             "BLOCKED: Next.js skill not consulted. READ ONE: "
-            f"1) {_P}/nextjs-expert/skills/solid-nextjs/SKILL.md"
-            f" | 2) {_P}/nextjs-expert/skills/nextjs-16/SKILL.md"
+            f"1) {skill_md('nextjs-expert', 'solid-nextjs')}"
+            f" | 2) {skill_md('nextjs-expert', 'nextjs-16')}"
             " | 3) Use mcp__context7__query-docs. After reading, retry.")
 
     # Phase 1.5: Modular architecture skill enforcement
@@ -68,7 +69,7 @@ def main() -> None:
         if not specific_skill_consulted("solid-nextjs", sid):
             deny_block(
                 "BLOCKED: Modular Next.js (modules/ exists). READ: "
-                f"{_P}/nextjs-expert/skills/solid-nextjs/SKILL.md "
+                f"{skill_md('nextjs-expert', 'solid-nextjs')} "
                 "BEFORE writing code. Modular architecture REQUIRED.")
 
     # Phase 2: Domain skills (skip shadcn if no components.json)
@@ -78,7 +79,7 @@ def main() -> None:
     missing = [s for s in required
                if not specific_skill_consulted(s, sid)]
     if missing:
-        paths = " | ".join(f"{_P}/nextjs-expert/skills/{s}/SKILL.md"
+        paths = " | ".join(f"{skill_md('nextjs-expert', s)}"
                            for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

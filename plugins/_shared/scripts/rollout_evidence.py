@@ -79,3 +79,15 @@ def solid_ref_read(session_id: str, skill_dir: str, ttl_seconds: int = 120) -> b
         if skill_dir in path or (needle in path and path.endswith((".md", ".txt"))):
             return True
     return False
+
+
+def skill_read(session_id: str, skill_name: str, ttl_seconds: int = 180) -> bool:
+    """True if a file under skills/<skill_name>/ was read in the rollout tree.
+
+    Version-agnostic: matches the read regardless of the cache version segment
+    (…/<plugin>/<version>/skills/<skill_name>/…).
+    """
+    if not skill_name:
+        return False
+    needle = "skills/{}/".format(skill_name)
+    return any(needle in path for path in read_paths_in_transcript(session_id, ttl_seconds))

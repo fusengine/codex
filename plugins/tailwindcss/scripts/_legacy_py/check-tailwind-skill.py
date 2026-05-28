@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from tailwind_skill_triggers import detect_required_skills, specific_skill_consulted
 
 PLUGINS_DIR = os.path.expanduser(
@@ -54,8 +55,8 @@ def main() -> None:
     if not skill_was_consulted("tailwind", session_id, project_root):
         deny_block(
             "BLOCKED: Tailwind skill not consulted. READ ONE: "
-            f"1) {PLUGINS_DIR}/tailwindcss/skills/tailwindcss-v4/SKILL.md"
-            f" | 2) {PLUGINS_DIR}/tailwindcss/skills/tailwindcss-utilities/SKILL.md"
+            f"1) {skill_md('tailwindcss', 'tailwindcss-v4')}"
+            f" | 2) {skill_md('tailwindcss', 'tailwindcss-utilities')}"
             " | 3) Use mcp__context7__query-docs (topic: tailwindcss). After reading, retry.")
 
     # Phase 2: Domain skills (utility category detection)
@@ -64,7 +65,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/tailwindcss/skills/{s}/SKILL.md"
+            f"{skill_md('tailwindcss', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

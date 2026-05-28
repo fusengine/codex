@@ -56,21 +56,36 @@ def find_project_root(start_dir: str, *markers: str) -> str:
     return os.getcwd()
 
 
+def _rollout_doc(session_id: str) -> bool:
+    """code_mode fallback: doc research (Context7+Exa) seen in the rollout tree."""
+    try:
+        from rollout_evidence import doc_consulted
+        return doc_consulted(session_id)
+    except Exception:
+        return False
+
+
 def skill_was_consulted(framework: str, session_id: str,
                         project_root: str) -> bool:
-    """Check if a skill was consulted in APEX 00-apex state."""
+    """Base skill consulted via APEX state, or doc research in the rollout
+    (PostToolUse does not fire in code_mode — openai/codex#19385)."""
     entry = _load_apex_authorization(framework)
-    return _session_authorized(entry, session_id)
+    return _session_authorized(entry, session_id) or _rollout_doc(session_id)
 
 
 def specific_skill_consulted(framework: str, skill_name: str,
                              session_id: str) -> bool:
-    """Check if a specific skill was read in APEX 00-apex state."""
+    """Specific skill read via APEX state, or via the rollout tree (code_mode)."""
     entry = _load_apex_authorization(framework)
-    if not _session_authorized(entry, session_id):
+    if _session_authorized(entry, session_id) and any(
+            f"skills/{skill_name}/" in str(source)
+            for source in entry.get("sources", [])):
+        return True
+    try:
+        from rollout_evidence import skill_read
+        return skill_read(session_id, skill_name)
+    except Exception:
         return False
-    return any(f"skills/{skill_name}/" in str(source)
-               for source in entry.get("sources", []))
 
 
 def deny_block(reason: str) -> None:

@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from shadcn_skill_triggers import detect_required_skills, specific_skill_consulted
 
 PLUGINS_DIR = os.path.expanduser(
@@ -46,8 +47,8 @@ def main() -> None:
     if not skill_was_consulted("shadcn", session_id, project_root):
         deny_block(
             "BLOCKED: shadcn skill not consulted. READ ONE: "
-            f"1) {PLUGINS_DIR}/shadcn-expert/skills/shadcn-detection/SKILL.md"
-            f" | 2) {PLUGINS_DIR}/shadcn-expert/skills/shadcn-components/SKILL.md"
+            f"1) {skill_md('shadcn-expert', 'shadcn-detection')}"
+            f" | 2) {skill_md('shadcn-expert', 'shadcn-components')}"
             " | 3) Use mcp__shadcn__search_items_in_registries. After reading, retry.")
 
     # Phase 2: Domain skills (component/UI/config files)
@@ -56,7 +57,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/shadcn-expert/skills/{s}/SKILL.md"
+            f"{skill_md('shadcn-expert', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

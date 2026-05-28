@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from laravel_skill_triggers import detect_required_skills, specific_skill_consulted
 from modular_detection import is_fusecore_project
 
@@ -45,8 +46,8 @@ def main() -> None:
     if not skill_was_consulted("laravel", session_id, project_root):
         deny_block(
             "BLOCKED: Laravel skill not consulted. READ ONE: "
-            f"1) {PLUGINS_DIR}/laravel-expert/skills/solid-php/SKILL.md"
-            f" | 2) {PLUGINS_DIR}/laravel-expert/skills/laravel-eloquent/SKILL.md"
+            f"1) {skill_md('laravel-expert', 'solid-php')}"
+            f" | 2) {skill_md('laravel-expert', 'laravel-eloquent')}"
             " | 3) Use mcp__context7__query-docs. After reading, retry.")
 
     # Phase 1.5: FuseCore module skill enforcement
@@ -54,7 +55,7 @@ def main() -> None:
         if not specific_skill_consulted("fusecore", session_id):
             deny_block(
                 "BLOCKED: FuseCore project detected. READ: "
-                f"{PLUGINS_DIR}/laravel-expert/skills/fusecore/SKILL.md "
+                f"{skill_md('laravel-expert', 'fusecore')} "
                 "BEFORE writing code in FuseCore modules.")
 
     # Phase 2: Domain skills (all .php files)
@@ -63,7 +64,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/laravel-expert/skills/{s}/SKILL.md"
+            f"{skill_md('laravel-expert', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")

@@ -16,6 +16,7 @@ from check_skill_common import (
     deny_block, find_project_root, first_edit_target, mcp_research_done,
     skill_was_consulted)
 from hook_output import allow_pass
+from skill_paths import skill_md
 from react_skill_triggers import detect_required_skills, specific_skill_consulted
 from shadcn_patterns import is_shadcn_project
 
@@ -51,8 +52,8 @@ def main() -> None:
         if not skill_was_consulted("react", session_id, project_root):
             deny_block(
                 "BLOCKED: React skill not consulted. READ ONE: "
-                f"1) {PLUGINS_DIR}/react-expert/skills/solid-react/SKILL.md"
-                f" | 2) {PLUGINS_DIR}/react-expert/skills/react-19/SKILL.md"
+                f"1) {skill_md('react-expert', 'solid-react')}"
+                f" | 2) {skill_md('react-expert', 'react-19')}"
                 " | 3) Use mcp__context7__query-docs. After reading, retry.")
 
     # Phase 2: Domain skills (ALL .ts/.tsx)
@@ -63,7 +64,7 @@ def main() -> None:
                if not specific_skill_consulted(s, session_id)]
     if missing:
         paths = " | ".join(
-            f"{PLUGINS_DIR}/react-expert/skills/{s}/SKILL.md"
+            f"{skill_md('react-expert', s)}"
             for s in missing)
         deny_block(f"BLOCKED: Code uses {', '.join(missing)} but "
                    f"skill(s) not consulted. READ: {paths}")
