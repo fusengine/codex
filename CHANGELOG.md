@@ -5,6 +5,20 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2026-05-28
+
+### Fixed
+
+- Codex 0.134 hook read false-positives: `detect-bash-write`/`bash-write-guard` now deny only real writes to code files and allow reads (incl. the `context/mcp` doc cache)
+- doc-gate consultation loop: `track-doc-consultation` matcher broadened to Codex tool ids (`web_search_exa`), resolving the infinite re-block on code writes
+- MCP cache scripts use substring tool matching; `cache-doc-from-transcript` parses the Codex rollout format so the research doc cache survives `code_mode`
+- `track-agent-calls` reads `spawn_agent` `message`/`task` fields
+- `memory-neural` ships an empty `.mcp.json` (lab) with the backend config preserved as `.mcp.json.example`
+- installer persists `bypass_hook_trust` so re-synced hooks run without an interactive re-trust prompt
+- APEX agents/SOLID read TTL raised to 180s; `.ruff_cache` gitignored; README model list aligned (gpt-5.5/5.4)
+
+Bumped: ai-pilot 1.2.25, core-guards 1.1.27, memory-neural 1.0.1 (suite 1.0.1).
+
 ## [1.2.5] - 2026-05-17
 
 ### Fixed
