@@ -45,8 +45,9 @@ the existing value.
 | `model` | gpt-5.5, gpt-5.4 | [config-sample](https://developers.openai.com/codex/config-sample) |
 | `model_reasoning_effort` | minimal, low, medium, high, xhigh | same |
 | `personality` | none, friendly, pragmatic | same |
-| `approval_policy` | untrusted, on-request, never | same |
+| `approval_policy` | untrusted, on-request (recommended — model decides when to ask), never | `on-failure` dropped (deprecated by Codex) |
 | `sandbox_mode` | read-only, workspace-write, danger-full-access | same |
+| `agents.max_threads` | 6 (default), 8, 12, 16 | concurrent sub-agent cap — raise to avoid `agent thread limit reached` |
 | `suppress_unstable_features_warning` | auto-set `true` to silence the `plugin_hooks` under-development warning | same |
 
 ### MCP API Keys

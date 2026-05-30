@@ -4,6 +4,7 @@
 import * as p from "@clack/prompts";
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
+import { hasKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
 
 type Choice = { value: string; label: string; hint?: string };
 
@@ -15,18 +16,13 @@ const MODELS: Choice[] = [
 ];
 const EFFORTS: Choice[] = ["minimal", "low", "medium", "high", "xhigh"].map((v) => ({ value: v, label: v }));
 const PERSONALITIES: Choice[] = ["none", "friendly", "pragmatic"].map((v) => ({ value: v, label: v }));
-const APPROVALS: Choice[] = ["untrusted", "on-request", "never"].map((v) => ({ value: v, label: v }));
+const APPROVALS: Choice[] = [
+	{ value: "untrusted", label: "untrusted", hint: "asks before everything not allowlisted" },
+	{ value: "on-request", label: "on-request", hint: "the model decides when to ask (recommended)" },
+	{ value: "never", label: "never", hint: "never interrupts, returns failures to the model" },
+];
 const SANDBOXES: Choice[] = ["read-only", "workspace-write", "danger-full-access"].map((v) => ({ value: v, label: v }));
-
-function hasKey(src: string, key: string): boolean {
-	return new RegExp(`^${key}\\s*=`, "m").test(src);
-}
-
-function setRootKey(src: string, key: string, value: string, quoted = true): string {
-	const line = quoted ? `${key} = "${value}"` : `${key} = ${value}`;
-	if (hasKey(src, key)) return src.replace(new RegExp(`^${key}\\s*=.*$`, "m"), line);
-	return `${line}\n${src}`;
-}
+const THREADS: Choice[] = ["6", "8", "12", "16"].map((v) => ({ value: v, label: v, hint: v === "6" ? "default" : undefined }));
 
 async function pick(label: string, options: Choice[], current: boolean): Promise<string | null> {
 	const message = current ? `${label} (set — pick to override or skip)` : label;
@@ -59,6 +55,12 @@ export async function promptCodexConfig(codexHome: string): Promise<void> {
 			next = setRootKey(next, key, value);
 			changes++;
 		}
+	}
+
+	const threads = await pick("agents.max_threads", THREADS, hasAgentsSection(next));
+	if (threads !== null) {
+		next = setAgentsThreads(next, threads);
+		changes++;
 	}
 
 	if (!hasKey(next, "suppress_unstable_features_warning")) {
