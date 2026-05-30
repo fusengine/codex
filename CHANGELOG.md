@@ -5,6 +5,16 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.10] - 2026-05-30
+
+### Added
+
+- Installer (`scripts/lib/install/config-prompt.ts`): new `agents.max_threads` prompt (6/8/12/16) to raise the concurrent sub-agent cap and avoid `agent thread limit reached`. New `toml-helpers.ts` module extracts `hasKey`/`setRootKey` (previously duplicated with `features.ts`) and adds table-scoped `setAgentsThreads`.
+
+### Changed
+
+- Installer `approval_policy` choices: dropped the deprecated `on-failure` value, added hints (`on-request` recommended — the model decides when to ask). README config table updated.
+
 ## [1.2.9] - 2026-05-29
 
 ### Added
