@@ -5,6 +5,16 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.12] - 2026-06-01
+
+### Added
+
+- Hook bundler `scripts/build-hooks.ts`: bundles any `@hook-entry`-marked hook source into a self-contained file (`Bun.build` target bun, `splitting:false`) so shared-lib imports are inlined for the isolated install layout. Foundation for the Python→TS/Bun hook migration.
+
+### Changed
+
+- `core-guards` 1.1.30: `require-apex-agents` ported from a Bun→python wrapper to native TS (`require-apex-agents.native.ts` + `_shared/apex-agents.ts`, reusing the TS `state-manager`); `hooks.json` runs the bundle. Parity verified byte-for-byte vs the Python across 5 cases including the 180-char `systemMessage` truncation. Guardrail behaviour unchanged.
+
 ## [1.2.11] - 2026-06-01
 
 ### Fixed
