@@ -54,7 +54,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-tool-use/pre-commit-guard.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/pre-commit-guard.native.js"
           }
         ]
       },
@@ -63,7 +63,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-tool-use/enforce-interfaces.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/enforce-interfaces.native.js"
           }
         ]
       },
@@ -72,7 +72,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-tool-use/enforce-file-size.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/enforce-file-size.native.js"
           }
         ]
       },
@@ -101,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/track-agent-calls.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/track-agent-calls.native.js"
           }
         ]
       },
@@ -110,7 +110,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/track-subagent-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/track-subagent-research.native.js"
           }
         ]
       },
@@ -119,7 +119,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/cache-mcp-result.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/cache-mcp-result.native.js"
           }
         ]
       },
@@ -128,11 +128,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/auto-document-reads.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/auto-document-reads.native.js"
           },
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/track-solid-reads.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/track-solid-reads.native.js"
           }
         ]
       },
@@ -145,11 +145,11 @@
           },
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/track-session-changes.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/track-session-changes.native.js"
           },
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/post-edit-typescript.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/post-edit-typescript.native.js"
           }
         ]
       },
@@ -167,7 +167,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/log-tool-failure.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/log-tool-failure.native.js"
           }
         ]
       }
@@ -261,7 +261,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/task-completed/validate-task-solid.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/task-completed/validate-task-solid.native.js"
           }
         ]
       },

@@ -15,9 +15,10 @@ import {
 } from "node:fs";
 import { randomBytes } from "node:crypto";
 
-/** Resolve the state directory lazily so HOME overrides are honoured. */
+/** Resolve the state directory lazily so CODEX_HOME / HOME overrides are honoured. */
 export function stateDir(): string {
-	return join(homedir(), ".codex", "fusengine", "sessions");
+	const codexHome = process.env.CODEX_HOME ?? join(homedir(), ".codex");
+	return join(codexHome, "fusengine", "sessions");
 }
 
 const SID_RE = /^[a-zA-Z0-9_-]{1,128}$/;
