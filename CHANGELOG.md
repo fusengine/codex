@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.18] - 2026-06-01
+
+### Removed
+
+- `core-guards` 1.1.35 — final purge: `tests/test-sessions-pattern.ts` rewritten from a Bun→python wrapper into a real `bun test` (8/8), the redundant python invocation dropped from `scripts/validate.ts`, and the entire `_legacy_py` tree removed. `plugins/core-guards/scripts` now contains **zero Python files** — the Python→TS/Bun migration is 100% complete.
+
 ## [1.2.17] - 2026-06-01
 
 ### Changed
