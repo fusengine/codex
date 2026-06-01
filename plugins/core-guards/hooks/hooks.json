@@ -141,7 +141,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/post-tool-use/enforce-file-size.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/enforce-file-size.native.js"
           },
           {
             "type": "command",
@@ -178,15 +178,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/session-start/inject-agents-md.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/session-start/inject-claude-md.native.js"
           },
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/session-start/load-dev-context.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/session-start/load-dev-context.native.js"
           },
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/session-start/cleanup-session-states.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/session-start/cleanup-session-states.native.js"
           },
           {
             "type": "command",
@@ -199,7 +199,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/instructions-loaded/validate-rules-loaded.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/instructions-loaded/validate-rules-loaded.native.js"
           }
         ]
       }
@@ -210,7 +210,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/user-prompt/read-agents-md.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/user-prompt/read-agents-md.native.js"
           }
         ]
       },
@@ -219,7 +219,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/user-prompt/detect-creation-intent.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/user-prompt/detect-creation-intent.native.js"
           }
         ]
       }
@@ -230,7 +230,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-start/inject-context-cache.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/subagent-start/inject-context-cache.native.js"
           }
         ]
       }
@@ -241,7 +241,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/subagent-stop/track-agent-memory.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/subagent-stop/track-agent-memory.native.js"
           }
         ]
       },
@@ -250,7 +250,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/teammate-idle/validate-teammate-output.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/teammate-idle/validate-teammate-output.native.js"
           }
         ]
       }
@@ -289,7 +289,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/session-end/cleanup-session.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/session-end/cleanup-session.native.js"
           }
         ]
       }
