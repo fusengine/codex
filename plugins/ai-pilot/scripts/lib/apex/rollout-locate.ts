@@ -11,9 +11,12 @@
 import { readdirSync, statSync, openSync, readSync, closeSync } from "node:fs";
 
 const CODEX_HOME = process.env.CODEX_HOME ?? `${process.env.HOME}/.codex`;
-const MAX_TAIL_BYTES = 512 * 1024;
+const MAX_TAIL_BYTES = 8 * 1024 * 1024;  // memory backstop; real scoping is turn-anchoring below
 const MAX_AGE_MS = 3_600_000;
 const HEAD_BYTES = 4096;
+// Current-turn anchors: match compact (Codex/Rust) and spaced (Python) JSON.
+const USER_TURN_MARKERS = ['"type": "user_message"', '"type":"user_message"'];
+const TASK_START_MARKERS = ['"type": "task_started"', '"type":"task_started"'];
 
 /** Recursively collect recent *.jsonl rollout paths (bounded by mtime). */
 function recentRollouts(dir: string, depth: number, out: string[]): void {
@@ -57,9 +60,24 @@ function readChunk(path: string, fromEnd: boolean): string {
   }
 }
 
-/** Read the last MAX_TAIL_BYTES of a file (recent events live at the end). */
+/** Slice `text` from the current task turn: the last user_message line, else
+ * the last task_started (subagent child rollouts have no user_message), else
+ * the whole tail. Scoping by turn — not a fixed byte window — stops a noisy
+ * command from evicting the turn's evidence. */
+function sliceFromTurnAnchor(text: string): string {
+  for (const markers of [USER_TURN_MARKERS, TASK_START_MARKERS]) {
+    const at = Math.max(...markers.map((m) => text.lastIndexOf(m)));
+    if (at >= 0) {
+      const lineStart = text.lastIndexOf("\n", at);
+      return text.slice(lineStart >= 0 ? lineStart + 1 : 0);
+    }
+  }
+  return text;
+}
+
+/** Read the MAX_TAIL_BYTES tail, sliced to the current task turn. */
 export function readTail(path: string): string {
-  return readChunk(path, true);
+  return sliceFromTurnAnchor(readChunk(path, true));
 }
 
 /**

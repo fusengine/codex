@@ -7,7 +7,10 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from _shared.state_manager import load_session_state, save_session_state
 
-AGENT_TTL_SECONDS = 180
+# 30 min: a single task turn (forced reads + agent spawns) routinely exceeds the
+# old 180 s, which made the evidence expire DURING the work the gate demanded —
+# the re-launch loop. A turn-scoped window removes the self-defeating expiry.
+AGENT_TTL_SECONDS = 1800
 REQUIRED_AGENTS = ['explore-codebase', 'research-expert']
 
 
@@ -33,7 +36,7 @@ def _scan_agents(state):
         try:
             dt = datetime.fromisoformat(ts.replace('Z', '+00:00'))
             if (now - dt.timestamp()) > AGENT_TTL_SECONDS:
-                break
+                continue  # skip this stale entry; older valid ones may follow
         except (ValueError, AttributeError, TypeError, OverflowError):
             continue
         agent_type = entry.get('type', '')
@@ -58,7 +61,7 @@ def check_brainstorm_done(sid):
         try:
             dt = datetime.fromisoformat(ts.replace('Z', '+00:00'))
             if (now - dt.timestamp()) > AGENT_TTL_SECONDS:
-                break
+                continue  # skip this stale entry; older valid ones may follow
         except (ValueError, AttributeError, TypeError, OverflowError):
             continue
         if 'brainstorming' in entry.get('type', ''):

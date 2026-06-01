@@ -8,12 +8,15 @@ import glob
 import json
 import os
 import time
-from datetime import datetime
 
 CODEX_HOME = os.environ.get("CODEX_HOME", os.path.join(os.path.expanduser("~"), ".codex"))
-MAX_TAIL_BYTES = 512 * 1024
+MAX_TAIL_BYTES = 8 * 1024 * 1024  # memory backstop; real scoping is turn-anchoring below
 MAX_AGE_SECONDS = 3600
 HEAD_BYTES = 4096
+# Current-turn anchors: last user_message, else task_started (subagent child
+# rollouts have none). Match compact (Codex/Rust) and spaced (Python) JSON.
+TURN_MARKERS = (('"type": "user_message"', '"type":"user_message"'),
+                ('"type": "task_started"', '"type":"task_started"'))
 
 
 def _recent_rollouts() -> list:
@@ -50,8 +53,17 @@ def session_rollouts(session_id: str) -> list:
     return out
 
 
+def _anchor_index(lines: list) -> int:
+    """Index of the current turn's start (last user_message, else task_started)."""
+    for markers in TURN_MARKERS:
+        for i in range(len(lines) - 1, -1, -1):
+            if any(m in lines[i] for m in markers):
+                return i
+    return 0
+
+
 def tail_lines(path: str) -> list:
-    """Return the last MAX_TAIL_BYTES of the file as lines (recent events)."""
+    """Current turn's lines: MAX_TAIL_BYTES tail sliced from the anchor."""
     try:
         size = os.path.getsize(path)
         with open(path, "rb") as fh:
@@ -60,16 +72,8 @@ def tail_lines(path: str) -> list:
             data = fh.read()
     except OSError:
         return []
-    return data.decode("utf-8", "replace").splitlines()
-
-
-def _within_ttl(entry: dict, cutoff: float) -> bool:
-    """True if entry has no timestamp or its timestamp is newer than cutoff."""
-    ts = entry.get("timestamp", "")
-    try:
-        return datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp() >= cutoff
-    except (ValueError, AttributeError):
-        return True
+    lines = data.decode("utf-8", "replace").splitlines()
+    return lines[_anchor_index(lines):]
 
 
 def _payload(entry: dict) -> dict:
@@ -81,9 +85,8 @@ def _payload(entry: dict) -> dict:
     return item if isinstance(item, dict) else entry
 
 
-def iter_function_calls(session_id: str, ttl_seconds: int):
-    """Yield function_call payloads within the TTL across the session tree."""
-    cutoff = time.time() - ttl_seconds
+def iter_function_calls(session_id: str, ttl_seconds: int = 0):  # noqa: ARG001
+    """Yield CURRENT-TURN function_call payloads (tail_lines is turn-scoped; ttl ignored)."""
     for path in session_rollouts(session_id):
         for line in tail_lines(path):
             if "function_call" not in line:
@@ -91,8 +94,6 @@ def iter_function_calls(session_id: str, ttl_seconds: int):
             try:
                 entry = json.loads(line)
             except (json.JSONDecodeError, ValueError):
-                continue
-            if not _within_ttl(entry, cutoff):
                 continue
             payload = _payload(entry)
             if payload.get("type") == "function_call":

@@ -41,7 +41,7 @@ def already_read(sid, fw):
             continue
         try:
             t = datetime.strptime(r.get('timestamp', ''), '%Y-%m-%dT%H:%M:%SZ')
-            return (time.time() - t.replace(tzinfo=timezone.utc).timestamp()) < 120
+            return (time.time() - t.replace(tzinfo=timezone.utc).timestamp()) < 1800
         except ValueError:
             return False
     return False

@@ -27,7 +27,10 @@ export function docConsultedInTranscript(sessionId: string, ttlMs = 180_000): bo
  */
 export function readDocEvidence(sessionId: string, ttlMs = 180_000): DocEvidence {
   const out: DocEvidence = { context7: false, exa: false };
-  const cutoff = Date.now() - ttlMs;
+  // No wall-clock cutoff: readTail already scopes to the current task turn
+  // (since the last user_message), the correct boundary. ttlMs is kept in the
+  // signature for backward compatibility and is intentionally ignored.
+  void ttlMs;
   for (const path of sessionRollouts(sessionId)) {
     for (const line of readTail(path).split("\n")) {
       if (!line.includes("function_call")) continue;
@@ -35,8 +38,6 @@ export function readDocEvidence(sessionId: string, ttlMs = 180_000): DocEvidence
         const entry = JSON.parse(line);
         const p = entry?.payload ?? entry?.item ?? entry;
         if (p?.type !== "function_call" && entry?.type !== "function_call") continue;
-        const ts = Date.parse(entry?.timestamp ?? "");
-        if (!Number.isNaN(ts) && ts < cutoff) continue;
         const id = `${p.name ?? ""} ${p.namespace ?? ""} ${typeof p.arguments === "string" ? p.arguments : ""}`;
         if (CONTEXT7_RE.test(id)) out.context7 = true;
         if (EXA_RE.test(id)) out.exa = true;
