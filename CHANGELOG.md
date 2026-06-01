@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.19] - 2026-06-01
+
+### Fixed
+
+- `require-apex-agents` (core-guards 1.1.36, ai-pilot 1.2.30) now has a rollout ground-truth fallback (`apexAgentsInTranscript` in `ai-pilot/lib/apex/rollout-agents.ts`). It was state-only and depended on PostToolUse track-* hooks that fire unreliably in Codex code_mode (openai/codex#19385), so it false-blocked edits after the model had already explored/researched — and the model then tried to write its APEX state by hand (denied by bash-write-guard), a friction loop. The gate now detects explore (Glob/Grep/explore-bash/list_dir/explore-codebase) and research (Context7/Exa/WebSearch/WebFetch/research-expert) from the current turn's rollout, mirroring the fallbacks `require-solid-read` and `enforce-apex-phases` already had. Verified: rollout with evidence → allow (no state write needed); empty rollout → deny.
+
 ## [1.2.18] - 2026-06-01
 
 ### Removed
