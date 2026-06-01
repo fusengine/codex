@@ -5,6 +5,16 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.17] - 2026-06-01
+
+### Changed
+
+- `core-guards` 1.1.34 — Lot E: the 11 remaining wired Bun→python wrapper hooks (session-start ×3, session-end, subagent-start/stop, user-prompt ×2, instructions-loaded, teammate-idle, post enforce-file-size) are now native TS bundles. hooks.json is fully native (only `sound/play.ts`, a native Bun mp3 player, is a non-bundle entry).
+
+### Removed
+
+- Lot D purge: removed all dead Python wrapper hooks, the snake_case `_shared` stubs, dead non-hook wrappers (validate-setup, save-apex-state), and the dead `_legacy_py` hook tree (86 files, ~4.8k lines). Kept `_legacy_py/{tests,_shared}` (still used by `scripts/validate.ts`). The Python→TS/Bun hook migration is complete — every core-guards hook runs as a bundled native TS hook.
+
 ## [1.2.16] - 2026-06-01
 
 ### Changed
