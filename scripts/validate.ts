@@ -92,7 +92,6 @@ function validateDeprecatedFlagCleanup(): void {
 validateHookTargets();
 validateDeprecatedFlagCleanup();
 run("session tests ts", ["bun", "test", "./plugins/core-guards/scripts/tests/test-sessions-pattern.ts"]);
-run("session tests py", ["python3", "plugins/core-guards/scripts/_legacy_py/tests/test-sessions-pattern.py"]);
 run("runtime shared wrapper tests", ["bun", "test", "./scripts/tests/runtime-shared.test.mts"]);
 run("shell read path tests", ["python3", "plugins/_shared/scripts/tests/test_shell_read_paths.py"]);
 run("interface rule tests", ["python3", "plugins/_shared/scripts/tests/test_interface_rules.py"]);
