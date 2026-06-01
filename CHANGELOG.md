@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.14] - 2026-06-01
+
+### Changed
+
+- `require-solid-read` migrated from a Bun→python wrapper to native TS (`core-guards` 1.1.31): reuses the canonical ai-pilot ref-router and a new `solidRefRead`/`readPathsInTranscript` added to the shared `rollout-evidence` (`ai-pilot` 1.2.29). Keeps the unconditional SOLID-read policy and writes `state.target`; deny output preserved (routed ref list now from the single TS router — DRY, guardrail unchanged). Bundle runs via `hooks.json`.
+
 ## [1.2.13] - 2026-06-01
 
 ### Changed
