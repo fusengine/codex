@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.16] - 2026-06-01
+
+### Changed
+
+- `core-guards` 1.1.33 — Lot C of the Python→TS/Bun migration: the 6 direct-`python3` hooks (mcp-cache-lookup, limit-mcp-verbosity, webfetch-cache-lookup, webfetch-cache-store, cleanup-old-caches, validate-apex-workflow) are now native TS bundles. `hooks.json` has ZERO python3 references — every Lot A/B/C hook runs native. Webfetch cache key verified byte-identical across implementations (cross-impl store↔lookup round-trip HIT), so cache survives. Remaining: Lot D — purge `_legacy_py` + the few non-A/B/C wrappers (e.g. post-tool-use/enforce-file-size).
+
 ## [1.2.15] - 2026-06-01
 
 ### Changed
