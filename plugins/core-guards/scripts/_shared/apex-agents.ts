@@ -7,6 +7,7 @@
  * expire DURING the work the gate demanded (the re-launch loop).
  */
 import { loadSessionState } from "./state-manager";
+import { apexAgentsInTranscript } from "../../../ai-pilot/scripts/lib/apex/rollout-agents";
 
 const AGENT_TTL_MS = 1_800_000;
 const REQUIRED = ["explore-codebase", "research-expert"];
@@ -42,6 +43,14 @@ export function checkRequiredAgents(sid: string): { satisfied: boolean; missing:
     for (const req of REQUIRED) {
       if ((e.type ?? "").includes(req)) found.add(req);
     }
+  }
+  if (found.size < REQUIRED.length) {
+    // Rollout ground-truth fallback: PostToolUse state writes are unreliable in
+    // code_mode (openai/codex#19385), so detect explore/research from the turn's
+    // rollout directly — avoids false-blocks + the manual state-write loop.
+    const rt = apexAgentsInTranscript(sid);
+    if (rt.explore) found.add("explore-codebase");
+    if (rt.research) found.add("research-expert");
   }
   const missing = REQUIRED.filter((r) => !found.has(r));
   return { satisfied: missing.length === 0, missing };

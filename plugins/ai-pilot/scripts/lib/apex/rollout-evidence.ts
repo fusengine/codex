@@ -16,7 +16,7 @@ const READ_COMMANDS = new Set(["bat", "cat", "grep", "head", "less", "nl", "rg",
 type DocEvidence = { context7: boolean; exa: boolean };
 
 /** Function_call payloads for the current task turn across the session tree. */
-function* iterFunctionCalls(sessionId: string): Generator<Record<string, unknown>> {
+export function* iterFunctionCalls(sessionId: string): Generator<Record<string, unknown>> {
   for (const path of sessionRollouts(sessionId)) {
     for (const line of readTail(path).split("\n")) {
       if (!line.includes("function_call")) continue;
