@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-tool-use/require-solid-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/require-solid-read.native.js"
           }
         ]
       },

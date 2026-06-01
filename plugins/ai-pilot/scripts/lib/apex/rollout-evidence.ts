@@ -11,8 +11,53 @@ import { sessionRollouts, readTail } from "./rollout-locate";
 
 const CONTEXT7_RE = /query[_-]docs|resolve[_-]library[_-]id|context7/i;
 const EXA_RE = /exa/i;
+const READ_COMMANDS = new Set(["bat", "cat", "grep", "head", "less", "nl", "rg", "sed", "tail"]);
 
 type DocEvidence = { context7: boolean; exa: boolean };
+
+/** Function_call payloads for the current task turn across the session tree. */
+function* iterFunctionCalls(sessionId: string): Generator<Record<string, unknown>> {
+  for (const path of sessionRollouts(sessionId)) {
+    for (const line of readTail(path).split("\n")) {
+      if (!line.includes("function_call")) continue;
+      try {
+        const entry = JSON.parse(line);
+        const p = entry?.payload ?? entry?.item ?? entry;
+        if (p?.type === "function_call" || entry?.type === "function_call") yield p;
+      } catch { /* skip malformed */ }
+    }
+  }
+}
+
+/** Read targets from a shell read command (cat/sed/head/... FILE); [] otherwise. */
+function pathsFromCommand(command: string): string[] {
+  const tokens = command.trim().split(/\s+/).filter(Boolean);
+  if (!tokens.length || !READ_COMMANDS.has(tokens[0]!.split("/").pop() ?? "")) return [];
+  return tokens.slice(1).filter((t) => t && !t.startsWith("-"));
+}
+
+/** File paths read via shell (exec_command) in the current turn. */
+export function readPathsInTranscript(sessionId: string): string[] {
+  const found: string[] = [];
+  for (const p of iterFunctionCalls(sessionId)) {
+    let args = p.arguments;
+    if (typeof args === "string") { try { args = JSON.parse(args); } catch { args = {}; } }
+    if (args && typeof args === "object") {
+      const a = args as Record<string, unknown>;
+      found.push(...pathsFromCommand(String(a.cmd ?? a.command ?? "")));
+    }
+  }
+  return found;
+}
+
+/** True if any SOLID reference under skillDir was read in the current turn. */
+export function solidRefRead(sessionId: string, skillDir: string): boolean {
+  if (!skillDir) return false;
+  const needle = skillDir.replace(/\/$/, "").split("/").pop() || skillDir;
+  return readPathsInTranscript(sessionId).some(
+    (p) => p.includes(skillDir) || (p.includes(needle) && /\.(md|txt)$/.test(p)),
+  );
+}
 
 /** True when both Context7 and Exa were used within ttlMs (per the rollout tree). */
 export function docConsultedInTranscript(sessionId: string, ttlMs = 180_000): boolean {
