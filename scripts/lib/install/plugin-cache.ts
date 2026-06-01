@@ -4,6 +4,7 @@
 import { cp, mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { listPlugins } from "./codex-cli";
+import { buildPlugin } from "../../build-hooks";
 
 interface PluginManifest {
 	version?: string;
@@ -28,6 +29,7 @@ export async function installPluginCache(
 	for (const name of await listPlugins(projectRoot)) {
 		const version = await pluginVersion(projectRoot, name);
 		const src = join(projectRoot, "plugins", name);
+		await buildPlugin(src); // inline @hook-entry bundles before copy (isolated install)
 		const dest = join(codexHome, "plugins", "cache", marketplaceName, name, version);
 		await rm(dest, { recursive: true, force: true });
 		await mkdir(dest, { recursive: true });

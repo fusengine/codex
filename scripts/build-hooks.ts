@@ -31,7 +31,7 @@ function entriesOf(pluginDir: string): string[] {
   return out;
 }
 
-async function buildPlugin(pluginDir: string): Promise<number> {
+export async function buildPlugin(pluginDir: string): Promise<number> {
   for (const rel of entriesOf(pluginDir)) {
     const outdir = join(pluginDir, "dist", "hooks", dirname(relative("scripts", rel)));
     mkdirSync(outdir, { recursive: true });
@@ -53,19 +53,20 @@ async function buildPlugin(pluginDir: string): Promise<number> {
   return 0;
 }
 
-const target = process.argv[2];
-if (!target) {
-  console.error("usage: bun scripts/build-hooks.ts <plugin-name|all>");
-  process.exit(2);
+if (import.meta.main) {
+  const target = process.argv[2];
+  if (!target) {
+    console.error("usage: bun scripts/build-hooks.ts <plugin-name|all>");
+    process.exit(2);
+  }
+  const root = join(import.meta.dir, "..");
+  const dirs = target === "all"
+    ? Array.from(new Glob("plugins/*/.codex-plugin/plugin.json").scanSync(root))
+        .map((p) => join(root, dirname(dirname(p))))
+    : [join(root, "plugins", target)];
+  let code = 0;
+  for (const d of dirs) {
+    code = (await buildPlugin(d)) || code;
+  }
+  process.exit(code);
 }
-const root = join(import.meta.dir, "..");
-const dirs = target === "all"
-  ? Array.from(new Glob("plugins/*/.codex-plugin/plugin.json").scanSync(root))
-      .map((p) => join(root, dirname(dirname(p))))
-  : [join(root, "plugins", target)];
-
-let code = 0;
-for (const d of dirs) {
-  code = (await buildPlugin(d)) || code;
-}
-process.exit(code);

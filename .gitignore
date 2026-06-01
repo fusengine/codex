@@ -23,6 +23,9 @@ plugins/validate-bun-report.json
 .ruff_cache/
 plugins/**/.ruff_cache/
 
+# Bundled hooks (regenerated at install by scripts/build-hooks.ts)
+plugins/*/dist/
+
 # Plugin-bundled node_modules and lockfiles inside source plugins
 plugins/*/scripts/node_modules/
 plugins/*/scripts/bun.lock
