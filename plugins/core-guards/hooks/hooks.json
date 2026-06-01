@@ -90,7 +90,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pre-tool-use/require-apex-agents.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/require-apex-agents.native.js"
           }
         ]
       }
