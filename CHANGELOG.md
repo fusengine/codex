@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.11] - 2026-06-01
+
+### Fixed
+
+- APEX/SOLID gate (`core-guards` 1.1.29, `ai-pilot` 1.2.28): the gate proved compliance by scanning a fixed 512 KB rollout tail within a 120/180 s TTL — a noisy command (e.g. `rg` over rollouts) evicted the read/agent evidence out of the window, and the TTL expired during the very reads the gate demanded, producing an unwinnable re-deny loop. Evidence is now scoped to the current task turn: `tail_lines`/`readTail` slice from the last `user_message` (fallback `task_started` for subagent child rollouts) and match both compact (Codex/Rust) and spaced (Python) JSON. The wall-clock cutoff is dropped (turn boundary supersedes it), state-path TTLs raised to 1800 s, and two `break`→`continue` fixed in the stale-agent scan. Removed the dead `_within_ttl` helper and its `datetime` import.
+
 ## [1.2.10] - 2026-05-30
 
 ### Added
