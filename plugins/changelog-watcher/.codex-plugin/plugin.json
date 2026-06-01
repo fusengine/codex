@@ -1,6 +1,6 @@
 {
   "name": "changelog-watcher",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Codex CLI update watcher: changelog tracking, breaking changes detection, community pulse via Exa, plugin compatibility analysis",
   "author": {
     "name": "Fusengine",

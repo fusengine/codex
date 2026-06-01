@@ -5,6 +5,16 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.20] - 2026-06-01
+
+### Changed
+
+- Repo-wide Python to TS/Bun hook migration COMPLETE: all 14 remaining plugins' hooks (ai-pilot, cartographer, changelog-watcher, codex-rules, design-expert, laravel-expert, memory-neural, nextjs-expert, react-expert, security-expert, shadcn-expert, solid, swift-apple-expert, tailwindcss) are native TS bundles - no more Bun->python wrappers. Shared expert-skill libs consolidated to one canonical set in core-guards/_shared; validate.ts test suite is 100% bun test.
+
+### Removed
+
+- All Python purged (205 files): every _legacy_py tree, all python-spawning wrappers, and plugins/_shared/scripts/*.py. plugins/ is now ZERO-PYTHON - every hook runs native bundled TS.
+
 ## [1.2.19] - 2026-06-01
 
 ### Fixed
