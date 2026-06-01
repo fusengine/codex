@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-nextjs-skill.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-nextjs-skill.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-nextjs-solid.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-nextjs-solid.native.js"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-nextjs-modular.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-nextjs-modular.native.js"
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/detect-duplication.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/detect-duplication.native.js"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
           }
         ]
       }

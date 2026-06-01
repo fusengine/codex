@@ -59,6 +59,12 @@ export function solidRefRead(sessionId: string, skillDir: string): boolean {
   );
 }
 
+/** True if a file under skills/<skillName>/ was read in the rollout (version-agnostic). */
+export function skillRead(sessionId: string, skillName: string): boolean {
+  if (!skillName) return false;
+  return readPathsInTranscript(sessionId).some((p) => p.includes(`skills/${skillName}/`));
+}
+
 /** True when both Context7 and Exa were used within ttlMs (per the rollout tree). */
 export function docConsultedInTranscript(sessionId: string, ttlMs = 180_000): boolean {
   const ev = readDocEvidence(sessionId, ttlMs);

@@ -93,5 +93,5 @@ validateHookTargets();
 validateDeprecatedFlagCleanup();
 run("session tests ts", ["bun", "test", "./plugins/core-guards/scripts/tests/test-sessions-pattern.ts"]);
 run("runtime shared wrapper tests", ["bun", "test", "./scripts/tests/runtime-shared.test.mts"]);
-run("shell read path tests", ["python3", "plugins/_shared/scripts/tests/test_shell_read_paths.py"]);
-run("interface rule tests", ["python3", "plugins/_shared/scripts/tests/test_interface_rules.py"]);
+run("shell read path tests", ["bun", "test", "./plugins/core-guards/scripts/_shared/tests/shell-read-paths.test.ts"]);
+run("interface rule tests", ["bun", "test", "./plugins/core-guards/scripts/_shared/tests/interface-rules.test.ts"]);

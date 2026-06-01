@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-tailwind-skill.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-tailwind-skill.native.js"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-tailwind.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-tailwind.native.js"
           }
         ]
       },
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
           }
         ]
       }

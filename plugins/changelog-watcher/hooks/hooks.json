@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-watch-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-watch-research.native.js"
           }
         ]
       }

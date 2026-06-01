@@ -64,7 +64,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/detect-bash-write.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/detect-bash-write.native.js"
           }
         ]
       },
@@ -82,7 +82,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/inject-apex-context.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/inject-apex-context.native.js"
           }
         ]
       }
@@ -120,7 +120,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-from-transcript.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-solid-from-transcript.native.js"
           }
         ]
       }
@@ -142,7 +142,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-solid-compliance.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-solid-compliance.native.js"
           }
         ]
       },
@@ -151,7 +151,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-doc-consultation.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-doc-consultation.native.js"
           }
         ]
       },

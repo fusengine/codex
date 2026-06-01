@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/generate_map.ts ${PLUGIN_ROOT}/.. ${PLUGIN_ROOT}/../.cartographer || true; bun ${PLUGIN_ROOT}/scripts/generate_project_map.ts || true"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/generate_map.native.js ${PLUGIN_ROOT}/.. ${PLUGIN_ROOT}/../.cartographer || true; bun ${PLUGIN_ROOT}/dist/hooks/generate_project_map.native.js || true"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-enrichment.ts || true"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-enrichment.native.js || true"
           }
         ]
       }

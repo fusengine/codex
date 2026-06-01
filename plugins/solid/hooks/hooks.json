@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/detect-project.ts",
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/detect-project.native.js",
             "timeout": 5
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-solid.ts",
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-solid.native.js",
             "timeout": 10
           }
         ]
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-file-size.ts",
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-file-size.native.js",
             "timeout": 10
           }
         ]

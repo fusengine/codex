@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/guard-state-files.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/guard-state-files.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/enforce-html-css-only.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/enforce-html-css-only.native.js"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-design-skill.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-design-skill.native.js"
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pipeline-gate.native.js"
           }
         ]
       },
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/check-inspiration-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-inspiration-read.native.js"
           }
         ]
       },
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/require-scroll-before-screenshot.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/require-scroll-before-screenshot.native.js"
           }
         ]
       },
@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/pipeline-gate.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pipeline-gate.native.js"
           }
         ]
       },
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-design-system.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-design-system.native.js"
           }
         ]
       }
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-skill-read.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-screenshot.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-screenshot.native.js"
           }
         ]
       },
@@ -98,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/track-mcp-research.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
           }
         ]
       },
@@ -107,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/validate-design.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-design.native.js"
           }
         ]
       }
@@ -118,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/design-agent-flag.native.js"
           }
         ]
       },
@@ -127,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-init.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/design-state-init.native.js"
           }
         ]
       }
@@ -138,7 +138,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-agent-flag.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/design-agent-flag.native.js"
           }
         ]
       },
@@ -147,7 +147,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/design-state-cleanup.ts"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/design-state-cleanup.native.js"
           }
         ]
       }
