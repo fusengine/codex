@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.15] - 2026-06-01
+
+### Changed
+
+- `core-guards` 1.1.32 — Python→TS/Bun hook migration completed for Lot A (8 security/blocking guards: security, git, install, bash-write, enforce-interfaces, enforce-file-size, enforce-gemini-mcp, pre-commit) and Lot B (9 tracking post-hooks: track-agent-calls/solid-reads/subagent-research/session-changes, auto-document-reads, cache-mcp-result, log-tool-failure, post-edit-typescript, validate-task-solid). All run as bundled native TS via `hooks.json`; strict parity verified vs the Python (Lot A 104 cases incl. adversarial, Lot B decisions + session-state). `state-manager.ts` now honors `CODEX_HOME`. Python wrappers retained pending the purge phase. Remaining: Lot C (6 direct-python cache/cleanup hooks) + Lot D (purge `_legacy_py`).
+
 ## [1.2.14] - 2026-06-01
 
 ### Changed
