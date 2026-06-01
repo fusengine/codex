@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/webfetch-cache-lookup.py"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/webfetch-cache-lookup.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/mcp-cache-lookup.py"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/mcp-cache-lookup.native.js"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/pre-tool-use/limit-mcp-verbosity.py"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/limit-mcp-verbosity.native.js"
           }
         ]
       },
@@ -158,7 +158,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/post-tool-use/webfetch-cache-store.py"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/post-tool-use/webfetch-cache-store.native.js"
           }
         ]
       },
@@ -190,7 +190,7 @@
           },
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/session-start/cleanup-old-caches.py"
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/session-start/cleanup-old-caches.native.js"
           }
         ]
       },
@@ -279,7 +279,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/task-completed/validate-apex-workflow.py",
+            "command": "bun ${PLUGIN_ROOT}/dist/hooks/task-completed/validate-apex-workflow.native.js",
             "timeout": 15
           }
         ]
