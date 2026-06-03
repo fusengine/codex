@@ -37,6 +37,14 @@ if (!cmd) process.exit(0);
 if (/\bapply_patch\b/.test(cmd) || (/\bgit\s+apply\b/.test(cmd) && !/--(check|stat|numstat|summary)\b/.test(cmd))) {
   out("deny", "apply_patch/git apply via shell bypasses the gated apply_patch tool — use the tool");
 }
+// Interpreter running INLINE code that writes files (heredoc / -e / -c / eval / stdin):
+// e.g. `node <<'EOF' ... writeFileSync ... EOF`, `bun -e`, `deno eval`, `python3 <<PY`.
+// Checked FIRST — before SAFE_PREFIXES or `;`/`&&` chaining can short-circuit — since
+// the write primitive only appears in the command text when code is inlined.
+if (INLINE_INTERPRETER.test(cmd) && INLINE_WRITES.test(cmd)) {
+  if (hasSafeWriteTarget(cmd)) process.exit(0);
+  out("deny", "Interpreter inline file-write (heredoc or -e/-c/eval) bypasses apply_patch/Write/Edit — use Write/Edit");
+}
 const stripped = cmd.trim();
 if (SAFE_PREFIXES.some((p) => stripped.startsWith(p)) && !hasFileRedirect(stripped)) process.exit(0);
 if (cmd.includes("context/mcp/") || cmd.includes("fusengine/sessions")) {
@@ -47,14 +55,6 @@ if (cmd.includes("context/mcp/") || cmd.includes("fusengine/sessions")) {
 }
 for (const [pattern, desc] of DENY_PATTERNS) {
   if (pattern.test(cmd)) out("deny", `${desc} — Use Edit/Write tools instead`);
-}
-// Interpreter running INLINE code that writes files (heredoc / -e / -c / eval / stdin):
-// e.g. `node <<'EOF' ... writeFileSync ... EOF`, `bun -e`, `deno eval`, `python3 <<PY`.
-// The write primitive is only present in the command text when code is inlined, so this
-// reliably flags writes that bypass the gated apply_patch/Write/Edit tools.
-if (INLINE_INTERPRETER.test(cmd) && INLINE_WRITES.test(cmd)) {
-  if (hasSafeWriteTarget(cmd)) process.exit(0);
-  out("deny", "Interpreter inline file-write (heredoc or -e/-c/eval) bypasses apply_patch/Write/Edit — use Write/Edit");
 }
 if (hasFileRedirect(cmd)) {
   if (isSafeWritePath(cmd)) process.exit(0);

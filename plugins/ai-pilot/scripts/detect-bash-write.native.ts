@@ -14,8 +14,9 @@ const REDIRECT_TO_CODE = new RegExp(`(?<![0-9&>])>>?\\s*(?!/dev/null)['"]?[\\w./
 const TEE_TO_CODE = new RegExp(`\\btee\\b(?:\\s+-\\S+)*\\s+['"]?[\\w./~$-]+\\.${CODE_EXT}\\b`);
 
 /** Interpreter executing INLINE code (heredoc / -e / -c / eval) that writes a file. */
-const INLINE_INTERPRETER = /\b(?:node|bun|deno|ts-node|tsx|python3?|ruby|php|perl)\b/;
-const INLINE_WRITE = /writeFileSync|appendFileSync|writeFile\s*\(|createWriteStream|\.write_text\s*\(|\.write_bytes\s*\(|open\s*\([^)]*['"][wax]\+?b?['"]|file_put_contents|File\.(?:write|open)\b|IO\.write/;
+const INLINE_INTERPRETER = /\b(?:node|bun|deno|ts-node|tsx|python3?|ruby|php|perl|osascript)\b/;
+// MUST stay identical to INLINE_WRITES in core-guards/_shared/bash-write-patterns.ts.
+const INLINE_WRITE = /(?:write|append)FileSync|(?:write|append)File\s*\(|writeSync\s*\(|createWriteStream|outputFile|fs\.(?:write|rename|unlink|rmdir|mkdir|copyFile|cp|truncate)\b|Bun\.write\b|Deno\.write\w*|\.write_text\s*\(|\.write_bytes\s*\(|open\s*\([^)]*['"][wax]\+?b?['"]|open\s*\([^)]*['"]>>?|file_put_contents|File\.(?:write|open)\b|IO\.write|fwrite|fputs/;
 
 const DENY_REASON =
   "APEX BYPASS BLOCKED: Use Write tool instead of Bash to write code files. "

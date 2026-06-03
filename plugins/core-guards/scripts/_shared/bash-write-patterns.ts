@@ -24,19 +24,16 @@ export const DENY_PATTERNS: [RegExp, string][] = [
   [/\bpatch\b/, "patch file modification"],
 ];
 
-/** Node/Ruby write-call probes (verbatim). */
-export const NODE_WRITES = /writeFile|appendFile|createWriteStream|fs\.(write|rename|unlink|mkdir|rmdir|copyFile)|execSync|spawnSync|child_process/;
-export const RUBY_WRITES = /File\.(write|open|delete|rename)|IO\.write|FileUtils|\bsystem\b|\bexec\b|`[^`]/;
-
 /** Interpreters able to run INLINE code (heredoc, -e/-c/eval, stdin dash). */
-export const INLINE_INTERPRETER = /\b(?:node|bun|deno|ts-node|tsx|python3?|ruby|php|perl)\b/;
+export const INLINE_INTERPRETER = /\b(?:node|bun|deno|ts-node|tsx|python3?|ruby|php|perl|osascript)\b/;
 
 /**
  * Cross-language file-write primitives. These appear in the command text only
  * when source is inlined (heredoc / -e / -c / eval), so matching one alongside
  * an INLINE_INTERPRETER reliably flags an apply_patch/Write/Edit bypass.
+ * MUST stay identical to the copy in ai-pilot/scripts/detect-bash-write.native.ts.
  */
-export const INLINE_WRITES = /writeFileSync|appendFileSync|writeFile\s*\(|createWriteStream|fs\.(?:write|rename|unlink|rmdir|mkdir|copyFile)\b|\.write_text\s*\(|\.write_bytes\s*\(|open\s*\([^)]*['"][wax]\+?b?['"]|file_put_contents|File\.(?:write|open)\b|IO\.write|fwrite|fputs/;
+export const INLINE_WRITES = /(?:write|append)FileSync|(?:write|append)File\s*\(|writeSync\s*\(|createWriteStream|outputFile|fs\.(?:write|rename|unlink|rmdir|mkdir|copyFile|cp|truncate)\b|Bun\.write\b|Deno\.write\w*|\.write_text\s*\(|\.write_bytes\s*\(|open\s*\([^)]*['"][wax]\+?b?['"]|open\s*\([^)]*['"]>>?|file_put_contents|File\.(?:write|open)\b|IO\.write|fwrite|fputs/;
 
 /** Ask patterns: [regex, description]. */
 export const ASK_PATTERNS: [RegExp, string][] = [
