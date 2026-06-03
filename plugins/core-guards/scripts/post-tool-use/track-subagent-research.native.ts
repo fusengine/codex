@@ -12,6 +12,7 @@
 import { loadSessionState, saveSessionState } from "../_shared/state-manager";
 import { utcStamp } from "../_shared/track-time";
 import { bashExecutable } from "../_shared/track-shell";
+import { extractText } from "../_shared/track-mcp-response";
 import {
   CACHE_READ_RE, EXPLORE_BASH_CMDS, EXPLORE_TOOLS, RESEARCH_TOOLS,
 } from "../_shared/apex-constants";
@@ -56,8 +57,10 @@ const [phase, cacheHit] = classified;
 const sid = data.session_id || "unknown";
 const state = loadSessionState(sid);
 const agents = (state.agents ??= []) as unknown[];
-const resp = data.tool_response;
-const responseLength = resp ? String(resp).length : 0;
+// extractText normalizes Codex MCP content-block objects (and strings) to real
+// text; String(resp) on an object gave "[object Object]" (len 15) → always
+// "insufficient", so only the cacheHit path ever passed.
+const responseLength = extractText(data.tool_response).length;
 const quality = cacheHit || responseLength > 50 ? "sufficient" : "insufficient";
 
 agents.push({
