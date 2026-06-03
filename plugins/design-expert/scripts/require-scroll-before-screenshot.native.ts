@@ -5,7 +5,7 @@
  * _legacy_py/require-scroll-before-screenshot.py.
  *
  * PreToolUse on screenshot (active design agent only): deny unless a scroll
- * (browser_evaluate/run_code) happened since the last browser_navigate, per the
+ * (browser_scroll) happened since the last browser_navigate, per the
  * per-agent tracking file. Deny message matches the Python.
  */
 import { gatedAgentId } from "./lib/design-state";
@@ -13,9 +13,9 @@ import { scrollDoneSinceLastNav } from "./lib/skill-tracking";
 
 const DENY_MSG =
   "BLOCKED: You must scroll the page before taking a screenshot. "
-  + "Use mcp__playwright__browser_evaluate with "
-  + "window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}) "
-  + "then wait 5s, scroll back to top, wait 2s, THEN take fullPage screenshot.";
+  + "Use mcp__fuse-browser__browser_scroll with to:'end' to reach the bottom, "
+  + "wait via mcp__fuse-browser__browser_wait_for, scroll back to top, "
+  + "THEN take a fullPage mcp__fuse-browser__browser_screenshot.";
 
 let data: { agent_id?: string };
 try {

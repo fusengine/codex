@@ -23,8 +23,8 @@ export function checkDesignSystemWrite(state: DesignState): void {
   if (count < needed) {
     deny(
       `BLOCKED: ${count}/${needed} screenshots for mode '${mode}'. `
-      + `RECOVERY: 1) Take ${needed - count} more Playwright screenshots `
-      + "2) Use browser_navigate + browser_take_screenshot fullPage:true "
+      + `RECOVERY: 1) Take ${needed - count} more fuse-browser screenshots `
+      + "2) Use browser_navigate + browser_screenshot fullPage:true "
       + "3) Then write design-system.md");
   }
 }
@@ -47,14 +47,14 @@ export function checkGeminiCreate(state: DesignState): void {
   }
 }
 
-/** Gate: Playwright navigate requires phase >= 1 and inspiration read. */
-export function checkPlaywrightNavigate(state: DesignState): void {
+/** Gate: fuse-browser navigate requires phase >= 1 and inspiration read. */
+export function checkBrowserNavigate(state: DesignState): void {
   if ((state.current_phase ?? 0) < 1) {
     deny(
       "BLOCKED: Cannot browse before phase 1. "
       + "RECOVERY: 1) Read identity templates "
       + "2) Read design-inspiration.md first "
-      + "3) Then use mcp__playwright__browser_navigate");
+      + "3) Then use mcp__fuse-browser__browser_navigate");
   }
   if (!state.inspiration_read) {
     deny(

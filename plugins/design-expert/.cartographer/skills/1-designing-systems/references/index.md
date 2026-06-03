@@ -8,7 +8,7 @@
 ├── [color-system.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/color-system.md) — Complete color system with psychology, palettes, and OKLCH t
 ├── [complex-themes.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/complex-themes.md) — Complex Themes — Multi-Level Token Architecture
 ├── [container-queries.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/container-queries.md) — Container Queries
-├── [design-inspiration-urls.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/design-inspiration-urls.md) — Complete verified URL catalog for Playwright browsing — Fram
+├── [design-inspiration-urls.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/design-inspiration-urls.md) — Complete verified URL catalog for fuse-browser browsing — Fram
 ├── [design-inspiration.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/design-inspiration.md) — 75+ verified URLs (Framer/Webflow/Awwwards) by sector. Playw
 ├── [edge-cases.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/edge-cases.md) — Dark Mode Edge Cases
 ├── [fluid-typography.md](/Users/brunoazoulay/Labo/docker-lab/dev.local/Dev-ai/codex-plugins/plugins/design-expert/skills/1-designing-systems/references/fluid-typography.md) — Fluid Typography

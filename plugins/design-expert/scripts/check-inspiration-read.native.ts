@@ -4,7 +4,7 @@
  * check-inspiration-read.native.ts — native TS port of
  * _legacy_py/check-inspiration-read.py.
  *
- * PreToolUse on mcp__playwright__browser_navigate (active design agent only):
+ * PreToolUse on mcp__fuse-browser__browser_navigate (active design agent only):
  * require Phase 0 (identity-system) and inspiration-catalog reads, and a URL
  * from the known inspiration domains. Deny messages + skill paths match Python.
  */
@@ -28,7 +28,7 @@ try {
 }
 
 if (gatedAgentId(data.agent_id ?? "") === null) process.exit(0);
-if (data.tool_name !== "mcp__playwright__browser_navigate") process.exit(0);
+if (data.tool_name !== "mcp__fuse-browser__browser_navigate") process.exit(0);
 
 const sid = data.session_id || `fallback-${process.pid}`;
 

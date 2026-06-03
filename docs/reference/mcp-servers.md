@@ -27,7 +27,7 @@ Servers with `[✓]` have API keys configured. Servers with `[⚠ key missing]` 
 | fetch | Web content fetching and conversion for LLMs |
 | time | Time and timezone conversion capabilities |
 | astro-docs | Search official Astro framework documentation |
-| playwright | Browser automation, E2E testing and screenshots |
+| fuse-browser | Browser automation, SERP, visual diff and screenshots |
 | puppeteer | Headless Chrome automation and web scraping |
 | postgres | PostgreSQL database operations and queries |
 | sqlite | SQLite database for local data persistence |

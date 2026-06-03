@@ -27,7 +27,7 @@ export function trackingHas(sessionId: string, keyword: string): boolean {
   return false;
 }
 
-/** True if a browser_evaluate/run_code happened after the last browser_navigate. */
+/** True if a browser_scroll happened after the last browser_navigate. */
 export function scrollDoneSinceLastNav(agentId: string): boolean {
   const agentFile = join(TRACKING_DIR, `agent-${agentId}`);
   if (!isFile(agentFile)) return false;
@@ -36,7 +36,7 @@ export function scrollDoneSinceLastNav(agentId: string): boolean {
   let lastNav = -1;
   lines.forEach((line, i) => { if (line.includes("browser_navigate")) lastNav = i; });
   if (lastNav === -1) return false;
-  return lines.slice(lastNav + 1).some((l) => l.includes("browser_evaluate") || l.includes("browser_run_code"));
+  return lines.slice(lastNav + 1).some((l) => l.includes("browser_scroll"));
 }
 
 /** Append a per-agent research line (mirrors track-mcp-research per-agent log). */

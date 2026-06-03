@@ -6,7 +6,7 @@
  * PreToolUse: enforce phase ordering via the per-agent design state. No-op
  * unless the design flag is set and the event has an agent_id. Auto-creates the
  * state file when missing (teammate context). Routes design-system.md writes,
- * Gemini create_frontend and Playwright navigate to their gate checks, then
+ * Gemini create_frontend and fuse-browser navigate to their gate checks, then
  * allow_pass. Reuses the shared design-state + pipeline-checks.
  */
 import { existsSync } from "node:fs";
@@ -15,7 +15,7 @@ import {
   FLAG_FILE, loadState, saveState, defaultState, type DesignState,
 } from "./lib/design-state";
 import {
-  checkDesignSystemWrite, checkGeminiCreate, checkPlaywrightNavigate,
+  checkDesignSystemWrite, checkGeminiCreate, checkBrowserNavigate,
 } from "./lib/pipeline-checks";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
@@ -45,8 +45,8 @@ if ((tool === "Write" || tool === "Edit") && basename(fp) === "design-system.md"
   checkDesignSystemWrite(state);
 } else if (tool === "mcp__gemini-design__create_frontend") {
   checkGeminiCreate(state);
-} else if (tool === "mcp__playwright__browser_navigate") {
-  checkPlaywrightNavigate(state);
+} else if (tool === "mcp__fuse-browser__browser_navigate") {
+  checkBrowserNavigate(state);
 }
 
 allowPass("pipeline-gate", `phase ${state.current_phase ?? 0} ok`);

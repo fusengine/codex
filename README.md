@@ -147,7 +147,7 @@ Do not register `PreCompact` for plugin hooks until Codex stabilizes it.
 `shadcn`, `magic`, `memory`, `next-devtools`, `graphiti`, `qdrant`,
 `XcodeBuildMCP`, `apple-docs`.
 
-**Added in v1.2.0 (+12):** `astro-docs`, `filesystem`, `playwright`,
+**Added in v1.2.0 (+12):** `astro-docs`, `filesystem`, `fuse-browser`,
 `postgres`, `github`, `supabase`, `slack`, `sentry`, `stripe`, `notion`,
 `brave-search`, `replicate`. They are installable through the interactive
 `mcp-select` prompt during setup.

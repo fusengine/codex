@@ -9,7 +9,7 @@ description: "Use when building semantic keyword clusters from SERP overlap. Cov
 ## Method
 
 1. Take seed keyword (e.g. "codex code")
-2. Fetch SERP for seed via WebFetch/Playwright (top 10 results)
+2. Fetch SERP for seed via fuse-browser (browser_serp_batch) or WebFetch (top 10 results)
 3. For each related keyword (autocomplete + "People Also Ask"):
    - Fetch its SERP
    - Compute overlap with seed's SERP (Jaccard index)

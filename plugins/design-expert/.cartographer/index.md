@@ -4,7 +4,7 @@
 │   └── [design-expert](./agents/design-expert.md) — UI Designer. Generates HTML/CSS only via Gemini De
 ├── skills/
 │   ├── [0-identity-system](./skills/0-identity-system/index.md) — Phase 0: Read sector template (creative/fintech/ecommerce/devtool), generate OKL
-│   ├── [1-designing-systems](./skills/1-designing-systems/index.md) — Phase 1: Browse 4 catalog sites via Playwright, write CSS-precise observations (
+│   ├── [1-designing-systems](./skills/1-designing-systems/index.md) — Phase 1: Browse 4 catalog sites via fuse-browser, write CSS-precise observations (
 │   ├── [2-ux-copy](./skills/2-ux-copy/index.md) — Phase 2: Write microcopy guide: CTA labels, error messages, empty states, form p
 │   ├── [3-generating-components](./skills/3-generating-components/index.md) — Phase 3: Map design-system.md to 7 Gemini XML blocks (aesthetics, style_referenc
 │   ├── [4-adding-animations](./skills/4-adding-animations/index.md) — Phase 4: Add Framer Motion scroll reveals (IntersectionObserver), hover scale/op

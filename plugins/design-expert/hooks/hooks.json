@@ -38,7 +38,7 @@
         ]
       },
       {
-        "matcher": "mcp__playwright__browser_navigate",
+        "matcher": "mcp__fuse-browser__browser_navigate",
         "hooks": [
           {
             "type": "command",
@@ -47,7 +47,7 @@
         ]
       },
       {
-        "matcher": "mcp__playwright__browser_take_screenshot",
+        "matcher": "mcp__fuse-browser__browser_screenshot",
         "hooks": [
           {
             "type": "command",
@@ -85,7 +85,7 @@
         ]
       },
       {
-        "matcher": "mcp__playwright__browser_take_screenshot",
+        "matcher": "mcp__fuse-browser__browser_screenshot",
         "hooks": [
           {
             "type": "command",
@@ -94,7 +94,7 @@
         ]
       },
       {
-        "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__playwright__|mcp__gemini-design__",
+        "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__fuse-browser__|mcp__gemini-design__",
         "hooks": [
           {
             "type": "command",

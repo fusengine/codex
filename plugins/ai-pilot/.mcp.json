@@ -65,5 +65,12 @@
       "shadcn@latest",
       "mcp"
     ]
+  },
+  "fuse-browser": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@fusengine/browser-mcp@latest"
+    ]
   }
 }

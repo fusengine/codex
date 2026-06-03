@@ -5,8 +5,8 @@
  * (design-expert).
  *
  * PostToolUse for mcp__* tools: record an MCP research event in the APEX day-state
- * (shared trackMcpResearch). Playwright tools (no query) derive a query from the
- * url / fullPage flag. For playwright/gemini-design, also append a per-agent
+ * (shared trackMcpResearch). fuse-browser tools (no query) derive a query from the
+ * url / fullPage flag. For fuse-browser/gemini-design, also append a per-agent
  * tracking line (used by require-scroll + screenshot counts). Matches Python.
  */
 import { trackMcpResearch } from "../../core-guards/scripts/_shared/expert-skill-tracking";
@@ -24,9 +24,9 @@ if (!/^mcp__/.test(toolName)) process.exit(0);
 
 const ti = (data.tool_input ?? {}) as Record<string, unknown>;
 let query = String(ti.query || ti.topic || "");
-if (toolName.includes("playwright") && !query) {
+if (toolName.includes("fuse-browser") && !query) {
   query = String(ti.url || toolName);
-  if (toolName.includes("screenshot")) query = `playwright_screenshot ${ti.fullPage ?? false}`;
+  if (toolName.includes("screenshot")) query = `fuse_browser_screenshot ${ti.fullPage ?? false}`;
 }
 if (!query) process.exit(0);
 
@@ -38,7 +38,7 @@ else if (toolName.includes("exa")) source = "exa";
 
 trackMcpResearch(source, toolName, query, sessionId);
 
-if (agentId && (toolName.includes("playwright") || toolName.includes("gemini-design"))) {
+if (agentId && (toolName.includes("fuse-browser") || toolName.includes("gemini-design"))) {
   const ts = new Date().toISOString().replace(/\.\d+Z$/, "Z");
   appendAgentTrack(agentId, `${ts} ${source}:${toolName} ${query}`);
 }

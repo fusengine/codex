@@ -19,7 +19,7 @@ export const MCP_CATALOG: Record<string, McpMeta> = {
 	"apple-docs": { description: "Apple dev docs + WWDC content", requiresApiKey: false },
 	"astro-docs": { description: "Astro framework documentation (HTTP)", requiresApiKey: false },
 	filesystem: { description: "Secure local file operations", requiresApiKey: false, default: false },
-	playwright: { description: "Browser automation via accessibility tree", requiresApiKey: false },
+	"fuse-browser": { description: "Browser automation + SERP + visual diff (fuse-browser MCP)", requiresApiKey: false },
 	postgres: { description: "PostgreSQL natural-language queries", requiresApiKey: false, default: false },
 	context7: { description: "Up-to-date library documentation", requiresApiKey: true, apiKeyEnv: "CONTEXT7_API_KEY", apiKeyUrl: "https://context7.com", default: true },
 	exa: { description: "AI web search + research", requiresApiKey: true, apiKeyEnv: "EXA_API_KEY", apiKeyUrl: "https://exa.ai", default: true },
