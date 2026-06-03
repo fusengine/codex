@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.22] - 2026-06-03
+
+### Fixed
+
+- fix(core-guards 1.1.39): close a critical inline-write bypass in bash-write-guard. The SAFE_PREFIXES short-circuit (env/npx/bunx/bun run/npm run/cp/mv, or any `;`/`&&` chaining after a safe prefix) ran before the interpreter inline-write check, so `env node -e ...` and `cp a b; node -e ...` slipped through. The check now runs first. Coverage widened (Bun.write, Deno.write*, appendFile(), writeSync(), fs.cp/truncate, outputFile, perl `open '>'`, osascript); dead NODE_WRITES/RUBY_WRITES exports removed; ai-pilot detect-bash-write (1.2.33) probe synced to the same set.
+
 ## [1.2.21] - 2026-06-03
 
 ### Changed
