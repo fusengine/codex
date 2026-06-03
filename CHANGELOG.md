@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.23] - 2026-06-03
+
+### Fixed
+
+- fix(core-guards 1.1.40): APEX research validation no longer false-blocks in Codex. The subagent-research recorder measured `String(tool_response).length`; since Codex delivers MCP results as content-block objects, `String()` produced `"[object Object]"` (length 15 < 50 threshold) → every real research call recorded `quality:"insufficient"`, leaving the cacheHit path as the only way to pass the Stop validator. Now uses the canonical `extractText()` helper to normalize content blocks before measuring (verified: 108 chars → sufficient). Threshold and cacheHit fallback unchanged.
+
 ## [1.2.22] - 2026-06-03
 
 ### Fixed
