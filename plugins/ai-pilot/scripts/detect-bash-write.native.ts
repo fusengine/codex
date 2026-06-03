@@ -13,6 +13,10 @@ const CODE_EXT = "(?:ts|tsx|js|jsx|py|php|swift|go|rs|rb|java|vue|svelte|astro|c
 const REDIRECT_TO_CODE = new RegExp(`(?<![0-9&>])>>?\\s*(?!/dev/null)['"]?[\\w./~$-]+\\.${CODE_EXT}\\b`);
 const TEE_TO_CODE = new RegExp(`\\btee\\b(?:\\s+-\\S+)*\\s+['"]?[\\w./~$-]+\\.${CODE_EXT}\\b`);
 
+/** Interpreter executing INLINE code (heredoc / -e / -c / eval) that writes a file. */
+const INLINE_INTERPRETER = /\b(?:node|bun|deno|ts-node|tsx|python3?|ruby|php|perl)\b/;
+const INLINE_WRITE = /writeFileSync|appendFileSync|writeFile\s*\(|createWriteStream|\.write_text\s*\(|\.write_bytes\s*\(|open\s*\([^)]*['"][wax]\+?b?['"]|file_put_contents|File\.(?:write|open)\b|IO\.write/;
+
 const DENY_REASON =
   "APEX BYPASS BLOCKED: Use Write tool instead of Bash to write code files. "
   + "Write tool enforces APEX/SOLID documentation requirements.";
@@ -35,10 +39,14 @@ function stripQuoted(cmd: string): string {
   return out.join("");
 }
 
-/** True only when the command redirects/tees output into a code file. */
+/** True when the command redirects/tees output into a code file, or runs an
+ * interpreter with inline source (heredoc / -e / -c / eval) that writes a file. */
 function writesCodeFile(command: string): boolean {
   const clean = stripQuoted(command);
-  return REDIRECT_TO_CODE.test(clean) || TEE_TO_CODE.test(clean);
+  if (REDIRECT_TO_CODE.test(clean) || TEE_TO_CODE.test(clean)) return true;
+  // Scan the RAW command: an inline write may live inside a quoted -e string,
+  // which stripQuoted() would blank out.
+  return INLINE_INTERPRETER.test(command) && INLINE_WRITE.test(command);
 }
 
 let event: { tool_name?: string; tool_input?: { command?: string } };

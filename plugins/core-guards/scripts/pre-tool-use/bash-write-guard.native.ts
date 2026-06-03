@@ -9,7 +9,7 @@
  * "BASH WRITE GUARD: ") are verbatim from the Python for strict parity.
  */
 import { isSafeWritePath, isSafeCommandTarget, hasSafeWriteTarget, extractRedirectTarget } from "../_shared/safe-paths";
-import { CODE_EXT, SAFE_PREFIXES, DENY_PATTERNS, NODE_WRITES, RUBY_WRITES, ASK_PATTERNS, hasFileRedirect } from "../_shared/bash-write-patterns";
+import { CODE_EXT, SAFE_PREFIXES, DENY_PATTERNS, ASK_PATTERNS, hasFileRedirect, INLINE_INTERPRETER, INLINE_WRITES } from "../_shared/bash-write-patterns";
 
 interface ToolInput { command?: string; }
 
@@ -48,18 +48,19 @@ if (cmd.includes("context/mcp/") || cmd.includes("fusengine/sessions")) {
 for (const [pattern, desc] of DENY_PATTERNS) {
   if (pattern.test(cmd)) out("deny", `${desc} — Use Edit/Write tools instead`);
 }
+// Interpreter running INLINE code that writes files (heredoc / -e / -c / eval / stdin):
+// e.g. `node <<'EOF' ... writeFileSync ... EOF`, `bun -e`, `deno eval`, `python3 <<PY`.
+// The write primitive is only present in the command text when code is inlined, so this
+// reliably flags writes that bypass the gated apply_patch/Write/Edit tools.
+if (INLINE_INTERPRETER.test(cmd) && INLINE_WRITES.test(cmd)) {
+  if (hasSafeWriteTarget(cmd)) process.exit(0);
+  out("deny", "Interpreter inline file-write (heredoc or -e/-c/eval) bypasses apply_patch/Write/Edit — use Write/Edit");
+}
 if (hasFileRedirect(cmd)) {
   if (isSafeWritePath(cmd)) process.exit(0);
   const target = extractRedirectTarget(cmd) ?? "";
   if (CODE_EXT.test(target)) out("deny", "Bash redirect to code file — Use Write/Edit tools (enforces APEX + SOLID specs)");
   out("ask", "Shell redirect to file detected. Authorize?");
-}
-if (/\bnode\s+-e\b/.test(cmd) && NODE_WRITES.test(cmd)) {
-  if (hasSafeWriteTarget(cmd)) process.exit(0);
-  out("ask", "Node.js write operation detected. Authorize?");
-}
-if (/\bruby\s+-e\b/.test(cmd) && RUBY_WRITES.test(cmd)) {
-  out("ask", "Ruby write operation detected. Authorize?");
 }
 for (const [pattern, desc] of ASK_PATTERNS) {
   if (pattern.test(cmd)) {
