@@ -5,6 +5,16 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.21] - 2026-06-03
+
+### Changed
+
+- feat(design-expert 2.1.25): migrate browser-automation MCP from playwright to fuse-browser (@fusengine/browser-mcp). Registered in design-expert + ai-pilot (1.2.32) .mcp.json and the installer catalog; hooks.json matchers + gating scripts now key on `mcp__fuse-browser__browser_navigate` / `browser_screenshot`, scroll detection uses native `browser_scroll`. Tool mapping: `browser_take_screenshot`→`browser_screenshot`, `browser_evaluate` scroll hack→`browser_scroll`, `browser_resize`→`browser_screenshot` viewports. Skills/rules/docs + seo (1.0.4) SERP updated; `@playwright/test` E2E references preserved.
+
+### Fixed
+
+- fix(core-guards 1.1.38): block interpreter inline file-writes that bypassed the gated apply_patch/Write/Edit tools. Agents escaped via `node <<'EOF' … writeFileSync … EOF`, `bun -e`, `python3 <<PY`, etc.; the guard only matched narrow `node -e`/`python -c` forms. Added INLINE_INTERPRETER + INLINE_WRITES probes and a DENY branch in bash-write-guard, mirrored in ai-pilot detect-bash-write. Read-only inline and script-file execution unaffected.
+
 ## [1.2.20] - 2026-06-01
 
 ### Changed
