@@ -1,23 +1,21 @@
 /**
- * runtime-shared.ts - Install marketplace-wide shared hook scripts in a stable
+ * runtime-shared.ts - Stage the `@fusengine/harness` binary in a stable
  * Fusengine runtime location under CODEX_HOME.
+ *
+ * The former `installRuntimeShared` (which copied `plugins/_shared/scripts` to
+ * `fusengine-sys/shared/scripts`) was removed: its only runtime consumers were
+ * the deleted python3 cartographer wrappers (via PYTHONPATH). Every surviving
+ * consumer of `_shared/scripts` imports it by RELATIVE path, which Bun.build
+ * inlines into each self-contained hook bundle — nothing reads the copied tree
+ * at runtime. The harness is now the single runtime staging area.
  */
 import { cp, mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
+import { installPluginDeps } from "./fs-helpers";
 
 function shouldCopy(source: string): boolean {
 	return !/(^|\/)(node_modules|\.git|\.DS_Store|__pycache__)$/.test(source);
-}
-
-export async function installRuntimeShared(projectRoot: string, codexHome: string): Promise<string> {
-	const src = join(projectRoot, "plugins", "_shared", "scripts");
-	const dest = join(codexHome, "fusengine-sys", "shared", "scripts");
-	await rm(dest, { recursive: true, force: true });
-	await mkdir(dest, { recursive: true });
-	await cp(src, dest, { recursive: true, force: true, filter: shouldCopy });
-	p.log.success(`runtime shared scripts installed -> ${dest}`);
-	return dest;
 }
 
 /**
@@ -34,20 +32,33 @@ export async function installRuntimeShared(projectRoot: string, codexHome: strin
  * absolute `$CODEX_HOME` path) avoids relying on env expansion Codex does not
  * guarantee in hook command strings — only `${PLUGIN_ROOT}` is known to expand.
  *
- * No-op (with a warning) when the dependency is absent — the strict installer
- * step still verifies plugins; a missing harness degrades to the surviving
- * native hooks rather than aborting setup.
+ * SELF-HEALING, then HARD FAIL: `@fusengine/harness` is a repo-ROOT dependency,
+ * but scanAndPrepare only runs `bun install` per-plugin — never at the root. So a
+ * missing binary is first repaired with a root `bun install` (via installPluginDeps)
+ * and re-checked. Only if it is STILL absent does setup abort: the Bash and
+ * apply_patch guard hooks invoke ONLY this binary (native guards unwired), so a
+ * missing harness means Bash/patch governance is silently off with no fallback to
+ * degrade to. Aborting matches installPluginsStrict / assertInstalledState.
  */
-export async function installRuntimeHarness(projectRoot: string, codexHome: string): Promise<string | null> {
+export async function installRuntimeHarness(projectRoot: string, codexHome: string): Promise<string> {
 	const src = join(projectRoot, "node_modules", "@fusengine", "harness", "dist");
-	if (!(await Bun.file(join(src, "cli", "bin.mjs")).exists())) {
-		p.log.warn(`@fusengine/harness not installed (${src}) — hooks fall back to native guards`);
-		return null;
+	const srcBin = join(src, "cli", "bin.mjs");
+	if (!(await Bun.file(srcBin).exists())) {
+		p.log.info("@fusengine/harness missing — running bun install…");
+		await installPluginDeps(projectRoot);
+		if (!(await Bun.file(srcBin).exists())) {
+			p.log.error(`@fusengine/harness still missing after bun install (${src}) — check network/registry/lockfile. The Bash and apply_patch guard hooks invoke this binary and there is no native fallback.`);
+			throw new Error("@fusengine/harness missing — runtime harness staging aborted");
+		}
 	}
 	const dest = join(codexHome, "fusengine-sys", "shared", "harness", "dist");
 	await rm(dest, { recursive: true, force: true });
 	await mkdir(dest, { recursive: true });
 	await cp(src, dest, { recursive: true, force: true, filter: shouldCopy });
+	if (!(await Bun.file(join(dest, "cli", "bin.mjs")).exists())) {
+		p.log.error(`runtime harness copy incomplete — ${join(dest, "cli", "bin.mjs")} missing after staging.`);
+		throw new Error("@fusengine/harness staging incomplete — bin.mjs absent in destination");
+	}
 	p.log.success(`runtime harness binary installed -> ${dest}`);
 	return dest;
 }

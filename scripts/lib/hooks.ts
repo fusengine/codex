@@ -1,26 +1,7 @@
 import { join, basename } from "node:path";
 import { mkdir } from "node:fs/promises";
 import { EVENT_MAP, UNSUPPORTED_EVENTS, rewriteCommand, rewriteMatcher } from "./hooks-rewrite";
-
-interface ClaudeHookEntry {
-	type: string;
-	command?: string;
-	prompt?: string;
-	timeout?: number;
-}
-
-interface ClaudeHookMatcher {
-	matcher?: string;
-	hooks: ClaudeHookEntry[];
-}
-
-interface ClaudeHooksFile {
-	hooks?: Record<string, ClaudeHookMatcher[]>;
-}
-
-interface CodexHooksFile {
-	hooks: Record<string, ClaudeHookMatcher[]>;
-}
+import type { ClaudeHookEntry, ClaudeHooksFile, CodexHooksFile } from "./hooks-types";
 
 function filterHooks(
 	hooks: ClaudeHookEntry[],
@@ -33,7 +14,7 @@ function filterHooks(
 			if (h.type === "prompt" && claudeEvent === "Stop" && h.prompt?.includes("APEX workflow")) {
 				return {
 					type: "command",
-					command: "python3 ${PLUGIN_ROOT}/scripts/_legacy_py/task-completed/validate-apex-workflow.py",
+					command: "bun ${PLUGIN_ROOT}/dist/hooks/task-completed/validate-apex-workflow.native.js",
 					...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
 				};
 			}

@@ -79,10 +79,3 @@ export function countHooks(pluginRoot: string): number {
 		return 0;
 	}
 }
-
-export function runtimeSharedOk(codexHome: string): boolean {
-	const root = join(codexHome, "fusengine-sys", "shared", "scripts");
-	return existsSync(join(root, "edit_targets.py"))
-		&& existsSync(join(root, "check_skill_common.py"))
-		&& existsSync(join(root, "hook_output.py"));
-}
