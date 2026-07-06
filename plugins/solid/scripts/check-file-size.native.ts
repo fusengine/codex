@@ -11,7 +11,7 @@
 import { existsSync, statSync, readFileSync } from "node:fs";
 import { extname, basename } from "node:path";
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
-import type { HookInput } from "../../ai-pilot/scripts/lib/apex/interfaces/hook.interface";
+import type { HookInput } from "../../ai-pilot/scripts/lib/interfaces/hook.interface";
 
 const C_LIKE = /^\s*$|^\s*\/\/|^\s*\/\*|^\s*\*/;
 const COMMENT: Record<string, RegExp> = {

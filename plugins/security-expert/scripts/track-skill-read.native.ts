@@ -13,7 +13,7 @@ import { skillDocPathFromPayload } from "../../core-guards/scripts/_shared/shell
 
 const SKILL_RE = /skills\/(security-scan|cve-research|dependency-audit|security-headers|auth-audit)\//;
 
-let data: { session_id?: string };
+let data: { session_id?: string; tool_name?: string; tool_input?: Record<string, unknown> };
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {

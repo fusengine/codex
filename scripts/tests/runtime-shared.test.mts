@@ -51,6 +51,11 @@ describe("installRuntimeShared", () => {
 		const codexHome = tempRoot("fusengine-codex-home-");
 		await copyFixture(projectRoot, "plugins/_shared/scripts");
 		await copyFixture(projectRoot, "plugins/react-expert");
+		// react-expert @hook-entry scripts inline (Bun.build) transitive imports
+		// into core-guards/_shared and ai-pilot/scripts/lib — copy both so the
+		// bundle resolves on disk, mirroring the real marketplace layout.
+		await copyFixture(projectRoot, "plugins/core-guards/scripts/_shared");
+		await copyFixture(projectRoot, "plugins/ai-pilot/scripts/lib");
 
 		writeJson(projectRoot, "plugins/_shared/scripts/__pycache__/ignored.pyc", {});
 
@@ -59,7 +64,7 @@ describe("installRuntimeShared", () => {
 		const version = await pluginVersion(projectRoot, "react-expert");
 		const wrapper = join(
 			codexHome,
-			`plugins/cache/fusengine-codex/react-expert/${version}/scripts/check-skill-loaded.ts`,
+			`plugins/cache/fusengine-codex/react-expert/${version}/dist/hooks/check-skill-loaded.native.js`,
 		);
 		const pluginRoot = join(codexHome, `plugins/cache/fusengine-codex/react-expert/${version}`);
 		const cacheFallback = join(pluginRoot, "..", "_shared", "scripts");
@@ -80,9 +85,9 @@ describe("installRuntimeShared", () => {
 
 		expect(installed).toBe(1);
 		expect(dest).toBe(join(codexHome, "fusengine-sys", "shared", "scripts"));
-		expect(existsSync(join(dest, "edit_targets.py"))).toBe(true);
-		expect(existsSync(join(dest, "check_skill_common.py"))).toBe(true);
-		expect(existsSync(join(dest, "hook_output.py"))).toBe(true);
+		expect(existsSync(join(dest, "dry-duplication.ts"))).toBe(true);
+		expect(existsSync(join(dest, "modular-detection.ts"))).toBe(true);
+		expect(existsSync(join(dest, "shadcn-patterns.ts"))).toBe(true);
 		expect(existsSync(join(dest, "__pycache__", "ignored.pyc"))).toBe(false);
 		expect(existsSync(cacheFallback)).toBe(false);
 		expect(stderr).toBe("");

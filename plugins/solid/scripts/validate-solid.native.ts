@@ -9,7 +9,7 @@
  * the per-stack regexes + deny strings are verbatim from the Python.
  */
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
-import type { HookInput } from "../../ai-pilot/scripts/lib/apex/interfaces/hook.interface";
+import type { HookInput } from "../../ai-pilot/scripts/lib/interfaces/hook.interface";
 
 type Validator = (filePath: string, content: string) => void;
 

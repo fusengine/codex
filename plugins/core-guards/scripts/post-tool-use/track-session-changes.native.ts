@@ -30,7 +30,7 @@ function logHook(msg: string): void {
   } catch { /* ignore */ }
 }
 
-let data: { session_id?: string; tool_name?: string; tool_input?: unknown };
+let data: Parameters<typeof iterEditTargets>[0] & { session_id?: string };
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {

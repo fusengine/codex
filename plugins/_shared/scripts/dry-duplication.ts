@@ -9,7 +9,7 @@
  */
 import { extname, normalize, sep, resolve } from "node:path";
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
-import type { HookInput } from "../../ai-pilot/scripts/lib/apex/interfaces/hook.interface";
+import type { HookInput } from "../../ai-pilot/scripts/lib/interfaces/hook.interface";
 import { denyBlock } from "../../core-guards/scripts/_shared/expert-skill-gate";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
