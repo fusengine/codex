@@ -4,7 +4,7 @@
 import * as p from "@clack/prompts";
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
-import { hasKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
+import { hasKey, getRootKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
 
 type Choice = { value: string; label: string; hint?: string };
 
@@ -54,6 +54,15 @@ export async function promptCodexConfig(codexHome: string): Promise<void> {
 		if (value !== null) {
 			next = setRootKey(next, key, value);
 			changes++;
+		}
+	}
+
+	if (getRootKey(next, "sandbox_mode") === "danger-full-access" && getRootKey(next, "approval_policy") === "never") {
+		p.log.warn("sandbox_mode=danger-full-access + approval_policy=never: Codex will run anything, unsandboxed, with no confirmation ever.");
+		const proceed = await p.confirm({ message: "Write this configuration anyway?", initialValue: false });
+		if (p.isCancel(proceed) || !proceed) {
+			p.log.info("Config write aborted — dangerous combo not confirmed");
+			return;
 		}
 	}
 

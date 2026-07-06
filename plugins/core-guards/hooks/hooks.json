@@ -33,19 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/bash-write-guard.native.js"
-          },
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/git-guard.native.js"
-          },
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/install-guard.native.js"
-          },
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/security-guard.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../fusengine-sys/shared/harness/dist/cli/bin.mjs hook codex core"
           }
         ]
       },
@@ -55,6 +43,15 @@
           {
             "type": "command",
             "command": "bun ${PLUGIN_ROOT}/dist/hooks/pre-tool-use/pre-commit-guard.native.js"
+          }
+        ]
+      },
+      {
+        "matcher": "apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${PLUGIN_ROOT}/../../../../../fusengine-sys/shared/harness/dist/cli/bin.mjs hook codex core"
           }
         ]
       },

@@ -9,7 +9,7 @@
 import { skillDocPathFromPayload } from "../../core-guards/scripts/_shared/shell-read-paths";
 import { trackSkillRead } from "../../core-guards/scripts/_shared/expert-skill-tracking";
 
-let data: { session_id?: string };
+let data: { session_id?: string; tool_name?: string; tool_input?: Record<string, unknown> };
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {

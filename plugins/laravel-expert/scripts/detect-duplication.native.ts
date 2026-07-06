@@ -7,7 +7,7 @@
  * stdin → guard entry, matching the Python wrapper's delegation 1:1.
  */
 import { runDuplicationGuard } from "../../_shared/scripts/dry-duplication";
-import type { HookInput } from "../../ai-pilot/scripts/lib/apex/interfaces/hook.interface";
+import type { HookInput } from "../../ai-pilot/scripts/lib/interfaces/hook.interface";
 
 let data: HookInput;
 try {

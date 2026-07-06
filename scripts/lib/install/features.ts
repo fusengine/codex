@@ -5,6 +5,8 @@
  */
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
+import * as p from "@clack/prompts";
+import { hasKey } from "./toml-helpers";
 
 function setFeature(block: string, key: string, value: string): string {
 	const line = `${key} = ${value}`;
@@ -32,9 +34,12 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 		next = next.trimEnd() + "\n\n[features]\nhooks = true\nplugin_hooks = true\n";
 	}
 	next = ensureRootKey(next, "suppress_unstable_features_warning", "true");
-	// Plugin-bundled hooks are re-synced/updated across versions; persisting
-	// bypass_hook_trust avoids an interactive re-trust prompt each time a hook
-	// changes (these hooks are first-party and vetted by this installer).
-	next = ensureRootKey(next, "bypass_hook_trust", "true");
+	if (!hasKey(next, "bypass_hook_trust")) {
+		const wants = await p.confirm({
+			message: "Skip Codex's native re-confirmation prompt whenever a plugin hook changes? (writes bypass_hook_trust = true — disables that safety check)",
+			initialValue: false,
+		});
+		if (!p.isCancel(wants) && wants) next = ensureRootKey(next, "bypass_hook_trust", "true");
+	}
 	if (next !== existing) await Bun.write(configPath, next);
 }

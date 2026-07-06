@@ -1,3 +1,5 @@
+// "broken" is reserved: no longer emitted since the python-era runtimeSharedOk
+// gate was removed. Kept in the union for the summary vocabulary and future use.
 export type InstallStatus = "current" | "missing" | "stale" | "broken";
 
 export interface InstalledPluginState {
@@ -8,7 +10,6 @@ export interface InstalledPluginState {
 	enabled: boolean;
 	cacheExists: boolean;
 	hooksCount: number;
-	runtimeSharedOk: boolean;
 	status: InstallStatus;
 	reasons: string[];
 }
@@ -18,7 +19,6 @@ export function statusFor(args: {
 	cacheVersion?: string;
 	enabled: boolean;
 	cacheExists: boolean;
-	runtimeSharedOk: boolean;
 }): { status: InstallStatus; reasons: string[] } {
 	const reasons: string[] = [];
 	if (!args.enabled) reasons.push("not enabled");
@@ -26,9 +26,7 @@ export function statusFor(args: {
 	if (args.cacheExists && args.cacheVersion !== args.sourceVersion) {
 		reasons.push(`cache version ${args.cacheVersion ?? "unknown"} != source ${args.sourceVersion}`);
 	}
-	if (!args.runtimeSharedOk) reasons.push("runtime shared missing");
 	if (reasons.length === 0) return { status: "current", reasons };
 	if (!args.cacheExists || !args.enabled) return { status: "missing", reasons };
-	if (!args.runtimeSharedOk) return { status: "broken", reasons };
 	return { status: "stale", reasons };
 }

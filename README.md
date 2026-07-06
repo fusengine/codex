@@ -192,6 +192,19 @@ codex-plugins/
 | Command-backed statusline (`["bun", "/path"]`) | Removed from runtime since PR #10546; feature request open (issue #20244). Statusline code is preserved in `core-guards/statusline/` for future support |
 | 134 hook scripts | Bun wrappers call `python3` and preserve Python originals. Native Bun rewrite is pending |
 
+> **`@fusengine/harness` guard on Codex — `git commit`/`git add` and installs
+> are hard-denied outside Ralph mode.** Codex has no interactive approval
+> channel and does not honor `permissionDecision: "ask"` (it fails open —
+> Codex's own `pre_tool_use.rs` test `unsupported_permission_decision_fails_open`),
+> so the harness downgrades every `ask` to an explicit deny. As a result
+> `git commit`, `git add`, `git checkout -b` (and every `git push` / `checkout` /
+> `reset` / `merge` / … confirmation gate) plus project installs (`bun install`,
+> `npm install`, `pip install`, …) are **denied** on Codex unless `RALPH_MODE=1`
+> is set. Ralph mode exempts only the safe set (`git add`, `git commit`,
+> `git checkout -b`, `git status` / `diff` / `log`) and project installs; system
+> installs (`brew`, `apt`, …) stay denied even then, and destructive git
+> (`push --force`, `reset --hard`, `branch -D`) is always blocked.
+
 ## Known Gaps (claude-plugins to codex-plugins parity)
 
 All gaps identified in the v1.1.x parity diff are closed in v1.2.0:

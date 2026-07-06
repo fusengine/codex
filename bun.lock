@@ -6,6 +6,7 @@
       "name": "codex-plugins",
       "dependencies": {
         "@clack/prompts": "^1.4.0",
+        "@fusengine/harness": "^0.1.60",
         "cheerio": "^1.2.0",
         "chrome-launcher": "^1.2.1",
         "fast-xml-parser": "^5.8.0",
@@ -34,6 +35,8 @@
     "@formatjs/icu-skeleton-parser": ["@formatjs/icu-skeleton-parser@1.8.16", "", { "dependencies": { "@formatjs/ecma402-abstract": "2.3.6", "tslib": "^2.8.0" } }, "sha512-H13E9Xl+PxBd8D5/6TVUluSpxGNvFSlN/b3coUp0e0JpuWXXnQDiavIpY3NnvSp4xhEMoXyyBvVfdFX8jglOHQ=="],
 
     "@formatjs/intl-localematcher": ["@formatjs/intl-localematcher@0.6.2", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA=="],
+
+    "@fusengine/harness": ["@fusengine/harness@0.1.60", "", { "peerDependencies": { "@vercel/detect-agent": "*" }, "optionalPeers": ["@vercel/detect-agent"], "bin": { "harness": "dist/cli/bin.mjs" } }, "sha512-eV39Fn/HcmYdZf6/QF/C48Tbb/WdpsCbsgtyPPlczGlr/t6PV36mkbEVMOI11C+w90hm+RZVmNb62hOYudE6WQ=="],
 
     "@iarna/toml": ["@iarna/toml@2.2.5", "", {}, "sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg=="],
 

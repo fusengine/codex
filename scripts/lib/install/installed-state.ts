@@ -8,7 +8,6 @@ import {
 	cacheVersions,
 	countHooks,
 	enabledPlugins,
-	runtimeSharedOk,
 	sourcePluginNames,
 	sourceVersion,
 } from "./installed-state-helpers";
@@ -26,7 +25,6 @@ export function inspectInstalledState(
 	marketplaceName: string,
 ): InstalledPluginState[] {
 	const enabled = enabledPlugins(codexHome);
-	const sharedOk = runtimeSharedOk(codexHome);
 	return sourcePluginNames(projectRoot).map((name) => {
 		const version = sourceVersion(projectRoot, name);
 		const versions = cacheVersions(codexHome, marketplaceName, name);
@@ -41,7 +39,6 @@ export function inspectInstalledState(
 			cacheVersion,
 			enabled: pluginEnabled,
 			cacheExists,
-			runtimeSharedOk: sharedOk,
 		});
 		return {
 			name,
@@ -51,7 +48,6 @@ export function inspectInstalledState(
 			enabled: pluginEnabled,
 			cacheExists,
 			hooksCount: cacheExists ? countHooks(cacheRoot) : countHooks(join(projectRoot, "plugins", name)),
-			runtimeSharedOk: sharedOk,
 			status: status.status,
 			reasons: status.reasons,
 		};

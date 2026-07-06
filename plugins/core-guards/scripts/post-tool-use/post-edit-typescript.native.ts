@@ -34,7 +34,7 @@ async function run(cmd: string[]): Promise<{ code: number; stdout: string }> {
   }
 }
 
-let data: { tool_name?: string; tool_input?: unknown };
+let data: Parameters<typeof iterEditTargets>[0];
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {
