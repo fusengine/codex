@@ -1,5 +1,6 @@
 #!/usr/bin/env bun
 // @hook-entry
+// superseded by @fusengine/harness hook codex (2026-07-06) — removed from core-guards/hooks/hooks.json; kept until owner confirms removal
 /**
  * git-guard.native.ts — native TS port of _legacy_py/pre-tool-use/git-guard.py.
  *

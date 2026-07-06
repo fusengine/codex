@@ -99,6 +99,7 @@ Context7 = docs; Exa = websearch; Magic/Gemini = UI generation; shadcn = registr
 Prefer Fusengine commit workflow/commit plugin. NEVER `git commit` directly unless user explicitly requests that exact command or workflow is unavailable and user asked to commit.
 Protected: `main`, `master`, `develop`, `production`. Branches: `<type>/<scope>` using `feat/`, `fix/`, `chore/`, `docs/`, `refactor/`, `perf/`, `test/`, `ci/`, `build/`, `style/`; kebab-case, <50 chars.
 Commit flow: branch check -> secrets scan -> conventional commit -> changelog/version/tag only if workflow requires -> push/PR only when asked -> verify remote SHA after push. Merge: squash via `gh pr merge --squash --delete-branch` when asked.
+On Codex: `git commit`/`git add`/`git checkout -b` and installs (`bun install`, `npm install`, ...) are HARD-DENIED by `@fusengine/harness` (Codex has no interactive approval, so every `ask` downgrades to deny) unless `RALPH_MODE=1` is set. Ralph mode exempts only the safe git set + project installs; system installs (`brew`/`apt`) and destructive git (`push --force`, `reset --hard`, `branch -D`) are never exempt.
 
 ## Codex Hooks
 Stable events only: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`. No `PreCompact` until stable.

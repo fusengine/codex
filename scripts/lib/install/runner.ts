@@ -16,7 +16,7 @@ import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
 import { installPluginsStrict } from "./plugin-install";
-import { installRuntimeShared } from "./runtime-shared";
+import { installRuntimeShared, installRuntimeHarness } from "./runtime-shared";
 import { cleanupDeprecatedCodexFlags } from "./cleanup-deprecated-flags";
 import { assertInstalledState, inspectInstalledState, summarizeInstalledState } from "./installed-state";
 
@@ -70,6 +70,7 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	cleanupDeprecatedCodexFlags(opts.codexHome);
 	await scanAndPrepare(join(opts.projectRoot, "plugins"));
 	await installRuntimeShared(opts.projectRoot, opts.codexHome);
+	await installRuntimeHarness(opts.projectRoot, opts.codexHome);
 	const mode = await registerMarketplace(opts);
 	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);

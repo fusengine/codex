@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.4.0",
+    "@fusengine/harness": "^0.1.60",
     "cheerio": "^1.2.0",
     "chrome-launcher": "^1.2.1",
     "fast-xml-parser": "^5.8.0",
