@@ -29,7 +29,9 @@ export async function installPluginCache(
 	for (const name of await listPlugins(projectRoot)) {
 		const version = await pluginVersion(projectRoot, name);
 		const src = join(projectRoot, "plugins", name);
-		await buildPlugin(src); // inline @hook-entry bundles before copy (isolated install)
+		// Dev bundles built into the cached copy for parity/debug; the runtime hooks
+		// resolve from ~/.codex/node_modules/@fusengine/codex-hooks (see runtime-deps.ts).
+		await buildPlugin(src, join(src, "dist", "hooks"));
 		const dest = join(codexHome, "plugins", "cache", marketplaceName, name, version);
 		await rm(dest, { recursive: true, force: true });
 		await mkdir(dest, { recursive: true });

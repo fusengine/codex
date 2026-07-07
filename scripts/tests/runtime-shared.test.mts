@@ -4,7 +4,7 @@ import { cp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { installPluginCache } from "../lib/install/plugin-cache";
-import { installRuntimeHarness } from "../lib/install/runtime-shared";
+import { harnessRange, installRuntimeDeps } from "../lib/install/runtime-deps";
 
 const roots: string[] = [];
 const repoRoot = join(import.meta.dir, "..", "..");
@@ -91,28 +91,26 @@ describe("installed plugin bundle", () => {
 	});
 });
 
-describe("installRuntimeHarness", () => {
-	// Guard hooks invoke ONLY the staged harness binary (native guards unwired),
-	// so a missing dependency must abort setup, not degrade silently. projectRoot
-	// has no package.json → the self-heal `bun install` is a no-op (installPluginDeps
-	// guards on package.json), so the binary stays absent and setup still aborts.
-	test("throws when @fusengine/harness cannot be self-installed", async () => {
-		const projectRoot = tempRoot("fusengine-project-");
-		const codexHome = tempRoot("fusengine-codex-home-");
-		await expect(installRuntimeHarness(projectRoot, codexHome)).rejects.toThrow(/harness/);
-		expect(existsSync(join(codexHome, "fusengine-sys", "shared", "harness"))).toBe(false);
+describe("harnessRange", () => {
+	test("returns the pinned @fusengine/harness range from the repo manifest", () => {
+		const root = tempRoot("fusengine-project-");
+		writeJson(root, "package.json", { dependencies: { "@fusengine/harness": "^9.9.9" } });
+		expect(harnessRange(root)).toBe("^9.9.9");
 	});
 
-	test("stages the binary and verifies the copy when present", async () => {
+	test("throws when @fusengine/harness is absent from the repo manifest", () => {
+		const root = tempRoot("fusengine-project-");
+		writeJson(root, "package.json", { dependencies: {} });
+		expect(() => harnessRange(root)).toThrow(/harness/);
+	});
+});
+
+describe("installRuntimeDeps", () => {
+	// buildAndPackHooks copies packages/codex-hooks/package.json first; an empty
+	// projectRoot has none, so the copy rejects and setup aborts — no silent no-op.
+	test("aborts when the hooks package definition is missing", async () => {
 		const projectRoot = tempRoot("fusengine-project-");
 		const codexHome = tempRoot("fusengine-codex-home-");
-		const srcBin = join(projectRoot, "node_modules/@fusengine/harness/dist/cli/bin.mjs");
-		mkdirSync(dirname(srcBin), { recursive: true });
-		writeFileSync(srcBin, "#!/usr/bin/env bun\n");
-
-		const dest = await installRuntimeHarness(projectRoot, codexHome);
-
-		expect(dest).toBe(join(codexHome, "fusengine-sys", "shared", "harness", "dist"));
-		expect(existsSync(join(dest, "cli", "bin.mjs"))).toBe(true);
+		await expect(installRuntimeDeps(projectRoot, codexHome)).rejects.toThrow();
 	});
 });

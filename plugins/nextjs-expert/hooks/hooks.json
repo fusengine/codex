@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-nextjs-skill.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/check-nextjs-skill.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-nextjs-solid.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/validate-nextjs-solid.native.js"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-nextjs-modular.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/validate-nextjs-modular.native.js"
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/detect-duplication.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/detect-duplication.native.js"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/track-mcp-research.native.js"
           }
         ]
       }

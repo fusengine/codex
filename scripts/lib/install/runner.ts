@@ -12,11 +12,12 @@ import { configureShellAutoLoad } from "./shell-install";
 import { backupConfig } from "./backup";
 import { scanAndPrepare } from "./setup-plugins";
 import { promptPerfEnv } from "./perf-env";
+import { promptHarnessEnv } from "./harness-env";
 import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
 import { installPluginsStrict } from "./plugin-install";
-import { installRuntimeHarness } from "./runtime-shared";
+import { installRuntimeDeps } from "./runtime-deps";
 import { cleanupDeprecatedCodexFlags } from "./cleanup-deprecated-flags";
 import { assertInstalledState, inspectInstalledState, summarizeInstalledState } from "./installed-state";
 
@@ -69,7 +70,7 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await backupConfig(opts.codexHome);
 	cleanupDeprecatedCodexFlags(opts.codexHome);
 	await scanAndPrepare(join(opts.projectRoot, "plugins"));
-	await installRuntimeHarness(opts.projectRoot, opts.codexHome);
+	await installRuntimeDeps(opts.projectRoot, opts.codexHome);
 	const mode = await registerMarketplace(opts);
 	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
@@ -84,6 +85,7 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await promptCodexConfig(opts.codexHome);
 	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);
+	await promptHarnessEnv(opts.codexHome);
 	await runMcpStep(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await reportMcp(join(opts.projectRoot, "plugins"));
 	const plugins = scanPlugins(join(opts.projectRoot, "plugins"));

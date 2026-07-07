@@ -1,0 +1,12 @@
+{
+  "name": "@fusengine/codex-hooks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bundled Fusengine Codex plugin hooks. Built at setup, packed into a local tarball, and installed into ~/.codex/node_modules — never published to a registry.",
+  "license": "MIT",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  }
+}

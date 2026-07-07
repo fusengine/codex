@@ -23,8 +23,14 @@ plugins/validate-bun-report.json
 .ruff_cache/
 plugins/**/.ruff_cache/
 
-# Bundled hooks (regenerated at install by scripts/build-hooks.ts)
+# Bundled hooks — regenerated at setup by scripts/build-hooks.ts, never committed.
+# The runtime lives in ~/.codex/node_modules/@fusengine/codex-hooks (a local tarball
+# built + installed by the setup), so no bundle belongs in git.
+#   - legacy per-plugin dev output (now unused; hooks.json read from the package):
 plugins/*/dist/
+#   - the @fusengine/codex-hooks package.json is tracked; its built per-plugin bundle
+#     dirs (dev builds of `build-hooks all`) are not:
+packages/codex-hooks/*/
 
 # Plugin-bundled node_modules and lockfiles inside source plugins
 plugins/*/scripts/node_modules/
