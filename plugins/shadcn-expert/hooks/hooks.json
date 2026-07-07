@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-skill-loaded.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/shadcn-expert/hooks/check-skill-loaded.native.js"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/shadcn-expert/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/shadcn-expert/hooks/track-mcp-research.native.js"
           }
         ]
       }

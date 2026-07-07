@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-watch-research.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/changelog-watcher/hooks/track-watch-research.native.js"
           }
         ]
       }

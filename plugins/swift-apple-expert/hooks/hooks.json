@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/check-swift-skill.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/swift-apple-expert/hooks/check-swift-skill.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/validate-swift-solid.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/swift-apple-expert/hooks/validate-swift-solid.native.js"
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-skill-read.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/swift-apple-expert/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/dist/hooks/track-mcp-research.native.js"
+            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/swift-apple-expert/hooks/track-mcp-research.native.js"
           }
         ]
       }
