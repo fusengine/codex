@@ -11,7 +11,6 @@
 import { existsSync, statSync, readFileSync, mkdirSync, appendFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { loadSessionState, saveSessionState } from "../_shared/state-manager";
 
 const CODEX = process.env.CODEX_HOME ?? join(homedir(), ".codex");
 const LOG_FILE = join(CODEX, "fusengine", "logs", "hooks.log");
@@ -47,17 +46,8 @@ try {
 }
 process.stderr.write("memory: AGENTS.md loaded\n");
 
-// Exactly-once per session: inject on the FIRST prompt (safety net if SessionStart was
-// truncated), then stay silent — SessionStart re-fires on compact so context stays fresh.
-const sid = typeof data.session_id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(data.session_id) ? data.session_id : "";
-let injected = false;
-try { injected = sid ? loadSessionState(sid).agentsMdInjected === true : false; } catch { injected = false; }
-if (injected) process.exit(0);
-console.log(JSON.stringify({
-  hookSpecificOutput: { hookEventName: "UserPromptSubmit", additionalContext: `# AGENTS.md\n${content}` },
-}));
-if (sid) {
-  try { const s = loadSessionState(sid); s.agentsMdInjected = true; saveSessionState(sid, s); } catch { /* best-effort */ }
-}
-log("AGENTS.md injected");
+// SessionStart is the SOLE emitter of AGENTS.md (it re-fires on compact/clear, so context
+// stays fresh). The former first-prompt safety net doubled the whole corpus on every new
+// session's first prompt — owner-rejected. UserPromptSubmit stays silent, always.
+void content;
 process.exit(0);
