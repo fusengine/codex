@@ -5,6 +5,11 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.25] - 2026-07-07
+
+### Maintenance
+- chore(deps): bump @clack/prompts 1.7.0, smol-toml 1.7.0, fast-xml-parser 5.9.3, lighthouse 13.4.0 (lockfile regenerated, 104 hook bundles rebuilt against the new versions)
+
 ## [1.2.24] - 2026-07-07
 
 ### Added
