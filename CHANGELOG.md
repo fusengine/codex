@@ -5,6 +5,19 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.24] - 2026-07-07
+
+### Added
+- feat(core-guards): shared guards converge on @fusengine/harness ^0.1.60 — one `hook codex core` call for Bash, harness gate on apply_patch; ask fail-open closed (deny), env-prefix bypass closed (PR #1)
+- installer: self-healing root `bun install`, harness env toggles (RALPH_MODE, FUSE_* TTLs) persisted in `~/.codex/.env`, MCP key prompts scoped to selected MCPs (PR #2, #4)
+
+### Fixed
+- hook runtime shipped via local @fusengine/codex-hooks package installed into `~/.codex/node_modules` (git-clone installs had no dist → every native hook failed module-not-found); content-hashed tarball lives in CODEX_HOME, zero tmpdir (PR #2, #3)
+- passing hooks are silent (Codex rejects bare permissionDecision:allow), per-prompt AGENTS.md/rules re-injection removed (exactly-once per session), stack/TS gating on validators, seo/validate-seo bundled (was raw-source, crashed exit 1 on cheerio) (PR #3, #5)
+
+### Changed
+- zero-python purge: orphaned cartographer wrappers and dead runtimeSharedOk chain removed; promptApiKeys fossil deleted — MCP flow owns key prompts (PR #4)
+
 ## [1.2.23] - 2026-06-03
 
 ### Fixed
