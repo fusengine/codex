@@ -10,6 +10,7 @@
  */
 import { loadSessionState, saveSessionState } from "../_shared/state-manager";
 import { utcStamp } from "../_shared/track-time";
+import { normalizeCommand } from "../_shared/normalize-command";
 
 const FRAMEWORK_MAP: Record<string, string> = {
   "solid-nextjs": "nextjs", "solid-react": "react",
@@ -21,7 +22,7 @@ const FRAMEWORK_MAP: Record<string, string> = {
 interface Payload {
   tool_name?: string;
   session_id?: string;
-  tool_input?: { file_path?: string; command?: string; input?: string };
+  tool_input?: { file_path?: string; command?: unknown; input?: string };
 }
 
 /** Extract candidate solid-* paths from a Read file_path or a cat/grep command. */
@@ -29,7 +30,7 @@ function filePathsFromPayload(data: Payload): string[] {
   const ti = data.tool_input ?? {};
   const fp = ti.file_path ?? "";
   if (data.tool_name === "Read" && fp) return [fp];
-  const command = ti.command || ti.input || "";
+  const command = normalizeCommand(ti.command) || ti.input || "";
   if (!command) return [];
   if (!/\b(cat|sed|nl|less|head|tail|bat|rg|grep)\b/.test(command)) return [];
   const re = /(?:~|\/|\.)?[^\s"']*solid-[^\s"']+\/(?:references\/[^\s"']+|SKILL\.md)/g;

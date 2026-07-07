@@ -11,8 +11,9 @@
  */
 import { isSafeWritePath, isSafeCommandTarget, hasSafeWriteTarget, extractRedirectTarget } from "../_shared/safe-paths";
 import { CODE_EXT, SAFE_PREFIXES, DENY_PATTERNS, ASK_PATTERNS, hasFileRedirect, INLINE_INTERPRETER, INLINE_WRITES } from "../_shared/bash-write-patterns";
+import { normalizeCommand } from "../_shared/normalize-command";
 
-interface ToolInput { command?: string; }
+interface ToolInput { command?: unknown; }
 
 /** Emit the PreToolUse decision JSON and exit. */
 function out(decision: string, reason: string): never {
@@ -32,7 +33,7 @@ try {
 } catch {
   process.exit(0);
 }
-const cmd = data.tool_input?.command ?? "";
+const cmd = normalizeCommand(data.tool_input?.command);
 if (!cmd) process.exit(0);
 
 if (/\bapply_patch\b/.test(cmd) || (/\bgit\s+apply\b/.test(cmd) && !/--(check|stat|numstat|summary)\b/.test(cmd))) {

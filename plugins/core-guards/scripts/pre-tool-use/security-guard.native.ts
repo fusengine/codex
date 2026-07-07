@@ -10,8 +10,9 @@
  * strings (prefixed "SECURITY: ") are identical to the Python for parity.
  */
 import { validateCommand } from "../_shared/security-rules";
+import { normalizeCommand } from "../_shared/normalize-command";
 
-interface ToolInput { command?: string; }
+interface ToolInput { command?: unknown; }
 
 /** Emit the PreToolUse decision JSON and exit. */
 function outputDecision(decision: string, reason: string): never {
@@ -33,7 +34,7 @@ try {
 }
 
 if (data.tool_name !== "Bash") process.exit(0);
-const cmd = data.tool_input?.command ?? "";
+const cmd = normalizeCommand(data.tool_input?.command);
 if (!cmd) process.exit(0);
 
 const [isValid, violations] = validateCommand(cmd);
