@@ -1,21 +1,20 @@
 #!/usr/bin/env bun
 // @hook-entry
 /**
- * read-agents-md.native.ts — native TS port of
- * _legacy_py/user-prompt/read-claude-md.py.
- *
- * UserPromptSubmit: inject ~/.codex/AGENTS.md as additionalContext, prefixed
- * with an APEX instruction when the prompt contains a dev verb. Dev-verb regex
- * (with accents), project detection, the APEX text and the envelope are verbatim
- * from the Python for strict parity. Logs to hooks.log like the Python.
+ * read-agents-md.native.ts — UserPromptSubmit: inject ~/.codex/AGENTS.md as additionalContext,
+ * EXACTLY ONCE per session. SessionStart already injects it at thread scope (re-fired on
+ * compact), so re-emitting it every prompt would cumulate identical developer messages in the
+ * transcript; the first prompt re-injects as a safety net, then this stays silent. The
+ * per-prompt APEX nudge is owned SOLELY by ai-pilot/detect-and-inject-apex (single emitter —
+ * this file no longer emits an APEX block, killing the double-injection).
  */
 import { existsSync, statSync, readFileSync, mkdirSync, appendFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { loadSessionState, saveSessionState } from "../_shared/state-manager";
 
 const CODEX = process.env.CODEX_HOME ?? join(homedir(), ".codex");
 const LOG_FILE = join(CODEX, "fusengine", "logs", "hooks.log");
-const DEV_VERBS = /(cr[ée]er|impl[ée]menter|ajouter|d[ée]velopper|construire|build|refactor|migrer|implement|create|add|develop)/i;
 
 /** Append a timestamped UserPromptSubmit line to hooks.log (best-effort). */
 function log(msg: string): void {
@@ -28,40 +27,13 @@ function log(msg: string): void {
   } catch { /* ignore */ }
 }
 
-/** Detect project type from cwd markers (mirrors detect_project_type). */
-function detectProjectType(): string {
-  if (existsSync("package.json")) {
-    try {
-      const content = readFileSync("package.json", "utf-8");
-      if (content.includes("next")) return "nextjs";
-      if (content.includes("react")) return "react";
-    } catch { /* ignore */ }
-  }
-  if (existsSync("composer.json") && existsSync("artisan")) return "laravel";
-  if (existsSync("Package.swift")) return "swift";
-  return "generic";
-}
-
-/** APEX workflow instruction block (verbatim from build_apex_instruction). */
-function buildApexInstruction(pt: string): string {
-  return `INSTRUCTION: This is a development task. Use APEX methodology:\n\n`
-    + `**TRACKING FILE**: [project]/.codex/apex/task.json\n\n`
-    + `1. **ANALYZE** (3 AGENTS IN PARALLEL):\n`
-    + `   - explore-codebase + research-expert + general-purpose\n`
-    + `   - Project type: ${pt}\n\n`
-    + `2. **PLAN**: TaskCreate (<100 lines per file)\n\n`
-    + `3. **EXECUTE**: ${pt}-expert, SOLID principles\n\n`
-    + `4. **EXAMINE**: Run sniper agent after ANY modification`;
-}
-
-let data: { userPrompt?: string };
+let data: { session_id?: string };
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {
   process.exit(0);
 }
 
-const prompt = data.userPrompt ?? "";
 const agentsMd = join(homedir(), ".codex", "AGENTS.md");
 if (!existsSync(agentsMd) || !statSync(agentsMd).isFile()) {
   log("ERROR: AGENTS.md not found");
@@ -75,15 +47,17 @@ try {
 }
 process.stderr.write("memory: AGENTS.md loaded\n");
 
-let apex = "";
-if (DEV_VERBS.test(prompt)) {
-  const pt = detectProjectType();
-  apex = buildApexInstruction(pt);
-  log(`APEX auto-triggered for dev task (project: ${pt})`);
-}
-const full = apex ? `${apex}\n\n# AGENTS.md\n${content}` : `# AGENTS.md\n${content}`;
+// Exactly-once per session: inject on the FIRST prompt (safety net if SessionStart was
+// truncated), then stay silent — SessionStart re-fires on compact so context stays fresh.
+const sid = typeof data.session_id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(data.session_id) ? data.session_id : "";
+let injected = false;
+try { injected = sid ? loadSessionState(sid).agentsMdInjected === true : false; } catch { injected = false; }
+if (injected) process.exit(0);
 console.log(JSON.stringify({
-  hookSpecificOutput: { hookEventName: "UserPromptSubmit", additionalContext: full },
+  hookSpecificOutput: { hookEventName: "UserPromptSubmit", additionalContext: `# AGENTS.md\n${content}` },
 }));
-log(`AGENTS.md injected${apex ? "+ APEX" : ""}`);
+if (sid) {
+  try { const s = loadSessionState(sid); s.agentsMdInjected = true; saveSessionState(sid, s); } catch { /* best-effort */ }
+}
+log("AGENTS.md injected");
 process.exit(0);

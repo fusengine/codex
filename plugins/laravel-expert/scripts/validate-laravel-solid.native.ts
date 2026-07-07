@@ -12,6 +12,7 @@
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
 import { countCodeLines, denySolidViolation } from "../../core-guards/scripts/_shared/validate-solid-common";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
+import { isLaravelProject } from "../../core-guards/scripts/_shared/stack-detect";
 
 let data: Parameters<typeof editTargets>[0];
 try {
@@ -19,6 +20,10 @@ try {
 } catch {
   process.exit(0);
 }
+
+// Stack gate: only run Laravel SOLID checks inside an actual Laravel project (composer.json
+// + artisan). On a non-Laravel project the validator exits silently instead of scanning.
+if (!isLaravelProject()) process.exit(0);
 
 for (const t of editTargets(data)) {
   const filePath = t.filePath;

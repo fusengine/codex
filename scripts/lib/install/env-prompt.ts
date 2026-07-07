@@ -11,6 +11,11 @@ function placeholder(k: EnvKey): string {
 }
 
 export async function promptApiKeys(codexHome: string): Promise<void> {
+	// @clack prompts (text) HANG forever on non-TTY/CI stdin (no throw, no cancel) — guard first.
+	if (!process.stdin.isTTY || process.env.CI) {
+		p.log.info("Non-interactive run — skipping API-key prompt (set MCP keys in ~/.codex/.env manually)");
+		return;
+	}
 	const existing = loadEnvFile(codexHome);
 	const updated: Record<string, string> = { ...existing };
 	let changes = 0;

@@ -47,10 +47,12 @@ if (existsSync(stateFile)) {
 const advisory =
   "SECURITY: Read security skill references before modifying code." +
   " Use: Read skills/security-scan/references/scan-patterns.md";
+// Advisory only, never blocks. Codex rejects a bare permissionDecision:"allow"
+// (hook FAILED), so emit additionalContext alone — the documented non-blocking
+// context shape (valid on Codex builds >= 2026-05-05 / PR #20692).
 console.log(JSON.stringify({
   hookSpecificOutput: {
     hookEventName: "PreToolUse",
-    permissionDecision: "allow",
     additionalContext: advisory,
   },
 }));

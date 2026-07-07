@@ -52,6 +52,12 @@ interface PreToolOptions {
  * @param opts - Optional additionalContext and scriptName.
  */
 export function emitPreTool(decision: string, reason: string, opts: PreToolOptions = {}): void {
+  // Codex supports only permissionDecision:"deny" (a bare "allow"/"ask" makes Codex mark
+  // the hook FAILED). A positive verdict is empty stdout + exit 0 — log the pass, emit no JSON.
+  if (decision !== "deny") {
+    if (opts.scriptName) logHook(opts.scriptName, `${decision}: ${summary(reason)}`);
+    return;
+  }
   const output: Record<string, unknown> = {
     hookEventName: "PreToolUse",
     permissionDecision: decision,

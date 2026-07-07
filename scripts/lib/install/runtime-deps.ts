@@ -1,27 +1,21 @@
 /**
- * runtime-deps.ts — stage the hook runtime under `$CODEX_HOME/node_modules` so plugin
- * hooks resolve exactly like Node/Claude Code (from a root node_modules), replacing the
- * former `fusengine-sys/shared/harness` copy tree.
+ * runtime-deps.ts — stage the hook runtime under `$CODEX_HOME/node_modules` so plugin hooks
+ * resolve exactly like Node/Claude Code (from a root node_modules).
  *
- * A root `$CODEX_HOME/package.json` pins two deps — `@fusengine/harness` (registry) and
- * `@fusengine/codex-hooks` (a LOCAL content-hash tarball built here) — then `bun install`
- * materialises REAL copies (file:<tgz> copies rather than symlinks, so the clone can be
- * deleted afterwards). The hooks package is bundled (build-hooks inlines cross-plugin
- * relative imports), which is why the isolated per-plugin cache never needs siblings.
+ * A root `$CODEX_HOME/package.json` pins `@fusengine/harness` (registry) and
+ * `@fusengine/codex-hooks` (a LOCAL content-hash tarball built here); `bun install` then
+ * materialises REAL copies (file:<tgz> copies, not symlinks — the clone can be deleted after).
+ * The hooks package is bundled (build-hooks inlines cross-plugin relative imports).
  *
- * Freshness: bun's local-tarball cache is keyed by PATH, not content (oven-sh/bun #29372,
- * reproduced on 1.3.14) — a fixed tarball name serves stale bundles. The tarball is named
- * by a content hash so any change yields a new path → guaranteed cache-miss.
- *
- * Upgrade path: `codex plugin update` refreshes each plugin's hooks.json from the git
- * clone, but the hook RUNTIME comes from the last setup — changing a hook means re-running
- * the setup (which rebuilds + reinstalls the tarball). Setup now needs registry access (or
- * a warm bun cache) for `@fusengine/harness`, a deliberate consequence of this model.
+ * Two locations only — the repo (build workshop) and CODEX_HOME. The tarball is built in
+ * packages/codex-hooks and packed straight into `$CODEX_HOME/codex-hooks-<hash>.tgz`, referenced
+ * RELATIVELY (`file:./…`). NEVER tmpdir: a `/var/folders` reference in package.json dies when
+ * macOS purges it. Freshness: bun's local-tarball cache is PATH-keyed (oven-sh/bun #29372), so
+ * the content hash in the name guarantees a cache-miss on any change; old tarballs are cleaned.
  */
-import { cp, mkdir, rm } from "node:fs/promises";
-import { existsSync, readFileSync } from "node:fs";
+import { mkdir, rm } from "node:fs/promises";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import { $ } from "bun";
@@ -38,35 +32,46 @@ export function harnessRange(projectRoot: string): string {
   return range;
 }
 
-/** Build every plugin's hooks into a tmp staging dir and pack a content-hash-named tarball. */
-async function buildAndPackHooks(projectRoot: string): Promise<string> {
-  const base = join(tmpdir(), "fusengine-codex-hooks");
-  const stage = join(base, "pkg");
-  const out = join(base, "tgz");
-  await rm(base, { recursive: true, force: true });
-  await mkdir(stage, { recursive: true });
-  await mkdir(out, { recursive: true });
-  await cp(join(projectRoot, "packages", "codex-hooks", "package.json"), join(stage, "package.json"));
-  const { count } = await buildAll(projectRoot, stage);
-  if (count === 0) throw new Error("build-hooks produced 0 bundles — refusing to stage an empty hooks package");
-  await $`cd ${stage} && bun pm pack --destination ${out}`.quiet();
-  const raw = [...new Bun.Glob("*.tgz").scanSync(out)][0];
-  if (!raw) throw new Error("bun pm pack produced no tarball for the hooks package");
-  const abs = join(out, raw);
-  const hash = createHash("sha256").update(readFileSync(abs)).digest("hex").slice(0, 16);
-  const finalTgz = join(out, `codex-hooks-${hash}.tgz`);
-  if (abs !== finalTgz) await $`mv ${abs} ${finalTgz}`.quiet();
-  p.log.info(`hooks package packed (${count} bundles) → ${finalTgz}`);
-  return finalTgz;
+/** Rebuild bundles in packages/codex-hooks and pack a content-hash tarball into CODEX_HOME. Returns its filename (relative to the CODEX_HOME manifest). */
+async function buildAndPackHooks(projectRoot: string, codexHome: string): Promise<string> {
+  const pkgDir = join(projectRoot, "packages", "codex-hooks");
+  for (const e of readdirSync(pkgDir, { withFileTypes: true })) {
+    if (e.isDirectory()) await rm(join(pkgDir, e.name), { recursive: true, force: true });
+  }
+  const s = p.spinner();
+  s.start("Building hook bundles…");
+  let built: { count: number; plugins: number };
+  try {
+    built = await buildAll(projectRoot, pkgDir, { quiet: true });
+  } catch (e) {
+    s.stop("hook build failed — see errors above");
+    throw e;
+  }
+  if (built.count === 0) {
+    s.stop("hook build produced 0 bundles");
+    throw new Error("build-hooks produced 0 bundles — refusing to stage an empty hooks package");
+  }
+  s.stop(`✓ ${built.count} hook bundles built (${built.plugins} plugins)`);
+  await mkdir(codexHome, { recursive: true });
+  for (const old of new Bun.Glob("codex-hooks-*.tgz").scanSync(codexHome)) await rm(join(codexHome, old), { force: true });
+  // --filename and --destination are mutually exclusive in bun; use --destination, then rename by hash.
+  await $`cd ${pkgDir} && bun pm pack --quiet --destination ${codexHome}`.quiet();
+  const packed = [...new Bun.Glob("fusengine-codex-hooks-*.tgz").scanSync(codexHome)][0];
+  if (!packed) throw new Error("bun pm pack produced no tarball for the hooks package");
+  const absPacked = join(codexHome, packed);
+  const hash = createHash("sha256").update(readFileSync(absPacked)).digest("hex").slice(0, 16);
+  const finalName = `codex-hooks-${hash}.tgz`;
+  await $`mv ${absPacked} ${join(codexHome, finalName)}`.quiet();
+  return finalName;
 }
 
 /** Install `@fusengine/harness` + `@fusengine/codex-hooks` into `$CODEX_HOME/node_modules`; hard-fail if either is absent afterwards. */
 export async function installRuntimeDeps(projectRoot: string, codexHome: string): Promise<void> {
-  const tgz = await buildAndPackHooks(projectRoot);
+  const tgz = await buildAndPackHooks(projectRoot, codexHome);
   const manifest = {
     name: "codex-home-runtime",
     private: true,
-    dependencies: { "@fusengine/harness": harnessRange(projectRoot), [HOOKS_PKG]: `file:${tgz}` },
+    dependencies: { "@fusengine/harness": harnessRange(projectRoot), [HOOKS_PKG]: `file:./${tgz}` },
   };
   await Bun.write(join(codexHome, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
   if (!(await installPluginDeps(codexHome))) {
