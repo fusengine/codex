@@ -74,6 +74,11 @@ export async function installRuntimeDeps(projectRoot: string, codexHome: string)
     dependencies: { "@fusengine/harness": harnessRange(projectRoot), [HOOKS_PKG]: `file:./${tgz}` },
   };
   await Bun.write(join(codexHome, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
+  // Drop the CODEX_HOME lockfile before installing: bun install honors the lock over the
+  // manifest range, so a stale lock pins the previous harness forever (proven live: 0.1.60
+  // kept after 0.1.61 shipped). The manifest is regenerated each setup and the hooks tarball
+  // is content-hashed — the lock carries no information here; fresh resolution every setup.
+  await rm(join(codexHome, "bun.lock"), { force: true });
   if (!(await installPluginDeps(codexHome))) {
     throw new Error(`bun install failed in ${codexHome} — runtime deps not staged`);
   }

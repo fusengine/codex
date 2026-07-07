@@ -5,6 +5,11 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.27] - 2026-07-07
+
+### Fixed
+- fix(installer): drop the stale `$CODEX_HOME/bun.lock` before `bun install` — bun honors the lock over the regenerated manifest range, so setups kept serving the previous `@fusengine/harness` after a new release (proven live: 0.1.60 kept after 0.1.61 shipped); every setup now resolves fresh against the registry
+
 ## [1.2.26] - 2026-07-07
 
 ### Fixed
