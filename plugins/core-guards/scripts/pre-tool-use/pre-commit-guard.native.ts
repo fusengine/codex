@@ -11,12 +11,13 @@
 import { existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { emitPreTool } from "../_shared/hook-output";
+import { normalizeCommand } from "../_shared/normalize-command";
 
 const TIMEOUT_MS = 30_000;
 const ESLINT_CONFIGS = [".eslintrc.json", ".eslintrc.js", "eslint.config.js", "eslint.config.mjs", "eslint.config.ts"];
 const PRETTIER_CONFIGS = [".prettierrc", ".prettierrc.json", "prettier.config.js"];
 
-interface ToolInput { command?: string; }
+interface ToolInput { command?: unknown; }
 
 /** Run a linter; return [passed, formattedOutput] (mirrors run_linter). */
 function runLinter(cmd: string[], label: string): [boolean, string] {
@@ -67,7 +68,7 @@ try {
 } catch {
   process.exit(0);
 }
-const cmd = data.tool_input?.command ?? "";
+const cmd = normalizeCommand(data.tool_input?.command);
 if (!cmd.startsWith("git") || !cmd.includes("commit")) process.exit(0);
 
 const errors = collectErrors();

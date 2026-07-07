@@ -5,6 +5,12 @@ All notable changes to the Fusengine Codex plugin ecosystem will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.26] - 2026-07-07
+
+### Fixed
+- fix(core-guards/ai-pilot): Codex sends `tool_input.command` as an array — 8 hooks read it as a string and crashed (TypeError, "PreToolUse hook failed") or mis-tracked; new shared `normalize-command.ts` helper, string behavior unchanged (core-guards 1.1.44, ai-pilot 1.2.35)
+- fix(codex-rules/core-guards): the rules corpus and AGENTS.md are no longer echoed into the terminal at SessionStart (Codex always displays hook context, openai/codex#21696); the installer now merges the rules into `~/.codex/AGENTS.md` (fenced idempotent section, `project_doc_max_bytes=65536`), which Codex loads natively and silently (codex-rules 1.0.13)
+
 ## [1.2.25] - 2026-07-07
 
 ### Maintenance

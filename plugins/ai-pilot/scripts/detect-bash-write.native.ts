@@ -9,6 +9,8 @@
  * `>/dev/null` and a `>` inside a quoted string are NOT blocked. Detection
  * regexes and deny JSON are identical to the Python.
  */
+import { normalizeCommand } from "../../core-guards/scripts/_shared/normalize-command";
+
 const CODE_EXT = "(?:ts|tsx|js|jsx|py|php|swift|go|rs|rb|java|vue|svelte|astro|css)";
 const REDIRECT_TO_CODE = new RegExp(`(?<![0-9&>])>>?\\s*(?!/dev/null)['"]?[\\w./~$-]+\\.${CODE_EXT}\\b`);
 const TEE_TO_CODE = new RegExp(`\\btee\\b(?:\\s+-\\S+)*\\s+['"]?[\\w./~$-]+\\.${CODE_EXT}\\b`);
@@ -50,7 +52,7 @@ function writesCodeFile(command: string): boolean {
   return INLINE_INTERPRETER.test(command) && INLINE_WRITE.test(command);
 }
 
-let event: { tool_name?: string; tool_input?: { command?: string } };
+let event: { tool_name?: string; tool_input?: { command?: unknown } };
 try {
   event = JSON.parse(await Bun.stdin.text());
 } catch {
@@ -59,7 +61,7 @@ try {
 
 if (event.tool_name !== "Bash" && event.tool_name !== "bash") process.exit(0);
 
-const command = event.tool_input?.command ?? "";
+const command = normalizeCommand(event.tool_input?.command);
 if (command && writesCodeFile(command)) {
   console.log(JSON.stringify({
     hookSpecificOutput: {

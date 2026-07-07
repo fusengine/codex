@@ -11,8 +11,9 @@
  */
 import { isRalphMode } from "../_shared/ralph-mode";
 import { SYSTEM_INSTALL, PROJECT_INSTALL } from "../_shared/guard-patterns";
+import { normalizeCommand } from "../_shared/normalize-command";
 
-interface ToolInput { command?: string; }
+interface ToolInput { command?: unknown; }
 
 /** Emit an ask decision JSON and exit. */
 function outputAsk(reason: string): never {
@@ -34,7 +35,7 @@ try {
 }
 
 const tool = data.tool_name ?? "";
-const cmd = data.tool_input?.command ?? "";
+const cmd = normalizeCommand(data.tool_input?.command);
 if (tool !== "Bash" || !cmd) process.exit(0);
 
 for (const pat of SYSTEM_INSTALL) {

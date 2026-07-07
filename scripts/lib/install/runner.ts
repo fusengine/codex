@@ -5,6 +5,7 @@ import * as p from "@clack/prompts";
 import { hasCodexCli, addMarketplace } from "./codex-cli";
 import { writeMarketplaceFallback } from "./marketplace-fallback";
 import { installAgentsMd } from "./agents-md";
+import { mergeAgentsMd } from "./merge-agents-md";
 import { ensureFeaturesEnabled } from "./features";
 import { promptCodexConfig } from "./config-prompt";
 import { installAgents } from "./install-agents";
@@ -75,6 +76,10 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
+	// Runs AFTER installAgentsMd, not right after installRuntimeDeps: installAgentsMd can
+	// overwrite AGENTS.md wholesale (user confirms "yes" on the overwrite prompt), which would
+	// wipe a rules section merged before it. Merging last guarantees it's never clobbered.
+	await mergeAgentsMd(opts.projectRoot, opts.codexHome);
 	await installPluginsStrict(opts, mode);
 	if (!opts.skipPluginInstall) {
 		assertInstalledState(opts.projectRoot, opts.codexHome, opts.marketplaceName);

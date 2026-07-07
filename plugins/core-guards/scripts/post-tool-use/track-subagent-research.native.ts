@@ -13,6 +13,7 @@ import { loadSessionState, saveSessionState } from "../_shared/state-manager";
 import { utcStamp } from "../_shared/track-time";
 import { bashExecutable } from "../_shared/track-shell";
 import { extractText } from "../_shared/track-mcp-response";
+import { normalizeCommand } from "../_shared/normalize-command";
 import {
   CACHE_READ_RE, EXPLORE_BASH_CMDS, EXPLORE_TOOLS, RESEARCH_TOOLS,
 } from "../_shared/apex-constants";
@@ -21,12 +22,12 @@ interface Payload {
   tool_name?: string;
   session_id?: string;
   agent_id?: string;
-  tool_input?: { file_path?: string; command?: string };
+  tool_input?: { file_path?: string; command?: unknown };
   tool_response?: unknown;
 }
 
 /** Map (tool_name, tool_input) to [phase, cacheHit] or null to skip. */
-function classify(tool: string, ti: { file_path?: string; command?: string }): [string, boolean] | null {
+function classify(tool: string, ti: { file_path?: string; command?: unknown }): [string, boolean] | null {
   if (RESEARCH_TOOLS.has(tool)) return ["subagent-research-expert", false];
   if (EXPLORE_TOOLS.has(tool)) return ["subagent-explore-codebase", false];
   if (tool === "Read") {
@@ -35,7 +36,7 @@ function classify(tool: string, ti: { file_path?: string; command?: string }): [
     return null;
   }
   if (tool === "Bash") {
-    const cmd = (ti.command ?? "").trim();
+    const cmd = normalizeCommand(ti.command).trim();
     if (EXPLORE_BASH_CMDS.has(bashExecutable(cmd))) return ["subagent-explore-codebase", false];
   }
   return null;
