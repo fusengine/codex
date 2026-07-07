@@ -12,7 +12,7 @@
   "devDependencies": {
     "@iarna/toml": "^2.2.5",
     "@types/bun": "latest",
-    "smol-toml": "^1.6.1",
+    "smol-toml": "^1.7.0",
     "typescript": "^6.0.3",
     "yaml": "^2.9.0"
   },
@@ -20,11 +20,11 @@
     "bun": ">=1.1.0"
   },
   "dependencies": {
-    "@clack/prompts": "^1.4.0",
+    "@clack/prompts": "^1.7.0",
     "@fusengine/harness": "^0.1.60",
     "cheerio": "^1.2.0",
     "chrome-launcher": "^1.2.1",
-    "fast-xml-parser": "^5.8.0",
-    "lighthouse": "^13.3.0"
+    "fast-xml-parser": "^5.9.3",
+    "lighthouse": "^13.4.0"
   }
 }
