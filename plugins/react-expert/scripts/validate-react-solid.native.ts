@@ -12,6 +12,7 @@
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
 import { countCodeLines } from "../../core-guards/scripts/_shared/validate-solid-common";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
+import { isReactProject } from "../../core-guards/scripts/_shared/stack-detect";
 
 const FILE_RE = /\.(tsx|ts|jsx|js)$/;
 const SKIP_RE = /\/(node_modules|dist|build)\//;
@@ -36,6 +37,10 @@ try {
 } catch {
   process.exit(0);
 }
+
+// Stack gate: only run React SOLID checks in an actual React (non-Next) project, so a plain
+// JS or other-stack project never scans its .ts/.tsx edits here (Next.js has its own validators).
+if (!isReactProject()) process.exit(0);
 
 for (const target of editTargets(data)) {
   const filePath = target.filePath;

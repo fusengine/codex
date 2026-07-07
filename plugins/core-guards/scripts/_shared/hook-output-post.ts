@@ -28,11 +28,10 @@ export function emitPostTool(context: string, scriptName?: string): void {
  * @param detail - Status detail (default "pass").
  */
 export function allowPass(scriptName: string, detail = "pass"): void {
+  // Codex has no supported PreToolUse "allow" decision — a bare `allow` makes Codex
+  // mark the hook run FAILED. A positive verdict is signalled by empty stdout + exit 0,
+  // so this logs the pass but emits nothing. Blocking still goes through deny helpers.
   logHook(scriptName, `allow: ${detail}`);
-  console.log(JSON.stringify({
-    systemMessage: `${scriptName}: ${detail}`,
-    hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "allow" },
-  }));
 }
 
 /**

@@ -13,6 +13,7 @@ import { backupConfig } from "./backup";
 import { scanAndPrepare } from "./setup-plugins";
 import { promptPerfEnv } from "./perf-env";
 import { promptHarnessEnv } from "./harness-env";
+import { promptApiKeys } from "./env-prompt";
 import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
 import { runMcpStep } from "./runner-finalize";
@@ -86,6 +87,7 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);
 	await promptHarnessEnv(opts.codexHome);
+	await promptApiKeys(opts.codexHome);
 	await runMcpStep(opts.codexHome, join(opts.projectRoot, "plugins"));
 	await reportMcp(join(opts.projectRoot, "plugins"));
 	const plugins = scanPlugins(join(opts.projectRoot, "plugins"));

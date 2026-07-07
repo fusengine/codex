@@ -9,6 +9,7 @@
 import { iterEditTargets } from "../../core-guards/scripts/_shared/track-edit-targets";
 import { countCodeLines, denySolidViolation } from "../../core-guards/scripts/_shared/validate-solid-common";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
+import { isSwiftProject } from "../../core-guards/scripts/_shared/stack-detect";
 
 let data: Parameters<typeof iterEditTargets>[0];
 try {
@@ -16,6 +17,10 @@ try {
 } catch {
   process.exit(0);
 }
+
+// Stack gate: only run Swift SOLID checks inside an actual Swift project (Package.swift or a
+// *.xcodeproj). On a non-Swift project the validator exits silently instead of scanning.
+if (!isSwiftProject()) process.exit(0);
 
 for (const target of iterEditTargets(data)) {
   const filePath = target.file_path ?? "";

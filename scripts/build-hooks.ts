@@ -2,20 +2,15 @@
 /**
  * build-hooks.ts — bundle native-TS hooks into the @fusengine/codex-hooks package.
  *
- * Each plugin installs in isolation (~/.codex/plugins/cache/<plugin>/<ver>/) and
- * sibling plugins / plugins/_shared are NOT copied there, so a hook importing
- * cross-plugin or repo-shared code by RELATIVE path cannot resolve it at runtime.
- * Bun.build(target:'bun') INLINES every relative import, flattening that graph into
- * one self-contained bundle — this is load-bearing (see runtime-deps.ts).
- *
- * Output layout mirrors what hooks.json expects under the installed package:
+ * Each plugin installs in isolation (cache/<plugin>/<ver>/) with no sibling plugins or
+ * plugins/_shared, so a hook importing cross-plugin/repo-shared code by RELATIVE path can't
+ * resolve it at runtime. Bun.build(target:'bun') INLINES every relative import into one
+ * self-contained bundle (load-bearing — see runtime-deps.ts). Output layout mirrors hooks.json:
  *   <pkgDir>/<plugin>/hooks/<event>/<name>.native.js
- * `all` builds every plugin into packages/codex-hooks (or a caller-supplied staging
- * dir); the installer packs that dir into a local tarball and installs it into
- * ~/.codex/node_modules. A single `<plugin>` target does a dev build to the plugin's
- * own dist/ (not shipped). Entries are opt-in: any scripts/**.ts whose first lines
- * contain `@hook-entry`. Bundled code MUST NOT use import.meta.path (broken
- * post-bundle, oven-sh/bun #15994) — read the plugin root from process.env.PLUGIN_ROOT.
+ * `all` builds every plugin into packages/codex-hooks; the installer packs + installs it into
+ * ~/.codex/node_modules. Entries are opt-in via a `@hook-entry` marker. `quiet` silences the
+ * per-file log so the setup can show a spinner instead. Bundled code MUST NOT use
+ * import.meta.path (broken post-bundle, oven-sh/bun #15994) — read process.env.PLUGIN_ROOT.
  */
 import { Glob } from "bun";
 import { basename, dirname, join, relative } from "node:path";
@@ -35,8 +30,8 @@ function entriesOf(pluginDir: string): string[] {
   return out;
 }
 
-/** Bundle one plugin's hook entries into `<outHooksRoot>/<event>/<name>.js`. Returns count built, or -1 on failure. */
-export async function buildPlugin(pluginDir: string, outHooksRoot: string): Promise<number> {
+/** Bundle one plugin's hook entries into `<outHooksRoot>/<event>/<name>.js`. Returns count, or -1 on failure. `quiet` suppresses the per-file ✓ line (build errors always print). */
+export async function buildPlugin(pluginDir: string, outHooksRoot: string, quiet = false): Promise<number> {
   let n = 0;
   for (const rel of entriesOf(pluginDir)) {
     const outdir = join(outHooksRoot, dirname(relative("scripts", rel)));
@@ -54,7 +49,7 @@ export async function buildPlugin(pluginDir: string, outHooksRoot: string): Prom
       for (const m of result.logs) console.error(m);
       return -1;
     }
-    console.log(`✓ ${rel} → ${outHooksRoot}`);
+    if (!quiet) console.log(`✓ ${rel} → ${outHooksRoot}`);
     n++;
   }
   return n;
@@ -66,17 +61,23 @@ function pluginDirs(root: string): string[] {
     .map((p) => join(root, dirname(dirname(p))));
 }
 
-/** Build ALL plugins into the codex-hooks package (default in-repo, or a caller staging dir). */
-export async function buildAll(root: string, pkgDir: string = join(root, PKG_DIR)): Promise<{ count: number; pkgDir: string }> {
+/** Build ALL plugins into the codex-hooks package. `opts.quiet` silences per-file logs (setup shows a spinner instead). */
+export async function buildAll(
+  root: string,
+  pkgDir: string = join(root, PKG_DIR),
+  opts: { quiet?: boolean } = {},
+): Promise<{ count: number; pkgDir: string; plugins: number }> {
   const dirs = pluginDirs(root);
   if (dirs.length === 0) throw new Error("build-hooks all: matched 0 plugins under plugins/*/.codex-plugin/ — dot-dir glob regression, refusing to ship empty");
   let count = 0;
+  let plugins = 0;
   for (const d of dirs) {
-    const n = await buildPlugin(d, join(pkgDir, basename(d), "hooks"));
+    const n = await buildPlugin(d, join(pkgDir, basename(d), "hooks"), opts.quiet);
     if (n < 0) throw new Error(`build-hooks: bundling failed for ${basename(d)}`);
     count += n;
+    if (n > 0) plugins++;
   }
-  return { count, pkgDir };
+  return { count, pkgDir, plugins };
 }
 
 if (import.meta.main) {

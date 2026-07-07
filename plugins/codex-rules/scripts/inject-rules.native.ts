@@ -3,27 +3,34 @@
 /**
  * inject-rules.native.ts — native TS port of _legacy_py/inject-rules.py.
  *
- * SessionStart/UserPromptSubmit: inject all rules/*.md (sorted) as
- * additionalContext. Plugin root comes from argv[2] (the wrapper/hooks.json
- * pass ${PLUGIN_ROOT}) or PLUGIN_ROOT env. The emitted hookEventName must match
- * the triggering event (Codex deny_unknown_fields per-event schema), so it is
- * read from stdin and clamped to the two valid names — verbatim parity with the
- * Python, including the stderr "rules:" line and exit codes.
+ * SessionStart/UserPromptSubmit: inject all rules/*.md (sorted) as additionalContext.
+ * Plugin root comes from argv[2] (the hooks.json passes ${PLUGIN_ROOT}) or PLUGIN_ROOT env.
+ * The emitted hookEventName must match the triggering event (Codex deny_unknown_fields
+ * per-event schema), read from stdin and clamped to the two valid names.
+ *
+ * Dedup: SessionStart already injects the rules once per session (thread scope, re-fired on
+ * compact). The UserPromptSubmit path (same script, turn scope) would re-emit the same rules
+ * every prompt — cumulating identical developer messages in the transcript — so it injects
+ * only on the FIRST prompt of the session (safety net if SessionStart was truncated) then
+ * stays silent. SessionStart is unchanged. Flag reuses the shared per-session state.
  */
 import { existsSync, statSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadSessionState, saveSessionState } from "../../core-guards/scripts/_shared/state-manager";
 
-/** Read the triggering event from stdin JSON; default to SessionStart. */
-async function readEvent(): Promise<string> {
+/** Read the triggering event + session id from stdin JSON; default to SessionStart. */
+async function readPayload(): Promise<{ event: string; sessionId: string }> {
   let data: unknown;
   try {
     data = JSON.parse(await Bun.stdin.text());
   } catch {
-    return "SessionStart";
+    return { event: "SessionStart", sessionId: "" };
   }
-  if (typeof data !== "object" || data === null) return "SessionStart";
-  const event = (data as { hook_event_name?: string }).hook_event_name ?? "";
-  return event === "SessionStart" || event === "UserPromptSubmit" ? event : "SessionStart";
+  if (typeof data !== "object" || data === null) return { event: "SessionStart", sessionId: "" };
+  const d = data as { hook_event_name?: string; session_id?: string };
+  const event = d.hook_event_name === "UserPromptSubmit" ? "UserPromptSubmit" : "SessionStart";
+  const sessionId = typeof d.session_id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(d.session_id) ? d.session_id : "";
+  return { event, sessionId };
 }
 
 const pluginRoot = process.argv[2] ?? process.env.PLUGIN_ROOT;
@@ -32,7 +39,7 @@ if (!pluginRoot) {
   process.exit(1);
 }
 
-const event = await readEvent();
+const { event, sessionId } = await readPayload();
 const rulesDir = join(pluginRoot, "rules");
 if (!existsSync(rulesDir) || !statSync(rulesDir).isDirectory()) process.exit(0);
 
@@ -51,6 +58,16 @@ for (const p of rules) {
   }
 }
 if (parts.length === 0) process.exit(0);
+
+// UserPromptSubmit is exactly-once per session — SessionStart already provided the rules.
+if (event === "UserPromptSubmit") {
+  let done = false;
+  try { done = sessionId ? loadSessionState(sessionId).rulesInjected === true : false; } catch { done = false; }
+  if (done) process.exit(0);
+  if (sessionId) {
+    try { const s = loadSessionState(sessionId); s.rulesInjected = true; saveSessionState(sessionId, s); } catch { /* best-effort */ }
+  }
+}
 
 const content = parts.join("\n\n");
 process.stderr.write(`rules: ${parts.length} rules loaded (${event})\n`);

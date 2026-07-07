@@ -4,7 +4,12 @@
  * regex is verbatim from the Python for strict parity.
  */
 
-const TS_EXT = /\.(ts|tsx|js|jsx)$/;
+// TS-ONLY: these checks (named interface/type, `any`, inline object TYPE) are TypeScript
+// syntax. On vanilla .js/.jsx a plain object literal `{ a: 1, b: 2 }` is indistinguishable
+// from a TS inline type by regex, so the guard must NEVER run there — firing it on JS pushed
+// agents to degrade code to dodge it. A per-extension gate beats a tsconfig gate: it keeps a
+// mixed project's .js edits safe while still checking its .ts/.tsx files.
+const TS_EXT = /\.(ts|tsx)$/;
 const CONTRACT_PATH_RE = /\/(interfaces?|types?)\/|\.(interface|types?)\.(ts|tsx)$/;
 const EXPORTED_ANY_RE = /export\s+(async\s+)?function\s+\w+\s*\([^)]*:\s*any\b/;
 const INLINE_OBJECT_RE = /:\s*\{[^{}\n;]+[;:][^{}\n;]+[;:][^{}\n]*\}/;
