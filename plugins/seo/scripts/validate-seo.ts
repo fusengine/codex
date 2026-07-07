@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * validate-seo.ts — PostToolUse hook
+ * validate-seo.ts — PostToolUse hook (@hook-entry)
  * Validates meta + schema + OG on edited HTML-like files.
  * Opt-in via `.fuse-seo` marker at project root.
  * Reads PostToolUse JSON payload from stdin; exits 0 (allow), 2 (block with stderr).

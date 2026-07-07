@@ -16,7 +16,6 @@
  */
 import { existsSync, statSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { loadSessionState, saveSessionState } from "../../core-guards/scripts/_shared/state-manager";
 
 /** Read the triggering event + session id from stdin JSON; default to SessionStart. */
 async function readPayload(): Promise<{ event: string; sessionId: string }> {
@@ -59,15 +58,9 @@ for (const p of rules) {
 }
 if (parts.length === 0) process.exit(0);
 
-// UserPromptSubmit is exactly-once per session — SessionStart already provided the rules.
-if (event === "UserPromptSubmit") {
-  let done = false;
-  try { done = sessionId ? loadSessionState(sessionId).rulesInjected === true : false; } catch { done = false; }
-  if (done) process.exit(0);
-  if (sessionId) {
-    try { const s = loadSessionState(sessionId); s.rulesInjected = true; saveSessionState(sessionId, s); } catch { /* best-effort */ }
-  }
-}
+// SessionStart is the SOLE emitter (it re-fires on compact/clear). The former first-prompt
+// safety net doubled the rules corpus on every new session — owner-rejected: silent, always.
+if (event === "UserPromptSubmit") process.exit(0);
 
 const content = parts.join("\n\n");
 process.stderr.write(`rules: ${parts.length} rules loaded (${event})\n`);
