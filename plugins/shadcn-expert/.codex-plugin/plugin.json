@@ -1,31 +1,31 @@
 {
-  "name": "shadcn-expert",
-  "version": "1.0.14",
-  "description": "Expert shadcn/ui with Radix UI and Base UI detection, component patterns, registries, theming, and migration",
-  "author": {
-    "name": "Fusengine",
-    "email": "hello@fusengine.ch",
-    "url": "https://github.com/fusengine"
-  },
-  "repository": "https://github.com/fusengine/agents",
-  "homepage": "https://github.com/fusengine/agents",
-  "license": "MIT",
-  "keywords": [
-    "shadcn-ui",
-    "radix-ui",
-    "base-ui",
-    "components",
-    "theming",
-    "migration",
-    "registries",
-    "detection"
-  ],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
-  "interface": {
-    "displayName": "shadcn/ui Expert",
-    "shortDescription": "shadcn/ui with Radix + Base UI primitives",
-    "developerName": "Fusengine"
-  },
-  "mcpServers": "./.mcp.json"
+	"name": "shadcn-expert",
+	"version": "1.0.15",
+	"description": "Expert shadcn/ui with Radix UI and Base UI detection, component patterns, registries, theming, and migration",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"shadcn-ui",
+		"radix-ui",
+		"base-ui",
+		"components",
+		"theming",
+		"migration",
+		"registries",
+		"detection"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "shadcn/ui Expert",
+		"shortDescription": "shadcn/ui with Radix + Base UI primitives",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
 }

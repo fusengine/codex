@@ -1,24 +1,24 @@
 {
-  "name": "lessons",
-  "version": "1.0.2",
-  "description": "Project memory hooks for compact never-reproduce lessons in MEMORY/LESSON.md.",
-  "author": {
-    "name": "Fusengine",
-    "url": "https://github.com/fusengine"
-  },
-  "repository": "https://github.com/fusengine/agents",
-  "homepage": "https://github.com/fusengine/agents",
-  "license": "MIT",
-  "keywords": [
-    "memory",
-    "lessons",
-    "hooks",
-    "postmortem"
-  ],
-  "hooks": "./hooks/hooks.json",
-  "interface": {
-    "displayName": "Lessons",
-    "shortDescription": "Project lessons memory hooks",
-    "developerName": "Fusengine"
-  }
+	"name": "lessons",
+	"version": "1.0.3",
+	"description": "Project memory hooks for compact never-reproduce lessons in MEMORY/LESSON.md.",
+	"author": {
+		"name": "Fusengine",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"memory",
+		"lessons",
+		"hooks",
+		"postmortem"
+	],
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "Lessons",
+		"shortDescription": "Project lessons memory hooks",
+		"developerName": "Fusengine"
+	}
 }

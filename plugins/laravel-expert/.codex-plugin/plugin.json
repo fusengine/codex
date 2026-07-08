@@ -1,29 +1,29 @@
 {
-  "name": "laravel-expert",
-  "version": "1.2.5",
-  "description": "Expert Laravel latest stable + PHP latest stable with SOLID principles, first-class PHP Attributes, Laravel AI SDK, JSON:API Resources, native vector search (pgvector), Eloquent, Livewire, queues with routing, and comprehensive documentation",
-  "author": {
-    "name": "Fusengine",
-    "email": "hello@fusengine.ch",
-    "url": "https://github.com/fusengine"
-  },
-  "repository": "https://github.com/fusengine/agents",
-  "homepage": "https://github.com/fusengine/agents",
-  "license": "MIT",
-  "keywords": [
-    "laravel",
-    "php",
-    "eloquent",
-    "livewire",
-    "blade",
-    "solid"
-  ],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
-  "interface": {
-    "displayName": "Laravel Expert",
-    "shortDescription": "Laravel backend specialist",
-    "developerName": "Fusengine"
-  },
-  "mcpServers": "./.mcp.json"
+	"name": "laravel-expert",
+	"version": "1.2.6",
+	"description": "Expert Laravel latest stable + PHP latest stable with SOLID principles, first-class PHP Attributes, Laravel AI SDK, JSON:API Resources, native vector search (pgvector), Eloquent, Livewire, queues with routing, and comprehensive documentation",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"laravel",
+		"php",
+		"eloquent",
+		"livewire",
+		"blade",
+		"solid"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "Laravel Expert",
+		"shortDescription": "Laravel backend specialist",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
 }
