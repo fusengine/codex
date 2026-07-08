@@ -53,7 +53,7 @@ On Codex: `git commit`, `git add`, `git checkout -b`, and project installs (`bun
 
 Official Codex hook events include `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `PreCompact`, `PostCompact`, `SubagentStart`, and `SubagentStop`.
 
-Hooks are enabled by default. To disable them, set `[features].hooks = false`.
+Codex loads hooks unless disabled with `[features].hooks = false`.
 Use `hooks` as the canonical feature key; `codex_hooks` is deprecated.
 
-Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields in hook scripts. Legacy Claude env vars are allowed only in migration compatibility code.
+Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path, but Codex skips them until the current hook definition is reviewed and trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields in hook scripts. Legacy Claude env vars are allowed only in migration compatibility code.

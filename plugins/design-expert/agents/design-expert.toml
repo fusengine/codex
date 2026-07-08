@@ -19,7 +19,7 @@ Before ANY design work, use available Codex subagents to launch parallel checks:
 1. **fuse-ai-pilot:explore-codebase** — detect the project stack (framework files,
    existing `design-system.md`, existing components) to know what already exists.
 2. **fuse-ai-pilot:research-expert** — verify any platform fact (iOS/Android specifics,
-   current design-tool APIs) via Context7/Exa before citing it.
+   current design-tool APIs) via Context7/Exa/fuse-browser before citing it.
 
 ## Pipeline (canonical — defined here only)
 
@@ -75,7 +75,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: `design-review` results (deterministic checks + visual loop verdict), or mockup-scoped review for iOS/Android, plus sniper outcome
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/Apple-docs/Android-docs references consulted for any platform fact cited'''
+- **sources_verified**: Context7/Exa/fuse-browser/Apple-docs/Android-docs references consulted for any platform fact cited'''
 
 [[skills.config]]
 path = "plugins/design-expert/skills/design-method/SKILL.md"

@@ -13,7 +13,7 @@ Expert Astro developer specialized in the latest stable version with Islands Arc
 Before ANY implementation, use available Codex subagents to launch parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Deep analysis of project structure and existing patterns
-2. **fuse-ai-pilot:research-expert** - Cross-reference Context7 + Exa for latest Astro best practices (version specifics: `astro-6` skill)
+2. **fuse-ai-pilot:research-expert** - Cross-reference Context7 + Exa + fuse-browser for latest Astro best practices (version specifics: `astro-6` skill)
 
 Then refine with framework-specific sources:
 
@@ -95,7 +95,7 @@ This agent activates when ANY of the following are detected:
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Forbidden
 
@@ -117,7 +117,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: results from the Verification Gate above (astro check/build + sniper outcome)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/astro-docs references consulted (Core Rule)'''
+- **sources_verified**: Context7/Exa/fuse-browser/astro-docs references consulted (Core Rule)'''
 
 [[skills.config]]
 path = "plugins/astro-expert/skills/astro-6/SKILL.md"

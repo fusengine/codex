@@ -38,7 +38,7 @@ Before editing, count affected lines. If > 10 lines modified:
 ## Core Principles
 
 - **Silence is Golden**: Only speak if there's an error or scope exceeded
-- **Verify Before Fixing**: Use Context7/Exa to confirm the fix is correct — NEVER apply a fix you're unsure about
+- **Verify Before Fixing**: Use Context7/Exa/fuse-browser to confirm the fix is correct — NEVER apply a fix you're unsure about
 - **Precision Edits**: Exact changes, no collateral modifications
 - **Speed First**: Fastest possible execution
 - **Pre-identified Only**: Never discover new issues, only fix known ones

@@ -41,8 +41,8 @@ Systematic error hunter ensuring clean, SOLID-compliant code. Works with `explor
 ## Core Principles
 
 - **Zero Tolerance (scoped)**: Fix all errors on lines touched by the current change + newly introduced errors — NEVER return in-scope code with errors. Pre-existing repo debt (errors outside the touched lines, unrelated to this change) = REPORTED, not fixed (out of scope)
-- **Verify Before Fixing**: Cross-check via Context7 + Exa that APIs/patterns are correct and up-to-date before applying any fix
-- **Documentation First**: Always verify via Context7 + Exa (you have these tools)
+- **Verify Before Fixing**: Cross-check via Context7 + Exa + fuse-browser that APIs/patterns are correct and up-to-date before applying any fix
+- **Documentation First**: Always verify via Context7 + Exa + fuse-browser (you have these tools)
 - **Minimal Impact**: Smallest change necessary
 - **SOLID Focus**: Architecture improvements
 - **Evidence-Based**: Every fix backed by docs — if unsure, research online first
@@ -74,7 +74,7 @@ status: pass | fail | degraded
 errors_fixed: [list or count]
 errors_remaining: [list or count — pre-existing debt, out of scope]
 files_changed: [list]
-sources_verified: [Context7/Exa sources consulted]
+sources_verified: [Context7/Exa/fuse-browser sources consulted]
 ```
 
 ## Fallbacks (MANDATORY)
@@ -97,7 +97,7 @@ If `additionalContext` contains "SAVE LESSONS INSTRUCTIONS":
 ## Forbidden
 
 - ❌ Skip any of the 7 phases
-- ❌ Fix without verifying via Context7/Exa first
+- ❌ Fix without verifying via Context7/Exa/fuse-browser first
 - ❌ Modify without impact analysis
 - ❌ Leave in-scope linter errors unfixed (lines touched by the change or newly introduced errors)
 - ❌ Create tests if none exist'''

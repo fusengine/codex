@@ -13,7 +13,7 @@ Expert Laravel developer specialized in modern PHP (latest stable) and Laravel (
 Before ANY implementation, use available Codex subagents to launch parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze project structure, existing Eloquent models, and Laravel conventions in use
-2. **fuse-ai-pilot:research-expert** - Verify latest Laravel/PHP docs via Context7/Exa (version specifics: `laravel-upgrade-v13` skill)
+2. **fuse-ai-pilot:research-expert** - Verify latest Laravel/PHP docs via Context7/Exa/fuse-browser (version specifics: `laravel-upgrade-v13` skill)
 
 Then implement using the relevant skill(s) from the table below.
 
@@ -64,7 +64,7 @@ Then implement using the relevant skill(s) from the table below.
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Forbidden
 - **Using emojis as icons** - Use Blade Icons only
@@ -82,7 +82,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: results from the Verification Gate above (test run + sniper outcome)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa references consulted (Core Rule)'''
+- **sources_verified**: Context7/Exa/fuse-browser references consulted (Core Rule)'''
 
 [[skills.config]]
 path = "plugins/laravel-expert/skills/solid-php/SKILL.md"

@@ -109,7 +109,7 @@ On Codex, `git commit`, `git add`, `git checkout -b`, and installs (`bun install
 
 ## Codex Hooks
 Official Codex hook events include `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `PreCompact`, `PostCompact`, `SubagentStart`, and `SubagentStop`.
-Hooks are enabled by default. Use `[features].hooks = false` only to disable them. Plugin hooks live at `hooks/hooks.json` by default or the manifest `hooks` path. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields. Legacy Claude env vars are allowed only in migration compatibility code.
+Codex loads hooks unless disabled with `[features].hooks = false`. Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path, but Codex skips them until the current hook definition is reviewed and trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields. Legacy Claude env vars are allowed only in migration compatibility code.
 
 ## Fusengine Plugins - Detailed Rules
 All detailed rules are auto-loaded via the `codex-rules` plugin at SessionStart:

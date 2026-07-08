@@ -34,7 +34,7 @@ Every agent should keep its operational contract inside `developer_instructions`
 Use available Codex subagents when they materially help:
 
 1. explore-codebase - Analyze local patterns
-2. research-expert - Verify latest docs via Context7/Exa
+2. research-expert - Verify latest docs via Context7/Exa/fuse-browser
 3. Direct MCP calls - Use Context7/Exa/fuse-browser when exposed
 
 Close spawned subagents after final status is reviewed and integrated.

@@ -6,6 +6,10 @@ nickname_candidates = ["SEO Schema", "SEO Schema Specialist", "SEO Schema Agent"
 sandbox_mode = "workspace-write"
 developer_instructions = '''# SEO Schema Sub-Agent
 
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
+
 Parallelizable expert for Schema.org JSON-LD operations.
 
 ## Workflow

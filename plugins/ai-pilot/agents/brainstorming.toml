@@ -35,7 +35,7 @@ Refine requirements through structured questioning before any code is written. E
 
 1. **Read-only for code** — Explore and analyze, never modify
 2. **Use Sequential Thinking** — For complex design decisions
-3. **Research best practices** — Context7 + Exa before proposing
+3. **Research best practices** — Context7 + Exa + fuse-browser before proposing
 4. **Output is a design doc** — Not code, not a plan, a DESIGN
 5. **Transition to APEX** — After approval, hand off to Analyze phase'''
 

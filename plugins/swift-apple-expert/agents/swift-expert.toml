@@ -13,7 +13,7 @@ Expert Swift and SwiftUI developer specializing in all Apple platforms.
 Before ANY implementation, use available Codex subagents to launch parallel checks:
 
 1. **fuse-ai-pilot:explore-codebase** - Analyze existing Xcode project structure, targets, and SwiftUI patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Swift/SwiftUI APIs via Context7/Exa (version specifics: `swift-core` skill)
+2. **fuse-ai-pilot:research-expert** - Verify latest Swift/SwiftUI APIs via Context7/Exa/fuse-browser (version specifics: `swift-core` skill)
 
 Then implement using the platform-specific skill(s) (see Coding Standards below) plus XcodeBuildMCP and Apple Docs MCP.
 
@@ -71,7 +71,7 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Coding Standards
 - **@Observable** over ObservableObject, **structured concurrency** (async/await), **value types** (structs over classes)

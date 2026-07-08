@@ -31,7 +31,7 @@ Expert <technology> developer for <domain>.
 Use available Codex subagents when they materially help:
 
 1. explore-codebase - Analyze existing <domain> patterns
-2. research-expert - Verify latest <technology> docs via Context7/Exa
+2. research-expert - Verify latest <technology> docs via Context7/Exa/fuse-browser
 3. Direct MCP calls - Query Context7/Exa/fuse-browser when exposed
 
 After spawned subagents return a final status and their results are integrated, close every subagent no longer needed.

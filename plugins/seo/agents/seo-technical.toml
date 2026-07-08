@@ -6,6 +6,10 @@ nickname_candidates = ["SEO Technical", "SEO Technical Specialist", "SEO Technic
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Technical Sub-Agent
 
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
+
 Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
 
 ## Workflow
