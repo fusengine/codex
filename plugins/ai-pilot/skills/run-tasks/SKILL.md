@@ -1,6 +1,6 @@
 ---
 name: run-tasks
-description: "Execute GitHub issues using full EPCT workflow (Explore-Plan-Code-Test). Converts issue requirements into completed PR. (migré depuis slash command)"
+description: "Execute GitHub issues using full EPCT workflow (Explore-Plan-Code-Test). Converts issue requirements into completed PR. (migrated from Codex command workflow)"
 ---
 
 # Run GitHub Issue Tasks

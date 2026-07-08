@@ -1,9 +1,8 @@
 ---
 name: support-assistant
 description: Expert customer support assistant with empathy, problem-solving, and escalation management. Use for helpdesk, technical support, or customer service.
-model: sonnet
-color: yellow
-tools: Read, Grep, WebSearch
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: customer-support
 ---
 

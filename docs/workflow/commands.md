@@ -1,68 +1,84 @@
 # Commands
 
-24 slash commands across all plugins.
+33 Codex command prompts across 9 plugins.
 
-## APEX Workflow
+Codex loads these Markdown files as custom prompts from `~/.codex/prompts`.
+Invoke them as `/prompts:<command-name>`.
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/apex` | fuse-ai-pilot | Full APEX workflow |
-| `/apex-quick` | fuse-ai-pilot | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
-| `/research` | fuse-ai-pilot | Technical research |
-| `/exploration` | fuse-ai-pilot | Codebase discovery |
+## ai-pilot
 
-## Git Commits
+| Command | Description |
+|---------|-------------|
+| `/prompts:apex` | Full APEX workflow. |
+| `/prompts:apex-quick` | Quick flow for simple fixes. |
+| `/prompts:cleanup-context` | Clean and consolidate Codex context state. |
+| `/prompts:create-pull-request` | Generate a PR description and creation flow. |
+| `/prompts:deep-code-analysis` | Comprehensive codebase investigation. |
+| `/prompts:epct` | Explore-Plan-Code-Test workflow. |
+| `/prompts:explain-architecture` | Architecture explanation and diagrams. |
+| `/prompts:fix-pr-comments` | Resolve PR review comments. |
+| `/prompts:prisma-optimize` | Prisma query optimization workflow. |
+| `/prompts:run-tasks` | Execute GitHub issue tasks with EPCT. |
+| `/prompts:watch-ci` | Monitor and triage CI failures. |
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/commit` | fuse-commit-pro | Smart conventional commit |
-| `/wip` | fuse-commit-pro | Work in progress |
-| `/fix` | fuse-commit-pro | Bugfix commit |
-| `/feat` | fuse-commit-pro | Feature commit |
-| `/refactor` | fuse-commit-pro | Refactor commit |
-| `/chore` | fuse-commit-pro | Maintenance commit |
-| `/docs` | fuse-commit-pro | Documentation commit |
-| `/test` | fuse-commit-pro | Test commit |
-| `/undo` | fuse-commit-pro | Undo last commit |
-| `/amend` | fuse-commit-pro | Amend last commit |
+## cartographer
 
-## Framework Specific
+| Command | Description |
+|---------|-------------|
+| `/prompts:map` | Display and optionally enrich ecosystem maps. |
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/nextjs-stack` | fuse-nextjs | Full stack setup |
-| `/laravel-api` | fuse-laravel | API scaffolding |
-| `/swift-build` | fuse-swift-apple-expert | Build & archive |
+## changelog-watcher
 
-## Design
+| Command | Description |
+|---------|-------------|
+| `/prompts:watch` | Scan Codex changes and plugin compatibility. |
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/design` | fuse-design | UI/UX workflow |
+## commit-pro
 
-## Prompt Engineering
+| Command | Description |
+|---------|-------------|
+| `/prompts:amend` | Amend the last commit safely. |
+| `/prompts:chore` | Create a chore commit. |
+| `/prompts:commit` | Smart conventional commit workflow. |
+| `/prompts:docs` | Create a documentation commit. |
+| `/prompts:feat` | Create a feature commit. |
+| `/prompts:fix` | Create a bugfix commit. |
+| `/prompts:refactor` | Create a refactor commit. |
+| `/prompts:test` | Create a test commit. |
+| `/prompts:undo` | Undo or revert the last commit safely. |
+| `/prompts:wip` | Create a WIP checkpoint commit. |
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/prompt` | fuse-prompt-engineer | Create/optimize prompts |
-| `/prompt-history` | fuse-prompt-engineer | Prompt history |
+## design-expert
 
-## Code Quality
+| Command | Description |
+|---------|-------------|
+| `/prompts:audit-design` | Audit an existing design. |
+| `/prompts:design` | Run the full design pipeline. |
+| `/prompts:design-component` | Generate one component from existing tokens. |
+| `/prompts:design-mobile` | Create iOS or Android mockups and handoff specs. |
+| `/prompts:design-page` | Add a page using an existing design system. |
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/code-quality` | fuse-ai-pilot | Linters, SOLID validation, DRY detection |
-| `/elicitation` | fuse-ai-pilot | Self-review techniques |
+## lessons
 
-## Usage
+| Command | Description |
+|---------|-------------|
+| `/prompts:lessons` | Read or append project lessons. |
 
-```bash
-# Full APEX for a feature
-/apex Add user authentication
+## memory-neural
 
-# Quick commit
-/commit
+| Command | Description |
+|---------|-------------|
+| `/prompts:memory` | Search, store, consolidate, and inspect memory. |
 
-# Research before coding
-/research React Server Components best practices
-```
+## prompt-engineer
+
+| Command | Description |
+|---------|-------------|
+| `/prompts:prompt` | Create, optimize, review, or design prompts. |
+| `/prompts:prompt-history` | Manage prompt history and versions. |
+
+## security-expert
+
+| Command | Description |
+|---------|-------------|
+| `/prompts:scan` | Run a comprehensive security audit. |

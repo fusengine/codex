@@ -1,6 +1,8 @@
 ---
 name: identity-system
 description: "Phase 0: Read sector template (creative/fintech/ecommerce/devtool), generate OKLCH palette with chroma > 0.05, pick approved typography pair (never Inter/Roboto/Arial), define spacing base unit + motion profile."
+references: references/
+related-skills: design-method, design-system, designing-systems
 ---
 
 

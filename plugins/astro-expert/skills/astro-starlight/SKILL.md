@@ -1,8 +1,9 @@
 ---
 name: astro-starlight
-description: "Astro Starlight documentation theme — setup, sidebar config, Pagefind search, dark/light mode, plugins (DocSearch, blog, openapi, typedoc, versions), multi-language, Content Layer API, llms.txt, customization. Use for building documentation sites."
+description: Astro Starlight documentation theme — setup, sidebar config, Pagefind search, dark/light mode, plugins (DocSearch, blog, openapi, typedoc, versions), multi-language, Content Layer API, llms.txt, customization. Use for building documentation sites.
+references: references/setup.md, references/sidebar-config.md, references/search.md, references/plugins.md, references/i18n-multilang.md, references/content-layer.md, references/customization.md, references/templates/starlight-config.md, references/templates/sidebar-example.md
+related-skills: astro-6, astro-content, astro-i18n, astro-seo
 ---
-
 
 # Astro Starlight
 
@@ -10,13 +11,13 @@ Production-ready documentation theme for Astro with built-in search, dark mode, 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing Starlight config, sidebar, and content structure
-2. **fuse-ai-pilot:research-expert** - Verify Starlight plugin APIs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing Starlight config, sidebar, and content structure
+2. **ai-pilot:research / research-expert** - Verify Starlight plugin APIs via Context7/Exa
 3. **mcp__context7__query-docs** - Check Starlight docs for Content Layer and i18n patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

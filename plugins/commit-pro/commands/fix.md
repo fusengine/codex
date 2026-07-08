@@ -1,21 +1,21 @@
 ---
 description: Quick bugfix commit. Use for fix bug, bugfix, patch, hotfix, correct error.
-argument-hint: [description] | (empty for auto-detection)
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git describe:*), Read, Edit
-disable-model-invocation: false
+argument-hint: "[description] | (empty for auto-detection)"
 ---
 
 # Quick Fix Commit
 
 ## Current State
 
-!`git status`
+Run `git status` and use the output.
 
 ## Changes
 
-!`git diff --stat`
+Run `git diff --stat` and use the output.
 
 ## Instructions
+
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
 
 Create a quick bugfix commit.
 

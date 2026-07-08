@@ -1,8 +1,7 @@
 ---
 name: modularize
-description: "Use when converting existing code to modular architecture. Detects Laravel (FuseCore or standard) / Next.js / React and applies correct modular patterns. Triggers: \"modularize\", convert to modules, migrate to modular, \"restructure modules\"."
+description: "Use when converting existing code to modular architecture. Detects Laravel (FuseCore or standard) / Next.js / React and applies correct modular patterns. Triggers: \"modularize\", \"convert to modules\", \"migrate to modular\", \"restructure modules\"."
 ---
-
 
 ## Agent Workflow (MANDATORY)
 
@@ -23,7 +22,7 @@ detect framework → explore structure → build migration plan → confirm with
 2. **Show migration map** — present file-by-file plan before touching any code
 3. **User confirms** — never move or modify files without explicit approval
 4. **Cores = central hub** — no module-to-module imports; all shared logic goes through core
-5. **Sniper after each file** — run `fuse-ai-pilot:sniper` after every file moved or created
+5. **Sniper after each file** — run `ai-pilot:sniper-check` or the `sniper` agent after every file moved or created
 
 ## Workflow Steps
 

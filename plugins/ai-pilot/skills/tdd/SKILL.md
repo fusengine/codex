@@ -1,8 +1,7 @@
 ---
 name: tdd
-description: "Use when writing production code that needs tests - new features, bug fixes, refactoring. Enforces RED-GREEN-REFACTOR cycle before any implementation."
+description: Use when writing production code that needs tests - new features, bug fixes, refactoring. Enforces RED-GREEN-REFACTOR cycle before any implementation.
 ---
-
 
 # TDD Skill
 
@@ -23,6 +22,7 @@ No exceptions. No shortcuts. No "I'll test after."
 1. DETECT  -> Identify stack, test framework, existing test patterns
 2. RED     -> Write ONE failing test for the next behavior
 3. VERIFY  -> Run test, confirm it fails for the EXPECTED reason
+   IF the test fails for a DIFFERENT reason (syntax error, wrong import, missing fixture) → fix the test itself and re-run. Do NOT proceed to GREEN until the failure matches the intended behavior.
 4. GREEN   -> Write the SIMPLEST code that makes the test pass
 5. VERIFY  -> Run tests, confirm ALL pass (new + existing)
 6. REFACTOR -> Clean up while keeping all tests green

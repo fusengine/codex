@@ -10,11 +10,11 @@ description: "SOLID principles for generic TypeScript, Bun, and Node.js projects
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze project structure and existing patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest TypeScript/Bun docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Analyze project structure and existing patterns
+2. **ai-pilot:research / research-expert** - Verify latest TypeScript/Bun docs via Context7
 3. **mcp__context7__query-docs** - Check integration compatibility
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

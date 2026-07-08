@@ -31,5 +31,12 @@
     "env_http_headers": {
       "x-api-key": "${EXA_API_KEY}"
     }
+  },
+  "fuse-browser": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "fuse-browser-mcp@latest"
+    ]
   }
 }

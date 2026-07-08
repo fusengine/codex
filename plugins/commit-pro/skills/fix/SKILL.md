@@ -1,17 +1,19 @@
 ---
 name: fix
-description: "Quick bugfix commit. Use for fix bug,bugfix,patch,hotfix,correct error. (migré depuis slash command)"
+description: "Quick bugfix commit. Use when committing a bug fix, patch, hotfix, or error correction."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Quick Fix Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Changes
-
-!`git diff --stat`
+```bash
+git status
+git diff --stat
+```
 
 ## Instructions
 

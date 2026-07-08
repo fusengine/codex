@@ -10,11 +10,11 @@ description: "Laravel 13 background jobs - PHP Attributes (#[Queue], #[Connectio
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Audit job classes, connections, queue routes
-2. **fuse-ai-pilot:research-expert** - Verify L13 Queue + Queue::route() via Context7
+1. **ai-pilot:exploration / explore-codebase** - Audit job classes, connections, queue routes
+2. **ai-pilot:research / research-expert** - Verify L13 Queue + Queue::route() via Context7
 3. **mcp__context7__query-docs** - Check queue attribute patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

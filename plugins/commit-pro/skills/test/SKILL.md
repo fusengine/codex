@@ -1,17 +1,19 @@
 ---
 name: test
-description: "Test commit. Use for add tests,update tests,test coverage,unit test,spec. (migré depuis slash command)"
+description: "Test commit. Use when committing new tests, updated tests, coverage changes, unit tests, or specs."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Test Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect test changes before acting:
 
-## Test Files Changed
-
-!`git diff --stat -- '*.test.*' '*.spec.*' '__tests__/*' 'test/*' 'tests/*'`
+```bash
+git status
+git diff --stat -- '*.test.*' '*.spec.*' '__tests__/*' 'test/*' 'tests/*'
+```
 
 ## Instructions
 

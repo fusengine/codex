@@ -1,7 +1,7 @@
 {
   "name": "react-expert",
-  "version": "1.0.16",
-  "description": "Expert React 19 with hooks, TanStack Router, Zustand, React Hook Form, Testing Library, shadcn/ui, and SOLID principles",
+  "version": "1.0.18",
+  "description": "Expert React latest stable with hooks, TanStack Router, Zustand, React Hook Form, Testing Library, shadcn/ui, and SOLID principles",
   "author": {
     "name": "Fusengine",
     "email": "hello@fusengine.ch",
@@ -24,7 +24,7 @@
   "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "React Expert",
-    "shortDescription": "React 19 with TanStack Router, Zustand, Testing Library",
+    "shortDescription": "React with TanStack Router, Zustand, Testing Library",
     "developerName": "Fusengine"
   },
   "mcpServers": "./.mcp.json"

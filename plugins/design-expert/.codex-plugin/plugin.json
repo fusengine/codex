@@ -1,7 +1,7 @@
 {
   "name": "design-expert",
-  "version": "2.1.26",
-  "description": "Design Director for complete apps, sites, and SaaS. Multi-stack support (React/shadcn, Laravel/Livewire Flux, Swift/SwiftUI). Identity System, page layouts, motion system, palette generator, design audit. Anti-AI-Slop, WCAG 2.2, Gemini Design MCP.",
+  "version": "2.1.29",
+  "description": "Design Director for websites, web apps, iOS, and Android. Generates HTML/CSS design deliverables with Gemini Design MCP, Magic/21st.dev, and shadcn as optional tools. Mobile targets produce tokens, device-framed mockups, and handoff specs, never SwiftUI/Compose implementation code. Anti-AI-Slop, WCAG 2.2.",
   "author": {
     "name": "Fusengine",
     "email": "hello@fusengine.ch",
@@ -27,7 +27,9 @@
     "framer-motion",
     "oklch",
     "page-layouts",
-    "audit-design"
+    "audit-design",
+    "android",
+    "material-design"
   ],
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json",

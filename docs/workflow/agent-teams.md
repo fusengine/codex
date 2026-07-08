@@ -13,9 +13,8 @@ capability and the task benefits from parallel work.
 | Multi-file implementation | Split by exclusive file ownership |
 | User explicitly asks for a team | Use the available Codex subagent interface |
 
-Do not assume a fixed interface such as `TeamCreate`, `TaskCreate`, `/agent`, or
-`spawn_agents_on_csv`. Codex runtimes may expose app `spawn_agent`, CLI slash
-commands, or project-specific orchestration tools.
+Do not assume fixed legacy team/task interfaces. Codex runtimes may expose app
+`spawn_agent`, CLI slash commands, or project-specific orchestration tools.
 
 ## Delegation Rules
 
@@ -25,6 +24,8 @@ commands, or project-specific orchestration tools.
 4. **Critical path stays local** - do not delegate the immediate blocker when
    the lead can finish it safely.
 5. **Final integration** - the lead reviews agent output and runs validation.
+6. **Close completed subagents** - after final status is reviewed and integrated,
+   close every spawned subagent no longer needed.
 
 ## Anti-Patterns
 

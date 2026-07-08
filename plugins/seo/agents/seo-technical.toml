@@ -1,19 +1,12 @@
 name = "seo-technical"
 description = "Technical SEO sub-agent. Use when auditing robots.txt,sitemap.xml,Core Web Vitals (LCP/INP/CLS),mobile-first indexing,crawlability,indexability,redirects chains. Do NOT use for content (use seo-content),schema (use seo-schema),or local (use seo-local)."
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+nickname_candidates = ["SEO Technical", "SEO Technical Specialist", "SEO Technical Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''
-# SEO Technical Sub-Agent
+developer_instructions = '''# SEO Technical Sub-Agent
 
 Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` when technical SEO priorities depend on live Google SERP visibility, indexed competitors, mobile SERP behavior, freshness-sensitive ranking checks, or whether crawl/index issues affect important queries. Use `mcp__serper-search__scrape` to inspect competitor pages and public crawl targets when local files are insufficient. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-technical` skill for current Core Web Vitals thresholds (LCP < 2.5s, INP < 200ms, CLS < 0.1) and crawlability checks.
 
 ## Workflow
 
@@ -55,5 +48,20 @@ Read the `seo-technical` skill for current Core Web Vitals thresholds (LCP < 2.5
 - Touch targets: ✅ / ❌
 
 ### Score: N/25
-```
-'''
+```'''
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-technical/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-sitemap/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-hreflang/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-redirects/SKILL.md"
+enabled = true

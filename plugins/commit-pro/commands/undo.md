@@ -1,25 +1,25 @@
 ---
 description: Undo last commit safely. Use for undo commit, revert, uncommit, cancel commit.
 argument-hint: --soft | --mixed | (empty for soft reset)
-allowed-tools: Bash(git status:*), Bash(git log:*), Bash(git reset:*), Bash(git revert:*)
-disable-model-invocation: false
 ---
 
 # Undo Last Commit
 
 ## Current State
 
-!`git status`
+Run `git status` and use the output.
 
 ## Last Commit
 
-!`git log -1 --pretty=format:'%h %s'`
+Run `git log -1 --pretty=format:'%h %s'` and use the output.
 
 ## Remote Status
 
-!`git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"`
+Run `git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"` and use the output.
 
 ## Instructions
+
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
 
 Safely undo the last commit while keeping changes.
 

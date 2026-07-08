@@ -1,9 +1,8 @@
 ---
 name: validator
 description: Data validator for form inputs, financial data, and product catalogs. Use when validating user input, data imports, or quality checks.
-model: haiku
-color: emerald
-tools: Read
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: data-validation
 ---
 

@@ -1,8 +1,9 @@
 ---
 name: astro-actions
-description: "Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety."
+description: Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety.
+references: references/overview.md, references/defining-actions.md, references/error-handling.md, references/forms.md, references/progressive-enhancement.md, references/templates/contact-form.md, references/templates/json-action.md
+related-skills: astro-6, astro-content, astro-islands
 ---
-
 
 # Astro Actions Expert
 
@@ -10,13 +11,13 @@ Type-safe server functions with automatic validation, standardized errors, and p
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing actions in `src/actions/`
-2. **fuse-ai-pilot:research-expert** - Verify latest Actions docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Check existing actions in `src/actions/`
+2. **ai-pilot:research / research-expert** - Verify latest Actions docs via Context7/Exa
 3. **mcp__context7__query-docs** - Get defineAction and ActionError examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

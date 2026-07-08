@@ -1,6 +1,6 @@
 ---
 name: apex-quick
-description: "Quick Flow for simple fixes - Single expert handles explore,code,review,and validate in one pass. Inspired by BMAD Barry. (migré depuis slash command)"
+description: "Quick Flow for simple fixes - Single expert handles explore,code,review,and validate in one pass. Inspired by BMAD Barry. (migrated from Codex command workflow)"
 ---
 
 # APEX Quick Flow

@@ -10,10 +10,10 @@ description: "Design tokens and theming for shadcn/ui. Covers CSS variables, OKL
 
 Before theming work, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Find existing theme tokens
-2. **fuse-ai-pilot:research-expert** - Verify OKLCH patterns via Context7
+1. **ai-pilot:exploration / explore-codebase** - Find existing theme tokens
+2. **ai-pilot:research / research-expert** - Verify OKLCH patterns via Context7
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After: Run **ai-pilot:sniper-check / sniper** for validation.
 
 ## Overview
 

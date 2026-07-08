@@ -1,21 +1,20 @@
 ---
 name: amend
-description: "Amend last commit safely. Use for amend,fix last commit,update commit,modify commit. (migré depuis slash command)"
+description: "Amend last commit safely. Use when amending, fixing the last commit, updating a commit, or modifying an unpushed commit."
+related-skills: commit, git-flow
 ---
 
 # Amend Last Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Last Commit
-
-!`git log -1 --pretty=format:'%h %s%n%b'`
-
-## Remote Status
-
-!`git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"`
+```bash
+git status
+git log -1 --pretty=format:'%h %s%n%b'
+git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"
+```
 
 ## Instructions
 

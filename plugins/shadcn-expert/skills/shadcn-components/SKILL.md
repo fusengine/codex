@@ -10,11 +10,11 @@ description: "Component patterns for shadcn/ui with both Radix UI and Base UI pr
 
 Before component work, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Find existing components
-2. **fuse-ai-pilot:research-expert** - Verify component APIs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Find existing components
+2. **ai-pilot:research / research-expert** - Verify component APIs via Context7
 3. **mcp__shadcn__search_items_in_registries** - Search available components
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After: Run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

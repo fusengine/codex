@@ -1,6 +1,7 @@
 ---
 name: post-commit
-description: "Universal post-commit actions. CHANGELOG update and git tag for all repos. Plugin version bumping for marketplace repos. Triggered after any code commit (except wip/amend/undo)."
+description: "Universal post-commit actions. CHANGELOG update for all repos; git tag is created post-merge by the commit skill. Plugin version bumping for marketplace repos. Triggered after any code commit except wip, amend, or undo."
+related-skills: commit, git-flow
 ---
 
 
@@ -18,7 +19,7 @@ Save the commit message for CHANGELOG entry.
 
 ## Step 2: Detect Repo Type
 
-Check if `.codex-plugin/marketplace.json` exists in the repo root.
+Check if `.agents/plugins/marketplace.json` exists in the repo root.
 
 - **EXISTS** → Follow **Marketplace Path** (Steps M1–M5)
 - **DOES NOT EXIST** → Follow **Standard Path** (Steps S1–S2)
@@ -47,7 +48,7 @@ Add a new entry at the top (after the `# Changelog` heading):
 - commit message from Step 1
 ```
 
-### Step S2: Git Tag
+### Step S2: Commit CHANGELOG
 
 ```bash
 git add CHANGELOG.md
@@ -55,14 +56,13 @@ git commit -m "$(cat <<'EOF'
 chore: update CHANGELOG to X.Y.Z
 EOF
 )"
-git tag vX.Y.Z
 ```
 
-STOP. Output summary and ask user if they want to push the tag.
+STOP. Output summary. Do not tag here; tags are created after a successful squash merge by the `commit` skill Step 8.
 
 ---
 
-## Marketplace Path (repo with .codex-plugin/marketplace.json)
+## Marketplace Path (repo with .agents/plugins/marketplace.json)
 
 ### Step M1: Detect Modified Plugins
 
@@ -89,11 +89,11 @@ Then determine plugin type from `marketplace.json`:
 
 ### Step M3: Bump Suite Version
 
-Read `metadata.version` from `.codex-plugin/marketplace.json`.
+Read top-level `version` from `.agents/plugins/marketplace.json`.
 
 Increment PATCH: `X.Y.Z` → `X.Y.(Z+1)`.
 
-Write the new suite version back to `marketplace.json` → `metadata.version`.
+Write the new suite version back to `.agents/plugins/marketplace.json` → `version`.
 
 If `README.md` contains a shields.io version badge, update it to match the new version:
 
@@ -113,12 +113,12 @@ Where `X.Y.Z` is the new suite version from Step M3.
 
 Include `(plugin-name X.Y.Z)` in each line for bumped plugins.
 
-### Step M5: Commit, Tag, and Push
+### Step M5: Commit the Bump
 
 Stage all modified files:
 
 ```bash
-git add CHANGELOG.md README.md .codex-plugin/marketplace.json plugins/*/.codex-plugin/plugin.json
+git add CHANGELOG.md README.md .agents/plugins/marketplace.json plugins/*/.codex-plugin/plugin.json docs/
 ```
 
 Commit with HEREDOC format:
@@ -132,14 +132,7 @@ EOF
 
 This MUST be a separate commit from the code changes. Never combine.
 
-Then tag and push:
-
-```bash
-git tag vX.Y.Z
-git push origin vX.Y.Z
-```
-
-Only tag the bump commit. Never tag code commits.
+Do not tag here; tags are created post-merge by the `commit` skill Step 8.
 
 ---
 

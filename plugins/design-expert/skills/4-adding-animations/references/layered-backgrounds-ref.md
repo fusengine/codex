@@ -15,10 +15,10 @@ related-skills: glassmorphism-advanced, generating-components
 
 Before implementation, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing background patterns
-2. **fuse-ai-pilot:research-expert** - CSS filter and blend modes
+1. **ai-pilot:exploration / explore-codebase** - Check existing background patterns
+2. **ai-pilot:research / research-expert** - CSS filter and blend modes
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After code changes: run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

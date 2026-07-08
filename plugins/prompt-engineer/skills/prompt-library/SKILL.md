@@ -1,8 +1,7 @@
 ---
 name: prompt-library
-description: "Library of 18+ ready-to-use prompt templates and executable agents"
+description: "Library of 18+ ready-to-use prompt templates and executable agents. Use when: looking for a ready-made agent or task template (code review, support, data analysis, translation, extraction, etc.) instead of writing one from scratch."
 ---
-
 
 # Prompt Library
 
@@ -53,28 +52,30 @@ Collection of professional, tested, and optimized prompt templates.
 /prompt library search "code review"
 
 # View a template
-/prompt library show code-reviewer
+show code-reviewer
 
 # Use a template (copy and customize)
-/prompt library use code-reviewer
+use code-reviewer
 
 # Use with customization
-/prompt library use code-reviewer --lang python --focus security
+use code-reviewer with language python and security focus
 ```
 
 ## Agent Structure
 
-Each agent follows the standard Codex CLI format:
+Agent templates are written as portable prompt templates. When installing one as
+a real Codex subagent, convert its metadata to TOML:
 
-```yaml
----
-name: agent-name
-description: Clear description for automatic triggering
-model: sonnet|opus|haiku
-color: color-name
-tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch
-skills: skill-name
----
+```toml
+name = "agent-name"
+description = "Clear description for automatic triggering"
+model = "gpt-5.5"
+sandbox_mode = "workspace-write"
+developer_instructions = '''
+# Agent Name
+
+Instructions and process.
+'''
 ```
 
 ### Required Fields
@@ -83,10 +84,9 @@ skills: skill-name
 |-------|-------------|--------|
 | `name` | Unique identifier | kebab-case |
 | `description` | Trigger + usage context | Descriptive text |
-| `model` | Codex model to use | `haiku` (simple), `sonnet` (standard), `opus` (complex) |
-| `color` | Display color | green, blue, red, amber, etc. |
-| `tools` | Available tools | Read, Write, Edit, Bash, Grep, Glob, WebSearch |
-| `skills` | Associated skill | Linked skill name |
+| `model` | Codex model to use | Runtime-supported model id |
+| `sandbox_mode` | File access mode | Usually `workspace-write` |
+| `developer_instructions` | Agent instructions | TOML multiline string |
 
 ### Agent Body
 

@@ -1,6 +1,7 @@
 ---
 name: map-ecosystem
-description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files."
+description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files. Use when cartography index descriptions are truncated, a new plugin/skill was just added, or after SessionStart regenerates the map."
+related-skills: map
 ---
 
 
@@ -23,9 +24,9 @@ Enrich the auto-generated `.cartographer/` index.md files with complete descript
 
 1. **Read** the ecosystem index: `${PLUGIN_ROOT}/../.cartographer/index.md`
 2. **For each plugin** listed, read its `.cartographer/index.md`
-3. **For each linked file** (agents/*.md, skills/*/SKILL.md):
+3. **For each linked file** (`agents/*.toml`, `skills/*/SKILL.md`, command-derived skills):
    - Read the source file
-   - Extract the full `description` from YAML frontmatter
+   - Extract the full `description` from TOML or YAML frontmatter
    - Replace the truncated description in the index.md line
 4. **Write** the updated index.md with complete descriptions
 

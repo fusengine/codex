@@ -1,8 +1,9 @@
 ---
 name: nextjs-zustand
-description: "Zustand v5 state management for Next.js 16 App Router. Use when implementing global state, stores, persist, hydration, or client-side state in Client Components."
+description: Zustand v5 state management for Next.js 16 App Router. Use when implementing global state, stores, persist, hydration, or client-side state in Client Components.
+references: references/installation.md, references/store-patterns.md, references/hydration.md, references/middleware.md, references/nextjs-integration.md, references/typescript.md, references/slices.md, references/auto-selectors.md, references/reset-state.md, references/subscribe-api.md, references/testing.md, references/migration-v5.md
+related-skills: nextjs-16, nextjs-tanstack-form, solid-nextjs
 ---
-
 
 # Zustand for Next.js 16
 
@@ -10,13 +11,13 @@ Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents when useful:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing stores and state patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Zustand v5 docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing stores and state patterns
+2. **ai-pilot:research / research-expert** - Verify latest Zustand v5 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check middleware and TypeScript patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

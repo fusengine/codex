@@ -10,11 +10,11 @@ description: "Spatie Laravel Permission - roles, permissions, middleware, Blade 
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing auth patterns
-2. **fuse-ai-pilot:research-expert** - Verify Spatie Permission docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Check existing auth patterns
+2. **ai-pilot:research / research-expert** - Verify Spatie Permission docs via Context7
 3. **mcp__context7__query-docs** - Check Laravel authorization patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -10,11 +10,11 @@ description: "Write tests with Pest 4/PHPUnit 12, feature tests, unit tests, moc
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing test patterns
-2. **fuse-ai-pilot:research-expert** - Verify Pest/PHPUnit docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing test patterns
+2. **ai-pilot:research / research-expert** - Verify Pest/PHPUnit docs via Context7
 3. **mcp__context7__query-docs** - Check assertion and mocking patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: architecture
-description: Agent file structure and organization
+description: Codex agent file structure and organization
 when-to-use: Understanding how agents are organized in plugins
-keywords: architecture, structure, directory, files, plugin
+keywords: architecture, structure, directory, files, plugin, codex
 priority: high
 related: frontmatter.md, registration.md
 ---
@@ -11,7 +11,7 @@ related: frontmatter.md, registration.md
 
 ## Overview
 
-Agents live in plugin directories and reference skills for domain knowledge.
+Agents in this repository are Codex custom-agent TOML files packaged inside plugin directories.
 
 ---
 
@@ -20,14 +20,14 @@ Agents live in plugin directories and reference skills for domain knowledge.
 ```
 plugins/<plugin-name>/
 ├── agents/
-│   └── <agent-name>.md      # Agent definition file
+│   └── <agent-name>.toml    # Codex custom agent definition
 ├── skills/
-│   ├── skill-a/             # Domain skills
+│   ├── skill-a/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   └── solid-[stack]/       # SOLID rules for this stack
+│   └── solid-[stack]/
 ├── scripts/
-│   └── validate-*.sh        # Hook validation scripts
+│   └── validate-*.ts        # Optional hook/runtime scripts
 └── .codex-plugin/
     └── plugin.json          # Plugin manifest
 ```
@@ -38,45 +38,36 @@ plugins/<plugin-name>/
 
 | File | Purpose |
 |------|---------|
-| `agents/<name>.md` | Agent definition with frontmatter + content |
-| `skills/*/SKILL.md` | Skill entry points agent can access |
-| `scripts/*.sh` | Hook scripts for validation |
-| `plugin.json` | Plugin metadata and paths |
+| `agents/<name>.toml` | Codex agent config with `developer_instructions` |
+| `skills/*/SKILL.md` | Skill entry points loaded by Codex |
+| `hooks/hooks.json` | Plugin hook wiring when the plugin uses hooks |
+| `.codex-plugin/plugin.json` | Plugin metadata and local paths |
 
 ---
 
-## Agent File Structure
+## Agent TOML Structure
 
-```markdown
----
-# YAML Frontmatter
-name: agent-name
-description: ...
-model: sonnet
-tools: ...
-skills: ...
-hooks: ...
----
-
+```toml
+name = "agent-name"
+description = "When Codex should select this agent."
+model = "gpt-5.5"
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # Agent Title
 
 ## Agent Workflow (MANDATORY)
-... (uses available Codex subagent capability when exposed)
-
-## MANDATORY SKILLS USAGE
 ...
 
-## SOLID Rules
+## Skills Usage
 ...
 
-## Local Documentation
+## Output Format
 ...
-
-## Quick Reference
-...
+'''
 ```
 
-→ See [required-sections.md](required-sections.md) for section details
+Required keys: `name`, `description`, `developer_instructions`.
+Common optional keys: `model`, `sandbox_mode`, `mcp_servers`, `skills.config`.
 
 ---
 
@@ -85,23 +76,9 @@ hooks: ...
 | Element | Convention | Example |
 |---------|------------|---------|
 | Plugin folder | kebab-case | `nextjs-expert` |
-| Agent file | kebab-case.md | `nextjs-expert.md` |
-| Script file | validate-*.sh | `validate-nextjs-solid.sh` |
+| Agent file | kebab-case.toml | `nextjs-expert.toml` |
 | Skill folder | kebab-case | `solid-nextjs` |
-
----
-
-## Plugin Manifest
-
-```json
-// .codex-plugin/plugin.json
-{
-  "name": "fuse-nextjs",
-  "version": "1.0.0",
-  "agents": ["./agents/nextjs-expert.md"],
-  "skills": ["./skills/nextjs-16", "./skills/solid-nextjs"]
-}
-```
+| Hook config | `hooks/hooks.json` | `plugins/ai-pilot/hooks/hooks.json` |
 
 ---
 
@@ -109,7 +86,7 @@ hooks: ...
 
 | DO | DON'T |
 |----|-------|
-| One agent per plugin (main) | Multiple competing agents |
-| Reference solid-[stack] skill | Duplicate SOLID rules |
-| Use relative paths | Hard-code absolute paths |
-| Keep agent file focused | Put all docs in agent file |
+| Keep one primary expert agent per plugin | Create competing agents with overlapping triggers |
+| Put operational rules in `developer_instructions` | Use legacy YAML agent config |
+| Use Codex subagent wording | Mention legacy subagent commands |
+| Keep hooks in plugin hook config | Put hook blocks in agent TOML |

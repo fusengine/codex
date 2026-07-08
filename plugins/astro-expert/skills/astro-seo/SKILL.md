@@ -1,8 +1,9 @@
 ---
 name: astro-seo
-description: "SEO for Astro sites — meta tags, Open Graph, Twitter Cards, JSON-LD structured data, sitemap, RSS, robots.txt, canonical URLs, hreflang, Core Web Vitals. Use when optimizing search engine visibility or social sharing."
+description: SEO for Astro sites — meta tags, Open Graph, Twitter Cards, JSON-LD structured data, sitemap, RSS, robots.txt, canonical URLs, hreflang, Core Web Vitals. Use when optimizing search engine visibility or social sharing.
+references: references/meta-tags.md, references/structured-data.md, references/sitemap-rss.md, references/canonical-hreflang.md, references/core-web-vitals.md, references/templates/seo-head.md, references/templates/json-ld.md
+related-skills: astro-6, astro-content, astro-assets, astro-i18n
 ---
-
 
 # Astro SEO
 
@@ -10,13 +11,13 @@ Complete SEO strategy for Astro 6 sites — zero JS by default makes Astro natur
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing layouts, head components, and metadata
-2. **fuse-ai-pilot:research-expert** - Verify latest SEO best practices via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing layouts, head components, and metadata
+2. **ai-pilot:research / research-expert** - Verify latest SEO best practices via Context7/Exa
 3. **mcp__context7__query-docs** - Check Astro 6 sitemap/RSS integration docs
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

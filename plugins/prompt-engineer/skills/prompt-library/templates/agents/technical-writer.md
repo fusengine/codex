@@ -1,9 +1,8 @@
 ---
 name: technical-writer
 description: Expert technical writer for documentation, API docs, tutorials, and user guides. Use when creating or improving technical documentation.
-model: sonnet
-color: purple
-tools: Read, Write, Edit, Grep, Glob
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: technical-writing
 ---
 

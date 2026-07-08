@@ -1,0 +1,46 @@
+{
+  "_description": "Lessons — Codex harness lessons scope: inject MEMORY/LESSON.md and remind to capture compact lessons.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+          }
+        ]
+      }
+    ]
+  }
+}

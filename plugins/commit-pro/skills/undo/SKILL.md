@@ -1,21 +1,20 @@
 ---
 name: undo
-description: "Undo last commit safely. Use for undo commit,revert,uncommit,cancel commit. (migré depuis slash command)"
+description: "Undo last commit safely. Use when undoing a commit, reverting, uncommitting, or cancelling an unpushed commit."
+related-skills: commit, git-flow
 ---
 
 # Undo Last Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Last Commit
-
-!`git log -1 --pretty=format:'%h %s'`
-
-## Remote Status
-
-!`git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"`
+```bash
+git status
+git log -1 --pretty=format:'%h %s'
+git log origin/HEAD..HEAD --oneline 2>/dev/null || echo "No remote tracking"
+```
 
 ## Instructions
 

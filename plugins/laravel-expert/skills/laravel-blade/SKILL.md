@@ -10,11 +10,11 @@ description: "Create Blade templates with components, slots, layouts, and direct
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing views, components structure
-2. **fuse-ai-pilot:research-expert** - Verify latest Blade docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Check existing views, components structure
+2. **ai-pilot:research / research-expert** - Verify latest Blade docs via Context7
 3. **mcp__context7__query-docs** - Query specific patterns (components, slots)
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

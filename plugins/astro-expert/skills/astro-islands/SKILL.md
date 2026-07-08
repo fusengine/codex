@@ -1,8 +1,9 @@
 ---
 name: astro-islands
-description: "Expert Astro Islands Architecture — client:load, client:idle, client:visible, client:media, client:only, server:defer (Server Islands), fallback slots, transition:persist, prop serialization. Use when adding interactivity to Astro pages or rendering dynamic server content."
+description: Expert Astro Islands Architecture — client:load, client:idle, client:visible, client:media, client:only, server:defer (Server Islands), fallback slots, transition:persist, prop serialization. Use when adding interactivity to Astro pages or rendering dynamic server content.
+references: references/overview.md, references/client-directives.md, references/server-islands.md, references/transitions.md, references/view-transitions.md, references/prop-serialization.md, references/templates/interactive-island.md, references/templates/server-island.md
+related-skills: astro-6, astro-integrations, astro-actions
 ---
-
 
 # Astro Islands Expert
 
@@ -10,13 +11,13 @@ Partial hydration architecture: zero JS by default, selective interactivity via 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing components and hydration patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Islands docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing components and hydration patterns
+2. **ai-pilot:research / research-expert** - Verify latest Islands docs via Context7/Exa
 3. **mcp__context7__query-docs** - Get client directive and server:defer examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

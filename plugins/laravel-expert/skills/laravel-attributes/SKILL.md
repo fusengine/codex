@@ -10,11 +10,11 @@ description: "Use when migrating Eloquent models, Jobs, Console commands, Contro
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
-2. **fuse-ai-pilot:research-expert** - Verify Laravel 13 release notes for attribute coverage and edge cases
+1. **ai-pilot:exploration / explore-codebase** - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
+2. **ai-pilot:research / research-expert** - Verify Laravel 13 release notes for attribute coverage and edge cases
 3. **mcp__context7__query-docs** - Pull authoritative examples from `laravel.com/docs/13.x`
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -1,8 +1,9 @@
 ---
 name: astro-assets
-description: "Image and asset optimization in Astro 6 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task."
+description: Image and asset optimization in Astro 6 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task.
+references: references/image-component.md, references/picture-responsive.md, references/remote-images.md, references/fonts-api.md, references/og-satori.md, references/cdn-integration.md, references/templates/image-setup.md, references/templates/og-image-route.md
+related-skills: astro-6, astro-seo, astro-deployment
 ---
-
 
 # Astro Assets
 
@@ -10,13 +11,13 @@ Production-ready image optimization and asset management with `astro:assets` in 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing image usage and asset patterns
-2. **fuse-ai-pilot:research-expert** - Verify astro:assets API via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing image usage and asset patterns
+2. **ai-pilot:research / research-expert** - Verify astro:assets API via Context7/Exa
 3. **mcp__context7__query-docs** - Check Astro 6 Fonts API and image component docs
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 
@@ -38,6 +39,14 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 | `astro:assets` | `<Image />`, `<Picture />`, `getImage()` |
 | `@astrojs/sharp` | Default image processing service |
 | Fonts API (Astro 6) | Built-in `experimental.fonts` config |
+
+---
+
+## Related Skills
+
+- `astro-6` - Core Astro config, routing, and framework behavior
+- `astro-seo` - OG images, metadata, Core Web Vitals, and social sharing
+- `astro-deployment` - CDN behavior, image services, and platform adapters
 
 ---
 

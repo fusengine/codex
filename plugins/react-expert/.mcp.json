@@ -25,6 +25,13 @@
       "x-api-key": "${EXA_API_KEY}"
     }
   },
+  "fuse-browser": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@fusengine/browser-mcp@latest"
+    ]
+  },
   "sequential-thinking": {
     "command": "npx",
     "args": [

@@ -1,7 +1,7 @@
 {
   "name": "nextjs-expert",
-  "version": "1.1.18",
-  "description": "Expert Next.js 16 + React 19 with App Router, Server Components, Prisma 7, and Better Auth",
+  "version": "1.1.20",
+  "description": "Expert Next.js latest stable + React 19 with App Router, Server Components, Prisma latest stable, and Better Auth",
   "author": {
     "name": "Fusengine",
     "email": "hello@fusengine.ch",
@@ -22,7 +22,7 @@
   "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Next.js Expert",
-    "shortDescription": "Next.js 16 with App Router, RSC, Server Actions",
+    "shortDescription": "Next.js App Router, RSC, Server Actions",
     "developerName": "Fusengine"
   },
   "mcpServers": "./.mcp.json"

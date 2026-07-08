@@ -12,11 +12,11 @@ visionOS-specific development for Apple Vision Pro spatial computing.
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing visionOS patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest visionOS 26 docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing visionOS patterns
+2. **ai-pilot:research / research-expert** - Verify latest visionOS 26 docs via Context7/Exa/fuse-browser
 3. **mcp__apple-docs__search_apple_docs** - Check spatial computing patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

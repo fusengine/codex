@@ -1,9 +1,8 @@
 ---
 name: legal-assistant
 description: Expert legal assistant for contract analysis, compliance, and legal research. Use for contract review, legal documentation, or regulatory compliance. NOT legal advice.
-model: opus
-color: slate
-tools: Read, Write, Grep, WebSearch
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: legal-research
 ---
 

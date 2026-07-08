@@ -3,8 +3,8 @@
 /**
  * fetch-changelog.native.ts — native TS port of _legacy_py/fetch-changelog.py.
  *
- * Fetch the Claude Code changelog, count versions newer than the last known
- * one, persist <UTC-date>-state.json under ~/.codex/logs/00-changelog/ and emit
+ * Fetch the Codex changelog, count versions newer than the last known one,
+ * persist <UTC-date>-state.json under ~/.codex/logs/00-changelog/ and emit
  * {latest,new_since_last_check,recent_versions}. URL, 10s timeout, version regex
  * (top 10), error envelope/exit code and 2-space JSON are verbatim parity.
  */
@@ -12,7 +12,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-const DOCS_BASE = "https://code.claude.com/docs/en";
+const CHANGELOG_URL = "https://developers.openai.com/codex/changelog";
 
 const codex = process.env.CODEX_HOME ?? join(homedir(), ".codex");
 const stateDir = join(codex, "logs", "00-changelog");
@@ -22,7 +22,7 @@ const stateFile = join(stateDir, `${today}-state.json`);
 
 let changelog: string;
 try {
-  const resp = await fetch(`${DOCS_BASE}/changelog.md`, {
+  const resp = await fetch(CHANGELOG_URL, {
     signal: AbortSignal.timeout(10_000),
   });
   if (!resp.ok) throw new Error(String(resp.status));
@@ -32,7 +32,11 @@ try {
   process.exit(1);
 }
 
-const versions = [...changelog.matchAll(/## v?(\d+\.\d+\.\d+)/g)].map((m) => m[1]).slice(0, 10);
+const versionSet = new Set<string>();
+for (const match of changelog.matchAll(/Codex CLI\s+(\d+\.\d+\.\d+)/g)) versionSet.add(match[1]);
+for (const match of changelog.matchAll(/@openai\/codex@(\d+\.\d+\.\d+)/g)) versionSet.add(match[1]);
+for (const match of changelog.matchAll(/## v?(\d+\.\d+\.\d+)/g)) versionSet.add(match[1]);
+const versions = [...versionSet].slice(0, 10);
 
 let lastKnown = "";
 if (existsSync(stateFile)) {

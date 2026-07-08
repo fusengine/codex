@@ -1,8 +1,9 @@
 ---
 name: astro-content
-description: "Expert Astro Content Layer API — content.config.ts, glob/file loaders, custom loaders, getCollection, getEntry, render(), Zod schemas, MDX, Remark/Rehype plugins. Use when managing structured content, blog posts, or any typed data collections."
+description: Expert Astro Content Layer API — content.config.ts, glob/file loaders, custom loaders, getCollection, getEntry, render(), Zod schemas, MDX, Remark/Rehype plugins. Use when managing structured content, blog posts, or any typed data collections.
+references: references/overview.md, references/config.md, references/loaders.md, references/querying.md, references/rendering.md, references/mdx.md, references/templates/blog-collection.md, references/templates/custom-loader.md
+related-skills: astro-6, astro-actions, astro-seo
 ---
-
 
 # Astro Content Layer Expert
 
@@ -10,13 +11,13 @@ Type-safe content management with loaders, Zod schemas, and the unified Content 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing collections, loaders, and content structure
-2. **fuse-ai-pilot:research-expert** - Verify latest Content Layer docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Check existing collections, loaders, and content structure
+2. **ai-pilot:research / research-expert** - Verify latest Content Layer docs via Context7/Exa
 3. **mcp__context7__query-docs** - Get loader and schema examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

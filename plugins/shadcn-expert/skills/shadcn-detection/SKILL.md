@@ -10,8 +10,8 @@ description: "Detect whether a project uses Radix UI or Base UI as shadcn/ui pri
 
 Before detection, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Scan project structure
-2. **fuse-ai-pilot:research-expert** - Verify latest primitive patterns
+1. **ai-pilot:exploration / explore-codebase** - Scan project structure
+2. **ai-pilot:research / research-expert** - Verify latest primitive patterns
 
 After: Use results to configure component workflow.
 

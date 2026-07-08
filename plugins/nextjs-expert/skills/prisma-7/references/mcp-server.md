@@ -10,7 +10,7 @@ related: /plugins/nextjs-expert/skills/prisma-7/references/prisma-ai.md, /plugin
 
 # Prisma MCP Server
 
-Model Context Protocol server for integrating Prisma with AI assistants like Codex.
+Model Context Protocol server for integrating Prisma with AI coding assistants.
 
 ## Installation
 
@@ -29,10 +29,10 @@ pnpm add -D @prisma/mcp-server
 
 ### Configuration
 
-Add to Codex configuration:
+Add to Codex MCP configuration:
 
 ```json
-// .codex/codex.json
+// .mcp.json
 {
   "mcpServers": {
     "prisma": {
@@ -41,23 +41,6 @@ Add to Codex configuration:
       "env": {
         "DATABASE_URL": "postgresql://...",
         "PRISMA_SCHEMA_PATH": "./prisma/schema.prisma"
-      }
-    }
-  }
-}
-```
-
-Or configure in Codex desktop:
-
-```json
-// ~/Library/Application Support/Codex/~/.codex/config.toml
-{
-  "mcpServers": {
-    "prisma": {
-      "command": "npx",
-      "args": ["@prisma/mcp-server"],
-      "env": {
-        "DATABASE_URL": "postgresql://user:pass@localhost/db"
       }
     }
   }
@@ -170,7 +153,7 @@ const mcp = new PrismaMCPServer({
   schemaPath: './prisma/schema.prisma'
 })
 
-// Query Codex with Prisma context
+// Query with Prisma context
 const response = await mcp.generateQuery({
   description: 'Find active users who commented in the last 7 days',
   modelName: 'User'

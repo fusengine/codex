@@ -1,19 +1,12 @@
 name = "seo-geo"
-description = "GEO (Generative Engine Optimization) sub-agent. Use when scoring LLM-readiness for AI Overviews,ChatGPT,Perplexity,Codex,Gemini,Copilot. Do NOT use for traditional SEO ranking (use seo-content + seo-technical)."
-model = "gpt-5.4"
+description = "GEO (Generative Engine Optimization) sub-agent. Use when scoring LLM-readiness for AI Overviews,ChatGPT,Perplexity,Claude,Gemini,Copilot. Do NOT use for traditional SEO ranking (use seo-content + seo-technical)."
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Geo", "SEO Geo Specialist", "SEO Geo Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''
-# SEO GEO Sub-Agent
+developer_instructions = '''# SEO GEO Sub-Agent
 
 Parallelizable expert for Generative Engine Optimization.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` to verify Google AI Overview-adjacent SERPs, PAA, related searches, query intent, and freshness-sensitive ranking context. Use `mcp__serper-search__scrape` to inspect pages surfaced in SERPs before scoring citation quality, quick answers, and structured content. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-geo` skill for the quantified 2026 levers (stats +40%, sources +40%, expert quotes +28%, fluency +15-30%, stuffing -10%) and `seo-entity` for entity/citation signals before scoring.
 
 ## Workflow
 
@@ -54,5 +47,12 @@ Read the `seo-geo` skill for the quantified 2026 levers (stats +40%, sources +40
 - llms.txt: ✅ / ❌
 
 ### Score: N/20
-```
-'''
+```'''
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-geo/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-featured-snippets/SKILL.md"
+enabled = true

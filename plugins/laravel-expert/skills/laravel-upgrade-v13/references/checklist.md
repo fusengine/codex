@@ -55,7 +55,7 @@ Use this as a copy-paste TODO in your branch description or PR.
 - [ ] Full test suite green: `vendor/bin/pest`
 - [ ] Type check: `vendor/bin/phpstan analyse` (if used)
 - [ ] Linter: `vendor/bin/pint` (Laravel Pint)
-- [ ] Sniper agent: `fuse-ai-pilot:sniper` on modified files
+- [ ] Sniper agent: `ai-pilot:sniper-check / sniper` on modified files
 - [ ] Migration dry-run: `php artisan migrate --pretend`
 - [ ] Manual smoke test: critical flows in staging
 - [ ] Performance check: queue throughput, cache hit rate, response times

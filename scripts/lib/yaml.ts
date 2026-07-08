@@ -1,12 +1,9 @@
 /**
  * Minimal YAML frontmatter parser. Bun-native, no deps.
- * Handles: scalar strings, comma-separated inline lists, quoted strings.
+ * Handles: scalar strings, comma-separated inline lists, block lists, quoted strings.
  */
 
-export interface Frontmatter {
-	data: Record<string, string | string[]>;
-	body: string;
-}
+import type { Frontmatter, FrontmatterData } from "./yaml.types.ts";
 
 export function parseFrontmatter(raw: string): Frontmatter {
 	const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -18,16 +15,24 @@ export function parseFrontmatter(raw: string): Frontmatter {
 	return { data, body };
 }
 
-function parseYamlBlock(block: string): Record<string, string | string[]> {
-	const out: Record<string, string | string[]> = {};
+function parseYamlBlock(block: string): FrontmatterData {
+	const out: FrontmatterData = {};
+	let currentListKey: string | null = null;
 	for (const rawLine of block.split(/\r?\n/)) {
 		const line = rawLine.replace(/\s+$/, "");
-		if (!line || line.startsWith("#")) continue;
+		const trimmed = line.trimStart();
+		if (!trimmed || trimmed.startsWith("#")) continue;
+		if (currentListKey && trimmed.startsWith("- ")) {
+			const list = Array.isArray(out[currentListKey]) ? out[currentListKey] : [];
+			out[currentListKey] = [...list, stripQuotes(trimmed.slice(2).trim())];
+			continue;
+		}
 		const idx = line.indexOf(":");
 		if (idx <= 0) continue;
 		const key = line.slice(0, idx).trim();
 		const value = line.slice(idx + 1).trim();
 		out[key] = parseValue(value);
+		currentListKey = value ? null : key;
 	}
 	return out;
 }

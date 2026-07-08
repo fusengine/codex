@@ -1,28 +1,10 @@
 import { join } from "node:path";
-import { mkdir, readdir } from "node:fs/promises";
-import { parseFrontmatter, stringifyFrontmatter } from "./yaml.ts";
+import { cp, mkdir, readdir } from "node:fs/promises";
 
 /**
- * Codex has no custom slash commands. Each Codex slash command is migrated
- * into a Codex skill: `codex-plugins/<plugin>/skills/<name>/SKILL.md`.
- * Source: developers.openai.com/codex/skills
- */
-function buildSkillMd(raw: string, name: string): string {
-	const { data, body } = parseFrontmatter(raw);
-	const description = String(data.description ?? "").trim();
-	const newDescription = description
-		? `${description} (migré depuis slash command)`
-		: "Migré depuis slash command Codex.";
-	const frontmatter = stringifyFrontmatter({
-		name,
-		description: newDescription,
-	});
-	return `---\n${frontmatter}\n---\n\n${body.trim()}\n`;
-}
-
-/**
- * Transform every codex-plugins/<plugin>/commands/*.md into a Codex skill
- * directory under codex-plugins/<plugin>/skills/<name>/SKILL.md.
+ * Preserve every <plugin>/commands/*.md as a Codex custom prompt command.
+ * The installer exposes these Markdown files from $CODEX_HOME/prompts.
+ * Source: developers.openai.com/codex/custom-prompts
  */
 export async function transformCommands(
 	srcDir: string,
@@ -40,14 +22,11 @@ export async function transformCommands(
 	let converted = 0;
 	for (const entry of entries) {
 		if (!entry.endsWith(".md")) continue;
-		const name = entry.replace(/\.md$/, "");
 		const srcFile = join(srcCommands, entry);
 		try {
-			const raw = await Bun.file(srcFile).text();
-			const skillMd = buildSkillMd(raw, name);
-			const skillDir = join(destDir, "skills", name);
-			await mkdir(skillDir, { recursive: true });
-			await Bun.write(join(skillDir, "SKILL.md"), skillMd);
+			const destCommands = join(destDir, "commands");
+			await mkdir(destCommands, { recursive: true });
+			await cp(srcFile, join(destCommands, entry));
 			converted++;
 		} catch (e) {
 			errors.push(`commands/${entry}: ${(e as Error).message}`);

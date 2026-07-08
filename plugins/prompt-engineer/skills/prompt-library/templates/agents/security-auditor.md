@@ -1,9 +1,8 @@
 ---
 name: security-auditor
 description: Expert security auditor for OWASP Top 10, penetration testing, and vulnerability assessment. Use when auditing code security or compliance.
-model: sonnet
-color: red
-tools: Read, Grep, Glob, Bash
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: security-audit
 ---
 

@@ -48,7 +48,7 @@ keywords: migration, breaking, upgrade, compatibility, guide
 ```markdown
 ## Post-Migration Checks
 - [ ] All hooks.json files updated
-- [ ] Agent frontmatter matches new schema
+- [ ] Agent TOML matches new schema
 - [ ] Scripts use correct CLI flags
 - [ ] Plugin manifests valid
 - [ ] Run sniper validation on changed files

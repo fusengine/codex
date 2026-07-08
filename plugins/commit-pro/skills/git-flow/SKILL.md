@@ -1,6 +1,7 @@
 ---
 name: git-flow
 description: "Use when committing, branching, opening PRs, or deciding merge strategy. Covers GitHub Flow (default), trunk-based, branch naming conventions, squash vs rebase, branch lifecycle, and protected branch enforcement."
+related-skills: commit-optimization, post-commit, commit-detection
 ---
 
 

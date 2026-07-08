@@ -1,6 +1,8 @@
 ---
 name: designing-systems
 description: "Phase 1: Browse 4 catalog sites via fuse-browser, write CSS-precise observations (oklch values, font-size clamp, grid ratios, border-radius, shadows), declare reference site + 3 elements. Feed specs to Gemini context."
+references: references/
+related-skills: identity-system, design-system, ux-copy
 ---
 
 

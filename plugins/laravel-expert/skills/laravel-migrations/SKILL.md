@@ -10,11 +10,11 @@ description: "Laravel 13 database migrations - Schema Builder, columns, indexes,
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing migrations
-2. **fuse-ai-pilot:research-expert** - Verify Laravel 13 patterns via Context7
+1. **ai-pilot:exploration / explore-codebase** - Check existing migrations
+2. **ai-pilot:research / research-expert** - Verify Laravel 13 patterns via Context7
 3. **mcp__context7__query-docs** - Check specific Schema Builder features
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

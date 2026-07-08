@@ -1,4 +1,0 @@
-# lib
-
-> [← back](../index.md)
-

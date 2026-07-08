@@ -10,11 +10,11 @@ description: "Use when building JSON:API compliant endpoints in Laravel 13 using
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Inventory existing `JsonResource` classes to migrate
-2. **fuse-ai-pilot:research-expert** - Check JSON:API v1.1 spec for required headers and structure
+1. **ai-pilot:exploration / explore-codebase** - Inventory existing `JsonResource` classes to migrate
+2. **ai-pilot:research / research-expert** - Check JSON:API v1.1 spec for required headers and structure
 3. **mcp__context7__query-docs** - Pull `laravel.com/docs/13.x/eloquent-resources` examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

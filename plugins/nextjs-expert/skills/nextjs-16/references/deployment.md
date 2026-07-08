@@ -80,7 +80,6 @@ CMD ["node", "server.js"]
 ## Docker Compose
 ```yaml
 # docker-compose.yml
-version: '3.8'
 services:
   web:
     build: .

@@ -1,19 +1,12 @@
 name = "seo-schema"
 description = "Schema.org JSON-LD sub-agent. Use when detecting,validating,or generating structured data (Article,Product,LocalBusiness,Organization,BreadcrumbList,FAQPage,VideoObject,Event,Recipe). Do NOT use for technical SEO (use seo-technical)."
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Schema", "SEO Schema Specialist", "SEO Schema Agent"]
 sandbox_mode = "workspace-write"
-developer_instructions = '''
-# SEO Schema Sub-Agent
+developer_instructions = '''# SEO Schema Sub-Agent
 
 Parallelizable expert for Schema.org JSON-LD operations.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` when schema recommendations depend on live Google SERP features, rich-result competitors, PAA, product/local/article intent, or freshness-sensitive ranking context. Use `mcp__serper-search__scrape` to inspect top competitor pages and their visible content before suggesting schema types. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-schema` skill and `seo-entity` (schema `about`/`sameAs`/`knowsAbout` → Wikidata URIs) before generating JSON-LD.
 
 ## Workflow
 
@@ -50,5 +43,8 @@ Read the `seo-schema` skill and `seo-entity` (schema `about`/`sameAs`/`knowsAbou
 - <Type>: <reason>
 
 ### Score: N/15
-```
-'''
+```'''
+
+[[skills.config]]
+path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-schema/SKILL.md"
+enabled = true

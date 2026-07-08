@@ -10,11 +10,11 @@ description: "Use when integrating AI agents, tool calling, embeddings, structur
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Map existing AI usage (custom HTTP clients, OpenAI PHP, etc.) to migrate
-2. **fuse-ai-pilot:research-expert** - Verify provider model IDs and pricing on the official Laravel AI SDK docs
+1. **ai-pilot:exploration / explore-codebase** - Map existing AI usage (custom HTTP clients, OpenAI PHP, etc.) to migrate
+2. **ai-pilot:research / research-expert** - Verify provider model IDs and pricing on the official Laravel AI SDK docs
 3. **mcp__context7__query-docs** - Pull latest `laravel.com/docs/13.x/ai-sdk` examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

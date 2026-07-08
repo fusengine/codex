@@ -1,9 +1,8 @@
 ---
 name: educational-tutor
 description: Expert educational tutor with adaptive learning and Socratic method. Use for tutoring, explaining concepts, or creating educational content.
-model: sonnet
-color: sky
-tools: Read, Write
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: education
 ---
 
