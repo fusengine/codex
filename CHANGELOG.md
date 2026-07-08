@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.26] - 2026-07-08
+
+### Added
+- feat(ai-pilot): port Codex plugin agents and skills (ai-pilot 1.2.39)
+- feat(astro-expert): port Codex plugin agents and skills (astro-expert 1.0.10)
+- feat(cartographer): port Codex plugin agents and skills (cartographer 1.0.11)
+- feat(changelog-watcher): port Codex plugin agents and skills (changelog-watcher 1.0.13)
+- feat(codex-rules): port Codex plugin agents and skills (codex-rules 1.0.16)
+- feat(commit-pro): port Codex plugin agents and skills (commit-pro 1.2.23)
+- feat(core-guards): port Codex plugin agents and skills (core-guards 1.1.45)
+- feat(design-expert): port Codex plugin agents and skills (design-expert 2.1.30)
+- feat(go-expert): port Codex plugin agents and skills (go-expert 1.0.3)
+- feat(laravel-expert): port Codex plugin agents and skills (laravel-expert 1.2.6)
+- feat(lessons): port Codex plugin agents and skills (lessons 1.0.3)
+- feat(memory-neural): port Codex plugin agents and skills (memory-neural 1.0.6)
+- feat(nextjs-expert): port Codex plugin agents and skills (nextjs-expert 1.1.21)
+- feat(php-expert): port Codex plugin agents and skills (php-expert 1.0.3)
+- feat(prompt-engineer): port Codex plugin agents and skills (prompt-engineer 1.1.11)
+- feat(react-expert): port Codex plugin agents and skills (react-expert 1.0.19)
+- feat(rust-expert): port Codex plugin agents and skills (rust-expert 1.0.3)
+- feat(security-expert): port Codex plugin agents and skills (security-expert 1.0.18)
+- feat(seo): port Codex plugin agents and skills (seo 1.0.8)
+- feat(shadcn-expert): port Codex plugin agents and skills (shadcn-expert 1.0.15)
+- feat(solid): port Codex plugin agents and skills (solid 1.0.16)
+- feat(swift-apple-expert): port Codex plugin agents and skills (swift-apple-expert 1.1.18)
+- feat(tailwindcss): port Codex plugin agents and skills (tailwindcss 1.1.8)
+- feat(tanstack-start-expert): port Codex plugin agents and skills (tanstack-start-expert 1.0.3)
+- feat(typescript-expert): port Codex plugin agents and skills (typescript-expert 1.0.3)
+
+### Fixed
+- fix(agents): source agent TOMLs use portable skill paths; installer materializes `~/.codex/agents` with paths resolved from the currently installed plugin cache
+
 All notable changes to the Fusengine Codex plugin ecosystem will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

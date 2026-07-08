@@ -1,8 +1,8 @@
 ---
 name: registration
-description: How to register skills in agent and marketplace
-when-to-use: After creating a skill, to make it available
-keywords: registration, agent, marketplace, json, frontmatter
+description: How to make skills available in Codex plugins
+when-to-use: After creating a skill, to make it loadable
+keywords: registration, skill, plugin, codex, manifest
 priority: high
 related: architecture.md
 ---
@@ -11,75 +11,79 @@ related: architecture.md
 
 ## Overview
 
-A skill won't load unless registered in TWO places:
-1. Agent frontmatter
-2. Marketplace.json
+In this Codex plugin repository, skills live under `plugins/<plugin>/skills/<skill-name>/SKILL.md`.
 
----
-
-## Step 1: Agent Frontmatter
-
-Add skill name to the agent's `skills:` list:
-
-**Location**: `plugins/<plugin>/agents/<agent>.md`
-
-```yaml
----
-name: agent-name
-skills: existing-skill-a, existing-skill-b, NEW-SKILL-NAME
----
-```
-
-### Important
-
-| Rule | Reason |
-|------|--------|
-| Exact name match | Must match skill folder name |
-| Comma-separated | List format |
-| No paths | Just skill name |
-
----
-
-## Step 2: Marketplace.json
-
-Add skill path to plugin's `skills:` array:
-
-**Location**: `.codex-plugin/marketplace.json`
+The plugin manifest points Codex at the skills directory:
 
 ```json
 {
-  "plugins": [
-    {
-      "name": "fuse-<plugin>",
-      "skills": [
-        "./skills/existing-skill-a",
-        "./skills/existing-skill-b",
-        "./skills/NEW-SKILL-NAME"
-      ]
-    }
-  ]
+  "skills": "./skills/"
 }
 ```
 
-### Important
+---
+
+## Step 1: Create Skill Directory
+
+```
+plugins/<plugin>/skills/<skill-name>/SKILL.md
+plugins/<plugin>/skills/<skill-name>/references/
+```
+
+The folder name must match the skill `name` in frontmatter.
+
+---
+
+## Step 2: Check Skill Frontmatter
+
+```yaml
+---
+name: skill-name
+description: Use when <trigger>. Covers <scope>.
+user-invocable: true
+references: references/patterns.md
+related-skills: other-skill
+---
+```
+
+### Rules
 
 | Rule | Reason |
 |------|--------|
-| Relative path | From plugin root |
-| Starts with `./skills/` | Standard location |
-| Exact folder name | Must match directory |
+| Exact name match | Loader and user-facing skill name stay aligned |
+| Clear description | Codex uses it for skill selection |
+| Valid references | Referenced files must exist |
+| English content | Repository standard |
+
+---
+
+## Step 3: Check Plugin Manifest
+
+Local manifest:
+
+```
+plugins/<plugin>/.codex-plugin/plugin.json
+```
+
+Required when the plugin exposes skills:
+
+```json
+{
+  "skills": "./skills/"
+}
+```
 
 ---
 
 ## Verification
 
-After registration, verify:
+After registration:
 
-| Check | Command |
-|-------|---------|
-| Skill loads | Invoke skill in conversation |
-| References load | Check skill has access to refs |
-| No errors | Check console for issues |
+1. Parse `.codex-plugin/plugin.json` as JSON.
+2. Confirm `skills` points at `./skills/`.
+3. Confirm every ported skill has `SKILL.md`.
+4. Confirm every `references:` path exists.
+5. Search for legacy non-Codex primitives before calling it done.
 
 ---
 
@@ -87,58 +91,7 @@ After registration, verify:
 
 | Issue | Cause | Fix |
 |-------|-------|-----|
-| Skill not found | Not in marketplace.json | Add to skills array |
-| Skill not triggered | Not in agent frontmatter | Add to skills list |
-| Wrong references | Mismatched name | Ensure exact match |
-
----
-
-## Example Registration
-
-### For new `tanstack-query` skill in `react-expert`:
-
-**1. Agent frontmatter** (`plugins/react/agents/react-expert.md`):
-```yaml
----
-name: react-expert
-skills: react-19, solid-react, tanstack-query
----
-```
-
-**2. Marketplace.json** (`.codex-plugin/marketplace.json`):
-```json
-{
-  "plugins": [
-    {
-      "name": "fuse-react",
-      "skills": [
-        "./skills/react-19",
-        "./skills/solid-react",
-        "./skills/tanstack-query"
-      ]
-    }
-  ]
-}
-```
-
----
-
-## Related Skills Registration
-
-If skill has `related-skills:` in frontmatter:
-
-```yaml
-related-skills: skill-a, skill-b
-```
-
-Ensure those skills are also registered.
-
----
-
-## Checklist
-
-- [ ] Added to agent's `skills:` in frontmatter
-- [ ] Added to `skills:` array in marketplace.json
-- [ ] Name matches folder exactly
-- [ ] Related skills are registered
-- [ ] Tested skill loads correctly
+| Skill not found | Missing `SKILL.md` or wrong folder | Align folder and `name` |
+| References fail | Path listed but file missing | Create file or remove reference |
+| Legacy wording remains | Unported source text | Replace with Codex terms |
+| Plugin skills missing | Manifest has no `skills` pointer | Add `"skills": "./skills/"` |

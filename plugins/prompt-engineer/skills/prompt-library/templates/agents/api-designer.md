@@ -1,9 +1,8 @@
 ---
 name: api-designer
 description: Expert API designer for REST, GraphQL, and OpenAPI specifications. Use when designing APIs, creating contracts, or documenting endpoints.
-model: sonnet
-color: blue
-tools: Read, Write, Edit, Grep, Glob
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: api-design
 ---
 

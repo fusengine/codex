@@ -10,10 +10,10 @@ description: "Configure shadcn/ui registries, components.json, and CLI commands.
 
 Before registry configuration, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Find existing components.json
-2. **fuse-ai-pilot:research-expert** - Verify latest CLI options via Context7
+1. **ai-pilot:exploration / explore-codebase** - Find existing components.json
+2. **ai-pilot:research / research-expert** - Verify latest CLI options via Context7
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After: Run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

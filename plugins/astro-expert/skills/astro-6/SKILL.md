@@ -1,8 +1,9 @@
 ---
 name: astro-6
-description: "Expert Astro 6 framework — routing, output modes, middleware, Vite Environment API, Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5."
+description: Expert Astro 6 framework — routing, output modes, middleware, Vite Environment API, Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5.
+references: references/installation.md, references/routing.md, references/output-modes.md, references/middleware.md, references/config.md, references/new-features.md, references/templates/basic-setup.md, references/templates/config-example.md
+related-skills: astro-content, astro-actions, astro-islands, astro-integrations, astro-deployment
 ---
-
 
 # Astro 6 Expert
 
@@ -10,13 +11,13 @@ Production-ready web framework for content-driven sites with unified dev runtime
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing routes, layouts, and config
-2. **fuse-ai-pilot:research-expert** - Verify latest Astro 6 docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing routes, layouts, and config
+2. **ai-pilot:research / research-expert** - Verify latest Astro 6 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check breaking changes v5→v6
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

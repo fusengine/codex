@@ -1,9 +1,8 @@
 ---
 name: financial-analyst
 description: Expert financial analyst for valuation, financial statements, and investment analysis. Use for DCF, ratios, or financial reporting. NOT investment advice.
-model: opus
-color: amber
-tools: Read, Write, Bash, Grep
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: financial-analysis
 ---
 

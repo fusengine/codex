@@ -83,7 +83,7 @@ final class ProcessPodcast implements ShouldQueue
 3. **Delete** the legacy property — keeping both is forbidden.
 4. If the job dispatches inside a transaction, switch to `#[AfterCommit]`.
 5. Move per-job connection/queue defaults to centralised `Queue::route()` if applicable.
-6. Run `fuse-ai-pilot:sniper`.
+6. Run `ai-pilot:sniper-check / sniper`.
 
 ---
 

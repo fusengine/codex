@@ -1,20 +1,20 @@
 ---
 name: agent-creator
-description: "Use when creating expert agents. Generates agent.md with frontmatter, hooks, required sections, and skill references."
+description: Use when creating expert agents. Generates Codex agent TOML with developer instructions, required sections, and skill references.
 ---
-
 
 # Agent Creator
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY agent creation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY agent creation, use the available Codex subagent workflow when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing agents, analyze patterns
-2. **fuse-ai-pilot:research-expert** - Fetch latest agent conventions
-3. **mcp__context7__query-docs** - Get examples from existing agents
+1. **ai-pilot:exploration / explore-codebase** - Check existing agents, analyze patterns
+2. **ai-pilot:research / research-expert** - Fetch latest agent conventions
 
-After creation, run **fuse-ai-pilot:sniper** for validation.
+`mcp__context7__query-docs` is a direct MCP call, not a spawned agent. Invoke it directly when current Codex documentation or examples are needed.
+
+After creation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 
@@ -31,11 +31,12 @@ After creation, run **fuse-ai-pilot:sniper** for validation.
 ## Critical Rules
 
 1. **ALL content in English** - Never French or other languages
-2. **Frontmatter complete** - name, description, model, tools, skills, hooks
-3. **Agent Workflow section** - Always first content section
-4. **SOLID rules reference** - Link to solid-[stack] skill
-5. **Register in marketplace.json** - Or agent won't load
-6. **Hook scripts executable** - `chmod +x`
+2. **TOML complete** - `name`, `description`, and `developer_instructions` are mandatory
+3. **Agent Workflow section** - First section inside `developer_instructions`
+4. **SOLID rules reference** - Link to solid-[stack] skill when the stack has one
+5. **Register in plugin metadata when required** - Or the agent may not load
+6. **Plugin hooks stay in hooks config** - Do not put legacy hook blocks in agent TOML
+7. **Output Format section mandatory** - Every generated agent must define a standard `## Output Format` section (status, files_changed, errors, sources) — an agent invoked by a lead must return structured data, not prose
 
 ---
 
@@ -44,7 +45,7 @@ After creation, run **fuse-ai-pilot:sniper** for validation.
 ```
 plugins/<plugin-name>/
 ├── agents/
-│   └── <agent-name>.md      # Agent definition
+│   └── <agent-name>.toml    # Codex custom agent definition
 ├── skills/
 │   ├── skill-a/
 │   └── solid-[stack]/
@@ -65,10 +66,10 @@ plugins/<plugin-name>/
 | Topic | Reference | When to Consult |
 |-------|-----------|-----------------|
 | **Architecture** | [architecture.md](references/architecture.md) | Understanding agent structure |
-| **Frontmatter** | [frontmatter.md](references/frontmatter.md) | YAML configuration |
+| **Agent TOML** | [frontmatter.md](references/frontmatter.md) | Codex TOML configuration |
 | **Required Sections** | [required-sections.md](references/required-sections.md) | Mandatory content |
 | **Hooks** | [hooks.md](references/hooks.md) | Pre/Post tool validation |
-| **Registration** | [registration.md](references/registration.md) | marketplace.json |
+| **Registration** | [registration.md](references/registration.md) | Plugin marketplace + `.codex-plugin/plugin.json` |
 
 ### Templates
 
@@ -88,11 +89,11 @@ plugins/<plugin-name>/
 → explore-codebase + research-expert
 
 # 2. Create files
-touch plugins/<plugin>/agents/<agent-name>.md
+touch plugins/<plugin>/agents/<agent-name>.toml
 touch plugins/<plugin>/scripts/validate-<stack>-solid.sh
 chmod +x plugins/<plugin>/scripts/*.sh
 
-# 3. Register in marketplace.json
+# 3. Register plugin metadata if this is a new plugin
 
 # 4. Validate
 → sniper
@@ -102,10 +103,10 @@ chmod +x plugins/<plugin>/scripts/*.sh
 
 ```bash
 # 1. Copy similar agent
-cp plugins/nextjs-expert/agents/nextjs-expert.md plugins/new-plugin/agents/new-expert.md
+cp plugins/nextjs-expert/agents/nextjs-expert.toml plugins/new-plugin/agents/new-expert.toml
 
 # 2. Adapt with sed
-sed -i '' "s/nextjs/newstack/g; s/Next\.js/NewStack/g" agents/new-expert.md
+sed -i '' "s/nextjs/newstack/g; s/Next\.js/NewStack/g" agents/new-expert.toml
 
 # 3. Update skills, tools, register
 ```
@@ -115,13 +116,14 @@ sed -i '' "s/nextjs/newstack/g; s/Next\.js/NewStack/g" agents/new-expert.md
 ## Validation Checklist
 
 - [ ] ALL content in English
-- [ ] Frontmatter complete (name, description, model, tools, skills)
+- [ ] TOML complete (`name`, `description`, `developer_instructions`)
 - [ ] Agent Workflow section present
 - [ ] Mandatory Skills Usage table
 - [ ] SOLID Rules reference to solid-[stack]
 - [ ] Local Documentation paths valid
+- [ ] Output Format section present (status, files_changed, errors, sources)
 - [ ] Hook scripts executable
-- [ ] Registered in marketplace.json
+- [ ] Plugin registration checked when needed
 
 ---
 
@@ -129,7 +131,7 @@ sed -i '' "s/nextjs/newstack/g; s/Next\.js/NewStack/g" agents/new-expert.md
 
 **When creating an agent, you often need to create skills too.**
 
-Use **`/fuse-ai-pilot:skill-creator`** to create skills for the agent:
+Use **`ai-pilot:skill-creator`** to create skills for the agent:
 
 | Scenario | Action |
 |----------|--------|

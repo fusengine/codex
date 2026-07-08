@@ -1,25 +1,21 @@
 ---
 name: commit
-description: "Smart conventional commit with security validation,branch flow enforcement,and auto-detection. Use for git commit,commit changes,save work,stage and commit. (migré depuis slash command)"
+description: "Smart conventional commit with security validation, branch flow enforcement, and auto-detection. Use when committing changes, saving work, staging and committing, or choosing a conventional commit message."
+related-skills: commit-detection, git-flow, post-commit
 ---
 
 # Smart Conventional Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Staged Changes
-
-!`git diff --staged --stat`
-
-## Recent Commits (style reference)
-
-!`git log --oneline -5`
-
-## Current Branch
-
-!`git branch --show-current`
+```bash
+git status
+git diff --staged --stat
+git log --oneline -5
+git branch --show-current
+```
 
 ## Instructions
 
@@ -140,27 +136,28 @@ If $ARGUMENTS provided, use as hint for the message.
 
 ### Step 6: Post-Commit (universal)
 
-After step 5 succeeds, execute the `post-commit` skill (CHANGELOG + version bump + git tag).
+After step 5 succeeds, execute the `post-commit` skill (CHANGELOG + version bump only; no tag here unless a later post-merge step actually runs).
 
 This runs for ALL repos — the skill auto-detects the repo type internally.
 
 ### Step 7: Push Branch + Pull Request (GitHub Flow)
 
-After post-commit completes, if current branch is a feature branch (not main/master):
+Only run this step when the user explicitly asked for push, PR creation, or release flow.
 
-1. **Detect remote** via `git remote -v`. If no remote → STOP, output info: "No remote configured, skip push."
-2. **Push branch with upstream**:
+After post-commit completes, if current branch is a feature branch (not main/master) and a remote is configured:
+
+1. **Push branch with upstream**:
    ```bash
    git push -u origin <current-branch>
    ```
-3. **Check if PR already exists**:
+2. **Check if PR already exists**:
    ```bash
    gh pr view --json url 2>/dev/null
    ```
    - If exists → output URL, STOP.
    - If not → propose creating one.
 
-4. **Propose PR creation**:
+3. **Propose PR creation**:
 
    ```text
    🔀 Pull Request
@@ -172,7 +169,7 @@ After post-commit completes, if current branch is a feature branch (not main/mas
    Create PR via gh? [Y/N]
    ```
 
-5. **If accepted**, generate PR with this template:
+4. **If accepted**, generate PR with this template:
 
    ```bash
    gh pr create --title "<commit subject>" --body "$(cat <<'EOF'
@@ -194,10 +191,34 @@ After post-commit completes, if current branch is a feature branch (not main/mas
    )"
    ```
 
-6. **Output PR URL** and STOP. **Never auto-merge** — leave to user/CI.
+5. **Output PR URL** and STOP unless the user explicitly requested merge.
+
+If the user explicitly requested merge, prefer squash merge after required checks pass:
+
+```bash
+gh pr checks <pr> --watch && gh pr merge <pr> --squash --delete-branch
+```
+
+If merge succeeds, proceed to Step 8.
 
 **Skip Step 7 if**:
 - No remote configured
 - User passes `--no-pr` in `$ARGUMENTS`
 - Branch already merged
 - Repo has no `gh` CLI installed (graceful degradation, output manual command)
+
+### Step 8: Post-Merge Tag (main only, after a successful squash merge)
+
+Only runs after Step 7 actually merged the PR.
+
+```bash
+git checkout main && git pull --ff-only
+git fetch --prune
+git tag vX.Y.Z
+git push origin vX.Y.Z
+git merge-base --is-ancestor vX.Y.Z main && echo "tag on main ok"
+```
+
+`vX.Y.Z` is the version bumped by `post-commit` in Step 6.
+
+Why the tag moves here: `gh pr merge --squash` creates a brand-new commit on `main`; feature-branch commits do not land on `main`. Tagging the actual squash-merge commit keeps the tag meaningful.

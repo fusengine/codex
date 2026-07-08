@@ -1,7 +1,7 @@
 # Bun
 node_modules/
 *.tsbuildinfo
-
+bun.lock
 # Logs
 *.log
 
@@ -44,9 +44,12 @@ plugins/*/statusline/bun.lock
 .idea/
 *.swp
 
-# Local Codex/Claude session state
+# Local agent session state
 .claude/
 .cartographer/
+**/.cartographer/
 
 # APEX tracking (auto-generated)
 .codex/
+portage
+plugins/*/.cartographer

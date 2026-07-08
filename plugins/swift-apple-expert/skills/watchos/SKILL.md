@@ -12,11 +12,11 @@ watchOS-specific development for Apple Watch experiences.
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing watchOS patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest watchOS 26 docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing watchOS patterns
+2. **ai-pilot:research / research-expert** - Verify latest watchOS 26 docs via Context7/Exa/fuse-browser
 3. **mcp__apple-docs__search_apple_docs** - Check watchOS patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

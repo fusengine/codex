@@ -10,11 +10,11 @@ description: "Integrate Stripe and Paddle payments with Laravel Cashier. Use whe
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing billing setup, User model
-2. **fuse-ai-pilot:research-expert** - Verify latest Cashier docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Check existing billing setup, User model
+2. **ai-pilot:research / research-expert** - Verify latest Cashier docs via Context7
 3. **mcp__context7__query-docs** - Query specific patterns (Stripe/Paddle)
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

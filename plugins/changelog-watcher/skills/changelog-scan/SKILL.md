@@ -1,6 +1,8 @@
 ---
 name: changelog-scan
 description: "Scan Codex CLI changelog for new versions, features, and changes. Fetches official docs, parses release notes, and generates structured update report."
+references: references/sources.md, references/templates/changelog-report.md
+related-skills: breaking-changes, watch
 ---
 
 
@@ -14,15 +16,14 @@ Fetches and analyzes the official Codex CLI changelog to detect new versions and
 
 | Source | URL | Method |
 |--------|-----|--------|
-| Changelog | code.codex.com/docs/en/changelog.md | WebFetch |
-| Docs Index | code.codex.com/docs/llms.txt | WebFetch |
-| Hooks Ref | code.codex.com/docs/en/hooks.md | WebFetch |
-| Plugins Ref | code.codex.com/docs/en/plugins-reference.md | WebFetch |
-| CLI Ref | code.codex.com/docs/en/cli-reference.md | WebFetch |
+| Changelog | developers.openai.com/codex/changelog | fuse-browser fetch |
+| CLI docs | developers.openai.com/codex/cli | fuse-browser fetch |
+| CLI reference | developers.openai.com/codex/cli/reference | fuse-browser fetch |
+| Config docs | developers.openai.com/codex/config-basic | fuse-browser fetch |
 
 ## Workflow
 
-1. **Fetch** changelog via WebFetch or scripts/fetch-changelog.sh
+1. **Fetch** changelog via `mcp__fuse-browser__browser_fetch`, Exa, or scripts/fetch-changelog
 2. **Parse** version numbers and release dates
 3. **Extract** changes per version (features, fixes, breaking)
 4. **Compare** with last known version from state file
@@ -38,7 +39,7 @@ Parse patterns from changelog:
 
 ## State File
 
-Location: `~/.codex/fusengine/logs/00-changelog/{date}-state.json`
+Location: `$CODEX_HOME/logs/00-changelog/{date}-state.json`
 
 ## References
 

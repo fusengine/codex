@@ -1,8 +1,9 @@
 ---
 name: nextjs-tanstack-query
-description: "TanStack Query v5 integration with Next.js 16. Server-side prefetching, hydration, useQuery, useMutation, cache management."
+description: "TanStack Query v5 integration with Next.js 16. Server-side prefetching, hydration, useQuery, useMutation, cache management. Use when: implementing client-side data fetching with caching, server-side prefetching with hydration, or optimistic mutations in Next.js."
+references: references/query-patterns.md, references/hydration.md
+related-skills: nextjs-16, nextjs-server-components, react-19
 ---
-
 
 # TanStack Query for Next.js
 
@@ -10,13 +11,13 @@ TanStack Query v5 provides powerful server state management with Next.js 16 inte
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents when useful:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing data fetching patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest TanStack Query v5 docs
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing data fetching patterns
+2. **ai-pilot:research / research-expert** - Verify latest TanStack Query v5 docs
 3. **mcp__context7__query-docs** - Check TanStack Query + Next.js patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

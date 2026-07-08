@@ -10,11 +10,11 @@ description: "Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks,
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing vite.config.js, package.json
-2. **fuse-ai-pilot:research-expert** - Verify latest Vite docs via Context7
+1. **ai-pilot:exploration / explore-codebase** - Check existing vite.config.js, package.json
+2. **ai-pilot:research / research-expert** - Verify latest Vite docs via Context7
 3. **mcp__context7__query-docs** - Query specific patterns (SSR, Inertia)
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

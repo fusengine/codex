@@ -8,7 +8,7 @@ description: "Use when analyzing a single page via /seo page. Covers meta extrac
 
 ## Workflow
 
-1. Fetch page (URL via WebFetch, or read local file)
+1. Fetch page (URL via fuse-browser/Exa, or read local file)
 2. Run `scripts/parse-meta.ts <input>` → extract title, description, OG, Twitter, canonical
 3. Run `scripts/validate-schema.ts <input>` → JSON-LD validation
 4. Analyze H1-H6 hierarchy

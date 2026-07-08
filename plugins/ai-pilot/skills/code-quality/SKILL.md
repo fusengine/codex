@@ -1,10 +1,11 @@
 ---
 name: code-quality
-description: "Code quality validation with linters, SOLID principles, DRY detection, error detection, and architecture compliance across all languages."
+description: "Code quality validation with linters, SOLID principles, DRY detection, error detection, and architecture compliance across all languages. Use when: validating code quality after modifications — SOLID compliance, DRY duplication, linter errors, or architecture violations. Do NOT use for: verifying the original problem is functionally resolved (run verification FIRST — code-quality validates quality AFTER functional verification passes)."
 ---
 
-
 # Code Quality Skill
+
+Canonical workflow definition: `agents/sniper.md` (this skill and the sniper agent share the same 7-phase workflow — update both together).
 
 ## 🚨 MANDATORY 7-PHASE WORKFLOW
 
@@ -25,9 +26,9 @@ PHASE 6: Verification (re-run linters, tests, duplication)
 
 ## PHASE 1: Architecture Exploration
 
-**Launch explore-codebase agent FIRST**:
+**Use explore-codebase FIRST** through the available Codex subagent workflow when exposed, or do the exploration locally:
 ```
-> Agent(subagent_type="fuse-ai-pilot:explore-codebase", prompt="...")
+explore-codebase: inspect project structure, configs, dependencies, and conventions
 ```
 
 **Gather**:
@@ -44,9 +45,9 @@ PHASE 6: Verification (re-run linters, tests, duplication)
 
 ## PHASE 2: Documentation Research
 
-**Launch research-expert agent**:
+**Use research-expert** through the available Codex subagent workflow when exposed, or call Context7/Exa directly:
 ```
-> Agent(subagent_type="fuse-ai-pilot:research-expert", prompt="Verify [library/framework] documentation for [error type]. Find [language] best practices for [specific issue].")
+research-expert: verify [library/framework] documentation for [error type] and [language] best practices
 ```
 
 **Request for each error**:

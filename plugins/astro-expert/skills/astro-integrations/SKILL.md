@@ -1,8 +1,9 @@
 ---
 name: astro-integrations
-description: "Expert Astro UI framework integrations — @astrojs/react, @astrojs/vue, @astrojs/svelte, @astrojs/solid-js, @astrojs/preact, @astrojs/alpinejs, @astrojs/lit, @qwikdev/astro, @analogjs/astro-angular. Setup, multi-framework config, usage patterns."
+description: Expert Astro UI framework integrations — @astrojs/react, @astrojs/vue, @astrojs/svelte, @astrojs/solid-js, @astrojs/preact, @astrojs/alpinejs, @astrojs/lit, @qwikdev/astro, @analogjs/astro-angular. Setup, multi-framework config, usage patterns.
+references: references/overview.md, references/react.md, references/vue.md, references/svelte.md, references/solid.md, references/preact.md, references/others.md, references/multi-framework.md, references/templates/react-setup.md, references/templates/multi-framework.md
+related-skills: astro-6, astro-islands, astro-styling
 ---
-
 
 # Astro Integrations Expert
 
@@ -10,13 +11,13 @@ Framework-agnostic: use React, Vue, Svelte, Solid, and more in the same Astro pr
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing integrations and astro.config.ts
-2. **fuse-ai-pilot:research-expert** - Verify latest integration docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Check existing integrations and astro.config.ts
+2. **ai-pilot:research / research-expert** - Verify latest integration docs via Context7/Exa
 3. **mcp__context7__query-docs** - Get setup and configuration examples
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

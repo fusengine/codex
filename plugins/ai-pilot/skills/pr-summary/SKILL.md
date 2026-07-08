@@ -1,12 +1,13 @@
 ---
 name: pr-summary
-description: "Summarize current pull request with diff, comments, and changed files. Use when reviewing PRs or before merging."
+description: Summarize current pull request with diff, comments, and changed files. Use when reviewing PRs or before merging.
 ---
-
 
 # PR Summary Skill
 
 Summarize the current pull request.
+
+Suggested Codex agent: `explore-codebase`.
 
 ## Pull Request Context
 
@@ -45,5 +46,5 @@ Analyze this pull request and provide:
 
 ## Debug
 
-- Session: ${CODEX_THREAD_ID}
+- Session: current Codex thread
 - Timestamp: !`date +%Y-%m-%d_%H:%M:%S`

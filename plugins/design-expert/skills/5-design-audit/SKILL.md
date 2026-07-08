@@ -1,6 +1,8 @@
 ---
 name: design-audit
 description: "Phase 5: Verify contrast >= 4.5:1 text / 3:1 UI in both light+dark, check no Inter/Roboto/Arial/Open Sans, confirm all colors are OKLCH from design-system.md, validate hover/focus/disabled/loading states, run anti-AI-slop checklist."
+references: references/
+related-skills: design-review, handoff-review
 ---
 
 

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/guard-state-files.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/guard-state-files.native.js"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/enforce-html-css-only.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/enforce-html-css-only.native.js"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/check-design-skill.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/check-design-skill.native.js"
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/pipeline-gate.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/pipeline-gate.native.js"
           }
         ]
       },
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/check-inspiration-read.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/check-inspiration-read.native.js"
           }
         ]
       },
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/require-scroll-before-screenshot.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/require-scroll-before-screenshot.native.js"
           }
         ]
       },
@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/pipeline-gate.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/pipeline-gate.native.js"
           }
         ]
       },
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/validate-design-system.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/validate-design-system.native.js"
           }
         ]
       }
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/track-skill-read.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/track-skill-read.native.js"
           }
         ]
       },
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/track-screenshot.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/track-screenshot.native.js"
           }
         ]
       },
@@ -98,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/track-mcp-research.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/track-mcp-research.native.js"
           }
         ]
       },
@@ -107,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/validate-design.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/validate-design.native.js"
           }
         ]
       }
@@ -118,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/design-agent-flag.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/design-agent-flag.native.js"
           }
         ]
       },
@@ -127,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/design-state-init.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/design-state-init.native.js"
           }
         ]
       }
@@ -138,7 +138,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/design-agent-flag.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/design-agent-flag.native.js"
           }
         ]
       },
@@ -147,7 +147,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/../../../../../node_modules/@fusengine/codex-hooks/design-expert/hooks/design-state-cleanup.native.js"
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/design-expert/hooks/design-state-cleanup.native.js"
           }
         ]
       }

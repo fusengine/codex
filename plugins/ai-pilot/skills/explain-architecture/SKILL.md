@@ -1,6 +1,6 @@
 ---
 name: explain-architecture
-description: "Analyze and explain software architecture with ASCII diagrams and pattern detection. Creates visual representations of system design. (migré depuis slash command)"
+description: "Analyze and explain software architecture with ASCII diagrams and pattern detection. Creates visual representations of system design. (migrated from Codex command workflow)"
 ---
 
 # Explain Architecture

@@ -1,8 +1,9 @@
 ---
 name: nextjs-tanstack-form
-description: "TanStack Form v1 for Next.js 16 with Server Actions, Zod validation, and shadcn/ui integration. Use when building forms, validation, multi-step wizards, or dynamic field arrays."
+description: TanStack Form v1 for Next.js 16 with Server Actions, Zod validation, and shadcn/ui integration. Use when building forms, validation, multi-step wizards, or dynamic field arrays.
+references: references/installation.md, references/basic-usage.md, references/field-api.md, references/form-state.md, references/validation-zod.md, references/server-actions.md, references/array-fields.md, references/async-validation.md, references/shadcn-integration.md, references/typescript.md, references/multi-step-form.md, references/performance.md, references/testing.md, references/migration-rhf.md
+related-skills: nextjs-16, nextjs-shadcn, solid-nextjs
 ---
-
 
 # TanStack Form for Next.js 16
 
@@ -10,13 +11,13 @@ Type-safe, performant forms with Server Actions and signal-based reactivity.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents when useful:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing forms and validation patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest TanStack Form docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing forms and validation patterns
+2. **ai-pilot:research / research-expert** - Verify latest TanStack Form docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check form options and field API
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 
@@ -111,6 +112,8 @@ Errors exist at field-level and form-level. Use `field.state.meta.errors` for fi
 | UI integration | [shadcn-integration.md](references/shadcn-integration.md) |
 | TypeScript | [typescript.md](references/typescript.md) |
 | Migration | [migration-rhf.md](references/migration-rhf.md) |
+| Client-side form component | [client-form.md](references/client-form.md) — load when wiring `useActionState` + `mergeForm` in a `'use client'` form component |
+| Server-side validation | [server-validation.md](references/server-validation.md) — load when writing `createServerValidate` + `ServerValidateError` in a Server Action |
 
 ---
 

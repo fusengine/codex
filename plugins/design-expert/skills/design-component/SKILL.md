@@ -1,6 +1,7 @@
 ---
 name: design-component
-description: "Generate a single component. Skips browsing. Uses existing design-system.md tokens + Gemini snippet_frontend. Fast path for isolated UI elements. (migré depuis slash command)"
+description: "Generate a single component. Use when creating an isolated UI element from an existing design-system.md with Gemini snippet_frontend and component-scoped review."
+related-skills: design-method, design-system, design-motion, design-review
 ---
 
 # /design:component — Single Component (Phases 3→6)

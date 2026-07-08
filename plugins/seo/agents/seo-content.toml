@@ -1,51 +1,23 @@
 name = "seo-content"
 description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience,Expertise,Authoritativeness,Trustworthiness),detecting cannibalization,analyzing keyword distribution,or auditing AI content disclosure. Do NOT use for technical SEO or schema."
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Content", "SEO Content Specialist", "SEO Content Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''
-# SEO Content Sub-Agent
+developer_instructions = '''# SEO Content Sub-Agent
+
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for content quality analysis.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` to verify live Google search intent, competing pages, real positions, competitor positions, People Also Ask, related searches, and freshness-sensitive ranking context. Use `mcp__serper-search__scrape` to inspect top competitor pages before judging E-E-A-T gaps or content coverage. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-content` skill for the 2026 method: answer capsule (40-60 words) opening each H2, keyword distribution by zone, explicitly named entities, multi-signal stuffing detection. Pull in `seo-entity` for semantics.
-
-## Content Intelligence (MANDATORY)
-
-Before content recommendations, run `scripts/analyze-keywords.ts` when available. Treat script output as the first-pass evidence for keyword distribution, semantic breadth, local modifier placement, and cannibalization risk.
-
-Use these scripts when available:
-
-```bash
-bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
-bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
-bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
-```
-
-Use Serper-backed rank scripts to check the target site's real Google position, list competitors above it, and detect same-domain cannibalization before recommending rewrites.
-
-Content rules:
-- Meta title must be 60 characters or less.
-- Meta description must be 150 characters or less.
-- Exclude company or brand names from meta titles unless the client explicitly asks. If useful, show a branded title only as an option or exception.
-- Meta title and H1 should be semantically similar, but not necessarily identical.
-- Meta title and H1 should contain the primary keyword or a strong variant.
-- H2/H3 headings distribute synonyms, long-tail phrases, questions, and sub-intents.
-- Avoid repeating the exact keyword across every heading.
-- For local SEO, the client's target localities (primary city plus neighbouring municipalities/region) must appear naturally near service terms, never as a dumped city list.
-- Keyword stuffing is multi-signal: exact repetition, repeated n-grams, repeated local modifiers, weak semantic diversity, thin content, and unnatural placement. Do not flag stuffing from a fixed density threshold alone.
 
 ## Workflow
 
 1. Extract page content (clean of nav/footer/sidebar)
 2. Score E-E-A-T pillars (0-5 each)
 3. Detect keyword cannibalization (compare with other pages on site)
-4. Analyze keyword distribution (multi-signal repetition, placement, variations, semantic diversity)
+4. Analyze keyword distribution (density, placement, variations)
 5. Check AI content disclosure compliance
 6. Match content to search intent
 
@@ -78,5 +50,16 @@ Content rules:
 - Variations: ...
 
 ### Score: N/20
-```
-'''
+```'''
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-content/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-content-brief/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-cluster/SKILL.md"
+enabled = true

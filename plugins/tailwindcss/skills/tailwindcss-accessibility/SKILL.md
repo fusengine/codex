@@ -12,11 +12,11 @@ Accessible-by-default patterns using Tailwind CSS v4.1 utility classes.
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing a11y patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest WCAG 2.2 guidelines
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing a11y patterns
+2. **ai-pilot:research / research-expert** - Verify latest WCAG 2.2 guidelines via Context7/Exa/fuse-browser
 3. **mcp__context7__query-docs** - Check Tailwind CSS a11y utilities
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -30,13 +30,13 @@ related-skills: <related-skill-a>, <related-skill-b>
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing <domain> patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest <library> docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing <domain> patterns
+2. **ai-pilot:research / research-expert** - Verify latest <library> docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check <specific> patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

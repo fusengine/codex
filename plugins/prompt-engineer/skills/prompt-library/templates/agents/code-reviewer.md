@@ -1,9 +1,8 @@
 ---
 name: code-reviewer
 description: Expert code reviewer with SOLID, OWASP, and Clean Code focus. Use when reviewing PRs, analyzing code quality, or auditing security.
-model: sonnet
-color: green
-tools: Read, Grep, Glob, Bash
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: code-quality
 ---
 

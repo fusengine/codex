@@ -10,9 +10,9 @@ description: "SOLID principles for Go 1.23+. Files < 100 lines, interfaces separ
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing architecture
-2. **fuse-ai-pilot:research-expert** - Verify Go docs via Context7
-3. **fuse-ai-pilot:sniper** - Post-implementation validation
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
+2. **ai-pilot:research / research-expert** - Verify Go docs via Context7
+3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
 
 ---
 

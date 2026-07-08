@@ -1,6 +1,6 @@
 ---
 name: fix-pr-comments
-description: "Systematically resolve Pull Request review comments using gh CLI to fetch comments and apply requested changes. (migré depuis slash command)"
+description: "Systematically resolve Pull Request review comments using gh CLI to fetch comments and apply requested changes. (migrated from Codex command workflow)"
 ---
 
 # Fix PR Comments

@@ -12,11 +12,11 @@ App build, signing, and distribution for all Apple platforms.
 
 Before ANY distribution, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing build configuration
-2. **fuse-ai-pilot:research-expert** - Verify latest App Store requirements
+1. **ai-pilot:exploration / explore-codebase** - Check existing build configuration
+2. **ai-pilot:research / research-expert** - Verify latest App Store requirements
 3. **mcp__XcodeBuildMCP__show_build_settings** - Review build settings
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -1,11 +1,9 @@
 ## Frontend Tasks
 
-### UI Workflow
-1. Prefer existing design-system components, tokens, and layout patterns.
-2. Use Gemini Design MCP, shadcn, or a design expert when available and useful
-   for broad UI generation or redesign.
-3. Direct JSX/Tailwind edits are allowed for scoped fixes, wiring, accessibility,
-   and changes that follow established local patterns.
+### UI Workflow (MANDATORY)
+1. **Gemini Design MCP** designs layout/pages using **shadcn/ui** components when available; they work together.
+2. **shadcn/ui** (`shadcn-ui-expert`) handles component registry, installation, and patterns (`nextjs-shadcn` / `react-shadcn`).
+3. **Do not hand-write new styled JSX/Tailwind UI from scratch** when Gemini Design, shadcn, or a design expert is available and useful.
 
 ### Gemini Design Tools
 
@@ -15,7 +13,5 @@
 | `modify_frontend` | Surgical redesign |
 | `snippet_frontend` | Isolated components |
 
-**Use design tooling for:** new screens, complex responsive layouts, major visual
-redesigns, and component systems.
-**Direct edits allowed for:** text changes, logic, data wiring, state management,
-accessibility fixes, and small style adjustments.
+**FORBIDDEN without shadcn/Gemini/design expert when available:** new styled React/SwiftUI components, CSS/Tailwind layouts, forms, modals, tables.
+**ALLOWED without tools:** text changes, JS/Swift logic, data wiring, state management, accessibility fixes, small style fixes following existing patterns.

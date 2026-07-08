@@ -1,17 +1,21 @@
 ## Agent Teams
 
-Use teams only when the current Codex runtime exposes a team/subagent capability
-and the task benefits from parallel work. The lead may edit directly for scoped
-work; it should coordinate when several agents are editing disjoint areas.
+Use Codex teams/subagents for parallel, broad, risky, or disjoint work when the runtime exposes them and they reduce risk or latency. When a team is created, the lead coordinates ownership, integration, and verification.
 
-1. **Exclusive file ownership** - Never assign overlapping write scopes.
-2. **Well-scoped tasks** - Each agent gets target files, expected output, and criteria.
-3. **Bounded parallelism** - Keep teams small enough to review and integrate.
-4. **Critical path stays local** - Do not delegate the immediate blocker when the lead can finish it safely.
-5. **Final integration** - Review agent results and run validation after integration.
+1. **Exclusive file ownership** - NEVER shared edits between teammates.
+2. **Well-scoped tasks** - Each brief includes target files, expected output, and criteria.
+3. **Progress tracking mandatory** - Track pending/in-progress/completed work with the available Codex planning/checklist mechanism.
+4. **Max 4 teammates** - Beyond that is coordination overhead.
+5. **80% planning, 20% execution** - Detailed specs produce better results.
+6. **Propose team split for multi-file tasks** when parallelism is useful; spawn immediately when the user asks for team/parallel agents.
+7. **Launch -> Orchestrate -> Monitor -> VERIFY** - spawning teammates is step 1, not the job. After EACH report, verify deliverables ON DISK (grep/diff expected changes).
+8. **Idle is not done** - idle/available is not completion. No deliverable on disk -> take the mandate back or re-dispatch.
+9. **Re-dispatch clause in every brief** - if already delivered, verify disk and refuse duplicate execution.
+10. **Close completed subagents** - after a final `wait_agent` status is reviewed and integrated, call `close_agent` for every spawned subagent no longer needed.
 
 ## Anti-Patterns (FORBIDDEN)
-- **2 teammates on same file** -> conflict-prone.
-- **Assuming fixed tools** -> use the available Codex interface (`spawn_agent`, CLI slash commands, or project tooling).
-- **Delegating trivial work** -> slower and noisier than direct local edits.
-- **Writing to deployed dir** -> work in the source repo, then sync after validation.
+- **2 teammates on same file** -> conflict/overwrite risk.
+- **Assuming fixed tools** -> use the available Codex subagent workflow, CLI slash commands, or project tooling.
+- **Skipping disk verification** -> agent output is a claim until checked.
+- **Writing to deployed dir** -> always work in dev/source repo, then sync after validation.
+- **Destructive action inside an agent brief** -> forbidden. Contestable deletion/overwrite/reset stays with the lead after user validation.

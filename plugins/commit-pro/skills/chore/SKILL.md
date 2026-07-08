@@ -1,17 +1,19 @@
 ---
 name: chore
-description: "Chore commit. Use for maintenance,deps,dependencies,config,cleanup,housekeeping. (migré depuis slash command)"
+description: "Chore commit. Use when committing maintenance, dependencies, configuration, cleanup, or housekeeping changes."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Chore Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Changes
-
-!`git diff --stat`
+```bash
+git status
+git diff --stat
+```
 
 ## Instructions
 

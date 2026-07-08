@@ -1,8 +1,9 @@
 ---
 name: astro-deployment
-description: "Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration."
+description: Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration.
+references: references/cloudflare-adapter.md, references/vercel-adapter.md, references/netlify-adapter.md, references/node-adapter.md, references/isr-patterns.md, references/edge-middleware.md, references/templates/cloudflare-setup.md, references/templates/vercel-setup.md
+related-skills: astro-6, astro-db, astro-islands
 ---
-
 
 # Astro Deployment
 
@@ -10,13 +11,13 @@ Production deployment for Astro 6 across all major platforms — Cloudflare, Ver
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze astro.config.mjs, output mode, and existing adapter
-2. **fuse-ai-pilot:research-expert** - Verify adapter docs via Context7/Exa for target platform
+1. **ai-pilot:exploration / explore-codebase** - Analyze astro.config.mjs, output mode, and existing adapter
+2. **ai-pilot:research / research-expert** - Verify adapter docs via Context7/Exa for target platform
 3. **mcp__context7__query-docs** - Check Astro 6 adapter compatibility and breaking changes
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

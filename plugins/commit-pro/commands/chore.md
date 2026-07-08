@@ -1,21 +1,21 @@
 ---
 description: Chore commit. Use for maintenance, deps, dependencies, config, cleanup, housekeeping.
-argument-hint: [description] | (empty for auto-detection)
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git describe:*), Read, Edit
-disable-model-invocation: false
+argument-hint: "[description] | (empty for auto-detection)"
 ---
 
 # Chore Commit
 
 ## Current State
 
-!`git status`
+Run `git status` and use the output.
 
 ## Changes
 
-!`git diff --stat`
+Run `git diff --stat` and use the output.
 
 ## Instructions
+
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
 
 Create a maintenance/chore commit.
 

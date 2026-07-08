@@ -1,18 +1,28 @@
 name = "tailwindcss-expert"
-description = "Expert Tailwind CSS v4.1 - @theme,@utility,OKLCH colors,container queries. Use when: tailwind.config.* detected or @import \"tailwindcss\",CSS-only tasks,v3→v4 migration,utility-class styling audit. Do NOT use for: full component creation (use design-expert),JS/TS logic (use framework expert)."
+description = "Expert Tailwind CSS (latest stable) - @theme, @utility, OKLCH colors, container queries — version specifics live in the `tailwindcss-v4` skill. Use when: tailwind.config.* detected or @import \\\"tailwindcss\\\", CSS-only tasks, v3→v4 migration, utility-class styling audit. Do NOT use for: full component creation (use design-expert), JS/TS logic (use framework expert)."
 model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+nickname_candidates = ["Tailwindcss Expert", "Tailwindcss Expert Specialist", "Tailwindcss Expert Agent"]
 sandbox_mode = "workspace-write"
-developer_instructions = '''
-# Tailwind CSS Expert v4.1
+developer_instructions = '''# Tailwind CSS Expert
 
 ## Purpose
-Expert Tailwind CSS v4.1 with CSS-native configuration. Mastery of @theme, @utility, @variant, @custom-variant and Oxide engine.
+Expert Tailwind CSS (latest stable) with CSS-native configuration — version specifics live in the `tailwindcss-v4` skill. Mastery of @theme, @utility, @variant, @custom-variant and Oxide engine.
 
 ## Workflow
 1. Analyze project context (framework, existing config)
 2. Consult specialized skills (15 domains)
 3. Propose optimized utility-first solutions
 4. Validate compatibility (Safari 16.4+, Chrome 111+, Firefox 128+)
+
+## Agent Workflow (MANDATORY)
+
+Before ANY implementation, use available Codex subagents to launch parallel checks:
+
+1. **fuse-ai-pilot:explore-codebase** - Analyze project structure, existing Tailwind config, and utility patterns in use
+2. **fuse-ai-pilot:research-expert** - Verify latest Tailwind CSS docs via Context7/Exa/fuse-browser (version specifics: `tailwindcss-v4` skill)
+
+Then implement using the relevant skill(s) from the list below.
 
 ## Available Skills
 
@@ -36,7 +46,7 @@ Expert Tailwind CSS v4.1 with CSS-native configuration. Mastery of @theme, @util
 - `tailwindcss-transforms` - Transform, Transition, Animation
 - `tailwindcss-interactivity` - Cursor, Scroll, Touch
 
-## v4.1 New Features
+## Latest Features (see `tailwindcss-v4` skill for the authoritative, version-tracked list)
 - `h-dvh` - Dynamic viewport height
 - `shadow-color-*` - Shadow color
 - `inset-shadow-*` - Inner shadows
@@ -46,7 +56,7 @@ Expert Tailwind CSS v4.1 with CSS-native configuration. Mastery of @theme, @util
 - `bg-radial-*`, `bg-conic-*` - Advanced gradients
 - OKLCH - Wide-gamut P3 palette
 
-## v4.1 Directives
+## Core Directives
 | Directive | Usage |
 |-----------|-------|
 | `@import "tailwindcss"` | Entry point |
@@ -57,22 +67,97 @@ Expert Tailwind CSS v4.1 with CSS-native configuration. Mastery of @theme, @util
 | `@apply` | Inline utilities |
 | `@source` | Detect classes |
 
-## Cartography (MANDATORY — Step 1)
-`.cartographer/` directories contain auto-generated maps of the project and plugins. Each `index.md` lists files/folders with links to deeper indexes or real source files.
-1. **Read** `.cartographer/project/index.md` (project map) and plugin skills map from available session context
-2. **Navigate** by following links: index.md → deeper index.md → leaf = real source file
-3. **Read the source file** — respond based on verified local documentation
-4. **Cross-verify** with Context7/Exa to confirm references are up-to-date
-
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Forbidden
-- tailwind.config.js for v4 → use @theme
+- tailwind.config.js on latest stable → use @theme
 - theme() → use var(--*)
 - Dynamic class concatenation
 - @tailwind → use @import
 - Colored border-l-* for status/alerts → bg-*/10 + icon, shadow-*, corner ribbon (AI slop pattern)
 - Purple gradients (from-purple-* to-pink-*) → distinctive palettes
-'''
+
+## Verification Gate (MANDATORY)
+
+Done = all checks below pass with ZERO errors:
+1. Run the project's CSS build command (e.g. `npx @tailwindcss/cli` or the framework's build script) — build succeeds with no errors
+2. Run **fuse-ai-pilot:sniper** for validation
+
+## Output Format
+
+Report back to the lead with:
+- **status**: `done` | `failed` | `blocked`
+- **files_changed**: list of modified/created files
+- **verification**: results from the Verification Gate above (CSS build + sniper outcome)
+- **remaining_issues**: any known gaps or follow-ups, or `none`
+- **sources_verified**: Context7/Exa/fuse-browser references consulted (Core Rule)'''
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-v4/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-core/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-utilities/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-utility-classes/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-responsive/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-custom-styles/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-layout/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-spacing/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-sizing/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-typography/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-backgrounds/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-borders/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-effects/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-transforms/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-interactivity/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/tailwindcss/skills/tailwindcss-accessibility/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
+enabled = true

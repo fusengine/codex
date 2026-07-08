@@ -1,21 +1,21 @@
 ---
 description: Documentation commit. Use for update docs, documentation, readme, jsdoc, comments.
-argument-hint: [description] | (empty for auto-detection)
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git describe:*), Read, Edit
-disable-model-invocation: false
+argument-hint: "[description] | (empty for auto-detection)"
 ---
 
 # Documentation Commit
 
 ## Current State
 
-!`git status`
+Run `git status` and use the output.
 
 ## Documentation Files Changed
 
-!`git diff --stat -- '*.md' '*.txt' '*.rst'`
+Run `git diff --stat -- '*.md' '*.txt' '*.rst'` and use the output.
 
 ## Instructions
+
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
 
 Create a documentation commit.
 

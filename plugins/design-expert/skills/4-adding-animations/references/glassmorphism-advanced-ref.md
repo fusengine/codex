@@ -14,10 +14,10 @@ related-skills: designing-systems, generating-components
 
 Before implementation, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing glass patterns
-2. **fuse-ai-pilot:research-expert** - Latest backdrop-filter support
+1. **ai-pilot:exploration / explore-codebase** - Check existing glass patterns
+2. **ai-pilot:research / research-expert** - Latest backdrop-filter support
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After code changes: run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

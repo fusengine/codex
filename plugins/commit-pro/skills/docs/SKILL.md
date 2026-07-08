@@ -1,17 +1,19 @@
 ---
 name: docs
-description: "Documentation commit. Use for update docs,documentation,readme,jsdoc,comments. (migré depuis slash command)"
+description: "Documentation commit. Use when committing documentation, README, JSDoc, comments, or text-only changes."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Documentation Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect documentation changes before acting:
 
-## Documentation Files Changed
-
-!`git diff --stat -- '*.md' '*.txt' '*.rst'`
+```bash
+git status
+git diff --stat -- '*.md' '*.txt' '*.rst'
+```
 
 ## Instructions
 

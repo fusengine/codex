@@ -1,19 +1,16 @@
 name = "seo-local"
 description = "Local SEO sub-agent. Use when auditing Google Business Profile,NAP consistency,citations,reviews,Local Pack ranking,or location pages. Only spawn if local business detected."
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Local", "SEO Local Specialist", "SEO Local Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''
-# SEO Local Sub-Agent
+developer_instructions = '''# SEO Local Sub-Agent
+
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for Local SEO audits. Only spawned when business has physical location(s).
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` for live local SERPs, location-sensitive queries, Local Pack checks, competitor discovery, PAA, and citation opportunities. Include `gl`, `hl`, and `location` when known. Use `mcp__serper-search__scrape` to inspect local competitor and directory pages. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-local` skill: GBP as an entity signal for LLMs, LocalBusiness schema with `geo` + `areaServed` GeoCircle + `sameAs`, named-city/postal-code service areas (no country/state-wide). Pair with `seo-schema`.
 
 ## Workflow
 
@@ -26,13 +23,11 @@ Read the `seo-local` skill: GBP as an entity signal for LLMs, LocalBusiness sche
 
 ## NAP Format Required
 
-Byte-identical across site, GBP, and every directory (e.g. "Street" not "St", "Suite" not "Ste").
-
 ```
-[Business Name]
-[Street Address], [Unit]
-[City], [Region] [Postal Code]
-[+Country Code Phone]
+ACME Corp
+123 Main St, Suite 4
+Springfield, IL 62701
++1-555-123-4567
 ```
 
 ## Quality Gates
@@ -52,5 +47,8 @@ Byte-identical across site, GBP, and every directory (e.g. "Street" not "St", "S
 ### Reviews: N (avg X.X stars, response rate Y%)
 ### LocalBusiness Schema: ✅ / ❌
 ### Score: N/10
-```
-'''
+```'''
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-local/SKILL.md"
+enabled = true

@@ -1,17 +1,16 @@
 ---
 name: prompt-history
-description: "Manage history of created and optimized prompts (migré depuis slash command)"
+description: "Manage history of created and optimized prompts: list, show, search, diff, rollback, export, and clean saved prompt versions."
 ---
 
-# /prompt history
+# Prompt History
 
-Command for managing prompt history and versioning.
+Use this skill to manage prompt history and versioning.
 
 ## Usage
 
-```bash
-/prompt history [action] [options]
-```
+Infer the action and options from the user's request. If the target prompt or
+action is ambiguous, ask one concise clarifying question.
 
 ## Actions
 
@@ -75,9 +74,7 @@ Prompts are saved in:
 
 ### List History
 
-```bash
-/prompt history list
-```
+List prompt history.
 
 **Output**:
 
@@ -95,9 +92,7 @@ Total: 3 prompts, 6 versions
 
 ### View a Prompt
 
-```bash
-/prompt history show prompt_001
-```
+Show `prompt_001`.
 
 **Output**:
 

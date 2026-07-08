@@ -1,9 +1,8 @@
 ---
 name: classifier
 description: Content classifier for categorization, tagging, and sentiment analysis. Use when classifying tickets, emails, content, or any categorical data.
-model: haiku
-color: lime
-tools: Read
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: classification
 ---
 

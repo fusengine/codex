@@ -1,6 +1,8 @@
 ---
 name: breaking-changes
 description: "Detect breaking changes in Codex CLI updates by comparing current API surface against changelog. Maps impacts to specific plugin files."
+references: references/api-surface.md, references/templates/migration-guide.md
+related-skills: changelog-scan, watch
 ---
 
 
@@ -14,7 +16,7 @@ Compares Codex CLI API changes against our plugin ecosystem to detect compatibil
 
 The `api-surface.md` reference contains our current known API:
 - Hook types and their matchers
-- Agent frontmatter fields
+- Agent TOML fields
 - Plugin manifest schema
 - Skill SKILL.md format
 - Script CLI flags used
@@ -22,7 +24,7 @@ The `api-surface.md` reference contains our current known API:
 ## Detection Workflow
 
 1. **Load** current api-surface.md
-2. **Fetch** latest Codex CLI API docs
+2. **Fetch** latest Codex CLI API docs from official OpenAI docs
 3. **Diff** for added/changed/removed APIs
 4. **Grep** our plugins for each changed API
 5. **Report** with file:line impact mapping

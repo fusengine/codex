@@ -1,0 +1,33 @@
+{
+	"name": "go-expert",
+	"version": "1.0.3",
+	"description": "Expert Go 1.26+ for idioms, concurrency, backend services, golangci-lint v2, govulncheck, and SOLID principles.",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"go",
+		"golang",
+		"go-1-26",
+		"concurrency",
+		"goroutines",
+		"backend",
+		"golangci-lint",
+		"govulncheck",
+		"modules",
+		"solid"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "Go Expert",
+		"shortDescription": "Go 1.26 backend, concurrency, tooling, and security specialist",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
+}

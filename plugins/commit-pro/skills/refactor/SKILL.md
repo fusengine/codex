@@ -1,17 +1,19 @@
 ---
 name: refactor
-description: "Refactor commit. Use for refactoring,restructure,reorganize,clean up code. (migré depuis slash command)"
+description: "Refactor commit. Use when committing refactoring, restructuring, reorganization, or cleanup with no behavior change."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Refactor Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Changes
-
-!`git diff --stat`
+```bash
+git status
+git diff --stat
+```
 
 ## Instructions
 

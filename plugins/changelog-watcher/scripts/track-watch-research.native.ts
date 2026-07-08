@@ -4,7 +4,7 @@
  * track-watch-research.native.ts — native TS port of
  * _legacy_py/track-watch-research.py.
  *
- * PostToolUse: when a research tool (exa/WebFetch/WebSearch) ran, append the
+ * PostToolUse: when a research tool (Exa/fuse-browser/web.run) ran, append the
  * query/url/prompt to ~/.codex/logs/00-changelog/<UTC-date>-research.json. The
  * state file, the tool-name substring match, the field fallback order and the
  * 2-space indented JSON are verbatim from the Python for parity.
@@ -24,7 +24,7 @@ try {
 }
 
 const tool = data.tool_name ?? "";
-if (!["exa", "WebFetch", "WebSearch"].some((k) => tool.includes(k))) process.exit(0);
+if (!["exa", "fuse-browser", "browser_fetch", "web.run"].some((k) => tool.includes(k))) process.exit(0);
 
 const ti = data.tool_input ?? {};
 const query = ti.query || ti.url || ti.prompt || "";

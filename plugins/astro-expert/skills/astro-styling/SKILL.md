@@ -1,20 +1,21 @@
 ---
 name: astro-styling
-description: "Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors."
+description: Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors.
+references: references/scoped-css.md, references/css-modules.md, references/global-styles.md, references/tailwind.md, references/unocss.md, references/sass.md, references/css-variables.md, references/templates/scoped-component.md, references/templates/tailwind-setup.md, references/templates/unocss-setup.md
+related-skills: astro-6, astro-integrations, solid-astro
 ---
-
 
 # Astro Styling
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing styles, integrations, and patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing styles, integrations, and patterns
+2. **ai-pilot:research / research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check integration compatibility with Astro 6
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

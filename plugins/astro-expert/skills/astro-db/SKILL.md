@@ -1,8 +1,9 @@
 ---
 name: astro-db
-description: "Astro DB — defineDb, defineTable, column types, CRUD with db.select/insert/update/delete, db/config.ts, db/seed.ts, Turso for production, type-safety, integration with Astro Actions. Use for any database operation in an Astro project."
+description: Astro DB — defineDb, defineTable, column types, CRUD with db.select/insert/update/delete, db/config.ts, db/seed.ts, Turso for production, type-safety, integration with Astro Actions. Use for any database operation in an Astro project.
+references: references/schema-definition.md, references/crud-operations.md, references/seed-data.md, references/turso-production.md, references/actions-integration.md, references/templates/db-config.md, references/templates/crud-example.md
+related-skills: astro-6, astro-actions, astro-deployment
 ---
-
 
 # Astro DB
 
@@ -10,13 +11,13 @@ Type-safe SQL database built into Astro, powered by libSQL/Turso. Use for struct
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing db/config.ts, tables, and Actions
-2. **fuse-ai-pilot:research-expert** - Verify Astro DB API via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Check existing db/config.ts, tables, and Actions
+2. **ai-pilot:research / research-expert** - Verify Astro DB API via Context7/Exa
 3. **mcp__context7__query-docs** - Check Astro 6 DB docs for column types and CRUD
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

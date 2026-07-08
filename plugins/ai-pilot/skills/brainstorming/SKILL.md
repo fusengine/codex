@@ -1,8 +1,7 @@
 ---
 name: brainstorming
-description: "Use when user requests creative work - creating features, building components, adding functionality, or modifying behavior. Activates BEFORE APEX Analyze phase to refine requirements through structured questioning."
+description: Use when user requests creative work - creating features, building components, adding functionality, or modifying behavior. Activates BEFORE APEX Analyze phase to refine requirements through structured questioning.
 ---
-
 
 # Brainstorming Skill
 
@@ -12,10 +11,10 @@ description: "Use when user requests creative work - creating features, building
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY brainstorming session, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY brainstorming session, use the available Codex subagent workflow when it materially helps. Suggested checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Understand project context, patterns, constraints
-2. **fuse-ai-pilot:research-expert** - Fetch best practices and documentation
+1. **ai-pilot:exploration / explore-codebase** - Understand project context, patterns, constraints
+2. **ai-pilot:research / research-expert** - Fetch best practices and documentation
 
 After design approval, transition to **APEX Analyze** phase.
 

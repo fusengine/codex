@@ -10,11 +10,11 @@ description: "react-i18next for React 19 - useTranslation hook, TypeScript Selec
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing i18n setup and translation patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing i18n setup and translation patterns
+2. **ai-pilot:research / research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check TypeScript Selector API and React 19 Suspense patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

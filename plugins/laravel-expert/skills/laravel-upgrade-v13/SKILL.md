@@ -12,11 +12,11 @@ Centralized upgrade path from Laravel 12.46 to Laravel 13.0 (released March 17, 
 
 Before ANY upgrade, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
-2. **fuse-ai-pilot:research-expert** — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
+1. **ai-pilot:exploration / explore-codebase** — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
+2. **ai-pilot:research / research-expert** — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
 3. **fuse-laravel:laravel-expert** — Apply Laravel 13 best practices
 
-After upgrade, run **fuse-ai-pilot:sniper** for validation.
+After upgrade, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

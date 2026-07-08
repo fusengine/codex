@@ -1,20 +1,21 @@
 ---
 name: astro-i18n
-description: "Use when implementing internationalization in Astro, configuring i18n routing, setting up locale strategies, using getRelativeLocaleUrl/getAbsoluteLocaleUrl, handling Astro.currentLocale, or adding hreflang tags with sitemap."
+description: Use when implementing internationalization in Astro, configuring i18n routing, setting up locale strategies, using getRelativeLocaleUrl/getAbsoluteLocaleUrl, handling Astro.currentLocale, or adding hreflang tags with sitemap.
+references: references/routing-config.md, references/strategies.md, references/helper-functions.md, references/content-translation.md, references/sitemap-hreflang.md, references/fallback.md, references/templates/i18n-config.md, references/templates/locale-page.md, references/templates/language-switcher.md
+related-skills: astro-6, astro-content, astro-seo, solid-astro
 ---
-
 
 # Astro i18n
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents/tools when they materially help:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing routing, content collections, and locale files
-2. **fuse-ai-pilot:research-expert** - Verify latest Astro i18n docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing routing, content collections, and locale files
+2. **ai-pilot:research / research-expert** - Verify latest Astro i18n docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check `astro:i18n` API and sitemap integration
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

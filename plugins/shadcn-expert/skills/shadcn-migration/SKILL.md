@@ -10,10 +10,10 @@ description: "Migration guide between Radix UI and Base UI primitives for shadcn
 
 Before migration, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Inventory all affected components
-2. **fuse-ai-pilot:research-expert** - Verify migration patterns via Context7
+1. **ai-pilot:exploration / explore-codebase** - Inventory all affected components
+2. **ai-pilot:research / research-expert** - Verify migration patterns via Context7
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After: Run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

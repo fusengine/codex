@@ -1,8 +1,9 @@
 ---
 name: nextjs-server-components
-description: "React Server Components patterns for Next.js 16. Server vs Client boundaries, async components, data fetching, serialization rules, streaming with Suspense."
+description: "React Server Components patterns for Next.js 16. Server vs Client boundaries, async components, data fetching, serialization rules, streaming with Suspense. Use when: deciding server vs client component boundaries, fetching data directly in components, or streaming UI with Suspense."
+references: references/rsc-patterns.md, references/streaming.md
+related-skills: nextjs-16, nextjs-tanstack-query, react-19
 ---
-
 
 # Next.js Server Components
 
@@ -10,13 +11,13 @@ Server Components are the default rendering model in Next.js 16 with React 19.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use available Codex subagents when useful:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing component boundaries
-2. **fuse-ai-pilot:research-expert** - Verify latest RSC docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing component boundaries
+2. **ai-pilot:research / research-expert** - Verify latest RSC docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check Next.js 16 RSC patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

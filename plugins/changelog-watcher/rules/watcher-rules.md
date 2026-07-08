@@ -26,9 +26,9 @@ alwaysApply: true
 
 The `api-surface.md` file is the single source of truth for:
 - Hook types we use (PreToolUse, PostToolUse, etc.)
-- Frontmatter fields in agent .md files
+- TOML fields in agent `.toml` files
 - Plugin manifest schema (plugin.json)
-- Skill SKILL.md format and frontmatter
+- Skill `SKILL.md` format and frontmatter
 - MCP server configuration format
 - CLI flags used in scripts
 

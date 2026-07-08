@@ -45,7 +45,7 @@ Orchestrates the full security scanning workflow across all supported languages.
 
 After scanning, delegate fixes to sniper:
 ```
-Agent(subagent_type="fuse-ai-pilot:sniper", prompt="Security fixes: [FILE:LINE] [VULN] [FIX]")
+Use `ai-pilot:sniper-check` / `sniper` when available with: `Security fixes: [FILE:LINE] [VULN] [FIX]`
 ```
 
 ## References

@@ -1,17 +1,19 @@
 ---
 name: feat
-description: "Quick feature commit. Use for new feature,add feature,implement,create new. (migré depuis slash command)"
+description: "Quick feature commit. Use when committing a new feature, added functionality, implementation work, or new behavior."
+related-skills: commit, post-commit, commit-detection
 ---
 
 # Quick Feature Commit
 
-## Current State
+## Preflight
 
-!`git status`
+Inspect the current state before acting:
 
-## Changes
-
-!`git diff --stat`
+```bash
+git status
+git diff --stat
+```
 
 ## Instructions
 

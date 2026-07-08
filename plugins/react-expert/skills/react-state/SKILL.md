@@ -12,11 +12,11 @@ Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing stores and state patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Zustand v5 docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing stores and state patterns
+2. **ai-pilot:research / research-expert** - Verify latest Zustand v5 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check middleware and TypeScript patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

@@ -12,11 +12,11 @@ description: "TanStack Router - 100% type-safe routing, file-based routes, loade
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing routes and navigation patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest TanStack Router docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing routes and navigation patterns
+2. **ai-pilot:research / research-expert** - Verify latest TanStack Router docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check file-based routing and type-safe patterns
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

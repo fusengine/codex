@@ -1,19 +1,20 @@
 ---
 name: memory
-description: "Neural memory operations - search,store,stats,consolidate (migré depuis slash command)"
+description: "Neural memory operations: search stored lessons, store new lessons, inspect memory stats, consolidate episodic patterns, and run decay/pruning."
 ---
 
 # Neural Memory Operations
 
-## Usage
-- `/fuse-memory:memory search <query>` - Search lessons
-- `/fuse-memory:memory store <lesson>` - Store a lesson manually
-- `/fuse-memory:memory stats` - Memory statistics
-- `/fuse-memory:memory consolidate` - Force consolidation
-- `/fuse-memory:memory decay` - Force decay/pruning
+## Operations
+- `search <query>` - Search lessons
+- `store <lesson>` - Store a lesson manually
+- `stats` - Memory statistics
+- `consolidate` - Force consolidation
+- `decay` - Force decay/pruning
 
-## Arguments
-`$ARGUMENTS` contains the subcommand and parameters.
+When the user asks for a memory operation, infer the operation and arguments
+from the prompt. If the operation is ambiguous, ask one concise clarifying
+question before calling memory MCP tools.
 
 ## Subcommands
 

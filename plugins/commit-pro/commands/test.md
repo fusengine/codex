@@ -1,21 +1,21 @@
 ---
 description: Test commit. Use for add tests, update tests, test coverage, unit test, spec.
-argument-hint: [description] | (empty for auto-detection)
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git describe:*), Read, Edit
-disable-model-invocation: false
+argument-hint: "[description] | (empty for auto-detection)"
 ---
 
 # Test Commit
 
 ## Current State
 
-!`git status`
+Run `git status` and use the output.
 
 ## Test Files Changed
 
-!`git diff --stat -- '*.test.*' '*.spec.*' '__tests__/*' 'test/*' 'tests/*'`
+Run `git diff --stat -- '*.test.*' '*.spec.*' '__tests__/*' 'test/*' 'tests/*'` and use the output.
 
 ## Instructions
+
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
 
 Create a test commit.
 

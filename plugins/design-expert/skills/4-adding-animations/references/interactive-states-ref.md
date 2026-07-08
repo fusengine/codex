@@ -14,10 +14,10 @@ related-skills: adding-animations, generating-components
 
 Before implementation, use the available Codex subagent capability when it materially helps:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing state patterns
-2. **fuse-ai-pilot:research-expert** - Framer Motion state animations
+1. **ai-pilot:exploration / explore-codebase** - Check existing state patterns
+2. **ai-pilot:research / research-expert** - Framer Motion state animations
 
-After: Run **fuse-ai-pilot:sniper** for validation.
+After code changes: run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

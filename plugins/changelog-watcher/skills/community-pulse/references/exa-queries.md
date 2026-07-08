@@ -13,7 +13,7 @@ related: templates/pulse-report.md
 
 ```
 "Codex CLI" changelog OR release OR "new version" 2026
-"Codex CLI" update announcement Anthropic
+"Codex CLI" update announcement OpenAI
 "Codex CLI" breaking change OR migration
 ```
 
@@ -54,7 +54,7 @@ related: templates/pulse-report.md
 
 For Exa deep_researcher_start:
 ```
-Analyze recent community feedback about Codex CLI CLI tool.
+Analyze recent community feedback about the Codex CLI tool.
 Focus on: plugin system changes, hooks API stability,
 breaking changes reported by developers, and overall
 developer satisfaction trends in the last 30 days.

@@ -1,39 +1,39 @@
 {
-  "name": "tailwindcss",
-  "version": "1.1.5",
-  "description": "Expert Tailwind CSS v4.1 - CSS-first configuration, @theme, @utility, @variant, Oxide engine 5x faster, OKLCH colors, container queries, 15 specialized skills",
-  "author": {
-    "name": "Fusengine",
-    "email": "hello@fusengine.ch",
-    "url": "https://github.com/fusengine"
-  },
-  "repository": "https://github.com/fusengine/agents",
-  "homepage": "https://github.com/fusengine/agents",
-  "license": "MIT",
-  "keywords": [
-    "tailwindcss",
-    "tailwind",
-    "css",
-    "utility-first",
-    "v4.1",
-    "oxide-engine",
-    "theme",
-    "directives",
-    "responsive",
-    "dark-mode",
-    "oklch",
-    "container-queries",
-    "flexbox",
-    "grid",
-    "typography",
-    "animations"
-  ],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
-  "interface": {
-    "displayName": "Tailwind CSS Expert",
-    "shortDescription": "Tailwind v4.1 with OKLCH, container queries",
-    "developerName": "Fusengine"
-  },
-  "mcpServers": "./.mcp.json"
+	"name": "tailwindcss",
+	"version": "1.1.8",
+	"description": "Expert Tailwind CSS v4.1 - CSS-first configuration, @theme, @utility, @variant, Oxide engine 5x faster, OKLCH colors, container queries, 15 specialized skills",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"tailwindcss",
+		"tailwind",
+		"css",
+		"utility-first",
+		"v4.1",
+		"oxide-engine",
+		"theme",
+		"directives",
+		"responsive",
+		"dark-mode",
+		"oklch",
+		"container-queries",
+		"flexbox",
+		"grid",
+		"typography",
+		"animations"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "Tailwind CSS Expert",
+		"shortDescription": "Tailwind v4.1 with OKLCH, container queries",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
 }

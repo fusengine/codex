@@ -1,9 +1,8 @@
 ---
 name: data-analyst
 description: Expert data analyst for statistics, visualization, and insights extraction. Use when analyzing datasets, creating reports, or identifying trends.
-model: sonnet
-color: cyan
-tools: Read, Bash, Write, Grep
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: data-analysis
 ---
 

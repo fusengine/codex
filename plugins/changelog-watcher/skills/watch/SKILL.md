@@ -1,6 +1,7 @@
 ---
 name: watch
-description: "Check for Codex CLI updates,detect breaking changes,analyze plugin compatibility,and optionally gather community pulse via Exa. (migré depuis slash command)"
+description: "Check for Codex CLI updates, detect breaking changes, analyze plugin compatibility, and optionally gather community pulse via Exa."
+related-skills: changelog-scan, breaking-changes, community-pulse
 ---
 
 # Watch - Codex CLI Update Tracker
@@ -17,7 +18,7 @@ Monitor Codex CLI releases and verify plugin ecosystem compatibility.
 
 ### Default Mode (Technical)
 
-1. **Fetch** latest changelog from code.codex.com
+1. **Fetch** latest changelog from developers.openai.com/codex/changelog
 2. **Compare** against known API surface (api-surface.md)
 3. **Scan** plugin files for impacted APIs
 4. **Report** with [BREAKING], [DEPRECATED], [NEW] tags
@@ -34,8 +35,8 @@ Everything in default mode, plus:
 
 | Source | Method | Mode |
 |--------|--------|------|
-| Changelog | WebFetch code.codex.com | Default |
-| Docs index | WebFetch llms.txt | Default |
+| Changelog | fuse-browser fetch developers.openai.com/codex/changelog | Default |
+| Docs index | fuse-browser fetch official OpenAI Codex docs | Default |
 | Hook/Plugin API | Grep local files | Default |
 | Community blogs | Exa web_search | --pulse |
 | Deep analysis | Exa deep_researcher | --pulse |

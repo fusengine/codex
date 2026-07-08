@@ -1,20 +1,19 @@
 ---
 name: skill-creator
-description: "Use when creating new skills, restructuring existing skills, or improving skill documentation. Generates SKILL.md + references/ structure with proper patterns."
+description: Use when creating new skills, restructuring existing skills, or improving skill documentation. Generates SKILL.md + references/ structure with proper patterns.
 ---
-
 
 # Skill Creator
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY skill creation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY skill creation, use the available Codex subagent workflow when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Check existing skills, analyze structure
-2. **fuse-ai-pilot:research-expert** - Fetch latest official documentation online
+1. **ai-pilot:exploration / explore-codebase** - Check existing skills, analyze structure
+2. **ai-pilot:research / research-expert** - Fetch latest official documentation online
 3. **mcp__context7__query-docs** - Get code examples from official sources
 
-After creation, run **fuse-ai-pilot:sniper** for validation.
+After creation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 
@@ -35,7 +34,7 @@ After creation, run **fuse-ai-pilot:sniper** for validation.
 2. **SKILL.md is descriptive** - Guides agent to references/templates
 3. **References are conceptual** - WHY + WHEN, max 150 lines
 4. **Templates are complete** - Copy-paste ready code
-5. **Register in agent + marketplace.json** - Or skill won't load
+5. **Expose through plugin manifest** - `.codex-plugin/plugin.json` must point at `./skills/`
 6. **Run sniper after creation** - Validate all files
 
 ---
@@ -97,7 +96,7 @@ mkdir -p plugins/<agent>/skills/<name>/references/templates
 → references/templates/*.md (code)
 
 # 4. Register
-→ agent frontmatter + marketplace.json
+→ ensure `.codex-plugin/plugin.json` exposes `./skills/`
 
 # 5. Validate
 → sniper
@@ -130,7 +129,7 @@ mkdir -p plugins/<agent>/skills/<name>/references/templates
 - [ ] Reference Guide has Concepts + Templates tables
 - [ ] References < 150 lines each
 - [ ] Templates have complete, working code
-- [ ] Registered in agent + marketplace.json
+- [ ] Plugin manifest exposes `./skills/`
 
 ---
 

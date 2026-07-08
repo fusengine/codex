@@ -1,29 +1,29 @@
 {
-  "name": "ai-pilot",
-  "version": "1.2.35",
-  "description": "AI Pilot workflow agents: sniper (code quality), research-expert, explore-codebase, websearch",
-  "author": {
-    "name": "Fusengine",
-    "email": "hello@fusengine.ch",
-    "url": "https://github.com/fusengine"
-  },
-  "repository": "https://github.com/fusengine/agents",
-  "homepage": "https://github.com/fusengine/agents",
-  "license": "MIT",
-  "keywords": [
-    "ai-pilot",
-    "workflow",
-    "apex",
-    "code-quality",
-    "research",
-    "seo"
-  ],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
-  "interface": {
-    "displayName": "AI Pilot",
-    "shortDescription": "Expert agents: sniper, research-expert, explore-codebase, websearch",
-    "developerName": "Fusengine"
-  },
-  "mcpServers": "./.mcp.json"
+	"name": "ai-pilot",
+	"version": "1.2.39",
+	"description": "AI Pilot workflow agents: sniper (code quality), research-expert, explore-codebase, websearch",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"ai-pilot",
+		"workflow",
+		"apex",
+		"code-quality",
+		"research",
+		"seo"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "AI Pilot",
+		"shortDescription": "Expert agents: sniper, research-expert, explore-codebase, websearch",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
 }

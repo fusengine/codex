@@ -1,8 +1,7 @@
 ---
 name: guardrails
-description: "Security techniques and quality control for prompts and agents"
+description: "Security techniques and quality control for prompts and agents. Use when: implementing input/output guardrails, writing ethical guardrail templates, or auditing an agent/prompt for missing security controls."
 ---
-
 
 # Guardrails
 

@@ -1,17 +1,16 @@
 ---
 name: prompt
-description: "Create or optimize prompts using best practices (migré depuis slash command)"
+description: "Create, optimize, review, or design prompts and agent instructions using prompt-engineering best practices."
 ---
 
-# /prompt Command
+# Prompt Workflow
 
-Command for creating or optimizing prompts using the prompt-engineer agent.
+Use this skill when the user asks to create, optimize, review, or design prompts.
 
 ## Usage
 
-```bash
-/prompt [action] [description]
-```
+Infer the action from the user's request. If the action is ambiguous, ask one
+concise clarifying question.
 
 ## Actions
 
@@ -27,25 +26,27 @@ Command for creating or optimizing prompts using the prompt-engineer agent.
 ### 1. Action Detection
 
 ```text
-IF $ARGUMENTS contains "create" or "new":
+IF the request contains "create" or "new":
   → Action: CREATE
-IF $ARGUMENTS contains "optimize" or "improve":
+IF the request contains "optimize" or "improve":
   → Action: OPTIMIZE
-IF $ARGUMENTS contains "agent" or "assistant":
+IF the request contains "agent" or "assistant":
   → Action: AGENT_DESIGN
-IF $ARGUMENTS contains "review" or "analyze":
+IF the request contains "review" or "analyze":
   → Action: REVIEW
 ELSE:
   → Ask for clarification
 ```
 
-### 2. Agent Launch
+### 2. Skill Selection
 
 ```text
-Launch prompt-engineer agent with:
-- Appropriate skill loaded
-- User context
-- Identified constraints
+Load the appropriate prompt-engineer skill:
+- prompt-creation
+- prompt-optimization
+- agent-design
+- guardrails
+- prompt-testing
 ```
 
 ### 3. Workflow Execution
@@ -53,7 +54,7 @@ Launch prompt-engineer agent with:
 **For CREATE:**
 1. Identify prompt type (system, task, few-shot, meta)
 2. Identify constraints (model, format, domain)
-3. Apply the 9-element Anthropic structure
+3. Apply the structured 9-element structure
 4. Generate prompt with appropriate techniques
 5. Validate with quality checklist
 
@@ -70,7 +71,7 @@ Launch prompt-engineer agent with:
 3. Define workflow
 4. Configure tools and skills
 5. Implement guardrails
-6. Generate complete agent.md file
+6. Generate a Codex-compatible agent TOML or skill, depending on the target
 
 **For REVIEW:**
 1. Analyze according to checklist
@@ -82,27 +83,19 @@ Launch prompt-engineer agent with:
 
 ### Create a system prompt
 
-```bash
-/prompt create a technical support assistant for a mobile app
-```
+Create a technical support assistant for a mobile app.
 
 ### Optimize an existing prompt
 
-```bash
-/prompt optimize [paste the prompt to improve]
-```
+Optimize the prompt pasted by the user.
 
 ### Design an agent
 
-```bash
-/prompt agent a Python-specialized code reviewer
-```
+Design a Python-specialized code reviewer agent.
 
 ### Analyze a prompt
 
-```bash
-/prompt review [paste the prompt to analyze]
-```
+Review the prompt pasted by the user.
 
 ## Output Format
 

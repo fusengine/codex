@@ -1,0 +1,33 @@
+{
+	"name": "rust-expert",
+	"version": "1.0.3",
+	"description": "Expert Rust 1.96+ with 2024 edition, ownership, error handling, async/tokio, axum backends, cargo tooling, and SOLID principles.",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"repository": "https://github.com/fusengine/agents",
+	"homepage": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"keywords": [
+		"rust",
+		"rust-1-96",
+		"edition-2024",
+		"tokio",
+		"axum",
+		"cargo",
+		"async",
+		"ownership",
+		"backend",
+		"solid"
+	],
+	"skills": "./skills/",
+	"hooks": "./hooks/hooks.json",
+	"interface": {
+		"displayName": "Rust Expert",
+		"shortDescription": "Rust 1.96, async, axum, cargo, testing, and SOLID specialist",
+		"developerName": "Fusengine"
+	},
+	"mcpServers": "./.mcp.json"
+}

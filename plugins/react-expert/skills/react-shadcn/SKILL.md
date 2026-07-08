@@ -12,11 +12,11 @@ Beautiful, accessible components built on Radix UI with Tailwind CSS styling.
 
 Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing components and patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest shadcn/ui docs via Context7/Exa
+1. **ai-pilot:exploration / explore-codebase** - Analyze existing components and patterns
+2. **ai-pilot:research / research-expert** - Verify latest shadcn/ui docs via Context7/Exa
 3. **mcp__shadcn__*** - Search registry for component availability
 
-After implementation, run **fuse-ai-pilot:sniper** for validation.
+After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ---
 

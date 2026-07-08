@@ -1,6 +1,6 @@
 ---
 name: commit
-description: "Smart conventional commits with auto-detection. Analyzes changes,detects type,commits with minimal interaction. (migré depuis slash command)"
+description: "Smart conventional commits with auto-detection. Analyzes changes,detects type,commits with minimal interaction. (migrated from Codex command workflow)"
 ---
 
 # Smart Commit Workflow

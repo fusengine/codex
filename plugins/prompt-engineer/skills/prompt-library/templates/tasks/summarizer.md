@@ -1,9 +1,8 @@
 ---
 name: summarizer
 description: Expert text summarizer for executive summaries, technical abstracts, and content condensation. Use when summarizing documents, articles, or reports.
-model: haiku
-color: teal
-tools: Read
+model: gpt-5.5
+capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
 skills: text-processing
 ---
 

@@ -13,27 +13,23 @@ related: templates/changelog-report.md
 
 | Page | URL | Content |
 |------|-----|---------|
-| Changelog | `code.codex.com/docs/en/changelog.md` | Release notes |
-| Docs Index | `code.codex.com/docs/llms.txt` | All pages list |
-| Hooks | `code.codex.com/docs/en/hooks.md` | Hook API reference |
-| Plugins | `code.codex.com/docs/en/plugins-reference.md` | Plugin schema |
-| Skills | `code.codex.com/docs/en/skills.md` | Skill format |
-| Sub-agents | `code.codex.com/docs/en/sub-agents.md` | Agent config |
-| Agent Teams | `code.codex.com/docs/en/agent-teams.md` | Team delegation |
-| CLI Reference | `code.codex.com/docs/en/cli-reference.md` | Commands/flags |
-| MCP | `code.codex.com/docs/en/mcp.md` | MCP server config |
-| Settings | `code.codex.com/docs/en/settings.md` | Config scopes |
+| Changelog | `https://developers.openai.com/codex/changelog` | Release notes |
+| CLI overview | `https://developers.openai.com/codex/cli` | Install, upgrade, release links |
+| CLI reference | `https://developers.openai.com/codex/cli/reference` | Commands/flags |
+| Skills | `https://developers.openai.com/codex/skills` | Skill format |
+| Subagents | `https://developers.openai.com/codex/subagents` | Agent TOML config |
+| Config | `https://developers.openai.com/codex/config-basic` | Config scopes and MCP |
 
 ## Fetch Strategy
 
-1. Start with `llms.txt` to detect new pages
-2. Fetch `changelog.md` for version updates
-3. Fetch API pages (hooks, plugins, skills) for schema changes
+1. Start with the official changelog for version updates
+2. Fetch CLI/reference pages for commands and config changes
+3. Fetch skills/subagents pages for schema changes
 4. Compare page count/content with last check
 
 ## New Page Detection
 
-If `llms.txt` has new URLs not in previous check:
+If official Codex navigation exposes new relevant pages:
 - New page = likely new feature
 - Tag as `[NEW]` in report
 - Fetch and analyze the new page

@@ -1,19 +1,16 @@
 name = "seo-sitemap"
 description = "Sitemap & robots.txt sub-agent. Use when analyzing or generating sitemap.xml,sitemap-news.xml,sitemap-image.xml,sitemap-video.xml,or robots.txt. Do NOT use for redirect analysis (use seo-redirects)."
-model = "gpt-5.4-mini"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Sitemap", "SEO Sitemap Specialist", "SEO Sitemap Agent"]
 sandbox_mode = "workspace-write"
-developer_instructions = '''
-# SEO Sitemap Sub-Agent
+developer_instructions = '''# SEO Sitemap Sub-Agent
+
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for sitemap and robots.txt.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` when sitemap or robots.txt decisions depend on indexed competitors, freshness-sensitive SERP visibility, query coverage, or discovering important public URLs. Use `mcp__serper-search__scrape` to inspect ranking pages when URL coverage or content type is unclear. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-sitemap` skill: include the AI-crawler allowlist (GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended, Applebot-Extended) in robots.txt.
 
 ## Workflow
 
@@ -47,5 +44,8 @@ Read the `seo-sitemap` skill: include the AI-crawler allowlist (GPTBot, ChatGPT-
 - lastmod accuracy: N% accurate
 - Orphan URLs: N
 - Missing URLs: N
-```
-'''
+```'''
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-sitemap/SKILL.md"
+enabled = true

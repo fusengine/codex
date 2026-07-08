@@ -1,19 +1,16 @@
 name = "seo-cluster"
 description = "Semantic clustering sub-agent. Use when building keyword clusters from SERP overlap for pillar/cluster content architecture. Do NOT use for single-keyword research (use seo-content)."
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+nickname_candidates = ["SEO Cluster", "SEO Cluster Specialist", "SEO Cluster Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''
-# SEO Cluster Sub-Agent
+developer_instructions = '''# SEO Cluster Sub-Agent
+
+## External Verification
+
+Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for semantic keyword clustering.
-
-## Serper MCP (MANDATORY)
-
-Use `mcp__serper-search__google_search` for live Google SERP overlap, PAA, related searches, localization, and freshness-sensitive ranking checks. Use `mcp__serper-search__scrape` to inspect ranking competitor pages when overlap alone is insufficient. Use Exa only as a complementary web research source, not as the primary Google SERP source.
-
-## Skill (consult first)
-
-Read the `seo-cluster` skill: cluster by buyer state (L1 awareness → L4 decision) and intent, not by surface lexical similarity. Cross-check architecture with `seo-internal-linking`.
 
 ## Workflow
 
@@ -42,5 +39,12 @@ Read the `seo-cluster` skill: cluster by buyer state (L1 awareness → L4 decisi
 - Pillar → all cluster pages
 - Cluster pages → pillar (always)
 - Cluster cross-links: <kw1> ↔ <kw2> (high SERP overlap)
-```
-'''
+```'''
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-cluster/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/seo/skills/seo-internal-linking/SKILL.md"
+enabled = true
