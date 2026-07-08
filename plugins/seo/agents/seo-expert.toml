@@ -116,5 +116,5 @@ Complete search optimization including:
 - ❌ No quick answer in first 100 words'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo/SKILL.md"
+path = "plugins/seo/skills/seo/SKILL.md"
 enabled = true

@@ -50,9 +50,9 @@ Parallelizable expert for Generative Engine Optimization.
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-geo/SKILL.md"
+path = "plugins/seo/skills/seo-geo/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-featured-snippets/SKILL.md"
+path = "plugins/seo/skills/seo-featured-snippets/SKILL.md"
 enabled = true

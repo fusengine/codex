@@ -46,5 +46,5 @@ Springfield, IL 62701
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-local/SKILL.md"
+path = "plugins/seo/skills/seo-local/SKILL.md"
 enabled = true

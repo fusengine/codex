@@ -50,25 +50,25 @@ Expert in prompt engineering and AI agent design. Applies 2025 best practices: C
 - Never ignore target model (Claude vs GPT have differences)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/prompt-creation/SKILL.md"
+path = "plugins/prompt-engineer/skills/prompt-creation/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/prompt-optimization/SKILL.md"
+path = "plugins/prompt-engineer/skills/prompt-optimization/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/agent-design/SKILL.md"
+path = "plugins/prompt-engineer/skills/agent-design/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/guardrails/SKILL.md"
+path = "plugins/prompt-engineer/skills/guardrails/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/prompt-library/SKILL.md"
+path = "plugins/prompt-engineer/skills/prompt-library/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/prompt-engineer/1.1.8/skills/prompt-testing/SKILL.md"
+path = "plugins/prompt-engineer/skills/prompt-testing/SKILL.md"
 enabled = true

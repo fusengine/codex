@@ -1,16 +1,13 @@
 import { basename, dirname, join } from "node:path";
-import { buildSkillIndex, buildVersionIndex, readSkillNames } from "./agent-plugin-index.ts";
+import { buildSkillIndex, readSkillNames } from "./agent-plugin-index.ts";
 import type { AgentTomlOptions } from "./agent.types.ts";
 
 export async function buildAgentTomlOptions(srcDir: string, destDir: string): Promise<AgentTomlOptions> {
-	const codexHome = process.env.CODEX_HOME ?? join(process.env.HOME ?? "/Users/username", ".codex");
-	const cacheRoot = join(codexHome, "plugins/cache/fusengine-codex");
 	const roots = [dirname(destDir), dirname(srcDir)];
 	const pluginName = basename(destDir);
-	const [fallbackSkillNames, skillIndex, versionByPlugin] = await Promise.all([
+	const [fallbackSkillNames, skillIndex] = await Promise.all([
 		readFallbackSkillNames(srcDir, destDir),
 		buildSkillIndex(roots),
-		buildVersionIndex([cacheRoot, ...roots]),
 	]);
 
 	return {
@@ -18,17 +15,7 @@ export async function buildAgentTomlOptions(srcDir: string, destDir: string): Pr
 		resolveSkillPaths: (skillNames) =>
 			skillNames.map((skillName) => {
 				const owner = resolveSkillOwner(skillName, pluginName, skillIndex);
-				const version = versionByPlugin.get(owner);
-				if (!version) throw new Error(`Missing plugin version for ${owner}:${skillName}`);
-				return join(
-					codexHome,
-					"plugins/cache/fusengine-codex",
-					owner,
-					version,
-					"skills",
-					skillName,
-					"SKILL.md",
-				);
+				return join("plugins", owner, "skills", skillName, "SKILL.md");
 			}),
 	};
 }

@@ -1,11 +1,12 @@
 import { lstat, readdir } from "node:fs/promises";
 import { join } from "node:path";
+import type { PluginFile } from "./plugin-file.types";
 
-async function exists(path: string): Promise<boolean> {
+export async function pathExists(path: string): Promise<boolean> {
 	try { await lstat(path); return true; } catch { return false; }
 }
 
-function compareVersionsDesc(a: string, b: string): number {
+export function compareVersionsDesc(a: string, b: string): number {
 	const left = a.split(/[.-]/).map((part) => Number.parseInt(part, 10));
 	const right = b.split(/[.-]/).map((part) => Number.parseInt(part, 10));
 	const max = Math.max(left.length, right.length);
@@ -22,14 +23,14 @@ async function listVersionedFiles(
 	plugin: string,
 	subdir: string,
 	extension: string,
-): Promise<Array<{ plugin: string; file: string; src: string }>> {
+): Promise<PluginFile[]> {
 	const versions = (await readdir(pluginRoot, { withFileTypes: true }))
 		.filter((v) => v.isDirectory() && !v.name.startsWith("."))
 		.map((v) => v.name)
 		.sort(compareVersionsDesc);
 	for (const version of versions) {
 		const dir = join(pluginRoot, version, subdir);
-		if (!(await exists(dir))) continue;
+		if (!(await pathExists(dir))) continue;
 		const files = await readdir(dir);
 		return files
 			.filter((file) => file.endsWith(extension))
@@ -42,12 +43,12 @@ export async function listPluginFiles(
 	pluginsRoot: string,
 	subdir: string,
 	extension: string,
-): Promise<Array<{ plugin: string; file: string; src: string }>> {
-	const out: Array<{ plugin: string; file: string; src: string }> = [];
+): Promise<PluginFile[]> {
+	const out: PluginFile[] = [];
 	for (const e of await readdir(pluginsRoot, { withFileTypes: true })) {
 		if (!e.isDirectory() || e.name.startsWith(".") || e.name === "_shared") continue;
 		const dir = join(pluginsRoot, e.name, subdir);
-		if (await exists(dir)) {
+		if (await pathExists(dir)) {
 			for (const file of await readdir(dir)) {
 				if (file.endsWith(extension)) out.push({ plugin: e.name, file, src: join(dir, file) });
 			}

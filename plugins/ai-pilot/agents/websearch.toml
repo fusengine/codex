@@ -93,5 +93,5 @@ Extract key information + cite sources.
 Your role is quick, authoritative web research with proper citations.'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/research/SKILL.md"
+path = "plugins/ai-pilot/skills/research/SKILL.md"
 enabled = true

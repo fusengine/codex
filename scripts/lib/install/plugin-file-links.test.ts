@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import { lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { materializeAgentFiles } from "./agent-materializer";
 import { listPluginFiles } from "./plugin-file-discovery";
 import { symlinkPluginFiles } from "./plugin-file-symlinks";
 
@@ -58,5 +59,35 @@ test("symlinkPluginFiles preserves user files and replaces managed plugin links"
 	expect(readFileSync(userPrompt, "utf8")).toBe("user prompt");
 	expect(readlinkSync(join(prompts, "watch.md"))).toBe(newWatch);
 	expect(readlinkSync(join(prompts, "scan.md"))).toBe(externalScan);
+	rmSync(root, { recursive: true, force: true });
+});
+
+test("materializeAgentFiles rewrites portable and stale cache skill paths to current plugin roots", async () => {
+	const root = tempRoot();
+	const cache = join(root, "cache");
+	const agents = join(root, "agents");
+	const staleSharedPath = join(root, ".codex/plugins/cache/fusengine-codex/shared/0.9.0/skills/shared-skill/SKILL.md");
+	mkdirSync(join(cache, "alpha", "1.0.0", "agents"), { recursive: true });
+	mkdirSync(join(cache, "alpha", "1.0.0", "skills", "alpha-skill"), { recursive: true });
+	mkdirSync(join(cache, "shared", "1.2.0", "skills", "shared-skill"), { recursive: true });
+	writeFileSync(join(cache, "alpha", "1.0.0", "agents", "alpha.toml"), [
+		'name = "alpha"',
+		"[[skills.config]]",
+		'path = "plugins/alpha/skills/alpha-skill/SKILL.md"',
+		"[[skills.config]]",
+		`path = "${staleSharedPath}"`,
+		"",
+	].join("\n"));
+	writeFileSync(join(cache, "alpha", "1.0.0", "skills", "alpha-skill", "SKILL.md"), "alpha");
+	writeFileSync(join(cache, "shared", "1.2.0", "skills", "shared-skill", "SKILL.md"), "shared");
+
+	const files = await listPluginFiles(cache, "agents", ".toml");
+	await materializeAgentFiles(files, cache, agents);
+
+	const out = readFileSync(join(agents, "alpha.toml"), "utf8");
+	expect(out).toContain("# Managed by fusengine-codex; source:");
+	expect(out).toContain(`path = "${join(cache, "alpha", "1.0.0", "skills", "alpha-skill", "SKILL.md")}"`);
+	expect(out).toContain(`path = "${join(cache, "shared", "1.2.0", "skills", "shared-skill", "SKILL.md")}"`);
+	expect(out).not.toContain("/0.9.0/");
 	rmSync(root, { recursive: true, force: true });
 });

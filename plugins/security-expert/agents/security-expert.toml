@@ -69,21 +69,21 @@ Systematic security auditor ensuring vulnerability-free, hardened code. Works wi
 - Expose secrets in reports or logs'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/security-expert/1.0.15/skills/security-scan/SKILL.md"
+path = "plugins/security-expert/skills/security-scan/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/security-expert/1.0.15/skills/cve-research/SKILL.md"
+path = "plugins/security-expert/skills/cve-research/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/security-expert/1.0.15/skills/dependency-audit/SKILL.md"
+path = "plugins/security-expert/skills/dependency-audit/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/security-expert/1.0.15/skills/security-headers/SKILL.md"
+path = "plugins/security-expert/skills/security-headers/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/security-expert/1.0.15/skills/auth-audit/SKILL.md"
+path = "plugins/security-expert/skills/auth-audit/SKILL.md"
 enabled = true

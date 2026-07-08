@@ -65,13 +65,13 @@ Additional steps when `--pulse` is active:
 - Ignore BREAKING changes'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/changelog-watcher/1.0.10/skills/changelog-scan/SKILL.md"
+path = "plugins/changelog-watcher/skills/changelog-scan/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/changelog-watcher/1.0.10/skills/breaking-changes/SKILL.md"
+path = "plugins/changelog-watcher/skills/breaking-changes/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/changelog-watcher/1.0.10/skills/community-pulse/SKILL.md"
+path = "plugins/changelog-watcher/skills/community-pulse/SKILL.md"
 enabled = true

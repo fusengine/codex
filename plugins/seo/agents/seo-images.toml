@@ -43,5 +43,5 @@ Parallelizable expert for image SEO.
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-images/SKILL.md"
+path = "plugins/seo/skills/seo-images/SKILL.md"
 enabled = true

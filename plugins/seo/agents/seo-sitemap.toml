@@ -43,5 +43,5 @@ Parallelizable expert for sitemap and robots.txt.
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-sitemap/SKILL.md"
+path = "plugins/seo/skills/seo-sitemap/SKILL.md"
 enabled = true

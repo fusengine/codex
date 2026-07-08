@@ -89,5 +89,5 @@ If `additionalContext` contains "EXPLORATION CACHE INSTRUCTIONS":
 - No skipping config files, dependencies, or entry points'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/exploration/SKILL.md"
+path = "plugins/ai-pilot/skills/exploration/SKILL.md"
 enabled = true

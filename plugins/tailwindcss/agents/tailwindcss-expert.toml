@@ -95,69 +95,69 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-v4/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-v4/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-core/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-core/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-utilities/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-utilities/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-utility-classes/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-utility-classes/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-responsive/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-responsive/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-custom-styles/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-custom-styles/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-layout/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-layout/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-spacing/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-spacing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-sizing/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-sizing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-typography/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-typography/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-backgrounds/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-backgrounds/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-borders/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-borders/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-effects/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-effects/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-transforms/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-transforms/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-interactivity/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-interactivity/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tailwindcss/1.1.6/skills/tailwindcss-accessibility/SKILL.md"
+path = "plugins/tailwindcss/skills/tailwindcss-accessibility/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/elicitation/SKILL.md"
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
 enabled = true

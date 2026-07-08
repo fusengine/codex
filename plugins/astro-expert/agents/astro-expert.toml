@@ -120,57 +120,57 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa/astro-docs references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-6/SKILL.md"
+path = "plugins/astro-expert/skills/astro-6/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-content/SKILL.md"
+path = "plugins/astro-expert/skills/astro-content/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-actions/SKILL.md"
+path = "plugins/astro-expert/skills/astro-actions/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-islands/SKILL.md"
+path = "plugins/astro-expert/skills/astro-islands/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-integrations/SKILL.md"
+path = "plugins/astro-expert/skills/astro-integrations/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-seo/SKILL.md"
+path = "plugins/astro-expert/skills/astro-seo/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-assets/SKILL.md"
+path = "plugins/astro-expert/skills/astro-assets/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-db/SKILL.md"
+path = "plugins/astro-expert/skills/astro-db/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-deployment/SKILL.md"
+path = "plugins/astro-expert/skills/astro-deployment/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-starlight/SKILL.md"
+path = "plugins/astro-expert/skills/astro-starlight/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-styling/SKILL.md"
+path = "plugins/astro-expert/skills/astro-styling/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-security/SKILL.md"
+path = "plugins/astro-expert/skills/astro-security/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/astro-i18n/SKILL.md"
+path = "plugins/astro-expert/skills/astro-i18n/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/astro-expert/1.0.8/skills/solid-astro/SKILL.md"
+path = "plugins/astro-expert/skills/solid-astro/SKILL.md"
 enabled = true

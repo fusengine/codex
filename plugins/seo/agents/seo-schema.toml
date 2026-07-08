@@ -46,5 +46,5 @@ Parallelizable expert for Schema.org JSON-LD operations.
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-schema/SKILL.md"
+path = "plugins/seo/skills/seo-schema/SKILL.md"
 enabled = true

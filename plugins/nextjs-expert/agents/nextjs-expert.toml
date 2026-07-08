@@ -81,49 +81,49 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/solid-nextjs/SKILL.md"
+path = "plugins/nextjs-expert/skills/solid-nextjs/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-16/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-16/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/prisma-7/SKILL.md"
+path = "plugins/nextjs-expert/skills/prisma-7/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/better-auth/SKILL.md"
+path = "plugins/nextjs-expert/skills/better-auth/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-tanstack-form/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-tanstack-form/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-zustand/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-zustand/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-shadcn/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-shadcn/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-i18n/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-i18n/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/elicitation/SKILL.md"
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-stack/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-stack/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-server-components/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-server-components/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/nextjs-expert/1.1.19/skills/nextjs-tanstack-query/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-tanstack-query/SKILL.md"
 enabled = true

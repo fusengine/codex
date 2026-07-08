@@ -51,17 +51,17 @@ Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestr
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-technical/SKILL.md"
+path = "plugins/seo/skills/seo-technical/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-sitemap/SKILL.md"
+path = "plugins/seo/skills/seo-sitemap/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-hreflang/SKILL.md"
+path = "plugins/seo/skills/seo-hreflang/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-redirects/SKILL.md"
+path = "plugins/seo/skills/seo-redirects/SKILL.md"
 enabled = true

@@ -38,9 +38,9 @@ Parallelizable expert for semantic keyword clustering.
 ```'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-cluster/SKILL.md"
+path = "plugins/seo/skills/seo-cluster/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/seo/1.0.6/skills/seo-internal-linking/SKILL.md"
+path = "plugins/seo/skills/seo-internal-linking/SKILL.md"
 enabled = true

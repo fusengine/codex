@@ -82,29 +82,29 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-config/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-config/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-language-patterns/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-language-patterns/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-runtime-node/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-runtime-node/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-runtime-bun/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-runtime-bun/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-lint-format/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-lint-format/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-testing/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-testing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/typescript-expert/1.0.2/skills/ts-packaging/SKILL.md"
+path = "plugins/typescript-expert/skills/ts-packaging/SKILL.md"
 enabled = true

@@ -58,33 +58,33 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/solid-react/SKILL.md"
+path = "plugins/react-expert/skills/solid-react/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-19/SKILL.md"
+path = "plugins/react-expert/skills/react-19/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-tanstack-router/SKILL.md"
+path = "plugins/react-expert/skills/react-tanstack-router/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-state/SKILL.md"
+path = "plugins/react-expert/skills/react-state/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-forms/SKILL.md"
+path = "plugins/react-expert/skills/react-forms/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-testing/SKILL.md"
+path = "plugins/react-expert/skills/react-testing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-shadcn/SKILL.md"
+path = "plugins/react-expert/skills/react-shadcn/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/react-expert/1.0.17/skills/react-i18n/SKILL.md"
+path = "plugins/react-expert/skills/react-i18n/SKILL.md"
 enabled = true

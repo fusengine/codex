@@ -85,97 +85,97 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/solid-php/SKILL.md"
+path = "plugins/laravel-expert/skills/solid-php/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/fusecore/SKILL.md"
+path = "plugins/laravel-expert/skills/fusecore/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-architecture/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-architecture/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-eloquent/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-eloquent/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-api/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-api/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-auth/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-auth/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-permission/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-permission/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-testing/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-testing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-queues/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-queues/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-livewire/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-livewire/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-blade/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-blade/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-vite/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-vite/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-migrations/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-migrations/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-billing/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-billing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-stripe-connect/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-stripe-connect/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-i18n/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-i18n/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-reverb/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-reverb/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-scout/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-scout/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-attributes/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-attributes/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-ai-sdk/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-ai-sdk/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-jsonapi/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-jsonapi/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-vector-search/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-vector-search/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/laravel-expert/1.2.4/skills/laravel-upgrade-v13/SKILL.md"
+path = "plugins/laravel-expert/skills/laravel-upgrade-v13/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/elicitation/SKILL.md"
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
 enabled = true

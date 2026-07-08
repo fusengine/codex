@@ -87,29 +87,29 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-core-language/SKILL.md"
+path = "plugins/rust-expert/skills/rust-core-language/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-error-handling/SKILL.md"
+path = "plugins/rust-expert/skills/rust-error-handling/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-async-concurrency/SKILL.md"
+path = "plugins/rust-expert/skills/rust-async-concurrency/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-web-backend/SKILL.md"
+path = "plugins/rust-expert/skills/rust-web-backend/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-testing-quality/SKILL.md"
+path = "plugins/rust-expert/skills/rust-testing-quality/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-tooling-cicd/SKILL.md"
+path = "plugins/rust-expert/skills/rust-tooling-cicd/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/rust-expert/1.0.2/skills/rust-ecosystem-crates/SKILL.md"
+path = "plugins/rust-expert/skills/rust-ecosystem-crates/SKILL.md"
 enabled = true

@@ -93,11 +93,11 @@ sources_verified: []
 '''
 
 [[skills.config]]
-path = "/Users/<username>/.codex/plugins/cache/fusengine-codex/<plugin>/<version>/skills/<skill-a>/SKILL.md"
+path = "plugins/<plugin>/skills/<skill-a>/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/<username>/.codex/plugins/cache/fusengine-codex/<plugin>/<version>/skills/<skill-b>/SKILL.md"
+path = "plugins/<plugin>/skills/<skill-b>/SKILL.md"
 enabled = true
 ```
 
@@ -144,6 +144,6 @@ sources_verified: []
 '''
 
 [[skills.config]]
-path = "/Users/<username>/.codex/plugins/cache/fusengine-codex/nextjs-expert/<version>/skills/nextjs-16/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-16/SKILL.md"
 enabled = true
 ```

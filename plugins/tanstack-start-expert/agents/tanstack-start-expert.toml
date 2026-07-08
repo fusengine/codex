@@ -95,37 +95,37 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/solid-tanstack-start/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/solid-tanstack-start/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-core/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-core/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-server-functions/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-server-functions/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-middleware/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-middleware/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-execution-model/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-execution-model/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-server-routes/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-server-routes/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-routing-data/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-routing-data/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-auth/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-auth/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/tanstack-start-expert/1.0.2/skills/start-deployment/SKILL.md"
+path = "plugins/tanstack-start-expert/skills/start-deployment/SKILL.md"
 enabled = true

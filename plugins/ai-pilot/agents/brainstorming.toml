@@ -40,13 +40,13 @@ Refine requirements through structured questioning before any code is written. E
 5. **Transition to APEX** — After approval, hand off to Analyze phase'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/brainstorming/SKILL.md"
+path = "plugins/ai-pilot/skills/brainstorming/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/research/SKILL.md"
+path = "plugins/ai-pilot/skills/research/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/exploration/SKILL.md"
+path = "plugins/ai-pilot/skills/exploration/SKILL.md"
 enabled = true

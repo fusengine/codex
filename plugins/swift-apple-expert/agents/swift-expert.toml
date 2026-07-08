@@ -96,49 +96,49 @@ Report back to the lead with:
 - **sources_verified**: Apple Docs MCP / Context7 / Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/swift-core/SKILL.md"
+path = "plugins/swift-apple-expert/skills/swift-core/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/swiftui-core/SKILL.md"
+path = "plugins/swift-apple-expert/skills/swiftui-core/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/ios/SKILL.md"
+path = "plugins/swift-apple-expert/skills/ios/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/macos/SKILL.md"
+path = "plugins/swift-apple-expert/skills/macos/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/ipados/SKILL.md"
+path = "plugins/swift-apple-expert/skills/ipados/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/watchos/SKILL.md"
+path = "plugins/swift-apple-expert/skills/watchos/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/visionos/SKILL.md"
+path = "plugins/swift-apple-expert/skills/visionos/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/tvos/SKILL.md"
+path = "plugins/swift-apple-expert/skills/tvos/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/mcp-tools/SKILL.md"
+path = "plugins/swift-apple-expert/skills/mcp-tools/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/build-distribution/SKILL.md"
+path = "plugins/swift-apple-expert/skills/build-distribution/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/swift-apple-expert/1.1.16/skills/solid-swift/SKILL.md"
+path = "plugins/swift-apple-expert/skills/solid-swift/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/elicitation/SKILL.md"
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
 enabled = true

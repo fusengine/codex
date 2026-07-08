@@ -91,21 +91,21 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa/shadcn MCP references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/shadcn-expert/1.0.13/skills/shadcn-detection/SKILL.md"
+path = "plugins/shadcn-expert/skills/shadcn-detection/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/shadcn-expert/1.0.13/skills/shadcn-components/SKILL.md"
+path = "plugins/shadcn-expert/skills/shadcn-components/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/shadcn-expert/1.0.13/skills/shadcn-registries/SKILL.md"
+path = "plugins/shadcn-expert/skills/shadcn-registries/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/shadcn-expert/1.0.13/skills/shadcn-theming/SKILL.md"
+path = "plugins/shadcn-expert/skills/shadcn-theming/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/shadcn-expert/1.0.13/skills/shadcn-migration/SKILL.md"
+path = "plugins/shadcn-expert/skills/shadcn-migration/SKILL.md"
 enabled = true

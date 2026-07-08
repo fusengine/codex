@@ -60,5 +60,5 @@ This agent has no command-invocation tool — it does NOT execute the command it
 - Always ask confirmation before executing'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/commit-pro/1.2.20/skills/commit-detection/SKILL.md"
+path = "plugins/commit-pro/skills/commit-detection/SKILL.md"
 enabled = true

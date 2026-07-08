@@ -71,33 +71,33 @@ Detect project type and apply appropriate SOLID rules:
 - ❌ Allow interfaces in components'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-detection/SKILL.md"
+path = "plugins/solid/skills/solid-detection/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-generic/SKILL.md"
+path = "plugins/solid/skills/solid-generic/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-java/SKILL.md"
+path = "plugins/solid/skills/solid-java/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-go/SKILL.md"
+path = "plugins/solid/skills/solid-go/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-ruby/SKILL.md"
+path = "plugins/solid/skills/solid-ruby/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-rust/SKILL.md"
+path = "plugins/solid/skills/solid-rust/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-csharp/SKILL.md"
+path = "plugins/solid/skills/solid-csharp/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/solid/1.0.14/skills/solid-python/SKILL.md"
+path = "plugins/solid/skills/solid-python/SKILL.md"
 enabled = true

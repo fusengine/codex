@@ -83,25 +83,25 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-language-modern/SKILL.md"
+path = "plugins/php-expert/skills/php-language-modern/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-standards/SKILL.md"
+path = "plugins/php-expert/skills/php-standards/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-quality-tooling/SKILL.md"
+path = "plugins/php-expert/skills/php-quality-tooling/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-testing/SKILL.md"
+path = "plugins/php-expert/skills/php-testing/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-http-psr/SKILL.md"
+path = "plugins/php-expert/skills/php-http-psr/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/php-expert/1.0.2/skills/php-ecosystem-reference/SKILL.md"
+path = "plugins/php-expert/skills/php-ecosystem-reference/SKILL.md"
 enabled = true

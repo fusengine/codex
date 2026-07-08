@@ -75,9 +75,9 @@ Process multiple files in single operation.
 - Any output on success'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/code-quality/SKILL.md"
+path = "plugins/ai-pilot/skills/code-quality/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/react-effects-audit/SKILL.md"
+path = "plugins/ai-pilot/skills/react-effects-audit/SKILL.md"
 enabled = true

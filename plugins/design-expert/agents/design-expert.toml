@@ -78,41 +78,41 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa/Apple-docs/Android-docs references consulted for any platform fact cited'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-method/SKILL.md"
+path = "plugins/design-expert/skills/design-method/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-system/SKILL.md"
+path = "plugins/design-expert/skills/design-system/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-web/SKILL.md"
+path = "plugins/design-expert/skills/design-web/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-webapp/SKILL.md"
+path = "plugins/design-expert/skills/design-webapp/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-ios/SKILL.md"
+path = "plugins/design-expert/skills/design-ios/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-android/SKILL.md"
+path = "plugins/design-expert/skills/design-android/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-motion/SKILL.md"
+path = "plugins/design-expert/skills/design-motion/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/ux-copy/SKILL.md"
+path = "plugins/design-expert/skills/ux-copy/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/design-expert/2.1.27/skills/design-review/SKILL.md"
+path = "plugins/design-expert/skills/design-review/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/ai-pilot/1.2.36/skills/elicitation/SKILL.md"
+path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
 enabled = true

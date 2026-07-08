@@ -58,7 +58,7 @@ sources: []
 '''
 
 [[skills.config]]
-path = "/Users/<username>/.codex/plugins/cache/fusengine-codex/nextjs-expert/<version>/skills/nextjs-16/SKILL.md"
+path = "plugins/nextjs-expert/skills/nextjs-16/SKILL.md"
 enabled = true
 ```
 

@@ -82,21 +82,21 @@ Report back to the lead with:
 - **sources_verified**: Context7/Exa references consulted (Core Rule)'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/go-expert/1.0.2/skills/go-core-idioms/SKILL.md"
+path = "plugins/go-expert/skills/go-core-idioms/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/go-expert/1.0.2/skills/go-concurrency/SKILL.md"
+path = "plugins/go-expert/skills/go-concurrency/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/go-expert/1.0.2/skills/go-architecture/SKILL.md"
+path = "plugins/go-expert/skills/go-architecture/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/go-expert/1.0.2/skills/go-testing-quality/SKILL.md"
+path = "plugins/go-expert/skills/go-testing-quality/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/go-expert/1.0.2/skills/go-tooling-security/SKILL.md"
+path = "plugins/go-expert/skills/go-tooling-security/SKILL.md"
 enabled = true

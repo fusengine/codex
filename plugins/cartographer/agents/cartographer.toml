@@ -54,9 +54,9 @@ When another agent or user asks "where is X?":
 - NEVER assume — always read actual files'''
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/cartographer/1.0.8/skills/map/SKILL.md"
+path = "plugins/cartographer/skills/map/SKILL.md"
 enabled = true
 
 [[skills.config]]
-path = "/Users/brunoazoulay/.codex/plugins/cache/fusengine-codex/cartographer/1.0.8/skills/map-ecosystem/SKILL.md"
+path = "plugins/cartographer/skills/map-ecosystem/SKILL.md"
 enabled = true
