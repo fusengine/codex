@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.27] - 2026-07-08
+
+- feat(agents): reference fuse-browser alongside Context7/Exa across agent tooling (21 plugins)
+- chore(release): bump 21 plugin versions + suite to 1.0.27
+
 ## [1.0.26] - 2026-07-08
 
 ### Added
