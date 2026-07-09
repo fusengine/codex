@@ -188,6 +188,11 @@
           {
             "type": "command",
             "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/cleanup-old-caches.native.js"
+          },
+          {
+            "type": "command",
+            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/resync-agents.native.js",
+            "timeout": 15
           }
         ]
       },
