@@ -9,12 +9,20 @@ import { materializeAgentFiles } from "./agent-materializer";
 import { listPluginFiles } from "./plugin-file-discovery";
 import { symlinkPluginFiles } from "./plugin-file-symlinks";
 
-export async function installAgents(codexHome: string, pluginsRoot: string): Promise<void> {
+export async function installAgents(
+	codexHome: string,
+	pluginsRoot: string,
+	opts: { quiet?: boolean } = {},
+): Promise<void> {
 	const agents = await listPluginFiles(pluginsRoot, "agents", ".toml");
-	await materializeAgentFiles(agents, pluginsRoot, join(codexHome, "agents"));
+	await materializeAgentFiles(agents, pluginsRoot, join(codexHome, "agents"), opts);
 }
 
-export async function installCommands(codexHome: string, pluginsRoot: string): Promise<void> {
+export async function installCommands(
+	codexHome: string,
+	pluginsRoot: string,
+	opts: { quiet?: boolean } = {},
+): Promise<void> {
 	const commands = await listPluginFiles(pluginsRoot, "commands", ".md");
-	await symlinkPluginFiles(commands, join(codexHome, "prompts"), "command");
+	await symlinkPluginFiles(commands, join(codexHome, "prompts"), "command", opts);
 }

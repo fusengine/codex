@@ -9,13 +9,14 @@ function isManagedPluginTarget(target: string): boolean {
 export async function clearManagedDestination(
 	path: string,
 	label: string,
+	opts: { quiet?: boolean } = {},
 ): Promise<"missing" | "removed" | "skip"> {
 	try {
 		const stat = await lstat(path);
 		if (stat.isSymbolicLink()) {
 			const target = await readlink(path);
 			if (!isManagedPluginTarget(target)) {
-				p.log.warn(`${label} destination symlink is not managed by plugins, skipped: ${path}`);
+				if (!opts.quiet) p.log.warn(`${label} destination symlink is not managed by plugins, skipped: ${path}`);
 				return "skip";
 			}
 			await unlink(path);
@@ -25,7 +26,7 @@ export async function clearManagedDestination(
 			await unlink(path);
 			return "removed";
 		}
-		p.log.warn(`${label} destination exists and is not managed by plugins, skipped: ${path}`);
+		if (!opts.quiet) p.log.warn(`${label} destination exists and is not managed by plugins, skipped: ${path}`);
 		return "skip";
 	} catch {
 		return "missing";

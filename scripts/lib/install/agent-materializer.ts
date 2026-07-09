@@ -37,7 +37,12 @@ export function materializeAgentToml(raw: string, item: PluginFile, pluginRoots:
 	return rewritten.startsWith(MANAGED_AGENT_MARKER) ? rewritten : `${MANAGED_AGENT_MARKER} ${item.src}\n${rewritten}`;
 }
 
-export async function materializeAgentFiles(files: PluginFile[], pluginsRoot: string, destDir: string): Promise<void> {
+export async function materializeAgentFiles(
+	files: PluginFile[],
+	pluginsRoot: string,
+	destDir: string,
+	opts: { quiet?: boolean } = {},
+): Promise<void> {
 	await mkdir(destDir, { recursive: true });
 	const pluginRoots = await buildPluginRoots(pluginsRoot);
 	let installed = 0;
@@ -45,19 +50,21 @@ export async function materializeAgentFiles(files: PluginFile[], pluginsRoot: st
 	const seen = new Set<string>();
 	for (const item of files) {
 		if (seen.has(item.file)) {
-			p.log.warn(`agent filename collision skipped: ${item.file} from ${item.plugin}`);
+			if (!opts.quiet) p.log.warn(`agent filename collision skipped: ${item.file} from ${item.plugin}`);
 			continue;
 		}
 		seen.add(item.file);
 		const legacyPath = join(destDir, `${item.plugin}-${item.file}`);
-		if (await clearManagedDestination(legacyPath, "agent") === "removed") replaced++;
+		if (await clearManagedDestination(legacyPath, "agent", opts) === "removed") replaced++;
 		const destPath = join(destDir, item.file);
-		const result = await clearManagedDestination(destPath, "agent");
+		const result = await clearManagedDestination(destPath, "agent", opts);
 		if (result === "skip") continue;
 		if (result === "removed") replaced++;
 		const raw = await readFile(item.src, "utf8");
 		await writeFile(destPath, materializeAgentToml(raw, item, pluginRoots));
 		installed++;
 	}
-	p.log.success(`Installed ${installed} agent(s) into ${destDir}${replaced > 0 ? ` (${replaced} replaced)` : ""}`);
+	if (!opts.quiet) {
+		p.log.success(`Installed ${installed} agent(s) into ${destDir}${replaced > 0 ? ` (${replaced} replaced)` : ""}`);
+	}
 }

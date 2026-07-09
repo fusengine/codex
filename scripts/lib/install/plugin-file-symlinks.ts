@@ -6,16 +6,20 @@ function isManagedPluginTarget(target: string): boolean {
 	return target.includes("/plugins/") || target.includes("\\plugins\\");
 }
 
-async function clearManagedDestination(path: string, label: string): Promise<"missing" | "removed" | "skip"> {
+async function clearManagedDestination(
+	path: string,
+	label: string,
+	quiet: boolean,
+): Promise<"missing" | "removed" | "skip"> {
 	try {
 		const stat = await lstat(path);
 		if (!stat.isSymbolicLink()) {
-			p.log.warn(`${label} destination exists and is not a managed symlink, skipped: ${path}`);
+			if (!quiet) p.log.warn(`${label} destination exists and is not a managed symlink, skipped: ${path}`);
 			return "skip";
 		}
 		const target = await readlink(path);
 		if (!isManagedPluginTarget(target)) {
-			p.log.warn(`${label} destination symlink is not managed by plugins, skipped: ${path}`);
+			if (!quiet) p.log.warn(`${label} destination symlink is not managed by plugins, skipped: ${path}`);
 			return "skip";
 		}
 		await unlink(path);
@@ -29,6 +33,7 @@ export async function symlinkPluginFiles(
 	files: Array<{ plugin: string; file: string; src: string }>,
 	destDir: string,
 	label: string,
+	opts: { quiet?: boolean } = {},
 ): Promise<void> {
 	await mkdir(destDir, { recursive: true });
 	let linked = 0;
@@ -36,18 +41,20 @@ export async function symlinkPluginFiles(
 	const seen = new Set<string>();
 	for (const item of files) {
 		if (seen.has(item.file)) {
-			p.log.warn(`${label} filename collision skipped: ${item.file} from ${item.plugin}`);
+			if (!opts.quiet) p.log.warn(`${label} filename collision skipped: ${item.file} from ${item.plugin}`);
 			continue;
 		}
 		seen.add(item.file);
 		const legacyLinkPath = join(destDir, `${item.plugin}-${item.file}`);
-		if (await clearManagedDestination(legacyLinkPath, label) === "removed") replaced++;
+		if (await clearManagedDestination(legacyLinkPath, label, !!opts.quiet) === "removed") replaced++;
 		const linkPath = join(destDir, item.file);
-		const result = await clearManagedDestination(linkPath, label);
+		const result = await clearManagedDestination(linkPath, label, !!opts.quiet);
 		if (result === "skip") continue;
 		if (result === "removed") replaced++;
 		await symlink(item.src, linkPath);
 		linked++;
 	}
-	p.log.success(`Symlinked ${linked} ${label}(s) into ${destDir}${replaced > 0 ? ` (${replaced} replaced)` : ""}`);
+	if (!opts.quiet) {
+		p.log.success(`Symlinked ${linked} ${label}(s) into ${destDir}${replaced > 0 ? ` (${replaced} replaced)` : ""}`);
+	}
 }
