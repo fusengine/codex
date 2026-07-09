@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.28] - 2026-07-09
+
+- feat(core-guards): SessionStart hook resyncs agent TOMLs (and repairs command symlinks) from the latest cached plugin version at every startup/resume/clear — silent, fail-open, fingerprint fast-path, inter-process lock (core-guards 1.1.46)
+- chore(deps): typescript ^7.0.2, @fusengine/harness ^0.1.62
+- chore(release): bump core-guards + suite to 1.0.28
+
 ## [1.0.27] - 2026-07-08
 
 - feat(agents): reference fuse-browser alongside Context7/Exa across agent tooling (21 plugins)
