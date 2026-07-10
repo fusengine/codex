@@ -1,12 +1,12 @@
 {
-  "_description": "Lessons — Codex harness lessons scope: inject MEMORY/LESSON.md and remind to capture compact lessons.",
+  "description": "Lessons — Codex harness lessons scope: inject MEMORY/LESSON.md and remind to capture compact lessons.",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex lessons || true"
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex lessons || true"
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex lessons || true"
           }
         ]
       }
@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex lessons || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex lessons || true"
           }
         ]
       }

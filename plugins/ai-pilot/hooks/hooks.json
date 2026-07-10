@@ -64,7 +64,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/detect-bash-write.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/detect-bash-write.native.js\""
           }
         ]
       },
@@ -82,7 +82,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/inject-apex-context.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/inject-apex-context.native.js\""
           }
         ]
       }
@@ -120,7 +120,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/check-solid-from-transcript.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/check-solid-from-transcript.native.js\""
           }
         ]
       }
@@ -142,7 +142,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/check-solid-compliance.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/check-solid-compliance.native.js\""
           }
         ]
       },
@@ -151,7 +151,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/track-doc-consultation.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/ai-pilot/hooks/track-doc-consultation.native.js\""
           }
         ]
       },

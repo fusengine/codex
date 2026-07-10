@@ -23,6 +23,19 @@ afterEach(() => mock.restore());
 
 const { promptCodexConfig } = await import("./config-prompt");
 
+const models = [{
+	model: "dynamic-model",
+	displayName: "Dynamic Model",
+	description: "",
+	hidden: false,
+	isDefault: true,
+	supportedReasoningEfforts: [{ reasoningEffort: "medium", description: "Balanced" }],
+}];
+
+function prompt(home: string): Promise<void> {
+	return promptCodexConfig(home, async () => models);
+}
+
 function tmpHome(): string {
 	return mkdtempSync(join(tmpdir(), "codex-config-"));
 }
@@ -30,12 +43,24 @@ function tmpHome(): string {
 // select order consumed by promptCodexConfig: model, model_reasoning_effort,
 // personality, approval_policy, sandbox_mode, then agents.max_threads.
 describe("promptCodexConfig — dangerous combo guard", () => {
+	test("writes a model and reasoning effort from the dynamic catalog", async () => {
+		const home = tmpHome();
+		queues.selects = ["dynamic-model", "medium", "__skip", "__skip", "__skip", "__skip"];
+		queues.confirms = [];
+		queues.confirmCalls = 0;
+		await prompt(home);
+		const content = readFileSync(join(home, "config.toml"), "utf-8");
+		expect(content).toMatch(/model = "dynamic-model"/);
+		expect(content).toMatch(/model_reasoning_effort = "medium"/);
+		rmSync(home, { recursive: true, force: true });
+	});
+
 	test("danger-full-access + never, declined: nothing is written at all", async () => {
 		const home = tmpHome();
 		queues.selects = ["__skip", "__skip", "__skip", "never", "danger-full-access"];
 		queues.confirms = [false];
 		queues.confirmCalls = 0;
-		await promptCodexConfig(home);
+		await prompt(home);
 		expect(queues.confirmCalls).toBe(1);
 		expect(await Bun.file(join(home, "config.toml")).exists()).toBe(false);
 		rmSync(home, { recursive: true, force: true });
@@ -46,7 +71,7 @@ describe("promptCodexConfig — dangerous combo guard", () => {
 		queues.selects = ["__skip", "__skip", "__skip", "never", "danger-full-access", "__skip"];
 		queues.confirms = [true];
 		queues.confirmCalls = 0;
-		await promptCodexConfig(home);
+		await prompt(home);
 		expect(queues.confirmCalls).toBe(1);
 		const content = readFileSync(join(home, "config.toml"), "utf-8");
 		expect(content).toMatch(/approval_policy = "never"/);
@@ -59,7 +84,7 @@ describe("promptCodexConfig — dangerous combo guard", () => {
 		queues.selects = ["__skip", "__skip", "__skip", "never", "workspace-write", "__skip"];
 		queues.confirms = [];
 		queues.confirmCalls = 0;
-		await promptCodexConfig(home);
+		await prompt(home);
 		expect(queues.confirmCalls).toBe(0);
 		const content = readFileSync(join(home, "config.toml"), "utf-8");
 		expect(content).toMatch(/sandbox_mode = "workspace-write"/);

@@ -5,24 +5,26 @@ import * as p from "@clack/prompts";
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
 import { hasKey, getRootKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
+import { APPROVALS, FALLBACK_EFFORTS, PERSONALITIES, SANDBOXES, THREADS, type Choice } from "./config-options";
+import { listCodexModels, type CodexModel } from "./model-catalog";
 
-type Choice = { value: string; label: string; hint?: string };
+export type ModelLoader = (codexHome: string) => Promise<CodexModel[]>;
 
-const MODELS: Choice[] = [
-	{ value: "gpt-5.5", label: "gpt-5.5", hint: "latest" },
-	{ value: "gpt-5.4", label: "gpt-5.4" },
-	{ value: "gpt-5.4-mini", label: "gpt-5.4-mini", hint: "faster" },
-	{ value: "gpt-5-pro", label: "gpt-5-pro" },
-];
-const EFFORTS: Choice[] = ["minimal", "low", "medium", "high", "xhigh"].map((v) => ({ value: v, label: v }));
-const PERSONALITIES: Choice[] = ["none", "friendly", "pragmatic"].map((v) => ({ value: v, label: v }));
-const APPROVALS: Choice[] = [
-	{ value: "untrusted", label: "untrusted", hint: "asks before everything not allowlisted" },
-	{ value: "on-request", label: "on-request", hint: "the model decides when to ask (recommended)" },
-	{ value: "never", label: "never", hint: "never interrupts, returns failures to the model" },
-];
-const SANDBOXES: Choice[] = ["read-only", "workspace-write", "danger-full-access"].map((v) => ({ value: v, label: v }));
-const THREADS: Choice[] = ["6", "8", "12", "16"].map((v) => ({ value: v, label: v, hint: v === "6" ? "default" : undefined }));
+function modelChoices(models: CodexModel[], current?: string): Choice[] {
+	if (models.length === 0 && current) return [{ value: current, label: current, hint: "current · catalog unavailable" }];
+	return models.map((model) => ({
+		value: model.model,
+		label: model.model,
+		hint: model.isDefault ? `${model.displayName} · default` : model.displayName,
+	}));
+}
+
+function effortChoices(models: CodexModel[], model?: string): Choice[] {
+	const efforts = models.find((item) => item.model === model)?.supportedReasoningEfforts ?? [];
+	return efforts.length > 0
+		? efforts.map((item) => ({ value: item.reasoningEffort, label: item.reasoningEffort, hint: item.description }))
+		: FALLBACK_EFFORTS;
+}
 
 async function pick(label: string, options: Choice[], current: boolean): Promise<string | null> {
 	const message = current ? `${label} (set — pick to override or skip)` : label;
@@ -31,7 +33,7 @@ async function pick(label: string, options: Choice[], current: boolean): Promise
 	return choice as string;
 }
 
-export async function promptCodexConfig(codexHome: string): Promise<void> {
+export async function promptCodexConfig(codexHome: string, loadModels: ModelLoader = listCodexModels): Promise<void> {
 	await mkdir(codexHome, { recursive: true });
 	const path = join(codexHome, "config.toml");
 	const file = Bun.file(path);
@@ -39,16 +41,23 @@ export async function promptCodexConfig(codexHome: string): Promise<void> {
 	let next = existing;
 
 	p.log.step("Codex CLI base config");
+	const models = await loadModels(codexHome);
+	const choices = modelChoices(models, getRootKey(next, "model"));
+	if (choices.length > 0) {
+		const model = await pick("model", choices, hasKey(next, "model"));
+		if (model !== null) next = setRootKey(next, "model", model);
+	} else {
+		p.log.warn("Codex model catalog unavailable — model selection skipped");
+	}
 
 	const fields: Array<[string, Choice[]]> = [
-		["model", MODELS],
-		["model_reasoning_effort", EFFORTS],
+		["model_reasoning_effort", effortChoices(models, getRootKey(next, "model"))],
 		["personality", PERSONALITIES],
 		["approval_policy", APPROVALS],
 		["sandbox_mode", SANDBOXES],
 	];
 
-	let changes = 0;
+	let changes = next === existing ? 0 : 1;
 	for (const [key, options] of fields) {
 		const value = await pick(key, options, hasKey(next, key));
 		if (value !== null) {

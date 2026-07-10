@@ -1,27 +1,24 @@
 {
-  "_description": "Go Expert — Codex harness enforcement for SOLID, skill usage, DRY, file-size, and interface rules.",
-  "_version": "2.0.0",
+  "description": "Go Expert — Codex harness enforcement for SOLID, skill usage, DRY, file-size, and interface rules.",
   "hooks": {
     "PreToolUse": [
       {
-        "_description": "Harness: framework-routed enforcement before edits.",
         "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex"
           }
         ]
       }
     ],
     "PostToolUse": [
       {
-        "_description": "Harness: record doc/ref/agent activity feeding APEX gates.",
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/harness/dist/cli/bin.mjs hook codex"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex"
           }
         ]
       }

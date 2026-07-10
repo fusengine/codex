@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cleanupDeprecatedCodexFlags } from "./lib/install/cleanup-deprecated-flags";
 import { scanPlugins } from "./lib/install/plugin-scanner";
+import { validateHooksConfig } from "./lib/hooks-validation";
 
 function run(label: string, args: string[]): void {
 	const proc = Bun.spawnSync(args, { stderr: "pipe", stdout: "pipe" });
@@ -19,6 +20,8 @@ function validateHookTargets(): void {
 		const file = join(plugin.path, "hooks", "hooks.json");
 		if (!existsSync(file)) continue;
 		const data = JSON.parse(readFileSync(file, "utf8"));
+		const configErrors = validateHooksConfig(file, data);
+		if (configErrors.length > 0) throw new Error(configErrors.join("\n"));
 		for (const entries of Object.values(data.hooks ?? {}) as any[]) {
 			for (const entry of entries) {
 				if (/mcp_tool_call|^bash$/.test(entry.matcher ?? "")) {
