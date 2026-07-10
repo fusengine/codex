@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.31] - 2026-07-10
+
+- chore(deps): bump @fusengine/harness to ^0.1.66 — plain git push now auto-approved under Codex approval_policy=never (destructive forms still deny); .gitignore aligned on harness conventions (.harness/, /MEMORY/)
+- chore(release): bump suite to 1.0.31
+
 ## [1.0.30] - 2026-07-10
 
 - feat(installer): enable MultiAgentV2 by default, migrate incompatible legacy agent limits, and remove the obsolete thread prompt
