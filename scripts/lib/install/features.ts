@@ -1,19 +1,11 @@
 /**
- * features.ts — Ensure plugin hooks are enabled in ~/.codex/config.toml.
- * Codex defaults plugin_hooks=false; without it, plugin-bundled hooks never run.
+ * features.ts — Ensure required Codex features are enabled in config.toml.
  * Reference: developers.openai.com/codex/config-basic#feature-flags
  */
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
 import * as p from "@clack/prompts";
-import { hasKey } from "./toml-helpers";
-
-function setFeature(block: string, key: string, value: string): string {
-	const line = `${key} = ${value}`;
-	const pattern = new RegExp(`^\\s*${key}\\s*=.*$`, "m");
-	if (pattern.test(block)) return block.replace(pattern, line);
-	return block.replace(/^(\[features\])/m, `$1\n${line}`);
-}
+import { hasKey, removeRootKey, removeTableKey, setTableKey } from "./toml-helpers";
 
 function ensureRootKey(src: string, key: string, value: string): string {
 	if (new RegExp(`^${key}\\s*=`, "m").test(src)) return src;
@@ -27,12 +19,16 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 	const existing = (await file.exists()) ? await file.text() : "";
 
 	let next = existing.replace(/^\s*codex_hooks\s*=.*\n?/gm, "");
-	if (/^\s*\[features\]/m.test(next)) {
-		next = setFeature(next, "hooks", "true");
-		next = setFeature(next, "plugin_hooks", "true");
-	} else {
-		next = next.trimEnd() + "\n\n[features]\nhooks = true\nplugin_hooks = true\n";
-	}
+	next = removeRootKey(next, "features.multi_agent_v2");
+	next = removeRootKey(next, "features.plugin_hooks");
+	next = removeRootKey(next, "agents.max_threads");
+	next = removeTableKey(next, "features", "multi_agent_v2");
+	next = removeTableKey(next, "features", "plugin_hooks");
+	next = removeTableKey(next, "agents", "max_threads");
+	next = setTableKey(next, "features", "hooks", "true");
+	next = setTableKey(next, "features", "multi_agent", "true");
+	next = setTableKey(next, "features.multi_agent_v2", "enabled", "true");
+	next = setTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session", "4");
 	next = ensureRootKey(next, "suppress_unstable_features_warning", "true");
 	if (!hasKey(next, "bypass_hook_trust")) {
 		const wants = await p.confirm({

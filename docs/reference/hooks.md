@@ -28,7 +28,6 @@ Plugin hooks require:
 ```toml
 [features]
 hooks = true
-plugin_hooks = true
 ```
 
 ## Installation
@@ -143,7 +142,7 @@ Prefer structured helper output when available so Codex receives both
 Check feature flags:
 
 ```bash
-codex features list | rg 'hooks|plugin_hooks'
+codex features list | rg '^hooks'
 ```
 
 Check installed cache:

@@ -2,7 +2,8 @@
  * toml-helpers.test.ts — regex-based TOML upsert helpers.
  */
 import { test, expect } from "bun:test";
-import { hasKey, getRootKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
+import { parse } from "smol-toml";
+import { hasKey, getRootKey, removeTableKey, setRootKey, setTableKey } from "./toml-helpers";
 
 test("hasKey: detects a present root key, ignores absent one", () => {
 	expect(hasKey('model = "gpt-5.5"\n', "model")).toBe(true);
@@ -46,16 +47,29 @@ test("setRootKey: unquoted value has no comment to preserve", () => {
 	expect(next).toBe("max_threads = 12\n");
 });
 
-test("hasAgentsSection: detects the [agents] table", () => {
-	expect(hasAgentsSection("[agents]\nmax_threads = 6\n")).toBe(true);
-	expect(hasAgentsSection("model = \"gpt-5.5\"\n")).toBe(false);
+test("setTableKey: creates a missing table", () => {
+	expect(setTableKey('model = "gpt-5.5"\n', "features", "hooks", "true"))
+		.toBe('model = "gpt-5.5"\n\n[features]\nhooks = true\n');
 });
 
-test("setAgentsThreads: creates the table when absent", () => {
-	expect(setAgentsThreads("model = \"gpt-5.5\"\n", "12")).toBe('model = "gpt-5.5"\n\n[agents]\nmax_threads = 12\n');
+test("setTableKey: updates only the requested table", () => {
+	const src = "[features]\nhooks = false\n[other]\nhooks = false\n";
+	expect(setTableKey(src, "features", "hooks", "true")).toBe("[features]\nhooks = true\n[other]\nhooks = false\n");
 });
 
-test("setAgentsThreads: upserts within an existing table without touching other sections", () => {
-	const src = "[agents]\nmax_threads = 6\n[other]\nkey = 1\n";
-	expect(setAgentsThreads(src, "16")).toBe("[agents]\nmax_threads = 16\n[other]\nkey = 1\n");
+test("removeTableKey: removes only the requested table key", () => {
+	const src = "[agents]\nmax_threads = 6\nmax_depth = 2\n[other]\nmax_threads = 8\n";
+	expect(removeTableKey(src, "agents", "max_threads")).toBe("[agents]\nmax_depth = 2\n[other]\nmax_threads = 8\n");
+});
+
+test("setTableKey: recognizes a table header with a trailing comment", () => {
+	const next = setTableKey("[features] # keep\nhooks = false\n", "features", "hooks", "true");
+	expect(next).toBe("[features] # keep\nhooks = true\n");
+	expect(parse(next)).toEqual({ features: { hooks: true } });
+});
+
+test("removeTableKey: stops at an indented sibling table", () => {
+	const src = "[features]\nhooks = true\n  [other]\nplugin_hooks = true\n";
+	expect(removeTableKey(src, "features", "plugin_hooks")).toBe(src);
+	expect(parse(src)).toEqual({ features: { hooks: true }, other: { plugin_hooks: true } });
 });

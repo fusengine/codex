@@ -43,20 +43,24 @@ config.
 
 The setup writes configuration under `${CODEX_HOME:-~/.codex}` and installs:
 
-- Codex feature flags for hooks and plugin hooks
+- Codex feature flags for hooks and multi-agent support
 - plugin cache entries under `~/.codex/plugins/cache/`
 - AGENTS.md rules
 - optional MCP configuration
 - shell environment helpers
 
-## 4. Enable Plugin Hooks
+## 4. Enable Required Features
 
 The installer should set these flags automatically:
 
 ```toml
 [features]
 hooks = true
-plugin_hooks = true
+multi_agent = true
+
+[features.multi_agent_v2]
+enabled = true
+max_concurrent_threads_per_session = 4
 ```
 
 Manual configuration lives in:
@@ -68,14 +72,14 @@ ${CODEX_HOME:-$HOME/.codex}/config.toml
 ## 5. Verify Installation
 
 ```bash
-codex features list | rg 'hooks|plugin_hooks'
+codex features list | rg 'hooks|multi_agent'
 bun run validate
 ```
 
 Expected:
 
 - `hooks` enabled
-- `plugin_hooks` enabled
+- `multi_agent` and `multi_agent_v2` enabled
 - validation passes
 
 ## Manual API Keys
@@ -103,7 +107,7 @@ curl -fsSL https://bun.sh/install | bash
 ### Hooks Not Working
 
 ```bash
-codex features list | rg 'hooks|plugin_hooks'
+codex features list | rg 'hooks|multi_agent'
 bun run validate
 ```
 
