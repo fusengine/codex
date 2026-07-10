@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.30] - 2026-07-10
+
+- feat(installer): enable MultiAgentV2 by default, migrate incompatible legacy agent limits, and remove the obsolete thread prompt
+- chore(release): bump suite to 1.0.30
+
 ## [1.0.29] - 2026-07-10
 
 - fix(hooks): every plugin hooks.json command now uses a quoted `"${CODEX_HOME:-$HOME/.codex}"` (22 plugins) — hooks no longer break when CODEX_HOME is unset or the path contains spaces; hooks-rewrite/validate updated + new hooks-validation checks with tests

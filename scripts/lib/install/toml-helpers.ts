@@ -2,7 +2,12 @@
  * toml-helpers.ts — Minimal regex-based TOML upsert utilities (no parser).
  */
 
-const AGENTS_SECTION = /^\[agents\]\s*$/m;
+const TABLE_HEADER = /^\s*\[\[?[^\]]+\]\]?\s*(?:#.*)?$/;
+
+function tablePattern(table: string): RegExp {
+	const escaped = table.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	return new RegExp(`^\\s*\\[${escaped}\\]\\s*(?:#.*)?$`);
+}
 
 /** Whether a root-level key is present. */
 export function hasKey(src: string, key: string): boolean {
@@ -36,21 +41,45 @@ export function setRootKey(src: string, key: string, value: string, quoted = tru
 	return src.replace(pattern, line + comment);
 }
 
-/** Whether the [agents] table exists. */
-export function hasAgentsSection(src: string): boolean {
-	return AGENTS_SECTION.test(src);
+/** Delete a root key without scanning past the first explicit TOML table. */
+export function removeRootKey(src: string, key: string): string {
+	const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	const lines = src.split("\n");
+	let end = lines.findIndex((candidate) => TABLE_HEADER.test(candidate));
+	if (end < 0) end = lines.length;
+	const offset = lines.slice(0, end).findIndex((candidate) => new RegExp(`^\\s*${escaped}\\s*=`).test(candidate));
+	if (offset < 0) return src;
+	lines.splice(offset, 1);
+	return lines.join("\n");
 }
 
-/** Upsert [agents].max_threads as an unquoted integer, scoped to the table. */
-export function setAgentsThreads(src: string, value: string): string {
-	const line = `max_threads = ${value}`;
-	if (!AGENTS_SECTION.test(src)) return `${src}\n[agents]\n${line}\n`;
+/** Upsert a raw value inside a TOML table without touching sibling tables. */
+export function setTableKey(src: string, table: string, key: string, value: string): string {
+	const header = tablePattern(table);
+	const line = `${key} = ${value}`;
 	const lines = src.split("\n");
-	const start = lines.findIndex((l) => /^\[agents\]\s*$/.test(l));
-	let end = lines.findIndex((l, i) => i > start && /^\[/.test(l));
+	const start = lines.findIndex((candidate) => header.test(candidate));
+	if (start < 0) return `${src.trimEnd()}\n\n[${table}]\n${line}\n`;
+
+	let end = lines.findIndex((candidate, index) => index > start && TABLE_HEADER.test(candidate));
 	if (end < 0) end = lines.length;
-	const at = lines.slice(start + 1, end).findIndex((l) => /^max_threads\s*=/.test(l));
-	if (at >= 0) lines[start + 1 + at] = line;
+	const offset = lines.slice(start + 1, end).findIndex((candidate) => new RegExp(`^\\s*${key}\\s*=`).test(candidate));
+	if (offset >= 0) lines[start + 1 + offset] = line;
 	else lines.splice(start + 1, 0, line);
+	return lines.join("\n");
+}
+
+/** Remove a key from one TOML table while preserving the table and its siblings. */
+export function removeTableKey(src: string, table: string, key: string): string {
+	const header = tablePattern(table);
+	const lines = src.split("\n");
+	const start = lines.findIndex((candidate) => header.test(candidate));
+	if (start < 0) return src;
+
+	let end = lines.findIndex((candidate, index) => index > start && TABLE_HEADER.test(candidate));
+	if (end < 0) end = lines.length;
+	const offset = lines.slice(start + 1, end).findIndex((candidate) => new RegExp(`^\\s*${key}\\s*=`).test(candidate));
+	if (offset < 0) return src;
+	lines.splice(start + 1 + offset, 1);
 	return lines.join("\n");
 }

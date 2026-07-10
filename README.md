@@ -32,13 +32,13 @@ installs a shell autoloader (`~/.config/fish/conf.d/codex-env.fish`,
 `~/.zshrc`, `~/.bashrc`, or the PowerShell profile), and resolves plugin
 `${VAR}` placeholders into static values in `~/.codex/config.toml`.
 
-**Prerequisites:** [Bun](https://bun.sh) and
-[Codex CLI](https://developers.openai.com/codex/cli) 0.130+.
+**Prerequisites:** [Bun](https://bun.sh) and the current stable
+[Codex CLI](https://developers.openai.com/codex/cli).
 
 ### Codex Config
 
-The setup prompts for top-level `~/.codex/config.toml` keys. `(skip)` preserves
-the existing value.
+The setup prompts for base `~/.codex/config.toml` keys and automatically
+configures required features. `(skip)` preserves an existing prompted value.
 
 | Key | Values | Docs |
 |---|---|---|
@@ -47,8 +47,10 @@ the existing value.
 | `personality` | none, friendly, pragmatic | same |
 | `approval_policy` | untrusted, on-request (recommended — model decides when to ask), never | `on-failure` dropped (deprecated by Codex) |
 | `sandbox_mode` | read-only, workspace-write, danger-full-access | same |
-| `agents.max_threads` | 6 (default), 8, 12, 16 | concurrent sub-agent cap — raise to avoid `agent thread limit reached` |
-| `suppress_unstable_features_warning` | auto-set `true` to silence the `plugin_hooks` under-development warning | same |
+| `features.multi_agent` | auto-set `true` | enables stable multi-agent support |
+| `features.multi_agent_v2.enabled` | auto-set `true` | enables the V2 agent lifecycle |
+| `features.multi_agent_v2.max_concurrent_threads_per_session` | auto-set `4` | counts the root thread and all open sub-agent threads |
+| `suppress_unstable_features_warning` | auto-set `true` | silences the MultiAgentV2 under-development warning |
 
 ### MCP API Keys
 
@@ -72,7 +74,7 @@ are detected and the prompt is skipped.
 1. `bun install` - installer dependencies
 2. `codex plugin marketplace add https://github.com/fusengine/codex.git` (or
    direct `~/.codex/config.toml` patch when Codex CLI is unavailable)
-3. Enables `[features] hooks=true, plugin_hooks=true` in `~/.codex/config.toml`
+3. Enables hooks and MultiAgentV2 in `~/.codex/config.toml`, removing incompatible legacy agent limits
 4. Copies `AGENTS.md` to `~/.codex/AGENTS.md` with overwrite prompt
 5. Enables the 19 plugins (`[plugins."NAME@fusengine-codex"] enabled = true`)
 6. Prompts for Codex config and auto-sets `suppress_unstable_features_warning`

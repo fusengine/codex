@@ -4,8 +4,8 @@
 import * as p from "@clack/prompts";
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
-import { hasKey, getRootKey, setRootKey, hasAgentsSection, setAgentsThreads } from "./toml-helpers";
-import { APPROVALS, FALLBACK_EFFORTS, PERSONALITIES, SANDBOXES, THREADS, type Choice } from "./config-options";
+import { hasKey, getRootKey, setRootKey } from "./toml-helpers";
+import { APPROVALS, FALLBACK_EFFORTS, PERSONALITIES, SANDBOXES, type Choice } from "./config-options";
 import { listCodexModels, type CodexModel } from "./model-catalog";
 
 export type ModelLoader = (codexHome: string) => Promise<CodexModel[]>;
@@ -73,12 +73,6 @@ export async function promptCodexConfig(codexHome: string, loadModels: ModelLoad
 			p.log.info("Config write aborted — dangerous combo not confirmed");
 			return;
 		}
-	}
-
-	const threads = await pick("agents.max_threads", THREADS, hasAgentsSection(next));
-	if (threads !== null) {
-		next = setAgentsThreads(next, threads);
-		changes++;
 	}
 
 	if (!hasKey(next, "suppress_unstable_features_warning")) {

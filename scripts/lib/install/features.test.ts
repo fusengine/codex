@@ -5,6 +5,7 @@ import { test, expect, mock, describe, beforeEach, afterEach } from "bun:test";
 import { mkdtempSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { parse } from "smol-toml";
 
 const state = { confirmAnswer: false, confirmCalls: 0 };
 
@@ -23,6 +24,34 @@ const { ensureFeaturesEnabled } = await import("./features");
 function tmpHome(): string {
 	return mkdtempSync(join(tmpdir(), "codex-features-"));
 }
+
+test("writes MultiAgentV2 as the installer default", async () => {
+	const home = tmpHome();
+	await ensureFeaturesEnabled(home);
+	const config = readFileSync(join(home, "config.toml"), "utf-8");
+
+	expect(config).toContain("multi_agent = true");
+	expect(config).toContain("[features.multi_agent_v2]");
+	expect(config).toContain("enabled = true");
+	expect(config).toContain("max_concurrent_threads_per_session = 4");
+	rmSync(home, { recursive: true, force: true });
+});
+
+test("cleans incompatible agent keys and retains supported siblings", async () => {
+	const home = tmpHome();
+	const path = join(home, "config.toml");
+	await Bun.write(path, "features.multi_agent_v2 = false\nfeatures.plugin_hooks = true\nagents.max_threads = 12\nagents.max_depth = 2\n");
+
+	await ensureFeaturesEnabled(home);
+	const config = readFileSync(path, "utf-8");
+	const parsed = parse(config) as Record<string, Record<string, unknown>>;
+
+	expect(config).not.toMatch(/^\s*features\.(?:multi_agent_v2|plugin_hooks)\s*=/m);
+	expect(config).not.toMatch(/^\s*agents\.max_threads\s*=/m);
+	expect(parsed.agents?.max_depth).toBe(2);
+	expect(parsed.features?.multi_agent_v2).toEqual({ enabled: true, max_concurrent_threads_per_session: 4 });
+	rmSync(home, { recursive: true, force: true });
+});
 
 describe("ensureFeaturesEnabled — bypass_hook_trust opt-in", () => {
 	beforeEach(() => {

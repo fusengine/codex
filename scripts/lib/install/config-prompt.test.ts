@@ -6,11 +6,10 @@ import { test, expect, mock, describe, afterEach } from "bun:test";
 import { mkdtempSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-
-const queues = { selects: [] as string[], confirms: [] as boolean[], confirmCalls: 0 };
+const queues = { selects: [] as string[], confirms: [] as boolean[], selectCalls: 0, confirmCalls: 0 };
 
 mock.module("@clack/prompts", () => ({
-	select: mock(async () => queues.selects.shift() ?? "__skip"),
+	select: mock(async () => (queues.selectCalls++, queues.selects.shift() ?? "__skip")),
 	confirm: mock(async () => {
 		queues.confirmCalls++;
 		return queues.confirms.shift() ?? false;
@@ -40,9 +39,12 @@ function tmpHome(): string {
 	return mkdtempSync(join(tmpdir(), "codex-config-"));
 }
 
-// select order consumed by promptCodexConfig: model, model_reasoning_effort,
-// personality, approval_policy, sandbox_mode, then agents.max_threads.
 describe("promptCodexConfig — dangerous combo guard", () => {
+	test("does not prompt for agents.max_threads", async () => {
+		const home = tmpHome(); queues.selects = Array(6).fill("__skip"); queues.selectCalls = 0;
+		await prompt(home); expect(queues.selectCalls).toBe(5);
+		rmSync(home, { recursive: true, force: true });
+	});
 	test("writes a model and reasoning effort from the dynamic catalog", async () => {
 		const home = tmpHome();
 		queues.selects = ["dynamic-model", "medium", "__skip", "__skip", "__skip", "__skip"];
