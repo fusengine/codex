@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/react-expert/hooks/check-skill-loaded.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/react-expert/hooks/check-skill-loaded.native.js\""
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/react-expert/hooks/validate-react-solid.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/react-expert/hooks/validate-react-solid.native.js\""
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/react-expert/hooks/track-skill-read.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/react-expert/hooks/track-skill-read.native.js\""
           }
         ]
       },
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/react-expert/hooks/track-mcp-research.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/react-expert/hooks/track-mcp-research.native.js\""
           }
         ]
       }

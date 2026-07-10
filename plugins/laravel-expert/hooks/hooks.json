@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/check-laravel-skill.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/check-laravel-skill.native.js\""
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/validate-laravel-solid.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/validate-laravel-solid.native.js\""
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/validate-fusecore.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/validate-fusecore.native.js\""
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/detect-duplication.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/detect-duplication.native.js\""
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/track-skill-read.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/track-skill-read.native.js\""
           }
         ]
       },
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/track-mcp-research.native.js"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/laravel-expert/hooks/track-mcp-research.native.js\""
           }
         ]
       }

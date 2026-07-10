@@ -8,6 +8,7 @@ export const EVENT_MAP: Record<string, string> = {
 	SubagentStop: "SubagentStop",
 	PreToolUse: "PreToolUse",
 	PostToolUse: "PostToolUse",
+	PreCompact: "PreCompact",
 	PostCompact: "PostCompact",
 	UserPromptSubmit: "UserPromptSubmit",
 	PermissionRequest: "PermissionRequest",
@@ -23,7 +24,7 @@ export const EVENT_MAP: Record<string, string> = {
 /**
  * Codex-specific events with NO Codex equivalent (skipped with warning).
  */
-export const UNSUPPORTED_EVENTS = new Set<string>(["PreCompact"]);
+export const UNSUPPORTED_EVENTS = new Set<string>();
 
 /**
  * Rewrite a Codex hook command string for the Bun-based Codex runtime.
@@ -44,6 +45,10 @@ export function rewriteCommand(cmd: string): string {
 	let out = cmd
 		.replace(/\$\{CLAUDE_PLUGIN_ROOT\}/g, "${PLUGIN_ROOT}")
 		.replace(/\$\{CLAUDE_PLUGIN_DATA\}/g, "${PLUGIN_DATA}")
+		.replace(/\$\{CLAUDE_HOME\}/g, "${CODEX_HOME:-$HOME/.codex}")
+		.replace(/\$CLAUDE_HOME\b/g, "${CODEX_HOME:-$HOME/.codex}")
+		.replace(/\$\{CODEX_HOME\}/g, "${CODEX_HOME:-$HOME/.codex}")
+		.replace(/\$CODEX_HOME\b/g, "${CODEX_HOME:-$HOME/.codex}")
 		.replace(/\bCLAUDE_PLUGIN_ROOT\b/g, "PLUGIN_ROOT")
 		.replace(/\bCLAUDE_PLUGIN_DATA\b/g, "PLUGIN_DATA")
 		.replace(/\bCLAUDE_HOME\b/g, "CODEX_HOME")

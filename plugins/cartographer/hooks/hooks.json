@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/cartographer/hooks/generate_map.native.js ${PLUGIN_ROOT}/.. ${PLUGIN_ROOT}/../.cartographer || true; bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/cartographer/hooks/generate_project_map.native.js || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/cartographer/hooks/generate_map.native.js\" ${PLUGIN_ROOT}/.. ${PLUGIN_ROOT}/../.cartographer || true; bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/cartographer/hooks/generate_project_map.native.js\" || true"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${CODEX_HOME}/node_modules/@fusengine/codex-hooks/cartographer/hooks/track-enrichment.native.js || true"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/cartographer/hooks/track-enrichment.native.js\" || true"
           }
         ]
       }

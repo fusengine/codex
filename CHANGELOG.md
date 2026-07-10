@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.29] - 2026-07-10
+
+- fix(hooks): every plugin hooks.json command now uses a quoted `"${CODEX_HOME:-$HOME/.codex}"` (22 plugins) — hooks no longer break when CODEX_HOME is unset or the path contains spaces; hooks-rewrite/validate updated + new hooks-validation checks with tests
+- feat(install): dynamic Codex model catalog fetched over RPC (scripts/lib/install/model-catalog.ts, replaces the hardcoded model list), config choices extracted to config-options.ts, config-prompt takes an injectable model loader — with tests
+- chore(deps): @fusengine/harness ^0.1.65 (approval_policy=never handling, .codex config/rules write-protection, visible deny notices, Linux stdin fix)
+- chore(release): bump 22 plugin versions + suite to 1.0.29
+
 ## [1.0.28] - 2026-07-09
 
 - feat(core-guards): SessionStart hook resyncs agent TOMLs (and repairs command symlinks) from the latest cached plugin version at every startup/resume/clear — silent, fail-open, fingerprint fast-path, inter-process lock (core-guards 1.1.46)
