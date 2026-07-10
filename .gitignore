@@ -53,3 +53,7 @@ plugins/*/statusline/bun.lock
 .codex/
 portage
 plugins/*/.cartographer
+.harness/
+
+# fuse-lessons dev memory — internal session notes, not package content.
+/MEMORY/
