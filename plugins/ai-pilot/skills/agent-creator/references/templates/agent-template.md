@@ -17,8 +17,8 @@ Copy this template when creating `plugins/<plugin>/agents/<agent-name>.toml`.
 ```toml
 name = "<agent-name>"
 description = "Expert <technology> agent. Use when <trigger conditions>. Do NOT use for <exclusions>."
-model = "gpt-5.5"
-model_reasoning_effort = "<high|xhigh>"
+model = "<gpt-5.6-sol|gpt-5.6-terra>"
+model_reasoning_effort = "high"
 nickname_candidates = ["<Agent Name>", "<Domain> Specialist", "<Agent Name> Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''
@@ -109,7 +109,7 @@ enabled = true
 |-------------|--------------|
 | `<agent-name>` | Agent identifier (kebab-case) |
 | `<technology>` | Main technology (Next.js, Laravel, etc.) |
-| `<high|xhigh>` | `high` for fast/basic agents, `xhigh` for deep code/design/security/research agents |
+| `<gpt-5.6-sol|gpt-5.6-terra>` | Sol for demanding agents; Terra for read-heavy or narrow support agents |
 | `<trigger conditions>` | When agent should activate |
 | `<exclusions>` | Tasks this agent must avoid |
 | `<stack>` | Stack identifier (nextjs, laravel, swift) |
@@ -124,8 +124,8 @@ enabled = true
 ```toml
 name = "nextjs-expert"
 description = "Expert Next.js agent. Use when next.config.* or app/ is detected."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Nextjs Expert", "Nextjs Expert Specialist", "Nextjs Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''

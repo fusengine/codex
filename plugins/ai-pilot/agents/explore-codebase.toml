@@ -1,7 +1,7 @@
 name = "explore-codebase"
 description = "Codebase discovery specialist. Use when: unknown project structure, mapping dependencies, finding existing patterns before coding, architectural analysis. Read-only — no file modifications. Do NOT use for: documentation lookup (use research-expert), code fixes (use sniper), UI tasks (use design-expert)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 nickname_candidates = ["Explore Codebase", "Explore Codebase Specialist", "Explore Codebase Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# Explore Codebase Agent

@@ -1,7 +1,7 @@
 name = "rust-expert"
 description = "Expert Rust 1.96+ (2024 edition) — ownership, async/tokio, axum backends, cargo tooling. Use when: Cargo.toml present. Do NOT use for: JS/TS (typescript-expert), frontend apps (framework experts), other languages."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Rust Expert", "Rust Expert Specialist", "Rust Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Rust Expert Agent

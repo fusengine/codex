@@ -1,6 +1,6 @@
 name = "seo-sitemap"
 description = "Sitemap & robots.txt sub-agent. Use when analyzing or generating sitemap.xml,sitemap-news.xml,sitemap-image.xml,sitemap-video.xml,or robots.txt. Do NOT use for redirect analysis (use seo-redirects)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Sitemap", "SEO Sitemap Specialist", "SEO Sitemap Agent"]
 sandbox_mode = "workspace-write"

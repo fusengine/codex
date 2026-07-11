@@ -1,6 +1,6 @@
 name = "brainstorming"
 description = "Creative design agent for APEX workflow. Use when: new features, component creation, major changes, adding functionality. Triggers BEFORE Analyze phase. Structured questioning to refine requirements, propose alternatives, get design approval. Do NOT use for: bug fixes, trivial changes, refactoring, read-only tasks."
-model = "gpt-5.5"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 nickname_candidates = ["Brainstorming", "Brainstorming Specialist", "Brainstorming Agent"]
 sandbox_mode = "read-only"

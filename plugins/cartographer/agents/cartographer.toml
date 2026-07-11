@@ -1,6 +1,6 @@
 name = "cartographer"
 description = "Expert cartography agent. Navigates .cartographer/ maps, enriches descriptions, explains plugin/project structure. Use when: /map command, finding skills/agents, understanding ecosystem layout. Do NOT use for: code generation, debugging, file editing."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["Cartographer", "Cartographer Specialist", "Cartographer Agent"]
 sandbox_mode = "workspace-write"

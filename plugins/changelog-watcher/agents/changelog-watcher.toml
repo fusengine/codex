@@ -1,6 +1,6 @@
 name = "changelog-watcher"
 description = "Codex update watcher and compatibility analyzer. Use when: checking for Codex updates (/watch command), detecting breaking changes in our plugins, monitoring community feedback (/watch --pulse). Read-only, non-destructive. Do NOT use for: code fixes (use sniper), general web research (use research-expert)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["Changelog Watcher", "Changelog Watcher Specialist", "Changelog Watcher Agent"]
 sandbox_mode = "read-only"

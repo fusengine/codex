@@ -1,6 +1,6 @@
 name = "seo-local"
 description = "Local SEO sub-agent. Use when auditing Google Business Profile,NAP consistency,citations,reviews,Local Pack ranking,or location pages. Only spawn if local business detected."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Local", "SEO Local Specialist", "SEO Local Agent"]
 sandbox_mode = "read-only"

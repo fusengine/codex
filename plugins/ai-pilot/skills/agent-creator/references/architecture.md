@@ -50,7 +50,8 @@ plugins/<plugin-name>/
 ```toml
 name = "agent-name"
 description = "When Codex should select this agent."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 developer_instructions = '''
 # Agent Title
@@ -67,7 +68,7 @@ developer_instructions = '''
 ```
 
 Required keys: `name`, `description`, `developer_instructions`.
-Common optional keys: `model`, `sandbox_mode`, `mcp_servers`, `skills.config`.
+Common optional keys: `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_servers`, `skills.config`.
 
 ---
 

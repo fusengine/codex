@@ -40,11 +40,6 @@ function tmpHome(): string {
 }
 
 describe("promptCodexConfig — dangerous combo guard", () => {
-	test("does not prompt for agents.max_threads", async () => {
-		const home = tmpHome(); queues.selects = Array(6).fill("__skip"); queues.selectCalls = 0;
-		await prompt(home); expect(queues.selectCalls).toBe(5);
-		rmSync(home, { recursive: true, force: true });
-	});
 	test("writes a model and reasoning effort from the dynamic catalog", async () => {
 		const home = tmpHome();
 		queues.selects = ["dynamic-model", "medium", "__skip", "__skip", "__skip", "__skip"];

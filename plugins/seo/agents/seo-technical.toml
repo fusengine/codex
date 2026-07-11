@@ -1,7 +1,7 @@
 name = "seo-technical"
 description = "Technical SEO sub-agent. Use when auditing robots.txt,sitemap.xml,Core Web Vitals (LCP/INP/CLS),mobile-first indexing,crawlability,indexability,redirects chains. Do NOT use for content (use seo-content),schema (use seo-schema),or local (use seo-local)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 nickname_candidates = ["SEO Technical", "SEO Technical Specialist", "SEO Technical Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Technical Sub-Agent

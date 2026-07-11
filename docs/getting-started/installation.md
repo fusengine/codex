@@ -63,6 +63,10 @@ enabled = true
 max_concurrent_threads_per_session = 4
 ```
 
+Setup prompts for `max_concurrent_threads_per_session` with `4`, `6`, `8`,
+`12`, or `16`; skipping preserves any existing value. The limit includes the
+root, so `4` allows the root plus three sub-agents.
+
 Manual configuration lives in:
 
 ```bash

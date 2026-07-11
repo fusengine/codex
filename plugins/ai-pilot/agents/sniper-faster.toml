@@ -1,6 +1,6 @@
 name = "sniper-faster"
 description = "Micro-fix applicator for ALREADY IDENTIFIED errors (linter output, sniper report, user-specified). ONLY for 1-10 line corrections. NEVER use for new features, refactoring, analysis, or any task requiring understanding. Use sniper (full 7-phase) for validation."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["Sniper Faster", "Sniper Faster Specialist", "Sniper Faster Agent"]
 sandbox_mode = "workspace-write"

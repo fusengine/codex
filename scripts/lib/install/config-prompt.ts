@@ -4,27 +4,13 @@
 import * as p from "@clack/prompts";
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
-import { hasKey, getRootKey, setRootKey } from "./toml-helpers";
-import { APPROVALS, FALLBACK_EFFORTS, PERSONALITIES, SANDBOXES, type Choice } from "./config-options";
+import { getRootKey, hasKey, setRootKey } from "./toml-helpers";
+import { hasTableKey, setTableKey } from "./toml-table-helpers";
+import { APPROVALS, PERSONALITIES, SANDBOXES, V2_CONCURRENCY, type Choice } from "./config-options";
+import { effortChoices, modelChoices } from "./config-model-options";
 import { listCodexModels, type CodexModel } from "./model-catalog";
 
 export type ModelLoader = (codexHome: string) => Promise<CodexModel[]>;
-
-function modelChoices(models: CodexModel[], current?: string): Choice[] {
-	if (models.length === 0 && current) return [{ value: current, label: current, hint: "current · catalog unavailable" }];
-	return models.map((model) => ({
-		value: model.model,
-		label: model.model,
-		hint: model.isDefault ? `${model.displayName} · default` : model.displayName,
-	}));
-}
-
-function effortChoices(models: CodexModel[], model?: string): Choice[] {
-	const efforts = models.find((item) => item.model === model)?.supportedReasoningEfforts ?? [];
-	return efforts.length > 0
-		? efforts.map((item) => ({ value: item.reasoningEffort, label: item.reasoningEffort, hint: item.description }))
-		: FALLBACK_EFFORTS;
-}
 
 async function pick(label: string, options: Choice[], current: boolean): Promise<string | null> {
 	const message = current ? `${label} (set — pick to override or skip)` : label;
@@ -64,6 +50,15 @@ export async function promptCodexConfig(codexHome: string, loadModels: ModelLoad
 			next = setRootKey(next, key, value);
 			changes++;
 		}
+	}
+	const concurrency = await pick(
+		"features.multi_agent_v2.max_concurrent_threads_per_session",
+		V2_CONCURRENCY,
+		hasTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session"),
+	);
+	if (concurrency !== null) {
+		next = setTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session", concurrency);
+		changes++;
 	}
 
 	if (getRootKey(next, "sandbox_mode") === "danger-full-access" && getRootKey(next, "approval_policy") === "never") {

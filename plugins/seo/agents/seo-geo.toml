@@ -1,6 +1,6 @@
 name = "seo-geo"
 description = "GEO (Generative Engine Optimization) sub-agent. Use when scoring LLM-readiness for AI Overviews,ChatGPT,Perplexity,Claude,Gemini,Copilot. Do NOT use for traditional SEO ranking (use seo-content + seo-technical)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Geo", "SEO Geo Specialist", "SEO Geo Agent"]
 sandbox_mode = "read-only"

@@ -1,7 +1,7 @@
 name = "go-expert"
 description = "Expert Go 1.26+ — idioms, concurrency, backend services, cargo-grade tooling (golangci-lint v2, govulncheck). Use when: go.mod present. Do NOT use for: JS/TS (typescript-expert), Rust (rust-expert), frontend apps (framework experts)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Go Expert", "Go Expert Specialist", "Go Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Go Expert Agent

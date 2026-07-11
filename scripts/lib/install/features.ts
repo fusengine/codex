@@ -5,7 +5,8 @@
 import { join } from "node:path";
 import { mkdir } from "node:fs/promises";
 import * as p from "@clack/prompts";
-import { hasKey, removeRootKey, removeTableKey, setTableKey } from "./toml-helpers";
+import { hasKey } from "./toml-helpers";
+import { hasTableKey, removeRootKey, removeTableKey, setTableKey } from "./toml-table-helpers";
 
 function ensureRootKey(src: string, key: string, value: string): string {
 	if (new RegExp(`^${key}\\s*=`, "m").test(src)) return src;
@@ -28,7 +29,9 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 	next = setTableKey(next, "features", "hooks", "true");
 	next = setTableKey(next, "features", "multi_agent", "true");
 	next = setTableKey(next, "features.multi_agent_v2", "enabled", "true");
-	next = setTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session", "4");
+	if (!hasTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session")) {
+		next = setTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session", "4");
+	}
 	next = ensureRootKey(next, "suppress_unstable_features_warning", "true");
 	if (!hasKey(next, "bypass_hook_trust")) {
 		const wants = await p.confirm({

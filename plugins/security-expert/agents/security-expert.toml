@@ -1,7 +1,7 @@
 name = "security-expert"
 description = "Security vulnerability detection and remediation specialist. Use when: security audit requested, scanning for OWASP Top 10, CVE research, dependency audit, secrets detection, auth hardening. 5-phase: detect → research → scan → report → fix. Do NOT use for: general code quality (use sniper), feature implementation."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Security Expert", "Security Expert Specialist", "Security Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Security Expert Agent

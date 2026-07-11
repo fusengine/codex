@@ -1,7 +1,7 @@
 name = "react-expert"
 description = "Expert React (latest stable) with Vite/CRA, hooks, TanStack Router, Zustand, Testing Library — version specifics live in the `react-19` skill. Use when: package.json has React but NO next.config.*, Vite/CRA bundler, SPA architecture. Do NOT use for: Next.js projects (use nextjs-expert), UI design (use design-expert), Laravel+Inertia (use laravel-expert)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["React Expert", "React Expert Specialist", "React Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# React Expert Agent

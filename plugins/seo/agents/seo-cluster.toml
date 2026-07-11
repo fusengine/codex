@@ -1,6 +1,6 @@
 name = "seo-cluster"
 description = "Semantic clustering sub-agent. Use when building keyword clusters from SERP overlap for pillar/cluster content architecture. Do NOT use for single-keyword research (use seo-content)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Cluster", "SEO Cluster Specialist", "SEO Cluster Agent"]
 sandbox_mode = "read-only"

@@ -20,6 +20,8 @@ Codex agents use standalone TOML config files. This reference keeps the legacy f
 ```toml
 name = "research-expert"
 description = "Technical research expert. Use when documentation or API behavior must be verified."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 developer_instructions = '''
 # Research Expert
 
@@ -35,8 +37,8 @@ Return findings with sources.
 ```toml
 name = "nextjs-expert"
 description = "Expert Next.js agent. Use when next.config.* or app/ is detected."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Nextjs Expert", "Nextjs Expert Specialist", "Nextjs Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''
@@ -71,8 +73,8 @@ enabled = true
 | `name` | Yes | Agent identifier; matching filename is the simplest convention |
 | `description` | Yes | Trigger guidance used by Codex |
 | `developer_instructions` | Yes | Full behavior contract for the spawned agent |
-| `model` | No | Model override for this agent |
-| `model_reasoning_effort` | No | `high` for fast/basic agents, `xhigh` for deep code/design/security/research agents |
+| `model` | No | `gpt-5.6-sol` for demanding agents; `gpt-5.6-terra` for read-heavy or narrow support agents |
+| `model_reasoning_effort` | No | Set explicitly to `high` for every managed agent |
 | `nickname_candidates` | No | Display names derived from the agent identity, never generic placeholders |
 | `sandbox_mode` | No | `read-only`, `workspace-write`, or `danger-full-access` |
 | `mcp_servers` | No | Per-agent MCP overrides when needed |
