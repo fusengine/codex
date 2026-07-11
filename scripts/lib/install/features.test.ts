@@ -33,6 +33,8 @@ test("writes MultiAgentV2 as the installer default", async () => {
 	expect(config).toContain("multi_agent = true");
 	expect(config).toContain("[features.multi_agent_v2]");
 	expect(config).toContain("enabled = true");
+	expect(config).toContain('tool_namespace = "fusengine_agents"');
+	expect(config).toContain("hide_spawn_agent_metadata = false");
 	expect(config).toContain("max_concurrent_threads_per_session = 4");
 	rmSync(home, { recursive: true, force: true });
 });
@@ -51,6 +53,8 @@ test("cleans incompatible agent keys and retains supported siblings", async () =
 	expect(parsed.agents?.max_depth).toBe(2);
 	expect(parsed.features?.multi_agent_v2).toEqual({
 		enabled: true,
+		tool_namespace: "fusengine_agents",
+		hide_spawn_agent_metadata: false,
 		max_concurrent_threads_per_session: 4,
 	});
 	rmSync(home, { recursive: true, force: true });

@@ -29,6 +29,8 @@ export async function ensureFeaturesEnabled(codexHome: string): Promise<void> {
 	next = setTableKey(next, "features", "hooks", "true");
 	next = setTableKey(next, "features", "multi_agent", "true");
 	next = setTableKey(next, "features.multi_agent_v2", "enabled", "true");
+	next = setTableKey(next, "features.multi_agent_v2", "tool_namespace", '"fusengine_agents"');
+	next = setTableKey(next, "features.multi_agent_v2", "hide_spawn_agent_metadata", "false");
 	if (!hasTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session")) {
 		next = setTableKey(next, "features.multi_agent_v2", "max_concurrent_threads_per_session", "4");
 	}

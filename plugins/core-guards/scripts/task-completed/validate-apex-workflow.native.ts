@@ -12,6 +12,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { basename, extname } from "node:path";
 import { loadSessionState } from "../_shared/state-manager";
+import { AGENT_TTL_MS } from "../_shared/apex-agents";
 
 const MAX_LINES = 100;
 const CODE_EXT = new Set([
@@ -47,6 +48,15 @@ function sniperRecorded(state: State): boolean {
     [e.type, e.prompt_preview, e.tool_name].map((v) => String(v ?? "")).join(" ").toLowerCase().includes("sniper"));
 }
 
+/** state.changes is cumulative for the session lifetime; gate on lastCheck
+ *  within the 30min APEX window (apex-agents.ts) so stale entries stop
+ *  re-triggering this warning on read-only Stop turns. */
+function changesFresh(state: State): boolean {
+  const c = state.changes;
+  const t = Date.parse(String((c && typeof c === "object" ? (c as Record<string, unknown>).lastCheck : "") ?? ""));
+  return !Number.isNaN(t) && Date.now() - t <= AGENT_TTL_MS;
+}
+
 /** Files whose line count exceeds MAX_LINES (Python sum(1 for _ in f)). */
 function filesOverLimit(paths: string[]): string[] {
   const out: string[] = [];
@@ -72,6 +82,7 @@ try {
 const state = loadSessionState(data.session_id || "unknown");
 const files = changedCodeFiles(state);
 if (files.length === 0) process.exit(0);
+if (!changesFresh(state)) process.exit(0);
 
 const missing: string[] = [];
 if (!agentRecorded(state, "explore-codebase")) missing.push("explore-codebase before coding");

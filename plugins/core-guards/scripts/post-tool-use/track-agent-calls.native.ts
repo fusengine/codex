@@ -37,7 +37,12 @@ try {
 }
 
 const tool = data.tool_name ?? "";
-const isSpawn = tool === "Agent" || tool.endsWith(".spawn_agent") || tool === "spawn_agent";
+// Codex V2 multi-agent spawns report tool_name as the bare "spawn_agent", or
+// as "{namespace}spawn_agent" with NO separator when the namespace_tools
+// capability is active (e.g. "fusengine_agentsspawn_agent",
+// "collaborationspawn_agent") — endsWith() covers the bare form and every
+// concatenated/dotted variant without assuming a separator.
+const isSpawn = tool === "Agent" || tool.endsWith("spawn_agent");
 if (!isSpawn) process.exit(0);
 
 const sid = data.session_id || "unknown";

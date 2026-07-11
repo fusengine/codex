@@ -50,8 +50,17 @@ prompted value.
 | `sandbox_mode` | read-only, workspace-write, danger-full-access | same |
 | `features.multi_agent` | auto-set `true` | enables stable multi-agent support |
 | `features.multi_agent_v2.enabled` | auto-set `true` | enables the V2 agent lifecycle |
+| `features.multi_agent_v2.tool_namespace` | auto-set `"fusengine_agents"` | project namespace used for native V2 agent tools |
+| `features.multi_agent_v2.hide_spawn_agent_metadata` | auto-set `false` | exposes `agent_type` for exact custom-agent selection |
 | `features.multi_agent_v2.max_concurrent_threads_per_session` | 4 (default), 6, 8, 12, 16 | total concurrency slots; `4` means root + 3 sub-agents |
 | `suppress_unstable_features_warning` | auto-set `true` | silences the MultiAgentV2 under-development warning |
+
+The namespace/metadata pair is runtime-proven on Codex 0.144.1 but remains V2
+internal behavior, not a stable public API. Exact custom selection uses
+`agent_type` with `fork_turns = "none"` (or bounded positive history); omitted
+or `"all"` history rejected role/model/reasoning overrides in that tested runtime.
+The returned configured nickname is identity evidence; the task path alone is
+not.
 
 ### MCP API Keys
 

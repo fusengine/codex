@@ -61,11 +61,19 @@ multi_agent = true
 [features.multi_agent_v2]
 enabled = true
 max_concurrent_threads_per_session = 4
+tool_namespace = "fusengine_agents"
+hide_spawn_agent_metadata = false
 ```
 
 Setup prompts for `max_concurrent_threads_per_session` with `4`, `6`, `8`,
 `12`, or `16`; skipping preserves any existing value. The limit includes the
 root, so `4` allows the root plus three sub-agents.
+
+The namespace/metadata pair enables exact custom-agent selection through
+`agent_type`. With Codex 0.144.1, calls must set `fork_turns = "none"` (or a
+bounded positive history); the default/`"all"` rejected role/model/reasoning
+overrides in the tested runtime. These V2 settings are runtime-proven internal
+knobs, not a stable public API.
 
 Manual configuration lives in:
 
