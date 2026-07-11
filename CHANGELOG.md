@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.33] - 2026-07-11
+
+- fix(core-guards 1.1.48): kill the permanent "Missing step: sniper" false positive under Codex — 30-min freshness window (AGENT_TTL_MS on changes.lastCheck) before the Stop gate counts modifications, and V2 spawn credit now reads tool_input.agent_type and matches the no-separator namespaced tool name (fusengine_agentsspawn_agent) like harness 0.1.67; 5 new tests
+- feat(installer): multi_agent_v2 configured with tool_namespace="fusengine_agents" and hide_spawn_agent_metadata=false for exact custom-agent selection (Codex-authored; source-verified: the backend 400 is the separate model-dependent #26753 bug, unrelated to this flag) — docs refreshed (README, installation, workflow/agents, 03-agent-teams rule)
+- chore(deps): bump @fusengine/harness to ^0.1.67 (Codex V2 custom agents credited as APEX agent evidence)
+- chore(release): bump core-guards 1.1.48, ai-pilot 1.2.43, codex-rules 1.0.19 + suite to 1.0.33
+
 ## [1.0.32] - 2026-07-11
 
 - feat(agents): migrate all 34 agent TOMLs across 21 plugins to gpt-5.6 models (opus tier -> gpt-5.6-sol, sonnet/haiku tiers and default -> gpt-5.6-terra; gpt-5.5 now legacy-remapped); reasoning effort forced to "high" for all agents (EFFORT_MAP flattening removed)
