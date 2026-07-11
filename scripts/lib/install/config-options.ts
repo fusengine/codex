@@ -11,3 +11,5 @@ export const APPROVALS: Choice[] = [
 ];
 export const SANDBOXES: Choice[] = ["read-only", "workspace-write", "danger-full-access"]
 	.map((value) => ({ value, label: value }));
+export const V2_CONCURRENCY: Choice[] = ["4", "6", "8", "12", "16"]
+	.map((value) => ({ value, label: value, hint: value === "4" ? "Codex default · root + 3 sub-agents" : undefined }));

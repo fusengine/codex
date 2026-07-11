@@ -5,7 +5,8 @@
 ```toml
 name = "my-agent"
 description = "Short description"
-model = "gpt-5.5"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 developer_instructions = '''
 
@@ -37,7 +38,8 @@ developer_instructions = '''
 ```toml
 name = "[kebab-case-name]"
 description = "[1-2 lines max]"
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 developer_instructions = '''
 

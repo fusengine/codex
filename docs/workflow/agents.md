@@ -4,15 +4,12 @@
 
 ## Model Policy
 
-All custom agents use `model = "gpt-5.5"`.
+Demanding planning, implementation, validation, design, security, framework,
+and architecture agents use `model = "gpt-5.6-sol"` (16 agents).
+Read-heavy, research, detection, focused SEO, and narrow support agents use
+`model = "gpt-5.6-terra"` (18 agents).
 
-Fast/basic agents use `model_reasoning_effort = "high"`:
-`brainstorming`, `websearch`, `sniper-faster`, `cartographer`,
-`changelog-watcher`, `commit-detector`, `seo-cluster`, `seo-content`,
-`seo-geo`, `seo-images`, `seo-local`, `seo-schema`, and `seo-sitemap`.
-
-Deep validation, code, research, design, security, framework, and architecture
-agents use `model_reasoning_effort = "xhigh"`.
+All 34 custom agents set `model_reasoning_effort = "high"` explicitly.
 
 Every agent defines identity-based `nickname_candidates`; generic placeholder
 pools are not valid defaults.

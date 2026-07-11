@@ -1,6 +1,6 @@
 name = "commit-detector"
 description = "Smart commit type detector. Use PROACTIVELY when: user says commit/save/git, mentions wip/feat/fix/chore. Analyzes staged changes → selects optimal conventional commit type automatically. Do NOT use for: code review, non-commit git ops (log/diff/status)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["Commit Detector", "Commit Detector Specialist", "Commit Detector Agent"]
 sandbox_mode = "read-only"

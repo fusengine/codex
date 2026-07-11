@@ -49,7 +49,10 @@ test("cleans incompatible agent keys and retains supported siblings", async () =
 	expect(config).not.toMatch(/^\s*features\.(?:multi_agent_v2|plugin_hooks)\s*=/m);
 	expect(config).not.toMatch(/^\s*agents\.max_threads\s*=/m);
 	expect(parsed.agents?.max_depth).toBe(2);
-	expect(parsed.features?.multi_agent_v2).toEqual({ enabled: true, max_concurrent_threads_per_session: 4 });
+	expect(parsed.features?.multi_agent_v2).toEqual({
+		enabled: true,
+		max_concurrent_threads_per_session: 4,
+	});
 	rmSync(home, { recursive: true, force: true });
 });
 

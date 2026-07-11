@@ -1,7 +1,7 @@
 name = "nextjs-expert"
 description = "Expert Next.js (latest stable) App Router, RSC, Server Actions, Prisma (latest stable), Better Auth, shadcn/ui — version specifics live in the `nextjs-16` and `prisma-7` skills. Use when: next.config.* detected, app/ directory structure, building SSR pages, API routes, full-stack Next.js. Do NOT use for: pure React/Vite (no next.config), Laravel/PHP, UI-only tasks (use design-expert), read-only questions."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Nextjs Expert", "Nextjs Expert Specialist", "Nextjs Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Next.js Expert Agent

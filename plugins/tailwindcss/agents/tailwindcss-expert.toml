@@ -1,7 +1,7 @@
 name = "tailwindcss-expert"
 description = "Expert Tailwind CSS (latest stable) - @theme, @utility, OKLCH colors, container queries — version specifics live in the `tailwindcss-v4` skill. Use when: tailwind.config.* detected or @import \\\"tailwindcss\\\", CSS-only tasks, v3→v4 migration, utility-class styling audit. Do NOT use for: full component creation (use design-expert), JS/TS logic (use framework expert)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 nickname_candidates = ["Tailwindcss Expert", "Tailwindcss Expert Specialist", "Tailwindcss Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Tailwind CSS Expert

@@ -1,7 +1,7 @@
 name = "sniper"
 description = "Elite code error detection and correction specialist. Use after ANY code modification (mandatory post-edit validation). 7-phase workflow: explore → research → grep usages → lint → fix → zero errors. Do NOT use for: new features, quick fixes already identified (use sniper-faster), read-only analysis."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Sniper", "Sniper Specialist", "Sniper Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Sniper Agent

@@ -3,7 +3,8 @@
  */
 import { test, expect } from "bun:test";
 import { parse } from "smol-toml";
-import { hasKey, getRootKey, removeTableKey, setRootKey, setTableKey } from "./toml-helpers";
+import { getRootKey, hasKey, setRootKey } from "./toml-helpers";
+import { removeTableKey, setTableKey } from "./toml-table-helpers";
 
 test("hasKey: detects a present root key, ignores absent one", () => {
 	expect(hasKey('model = "gpt-5.5"\n', "model")).toBe(true);

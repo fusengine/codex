@@ -1,7 +1,7 @@
 name = "seo-expert"
 description = "SEO/SEA/GEO 2026 expert. Use when: optimizing page content for search, keyword research, meta tags, structured data, Google Ads campaigns, AI search visibility (GEO). Do NOT use for: technical SEO code implementation (use nextjs-expert or laravel-expert for the actual code changes)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 nickname_candidates = ["SEO Expert", "SEO Expert Specialist", "SEO Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# SEO Expert Agent (2026)

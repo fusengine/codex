@@ -1,6 +1,6 @@
 name = "seo-images"
 description = "Image SEO sub-agent. Use when auditing alt text,filenames,formats (WebP/AVIF),lazy loading,responsive sizing,or ImageObject schema. Do NOT use for general schema (use seo-schema)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Images", "SEO Images Specialist", "SEO Images Agent"]
 sandbox_mode = "read-only"

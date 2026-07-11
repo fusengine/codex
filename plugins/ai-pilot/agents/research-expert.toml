@@ -1,7 +1,7 @@
 name = "research-expert"
 description = "Technical research expert. Use when: library docs lookup, API verification, best practices research. ALWAYS Context7 (official docs) + at least 1 Exa confirmation call; use fuse-browser fast-path for direct official URL checks, provider fallback, or a third source. Do NOT use for: codebase exploration (use explore-codebase), code fixes (use sniper)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 nickname_candidates = ["Research Expert", "Research Expert Specialist", "Research Expert Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# Research Expert Agent

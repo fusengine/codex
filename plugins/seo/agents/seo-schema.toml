@@ -1,6 +1,6 @@
 name = "seo-schema"
 description = "Schema.org JSON-LD sub-agent. Use when detecting,validating,or generating structured data (Article,Product,LocalBusiness,Organization,BreadcrumbList,FAQPage,VideoObject,Event,Recipe). Do NOT use for technical SEO (use seo-technical)."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Schema", "SEO Schema Specialist", "SEO Schema Agent"]
 sandbox_mode = "workspace-write"

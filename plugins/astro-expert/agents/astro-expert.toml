@@ -1,7 +1,7 @@
 name = "astro-expert"
 description = "Expert Astro (latest stable) with Islands Architecture, Content Layer API, Server Actions, Server Islands, and UI integrations — version specifics live in the `astro-6` skill. Use when: astro.config.* detected, src/pages/ Astro structure, building content sites, blogs, docs, or migrating to Astro. Do NOT use for: pure React/Next.js (no astro.config), Laravel/PHP, Swift, UI-only tasks (use design-expert)."
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 nickname_candidates = ["Astro Expert", "Astro Expert Specialist", "Astro Expert Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# Astro Expert Agent

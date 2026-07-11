@@ -37,19 +37,20 @@ installs a shell autoloader (`~/.config/fish/conf.d/codex-env.fish`,
 
 ### Codex Config
 
-The setup prompts for base `~/.codex/config.toml` keys and automatically
-configures required features. `(skip)` preserves an existing prompted value.
+The setup prompts for base `~/.codex/config.toml` keys and MultiAgentV2
+concurrency, then configures required features. `(skip)` preserves an existing
+prompted value.
 
 | Key | Values | Docs |
 |---|---|---|
-| `model` | gpt-5.5, gpt-5.4 | [config-sample](https://developers.openai.com/codex/config-sample) |
-| `model_reasoning_effort` | minimal, low, medium, high, xhigh | same |
+| `model` | dynamic visible Codex model catalog | [config-sample](https://developers.openai.com/codex/config-sample) |
+| `model_reasoning_effort` | dynamic per selected model (Sol includes `ultra`) | same |
 | `personality` | none, friendly, pragmatic | same |
 | `approval_policy` | untrusted, on-request (recommended — model decides when to ask), never | `on-failure` dropped (deprecated by Codex) |
 | `sandbox_mode` | read-only, workspace-write, danger-full-access | same |
 | `features.multi_agent` | auto-set `true` | enables stable multi-agent support |
 | `features.multi_agent_v2.enabled` | auto-set `true` | enables the V2 agent lifecycle |
-| `features.multi_agent_v2.max_concurrent_threads_per_session` | auto-set `4` | counts the root thread and all open sub-agent threads |
+| `features.multi_agent_v2.max_concurrent_threads_per_session` | 4 (default), 6, 8, 12, 16 | total concurrency slots; `4` means root + 3 sub-agents |
 | `suppress_unstable_features_warning` | auto-set `true` | silences the MultiAgentV2 under-development warning |
 
 ### MCP API Keys

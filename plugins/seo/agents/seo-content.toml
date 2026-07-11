@@ -1,6 +1,6 @@
 name = "seo-content"
 description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience,Expertise,Authoritativeness,Trustworthiness),detecting cannibalization,analyzing keyword distribution,or auditing AI content disclosure. Do NOT use for technical SEO or schema."
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Content", "SEO Content Specialist", "SEO Content Agent"]
 sandbox_mode = "read-only"
