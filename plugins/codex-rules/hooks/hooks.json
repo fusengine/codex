@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/codex-rules/hooks/inject-rules.native.js\" ${PLUGIN_ROOT}"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex rules"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/codex-rules/hooks/inject-rules.native.js\" ${PLUGIN_ROOT}"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex rules"
           }
         ]
       }

@@ -20,8 +20,28 @@ The hooks system helps agents:
 plugins/*/hooks/hooks.json
        |
        v
-plugins/*/scripts/*.ts|*.sh|*.py
+@fusengine/harness hook codex [scope]
 ```
+
+Every configured command handler uses a canonical Harness route. There is no
+legacy-command exception path: an unregistered plugin/event/matcher tuple is
+rejected by validation and skipped by generation.
+
+### Harness 0.1.67 Runtime Limits
+
+Harness-only wiring guarantees that the handler enters Harness; it does not
+claim complete Codex behavior parity in the installed 0.1.67 runtime. Inspection
+of that published bundle shows these remaining compatibility limits:
+
+- `apply_patch` normalization forces phase `pre`, including a `PostToolUse`
+  payload, so post-edit fan-out is not reliable.
+- design-agent lifecycle handling runs only for `id === "claude-code"`.
+- core session, rules, cartography, and failure paths still contain Claude roots
+  such as `CLAUDE_PLUGIN_ROOT`, `.claude`, and `CLAUDE.md`.
+- lifecycle dispatch includes Claude-only names such as `TaskCompleted`,
+  `PostToolUseFailure`, and `SessionEnd`; Codex does not emit those events.
+
+These are Harness runtime gaps, not reasons to wire direct plugin scripts.
 
 Plugin hooks require:
 
@@ -68,10 +88,10 @@ Do not register `PreCompact` for plugin hooks until Codex stabilizes it.
 
 ## Adding Hooks To A Plugin
 
-1. Create the hook directories:
+1. Create the hook directory:
 
 ```bash
-mkdir -p plugins/my-plugin/hooks plugins/my-plugin/scripts
+mkdir -p plugins/my-plugin/hooks
 ```
 
 2. Create `hooks/hooks.json`:
@@ -85,7 +105,7 @@ mkdir -p plugins/my-plugin/hooks plugins/my-plugin/scripts
         "hooks": [
           {
             "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/my-check.ts"
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -94,12 +114,11 @@ mkdir -p plugins/my-plugin/hooks plugins/my-plugin/scripts
 }
 ```
 
-3. Create the script under `scripts/`.
+Use only the route registered for the exact plugin/event/matcher tuple. Unknown
+scopes are unsafe because the CLI can fall back silently. Do not wire a new
+direct script; port its behavior to Harness and add parity tests first.
 
-The plugin runtime provides `PLUGIN_ROOT` and `PLUGIN_DATA`. Legacy Claude env
-vars are allowed only in migration compatibility code.
-
-## Script Input
+## Harness Input
 
 Hooks receive JSON input through stdin:
 
@@ -112,7 +131,7 @@ Hooks receive JSON input through stdin:
 }
 ```
 
-## Script Output
+## Harness Output
 
 Allow:
 
@@ -120,22 +139,14 @@ Allow:
 exit 0
 ```
 
-Block:
+Harness emits native structured Codex output, including `hookSpecificOutput`
+for permission decisions. Do not teach legacy stderr/`exit 2` protocols.
 
-```bash
-echo "Blocking message" >&2
-exit 2
-```
+## Legacy Script Removal
 
-Add context:
-
-```bash
-echo '{"additionalContext": "Context for the model"}'
-exit 0
-```
-
-Prefer structured helper output when available so Codex receives both
-`systemMessage` and log entries.
+Plugin `scripts/` directories may still contain source or migration artifacts,
+but hook configuration must not invoke them. Remove an artifact only after no
+source, bundle, generator, test, or documentation references it.
 
 ## Troubleshooting
 
@@ -156,3 +167,5 @@ Run validation from the source repository:
 ```bash
 bun run validate
 ```
+
+This includes the exhaustive Harness route gate.

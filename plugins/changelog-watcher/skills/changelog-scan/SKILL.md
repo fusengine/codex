@@ -23,7 +23,7 @@ Fetches and analyzes the official Codex CLI changelog to detect new versions and
 
 ## Workflow
 
-1. **Fetch** changelog via `mcp__fuse-browser__browser_fetch`, Exa, or scripts/fetch-changelog
+1. **Fetch** changelog via `mcp__fuse-browser__browser_fetch` or Exa
 2. **Parse** version numbers and release dates
 3. **Extract** changes per version (features, fixes, breaking)
 4. **Compare** with last known version from state file
@@ -36,10 +36,6 @@ Parse patterns from changelog:
 - `### Breaking Changes` - Breaking section
 - `### New Features` - Features section
 - `### Bug Fixes` - Fixes section
-
-## State File
-
-Location: `$CODEX_HOME/logs/00-changelog/{date}-state.json`
 
 ## References
 

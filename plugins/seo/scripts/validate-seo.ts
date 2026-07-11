@@ -8,8 +8,8 @@
 import * as cheerio from "cheerio";
 import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-
-interface PostToolUsePayload { tool_input?: { file_path?: string }; cwd?: string }
+import { asRecord } from "../../core-guards/scripts/_shared/as-record";
+import { emitPostTool } from "../../core-guards/scripts/_shared/hook-output-post";
 
 /** Locate `.fuse-seo` marker by walking up from a starting directory. */
 function findMarker(start: string): string | null {
@@ -37,19 +37,25 @@ function validate(html: string): string[] {
 
 async function main(): Promise<void> {
   const raw = await Bun.stdin.text();
-  let payload: PostToolUsePayload;
-  try { payload = JSON.parse(raw); } catch { process.exit(0); }
-  const path = payload.tool_input?.file_path;
+  let parsed: unknown;
+  try { parsed = JSON.parse(raw); } catch { process.exit(0); }
+  const payload = asRecord(parsed);
+  if (!payload) process.exit(0);
+  const toolInput = asRecord(payload.tool_input);
+  const path = typeof toolInput?.file_path === "string" ? toolInput.file_path : undefined;
   if (!path) process.exit(0);
   if (!/\.(html|astro|tsx|vue|blade\.php)$/.test(path)) process.exit(0);
-  if (!findMarker(payload.cwd ?? dirname(path))) process.exit(0);
+  const cwd = typeof payload.cwd === "string" ? payload.cwd : dirname(path);
+  if (!findMarker(cwd)) process.exit(0);
 
   try {
     const content = await Bun.file(path).text();
     const missing = validate(content);
     if (missing.length > 0) {
-      console.error(`fuse-seo: missing SEO elements in ${path}:\n  - ${missing.join("\n  - ")}`);
-      process.exit(2);
+      emitPostTool(
+        `fuse-seo: missing SEO elements in ${path}:\n  - ${missing.join("\n  - ")}`,
+        "validate-seo",
+      );
     }
   } catch {
     process.exit(0);

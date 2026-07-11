@@ -77,3 +77,11 @@ fusengine_agents.spawn_agent({
 `fork_turns = "none"` or a bounded positive history; the default/`"all"`
 rejected role/model/reasoning overrides in the tested runtime. A returned
 configured nickname is identity evidence; a task path is not.
+
+## Hook Runtime
+
+Agent lifecycle evidence is routed through `@fusengine/harness`. The migration
+has no direct-command exception path: every configured command handler invokes
+its canonical Harness route. Harness 0.1.67 still has Codex compatibility gaps
+for design lifecycle, Claude-rooted state, and events Codex does not emit; see
+[Hooks System](../reference/hooks.md#harness-0167-runtime-limits).

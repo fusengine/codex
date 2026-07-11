@@ -2,11 +2,11 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/seo/hooks/validate-seo.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex seo"
           }
         ]
       }

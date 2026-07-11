@@ -6,34 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/check-nextjs-skill.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/validate-nextjs-solid.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/validate-nextjs-modular.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/detect-duplication.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -44,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/track-skill-read.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -53,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/nextjs-expert/hooks/track-mcp-research.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }

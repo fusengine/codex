@@ -1,32 +1,33 @@
 import { join, basename } from "node:path";
 import { mkdir } from "node:fs/promises";
-import { EVENT_MAP, UNSUPPORTED_EVENTS, rewriteCommand, rewriteMatcher } from "./hooks-rewrite";
+import { generatedHookCommand } from "./hook-generation";
+import { EVENT_MAP, UNSUPPORTED_EVENTS, rewriteMatcher } from "./hooks-rewrite";
 import type { ClaudeHookEntry, ClaudeHooksFile, CodexHooksFile } from "./hooks-types";
 
 function filterHooks(
 	hooks: ClaudeHookEntry[],
 	plugin: string,
 	claudeEvent: string,
+	codexEvent: string,
+	matcher: string,
 	warnings: string[],
 ) {
 	return hooks
 		.map((h) => {
-			if (h.type === "prompt" && claudeEvent === "Stop" && h.prompt?.includes("APEX workflow")) {
-				return {
-					type: "command",
-					command: "bun ${PLUGIN_ROOT}/dist/hooks/task-completed/validate-apex-workflow.native.js",
-					...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
-				};
-			}
 			if (h.type !== "command" || typeof h.command !== "string") {
 				warnings.push(
 					`${plugin}: ${claudeEvent} hook type='${h.type}' skipped (Codex only supports type='command')`,
 				);
 				return null;
 			}
+			const command = generatedHookCommand(plugin, codexEvent, matcher);
+			if (!command) {
+				warnings.push(`${plugin}: ${codexEvent}/${matcher || "<empty>"} command skipped (no Harness route)`);
+				return null;
+			}
 			return {
 				type: "command",
-				command: rewriteCommand(h.command),
+				command,
 				...(h.timeout !== undefined ? { timeout: h.timeout } : {}),
 			};
 		})
@@ -67,10 +68,10 @@ export async function transformHooks(
 			continue;
 		}
 		const rewritten = matchers
-			.map((m) => ({
-				matcher: rewriteMatcher(m.matcher ?? ""),
-				hooks: filterHooks(m.hooks, plugin, claudeEvent, warnings),
-			}))
+			.map((m) => {
+				const matcher = rewriteMatcher(m.matcher ?? "");
+				return { matcher, hooks: filterHooks(m.hooks, plugin, claudeEvent, codexEvent, matcher, warnings) };
+			})
 			.filter((m) => m.hooks.length > 0);
 		const existing = output.hooks[codexEvent] ?? [];
 		output.hooks[codexEvent] = [...existing, ...rewritten];

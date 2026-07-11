@@ -4,10 +4,10 @@
  * validate-react-solid.native.ts — native TS port of
  * _legacy_py/validate-react-solid.py.
  *
- * PostToolUse SOLID validation for React edits: >100 code lines, interface/type
+ * PreToolUse SOLID validation for React edits: >100 code lines, interface/type
  * inside components/, custom hook outside hooks/. Next.js code is skipped.
  * Reuses the content-based countCodeLines (//, * — no #, matching the Python
- * count_code_lines). Deny JSON uses hookEventName PreToolUse like the Python.
+ * count_code_lines). Deny JSON uses the wired PreToolUse event.
  */
 import { editTargets } from "../../ai-pilot/scripts/lib/apex/edit-targets";
 import { countCodeLines } from "../../core-guards/scripts/_shared/validate-solid-common";
@@ -18,7 +18,7 @@ const FILE_RE = /\.(tsx|ts|jsx|js)$/;
 const SKIP_RE = /\/(node_modules|dist|build)\//;
 const NEXTJS_RE = /(use client|use server|NextRequest|NextResponse|from ['"]next)/;
 
-/** Emit a PreToolUse deny for a SOLID violation and exit (mirrors Python). */
+/** Emit a PreToolUse deny for a SOLID violation and exit. */
 function denySolidViolation(filePath: string, violations: string[]): never {
   const reason = `SOLID VIOLATION in ${filePath}: ` + violations.join(" ");
   console.log(JSON.stringify({
