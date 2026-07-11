@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.32] - 2026-07-11
+
+- feat(agents): migrate all 29 agent TOMLs across 21 plugins to gpt-5.6 models (opus tier -> gpt-5.6-sol, sonnet/haiku tiers and default -> gpt-5.6-terra; gpt-5.5 now legacy-remapped); reasoning efforts taken from each agent's frontmatter (EFFORT_MAP flattening removed)
+- feat(installer): model picker driven by the live model-catalog RPC with per-model reasoning efforts (config-model-options.ts); configured model kept when discovery fails
+- fix(installer): max_concurrent_threads_per_session preserved when already configured; hide_spawn_agent_metadata never written (runtime-proven backend 400 on the reserved collaboration.spawn_agent schema); TOML table edits split into toml-table-helpers.ts with dedicated tests
+- chore(release): bump 21 touched plugins + suite to 1.0.32
+
 ## [1.0.31] - 2026-07-10
 
 - chore(deps): bump @fusengine/harness to ^0.1.66 — plain git push now auto-approved under Codex approval_policy=never (destructive forms still deny); .gitignore aligned on harness conventions (.harness/, /MEMORY/)
