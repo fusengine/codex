@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/webfetch-cache-lookup.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -15,16 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/mcp-cache-lookup.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "context7|exa",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/limit-mcp-verbosity.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -38,56 +29,11 @@
         ]
       },
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/pre-commit-guard.native.js\""
-          }
-        ]
-      },
-      {
         "matcher": "apply_patch",
         "hooks": [
           {
             "type": "command",
             "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/enforce-interfaces.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/enforce-file-size.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/require-solid-read.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "apply_patch",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/pre-tool-use/require-apex-agents.native.js\""
           }
         ]
       }
@@ -98,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/track-agent-calls.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -107,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/track-subagent-research.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -116,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/cache-mcp-result.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -125,11 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/auto-document-reads.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/track-solid-reads.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -138,15 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/enforce-file-size.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/track-session-changes.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/post-edit-typescript.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -155,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/webfetch-cache-store.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       },
@@ -164,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/post-tool-use/log-tool-failure.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -175,33 +109,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/inject-claude-md.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/load-dev-context.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/cleanup-session-states.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/cleanup-old-caches.native.js\""
-          },
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-start/resync-agents.native.js\"",
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core",
             "timeout": 15
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/instructions-loaded/validate-rules-loaded.native.js\""
           }
         ]
       }
@@ -212,16 +121,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/user-prompt/read-agents-md.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/user-prompt/detect-creation-intent.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -232,7 +132,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/subagent-start/inject-context-cache.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -243,16 +143,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/subagent-stop/track-agent-memory.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/teammate-idle/validate-teammate-output.native.js\""
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
           }
         ]
       }
@@ -263,73 +154,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/task-completed/validate-task-solid.native.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/finish.mp3"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/task-completed/validate-apex-workflow.native.js\"",
+            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core",
             "timeout": 15
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/codex-hooks/core-guards/hooks/session-end/cleanup-session.native.js\""
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/permission-need.mp3"
-          }
-        ]
-      },
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/permission-need.mp3"
-          }
-        ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/need-human.mp3"
-          }
-        ]
-      },
-      {
-        "matcher": "elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ${PLUGIN_ROOT}/song/need-human.mp3"
           }
         ]
       }

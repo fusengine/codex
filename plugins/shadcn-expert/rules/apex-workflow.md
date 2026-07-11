@@ -32,7 +32,7 @@ Read skills/shadcn-migration/SKILL.md     → migration guide
 ## Step 01: Detect Primitive (MANDATORY)
 
 ```
-1. Run detect-primitive-lib.sh or manual detection
+1. Inspect package metadata, component imports, and data attributes
 2. Result: Radix / Base UI / Mixed / None
 3. If Mixed → consult shadcn-migration skill
 4. If None → recommend fresh setup

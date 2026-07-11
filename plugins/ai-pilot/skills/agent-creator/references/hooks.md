@@ -21,7 +21,7 @@ Hooks are plugin configuration, not agent TOML. This skill may describe hook pat
 |------|----------|
 | Hook config | `plugins/<plugin>/hooks/hooks.json` |
 | Plugin manifest pointer | `.codex-plugin/plugin.json` field `hooks` |
-| Runtime scripts | `plugins/<plugin>/scripts/` or `plugins/<plugin>/dist/hooks/` |
+| Runtime | `@fusengine/harness` canonical Codex route |
 
 ---
 
@@ -48,6 +48,11 @@ Agent TOML files should reference hook behavior only as prose. They must not emb
 | DO | DON'T |
 |----|-------|
 | Keep hooks in `hooks/hooks.json` | Put hooks in agent TOML |
-| Use `PLUGIN_ROOT` for paths | Use legacy plugin-root variables |
+| Use the registered Harness route | Wire a new direct plugin script |
 | Keep hook scripts fast | Run broad validations on every read |
 | Validate hook config separately | Assume hook wiring works |
+
+The repository gate scans every plugin hook. Every command must match the
+canonical Harness command for its exact plugin/event/matcher route. There is no
+direct-command exception path. A missing runtime behavior belongs in Harness;
+do not bypass it with a plugin script.

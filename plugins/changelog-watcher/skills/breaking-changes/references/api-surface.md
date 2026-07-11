@@ -135,7 +135,7 @@ Optional: when-to-use, keywords, priority, related
 |-------------|-----------------|
 | `jq` | All hook scripts |
 | `grep -rn` | security-scan.sh |
-| `curl -sL` | fetch-changelog.sh |
+| fuse-browser / Exa | Official changelog research |
 | `wc -l` | check-solid-compliance.sh |
 
 ## New Hook Events (v2.1.69+)

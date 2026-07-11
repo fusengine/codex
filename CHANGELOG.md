@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.34] - 2026-07-11
+
+- refactor(hooks): route all 86 command handlers across 22 plugin hook manifests exclusively through their canonical `@fusengine/harness` Codex routes; zero direct legacy, exception, or sound handlers remain. Harness 0.1.67 still has documented Codex compatibility gaps, so full functional parity is not claimed
+- chore(release): bump 22 touched plugins + suite to 1.0.34
+
 ## [1.0.33] - 2026-07-11
 
 - fix(core-guards 1.1.48): kill the permanent "Missing step: sniper" false positive under Codex — 30-min freshness window (AGENT_TTL_MS on changes.lastCheck) before the Stop gate counts modifications, and V2 spawn credit now reads tool_input.agent_type and matches the no-separator namespaced tool name (fusengine_agentsspawn_agent) like harness 0.1.67; 5 new tests

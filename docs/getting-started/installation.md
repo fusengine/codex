@@ -49,6 +49,11 @@ The setup writes configuration under `${CODEX_HOME:-~/.codex}` and installs:
 - optional MCP configuration
 - shell environment helpers
 
+Hook execution is Harness-only. Every configured command handler invokes its
+registered `@fusengine/harness` Codex route; setup installs Harness `^0.1.67`.
+Generation skips an unregistered tuple instead of preserving or synthesizing a
+direct plugin-script command.
+
 ## 4. Enable Required Features
 
 The installer should set these flags automatically:
@@ -93,6 +98,7 @@ Expected:
 - `hooks` enabled
 - `multi_agent` and `multi_agent_v2` enabled
 - validation passes
+- every command handler matches its exact Harness route
 
 ## Manual API Keys
 

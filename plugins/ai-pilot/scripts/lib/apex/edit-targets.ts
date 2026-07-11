@@ -1,4 +1,5 @@
 import type { HookInput } from "../interfaces/hook.interface";
+import { asRecord } from "../../../../core-guards/scripts/_shared/as-record";
 
 export type EditTarget = {
   filePath: string;
@@ -32,9 +33,11 @@ function parseApplyPatch(body: string): EditTarget[] {
   return targets;
 }
 
-export function editTargets(input: HookInput): EditTarget[] {
-  const toolName = input.tool_name ?? "";
-  const toolInput = (input.tool_input ?? {}) as Record<string, unknown>;
+export function editTargets(input: HookInput | unknown): EditTarget[] {
+  const data = asRecord(input);
+  if (!data) return [];
+  const toolName = typeof data.tool_name === "string" ? data.tool_name : "";
+  const toolInput = asRecord(data.tool_input) ?? {};
   if (toolName === "apply_patch") {
     return parseApplyPatch(String(toolInput.command ?? toolInput.input ?? toolInput.patch ?? ""));
   }

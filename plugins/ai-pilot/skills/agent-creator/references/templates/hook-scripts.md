@@ -17,42 +17,30 @@ Only use this reference when the user explicitly asks to create or modify hooks.
 | Item | Location |
 |------|----------|
 | Hook config | `plugins/<plugin>/hooks/hooks.json` |
-| Hook scripts | `plugins/<plugin>/scripts/` or `plugins/<plugin>/dist/hooks/` |
+| Runtime | `@fusengine/harness` canonical Codex route |
 | Manifest pointer | `.codex-plugin/plugin.json` field `hooks` |
 
 ---
 
-## Environment
+## Canonical Command
 
-Use Codex/plugin variables:
-
-```bash
-PLUGIN_ROOT="${PLUGIN_ROOT:-$(pwd)}"
-PLUGIN_DATA="${PLUGIN_DATA:-$PLUGIN_ROOT/.data}"
-CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+```json
+{
+  "type": "command",
+  "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core"
+}
 ```
 
-Do not use legacy plugin-root variables in new hook code.
-
----
-
-## Minimal Script Shape
-
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-payload="$(cat)"
-
-# Print a JSON decision only when the hook needs to block or annotate.
-printf '%s\n' '{"decision":"allow"}'
-```
+Select the scope from the exact plugin/event/matcher route matrix; never copy
+`core` without verifying that route. Harness owns payload normalization and
+native structured Codex output.
 
 ---
 
 ## Notes
 
-- Keep hooks fast.
-- Keep hook behavior deterministic.
-- Validate hook JSON and script executability after changes.
+- Keep hook behavior deterministic and test it in Harness.
+- Validate the full hook route matrix after changes.
 - Do not wire hooks from agent TOML.
+- Do not create a direct plugin script or teach stderr/`exit 2` blocking.
+- Do not add an exception when a Harness route or behavior is missing.

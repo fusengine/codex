@@ -8,15 +8,11 @@ keywords: detection, script, usage, example
 
 ## Complete Detection Example
 
-### Running the Script
+### Detecting the primitive library
 
-```bash
-# From project root
-bash /path/to/plugins/shadcn-expert/scripts/detect-primitive-lib.sh /path/to/project
-
-# Example output
-# {"primitive":"radix","confidence":85,"pm":"bun","runner":"bunx","signals":["pkg:radix-ui","style:new-york","import:radix","attr:data-state","pm:bun"]}
-```
+Inspect `package.json`, `components.json`, component imports, data attributes,
+and lockfiles directly. Use the shadcn MCP registry tools to confirm ambiguous
+or mixed Radix/Base UI installations.
 
 ### Interpreting Results
 
@@ -47,16 +43,7 @@ if (result.primitive === "radix") {
 const addCommand = `${result.runner} shadcn@latest add button`
 ```
 
-### Agent Workflow Integration
+### Agent workflow integration
 
-```bash
-# Step 1: Detect primitive
-RESULT=$(bash detect-primitive-lib.sh .)
-
-# Step 2: Extract values
-PRIMITIVE=$(echo "$RESULT" | jq -r '.primitive')
-RUNNER=$(echo "$RESULT" | jq -r '.runner')
-
-# Step 3: Use runner for CLI
-$RUNNER shadcn@latest add dialog
-```
+Record the detected primitive and package manager in the implementation plan,
+then obtain component commands through the shadcn MCP registry tools.

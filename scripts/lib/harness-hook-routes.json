@@ -1,0 +1,518 @@
+[
+  {
+    "plugin": "ai-pilot",
+    "event": "UserPromptSubmit",
+    "matcher": "",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "SubagentStart",
+    "matcher": "",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PreToolUse",
+    "matcher": "Bash",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PreToolUse",
+    "matcher": "Task",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "SubagentStop",
+    "matcher": "",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "Stop",
+    "matcher": "",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PostToolUse",
+    "matcher": "context7|exa|Bash",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "ai-pilot",
+    "event": "PostToolUse",
+    "matcher": "TaskCreate|TaskUpdate",
+    "scope": "aipilot"
+  },
+  {
+    "plugin": "cartographer",
+    "event": "SessionStart",
+    "matcher": "",
+    "scope": "carto"
+  },
+  {
+    "plugin": "cartographer",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "carto"
+  },
+  {
+    "plugin": "changelog-watcher",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*exa|mcp__.*",
+    "scope": "changelog"
+  },
+  {
+    "plugin": "codex-rules",
+    "event": "SessionStart",
+    "matcher": "",
+    "scope": "rules"
+  },
+  {
+    "plugin": "codex-rules",
+    "event": "UserPromptSubmit",
+    "matcher": "",
+    "scope": "rules"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PreToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PreToolUse",
+    "matcher": "context7|exa",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PreToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "spawn_agent|multi_agent_v1.spawn_agent",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "Bash|mcp__.*|mcp__context7__query-docs|mcp__context7__resolve-library-id|mcp__exa__web_search_exa|mcp__exa__get_code_context_exa|mcp__exa__deep_researcher_start",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "context7|exa",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "SessionStart",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "UserPromptSubmit",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "SubagentStart",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "SubagentStop",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "Stop",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PreToolUse",
+    "matcher": "mcp__fuse-browser__browser_navigate",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PreToolUse",
+    "matcher": "mcp__fuse-browser__browser_screenshot",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PreToolUse",
+    "matcher": "mcp__gemini-design__",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PreToolUse",
+    "matcher": "mcp__gemini-design__create_frontend",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__fuse-browser__browser_screenshot",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__fuse-browser__|mcp__gemini-design__",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "SubagentStart",
+    "matcher": "design",
+    "scope": "core"
+  },
+  {
+    "plugin": "design-expert",
+    "event": "SubagentStop",
+    "matcher": "design",
+    "scope": "core"
+  },
+  {
+    "plugin": "go-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "go-expert",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "laravel-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "laravel-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "laravel-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "lessons",
+    "event": "SessionStart",
+    "matcher": "",
+    "scope": "lessons"
+  },
+  {
+    "plugin": "lessons",
+    "event": "SubagentStart",
+    "matcher": "",
+    "scope": "lessons"
+  },
+  {
+    "plugin": "lessons",
+    "event": "Stop",
+    "matcher": "",
+    "scope": "lessons"
+  },
+  {
+    "plugin": "lessons",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "lessons"
+  },
+  {
+    "plugin": "memory-neural",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "memory"
+  },
+  {
+    "plugin": "memory-neural",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "memory"
+  },
+  {
+    "plugin": "memory-neural",
+    "event": "SessionStart",
+    "matcher": "",
+    "scope": "memory"
+  },
+  {
+    "plugin": "memory-neural",
+    "event": "Stop",
+    "matcher": "",
+    "scope": "memory"
+  },
+  {
+    "plugin": "nextjs-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "nextjs-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "nextjs-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "php-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "php-expert",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "react-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "react-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "react-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "rust-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "rust-expert",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "security-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "security"
+  },
+  {
+    "plugin": "security-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "security"
+  },
+  {
+    "plugin": "security-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*context7|mcp__.*exa",
+    "scope": "security"
+  },
+  {
+    "plugin": "seo",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "seo"
+  },
+  {
+    "plugin": "shadcn-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "shadcn-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "shadcn-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "solid",
+    "event": "SessionStart",
+    "matcher": "*",
+    "scope": "solid"
+  },
+  {
+    "plugin": "solid",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "solid"
+  },
+  {
+    "plugin": "solid",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "solid"
+  },
+  {
+    "plugin": "swift-apple-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "swift-apple-expert",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "core"
+  },
+  {
+    "plugin": "swift-apple-expert",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "core"
+  },
+  {
+    "plugin": "tailwindcss",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "tailwindcss"
+  },
+  {
+    "plugin": "tailwindcss",
+    "event": "PostToolUse",
+    "matcher": "apply_patch",
+    "scope": "tailwindcss"
+  },
+  {
+    "plugin": "tailwindcss",
+    "event": "PostToolUse",
+    "matcher": "Bash",
+    "scope": "tailwindcss"
+  },
+  {
+    "plugin": "tailwindcss",
+    "event": "PostToolUse",
+    "matcher": "mcp__.*",
+    "scope": "tailwindcss"
+  },
+  {
+    "plugin": "tanstack-start-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "tanstack-start-expert",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "typescript-expert",
+    "event": "PreToolUse",
+    "matcher": "apply_patch",
+    "scope": "core"
+  },
+  {
+    "plugin": "typescript-expert",
+    "event": "PostToolUse",
+    "matcher": "",
+    "scope": "core"
+  }
+]
