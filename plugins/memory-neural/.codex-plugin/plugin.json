@@ -1,6 +1,6 @@
 {
 	"name": "memory-neural",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Neural memory system: bio-inspired persistent memory with Graphiti + Qdrant",
 	"author": {
 		"name": "Fusengine",

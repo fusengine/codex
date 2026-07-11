@@ -1,6 +1,6 @@
 {
 	"name": "typescript-expert",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Expert TypeScript for pure TS projects: CLI tools, libraries, scripts, and backends on Node or Bun with SOLID principles.",
 	"author": {
 		"name": "Fusengine",
