@@ -2,6 +2,16 @@
 
 Use Codex teams/subagents for parallel, broad, risky, or disjoint work when the runtime exposes them and they reduce risk or latency. When a team is created, the lead coordinates ownership, integration, and verification.
 
+Codex 0.144.1 native V2 custom agents require these runtime-proven internal settings:
+
+```toml
+[features.multi_agent_v2]
+tool_namespace = "fusengine_agents"
+hide_spawn_agent_metadata = false
+```
+
+Select an exact custom agent with `agent_type` and `fork_turns = "none"` (or a bounded positive history). Omitting `fork_turns` or using `"all"` rejected full-history role/model/reasoning overrides in the tested runtime. The returned configured nickname is identity evidence; the task path alone is not. These V2 knobs are not presented as a stable public API.
+
 1. **Exclusive file ownership** - NEVER shared edits between teammates.
 2. **Well-scoped tasks** - Each brief includes target files, expected output, and criteria.
 3. **Progress tracking mandatory** - Track pending/in-progress/completed work with the available Codex planning/checklist mechanism.

@@ -47,9 +47,10 @@ point to installed cache `SKILL.md` files under
 ## Agent Teams
 
 Agents can work in parallel when the active Codex runtime exposes a subagent or
-team capability. Do not assume a fixed tool name; use app `spawn_agent`, CLI
-slash commands, or project tooling as available. Keep file ownership exclusive
-per teammate.
+team capability. Fusengine configures the Codex 0.144.1 native V2 tool under the
+project-specific `fusengine_agents` namespace with spawn metadata visible. These are
+runtime-proven internal knobs, not a stable public API. Keep file ownership
+exclusive per teammate.
 
 See [Agent Teams](agent-teams.md) for delegation rules, anti-patterns, and examples.
 
@@ -64,8 +65,15 @@ User: "Use nextjs-expert to fix the routing"
 Or via the available subagent tool:
 
 ```typescript
-spawn_agent({
+fusengine_agents.spawn_agent({
   agent_type: "nextjs-expert",
-  prompt: "Fix the routing issue",
+  message: "Fix the routing issue",
+  task_name: "fix_routing",
+  fork_turns: "none",
 })
 ```
+
+`agent_type` selects the exact custom TOML. It must be paired with
+`fork_turns = "none"` or a bounded positive history; the default/`"all"`
+rejected role/model/reasoning overrides in the tested runtime. A returned
+configured nickname is identity evidence; a task path is not.

@@ -45,6 +45,7 @@ Use Codex subagents in one bounded batch when the runtime exposes them and the t
 | Read-only lookup | Inspect locally and answer directly |
 
 ### Codex Team/Subagent Rules
+- **Native V2 custom-agent contract (Codex 0.144.1, runtime-proven internal knobs)**: configure `[features.multi_agent_v2]` with `tool_namespace = "fusengine_agents"` and `hide_spawn_agent_metadata = false`. Select an exact custom agent with `agent_type` and `fork_turns = "none"` (or a bounded positive history). Never omit `fork_turns` or use `"all"` with `agent_type`: the tested runtime rejects full-history role/model/reasoning overrides. The returned configured nickname is identity evidence; a task path alone is not.
 - **Lead owns integration and verification**: launching helpers is step 1, not the job.
 - **Verify on disk after EACH report**: grep/diff expected changes before accepting a mandate as done.
 - **Idle is not done**: no deliverable on disk -> take the mandate back or re-dispatch.
