@@ -1,8 +1,6 @@
 ---
 name: astro-islands
 description: Expert Astro Islands Architecture — client:load, client:idle, client:visible, client:media, client:only, server:defer (Server Islands), fallback slots, transition:persist, prop serialization. Use when adding interactivity to Astro pages or rendering dynamic server content.
-references: references/overview.md, references/client-directives.md, references/server-islands.md, references/transitions.md, references/view-transitions.md, references/prop-serialization.md, references/templates/interactive-island.md, references/templates/server-island.md
-related-skills: astro-6, astro-integrations, astro-actions
 ---
 
 # Astro Islands Expert
@@ -85,3 +83,23 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 3. **`client:only` for browser APIs** — localStorage, window, canvas
 4. **`server:defer` for personalized content** — Avatars, prices, auth state
 5. **`transition:persist`** — Preserve media players or forms during navigation
+
+## References
+
+- [references/overview.md](references/overview.md)
+- [references/client-directives.md](references/client-directives.md)
+- [references/server-islands.md](references/server-islands.md)
+- [references/transitions.md](references/transitions.md)
+- [references/view-transitions.md](references/view-transitions.md)
+- [references/prop-serialization.md](references/prop-serialization.md)
+- [references/templates/interactive-island.md](references/templates/interactive-island.md)
+- [references/templates/server-island.md](references/templates/server-island.md)
+
+## Related skills
+
+`astro-6`, `astro-integrations`, `astro-actions`.
+
+## Skill routing metadata
+
+references: references/overview.md, references/client-directives.md, references/server-islands.md, references/transitions.md, references/view-transitions.md, references/prop-serialization.md, references/templates/interactive-island.md, references/templates/server-island.md
+related-skills: astro-6, astro-integrations, astro-actions

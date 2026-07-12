@@ -45,8 +45,8 @@ Run the full test suite. Compare results before and after. No new failures, no n
 **Step 5: Check for side effects**
 Review every modified file. Confirm no accidental changes to unrelated code. Verify dependencies and configuration are unchanged unless required.
 
-**Step 6: Confirm functional resolution**
-State explicitly: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
+**Step 6: Persist evidence and confirm functional resolution**
+Write `.codex/apex/docs/verify-{task-slug}.md` using `references/verify-template.md`. Include one evidence item per criterion: command output, log excerpt, screenshot path, or diff. Then state explicitly: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
 
 ---
 
@@ -56,6 +56,7 @@ State explicitly: "Original problem is FUNCTIONALLY resolved" with a summary of 
 |----------|------|---------|
 | Checklist | `references/checklist.md` | Full verification checklist with all categories |
 | Common Misses | `references/common-misses.md` | Frequently forgotten verification items |
+| Artifact Template | `references/verify-template.md` | Persistent evidence template and slug derivation |
 
 ---
 
@@ -80,3 +81,4 @@ This ensures functional correctness is confirmed before code quality validation.
 | Full test suite, not just new tests | Catches regressions |
 | Review ALL modified files | Catches accidental side effects |
 | Both verification AND sniper must pass | Quality without correctness is useless |
+| Persist `verify-{task-slug}.md` | In-context claims do not survive session boundaries |

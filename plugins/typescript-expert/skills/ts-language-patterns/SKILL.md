@@ -1,8 +1,6 @@
 ---
 name: ts-language-patterns
 description: "Use when: writing or reviewing modern TypeScript syntax and idioms — const type parameters, using / await using resource management, standard ECMAScript decorators, satisfies, or fixing LLM-authored anti-patterns (legacy enum/namespace, missing import type). Covers TS 6.0 language features and inference. Do NOT use for: tsconfig / compiler flags (use ts-config), SOLID structure and file-size rules (use solid-generic), or framework-specific APIs."
-references: references/resource-management.md, references/generics-and-inference.md, references/decorators.md, references/llm-pitfalls.md, references/templates/modern-patterns.md, references/templates/resource-management.md
-related-skills: ts-config, solid-generic
 ---
 
 # TypeScript Language Patterns (TS 6.0)
@@ -107,3 +105,21 @@ const config = {
 - Write `import { SomeType }` for a type-only import — use `import type { SomeType }`
 - Enable `experimentalDecorators` or `emitDecoratorMetadata` for new code
 - Use `namespace` to organize runtime code — that is what ESM modules are for
+
+## References
+
+- [references/resource-management.md](references/resource-management.md)
+- [references/generics-and-inference.md](references/generics-and-inference.md)
+- [references/decorators.md](references/decorators.md)
+- [references/llm-pitfalls.md](references/llm-pitfalls.md)
+- [references/templates/modern-patterns.md](references/templates/modern-patterns.md)
+- [references/templates/resource-management.md](references/templates/resource-management.md)
+
+## Related skills
+
+`ts-config`, `solid-generic`.
+
+## Skill routing metadata
+
+references: references/resource-management.md, references/generics-and-inference.md, references/decorators.md, references/llm-pitfalls.md, references/templates/modern-patterns.md, references/templates/resource-management.md
+related-skills: ts-config, solid-generic

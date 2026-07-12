@@ -1,14 +1,10 @@
 name = "seo-local"
-description = "Local SEO sub-agent. Use when auditing Google Business Profile,NAP consistency,citations,reviews,Local Pack ranking,or location pages. Only spawn if local business detected."
+description = "Local SEO sub-agent. Use when auditing Google Business Profile, NAP consistency, citations, reviews, Local Pack ranking, or location pages. Only spawn if local business detected."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Local", "SEO Local Specialist", "SEO Local Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Local Sub-Agent
-
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for Local SEO audits. Only spawned when business has physical location(s).
 
@@ -47,8 +43,19 @@ Springfield, IL 62701
 ### Reviews: N (avg X.X stars, response rate Y%)
 ### LocalBusiness Schema: ✅ / ❌
 ### Score: N/10
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
+- **Deterministic extraction** — `browser_extract` over manual parsing.
+- `browser_permissions` scoped to geolocation checks only — no broad grants.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-local/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

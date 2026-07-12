@@ -1,6 +1,6 @@
 ---
 name: solid-java
-description: "SOLID principles for Java 21+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY."
+description: "SOLID principles for Java 21+ with files under 100 lines, separated interfaces, and mandatory modular architecture. Use when writing or refactoring Java code, feature modules, or contracts. Do NOT use for stack detection."
 ---
 
 

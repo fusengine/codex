@@ -1,7 +1,6 @@
 ---
 name: map-ecosystem
 description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files. Use when cartography index descriptions are truncated, a new plugin/skill was just added, or after SessionStart regenerates the map."
-related-skills: map
 ---
 
 
@@ -47,3 +46,11 @@ After (enriched by agent):
 - Do not modify source files (only .cartographer/*.md)
 - Do not delete or restructure the tree
 - Do not assume — always read actual frontmatter
+
+## Related skills
+
+`map`.
+
+## Skill routing metadata
+
+related-skills: map

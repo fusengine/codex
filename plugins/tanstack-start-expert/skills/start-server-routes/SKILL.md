@@ -8,7 +8,6 @@ description: >-
   parsing, and Response helpers. Do NOT use for: internal type-safe RPC from
   your own app (use start-server-functions), reusable middleware chains (use
   start-middleware), or UI route rendering.
-references: references/defining.md, references/vs-server-functions.md, references/templates/rest-endpoint.md
 ---
 
 # TanStack Start Server Routes
@@ -123,3 +122,13 @@ export const Route = createFileRoute('/api/users/$id')({
 - Duplicate a route path across multiple files
 - Reach for a server route when you want internal type-safe RPC
 - Forget to return a `Response`
+
+## References
+
+- [references/defining.md](references/defining.md)
+- [references/vs-server-functions.md](references/vs-server-functions.md)
+- [references/templates/rest-endpoint.md](references/templates/rest-endpoint.md)
+
+## Skill routing metadata
+
+references: references/defining.md, references/vs-server-functions.md, references/templates/rest-endpoint.md

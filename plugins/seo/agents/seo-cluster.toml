@@ -6,10 +6,6 @@ nickname_candidates = ["SEO Cluster", "SEO Cluster Specialist", "SEO Cluster Age
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Cluster Sub-Agent
 
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
-
 Parallelizable expert for semantic keyword clustering.
 
 ## Workflow
@@ -39,7 +35,15 @@ Parallelizable expert for semantic keyword clustering.
 - Pillar → all cluster pages
 - Cluster pages → pillar (always)
 - Cluster cross-links: <kw1> ↔ <kw2> (high SERP overlap)
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Managed batch search** — use `browser_serp_batch`; it manages its own session, so do not call `browser_open` for SERP. Open a caller-managed live session only for interaction, JS rendering, auth state, or pixels.
+- **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
+- **Batch, don't loop** — `serp_batch` (N queries) in one call.
+- **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-cluster/SKILL.md"
@@ -47,4 +51,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-internal-linking/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

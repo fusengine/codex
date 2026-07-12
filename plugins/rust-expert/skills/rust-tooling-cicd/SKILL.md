@@ -1,8 +1,6 @@
 ---
 name: rust-tooling-cicd
 description: Use when structuring a Cargo workspace, wiring features, or building a Rust CI pipeline — fmt, clippy, cargo-deny, cargo-audit, nextest, doc-tests, coverage, MSRV. Covers the canonical CI gate order and supply-chain checks. Do NOT use for writing the tests themselves (use rust-testing-quality) or non-Rust CI.
-references: references/workspaces-features.md, references/ci-gate.md, references/templates/ci-workflow.md, references/templates/deny-toml.md
-related-skills: rust-testing-quality, solid:solid-rust
 ---
 
 # Rust Tooling & CI/CD
@@ -120,3 +118,18 @@ serde = { workspace = true }
 - Duplicate crate versions across members instead of inheriting
 - Skip `cargo deny` because "audit already ran" — they check different things
 - Forget `cargo test --doc` after nextest
+
+## References
+
+references: references/workspaces-features.md, references/ci-gate.md, references/templates/ci-workflow.md, references/templates/deny-toml.md
+
+- [references/workspaces-features.md](references/workspaces-features.md)
+- [references/ci-gate.md](references/ci-gate.md)
+- [references/templates/ci-workflow.md](references/templates/ci-workflow.md)
+- [references/templates/deny-toml.md](references/templates/deny-toml.md)
+
+## Related skills
+
+related-skills: rust-testing-quality, solid:solid-rust
+
+`rust-testing-quality`, `solid:solid-rust`.

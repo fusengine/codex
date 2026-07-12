@@ -118,7 +118,7 @@ Quick verification:
 |--------|-----------|------------|
 | Agents | 3+ parallel | 1 expert |
 | Phases | 4-5 (A-P-E-L-X) | 4 (Locate-Fix-Review-Verify) |
-| TaskCreate | Yes | No |
+| Codex plan | Yes | No |
 | Sniper | Full 6-phase | Linter only |
 | Use case | Features, refactoring | Fixes, typos |
 
@@ -162,9 +162,9 @@ Quick verification:
 
 ---
 
-## Arguments
+## Input
 
-- `$ARGUMENTS`: Description of the fix to apply
+- Derive the fix description from the user's request.
 
 **Examples:**
 - `/apex-quick Fix typo in header`

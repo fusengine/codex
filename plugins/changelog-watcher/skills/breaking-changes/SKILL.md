@@ -1,8 +1,6 @@
 ---
 name: breaking-changes
 description: "Detect breaking changes in Codex CLI updates by comparing current API surface against changelog. Maps impacts to specific plugin files."
-references: references/api-surface.md, references/templates/migration-guide.md
-related-skills: changelog-scan, watch
 ---
 
 
@@ -43,3 +41,17 @@ The `api-surface.md` reference contains our current known API:
 
 - [API Surface](references/api-surface.md)
 - [Migration Guide Template](references/templates/migration-guide.md)
+
+## References
+
+- [references/api-surface.md](references/api-surface.md)
+- [references/templates/migration-guide.md](references/templates/migration-guide.md)
+
+## Related skills
+
+`changelog-scan`, `watch`.
+
+## Skill routing metadata
+
+references: references/api-surface.md, references/templates/migration-guide.md
+related-skills: changelog-scan, watch

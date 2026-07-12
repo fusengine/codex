@@ -14,7 +14,7 @@
 5. **Never copy-paste** - Import and reuse, never duplicate logic blocks.
 
 ## Code Error Prevention (ZERO TOLERANCE)
-1. **NEVER invent an API** - library call, option, event, or config key not 100% certain -> verify FIRST: Context7/official docs -> Exa/code context -> fuse-browser fast-path (`browser_fetch`, `browser_fetch_batch`, `browser_serp_batch`). Docs > memory.
+1. **NEVER invent an API** - use checked-out source and executed checks for stable local facts; verify versions, external APIs, hooks, plugin formats, security, and other drift-prone facts through Context7/official docs -> Exa/code context -> fuse-browser fast-path. Still uncertain -> say "I don't know".
 2. **NEVER edit a file not read in this session** - read the target file before ANY edit.
 3. **Match existing conventions** - grep a sibling file before introducing any new pattern, naming, or error-handling style.
 4. **Zero dangling references** - after any edit or file split, verify imports, exports, and types still resolve.

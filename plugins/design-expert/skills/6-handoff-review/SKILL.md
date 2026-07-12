@@ -1,36 +1,18 @@
 ---
-name: handoff-review
-description: "Phase 6: Serve via python3 -m http.server 8899, screenshot light mode (fullPage), toggle .dark class + screenshot dark mode, compare 3 declared elements [expected vs present], fix gaps with modify_frontend (max 2 cycles), report."
-related-skills: design-review, design-audit
+name: 6-handoff-review
+description: "Legacy phase-6 handoff-review entry point routing to canonical design-review. Use when an existing workflow explicitly invokes 6-handoff-review. Do NOT use for new routing; invoke design-expert:design-review."
 ---
 
+# Legacy Phase 6 — Handoff Review
 
-## Phase 6: FINAL REVIEW — Visual validation and report
+This point of entry remains routable for compatibility. Continue with [design-review](../design-review/SKILL.md) for final deterministic and visual validation, bounded correction cycles, evidence, and handoff reporting.
 
-### When
-After Phase 5 audit passes. Last step of the design pipeline.
+The legacy point of entry remains intact; canonical procedure lives in design-review.
 
-### Input (from Phase 5)
-- Audited components with all Critical/Major issues resolved.
-- WCAG AA validated. Anti-AI-slop checks passed.
-- `design-system.md` as the source of truth.
+## Related skills
 
-### Steps
-1. **Screenshot light mode** — Use `mcp__fuse-browser__browser_screenshot` on every key page/component via localhost in light mode.
-2. **Screenshot dark mode** — Switch to dark mode, take screenshots of the same pages/components.
-3. **Compare 3 declared elements** — For each page, compare these 3 elements against the inspiration site screenshots from Phase 3:
-   - Color contrast and readability.
-   - Component spacing and alignment.
-   - Animation and hover state consistency.
-4. **Cross-viewport check** — Capture mobile/tablet/desktop in one call with `mcp__fuse-browser__browser_screenshot` using `viewports: ["mobile", "tablet", "desktop"]` (or explicit `{width, height}` objects).
-5. **Fix gaps** — If comparison reveals issues, use `mcp__gemini-design__modify_frontend` to fix. Maximum 2 fix cycles.
-6. **Generate report** with:
-   - Side-by-side light/dark screenshots.
-   - List of verified components with status (pass/fail).
-   - Any remaining Minor issues from Phase 5 audit.
-   - Summary of fixes applied during this phase.
+[design-review](../design-review/SKILL.md) and [5-design-audit](../5-design-audit/SKILL.md).
 
-### Output
-- Final report with light/dark screenshots at 3 viewports.
-- All components verified visually. Gaps fixed (max 2 cycles).
-- Design pipeline complete — HTML/CSS delivered.
+## Skill routing metadata
+
+related-skills: design-review, design-audit

@@ -1,8 +1,6 @@
 ---
 name: nextjs-i18n
 description: Next.js 16 internationalization with next-intl or DIY. Use when implementing i18n, translations, localization, multilingual, language switch, locale routing, or formatters.
-references: references/installation.md, references/pages-router.md, references/routing-setup.md, references/routing-config.md, references/translations.md, references/formatting.md, references/navigation.md, references/server-components.md, references/client-components.md, references/middleware-proxy.md, references/error-files.md, references/configuration.md, references/plugin.md, references/extraction.md, references/messages-validation.md, references/typescript.md, references/testing.md, references/integrations.md, references/seo.md, references/core-library.md, references/runtime-requirements.md, references/diy-dictionaries.md, references/diy-locale-detection.md
-related-skills: nextjs-16, solid-nextjs
 ---
 
 # Next.js 16 Internationalization
@@ -154,3 +152,16 @@ Localized error and loading states require specific handling:
 - `global-error.tsx` - Root error fallback
 
 See [error-files.md](references/error-files.md) for complete patterns.
+
+## References
+
+Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
+
+## Related skills
+
+`nextjs-16`, `solid-nextjs`.
+
+## Skill routing metadata
+
+references: references/installation.md, references/pages-router.md, references/routing-setup.md, references/routing-config.md, references/translations.md, references/formatting.md, references/navigation.md, references/server-components.md, references/client-components.md, references/middleware-proxy.md, references/error-files.md, references/configuration.md, references/plugin.md, references/extraction.md, references/messages-validation.md, references/typescript.md, references/testing.md, references/integrations.md, references/seo.md, references/core-library.md, references/runtime-requirements.md, references/diy-dictionaries.md, references/diy-locale-detection.md
+related-skills: nextjs-16, solid-nextjs

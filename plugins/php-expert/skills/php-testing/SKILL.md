@@ -1,8 +1,6 @@
 ---
 name: php-testing
 description: Use when writing or configuring tests on a framework-agnostic PHP project and choosing between PHPUnit and Pest. Covers PHPUnit 12 attributes, Pest 4, test doubles, fixtures, and coverage. Do NOT use for Laravel test helpers (RefreshDatabase, HTTP tests → laravel-expert laravel-testing) or quality tooling (PHPStan/Rector/Fixer → php-quality-tooling).
-references: references/choosing-framework.md, references/phpunit-12.md, references/pest-4.md, references/annotations-to-attributes.md, references/templates/phpunit-xml.md, references/templates/pest-setup.md, references/templates/test-doubles.md
-related-skills: php-quality-tooling, php-language-modern
 ---
 
 # PHP Testing
@@ -121,3 +119,22 @@ it('greets', function () {
 - Keep `@test` / `@dataProvider` annotations (removed in PHPUnit 12)
 - Configure expectations on `createStub()` results
 - Mock the class under test — mock its collaborators
+
+## References
+
+- [references/choosing-framework.md](references/choosing-framework.md)
+- [references/phpunit-12.md](references/phpunit-12.md)
+- [references/pest-4.md](references/pest-4.md)
+- [references/annotations-to-attributes.md](references/annotations-to-attributes.md)
+- [references/templates/phpunit-xml.md](references/templates/phpunit-xml.md)
+- [references/templates/pest-setup.md](references/templates/pest-setup.md)
+- [references/templates/test-doubles.md](references/templates/test-doubles.md)
+
+## Related skills
+
+`php-quality-tooling`, `php-language-modern`.
+
+## Skill routing metadata
+
+references: references/choosing-framework.md, references/phpunit-12.md, references/pest-4.md, references/annotations-to-attributes.md, references/templates/phpunit-xml.md, references/templates/pest-setup.md, references/templates/test-doubles.md
+related-skills: php-quality-tooling, php-language-modern

@@ -6,10 +6,6 @@ nickname_candidates = ["Solid Orchestrator", "Solid Orchestrator Specialist", "S
 sandbox_mode = "read-only"
 developer_instructions = '''# SOLID Orchestrator Agent
 
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
-
 Orchestrates SOLID principles enforcement across all supported languages.
 
 ## Purpose

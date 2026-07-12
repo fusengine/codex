@@ -12,7 +12,7 @@ Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only
 3. **READ + EXPLORE before acting**: never assume, never guess file structure.
 4. **ALWAYS validate after ANY code/config modification**: prefer sniper/check; otherwise focused lint/test/build. NO EXCEPTIONS.
 5. **NEVER duplicate code**: grep codebase BEFORE writing ANY new code.
-6. **ALWAYS verify before ANY technical claim or API usage**: NEVER invent an API, method, option, event, or config key. Verification chain: Context7/official docs -> Exa/code context -> fuse-browser fast-path (`browser_fetch`, `browser_fetch_batch`, `browser_serp_batch`) when useful. Docs > memory. Still uncertain -> say "I don't know".
+6. **ALWAYS verify uncertain or drift-prone technical claims and API usage**: NEVER invent an API, method, option, event, or config key. Use checked-out source and executed checks for stable local facts; use Context7/official docs -> Exa/code context -> fuse-browser fast-path for versions, external APIs, hooks, plugin formats, security, and other facts that can change. Still uncertain -> say "I don't know".
 7. **NEVER propose the same fix twice**: a failed approach triggers STOP -> gather new evidence -> new documented hypothesis -> only then retry.
 8. **ALWAYS read hook/block messages attentively and COMPLY**: a blocked tool call returns an instruction. Do exactly what it says. NEVER repeat the blocked command verbatim and NEVER try to bypass a hook.
 9. **NEVER declare success without evidence**: cite command, path, SHA, rendered output, or runtime state.
@@ -45,13 +45,15 @@ Use Codex subagents in one bounded batch when the runtime exposes them and the t
 | Read-only lookup | Inspect locally and answer directly |
 
 ### Codex Team/Subagent Rules
+- **Native V2 custom-agent contract (Codex 0.144.1, runtime-proven internal knobs)**: configure `[features.multi_agent_v2]` with `tool_namespace = "fusengine_agents"` and `hide_spawn_agent_metadata = false`. Select an exact custom agent with `agent_type` and `fork_turns = "none"` (or a bounded positive history). Never omit `fork_turns` or use `"all"` with `agent_type`: the tested runtime rejects full-history role/model/reasoning overrides. The returned configured nickname is identity evidence; a task path alone is not.
+- **Mandate quality is mandatory**: every non-trivial brief is self-contained and states the objective, exact scope and exclusive ownership, verified context, acceptance criteria and proof commands, plus the expected report. Material ambiguity is escalated to the lead instead of improvised.
 - **Lead owns integration and verification**: launching helpers is step 1, not the job.
 - **Verify on disk after EACH report**: grep/diff expected changes before accepting a mandate as done.
 - **Idle is not done**: no deliverable on disk -> take the mandate back or re-dispatch.
 - **Re-dispatch clause in every brief**: if already delivered, verify disk and refuse duplicate execution.
 - **Exclusive file ownership**: never 2 agents on the same file.
-- **Max 4 subagents**: beyond that is coordination overhead.
-- **Close completed subagents**: after `wait_agent` returns a final status and the result is integrated, call `close_agent` for every spawned subagent no longer needed.
+- **Respect runtime capacity**: never exceed the active concurrency limit; use only as many subagents as the independent work justifies.
+- **Close completed subagents when exposed**: after a final status is reviewed and integrated, call `close_agent` for each completed subagent when the runtime exposes it; otherwise do not claim that cleanup occurred.
 - **Validation after all helpers finish**, not halfway through.
 - **No destructive delegation**: contestable deletion/overwrite/reset stays with the lead after user validation.
 
@@ -112,7 +114,7 @@ Official Codex hook events include `SessionStart`, `UserPromptSubmit`, `PreToolU
 Codex loads hooks unless disabled with `[features].hooks = false`. Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path, but Codex skips them until the current hook definition is reviewed and trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields. Legacy Claude env vars are allowed only in migration compatibility code.
 
 ## Fusengine Plugins - Detailed Rules
-All detailed rules are auto-loaded via the `codex-rules` plugin at SessionStart:
+The setup/update workflow merges all detailed rules into `$CODEX_HOME/AGENTS.md`; the `codex-rules` plugin also re-injects them at runtime so critical guidance survives isolated contexts and compaction:
 - `00-critical-rules.md` - response language, writing style, DRY priority, error prevention
 - `01-project-detection.md` - agent/skill discovery and matching
 - `02-apex-workflow.md` - APEX methodology with auto-trigger
@@ -123,4 +125,4 @@ All detailed rules are auto-loaded via the `codex-rules` plugin at SessionStart:
 - `07-state-management.md` - React/Next.js: Zustand, TanStack Query, stores
 - `08-subagent-conduct.md` - cartography and hook compliance for subagents
 
-Rules location is injected at SessionStart by the `codex-rules` plugin. Use paths from context, not hardcoded versions.
+Rules locations are provided by the active source tree or runtime context. Never hardcode marketplace cache versions.

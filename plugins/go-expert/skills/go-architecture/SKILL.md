@@ -1,8 +1,6 @@
 ---
 name: go-architecture
 description: Structure Go 1.22+ services — standard cmd/internal layout, constructor-based dependency injection, HTTP routing (net/http ServeMux vs chi vs echo/gin/fiber), and type-safe database access with sqlc + pgx. Use when laying out a new Go project, choosing a router or DB layer, or wiring dependencies. Do NOT use for goroutines/channels patterns (go-concurrency) or language idioms (go-core-idioms).
-references: references/project-layout.md, references/http-routing.md, references/database-access.md, references/dependency-injection.md, references/templates/rest-service.md
-related-skills: go-core-idioms, go-testing-quality, solid:solid-go
 ---
 
 # Go Architecture
@@ -75,3 +73,20 @@ The community skill set at `github.com/samber/cc-skills-golang` covers overlappi
 Go territory. This skill deliberately scopes to **architecture / structure /
 routing / DB wiring** and hands testing off to `go-testing-quality`. When in
 doubt about which skill owns a topic, prefer the more specific one.
+
+## References
+
+- [references/project-layout.md](references/project-layout.md)
+- [references/http-routing.md](references/http-routing.md)
+- [references/database-access.md](references/database-access.md)
+- [references/dependency-injection.md](references/dependency-injection.md)
+- [references/templates/rest-service.md](references/templates/rest-service.md)
+
+## Related skills
+
+`go-core-idioms`, `go-testing-quality`, `solid:solid-go`.
+
+## Skill routing metadata
+
+references: references/project-layout.md, references/http-routing.md, references/database-access.md, references/dependency-injection.md, references/templates/rest-service.md
+related-skills: go-core-idioms, go-testing-quality, solid:solid-go

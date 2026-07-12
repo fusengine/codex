@@ -1,7 +1,6 @@
 ---
 name: design-component
 description: "Generate a single component. Use when creating an isolated UI element from an existing design-system.md with Gemini snippet_frontend and component-scoped review."
-related-skills: design-method, design-system, design-motion, design-review
 ---
 
 # /design:component — Single Component (Phases 3→6)
@@ -66,3 +65,11 @@ Generate a single UI component using existing design tokens.
 - fuse-browser browsing (use 21st.dev/shadcn search instead)
 - Creating a new design-system.md (must already exist)
 - Skipping light+dark mode validation
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), [design-motion](../design-motion/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+related-skills: design-method, design-system, design-motion, design-review

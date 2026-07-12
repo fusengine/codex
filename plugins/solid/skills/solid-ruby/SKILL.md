@@ -1,6 +1,6 @@
 ---
 name: solid-ruby
-description: "SOLID principles for Ruby 3.3+ and Rails 8. Files < 100 lines, contracts separated, modular architecture. Modules MANDATORY."
+description: "SOLID principles for Ruby 3.3+ and Rails 8 with files under 100 lines, separated contracts, and mandatory modular architecture. Use when writing or refactoring Ruby/Rails code or feature modules. Do NOT use for stack detection."
 ---
 
 

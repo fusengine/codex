@@ -1,7 +1,6 @@
 ---
 name: audit-design
 description: "Audit existing HTML/CSS design quality. Use when checking WCAG contrast, font compliance, OKLCH tokens, state coverage, anti-AI-slop, and visual validation without generation."
-related-skills: design-review, design-audit, handoff-review
 ---
 
 # /design:audit — Design Quality Audit (Phases 5→6)
@@ -70,3 +69,11 @@ When no path is provided, audits all HTML files in the current directory.
 - Skipping light+dark mode screenshots
 - Inter, Roboto, Arial, Open Sans, Lato, Poppins marked as acceptable
 - Hex, RGB, or HSL colors marked as acceptable
+
+## Related skills
+
+[design-review](../design-review/SKILL.md), [5-design-audit](../5-design-audit/SKILL.md), and [6-handoff-review](../6-handoff-review/SKILL.md).
+
+## Skill routing metadata
+
+related-skills: design-review, design-audit, handoff-review

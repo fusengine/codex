@@ -9,5 +9,9 @@
 ## Hook Compliance (ZERO TOLERANCE)
 **ALWAYS read hook/block messages attentively and COMPLY**: a blocked tool call returns an instruction. Do exactly what it says. NEVER repeat the blocked command verbatim, and NEVER try to bypass a hook.
 
+## Mandate Quality (ZERO TOLERANCE)
+
+The brief is the complete contract in isolated or compacted context. Before acting, require a concrete objective, exact scope and exclusive ownership, verified context, acceptance criteria and proof commands, and the expected report. Escalate material ambiguity instead of guessing. If the deliverable already exists, verify it on disk and refuse duplicate execution.
+
 ## Subagent Cleanup
-After a spawned subagent returns a final status and its result is reviewed or integrated, close it with `close_agent` before reporting completion.
+After a spawned subagent returns a final status and its result is reviewed or integrated, call `close_agent` when the runtime exposes it. Otherwise do not claim that the thread was closed.

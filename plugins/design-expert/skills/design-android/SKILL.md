@@ -1,8 +1,6 @@
 ---
 name: design-android
 description: "Android mockups and handoff specs — Material 3 Expressive type scale, shape scale, window size classes, color roles, device-framed HTML mockup, and a Compose-ready handoff spec. Produces tokens + mockup only, never Compose code."
-references: references/
-related-skills: design-method, design-system, design-review
 ---
 
 ## Design Android — Mockup and Handoff, Not Code
@@ -54,3 +52,16 @@ full site audit loop).
 | `references/window-size-classes.md` | **Canonical window size classes — verified developer.android.com** |
 | `references/touch-targets.md` | 48×48dp target + 8dp spacing — verified |
 | `references/handoff-compose.md` | Compose-ready handoff spec format |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, design-review

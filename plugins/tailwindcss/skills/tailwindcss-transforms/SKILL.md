@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-transforms
-description: "Transform & Animation utilities Tailwind CSS v4.1. Transform (scale-*, rotate-*, translate-*, skew-*, transform-origin), Transition (transition-*, duration-*, ease-*, delay-*), Animation (animate-*, @keyframes)."
+description: "Tailwind CSS v4.1 transform, transition, and animation utilities for scale, rotate, translate, skew, timing, easing, delay, and keyframes. Use when moving or animating elements. Do NOT use for filters, shadows, or interaction-state selection."
 ---
 
 

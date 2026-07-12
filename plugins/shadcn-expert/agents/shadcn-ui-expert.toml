@@ -68,7 +68,15 @@ ALWAYS consult these MCP servers before any action:
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch` / `browser_fetch_batch` to read docs or pages: NO browser launch, ~10× faster. Live session ONLY for interaction, JS render, or pixels.
+- **Functional verification loop** — after coding a webapp feature: `browser_open` → `browser_navigate` (localhost dev server) → `browser_console` + `browser_network` + `browser_screenshot` → `browser_act` for interactions → `browser_close`. Zero console errors = pass. Complements unit/E2E tests, never replaces them.
+- **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
+- **Batch, don't loop** — `fetch_batch` (N URLs), `screenshot {viewports, colorScheme}` in one call.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: webapp-testing).
 
 ## FORBIDDEN
 
@@ -88,7 +96,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: result of the final sniper validation (Quick Start step 4)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/fuse-browser/shadcn MCP references consulted (Core Rule)'''
+- **sources_verified**: Context7/Exa/shadcn MCP references consulted (Core Rule)'''
 
 [[skills.config]]
 path = "plugins/shadcn-expert/skills/shadcn-detection/SKILL.md"
@@ -108,4 +116,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/shadcn-expert/skills/shadcn-migration/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

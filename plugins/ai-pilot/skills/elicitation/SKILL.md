@@ -74,6 +74,7 @@ Skip elicitation → Go directly to sniper validation
 | Business Logic | SOLID Compliance, Unit Test Coverage, Edge Cases |
 | Refactoring | Breaking Changes, Regression Analysis, Backward Compat |
 | Performance Critical | Profiling, Memory Analysis, Complexity Check |
+| Config/Docs/Plugin | CQ-01, DOC-01, INT-01 and validation by the strictest parser in the consumption chain |
 
 ---
 
@@ -139,13 +140,19 @@ A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
 
 ---
 
+## Artifact Contract
+
+Step 5 persists `.codex/apex/docs/elicit-{task-slug}.json`, allowing later passes to diff prior verdicts instead of restarting. Load [artifact-contract.md](references/artifact-contract.md) for slug derivation and the machine-readable contract. Optional repository-specific technique tuning is documented in [elicit-profile.md](references/elicit-profile.md).
+
+---
+
 ## Steps Reference
 
 | Step | File | Purpose |
 |------|------|---------|
-| 0 | `steps/step-00-init.md` | Load context, detect mode |
+| 0 | `steps/step-00-init.md` | Load context, detect mode, load prior artifact |
 | 1 | `steps/step-01-analyze-code.md` | Analyze written code |
 | 2 | `steps/step-02-select-techniques.md` | Select techniques |
 | 3 | `steps/step-03-apply-review.md` | Apply review |
 | 4 | `steps/step-04-self-correct.md` | Self-correct |
-| 5 | `steps/step-05-report.md` | Generate report |
+| 5 | `steps/step-05-report.md` | Generate report and persist the artifact |

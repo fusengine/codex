@@ -32,6 +32,8 @@ next_step: steps/step-03-apply-review.md
 
 ## YOUR TASK:
 
+Before selecting, apply `.codex/apex/elicit-profile.md` when present using [elicit-profile.md](../references/elicit-profile.md). Then apply `{prior_artifact}`: deselect prior `pass` techniques by default and prioritize `fail` or `deferred` techniques.
+
 ### Mode: MANUAL
 
 #### 1. Present 5 Most Relevant Techniques
@@ -80,6 +82,7 @@ Parse user input:
 | Database | N+1 Detection, Migration Safety, Query Optimization |
 | UI Components | Accessibility Audit, Edge Cases, Error States |
 | Business Logic | SOLID Check, Edge Cases, Unit Test Coverage |
+| Config/Docs/Plugin | CQ-01, DOC-01, INT-01 + strictest-parser validation |
 | Mixed | Top technique from each detected category |
 
 #### 2. Silent Selection

@@ -50,7 +50,7 @@ Delegate corrections to sniper agent:
 
 ## Arguments
 
-- `$ARGUMENTS` specifies scan options and target path
+- Derive scan options and the target path from the user's request.
 
 ## Examples
 

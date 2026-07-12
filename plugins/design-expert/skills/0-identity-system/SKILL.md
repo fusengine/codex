@@ -1,46 +1,29 @@
 ---
-name: identity-system
-description: "Phase 0: Read sector template (creative/fintech/ecommerce/devtool), generate OKLCH palette with chroma > 0.05, pick approved typography pair (never Inter/Roboto/Arial), define spacing base unit + motion profile."
-references: references/
-related-skills: design-method, design-system, designing-systems
+name: 0-identity-system
+description: "Legacy identity-system entry point routing to the canonical design method and design-system skills. Use when an existing workflow explicitly invokes phase 0 or 0-identity-system. Do NOT use for new routing; start with design-method, then design-system."
 ---
 
+# Legacy Phase 0 — Identity System
 
-## Phase 0: IDENTITY SYSTEM — Define the brand DNA
+This point of entry remains routable for compatibility.
 
-### When
-Start of a new project, or when no `design-system.md` exists at project root.
+1. Read [design-method](../design-method/SKILL.md) for brief, tone, signature element, and target routing.
+2. Use [design-system](../design-system/SKILL.md) for palette, typography, spacing, motion profile, contrast, and identity output.
+3. Continue with design-web, design-webapp, design-ios, or design-android according to the target.
 
-### Input (from user)
-- User brief: sector, audience, personality, competitors, desired feeling.
-- If no brief provided, ask the 5 identity questions (see references/identity-brief.md).
+The references in this legacy directory remain available for older workflows; canonical guidance lives in the skills above.
 
-### Steps
-1. **Read** `references/identity-brief.md` — collect answers to the 5 questions.
-2. **Match sector** in `references/sector-palettes.md` — pick the OKLCH palette base.
-3. **Generate palette** using `references/oklch-system.md` — primary, secondary, accent, neutral + semantic colors. Validate contrast with `references/contrast-ratios.md`.
-4. **Choose typography pair** from `references/typography-pairs.md` — display + body fonts matching sector personality. NEVER use Inter, Roboto, Arial.
-5. **Set spacing density** from `references/spacing-density.md` — dense / standard / editorial.
-6. **Define motion personality** from `references/motion-personality.md` — corporate / modern / playful / luxury.
-7. **Check visual techniques** in `references/visual-technique-matrix.md` — what is allowed for this personality x density combination.
-8. **Generate `design-system.md`** at project root using the matching template from `references/templates/` (fintech, ecommerce, devtool, creative, or blank).
+## References
 
-### Output
-- `design-system.md` at project root with: OKLCH palette, typography pair, spacing profile, motion personality, visual techniques allowed.
-- All colors in OKLCH format, dark mode palette included.
+Load relevant files from [references/](references/) as needed.
 
-### Next → Phase 1: DESIGNING SYSTEMS
-`1-designing-systems/SKILL.md` — Convert identity into design tokens and responsive system.
+## Related skills
 
-### References
-| File | Purpose |
-|------|---------|
-| `references/identity-brief.md` | 5-question brand questionnaire |
-| `references/sector-palettes.md` | Sector-specific OKLCH palettes |
-| `references/oklch-system.md` | OKLCH color generation rules |
-| `references/contrast-ratios.md` | WCAG contrast validation |
-| `references/typography-pairs.md` | Approved font pairings |
-| `references/spacing-density.md` | Density profiles |
-| `references/motion-personality.md` | Motion personality definitions |
-| `references/visual-technique-matrix.md` | Allowed techniques per personality |
-| `references/templates/` | design-system.md templates per sector |
+- [design-method](../design-method/SKILL.md)
+- [design-system](../design-system/SKILL.md)
+- [1-designing-systems](../1-designing-systems/SKILL.md)
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, designing-systems

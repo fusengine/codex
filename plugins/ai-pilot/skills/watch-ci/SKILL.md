@@ -67,7 +67,7 @@ Monitor and auto-fix CI failures:
    Wait for new CI run and repeat if needed.
 
 **Arguments**:
-- $ARGUMENTS can specify specific job to watch
+- The user request can specify a particular job to watch.
 
 **Example Usage**:
 - `/watch-ci` → Monitor latest CI run

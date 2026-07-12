@@ -8,7 +8,6 @@ description: >-
   go, debugging setup (blank page, hydration, no client JS). Do NOT use for:
   server-only vs isomorphic boundaries (use start-execution-model), SOLID/code
   organization (use solid-tanstack-start), plain React SPA without Start.
-references: references/project-setup.md, references/project-anatomy.md, references/common-mistakes.md, references/templates/minimal-project.md
 ---
 
 # TanStack Start Core
@@ -106,3 +105,12 @@ npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic
 - Omitting `<Scripts />` in `__root.tsx` (no hydration).
 - Enabling `verbatimModuleSyntax` (leaks server code into client bundle).
 - Next.js/Remix patterns (`getServerSideProps`, `"use server"`).
+
+## References
+
+references: references/project-setup.md, references/project-anatomy.md, references/common-mistakes.md, references/templates/minimal-project.md
+
+- [references/project-setup.md](references/project-setup.md)
+- [references/project-anatomy.md](references/project-anatomy.md)
+- [references/common-mistakes.md](references/common-mistakes.md)
+- [references/templates/minimal-project.md](references/templates/minimal-project.md)

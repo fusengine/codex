@@ -1,8 +1,6 @@
 ---
 name: go-tooling-security
 description: "Use when: setting up Go modules/workspaces, configuring golangci-lint v2, scanning dependencies with govulncheck, modernizing code with go fix, or building a Go CI quality gate. Do NOT use for: writing Go application logic (use the Go expert), non-Go languages, SOLID/architecture refactoring (use solid-go), or generic dependency audits in other ecosystems."
-references: references/modules-workspaces.md, references/golangci-lint-v2.md, references/govulncheck.md, references/go-fix-modernizers.md, references/templates/golangci-v2-config.md, references/templates/ci-workflow.md
-related-skills: go-core-idioms, go-testing-quality, solid:solid-go, security-expert:dependency-audit
 ---
 
 # Go Tooling & Security
@@ -135,3 +133,21 @@ go fix ./...                         # apply Go 1.26 modernizers
 - Commit `go.work` in repos whose modules are also developed with external modules
 - Suppress govulncheck findings without confirming the vulnerable symbol is unreachable
 - Assume `go vet`/`gofmt` changed in 1.26 — the 1.26 change is `go fix`, not those
+
+## References
+
+- [references/modules-workspaces.md](references/modules-workspaces.md)
+- [references/golangci-lint-v2.md](references/golangci-lint-v2.md)
+- [references/govulncheck.md](references/govulncheck.md)
+- [references/go-fix-modernizers.md](references/go-fix-modernizers.md)
+- [references/templates/golangci-v2-config.md](references/templates/golangci-v2-config.md)
+- [references/templates/ci-workflow.md](references/templates/ci-workflow.md)
+
+## Related skills
+
+`go-core-idioms`, `go-testing-quality`, `solid:solid-go`, `security-expert:dependency-audit`.
+
+## Skill routing metadata
+
+references: references/modules-workspaces.md, references/golangci-lint-v2.md, references/govulncheck.md, references/go-fix-modernizers.md, references/templates/golangci-v2-config.md, references/templates/ci-workflow.md
+related-skills: go-core-idioms, go-testing-quality, solid:solid-go, security-expert:dependency-audit

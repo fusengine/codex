@@ -1,6 +1,6 @@
 ---
 name: solid-php
-description: "SOLID principles for Laravel 13 and PHP 8.3+. Files < 100 lines, interfaces separated, PHPDoc mandatory. Auto-detects Laravel and FuseCore architecture."
+description: "Applies SOLID architecture to Laravel 13 and modern PHP with reviewable files, separated interfaces, and project-aligned PHPDoc. Use for service design or structural refactoring. Do NOT use for isolated syntax fixes."
 ---
 
 

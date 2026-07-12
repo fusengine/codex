@@ -1,6 +1,6 @@
 ---
 name: solid-python
-description: "SOLID principles for Python 3.12+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY."
+description: "SOLID principles for Python 3.12+ with files under 100 lines, separated interfaces, Protocol contracts, and mandatory modular architecture. Use when writing or refactoring Python code or feature modules. Do NOT use for stack detection."
 ---
 
 

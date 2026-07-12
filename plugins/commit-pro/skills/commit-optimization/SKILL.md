@@ -1,7 +1,6 @@
 ---
 name: commit-optimization
 description: "Optimize the commit-pro workflow for Codex. Use when reducing commit workflow overhead, avoiding duplicate git guidance, or migrating commit settings from another agent runtime."
-related-skills: commit, commit-detection, git-flow, post-commit
 ---
 
 # Commit Optimization
@@ -22,3 +21,11 @@ Use the narrowest commit-pro skill for the current task:
 | CHANGELOG/version bump after commit | `post-commit` |
 
 Keep the detector read-only. Run mutating git operations only after explicit user confirmation and repository policy checks.
+
+## Related skills
+
+`commit`, `commit-detection`, `git-flow`, `post-commit`.
+
+## Skill routing metadata
+
+related-skills: commit, commit-detection, git-flow, post-commit

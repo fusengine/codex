@@ -1,7 +1,6 @@
 ---
 name: nextjs-stack
 description: "Next.js 16+ complete stack with App Router, Prisma 7, Better Auth, shadcn/ui, TanStack Form, Zustand. Use as the master reference combining all framework skills. Do NOT use for: core framework API details — routing, caching, Server Components internals, proxy.ts (use nextjs-16 and its references)."
-related-skills: nextjs-16, prisma-7, better-auth, nextjs-shadcn, nextjs-tanstack-form, nextjs-zustand, nextjs-i18n, solid-nextjs
 ---
 
 # Next.js Complete Stack
@@ -68,3 +67,11 @@ Detailed guidance lives in `references/` to keep this file scannable — load on
 | [references/getting-started.md](references/getting-started.md) | Bootstrapping a brand-new project step by step |
 
 For framework-specific detail, go directly to the sub-skill: `nextjs-16`, `prisma-7`, `better-auth`, `nextjs-shadcn`, `nextjs-tanstack-form`, `nextjs-zustand`, `nextjs-i18n`, `solid-nextjs`.
+
+## Related skills
+
+`nextjs-16`, `prisma-7`, `better-auth`, `nextjs-shadcn`, `nextjs-tanstack-form`, `nextjs-zustand`, `nextjs-i18n`, `solid-nextjs`.
+
+## Skill routing metadata
+
+related-skills: nextjs-16, prisma-7, better-auth, nextjs-shadcn, nextjs-tanstack-form, nextjs-zustand, nextjs-i18n, solid-nextjs

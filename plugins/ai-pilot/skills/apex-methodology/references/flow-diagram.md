@@ -26,7 +26,7 @@ description: ASCII flow diagram of the full APEX workflow, start to finish
                       │
                       ▼
               ┌───────────────┐
-              │ 02-plan       │ ← TaskCreate
+              │ 02-plan       │ ← Codex plan
               └───────┬───────┘
                       │
                       ▼

@@ -3,7 +3,7 @@ name: sniper-check
 description: Use when validating code quality after modifications. Runs sniper agent in isolated forked context for clean, fast validation.
 ---
 
-**Target:** $ARGUMENTS
+**Target:** Derive from the user's requested validation scope.
 
 # Sniper Check
 

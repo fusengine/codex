@@ -1,8 +1,6 @@
 ---
 name: design-system
 description: "Design tokens: OKLCH palette, typography pair, spacing, motion profile, and the mechanical contrast-check step. Canonical source for the forbidden-fonts list and contrast thresholds — referenced, never restated, elsewhere in this plugin."
-references: references/
-related-skills: design-method, design-web, design-webapp, design-review
 ---
 
 ## Design System — Tokens and the Mechanical Contrast Check
@@ -101,3 +99,16 @@ Route back to `design-method`'s table: `design-web`, `design-webapp`, `design-io
 | `references/tailwind-config.md` | Custom Tailwind theme configuration for these tokens. |
 | `references/tailwind-utilities.md` | Mapping tokens to Tailwind utility classes. |
 | `references/tailwind-performance.md` | Optimizing Tailwind output size / purge strategy. |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-web](../design-web/SKILL.md), [design-webapp](../design-webapp/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-web, design-webapp, design-review

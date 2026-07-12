@@ -1,7 +1,6 @@
 ---
 name: git-flow
 description: "Use when committing, branching, opening PRs, or deciding merge strategy. Covers GitHub Flow (default), trunk-based, branch naming conventions, squash vs rebase, branch lifecycle, and protected branch enforcement."
-related-skills: commit-optimization, post-commit, commit-detection
 ---
 
 
@@ -15,7 +14,7 @@ related-skills: commit-optimization, post-commit, commit-detection
 | **GitHub Flow** (feature branch → PR → merge → delete) | Teams, OSS, code review | ✅ Default |
 | **Git Flow** (develop/release/hotfix) | Heavy release cycles | ❌ Outdated for most projects |
 
-**fuse-commit-pro default: GitHub Flow.**
+**commit-pro default: GitHub Flow.**
 
 ## Branch Naming Convention
 
@@ -44,7 +43,7 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 
 `main`, `master`, `develop`, `production` → **never commit directly**.
 
-`fuse-commit-pro:commit` enforces this in Step 0:
+`commit-pro:commit` enforces this in Step 0:
 - Detects current branch
 - If protected → blocks + proposes auto-named feature branch from commit type/scope
 - Exceptions: solo prototype (no remote), explicit `--no-branch-check`, or post-commit version bump
@@ -57,7 +56,7 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 3. git push -u origin feat/<scope>    # push with upstream
 4. gh pr create                       # open PR
 5. (review + CI)
-6. gh pr merge --squash --delete-branch  # merge + cleanup
+6. gh pr merge --merge --delete-branch   # merge + cleanup
 ```
 
 **Keep branches short-lived** (< 3 days ideally). Long-lived branches accumulate conflicts and lose context.
@@ -66,11 +65,11 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 
 | Strategy | When | Result |
 |----------|------|--------|
-| **Squash merge** | Default for features | 1 commit per feature on main, clean history |
-| **Rebase merge** | Small atomic commits worth preserving | Linear history, individual commits kept |
-| **Merge commit** | Rare, only for "merge events" worth marking | Adds noise, avoid by default |
+| **Merge commit** | commit-pro default | Branch commits, including the version bump, land intact |
+| **Rebase merge** | Atomic commits worth preserving without a merge commit | Linear history |
+| **Squash merge** | Not used by commit-pro tagging flow | Would replace the tagged bump commit |
 
-**fuse-commit-pro recommendation**: squash merge via `gh pr merge --squash --delete-branch`.
+**commit-pro recommendation**: `gh pr merge --merge --delete-branch`. Create and push the release tag only after the merge succeeds; see `post-commit/references/tag-timing.md`.
 
 ## After Merge
 
@@ -112,4 +111,12 @@ If you're alone on a repo with no PR review:
 - Still use feature branches (rollback safety net)
 - Self-PR is fine for sanity check (you'll see the diff fresh)
 - Or commit-then-push on main with strong CI as safety
-- `fuse-commit-pro:commit` detects no-remote case and skips Step 7
+- `commit-pro:commit` detects the no-remote case and skips Step 7
+
+## Related skills
+
+`commit-optimization`, `post-commit`, `commit-detection`.
+
+## Skill routing metadata
+
+related-skills: commit-optimization, post-commit, commit-detection

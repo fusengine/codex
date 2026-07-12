@@ -1,14 +1,10 @@
 name = "seo-images"
-description = "Image SEO sub-agent. Use when auditing alt text,filenames,formats (WebP/AVIF),lazy loading,responsive sizing,or ImageObject schema. Do NOT use for general schema (use seo-schema)."
+description = "Image SEO sub-agent. Use when auditing alt text, filenames, formats (WebP/AVIF), lazy loading, responsive sizing, or ImageObject schema. Do NOT use for general schema (use seo-schema)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Images", "SEO Images Specialist", "SEO Images Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Images Sub-Agent
-
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for image SEO.
 
@@ -44,8 +40,18 @@ Parallelizable expert for image SEO.
 - Dimensions set: N (X%)
 
 ### Score: N/10
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call for responsive + dark mode checks.
+- **Deterministic extraction** — `browser_extract` over manual parsing.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: visual-design).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-images/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

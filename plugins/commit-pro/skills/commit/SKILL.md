@@ -1,7 +1,6 @@
 ---
 name: commit
 description: "Smart conventional commit with security validation, branch flow enforcement, and auto-detection. Use when committing changes, saving work, staging and committing, or choosing a conventional commit message."
-related-skills: commit-detection, git-flow, post-commit
 ---
 
 # Smart Conventional Commit
@@ -56,7 +55,7 @@ If user declines → STOP, do not commit.
 
 **Exceptions** (allow direct commit on main):
 - Repo has only `main` branch and no remote (solo prototype)
-- User explicitly passes `--no-branch-check` in `$ARGUMENTS`
+- User explicitly requests `--no-branch-check`
 - Commit type is `chore` AND scope is `release` or `version` (post-commit bump commits)
 
 ### Step 1: Security Check
@@ -132,84 +131,103 @@ EOF
 )"
 ```
 
-If $ARGUMENTS provided, use as hint for the message.
+If the user provides commit context, use it as a hint for the message.
 
 ### Step 6: Post-Commit (universal)
 
-After step 5 succeeds, execute the `post-commit` skill (CHANGELOG + version bump only; no tag here unless a later post-merge step actually runs).
+After step 5 succeeds, execute the `post-commit` skill for CHANGELOG and version bump only. Tagging is delegated entirely to Step 8: post-merge push in FULL mode, local-only creation in LOCAL or DEGRADED mode.
 
 This runs for ALL repos — the skill auto-detects the repo type internally.
 
-### Step 7: Push Branch + Pull Request (GitHub Flow)
+### Step 7: Remote Flow (push + PR + CI + merge)
 
-Only run this step when the user explicitly asked for push, PR creation, or release flow.
+Run remote mutations only when the user explicitly authorized the corresponding scope:
 
-After post-commit completes, if current branch is a feature branch (not main/master) and a remote is configured:
+- commit only → stop after Step 6;
+- push or PR → push/create or reuse the PR, then leave it open;
+- full release flow or explicit merge → run the FULL-mode merge sequence below.
+
+Never infer push, PR, or merge authority from permission to commit.
+
+#### Remote-flow decision tree
+
+```bash
+git remote -v
+```
+
+- **No remote → LOCAL mode.** Do not push, create a PR, or merge. For an explicitly requested release flow, use Step 8 LOCAL mode and print the commands needed after a remote is configured.
+- **Remote exists → check GitHub CLI:**
+  ```bash
+  command -v gh
+  gh auth status
+  ```
+  - `gh` missing or unauthenticated → **DEGRADED mode**. Push only when authorized, then stop and report the failed prerequisite plus the manual PR/merge commands. For an explicitly requested release flow, use Step 8 DEGRADED mode.
+  - `gh` installed and authenticated → **FULL mode**.
+
+After post-commit completes, if the current branch is a feature branch:
 
 1. **Push branch with upstream**:
    ```bash
    git push -u origin <current-branch>
    ```
-2. **Check if PR already exists**:
-   ```bash
-   gh pr view --json url 2>/dev/null
-   ```
-   - If exists → output URL, STOP.
-   - If not → propose creating one.
-
-3. **Propose PR creation**:
-
-   ```text
-   🔀 Pull Request
-   ───────────────────────────────
-   Branch: <feature-branch>
-   Base: main
-   ───────────────────────────────
-
-   Create PR via gh? [Y/N]
-   ```
-
-4. **If accepted**, generate PR with this template:
+2. **Create the PR if absent; otherwise reuse it.** Pipe the body through stdin to avoid quoting bugs and temporary files:
 
    ```bash
-   gh pr create --title "<commit subject>" --body "$(cat <<'EOF'
+   gh pr view --json url -q .url 2>/dev/null || gh pr create --base main --title "<commit subject>" --body-file - <<'EOF'
    ## Summary
-   - <bullet 1 from commit body>
-   - <bullet 2>
+   - <bullets from commit body>
 
    ## Changes
-   <list of major changes>
+   <major changes>
 
    ## Test plan
-   - [ ] Manual test on X
-   - [ ] CI passes
-   - [ ] Sniper validation clean
+   - [x] / [ ] as applicable
 
    ## Breaking changes
    None / <description>
    EOF
-   )"
    ```
 
-5. **Output PR URL** and STOP unless the user explicitly requested merge.
+3. **If only push/PR was authorized**, output the PR URL and STOP.
 
-If the user explicitly requested merge, prefer squash merge after required checks pass:
+When merge or full release flow was explicitly authorized, use a real merge commit, **never squash**. Prefer native auto-merge:
 
 ```bash
-gh pr checks <pr> --watch && gh pr merge <pr> --squash --delete-branch
+gh pr merge <pr> --auto --merge --delete-branch
 ```
 
-If merge succeeds, proceed to Step 8.
+`--auto` may only enable auto-merge. Before Step 8, require proof that the merge actually completed:
+
+```bash
+test -n "$(gh pr view <pr> --json mergedAt -q .mergedAt)" || { echo "merge pending; tag skipped"; exit 1; }
+```
+
+If auto-merge is unavailable, preserve the check command's exit status and merge only after success:
+
+```bash
+gh pr checks <pr> --watch && gh pr merge <pr> --merge --delete-branch
+```
+
+If the repository has no CI checks:
+
+```bash
+gh pr merge <pr> --merge --delete-branch
+```
+
+Never pipe `gh pr checks`; a pipeline can hide a failing exit status. After every merge path, require a non-empty `mergedAt` before Step 8. If checks fail, the merge remains pending, or branch protection rejects it, leave the PR open and do not tag.
 
 **Skip Step 7 if**:
-- No remote configured
-- User passes `--no-pr` in `$ARGUMENTS`
+- User explicitly requests `--no-pr`
+- User explicitly requests `--no-merge` for the merge portion
 - Branch already merged
-- Repo has no `gh` CLI installed (graceful degradation, output manual command)
 
-### Step 8: Post-Merge Tag (main only, after a successful squash merge)
+### Step 8: Release Tag
 
-Only runs after Step 7 actually merged the PR.
+`vX.Y.Z` is the version bumped by `post-commit` in Step 6.
+
+#### FULL mode
+
+Run only after Step 7 confirms the PR actually merged:
 
 ```bash
 git checkout main && git pull --ff-only
@@ -219,6 +237,22 @@ git push origin vX.Y.Z
 git merge-base --is-ancestor vX.Y.Z main && echo "tag on main ok"
 ```
 
-`vX.Y.Z` is the version bumped by `post-commit` in Step 6.
+The real merge commit preserves the feature-branch commits, including the version bump. Waiting until the merge succeeds prevents publishing a tag for a commit rejected by CI or branch protection.
 
-Why the tag moves here: `gh pr merge --squash` creates a brand-new commit on `main`; feature-branch commits do not land on `main`. Tagging the actual squash-merge commit keeps the tag meaningful.
+#### LOCAL or DEGRADED mode
+
+For an explicitly requested release flow, create the tag locally after the Step 6 bump commit:
+
+```bash
+git tag vX.Y.Z
+```
+
+Never push that tag automatically. Print the manual push command for use only after the change reaches its permanent branch.
+
+## Related skills
+
+`commit-detection`, `git-flow`, `post-commit`.
+
+## Skill routing metadata
+
+related-skills: commit-detection, git-flow, post-commit

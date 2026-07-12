@@ -1,8 +1,6 @@
 ---
 name: solid-astro
-description: Use when applying SOLID principles and clean architecture to Astro projects. Enforces files < 100 lines, src/interfaces/ for types, JSDoc on all exports, modular directory structure, and DRY enforcement.
-references: references/solid-principles.md, references/file-limits.md, references/interfaces.md, references/architecture.md, references/dry-enforcement.md, references/jsdoc.md, references/templates/component.md, references/templates/layout.md, references/templates/service.md, references/templates/interface.md
-related-skills: astro-6, astro-content, astro-styling, astro-i18n
+description: "Applies SOLID architecture to Astro projects with reviewable files, separated interfaces, documented exports, modular structure, and DRY enforcement. Use for architecture or structural refactoring. Do NOT use for isolated template or style fixes."
 ---
 
 # SOLID Astro — Modular Architecture
@@ -86,3 +84,25 @@ See `references/architecture.md`, `references/file-limits.md`, `references/solid
 - Copy-pasting logic instead of extracting shared function
 - Missing JSDoc on exported functions, components, and types
 - `any` TypeScript type
+
+## References
+
+- [references/solid-principles.md](references/solid-principles.md)
+- [references/file-limits.md](references/file-limits.md)
+- [references/interfaces.md](references/interfaces.md)
+- [references/architecture.md](references/architecture.md)
+- [references/dry-enforcement.md](references/dry-enforcement.md)
+- [references/jsdoc.md](references/jsdoc.md)
+- [references/templates/component.md](references/templates/component.md)
+- [references/templates/layout.md](references/templates/layout.md)
+- [references/templates/service.md](references/templates/service.md)
+- [references/templates/interface.md](references/templates/interface.md)
+
+## Related skills
+
+`astro-6`, `astro-content`, `astro-styling`, `astro-i18n`.
+
+## Skill routing metadata
+
+references: references/solid-principles.md, references/file-limits.md, references/interfaces.md, references/architecture.md, references/dry-enforcement.md, references/jsdoc.md, references/templates/component.md, references/templates/layout.md, references/templates/service.md, references/templates/interface.md
+related-skills: astro-6, astro-content, astro-styling, astro-i18n

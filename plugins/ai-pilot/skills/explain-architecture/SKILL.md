@@ -88,7 +88,7 @@ Analyze and visualize system architecture:
    ```
 
 **Arguments**:
-- $ARGUMENTS focuses on specific subsystem
+- Derive any subsystem focus from the user's request.
 
 **Example Usage**:
 - `/explain-architecture auth` → Focus on auth subsystem

@@ -1,8 +1,6 @@
 ---
 name: rust-core-language
 description: Use when writing or reviewing idiomatic Rust — edition 2024 features, ownership/borrowing design, and correcting the pitfalls that show up in LLM-generated Rust (clone tax, unwrap infestation, String vs &str, indexed loops, over-annotated lifetimes). Do NOT use for error-type design (use rust-error-handling), async runtimes, or SOLID/file-layout rules (use solid:solid-rust).
-references: references/edition-2024.md, references/ownership-borrowing.md, references/llm-pitfalls.md, references/templates/idiomatic-code.md
-related-skills: rust-error-handling, solid:solid-rust
 ---
 
 # Rust Core Language
@@ -79,3 +77,19 @@ Never state a stabilization version from memory — verify against
 - [ ] Parameters take references unless ownership is required
 - [ ] No lifetime annotations the compiler can elide
 - [ ] `cargo clippy` clean, sniper passed
+
+## References
+
+- [references/edition-2024.md](references/edition-2024.md)
+- [references/ownership-borrowing.md](references/ownership-borrowing.md)
+- [references/llm-pitfalls.md](references/llm-pitfalls.md)
+- [references/templates/idiomatic-code.md](references/templates/idiomatic-code.md)
+
+## Related skills
+
+`rust-error-handling`, `solid:solid-rust`.
+
+## Skill routing metadata
+
+references: references/edition-2024.md, references/ownership-borrowing.md, references/llm-pitfalls.md, references/templates/idiomatic-code.md
+related-skills: rust-error-handling, solid:solid-rust

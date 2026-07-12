@@ -1,7 +1,6 @@
 ---
 name: watch
 description: "Check for Codex CLI updates, detect breaking changes, analyze plugin compatibility, and optionally gather community pulse via Exa."
-related-skills: changelog-scan, breaking-changes, community-pulse
 ---
 
 # Watch - Codex CLI Update Tracker
@@ -67,4 +66,12 @@ New Since Last Check: {count}
 
 ## Arguments
 
-- `$ARGUMENTS` specifies mode and version filter
+- Derive the mode and version filter from the user's request.
+
+## Related skills
+
+`changelog-scan`, `breaking-changes`, `community-pulse`.
+
+## Skill routing metadata
+
+related-skills: changelog-scan, breaking-changes, community-pulse

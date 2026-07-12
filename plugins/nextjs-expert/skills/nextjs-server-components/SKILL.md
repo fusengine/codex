@@ -1,8 +1,6 @@
 ---
 name: nextjs-server-components
 description: "React Server Components patterns for Next.js 16. Server vs Client boundaries, async components, data fetching, serialization rules, streaming with Suspense. Use when: deciding server vs client component boundaries, fetching data directly in components, or streaming UI with Suspense."
-references: references/rsc-patterns.md, references/streaming.md
-related-skills: nextjs-16, nextjs-tanstack-query, react-19
 ---
 
 # Next.js Server Components
@@ -73,3 +71,17 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 | Streaming and Suspense | [streaming.md](references/streaming.md) |
 | Data fetching in RSC | [rsc-patterns.md](references/rsc-patterns.md) |
 | Loading states | [streaming.md](references/streaming.md) |
+
+## References
+
+- [references/rsc-patterns.md](references/rsc-patterns.md)
+- [references/streaming.md](references/streaming.md)
+
+## Related skills
+
+`nextjs-16`, `nextjs-tanstack-query`, `react-19`.
+
+## Skill routing metadata
+
+references: references/rsc-patterns.md, references/streaming.md
+related-skills: nextjs-16, nextjs-tanstack-query, react-19

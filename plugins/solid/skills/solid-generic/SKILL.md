@@ -1,6 +1,6 @@
 ---
 name: solid-generic
-description: "SOLID principles for generic TypeScript, Bun, and Node.js projects. Files < 100 lines, interfaces separated, JSDoc mandatory. Use for CLI tools, libraries, scripts, hooks, and non-framework TypeScript code."
+description: "SOLID principles for generic TypeScript, Bun, and Node.js with files under 100 lines, separated interfaces, and mandatory JSDoc. Use when building CLI tools, libraries, scripts, hooks, or non-framework TypeScript. Do NOT use for React, Next.js, Laravel, or another stack with a dedicated SOLID skill."
 ---
 
 

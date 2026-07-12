@@ -188,7 +188,7 @@ ISR (Incremental):
 ## Validation Checklist
 
 ```text
-[ ] TaskCreate plan created
+[ ] Codex plan created
 [ ] All files <100 lines each
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] Server/Client boundary defined

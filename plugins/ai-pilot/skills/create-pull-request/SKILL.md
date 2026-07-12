@@ -53,7 +53,7 @@ Generate and create a comprehensive Pull Request:
 5. **Output PR URL**
 
 **Arguments**:
-- $ARGUMENTS will be used as PR title or additional context
+- Use an explicit PR title or additional context from the user's request when provided.
 
 **Example Usage**:
 - `/create-pull-request Add authentication` → Creates PR with title

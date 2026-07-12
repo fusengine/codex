@@ -17,7 +17,7 @@ next_step: references/react/03-execution.md
 
 ---
 
-## TaskCreate Planning
+## Codex Plan
 
 ### React Feature Breakdown
 
@@ -151,7 +151,7 @@ modules/[feature]/
 ## Validation Checklist
 
 ```text
-[ ] TaskCreate plan created
+[ ] Codex plan created
 [ ] All tasks <100 lines each
 [ ] Interfaces planned FIRST
 [ ] Hooks separated from components

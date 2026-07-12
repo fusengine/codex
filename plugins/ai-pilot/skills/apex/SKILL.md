@@ -181,7 +181,7 @@ Comprehensive validation:
 ## Usage
 
 **Arguments**:
-- $ARGUMENTS specifies the feature/task to implement
+- Derive the feature or task to implement from the user's request.
 
 **Examples**:
 - `/apex Add user profile editing` → Full APEX for feature

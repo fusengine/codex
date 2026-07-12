@@ -1,8 +1,6 @@
 ---
 name: php-quality-tooling
 description: Use when setting up or tuning static analysis, automated refactoring, and code-style enforcement on a framework-agnostic PHP project. Covers PHPStan, Rector, PHP-CS-Fixer, composer scripts, and CI wiring. Do NOT use for Laravel projects (Pint + Larastan → laravel-expert), test frameworks (→ php-testing), or language syntax questions (→ php-language-modern).
-references: references/phpstan-levels.md, references/rector-upgrades.md, references/php-cs-fixer.md, references/templates/phpstan-neon.md, references/templates/rector-php.md, references/templates/php-cs-fixer-dist.md, references/templates/composer-ci.md
-related-skills: php-testing, php-language-modern
 ---
 
 # PHP Quality Tooling
@@ -109,3 +107,22 @@ vendor/bin/rector process --dry-run # preview refactors
 - Run Rector on an uncommitted working tree
 - Mix PHP-CS-Fixer and Pint in the same repo
 - Silence PHPStan with `@phpstan-ignore` where a real type fix is cheap
+
+## References
+
+- [references/phpstan-levels.md](references/phpstan-levels.md)
+- [references/rector-upgrades.md](references/rector-upgrades.md)
+- [references/php-cs-fixer.md](references/php-cs-fixer.md)
+- [references/templates/phpstan-neon.md](references/templates/phpstan-neon.md)
+- [references/templates/rector-php.md](references/templates/rector-php.md)
+- [references/templates/php-cs-fixer-dist.md](references/templates/php-cs-fixer-dist.md)
+- [references/templates/composer-ci.md](references/templates/composer-ci.md)
+
+## Related skills
+
+`php-testing`, `php-language-modern`.
+
+## Skill routing metadata
+
+references: references/phpstan-levels.md, references/rector-upgrades.md, references/php-cs-fixer.md, references/templates/phpstan-neon.md, references/templates/rector-php.md, references/templates/php-cs-fixer-dist.md, references/templates/composer-ci.md
+related-skills: php-testing, php-language-modern

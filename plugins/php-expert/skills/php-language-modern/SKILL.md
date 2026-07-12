@@ -1,8 +1,6 @@
 ---
 name: php-language-modern
 description: Use when writing or reviewing modern PHP (8.1–8.5) outside a framework — property hooks, asymmetric visibility, the pipe operator, native attributes, enums, readonly, lazy objects. Covers language features that LLMs frequently get wrong or write in a pre-8.0 style. Do NOT use for coding style/PSR/autoloading (use php-standards) or Laravel-specific syntax (use the laravel plugin).
-references: references/php-85-features.md, references/php-84-features.md, references/php-81-83-baseline.md, references/attributes-over-docblocks.md, references/templates/modern-class.md
-related-skills: php-standards
 ---
 
 # Modern PHP Language (8.1 → 8.5)
@@ -94,3 +92,20 @@ src/
 - Emit 8.4/8.5 syntax without confirming the project supports it
 - Hand-roll getters/setters when hooks or `readonly` fit
 - Guess a feature's version — verify on php.net
+
+## References
+
+- [references/php-85-features.md](references/php-85-features.md)
+- [references/php-84-features.md](references/php-84-features.md)
+- [references/php-81-83-baseline.md](references/php-81-83-baseline.md)
+- [references/attributes-over-docblocks.md](references/attributes-over-docblocks.md)
+- [references/templates/modern-class.md](references/templates/modern-class.md)
+
+## Related skills
+
+`php-standards`.
+
+## Skill routing metadata
+
+references: references/php-85-features.md, references/php-84-features.md, references/php-81-83-baseline.md, references/attributes-over-docblocks.md, references/templates/modern-class.md
+related-skills: php-standards

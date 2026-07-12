@@ -9,7 +9,7 @@
 | **Gemini Design** | AI frontend | `design-expert` |
 | **fuse-browser** | Browser automation, scraping, SERP, visual diff, CWV | `seo`, `security-expert`, `design-expert`, frontend experts, `changelog-watcher`, `research-expert`, `websearch`, `sniper` |
 
-**Verification chain (any uncertain API/version/config - ZERO TOLERANCE):** Context7/official docs -> Exa/code context -> fuse-browser fast-path (`browser_fetch` on known doc URLs, `browser_serp_batch` for discovery). One source is NEVER enough for an uncertain API.
+**Verification chain (drift-prone or uncertain API/version/config/security claim - ZERO TOLERANCE):** Context7/official docs -> Exa/code context -> fuse-browser fast-path (`browser_fetch` on known doc URLs, `browser_serp_batch` for discovery). Stable local facts come from checked-out source and executed checks. Still uncertain -> say "I don't know".
 
 ## fuse-browser - Efficient Usage (ZERO TOLERANCE)
 

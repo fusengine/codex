@@ -1,8 +1,6 @@
 ---
 name: go-concurrency
 description: "Use when: writing or reviewing Go concurrency — goroutines, channels, golang.org/x/sync/errgroup, context propagation and cancellation, sync.WaitGroup vs channels, the -race detector, or diagnosing goroutine leaks (incl. the 1.26 goroutineleak profile). Do NOT use for: sequential error handling / slog / generics / interface style (use go-core-idioms), non-Go languages, framework-specific code."
-references: references/goroutines-channels.md, references/errgroup.md, references/context-propagation.md, references/goroutine-leaks.md, references/templates/errgroup-patterns.md, references/templates/worker-pool.md
-related-skills: go-core-idioms, solid:solid-go
 ---
 
 # Go Concurrency
@@ -122,3 +120,21 @@ ch := make(chan result, len(items)) // buffered → early return can't strand se
 - Store a `context.Context` in a struct field
 - Use a bare `sync.WaitGroup` when goroutines return errors (use `errgroup`)
 - Assume tests are race-free without the `-race` flag
+
+## References
+
+- [references/goroutines-channels.md](references/goroutines-channels.md)
+- [references/errgroup.md](references/errgroup.md)
+- [references/context-propagation.md](references/context-propagation.md)
+- [references/goroutine-leaks.md](references/goroutine-leaks.md)
+- [references/templates/errgroup-patterns.md](references/templates/errgroup-patterns.md)
+- [references/templates/worker-pool.md](references/templates/worker-pool.md)
+
+## Related skills
+
+`go-core-idioms`, `solid:solid-go`.
+
+## Skill routing metadata
+
+references: references/goroutines-channels.md, references/errgroup.md, references/context-propagation.md, references/goroutine-leaks.md, references/templates/errgroup-patterns.md, references/templates/worker-pool.md
+related-skills: go-core-idioms, solid:solid-go

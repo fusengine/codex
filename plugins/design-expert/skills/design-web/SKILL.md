@@ -1,8 +1,6 @@
 ---
 name: design-web
 description: "Marketing sites and landing pages — inspiration browsing, component generation, premium layout patterns, and hard layout-discipline rules. The browsing step only runs in FULL/PAGE scope, never for a single component."
-references: references/
-related-skills: design-method, design-system, design-motion, design-review
 ---
 
 ## Design Web — Marketing Sites and Landing Pages
@@ -85,3 +83,16 @@ After `design-system` tokens exist (or are being built alongside, in FULL scope)
 | `references/component-examples.md` | Before/after examples to calibrate output quality. |
 | `references/21st-dev.md` | Optional Magic MCP component inspiration search. |
 | `references/shadcn.md` | Optional shadcn MCP component library search. |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), [design-motion](../design-motion/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, design-motion, design-review

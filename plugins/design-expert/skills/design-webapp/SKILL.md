@@ -1,8 +1,6 @@
 ---
 name: design-webapp
 description: "Logged-in web apps — dashboards, auth flows, settings, onboarding, data tables, command palettes, modals, toasts. Density and state coverage matter more here than marketing polish."
-references: references/
-related-skills: design-method, design-system, design-web, design-motion, design-review
 ---
 
 ## Design Webapp — Dashboards, Density, States
@@ -76,3 +74,16 @@ surface is a marketing/landing page instead, use `design-web`.
 | `../design-web/references/grids-layout.md` | Layout/grid system |
 | `../design-web/references/icons-guide.md` | Icon usage |
 | `../design-web/references/gemini/` | Optional Gemini Design MCP path |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), [design-web](../design-web/SKILL.md), [design-motion](../design-motion/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, design-web, design-motion, design-review

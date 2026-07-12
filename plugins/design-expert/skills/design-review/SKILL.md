@@ -1,8 +1,6 @@
 ---
 name: design-review
 description: "The final quality gate — deterministic checks (contrast, forbidden fonts, em-dash, hex/rgb) plus a bounded screenshot review (per-section, light+dark via colorScheme, max 2 fix cycles, then stop and report). This procedure is defined here only; the agent and commands reference it."
-references: references/
-related-skills: design-system, design-motion, design-web, design-webapp
 ---
 
 ## Design Review — Deterministic Checks + Bounded Visual Loop
@@ -94,3 +92,16 @@ Any Critical/Major finding from Part 1 gets fixed before Part 2 runs.
 bullets; identical border-radius/shadow on every card with no hierarchy.
 **ACCEPT** — a sector-derived OKLCH palette with chroma > 0.05, an approved typography
 pair, one deliberate accent used sparingly; an asymmetric grid with intentional whitespace.
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-system](../design-system/SKILL.md), [design-motion](../design-motion/SKILL.md), [design-web](../design-web/SKILL.md), and [design-webapp](../design-webapp/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-system, design-motion, design-web, design-webapp

@@ -9,7 +9,7 @@ Execute GitHub issue with complete EPCT workflow:
 
 1. **Fetch Issue Details**:
    ```bash
-   gh issue view $ARGUMENTS
+   gh issue view "$ISSUE_NUMBER"
    ```
 
    Extract:
@@ -67,8 +67,8 @@ Execute GitHub issue with complete EPCT workflow:
    gh issue comment $ISSUE_NUMBER --body "PR created: [PR_URL]"
    ```
 
-**Arguments**:
-- $ARGUMENTS = GitHub issue number
+**Input**:
+- Set `ISSUE_NUMBER` from the GitHub issue number explicitly provided by the user.
 
 **Example Usage**:
 - `/run-tasks 42` → Execute issue #42 with full workflow

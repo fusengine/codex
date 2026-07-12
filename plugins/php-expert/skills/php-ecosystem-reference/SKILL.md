@@ -1,8 +1,6 @@
 ---
 name: php-ecosystem-reference
 description: "Orientation map of the PHP framework ecosystem — NOT deep expertise. Use to know WHICH tool fits and WHERE to route: standalone Symfony components (Console, Process, HttpFoundation, EventDispatcher, Validator, Serializer) usable via Composer outside any framework, API Platform 4.3 (API-first on Symfony), and the Slim micro-framework. Do NOT use for implementation — Laravel routes to laravel-expert; deep full-stack Symfony has no dedicated expert (flag to the user)."
-references: references/symfony-components.md, references/api-platform.md, references/slim-framework.md, references/boundaries.md
-related-skills: php-http-psr, laravel-expert:solid-php
 ---
 
 # PHP Ecosystem Reference (Orientation)
@@ -99,3 +97,19 @@ composer require symfony/serializer
 - Present version-specific API details from here as verified — they are orientation
 - Attempt deep Laravel or deep Symfony full-stack work under this skill
 - Assume Symfony HttpFoundation and PSR-7 are interchangeable
+
+## References
+
+- [references/symfony-components.md](references/symfony-components.md)
+- [references/api-platform.md](references/api-platform.md)
+- [references/slim-framework.md](references/slim-framework.md)
+- [references/boundaries.md](references/boundaries.md)
+
+## Related skills
+
+`php-http-psr`, `laravel-expert:solid-php`.
+
+## Skill routing metadata
+
+references: references/symfony-components.md, references/api-platform.md, references/slim-framework.md, references/boundaries.md
+related-skills: php-http-psr, laravel-expert:solid-php

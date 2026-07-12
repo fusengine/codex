@@ -1,8 +1,6 @@
 ---
 name: astro-assets
-description: Image and asset optimization in Astro 6 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task.
-references: references/image-component.md, references/picture-responsive.md, references/remote-images.md, references/fonts-api.md, references/og-satori.md, references/cdn-integration.md, references/templates/image-setup.md, references/templates/og-image-route.md
-related-skills: astro-6, astro-seo, astro-deployment
+description: "Optimizes images and assets in Astro 6 with Astro image components, getImage(), remote sources, fonts, and OG generation. Use for asset pipelines and responsive image delivery. Do NOT use for general page styling or content collections."
 ---
 
 # Astro Assets
@@ -99,3 +97,23 @@ Built-in font optimization via `experimental.fonts` in `astro.config.mjs`. Zero 
 3. **`inferSize` for remote** - Avoids layout shift without known dimensions
 4. **Fonts API over @font-face** - Built-in optimization, no manual preload
 5. **Satori at build time** - Run OG generation during SSG, not SSR
+
+## References
+
+- [references/image-component.md](references/image-component.md)
+- [references/picture-responsive.md](references/picture-responsive.md)
+- [references/remote-images.md](references/remote-images.md)
+- [references/fonts-api.md](references/fonts-api.md)
+- [references/og-satori.md](references/og-satori.md)
+- [references/cdn-integration.md](references/cdn-integration.md)
+- [references/templates/image-setup.md](references/templates/image-setup.md)
+- [references/templates/og-image-route.md](references/templates/og-image-route.md)
+
+## Related skills
+
+`astro-6`, `astro-seo`, `astro-deployment`.
+
+## Skill routing metadata
+
+references: references/image-component.md, references/picture-responsive.md, references/remote-images.md, references/fonts-api.md, references/og-satori.md, references/cdn-integration.md, references/templates/image-setup.md, references/templates/og-image-route.md
+related-skills: astro-6, astro-seo, astro-deployment

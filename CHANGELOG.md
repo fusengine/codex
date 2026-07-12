@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.35] - 2026-07-12
+
+- feat(agents): align `AGENTS.md`, its installation template, all 34 agent profiles, and 234 skills with the current Claude-plugin guidance while preserving Codex V2 identity, Sol/Terra model selection, high reasoning, and exact reference metadata
+- fix(commit-pro): unify command, skill, GitHub Flow, and tag timing on merge commits with FULL/LOCAL/DEGRADED handling, explicit Codex authorization boundaries, and `mergedAt` proof before tag publication
+- chore(release): bump 22 touched plugins + suite to 1.0.35
+
 ## [1.0.34] - 2026-07-11
 
 - refactor(hooks): route all 86 command handlers across 22 plugin hook manifests exclusively through their canonical `@fusengine/harness` Codex routes; zero direct legacy, exception, or sound handlers remain. Harness 0.1.67 still has documented Codex compatibility gaps, so full functional parity is not claimed

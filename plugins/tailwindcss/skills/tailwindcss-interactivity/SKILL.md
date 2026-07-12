@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-interactivity
-description: "Interactivity utilities Tailwind CSS v4.1. Cursor (cursor-*), Scroll (scroll-smooth, scroll-snap-*, overscroll-*), User select (select-*), Pointer events (pointer-events-*), Touch action, Resize, Caret color, Accent color."
+description: "Tailwind CSS v4.1 cursor, scroll, selection, pointer, touch, resize, caret, accent, and interaction-state utilities. Use when controlling user interaction behavior or hover/focus/active/disabled variants. Do NOT use for transforms or transition timing."
 ---
 
 
