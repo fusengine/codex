@@ -1,8 +1,6 @@
 ---
 name: astro-seo
 description: SEO for Astro sites — meta tags, Open Graph, Twitter Cards, JSON-LD structured data, sitemap, RSS, robots.txt, canonical URLs, hreflang, Core Web Vitals. Use when optimizing search engine visibility or social sharing.
-references: references/meta-tags.md, references/structured-data.md, references/sitemap-rss.md, references/canonical-hreflang.md, references/core-web-vitals.md, references/templates/seo-head.md, references/templates/json-ld.md
-related-skills: astro-6, astro-content, astro-assets, astro-i18n
 ---
 
 # Astro SEO
@@ -91,3 +89,22 @@ Inject JSON-LD via `<script type="application/ld+json" set:html={JSON.stringify(
 3. **`set:html` for JSON-LD** - Prevents XSS vulnerabilities
 4. **sitemap + robots.txt** - Always configure both for crawlability
 5. **hreflang on all locales** - Include x-default for language variants
+
+## References
+
+- [references/meta-tags.md](references/meta-tags.md)
+- [references/structured-data.md](references/structured-data.md)
+- [references/sitemap-rss.md](references/sitemap-rss.md)
+- [references/canonical-hreflang.md](references/canonical-hreflang.md)
+- [references/core-web-vitals.md](references/core-web-vitals.md)
+- [references/templates/seo-head.md](references/templates/seo-head.md)
+- [references/templates/json-ld.md](references/templates/json-ld.md)
+
+## Related skills
+
+`astro-6`, `astro-content`, `astro-assets`, `astro-i18n`.
+
+## Skill routing metadata
+
+references: references/meta-tags.md, references/structured-data.md, references/sitemap-rss.md, references/canonical-hreflang.md, references/core-web-vitals.md, references/templates/seo-head.md, references/templates/json-ld.md
+related-skills: astro-6, astro-content, astro-assets, astro-i18n

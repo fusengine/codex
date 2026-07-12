@@ -1,8 +1,6 @@
 ---
 name: ts-packaging
 description: Use when publishing a TypeScript library — exports map, JSR vs npm, dual ESM/CJS, type validation, provenance. Covers modern package.json, jsr.json, and release CI. Do NOT use for application deployment (not a library) or framework build pipelines (use the framework expert's skills).
-references: references/exports-map.md, references/jsr-publishing.md, references/npm-publishing.md, references/validation.md, references/templates/package-json-dual.md, references/templates/jsr-json.md, references/templates/publish-workflow.md
-related-skills: solid-generic, ts-testing
 ---
 
 # TypeScript Packaging
@@ -113,3 +111,22 @@ npx @arethetypeswrong/cli --pack
 - Ship dual CJS when every consumer is ESM (dead weight)
 - Order `"default"` before `"types"` (breaks type resolution)
 - Use `--allow-slow-types` on JSR as a habit (degrades docs + npm compat)
+
+## References
+
+- [references/exports-map.md](references/exports-map.md)
+- [references/jsr-publishing.md](references/jsr-publishing.md)
+- [references/npm-publishing.md](references/npm-publishing.md)
+- [references/validation.md](references/validation.md)
+- [references/templates/package-json-dual.md](references/templates/package-json-dual.md)
+- [references/templates/jsr-json.md](references/templates/jsr-json.md)
+- [references/templates/publish-workflow.md](references/templates/publish-workflow.md)
+
+## Related skills
+
+`solid-generic`, `ts-testing`.
+
+## Skill routing metadata
+
+references: references/exports-map.md, references/jsr-publishing.md, references/npm-publishing.md, references/validation.md, references/templates/package-json-dual.md, references/templates/jsr-json.md, references/templates/publish-workflow.md
+related-skills: solid-generic, ts-testing

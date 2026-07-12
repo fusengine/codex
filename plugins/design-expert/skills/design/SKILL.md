@@ -1,7 +1,6 @@
 ---
 name: design
 description: "Full design pipeline. Use when running identity, research, system, generation, motion, audit, and review for production-ready HTML/CSS with OKLCH tokens and fuse-browser-driven inspiration."
-related-skills: design-method, design-system, design-web, design-webapp, design-motion, design-review
 ---
 
 # /design — Full Design Pipeline (Phases 0→6)
@@ -43,3 +42,11 @@ Generate a complete design from scratch. Use when no design-system.md exists or 
 ## FORBIDDEN
 
 Skipping phases · Manual HTML/CSS · Gemini without 7 XML blocks · Inter/Roboto/Arial · No light+dark · Hex/RGB colors · Purple gradients · Emojis
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), [design-web](../design-web/SKILL.md), [design-webapp](../design-webapp/SKILL.md), [design-motion](../design-motion/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+related-skills: design-method, design-system, design-web, design-webapp, design-motion, design-review

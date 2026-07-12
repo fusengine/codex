@@ -1,8 +1,6 @@
 ---
 name: start-auth
 description: "Use when: adding authentication/authorization to a TanStack Start app — protecting routes with beforeLoad + redirect, authorizing server functions, sessions/cookies (useSession, getRequest), CSRF, or wiring Auth.js. Do NOT use for: generic route guards unrelated to auth (react-tanstack-router) or non-Start Node auth."
-references: references/data-boundary.md, references/route-protection.md, references/sessions-cookies.md, references/hardening.md, references/templates/authed-middleware.md, references/templates/session-and-csrf.md, references/templates/oauth-pkce.md
-related-skills: better-auth, auth-audit
 ---
 
 # TanStack Start — Authentication
@@ -93,3 +91,22 @@ The official [authentication guide](https://tanstack.com/start/latest/docs/frame
 - Treat `beforeLoad` as the security boundary
 - Read `process.env` at module top level
 - Vary response/status/timing between existing and non-existing accounts
+
+## References
+
+- [references/data-boundary.md](references/data-boundary.md)
+- [references/route-protection.md](references/route-protection.md)
+- [references/sessions-cookies.md](references/sessions-cookies.md)
+- [references/hardening.md](references/hardening.md)
+- [references/templates/authed-middleware.md](references/templates/authed-middleware.md)
+- [references/templates/session-and-csrf.md](references/templates/session-and-csrf.md)
+- [references/templates/oauth-pkce.md](references/templates/oauth-pkce.md)
+
+## Related skills
+
+`better-auth`, `auth-audit`.
+
+## Skill routing metadata
+
+references: references/data-boundary.md, references/route-protection.md, references/sessions-cookies.md, references/hardening.md, references/templates/authed-middleware.md, references/templates/session-and-csrf.md, references/templates/oauth-pkce.md
+related-skills: better-auth, auth-audit

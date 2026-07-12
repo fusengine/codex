@@ -1,8 +1,6 @@
 ---
 name: go-core-idioms
 description: "Use when: writing or reviewing idiomatic sequential Go — error handling (%w wrapping, errors.Join, errors.Is/As, errors.AsType), slog structured logging, generics, small consumer-side interfaces, naming/style, new(expr), go fix modernizers. Do NOT use for: goroutines/channels/errgroup/context concurrency (use go-concurrency), non-Go languages, framework-specific code."
-references: references/error-handling.md, references/slog-logging.md, references/generics-and-1.26.md, references/interfaces-and-style.md, references/templates/error-patterns.md, references/templates/slog-setup.md
-related-skills: go-concurrency, solid:solid-go
 ---
 
 # Go Core Idioms
@@ -122,3 +120,21 @@ logger.Info("user created", "id", id, slog.Duration("took", elapsed))
 - Define interfaces next to their implementation "just in case"
 - Reach for pointer receivers without a mutation or size reason
 - Write Java-esque getters/setters or `IFoo` interface prefixes
+
+## References
+
+- [references/error-handling.md](references/error-handling.md)
+- [references/slog-logging.md](references/slog-logging.md)
+- [references/generics-and-1.26.md](references/generics-and-1.26.md)
+- [references/interfaces-and-style.md](references/interfaces-and-style.md)
+- [references/templates/error-patterns.md](references/templates/error-patterns.md)
+- [references/templates/slog-setup.md](references/templates/slog-setup.md)
+
+## Related skills
+
+`go-concurrency`, `solid:solid-go`.
+
+## Skill routing metadata
+
+references: references/error-handling.md, references/slog-logging.md, references/generics-and-1.26.md, references/interfaces-and-style.md, references/templates/error-patterns.md, references/templates/slog-setup.md
+related-skills: go-concurrency, solid:solid-go

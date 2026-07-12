@@ -1,8 +1,6 @@
 ---
 name: nextjs-zustand
 description: Zustand v5 state management for Next.js 16 App Router. Use when implementing global state, stores, persist, hydration, or client-side state in Client Components.
-references: references/installation.md, references/store-patterns.md, references/hydration.md, references/middleware.md, references/nextjs-integration.md, references/typescript.md, references/slices.md, references/auto-selectors.md, references/reset-state.md, references/subscribe-api.md, references/testing.md, references/migration-v5.md
-related-skills: nextjs-16, nextjs-tanstack-form, solid-nextjs
 ---
 
 # Zustand for Next.js 16
@@ -136,3 +134,16 @@ Use `skipHydration: true` with persist middleware. Manually rehydrate in useEffe
 | Persisting auth tokens | Security vulnerability | httpOnly cookies |
 | Without useShallow on objects | Excessive re-renders | `useShallow(selector)` |
 | v4 syntax | TypeScript inference broken | v5 currying `create<T>()()` |
+
+## References
+
+Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
+
+## Related skills
+
+`nextjs-16`, `nextjs-tanstack-form`, `solid-nextjs`.
+
+## Skill routing metadata
+
+references: references/installation.md, references/store-patterns.md, references/hydration.md, references/middleware.md, references/nextjs-integration.md, references/typescript.md, references/slices.md, references/auto-selectors.md, references/reset-state.md, references/subscribe-api.md, references/testing.md, references/migration-v5.md
+related-skills: nextjs-16, nextjs-tanstack-form, solid-nextjs

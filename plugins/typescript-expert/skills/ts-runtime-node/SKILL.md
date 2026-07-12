@@ -1,8 +1,6 @@
 ---
 name: ts-runtime-node
 description: Use when running TypeScript directly on Node.js without a build step — native type stripping, its limits, when to reach for tsx, ESM setup, watch mode, and node:test. Covers Node 24 LTS. Do NOT use for Bun runtime specifics (ts-runtime-bun) or tsconfig details (ts-config).
-references: references/type-stripping.md, references/tsx-when-needed.md, references/node24-features.md, references/templates/node-esm-setup.md
-related-skills: ts-runtime-bun, ts-lint-format, solid-generic
 ---
 
 # TypeScript on Node.js
@@ -81,3 +79,19 @@ project/
 - Assume `tsconfig` `paths` or `target` downleveling work at runtime — they don't
 - Publish `.ts` files inside `node_modules` — Node refuses to strip them
 - Rely on native stripping for decorators (TC39 Stage 3, not transformed)
+
+## References
+
+- [references/type-stripping.md](references/type-stripping.md)
+- [references/tsx-when-needed.md](references/tsx-when-needed.md)
+- [references/node24-features.md](references/node24-features.md)
+- [references/templates/node-esm-setup.md](references/templates/node-esm-setup.md)
+
+## Related skills
+
+`ts-runtime-bun`, `ts-lint-format`, `solid-generic`.
+
+## Skill routing metadata
+
+references: references/type-stripping.md, references/tsx-when-needed.md, references/node24-features.md, references/templates/node-esm-setup.md
+related-skills: ts-runtime-bun, ts-lint-format, solid-generic

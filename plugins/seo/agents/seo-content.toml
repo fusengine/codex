@@ -1,14 +1,10 @@
 name = "seo-content"
-description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience,Expertise,Authoritativeness,Trustworthiness),detecting cannibalization,analyzing keyword distribution,or auditing AI content disclosure. Do NOT use for technical SEO or schema."
+description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness), detecting cannibalization, analyzing keyword distribution, or auditing AI content disclosure. Do NOT use for technical SEO or schema."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Content", "SEO Content Specialist", "SEO Content Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Content Sub-Agent
-
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for content quality analysis.
 
@@ -50,7 +46,14 @@ Parallelizable expert for content quality analysis.
 - Variations: ...
 
 ### Score: N/20
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch`: NO browser launch, ~10× faster. This agent never opens a live session.
+- **Batch, don't loop** — `browser_collect` across multiple pages in one call where possible.
+- **Deterministic extraction** — `browser_extract` over manual parsing.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-content/SKILL.md"
@@ -62,4 +65,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-cluster/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

@@ -1,14 +1,10 @@
 name = "seo-technical"
-description = "Technical SEO sub-agent. Use when auditing robots.txt,sitemap.xml,Core Web Vitals (LCP/INP/CLS),mobile-first indexing,crawlability,indexability,redirects chains. Do NOT use for content (use seo-content),schema (use seo-schema),or local (use seo-local)."
+description = "Technical SEO sub-agent. Use when auditing robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, redirects chains. Do NOT use for content (use seo-content), schema (use seo-schema), or local (use seo-local)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Technical", "SEO Technical Specialist", "SEO Technical Agent"]
 sandbox_mode = "read-only"
 developer_instructions = '''# SEO Technical Sub-Agent
-
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
 
@@ -52,7 +48,13 @@ Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestr
 - Touch targets: ✅ / ❌
 
 ### Score: N/25
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch` / `browser_crawl`: NO browser launch, ~10× faster.
+- **Batch, don't loop** — `browser_crawl` across multiple URLs in one call rather than looping fetches.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-technical/SKILL.md"
@@ -68,4 +70,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-redirects/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

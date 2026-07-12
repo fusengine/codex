@@ -12,7 +12,7 @@ next_step: references/react/03.5-elicit.md
 ## When to Use
 
 - After plan is complete and approved
-- Follow TaskCreate task order
+- Follow the Codex plan order
 - Update progress as you go
 
 ---

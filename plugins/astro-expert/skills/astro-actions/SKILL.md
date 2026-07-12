@@ -1,8 +1,6 @@
 ---
 name: astro-actions
 description: Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety.
-references: references/overview.md, references/defining-actions.md, references/error-handling.md, references/forms.md, references/progressive-enhancement.md, references/templates/contact-form.md, references/templates/json-action.md
-related-skills: astro-6, astro-content, astro-islands
 ---
 
 # Astro Actions Expert
@@ -93,3 +91,22 @@ Standard HTTP-aligned codes: `UNAUTHORIZED`, `FORBIDDEN`, `NOT_FOUND`, `BAD_REQU
 3. **`accept: 'form'` for HTML forms** — Native form submission support
 4. **Progressive enhancement** — Form works without JS, enhanced with it
 5. **Check `ctx.cookies` for auth** — Throw `UNAUTHORIZED` when not logged in
+
+## References
+
+- [references/overview.md](references/overview.md)
+- [references/defining-actions.md](references/defining-actions.md)
+- [references/error-handling.md](references/error-handling.md)
+- [references/forms.md](references/forms.md)
+- [references/progressive-enhancement.md](references/progressive-enhancement.md)
+- [references/templates/contact-form.md](references/templates/contact-form.md)
+- [references/templates/json-action.md](references/templates/json-action.md)
+
+## Related skills
+
+`astro-6`, `astro-content`, `astro-islands`.
+
+## Skill routing metadata
+
+references: references/overview.md, references/defining-actions.md, references/error-handling.md, references/forms.md, references/progressive-enhancement.md, references/templates/contact-form.md, references/templates/json-action.md
+related-skills: astro-6, astro-content, astro-islands

@@ -1,7 +1,6 @@
 ---
 name: amend
 description: "Amend last commit safely. Use when amending, fixing the last commit, updating a commit, or modifying an unpushed commit."
-related-skills: commit, git-flow
 ---
 
 # Amend Last Commit
@@ -39,3 +38,11 @@ IF the last commit is NOT pushed:
 ### Warning
 
 NEVER use `--force` push after amend on shared branches (main, master, develop).
+
+## Related skills
+
+`commit`, `git-flow`.
+
+## Skill routing metadata
+
+related-skills: commit, git-flow

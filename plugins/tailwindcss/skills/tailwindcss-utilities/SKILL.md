@@ -1,35 +1,24 @@
 ---
 name: tailwindcss-utilities
-description: "Complete reference for Tailwind CSS utility classes"
+description: "Routes Tailwind CSS utility questions to the focused category skill. Use when the needed utility category is unknown or spans categories. Do NOT use when a concrete category skill already matches."
 ---
 
+# Tailwind CSS Utilities Router
 
-# Tailwind CSS Utilities Reference
+Select the narrowest category before loading detailed guidance.
 
-## Layout
-- [flex.md](../docs/flex.md), [grid-column.md](../docs/grid-column.md)
-- [position.md](../docs/position.md), [display.md](../docs/display.md)
+| Need | Skill |
+|---|---|
+| Display, position, flexbox, grid | [tailwindcss-layout](../tailwindcss-layout/SKILL.md) |
+| Margin, padding, gap | [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md) |
+| Width, height, min/max sizing | [tailwindcss-sizing](../tailwindcss-sizing/SKILL.md) |
+| Fonts, text, line height | [tailwindcss-typography](../tailwindcss-typography/SKILL.md) |
+| Background colors and images | [tailwindcss-backgrounds](../tailwindcss-backgrounds/SKILL.md) |
+| Shadows, opacity, filters | [tailwindcss-effects](../tailwindcss-effects/SKILL.md) |
+| Borders, radius, outlines | [tailwindcss-borders](../tailwindcss-borders/SKILL.md) |
+| Transforms, transitions, animation | [tailwindcss-transforms](../tailwindcss-transforms/SKILL.md) |
+| Hover, focus, cursor, selection | [tailwindcss-interactivity](../tailwindcss-interactivity/SKILL.md) |
+| Breakpoints and container queries | [tailwindcss-responsive](../tailwindcss-responsive/SKILL.md) |
+| Accessibility utilities | [tailwindcss-accessibility](../tailwindcss-accessibility/SKILL.md) |
 
-## Spacing
-- [padding.md](../docs/padding.md), [margin.md](../docs/margin.md)
-- [width.md](../docs/width.md), [height.md](../docs/height.md)
-
-## Typography
-- [font-size.md](../docs/font-size.md), [font-weight.md](../docs/font-weight.md)
-- [text-align.md](../docs/text-align.md), [line-height.md](../docs/line-height.md)
-
-## Colors & Effects
-- [colors.md](../docs/colors.md), [background-color.md](../docs/background-color.md)
-- [box-shadow.md](../docs/box-shadow.md), [opacity.md](../docs/opacity.md)
-
-## Borders
-- [border-width.md](../docs/border-width.md), [border-radius.md](../docs/border-radius.md)
-- [outline.md](../docs/outline-width.md)
-
-## Transforms
-- [transform.md](../docs/transform.md), [translate.md](../docs/translate.md)
-- [rotate.md](../docs/rotate.md), [scale.md](../docs/scale.md)
-
-## Transitions
-- [transition-property.md](../docs/transition-property.md)
-- [animation.md](../docs/animation.md)
+For a broad legacy lookup after category routing, use [the preserved utility-class reference](../tailwindcss-utility-classes/references/utility-class-reference.md).

@@ -8,7 +8,6 @@ description: >-
   and CSRF protection. Do NOT use for: raw external HTTP endpoints
   (use start-server-routes), reusable middleware chains (use
   start-middleware), or Next.js/Remix "use server" patterns.
-references: references/creating.md, references/calling.md, references/security.md, references/templates/crud-server-functions.md, references/templates/form-with-validation.md
 ---
 
 # TanStack Start Server Functions
@@ -124,3 +123,15 @@ const signupFn = useServerFn(signup)
 - Use `"use server"`, `getServerSideProps`, or Remix `action`
 - Put DB queries or secrets in a route loader
 - Dynamically `import()` server functions (breaks bundler shaking)
+
+## References
+
+- [references/creating.md](references/creating.md)
+- [references/calling.md](references/calling.md)
+- [references/security.md](references/security.md)
+- [references/templates/crud-server-functions.md](references/templates/crud-server-functions.md)
+- [references/templates/form-with-validation.md](references/templates/form-with-validation.md)
+
+## Skill routing metadata
+
+references: references/creating.md, references/calling.md, references/security.md, references/templates/crud-server-functions.md, references/templates/form-with-validation.md

@@ -1,7 +1,6 @@
 ---
 name: undo
 description: "Undo last commit safely. Use when undoing a commit, reverting, uncommitting, or cancelling an unpushed commit."
-related-skills: commit, git-flow
 ---
 
 # Undo Last Commit
@@ -33,7 +32,7 @@ IF the last commit is NOT pushed:
 2. Determine mode:
    - `--soft` (default): Keep changes staged
    - `--mixed`: Keep changes unstaged
-3. Execute: `git reset $ARGUMENTS HEAD~1`
+3. Execute `git reset --soft HEAD~1` or `git reset --mixed HEAD~1` according to the explicitly requested mode
 4. Show result with `git status`
 
 ### Options
@@ -42,3 +41,11 @@ IF the last commit is NOT pushed:
 |------|--------|
 | `--soft` | Keep changes staged (default) |
 | `--mixed` | Keep changes unstaged |
+
+## Related skills
+
+`commit`, `git-flow`.
+
+## Skill routing metadata
+
+related-skills: commit, git-flow

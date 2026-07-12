@@ -9,7 +9,6 @@ description: >-
   staticFunctionMiddleware. Do NOT use for: defining the RPC itself (use
   start-server-functions), raw HTTP endpoints (use start-server-routes), or
   route-level UX guards (use router beforeLoad).
-references: references/types.md, references/context.md, references/global.md, references/templates/auth-authorization.md, references/templates/client-middleware.md
 ---
 
 # TanStack Start Middleware
@@ -125,3 +124,15 @@ const fn = createServerFn().middleware([auth]).handler(async ({ context }) =>
 - Trust `sendContext` shape as authorization
 - Call `localStorage`/`window` in `.client()` without an SSR guard
 - Place `staticFunctionMiddleware` anywhere but last
+
+## References
+
+- [references/types.md](references/types.md)
+- [references/context.md](references/context.md)
+- [references/global.md](references/global.md)
+- [references/templates/auth-authorization.md](references/templates/auth-authorization.md)
+- [references/templates/client-middleware.md](references/templates/client-middleware.md)
+
+## Skill routing metadata
+
+references: references/types.md, references/context.md, references/global.md, references/templates/auth-authorization.md, references/templates/client-middleware.md

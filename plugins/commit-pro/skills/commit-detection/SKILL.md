@@ -1,7 +1,6 @@
 ---
 name: commit-detection
 description: "Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing."
-related-skills: commit, git-flow
 ---
 
 
@@ -25,6 +24,15 @@ git diff --staged --stat
 # Check for keywords in diff
 git diff | grep -i "fix\|bug\|error" | head -5
 ```
+
+## Skill routing metadata
+
+related-skills: commit, git-flow
+
+
+## Related skills
+
+`commit`, `git-flow`.
 
 ### Step 2: Categorize Files
 

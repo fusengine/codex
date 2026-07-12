@@ -1,8 +1,6 @@
 ---
 name: go-testing-quality
 description: Write idiomatic Go tests and measure quality — table-driven tests, subtests with t.Run, testify assertions/mocks, native fuzzing, benchmarks, the race detector, coverage, and pprof/PGO profiling. Use when writing or reviewing Go tests, adding coverage, benchmarking, or profiling a Go program. Do NOT use for CI pipeline wiring — golangci-lint, govulncheck (go-tooling-security) — or non-Go test suites.
-references: references/table-driven.md, references/testify-mocks.md, references/fuzzing-benchmarks.md, references/coverage-profiling.md, references/templates/table-test.md
-related-skills: go-architecture, go-tooling-security, solid:solid-go
 ---
 
 # Go Testing & Quality
@@ -72,3 +70,20 @@ Idiomatic, 2026-current testing and quality practices for Go, built on the stand
 Overlaps with `github.com/samber/cc-skills-golang` (community Go skills) — this
 skill owns **testing and quality tooling**; architecture/structure lives in
 `go-architecture`. Cross-referenced for boundaries only, not copied.
+
+## References
+
+- [references/table-driven.md](references/table-driven.md)
+- [references/testify-mocks.md](references/testify-mocks.md)
+- [references/fuzzing-benchmarks.md](references/fuzzing-benchmarks.md)
+- [references/coverage-profiling.md](references/coverage-profiling.md)
+- [references/templates/table-test.md](references/templates/table-test.md)
+
+## Related skills
+
+`go-architecture`, `go-tooling-security`, `solid:solid-go`.
+
+## Skill routing metadata
+
+references: references/table-driven.md, references/testify-mocks.md, references/fuzzing-benchmarks.md, references/coverage-profiling.md, references/templates/table-test.md
+related-skills: go-architecture, go-tooling-security, solid:solid-go

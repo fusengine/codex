@@ -1,8 +1,6 @@
 ---
 name: ts-config
 description: "Use when: creating or migrating a tsconfig.json, choosing module/moduleResolution, or fixing TS 6.0 deprecation errors. Covers the two official 2026 config tracks (Bun/bundler vs pure Node.js) and the TS 6.0 → 7.0 deprecation cleanup. Do NOT use for: TypeScript language syntax and idioms (use ts-language-patterns), framework configs shipping their own tsconfig base (Next.js/Astro/Vite plugin skills), or non-TS build tooling."
-references: references/bundler-track.md, references/node-track.md, references/deprecations-6.md, references/templates/tsconfig.bundler.md, references/templates/tsconfig.node.md
-related-skills: ts-language-patterns, solid-generic
 ---
 
 # TypeScript Config (TS 6.0)
@@ -120,3 +118,20 @@ Migrating an existing 5.x config / seeing deprecation errors?
 - Mix `module: Preserve` with `moduleResolution: nodenext` (or vice-versa)
 - Set `esModuleInterop`, `allowSyntheticDefaultImports`, or `alwaysStrict` to `false` (no longer allowed)
 - Use `enum`, `namespace` with runtime code, or parameter properties in files run by Node's type stripping
+
+## References
+
+- [references/bundler-track.md](references/bundler-track.md)
+- [references/node-track.md](references/node-track.md)
+- [references/deprecations-6.md](references/deprecations-6.md)
+- [references/templates/tsconfig.bundler.md](references/templates/tsconfig.bundler.md)
+- [references/templates/tsconfig.node.md](references/templates/tsconfig.node.md)
+
+## Related skills
+
+`ts-language-patterns`, `solid-generic`.
+
+## Skill routing metadata
+
+references: references/bundler-track.md, references/node-track.md, references/deprecations-6.md, references/templates/tsconfig.bundler.md, references/templates/tsconfig.node.md
+related-skills: ts-language-patterns, solid-generic

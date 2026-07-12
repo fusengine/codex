@@ -9,7 +9,7 @@
 | astro-expert | `solid-astro/references/` | `src/interfaces/` |
 | other languages | `solid` plugin: `solid-detection` then `solid-{python,go,java,rust,ruby,csharp,generic}/references/` | per stack convention |
 
-**Split:** `main.ts` + `validators.ts` + `types.ts` + `utils.ts` + `constants.ts`
+**Split by responsibility:** follow the active stack and repository conventions. Extract only when a file mixes responsibilities, becomes difficult to review, or creates reusable boundaries; never impose a universal filename set.
 
 ## DRY (ZERO TOLERANCE)
 

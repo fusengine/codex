@@ -6,10 +6,6 @@ nickname_candidates = ["Explore Codebase", "Explore Codebase Specialist", "Explo
 sandbox_mode = "read-only"
 developer_instructions = '''# Explore Codebase Agent
 
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
-
 Expert codebase explorer specializing in rapid discovery, pattern recognition, and architectural analysis.
 
 ## Purpose
@@ -48,7 +44,7 @@ Elite reconnaissance agent for comprehensive codebase understanding through syst
 
 | Level | When | Scope |
 |-------|------|-------|
-| **quick** | Known file/pattern target, lead provided path | 1-3 Glob/Grep calls |
+| **quick** | Known file/pattern target, lead provided path | 1-3 rg --files/rg calls |
 | **medium** | Moderate exploration, specific feature area | 5-8 tool calls |
 | **very thorough** | Unknown structure, full architecture audit | 10+ calls, all dirs |
 

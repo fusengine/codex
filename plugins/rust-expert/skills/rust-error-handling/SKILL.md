@@ -1,8 +1,6 @@
 ---
 name: rust-error-handling
 description: Use when designing Rust error handling — picking thiserror for libraries vs anyhow for applications, building typed error enums, converting errors with #[from], and deciding recoverable errors vs panics. Do NOT use for general ownership/borrowing (use rust-core-language) or async runtime errors specifically.
-references: references/thiserror-libraries.md, references/anyhow-applications.md, references/error-design.md, references/templates/library-error.md, references/templates/application-error.md
-related-skills: rust-core-language
 ---
 
 # Rust Error Handling
@@ -68,3 +66,20 @@ type and rich context. Getting this boundary right is the whole discipline.
 - [ ] `?` used instead of `unwrap()` on fallible values
 - [ ] Panics only guard genuine invariants, with a reason
 - [ ] `cargo clippy` clean, sniper passed
+
+## References
+
+- [references/thiserror-libraries.md](references/thiserror-libraries.md)
+- [references/anyhow-applications.md](references/anyhow-applications.md)
+- [references/error-design.md](references/error-design.md)
+- [references/templates/library-error.md](references/templates/library-error.md)
+- [references/templates/application-error.md](references/templates/application-error.md)
+
+## Related skills
+
+`rust-core-language`.
+
+## Skill routing metadata
+
+references: references/thiserror-libraries.md, references/anyhow-applications.md, references/error-design.md, references/templates/library-error.md, references/templates/application-error.md
+related-skills: rust-core-language

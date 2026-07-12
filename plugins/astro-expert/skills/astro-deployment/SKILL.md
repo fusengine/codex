@@ -1,8 +1,6 @@
 ---
 name: astro-deployment
 description: Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration.
-references: references/cloudflare-adapter.md, references/vercel-adapter.md, references/netlify-adapter.md, references/node-adapter.md, references/isr-patterns.md, references/edge-middleware.md, references/templates/cloudflare-setup.md, references/templates/vercel-setup.md
-related-skills: astro-6, astro-db, astro-islands
 ---
 
 # Astro Deployment
@@ -94,3 +92,23 @@ On Vercel, enable skew protection to prevent asset mismatches between old client
 3. **Node.js 22+ for Astro 6** - Drops Node 18/20 support
 4. **Per-page prerender** - Mix static and SSR for optimal performance
 5. **Test bindings locally** - Cloudflare platformProxy enables local D1/KV/R2
+
+## References
+
+- [references/cloudflare-adapter.md](references/cloudflare-adapter.md)
+- [references/vercel-adapter.md](references/vercel-adapter.md)
+- [references/netlify-adapter.md](references/netlify-adapter.md)
+- [references/node-adapter.md](references/node-adapter.md)
+- [references/isr-patterns.md](references/isr-patterns.md)
+- [references/edge-middleware.md](references/edge-middleware.md)
+- [references/templates/cloudflare-setup.md](references/templates/cloudflare-setup.md)
+- [references/templates/vercel-setup.md](references/templates/vercel-setup.md)
+
+## Related skills
+
+`astro-6`, `astro-db`, `astro-islands`.
+
+## Skill routing metadata
+
+references: references/cloudflare-adapter.md, references/vercel-adapter.md, references/netlify-adapter.md, references/node-adapter.md, references/isr-patterns.md, references/edge-middleware.md, references/templates/cloudflare-setup.md, references/templates/vercel-setup.md
+related-skills: astro-6, astro-db, astro-islands

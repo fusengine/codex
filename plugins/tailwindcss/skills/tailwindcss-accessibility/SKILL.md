@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-accessibility
-description: "Tailwind CSS v4.1 accessibility utilities. focus-visible, sr-only, reduced-motion, WCAG enforcement, touch targets, contrast ratios."
+description: "Tailwind CSS v4.1 accessibility utilities for focus visibility, screen readers, reduced motion, contrast, and touch targets. Use when implementing keyboard access, assistive content, motion preferences, or WCAG compliance. Do NOT use for general visual styling."
 ---
 
 

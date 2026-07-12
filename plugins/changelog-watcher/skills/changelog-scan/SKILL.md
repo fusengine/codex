@@ -1,8 +1,6 @@
 ---
 name: changelog-scan
 description: "Scan Codex CLI changelog for new versions, features, and changes. Fetches official docs, parses release notes, and generates structured update report."
-references: references/sources.md, references/templates/changelog-report.md
-related-skills: breaking-changes, watch
 ---
 
 
@@ -41,3 +39,17 @@ Parse patterns from changelog:
 
 - [Sources Reference](references/sources.md)
 - [Report Template](references/templates/changelog-report.md)
+
+## References
+
+- [references/sources.md](references/sources.md)
+- [references/templates/changelog-report.md](references/templates/changelog-report.md)
+
+## Related skills
+
+`breaking-changes`, `watch`.
+
+## Skill routing metadata
+
+references: references/sources.md, references/templates/changelog-report.md
+related-skills: breaking-changes, watch

@@ -1,6 +1,6 @@
 ---
 name: solid-react
-description: "SOLID principles for React 19. Files < 100 lines, hooks separated, interfaces in src/interfaces/, JSDoc mandatory. Use for React architecture and code quality."
+description: "Applies SOLID architecture to React 19 with reviewable files, separated hooks, explicit interfaces, and project-aligned JSDoc. Use for component-system design or structural refactoring. Do NOT use for isolated JSX or style fixes."
 ---
 
 

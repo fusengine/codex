@@ -83,7 +83,7 @@ Comprehensive validation:
 **Deliverable**: Tested, validated code ready for commit
 
 **Arguments**:
-- $ARGUMENTS specifies the feature/task to implement
+- Derive the feature or task to implement from the user's request.
 
 **Example Usage**:
 - `/epct Add user profile editing` → Full EPCT for feature

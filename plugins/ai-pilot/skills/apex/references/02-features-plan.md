@@ -17,17 +17,17 @@ next_step: references/03-execution.md
 
 ---
 
-## TaskCreate Planning
+## Codex Plan
 
 ### Create Task Breakdown
 
 ```text
-Use TaskCreate tool to create:
+Use `update_plan` to create:
 1. Ordered list of implementation steps
 2. Each step <100 lines of code
 3. Clear acceptance criteria
-4. Dependencies between tasks (addBlockedBy)
-Use TaskUpdate to track status (in_progress/completed).
+4. Dependencies stated explicitly in the ordered step text
+Use `update_plan` to track `pending`, `in_progress`, and `completed` statuses.
 ```
 
 ### Task Structure
@@ -202,7 +202,7 @@ tests
 ## Validation Checklist
 
 ```text
-□ TaskCreate plan created
+□ Codex plan created
 □ All tasks <100 lines each
 □ Interfaces planned FIRST
 □ File splits pre-planned

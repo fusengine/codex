@@ -1,8 +1,6 @@
 ---
 name: astro-content
 description: Expert Astro Content Layer API — content.config.ts, glob/file loaders, custom loaders, getCollection, getEntry, render(), Zod schemas, MDX, Remark/Rehype plugins. Use when managing structured content, blog posts, or any typed data collections.
-references: references/overview.md, references/config.md, references/loaders.md, references/querying.md, references/rendering.md, references/mdx.md, references/templates/blog-collection.md, references/templates/custom-loader.md
-related-skills: astro-6, astro-actions, astro-seo
 ---
 
 # Astro Content Layer Expert
@@ -89,3 +87,23 @@ The config file moved from `src/content/config.ts` to `src/content.config.ts` in
 3. **Use `glob()` for local files** — Supports MD, MDX, JSON, YAML, TOML
 4. **Custom loaders for remote data** — CMS, REST API, GraphQL
 5. **`render()` for MDX** — Returns `Content` component + headings array
+
+## References
+
+- [references/overview.md](references/overview.md)
+- [references/config.md](references/config.md)
+- [references/loaders.md](references/loaders.md)
+- [references/querying.md](references/querying.md)
+- [references/rendering.md](references/rendering.md)
+- [references/mdx.md](references/mdx.md)
+- [references/templates/blog-collection.md](references/templates/blog-collection.md)
+- [references/templates/custom-loader.md](references/templates/custom-loader.md)
+
+## Related skills
+
+`astro-6`, `astro-actions`, `astro-seo`.
+
+## Skill routing metadata
+
+references: references/overview.md, references/config.md, references/loaders.md, references/querying.md, references/rendering.md, references/mdx.md, references/templates/blog-collection.md, references/templates/custom-loader.md
+related-skills: astro-6, astro-actions, astro-seo

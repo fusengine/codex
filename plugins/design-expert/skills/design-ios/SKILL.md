@@ -1,8 +1,6 @@
 ---
 name: design-ios
 description: "iOS mockups and handoff specs — Dynamic Type scale, semantic colors, device viewports, Liquid Glass, device-framed HTML mockup, and a SwiftUI-ready handoff spec. Produces tokens + mockup only, never SwiftUI code."
-references: references/
-related-skills: design-method, design-system, design-review
 ---
 
 ## Design iOS — Mockup and Handoff, Not Code
@@ -60,3 +58,16 @@ full site audit loop).
 | `references/touch-targets.md` | 44×44pt target — HIG-sourced, flagged for reconfirmation |
 | `references/mockup.md` | Device-frame HTML/CSS technique (safe areas, viewport-fit) |
 | `references/handoff-swiftui.md` | SwiftUI-ready handoff spec format |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, design-review

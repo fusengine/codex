@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-custom-styles
-description: "@utility, @variant, @apply, custom CSS"
+description: "Custom CSS authoring in Tailwind CSS v4.1 with @utility, @variant, @custom-variant, @apply, and @layer. Use when creating named utilities or conditional selectors. Do NOT use for built-in utility lookup or v3 migration."
 ---
 
 

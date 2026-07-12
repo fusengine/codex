@@ -3,13 +3,12 @@ name: start-execution-model
 description: >-
   TanStack Start execution model — isomorphic-by-default, environment boundary
   functions (createServerFn, createServerOnlyFn, createClientOnlyFn,
-  createIsomorphicFn), <ClientOnly>, useHydrated(), server-only/client-only
+  createIsomorphicFn), ClientOnly, useHydrated(), server-only/client-only
   import markers, and env-var safety (VITE_/PUBLIC_ prefix vs process.env). Use
   when: deciding where code runs, fixing secret leaks, DB/filesystem in a loader,
   hydration mismatches, "process.env is undefined on the server". Do NOT use for:
   initial setup (use start-core), file/directory SOLID organization (use
   solid-tanstack-start).
-references: references/isomorphic-by-default.md, references/environment-boundaries.md, references/environment-variables.md, references/templates/boundaries.md
 ---
 
 # TanStack Start Execution Model
@@ -102,3 +101,14 @@ export const Route = createFileRoute('/dashboard')({ loader: () => getData() })
 - `VITE_`/`PUBLIC_` prefix on a secret.
 - Non-deterministic render output (`new Date()` directly) → hydration mismatch.
 - Dynamic `import()` of a `*.functions.ts` server function (bundler issues).
+
+## References
+
+- [references/isomorphic-by-default.md](references/isomorphic-by-default.md)
+- [references/environment-boundaries.md](references/environment-boundaries.md)
+- [references/environment-variables.md](references/environment-variables.md)
+- [references/templates/boundaries.md](references/templates/boundaries.md)
+
+## Skill routing metadata
+
+references: references/isomorphic-by-default.md, references/environment-boundaries.md, references/environment-variables.md, references/templates/boundaries.md

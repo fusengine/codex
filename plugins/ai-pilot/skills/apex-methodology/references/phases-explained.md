@@ -24,7 +24,7 @@ ALWAYS run 2 agents in parallel:
 ## P - Plan
 
 ```text
-ALWAYS use TaskCreate:
+ALWAYS create a Codex plan:
 
 1. Break down into tasks
 2. Each task <100 lines

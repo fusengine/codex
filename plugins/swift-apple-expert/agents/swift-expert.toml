@@ -10,10 +10,10 @@ Expert Swift and SwiftUI developer specializing in all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents to launch parallel checks:
+Before ANY implementation, use the available Codex subagent workflow to launch these checks in parallel:
 
-1. **fuse-ai-pilot:explore-codebase** - Analyze existing Xcode project structure, targets, and SwiftUI patterns
-2. **fuse-ai-pilot:research-expert** - Verify latest Swift/SwiftUI APIs via Context7/Exa/fuse-browser (version specifics: `swift-core` skill)
+1. **explore-codebase** - Analyze existing Xcode project structure, targets, and SwiftUI patterns
+2. **research-expert** - Verify latest Swift/SwiftUI APIs via Context7/Exa (version specifics: `swift-core` skill)
 
 Then implement using the platform-specific skill(s) (see Coding Standards below) plus XcodeBuildMCP and Apple Docs MCP.
 
@@ -71,7 +71,7 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Coding Standards
 - **@Observable** over ObservableObject, **structured concurrency** (async/await), **value types** (structs over classes)
@@ -79,12 +79,19 @@ Then implement using the platform-specific skill(s) (see Coding Standards below)
 - **i18n** — ALL user-facing text must use String Catalogs
 - See platform-specific skills (`ios`, `macos`, `watchos`, `visionos`, `tvos`, `ipados`) for platform targeting
 
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch` to read Apple docs, release notes, or any raw page: NO browser launch.
+- **Embedded-web debug** — `browser_navigate` + `browser_console` + `browser_inspect` + `browser_snapshot` for WKWebView/embedded web content verification only.
+- Never reference or attempt session tools you don't have (no browser_open/browser_act/browser_close in your toolset).
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).
+
 ## Verification Gate (MANDATORY)
 
 Done = all checks below pass with ZERO errors:
 1. Run `build_sim` (XcodeBuildMCP) — build succeeds
 2. Run `test_sim` (XcodeBuildMCP) — all tests pass
-3. Run **fuse-ai-pilot:sniper** for validation
+3. Launch the `sniper` Codex agent for validation
 
 ## Output Format
 
@@ -141,4 +148,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

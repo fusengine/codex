@@ -1,8 +1,6 @@
 ---
 name: start-routing-data
 description: "Use when: loading data in TanStack Start routes with isomorphic loaders, wiring TanStack Query into a Start loader (ensureQueryData), running mutations via server functions, or tuning per-route SSR (ssr flag). Do NOT use for: generic TanStack Router/Query API — route trees, search params, useQuery/useMutation basics (use react-expert's react-tanstack-router)."
-references: references/isomorphic-loaders.md, references/query-in-loader.md, references/selective-ssr.md, references/mutations.md, references/templates/query-loader-route.md, references/templates/selective-ssr-route.md
-related-skills: react-tanstack-router, nextjs-tanstack-query
 ---
 
 # TanStack Start — Routing Data
@@ -97,3 +95,21 @@ src/
 - Duplicate query keys between loader and component (breaks hydration dedupe)
 - Read `localStorage`/`window` at loader top level (loader also runs on the server)
 - Re-fetch in `useEffect` when the loader already primed the cache
+
+## References
+
+- [references/isomorphic-loaders.md](references/isomorphic-loaders.md)
+- [references/query-in-loader.md](references/query-in-loader.md)
+- [references/selective-ssr.md](references/selective-ssr.md)
+- [references/mutations.md](references/mutations.md)
+- [references/templates/query-loader-route.md](references/templates/query-loader-route.md)
+- [references/templates/selective-ssr-route.md](references/templates/selective-ssr-route.md)
+
+## Related skills
+
+`react-tanstack-router`, `nextjs-tanstack-query`.
+
+## Skill routing metadata
+
+references: references/isomorphic-loaders.md, references/query-in-loader.md, references/selective-ssr.md, references/mutations.md, references/templates/query-loader-route.md, references/templates/selective-ssr-route.md
+related-skills: react-tanstack-router, nextjs-tanstack-query

@@ -1,6 +1,6 @@
 ---
 name: solid-swift
-description: "SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 lines, protocols separated, @Observable, actors, Preview-driven development. Features Modular MANDATORY."
+description: "Applies SOLID architecture to Swift 6 and SwiftUI with reviewable files, separated protocols, Observation, actors, previews, and feature modules. Use for Apple-platform architecture or structural refactoring. Do NOT use for isolated view tweaks."
 ---
 
 

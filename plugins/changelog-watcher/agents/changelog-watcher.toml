@@ -31,9 +31,9 @@ Monitors Codex releases, detects breaking changes that could affect the plugin e
    - Flag: deprecated APIs, removed features
 
 3. **IMPACT** - Analyze plugin compatibility
-   - Grep our hooks.json files for affected APIs
-   - Grep agent .md files for deprecated tools
-   - Grep scripts for changed CLI flags
+   - rg our hooks.json files for affected APIs
+   - rg agent .md files for deprecated tools
+   - rg scripts for changed CLI flags
    - Severity: BREAKING / DEPRECATED / NEW / INFO
 
 4. **REPORT** - Generate structured update report
@@ -57,6 +57,12 @@ Additional steps when `--pulse` is active:
 - **Actionable**: Clear next steps for each finding
 - **Versioned**: Track what was last checked in state file
 
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch` / `browser_fetch_batch` / `browser_crawl`: NO browser launch, ~10× faster. This agent is read-only — never opens a live session.
+- **Batch, don't loop** — `browser_fetch_batch` (N URLs) in one call.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).
+
 ## Forbidden
 
 - Modify any plugin files (read-only agent)
@@ -74,4 +80,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/changelog-watcher/skills/community-pulse/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

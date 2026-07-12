@@ -90,6 +90,6 @@ Confirm? [Y/n]
 
 ## Arguments
 
-- `$ARGUMENTS` = scope hint or context
+- Use the user's request as the scope hint or context.
 - `/commit auth` → scope = auth
 - `/commit` → auto-detect scope

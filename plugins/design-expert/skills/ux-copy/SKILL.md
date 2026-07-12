@@ -1,8 +1,6 @@
 ---
 name: ux-copy
 description: "Microcopy guide: CTA labels, error messages, empty states, form placeholders — aligned with the tone from design-method and the sector from design-system.md. Can run at any point in the pipeline, not tied to a fixed phase."
-references: references/
-related-skills: design-method, design-system, design-web, design-webapp
 ---
 
 ## UX Copy — Voice, Tone, and Microcopy
@@ -68,3 +66,16 @@ All four must pass; full catalogue in `references/copy-self-audit.md`:
 | `references/templates/cta-patterns.md` | CTA pattern templates |
 | `references/templates/error-messages.md` | Error message templates |
 | `references/templates/onboarding-copy.md` | Onboarding copy templates |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-system](../design-system/SKILL.md), [design-web](../design-web/SKILL.md), and [design-webapp](../design-webapp/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-method, design-system, design-web, design-webapp

@@ -1,7 +1,6 @@
 ---
 name: map
 description: "Refresh and display the ecosystem map of all installed plugins, agents, skills, commands, and hooks."
-related-skills: map-ecosystem
 ---
 
 # /map — Ecosystem Map
@@ -29,3 +28,11 @@ Refresh the cartography and optionally enrich descriptions.
 ## Output
 
 The auto-generated map is refreshed at SessionStart by the Cartographer hook/script. This skill displays it and optionally enriches it.
+
+## Related skills
+
+`map-ecosystem`.
+
+## Skill routing metadata
+
+related-skills: map-ecosystem

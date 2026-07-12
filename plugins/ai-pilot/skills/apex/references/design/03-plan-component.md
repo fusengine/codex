@@ -1,13 +1,13 @@
 ---
 name: 03-plan-component
-description: Plan component implementation with TaskCreate
+description: Plan component implementation with the Codex plan
 prev_step: references/design/02-search-inspiration.md
 next_step: references/design/04-code-component.md
 ---
 
 # 03 - Plan Component (APEX Phase P)
 
-**Plan implementation using TaskCreate before coding.**
+**Plan implementation with `update_plan` before coding.**
 
 ## When to Use
 
@@ -17,12 +17,12 @@ next_step: references/design/04-code-component.md
 
 ---
 
-## TaskCreate Structure
+## Codex Plan Structure
 
 ### Example: Hero Section
 
 ```text
-TaskCreate for each step:
+Create one Codex plan step for each item:
 1. [ ] Create HeroSection component shell
 2. [ ] Add typography (heading, subheading)
 3. [ ] Implement background (gradient orbs)
@@ -30,13 +30,13 @@ TaskCreate for each step:
 5. [ ] Implement Framer Motion animations
 6. [ ] Add responsive styles
 7. [ ] Validate accessibility
-Use addBlockedBy to set dependencies. TaskUpdate to track progress.
+State dependencies in the ordered step text. Use `update_plan` to track progress.
 ```
 
 ### Example: Card Component
 
 ```text
-TaskCreate for each step:
+Create one Codex plan step for each item:
 1. [ ] Create Card base component
 2. [ ] Add CardHeader, CardContent, CardFooter
 3. [ ] Implement hover animation
@@ -99,7 +99,7 @@ If component > 90 lines:
 ## Validation Checklist
 
 ```text
-[ ] TaskCreate plan created
+[ ] Codex plan created
 [ ] Tasks are atomic
 [ ] File sizes estimated (< 100 lines each)
 [ ] Design tokens documented

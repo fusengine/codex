@@ -1,8 +1,6 @@
 ---
 name: nextjs-tanstack-form
 description: TanStack Form v1 for Next.js 16 with Server Actions, Zod validation, and shadcn/ui integration. Use when building forms, validation, multi-step wizards, or dynamic field arrays.
-references: references/installation.md, references/basic-usage.md, references/field-api.md, references/form-state.md, references/validation-zod.md, references/server-actions.md, references/array-fields.md, references/async-validation.md, references/shadcn-integration.md, references/typescript.md, references/multi-step-form.md, references/performance.md, references/testing.md, references/migration-rhf.md
-related-skills: nextjs-16, nextjs-shadcn, solid-nextjs
 ---
 
 # TanStack Form for Next.js 16
@@ -138,3 +136,16 @@ Errors exist at field-level and form-level. Use `field.state.meta.errors` for fi
 | Bundle Size | ~12KB | ~9KB |
 | Learning Curve | Medium | Low |
 | Use Case | Complex apps | Standard forms |
+
+## References
+
+Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
+
+## Related skills
+
+`nextjs-16`, `nextjs-shadcn`, `solid-nextjs`.
+
+## Skill routing metadata
+
+references: references/installation.md, references/basic-usage.md, references/field-api.md, references/form-state.md, references/validation-zod.md, references/server-actions.md, references/array-fields.md, references/async-validation.md, references/shadcn-integration.md, references/typescript.md, references/multi-step-form.md, references/performance.md, references/testing.md, references/migration-rhf.md
+related-skills: nextjs-16, nextjs-shadcn, solid-nextjs

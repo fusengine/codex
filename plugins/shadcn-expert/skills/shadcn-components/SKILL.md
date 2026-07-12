@@ -1,6 +1,6 @@
 ---
 name: shadcn-components
-description: "Component patterns for shadcn/ui with both Radix UI and Base UI primitives. Covers API differences, mapping between primitives, and correct usage patterns."
+description: "Builds or edits shadcn/ui components after the project's primitive library is known. Use when implementing Radix UI or Base UI composition patterns. Do NOT use for primitive detection, registry setup, theming, or migration planning."
 ---
 
 

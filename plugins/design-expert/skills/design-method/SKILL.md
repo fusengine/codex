@@ -1,7 +1,6 @@
 ---
 name: design-method
 description: "Core design method — brief questions, tone commitment, signature element, 2-pass critique, anti-slop clusters, and routing to the target-specific skill (web/webapp/ios/android). Read this first, before any other design-expert skill."
-related-skills: design-system, design-web, design-webapp, design-ios, design-android, design-review
 ---
 
 # Design Method — The Core
@@ -93,3 +92,11 @@ handoff spec for the platform developer.
 ## Next
 Read the target skill from the routing table above. Token/contrast mechanics live in
 `design-system`; the final quality gate lives in `design-review`.
+
+## Related skills
+
+[design-system](../design-system/SKILL.md), [design-web](../design-web/SKILL.md), [design-webapp](../design-webapp/SKILL.md), [design-ios](../design-ios/SKILL.md), [design-android](../design-android/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+related-skills: design-system, design-web, design-webapp, design-ios, design-android, design-review

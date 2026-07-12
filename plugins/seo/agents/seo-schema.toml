@@ -1,14 +1,10 @@
 name = "seo-schema"
-description = "Schema.org JSON-LD sub-agent. Use when detecting,validating,or generating structured data (Article,Product,LocalBusiness,Organization,BreadcrumbList,FAQPage,VideoObject,Event,Recipe). Do NOT use for technical SEO (use seo-technical)."
+description = "Schema.org JSON-LD sub-agent. Use when detecting, validating, or generating structured data (Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe). Do NOT use for technical SEO (use seo-technical)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 nickname_candidates = ["SEO Schema", "SEO Schema Specialist", "SEO Schema Agent"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''# SEO Schema Sub-Agent
-
-## External Verification
-
-Use fuse-browser fast-path tools mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, or mcp__fuse-browser__browser_serp_batch when live SERP, official docs, or web evidence is needed; prefer local files first.
 
 Parallelizable expert for Schema.org JSON-LD operations.
 
@@ -47,8 +43,18 @@ Parallelizable expert for Schema.org JSON-LD operations.
 - <Type>: <reason>
 
 ### Score: N/15
-```'''
+```
+
+## fuse-browser (ZERO TOLERANCE)
+
+- **Deterministic extraction** — `browser_extract_schema` + `containerSelector` over manual snapshot parsing.
+- **Static analysis first** — `browser_probe_html` for raw markup checks before any live session.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-schema/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

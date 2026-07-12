@@ -5,11 +5,11 @@ description: |
   Use for ANY development task: features, bug fixes, refactoring, hotfixes.
   Triggers: "implement", "create", "build", "fix", "add feature", "refactor", "develop".
   Auto-detects project type (Laravel, Next.js, React, Swift) and loads framework-specific references.
-  Enforces: files <100 lines, interfaces separated, SOLID principles, expert self-review, sniper validation.
+  Enforces: files under 100 lines, interfaces separated, SOLID principles, expert self-review, sniper validation.
   Modes: --auto (default), --manual, --skip-elicit
 ---
 
-**Current Task:** $ARGUMENTS
+**Current Task:** Derive the active task from the user's request and current Codex plan.
 
 # APEX Methodology Skill
 
@@ -65,7 +65,7 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 | --- | --- | --- |
 | **00** | `references/00-init-branch.md` | Create feature branch |
 | **01** | `references/01-analyze-code.md` | Explore + Research (APEX A) |
-| **02** | `references/02-features-plan.md` | TaskCreate planning (APEX P) |
+| **02** | `references/02-features-plan.md` | Codex plan creation (APEX P) |
 | **03** | `references/03-execution.md` | Implementation (APEX E) |
 | **03.5** | `references/03.5-elicit.md` | Expert self-review (APEX L) ← NEW |
 | **04** | `references/04-validation.md` | sniper validation (APEX X) |

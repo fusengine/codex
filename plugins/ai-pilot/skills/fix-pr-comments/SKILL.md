@@ -56,7 +56,7 @@ Systematically address all PR review comments:
    ```
 
 **Arguments**:
-- $ARGUMENTS specifies PR number or focuses on specific comment type
+- Derive the PR number or comment-type focus from the user's request.
 
 **Example Usage**:
 - `/fix-pr-comments 123` → Fix all comments for PR #123

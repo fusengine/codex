@@ -1,8 +1,6 @@
 ---
 name: astro-i18n
 description: Use when implementing internationalization in Astro, configuring i18n routing, setting up locale strategies, using getRelativeLocaleUrl/getAbsoluteLocaleUrl, handling Astro.currentLocale, or adding hreflang tags with sitemap.
-references: references/routing-config.md, references/strategies.md, references/helper-functions.md, references/content-translation.md, references/sitemap-hreflang.md, references/fallback.md, references/templates/i18n-config.md, references/templates/locale-page.md, references/templates/language-switcher.md
-related-skills: astro-6, astro-content, astro-seo, solid-astro
 ---
 
 # Astro i18n
@@ -80,3 +78,24 @@ Astro's built-in i18n system provides:
 - Parsing the URL manually to detect locale (use `Astro.currentLocale`)
 - Skipping hreflang configuration for SEO-sensitive sites
 - Using `getRelativeLocaleUrl` without configuring `site` in Astro config
+
+## References
+
+- [references/routing-config.md](references/routing-config.md)
+- [references/strategies.md](references/strategies.md)
+- [references/helper-functions.md](references/helper-functions.md)
+- [references/content-translation.md](references/content-translation.md)
+- [references/sitemap-hreflang.md](references/sitemap-hreflang.md)
+- [references/fallback.md](references/fallback.md)
+- [references/templates/i18n-config.md](references/templates/i18n-config.md)
+- [references/templates/locale-page.md](references/templates/locale-page.md)
+- [references/templates/language-switcher.md](references/templates/language-switcher.md)
+
+## Related skills
+
+`astro-6`, `astro-content`, `astro-seo`, `solid-astro`.
+
+## Skill routing metadata
+
+references: references/routing-config.md, references/strategies.md, references/helper-functions.md, references/content-translation.md, references/sitemap-hreflang.md, references/fallback.md, references/templates/i18n-config.md, references/templates/locale-page.md, references/templates/language-switcher.md
+related-skills: astro-6, astro-content, astro-seo, solid-astro

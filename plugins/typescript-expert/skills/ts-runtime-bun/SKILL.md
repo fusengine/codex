@@ -1,8 +1,6 @@
 ---
 name: ts-runtime-bun
 description: Use when running TypeScript on Bun — bunfig.toml, bun test (coverage, JUnit, preload), Bun.build and --compile, workspaces, and the Bun vs Node transpiler tradeoff. Covers Bun 1.3.x. Do NOT use for Node.js runtime setup (ts-runtime-node) or tsconfig details (ts-config).
-references: references/bunfig-test.md, references/build-compile.md, references/workspaces.md, references/bun-vs-node.md, references/templates/bun-project-setup.md
-related-skills: ts-runtime-node, ts-lint-format, solid-generic
 ---
 
 # TypeScript on Bun
@@ -82,3 +80,20 @@ monorepo/
 - Treat `bun build` as a typechecker — run `tsc --noEmit` alongside it
 - Assume Bun downlevels modern syntax — it does not
 - Duplicate `tsconfig` settings into `bunfig.toml` — Bun reads `tsconfig` directly
+
+## References
+
+- [references/bunfig-test.md](references/bunfig-test.md)
+- [references/build-compile.md](references/build-compile.md)
+- [references/workspaces.md](references/workspaces.md)
+- [references/bun-vs-node.md](references/bun-vs-node.md)
+- [references/templates/bun-project-setup.md](references/templates/bun-project-setup.md)
+
+## Related skills
+
+`ts-runtime-node`, `ts-lint-format`, `solid-generic`.
+
+## Skill routing metadata
+
+references: references/bunfig-test.md, references/build-compile.md, references/workspaces.md, references/bun-vs-node.md, references/templates/bun-project-setup.md
+related-skills: ts-runtime-node, ts-lint-format, solid-generic

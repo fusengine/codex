@@ -1,8 +1,6 @@
 ---
 name: php-standards
 description: Use when setting up a PHP package, choosing a coding style, wiring autoloading, or selecting PSR interfaces — PSR-4 autoloading, PER Coding Style 3.0 vs PSR-12, the active PSR catalog, and modern composer.json. Do NOT use for language syntax/features (use php-language-modern) or Laravel-specific conventions (use the laravel plugin).
-references: references/per-coding-style.md, references/psr-catalog.md, references/psr4-autoloading.md, references/templates/composer-json.md, references/templates/project-structure.md
-related-skills: php-language-modern
 ---
 
 # PHP Standards (PSR / PER / Composer)
@@ -92,3 +90,20 @@ my-package/
 - Claim PER "replaced" PSR-12 as the official standard — PSR-12 is still *Accepted*
 - Depend on PSR-2/PSR-0 (deprecated) or PSR-8/9/10 (abandoned)
 - Hardcode a concrete logger/cache when a PSR interface exists
+
+## References
+
+- [references/per-coding-style.md](references/per-coding-style.md)
+- [references/psr-catalog.md](references/psr-catalog.md)
+- [references/psr4-autoloading.md](references/psr4-autoloading.md)
+- [references/templates/composer-json.md](references/templates/composer-json.md)
+- [references/templates/project-structure.md](references/templates/project-structure.md)
+
+## Related skills
+
+`php-language-modern`.
+
+## Skill routing metadata
+
+references: references/per-coding-style.md, references/psr-catalog.md, references/psr4-autoloading.md, references/templates/composer-json.md, references/templates/project-structure.md
+related-skills: php-language-modern

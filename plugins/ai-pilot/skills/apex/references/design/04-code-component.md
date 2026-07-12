@@ -12,7 +12,7 @@ next_step: references/design/05-add-motion.md
 ## When to Use
 
 - After planning (03-plan-component)
-- Following TaskCreate tasks
+- Following the Codex plan steps
 - Referencing design tokens from Phase 01
 
 ---

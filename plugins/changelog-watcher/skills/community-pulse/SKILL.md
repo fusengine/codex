@@ -1,8 +1,6 @@
 ---
 name: community-pulse
 description: "Monitor community feedback on Codex CLI via Exa search. Gathers sentiment, real-world usage patterns, bug reports, and feature requests from blogs, forums, and social media."
-references: references/exa-queries.md, references/templates/pulse-report.md
-related-skills: watch, changelog-scan
 ---
 
 
@@ -47,3 +45,17 @@ Gathers and analyzes community feedback about Codex CLI using Exa search tools.
 
 - [Exa Queries Reference](references/exa-queries.md)
 - [Pulse Report Template](references/templates/pulse-report.md)
+
+## References
+
+- [references/exa-queries.md](references/exa-queries.md)
+- [references/templates/pulse-report.md](references/templates/pulse-report.md)
+
+## Related skills
+
+`watch`, `changelog-scan`.
+
+## Skill routing metadata
+
+references: references/exa-queries.md, references/templates/pulse-report.md
+related-skills: watch, changelog-scan

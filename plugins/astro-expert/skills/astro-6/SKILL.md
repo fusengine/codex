@@ -1,8 +1,6 @@
 ---
 name: astro-6
 description: Expert Astro 6 framework — routing, output modes, middleware, Vite Environment API, Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5.
-references: references/installation.md, references/routing.md, references/output-modes.md, references/middleware.md, references/config.md, references/new-features.md, references/templates/basic-setup.md, references/templates/config-example.md
-related-skills: astro-content, astro-actions, astro-islands, astro-integrations, astro-deployment
 ---
 
 # Astro 6 Expert
@@ -87,3 +85,23 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 3. **Middleware for cross-cutting concerns** — Auth, redirects, headers
 4. **Opt into Rust compiler** — Faster builds on large sites
 5. **CSP nonces** — Use built-in support instead of custom headers
+
+## References
+
+- [references/installation.md](references/installation.md)
+- [references/routing.md](references/routing.md)
+- [references/output-modes.md](references/output-modes.md)
+- [references/middleware.md](references/middleware.md)
+- [references/config.md](references/config.md)
+- [references/new-features.md](references/new-features.md)
+- [references/templates/basic-setup.md](references/templates/basic-setup.md)
+- [references/templates/config-example.md](references/templates/config-example.md)
+
+## Related skills
+
+`astro-content`, `astro-actions`, `astro-islands`, `astro-integrations`, `astro-deployment`.
+
+## Skill routing metadata
+
+references: references/installation.md, references/routing.md, references/output-modes.md, references/middleware.md, references/config.md, references/new-features.md, references/templates/basic-setup.md, references/templates/config-example.md
+related-skills: astro-content, astro-actions, astro-islands, astro-integrations, astro-deployment

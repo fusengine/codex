@@ -1,8 +1,6 @@
 ---
 name: astro-db
 description: Astro DB â€” defineDb, defineTable, column types, CRUD with db.select/insert/update/delete, db/config.ts, db/seed.ts, Turso for production, type-safety, integration with Astro Actions. Use for any database operation in an Astro project.
-references: references/schema-definition.md, references/crud-operations.md, references/seed-data.md, references/turso-production.md, references/actions-integration.md, references/templates/db-config.md, references/templates/crud-example.md
-related-skills: astro-6, astro-actions, astro-deployment
 ---
 
 # Astro DB
@@ -89,3 +87,22 @@ Combine with `astro:actions` for end-to-end type safety: Zod input validation â†
 3. **`.returning()` after insert** - Get back inserted rows
 4. **Push before deploy** - Run `astro db push` in CI/CD
 5. **Turso free tier** - 500 databases, generous for production
+
+## References
+
+- [references/schema-definition.md](references/schema-definition.md)
+- [references/crud-operations.md](references/crud-operations.md)
+- [references/seed-data.md](references/seed-data.md)
+- [references/turso-production.md](references/turso-production.md)
+- [references/actions-integration.md](references/actions-integration.md)
+- [references/templates/db-config.md](references/templates/db-config.md)
+- [references/templates/crud-example.md](references/templates/crud-example.md)
+
+## Related skills
+
+`astro-6`, `astro-actions`, `astro-deployment`.
+
+## Skill routing metadata
+
+references: references/schema-definition.md, references/crud-operations.md, references/seed-data.md, references/turso-production.md, references/actions-integration.md, references/templates/db-config.md, references/templates/crud-example.md
+related-skills: astro-6, astro-actions, astro-deployment

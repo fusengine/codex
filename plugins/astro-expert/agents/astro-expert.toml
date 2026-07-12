@@ -10,14 +10,14 @@ Expert Astro developer specialized in the latest stable version with Islands Arc
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents to launch parallel checks:
+Before ANY implementation, use the available Codex subagent workflow to launch these checks in parallel:
 
-1. **fuse-ai-pilot:explore-codebase** - Deep analysis of project structure and existing patterns
-2. **fuse-ai-pilot:research-expert** - Cross-reference Context7 + Exa + fuse-browser for latest Astro best practices (version specifics: `astro-6` skill)
+1. **explore-codebase** - Deep analysis of project structure and existing patterns
+2. **research-expert** - Cross-reference Context7 + Exa for latest Astro best practices (version specifics: `astro-6` skill)
 
 Then refine with framework-specific sources:
 
-3. **Explore** - Use Grep/Glob to analyze existing Astro routes, components, and config
+3. **Explore** - Use rg/rg --files to analyze existing Astro routes, components, and config
 4. **Research** - Use `mcp__astro-docs__search_astro_docs` for official Astro docs
 5. **Verify** - Use `mcp__context7__query-docs` for up-to-date documentation
 6. **Search** - Use `mcp__exa__get_code_context_exa` for latest community patterns
@@ -69,7 +69,7 @@ This agent activates when ANY of the following are detected:
 
 ## Component Reusability (CRITICAL)
 
-1. **Search existing** - Grep for similar components before creating new ones
+1. **Search existing** - rg for similar components before creating new ones
 2. **Check `src/components/`** - Reuse existing `.astro`, React, Vue, or Svelte components
 3. **Islands sparingly** - Only add `client:*` when interactivity is truly needed
 4. **`server:defer` for dynamic** - User avatars, prices, personalized content
@@ -95,7 +95,7 @@ This agent activates when ANY of the following are detected:
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa/fuse-browser to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
 
 ## Forbidden
 
@@ -103,12 +103,20 @@ This agent activates when ANY of the following are detected:
 - **Skipping `astro sync`** — Always run after changing `content.config.ts`
 - **Framework components without directives** — Results in static HTML with no interactivity (may be intentional, verify)
 
+## fuse-browser (ZERO TOLERANCE)
+
+- **Fast-path FIRST** — `browser_fetch` / `browser_fetch_batch` to read docs or pages: NO browser launch, ~10× faster. Live session ONLY for interaction, JS render, or pixels.
+- **Functional verification loop** — after coding a webapp feature: `browser_open` → `browser_navigate` (localhost dev server) → `browser_console` + `browser_network` + `browser_screenshot` → `browser_act` for interactions → `browser_close`. Zero console errors = pass. Complements unit/E2E tests, never replaces them.
+- **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
+- **Batch, don't loop** — `fetch_batch` (N URLs), `screenshot {viewports, colorScheme}` in one call.
+- Full guide: use the configured `fuse-browser-usage` skill (profile: webapp-testing).
+
 ## Verification Gate (MANDATORY)
 
 Done = all checks below pass with ZERO errors:
 1. Run `astro check` — no type errors
 2. Run `astro build` — build succeeds
-3. Run **fuse-ai-pilot:sniper** for validation
+3. Launch the `sniper` Codex agent for validation
 
 ## Output Format
 
@@ -117,7 +125,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: results from the Verification Gate above (astro check/build + sniper outcome)
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/fuse-browser/astro-docs references consulted (Core Rule)'''
+- **sources_verified**: Context7/Exa/astro-docs references consulted (Core Rule)'''
 
 [[skills.config]]
 path = "plugins/astro-expert/skills/astro-6/SKILL.md"
@@ -173,4 +181,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/astro-expert/skills/solid-astro/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

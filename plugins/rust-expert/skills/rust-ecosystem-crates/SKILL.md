@@ -1,8 +1,6 @@
 ---
 name: rust-ecosystem-crates
 description: Use when choosing crates for a Rust project — serialization, CLI, async runtime, web, database, HTTP client, error handling, observability. Provides a domain→crate decision map of the de-facto 2026 standards, with selection criteria. Do NOT use for API usage details of a chosen crate (load the matching domain skill, or verify via Context7 → Exa → fuse-browser fast-path on docs.rs/crates.io).
-references: references/crate-decision-map.md, references/db-and-async.md, references/templates/cargo-toml-stack.md
-related-skills: rust-tooling-cicd, solid:solid-rust
 ---
 
 # Rust Ecosystem & Crates
@@ -113,3 +111,18 @@ let cfg = std::fs::read_to_string(path).context("reading config")?;
 - Hardcode a remembered patch version without checking
 - Expose `anyhow::Error` from a library API
 - Mix async runtimes in one binary
+
+## References
+
+- [references/crate-decision-map.md](references/crate-decision-map.md)
+- [references/db-and-async.md](references/db-and-async.md)
+- [references/templates/cargo-toml-stack.md](references/templates/cargo-toml-stack.md)
+
+## Related skills
+
+`rust-tooling-cicd`, `solid:solid-rust`.
+
+## Skill routing metadata
+
+references: references/crate-decision-map.md, references/db-and-async.md, references/templates/cargo-toml-stack.md
+related-skills: rust-tooling-cicd, solid:solid-rust

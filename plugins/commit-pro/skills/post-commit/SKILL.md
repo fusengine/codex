@@ -1,7 +1,6 @@
 ---
 name: post-commit
-description: "Universal post-commit actions. CHANGELOG update for all repos; git tag is created post-merge by the commit skill. Plugin version bumping for marketplace repos. Triggered after any code commit except wip, amend, or undo."
-related-skills: commit, git-flow
+description: "Universal post-commit actions. Updates CHANGELOG and marketplace versions, while the commit skill owns post-merge tag publication or local-only fallback tagging. Triggered after any code commit except wip, amend, or undo."
 ---
 
 
@@ -58,7 +57,7 @@ EOF
 )"
 ```
 
-STOP. Output summary. Do not tag here; tags are created after a successful squash merge by the `commit` skill Step 8.
+STOP. Output summary. Do not create or push a tag here. The `commit` skill owns Step 8: it creates and pushes a tag only after a confirmed FULL-mode merge, or creates a local-only tag in LOCAL/DEGRADED mode. See `references/tag-timing.md`.
 
 ---
 
@@ -132,7 +131,7 @@ EOF
 
 This MUST be a separate commit from the code changes. Never combine.
 
-Do not tag here; tags are created post-merge by the `commit` skill Step 8.
+Do not create or push a tag here. The `commit` skill applies the FULL versus LOCAL/DEGRADED decision documented in `references/tag-timing.md`.
 
 ---
 
@@ -156,3 +155,20 @@ Do not tag here; tags are created post-merge by the `commit` skill Step 8.
 | `style` | Style |
 | `ci` | CI/CD |
 | `build` | Build |
+
+## Detailed References
+
+- [changelog-templates.md](references/changelog-templates.md) — Entry shapes.
+- [changelog-type-mapping.md](references/changelog-type-mapping.md) — Conventional type mapping.
+- [plugin-version-bump.md](references/plugin-version-bump.md) — Manifest and marketplace version rules.
+- [badge-recompute.md](references/badge-recompute.md) — Filesystem-derived README counts.
+- [plugin-docs-parity.md](references/plugin-docs-parity.md) — Documentation updates for new plugins.
+- [tag-timing.md](references/tag-timing.md) — Merge and local/degraded tagging decisions.
+
+## Related skills
+
+`commit`, `git-flow`.
+
+## Skill routing metadata
+
+related-skills: commit, git-flow

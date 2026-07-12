@@ -1,8 +1,6 @@
 ---
 name: astro-integrations
 description: Expert Astro UI framework integrations — @astrojs/react, @astrojs/vue, @astrojs/svelte, @astrojs/solid-js, @astrojs/preact, @astrojs/alpinejs, @astrojs/lit, @qwikdev/astro, @analogjs/astro-angular. Setup, multi-framework config, usage patterns.
-references: references/overview.md, references/react.md, references/vue.md, references/svelte.md, references/solid.md, references/preact.md, references/others.md, references/multi-framework.md, references/templates/react-setup.md, references/templates/multi-framework.md
-related-skills: astro-6, astro-islands, astro-styling
 ---
 
 # Astro Integrations Expert
@@ -85,3 +83,25 @@ The CLI auto-installs packages and updates `astro.config.ts`.
 3. **`include` for multiple JSX frameworks** — Avoid React/Preact/Solid conflicts
 4. **Apply client directives** — All framework components need hydration directive for interactivity
 5. **Prefer single framework** — Mix only when truly necessary for performance
+
+## References
+
+- [references/overview.md](references/overview.md)
+- [references/react.md](references/react.md)
+- [references/vue.md](references/vue.md)
+- [references/svelte.md](references/svelte.md)
+- [references/solid.md](references/solid.md)
+- [references/preact.md](references/preact.md)
+- [references/others.md](references/others.md)
+- [references/multi-framework.md](references/multi-framework.md)
+- [references/templates/react-setup.md](references/templates/react-setup.md)
+- [references/templates/multi-framework.md](references/templates/multi-framework.md)
+
+## Related skills
+
+`astro-6`, `astro-islands`, `astro-styling`.
+
+## Skill routing metadata
+
+references: references/overview.md, references/react.md, references/vue.md, references/svelte.md, references/solid.md, references/preact.md, references/others.md, references/multi-framework.md, references/templates/react-setup.md, references/templates/multi-framework.md
+related-skills: astro-6, astro-islands, astro-styling

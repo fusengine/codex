@@ -1,7 +1,6 @@
 ---
 name: design-page
 description: "New page in an existing project. Use when design-system.md exists, identity is already defined, and a page needs inspiration browsing, Gemini generation, motion, audit, and review."
-related-skills: design-method, design-web, design-motion, design-review
 ---
 
 # /design:page — New Page (Phases 1→6)
@@ -42,3 +41,11 @@ Add a new page to a project that already has a design-system.md.
 ## FORBIDDEN
 
 Same as /design. Additionally: creating a new design-system.md (use existing one).
+
+## Related skills
+
+[design-method](../design-method/SKILL.md), [design-web](../design-web/SKILL.md), [design-motion](../design-motion/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+related-skills: design-method, design-web, design-motion, design-review

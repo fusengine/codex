@@ -1,8 +1,6 @@
 ---
 name: design-motion
 description: "Motion, states, and visual effects — gated by the motion profile from design-system.md, not applied uniformly. Most animation ideas should die at the gate; what survives gets full state coverage (hover/focus/disabled/loading) and a reduced-motion fallback."
-references: references/
-related-skills: design-system, design-web, design-webapp, design-review
 ---
 
 ## Design Motion — Gated, Not Automatic
@@ -78,3 +76,16 @@ After `design-web` or `design-webapp` components exist. Before `design-review`.
 | `references/patterns-microinteractions.md` | Detail micro-interactions |
 | `references/glassmorphism-advanced-ref.md` | Glassmorphism technique (gated, not default) |
 | `references/layered-backgrounds-ref.md` | Layered background effects (gated, not default) |
+
+## References
+
+Load relevant files from [references/](references/) as needed.
+
+## Related skills
+
+[design-system](../design-system/SKILL.md), [design-web](../design-web/SKILL.md), [design-webapp](../design-webapp/SKILL.md), and [design-review](../design-review/SKILL.md).
+
+## Skill routing metadata
+
+references: references/
+related-skills: design-system, design-web, design-webapp, design-review

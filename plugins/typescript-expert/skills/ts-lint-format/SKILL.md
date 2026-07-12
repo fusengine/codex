@@ -1,8 +1,6 @@
 ---
 name: ts-lint-format
 description: Use when choosing and configuring a TypeScript linter/formatter — Biome 2.x (one binary, type-aware) vs ESLint 9 flat config + typescript-eslint (full typed linting). Includes the 2026 arbitrage and Oxlint note. Do NOT use for type checking itself (tsc, ts-config skill) or test-runner configuration (ts-testing).
-references: references/tool-choice.md, references/biome-setup.md, references/eslint-typed.md, references/templates/config-examples.md
-related-skills: ts-runtime-node, ts-runtime-bun, solid-generic
 ---
 
 # TypeScript Linting & Formatting
@@ -78,3 +76,19 @@ project/
 - Run Biome and Prettier on the same files (conflicting formatting)
 - Enable typed linting and then complain about speed — it's the type checker cost
 - Assume Biome covers every typescript-eslint rule — check the gaps first
+
+## References
+
+- [references/tool-choice.md](references/tool-choice.md)
+- [references/biome-setup.md](references/biome-setup.md)
+- [references/eslint-typed.md](references/eslint-typed.md)
+- [references/templates/config-examples.md](references/templates/config-examples.md)
+
+## Related skills
+
+`ts-runtime-node`, `ts-runtime-bun`, `solid-generic`.
+
+## Skill routing metadata
+
+references: references/tool-choice.md, references/biome-setup.md, references/eslint-typed.md, references/templates/config-examples.md
+related-skills: ts-runtime-node, ts-runtime-bun, solid-generic

@@ -12,7 +12,7 @@ next_step: references/03.5-elicit.md
 ## When to Use
 
 - After plan is complete and approved
-- Follow TaskCreate task order
+- Follow the Codex plan order
 - Update progress as you go
 
 ---
@@ -142,11 +142,11 @@ test(auth): add login component tests
 
 ## Progress Tracking
 
-### Update tasks via TaskUpdate
+### Update the Codex plan
 
 ```text
 After each task:
-1. Mark task as completed (TaskUpdate status: completed)
+1. Mark the step as completed with `update_plan`
 2. Note any deviations
 3. Update estimates if needed
 4. Flag blockers immediately (addBlockedBy)
@@ -202,7 +202,7 @@ If you encounter:
 □ Existing patterns followed
 □ No duplicate utilities
 □ Atomic commits made
-□ Tasks updated via TaskUpdate
+□ Plan statuses updated with `update_plan`
 □ Local testing passed
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: tailwindcss-core
-description: "Configuration and directives Tailwind CSS v4.1. @theme, @import, @source, @utility, @variant, @apply, @config. CSS-first mode without tailwind.config.js."
+description: "Tailwind CSS v4.1 CSS-first configuration with @theme, @import, @source, @utility, @variant, @apply, and @config. Use when defining tokens, source scanning, custom utilities, or variants. Do NOT use for v3 migration or category-specific utility lookup."
 ---
 
 

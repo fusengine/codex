@@ -1,8 +1,6 @@
 ---
 name: php-http-psr
 description: Use when building framework-agnostic HTTP code in PHP — PSR-7 messages, PSR-15 middleware pipelines, PSR-17 factories, PSR-18 HTTP clients. Covers immutable Request/Response/Stream/Uri, RequestHandler + Middleware, factory interfaces, and reference implementations (nyholm/psr7, guzzlehttp/psr7, laminas-diactoros). Do NOT use for Laravel HTTP (use laravel-expert) or Symfony HttpFoundation (not PSR-7 — see references/implementations.md).
-references: references/psr7-messages.md, references/psr15-middleware.md, references/psr17-factories.md, references/psr18-client.md, references/implementations.md, references/templates/middleware-pipeline.md
-related-skills: php-ecosystem-reference, laravel-expert:solid-php
 ---
 
 # PHP HTTP — PSR-7 / 15 / 17 / 18
@@ -129,3 +127,21 @@ $request = $request->withBody($streamFactory->createStream('{"ping":true}'));
 - Treat a 404/500 response from a PSR-18 client as an exception
 - Confuse Symfony `HttpFoundation` with PSR-7 — they are different; bridge via `symfony/psr-http-message-bridge`
 - Hardcode `new GuzzleHttp\Psr7\Response()` in library code — depend on the factory
+
+## References
+
+- [references/psr7-messages.md](references/psr7-messages.md)
+- [references/psr15-middleware.md](references/psr15-middleware.md)
+- [references/psr17-factories.md](references/psr17-factories.md)
+- [references/psr18-client.md](references/psr18-client.md)
+- [references/implementations.md](references/implementations.md)
+- [references/templates/middleware-pipeline.md](references/templates/middleware-pipeline.md)
+
+## Related skills
+
+`php-ecosystem-reference`, `laravel-expert:solid-php`.
+
+## Skill routing metadata
+
+references: references/psr7-messages.md, references/psr15-middleware.md, references/psr17-factories.md, references/psr18-client.md, references/implementations.md, references/templates/middleware-pipeline.md
+related-skills: php-ecosystem-reference, laravel-expert:solid-php

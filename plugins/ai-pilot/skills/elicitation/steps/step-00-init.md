@@ -54,7 +54,19 @@ Gather from previous phase:
 - What framework/language was used
 ```
 
-### 3. Validate Context
+### 3. Load Prior Artifact
+
+```
+Derive {task-slug} using references/artifact-contract.md.
+IF .codex/apex/docs/elicit-{task-slug}.json exists:
+  → Load it as {prior_artifact}
+  → Deselect prior pass techniques by default
+  → Prioritize fail/deferred techniques
+ELSE:
+  → {prior_artifact} = none
+```
+
+### 4. Validate Context
 
 ```
 Required for next steps:
@@ -63,7 +75,7 @@ Required for next steps:
 ✓ Expert agent known
 ```
 
-### 4. Handle Skip Mode
+### 5. Handle Skip Mode
 
 ```
 IF {elicit_mode} == "skip":

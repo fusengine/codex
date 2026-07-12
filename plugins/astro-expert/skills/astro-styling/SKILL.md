@@ -1,8 +1,6 @@
 ---
 name: astro-styling
 description: Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors.
-references: references/scoped-css.md, references/css-modules.md, references/global-styles.md, references/tailwind.md, references/unocss.md, references/sass.md, references/css-variables.md, references/templates/scoped-component.md, references/templates/tailwind-setup.md, references/templates/unocss-setup.md
-related-skills: astro-6, astro-integrations, solid-astro
 ---
 
 # Astro Styling
@@ -83,3 +81,25 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 - Using `is:global` inside non-layout components
 - Importing CSS in multiple components without CSS Modules
 - Mixing Tailwind and custom class naming without a clear convention
+
+## References
+
+- [references/scoped-css.md](references/scoped-css.md)
+- [references/css-modules.md](references/css-modules.md)
+- [references/global-styles.md](references/global-styles.md)
+- [references/tailwind.md](references/tailwind.md)
+- [references/unocss.md](references/unocss.md)
+- [references/sass.md](references/sass.md)
+- [references/css-variables.md](references/css-variables.md)
+- [references/templates/scoped-component.md](references/templates/scoped-component.md)
+- [references/templates/tailwind-setup.md](references/templates/tailwind-setup.md)
+- [references/templates/unocss-setup.md](references/templates/unocss-setup.md)
+
+## Related skills
+
+`astro-6`, `astro-integrations`, `solid-astro`.
+
+## Skill routing metadata
+
+references: references/scoped-css.md, references/css-modules.md, references/global-styles.md, references/tailwind.md, references/unocss.md, references/sass.md, references/css-variables.md, references/templates/scoped-component.md, references/templates/tailwind-setup.md, references/templates/unocss-setup.md
+related-skills: astro-6, astro-integrations, solid-astro

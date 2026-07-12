@@ -1,8 +1,6 @@
 ---
 name: astro-starlight
 description: Astro Starlight documentation theme — setup, sidebar config, Pagefind search, dark/light mode, plugins (DocSearch, blog, openapi, typedoc, versions), multi-language, Content Layer API, llms.txt, customization. Use for building documentation sites.
-references: references/setup.md, references/sidebar-config.md, references/search.md, references/plugins.md, references/i18n-multilang.md, references/content-layer.md, references/customization.md, references/templates/starlight-config.md, references/templates/sidebar-example.md
-related-skills: astro-6, astro-content, astro-i18n, astro-seo
 ---
 
 # Astro Starlight
@@ -75,3 +73,24 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 3. **Use `starlight-llms-txt`** - AI crawlers increasingly important for docs
 4. **Content Layer schema** - Type-safe frontmatter prevents runtime errors
 5. **CSS custom properties** - Override theme without component slots
+
+## References
+
+- [references/setup.md](references/setup.md)
+- [references/sidebar-config.md](references/sidebar-config.md)
+- [references/search.md](references/search.md)
+- [references/plugins.md](references/plugins.md)
+- [references/i18n-multilang.md](references/i18n-multilang.md)
+- [references/content-layer.md](references/content-layer.md)
+- [references/customization.md](references/customization.md)
+- [references/templates/starlight-config.md](references/templates/starlight-config.md)
+- [references/templates/sidebar-example.md](references/templates/sidebar-example.md)
+
+## Related skills
+
+`astro-6`, `astro-content`, `astro-i18n`, `astro-seo`.
+
+## Skill routing metadata
+
+references: references/setup.md, references/sidebar-config.md, references/search.md, references/plugins.md, references/i18n-multilang.md, references/content-layer.md, references/customization.md, references/templates/starlight-config.md, references/templates/sidebar-example.md
+related-skills: astro-6, astro-content, astro-i18n, astro-seo

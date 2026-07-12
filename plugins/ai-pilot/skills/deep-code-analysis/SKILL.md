@@ -69,7 +69,7 @@ Perform comprehensive codebase investigation:
    ```
 
 **Arguments**:
-- $ARGUMENTS specifies focus area (security/performance/architecture)
+- Derive the focus area (security, performance, or architecture) from the user's request.
 
 **Example Usage**:
 - `/deep-code-analysis security` → Focus on security review

@@ -1,8 +1,6 @@
 ---
 name: rust-web-backend
 description: Use when building a REST/HTTP backend in Rust — routing, extractors, shared state, middleware, error responses, database access, and structured logging. Covers the 2026 standard stack axum + tokio + sqlx + tracing, plus honest alternatives (sea-orm, diesel). Do NOT use for raw async/concurrency questions (rust-async-concurrency) or crate selection across domains (rust-ecosystem-crates).
-references: references/architecture.md, references/error-handling.md, references/database.md, references/observability.md, references/templates/rest-service.md
-related-skills: rust-async-concurrency, solid:solid-rust
 ---
 
 # Rust Web Backend
@@ -105,3 +103,20 @@ let user = sqlx::query_as!(User, "SELECT id, name FROM users WHERE id = $1", id)
 
 - tokio.rs/blog/2025-01-01-announcing-axum-0-8-0 — path syntax, Option extractor, `#[async_trait]` removal (fetched 2026-07-05)
 - crates.io — axum 0.8.9, sqlx 0.9.0, tokio 1.52.3, tracing 0.1.44 (current at fetch)
+
+## References
+
+- [references/architecture.md](references/architecture.md)
+- [references/error-handling.md](references/error-handling.md)
+- [references/database.md](references/database.md)
+- [references/observability.md](references/observability.md)
+- [references/templates/rest-service.md](references/templates/rest-service.md)
+
+## Related skills
+
+`rust-async-concurrency`, `solid:solid-rust`.
+
+## Skill routing metadata
+
+references: references/architecture.md, references/error-handling.md, references/database.md, references/observability.md, references/templates/rest-service.md
+related-skills: rust-async-concurrency, solid:solid-rust

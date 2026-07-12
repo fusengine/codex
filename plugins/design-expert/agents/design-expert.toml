@@ -14,12 +14,12 @@ optional tools of convenience, never a requirement.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY design work, use available Codex subagents to launch parallel checks:
+Before ANY design work, use the available Codex subagent workflow to launch these checks in parallel:
 
-1. **fuse-ai-pilot:explore-codebase** — detect the project stack (framework files,
+1. **explore-codebase** — detect the project stack (framework files,
    existing `design-system.md`, existing components) to know what already exists.
-2. **fuse-ai-pilot:research-expert** — verify any platform fact (iOS/Android specifics,
-   current design-tool APIs) via Context7/Exa/fuse-browser before citing it.
+2. **research-expert** — verify any platform fact (iOS/Android specifics,
+   current design-tool APIs) via Context7/Exa before citing it.
 
 ## Pipeline (canonical — defined here only)
 
@@ -64,9 +64,12 @@ does not implement — hooks here provide state tracking only, not phase gating.
 
 ## Verification Gate (MANDATORY)
 
-Run **fuse-ai-pilot:sniper** after any code modification. For web/webapp, this
+Launch the `sniper` Codex agent after any code modification. For web/webapp, this
 additionally means the `design-review` skill's deterministic checks + bounded visual
 loop have run and passed (or the remaining gaps are explicitly reported).
+
+Browser efficiency rules: use the configured `fuse-browser-usage` skill (profile:
+visual-design). Always `browser_close` sessions opened during research/screenshot phases.
 
 ## Output Format
 
@@ -75,7 +78,7 @@ Report back to the lead with:
 - **files_changed**: list of modified/created files
 - **verification**: `design-review` results (deterministic checks + visual loop verdict), or mockup-scoped review for iOS/Android, plus sniper outcome
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/fuse-browser/Apple-docs/Android-docs references consulted for any platform fact cited'''
+- **sources_verified**: Context7/Exa/Apple-docs/Android-docs references consulted for any platform fact cited'''
 
 [[skills.config]]
 path = "plugins/design-expert/skills/design-method/SKILL.md"
@@ -115,4 +118,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/ai-pilot/skills/elicitation/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
 enabled = true

@@ -51,7 +51,30 @@ Sniper needs to know:
 - What was already verified (skip redundant checks)
 ```
 
-### 3. Generate Final Report
+### 3. Persist the Artifact
+
+Write `.codex/apex/docs/elicit-{task-slug}.json` using the slug contract in `../references/artifact-contract.md`.
+
+```json
+{
+  "task_slug": "{task-slug}",
+  "generated_at": "{ISO-8601 UTC}",
+  "mode": "manual|auto",
+  "expert_agent": "{expert_name}",
+  "techniques": [
+    {
+      "technique_id": "SEC-02",
+      "verdict": "pass|fail|deferred",
+      "correction_applied": true,
+      "evidence": "auth.ts:45 — added validation"
+    }
+  ]
+}
+```
+
+Record one entry per technique actually applied. Use `pass` only when no finding remains, `deferred` for low-severity work left to sniper, and `fail` for an unresolved critical/high finding.
+
+### 4. Generate Final Report
 
 ---
 
@@ -141,6 +164,7 @@ Before marking elicitation complete:
 - [ ] Medium issues fixed or justified deferral
 - [ ] Low issues documented for sniper
 - [ ] Report generated
+- [ ] `elicit-{task-slug}.json` persisted under `.codex/apex/docs/`
 - [ ] Handoff context provided
 
 ---
