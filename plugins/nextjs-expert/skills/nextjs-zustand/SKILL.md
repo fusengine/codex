@@ -5,17 +5,19 @@ description: Zustand v5 state management for Next.js 16 App Router. Use when imp
 
 # Zustand for Next.js 16
 
+> Targets: Zustand 5.0, React 19, Nextjs 16.
+
 Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing stores and state patterns
-2. **ai-pilot:research / research-expert** - Verify latest Zustand v5 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing stores and state patterns
+2. **research-expert** - Verify latest Zustand v5 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check middleware and TypeScript patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -134,16 +136,3 @@ Use `skipHydration: true` with persist middleware. Manually rehydrate in useEffe
 | Persisting auth tokens | Security vulnerability | httpOnly cookies |
 | Without useShallow on objects | Excessive re-renders | `useShallow(selector)` |
 | v4 syntax | TypeScript inference broken | v5 currying `create<T>()()` |
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-16`, `nextjs-tanstack-form`, `solid-nextjs`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/store-patterns.md, references/hydration.md, references/middleware.md, references/nextjs-integration.md, references/typescript.md, references/slices.md, references/auto-selectors.md, references/reset-state.md, references/subscribe-api.md, references/testing.md, references/migration-v5.md
-related-skills: nextjs-16, nextjs-tanstack-form, solid-nextjs

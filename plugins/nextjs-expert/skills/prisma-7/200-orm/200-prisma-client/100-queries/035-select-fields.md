@@ -26,7 +26,7 @@ model User {
 model Post {
   id        Int      @id @default(autoincrement())
   published Boolean  @default(false)
-  title     String
+  title     String  
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
@@ -79,7 +79,7 @@ All following examples on this page are based on the following schema:
 
 ```prisma
 model User {
-  id           Int       @id
+  id           Int       @id 
   name         String?
   email        String    @unique
   password     String
@@ -90,7 +90,7 @@ model User {
 }
 
 model Post {
-  id        Int     @id
+  id        Int     @id 
   title     String
   published Boolean @default(true)
   author    User    @relation(fields: [authorId], references: [id])
@@ -98,7 +98,7 @@ model Post {
 }
 
 model Profile {
-  id        Int    @id
+  id        Int    @id 
   biography String
   user      User   @relation(fields: [userId], references: [id])
   userId    Int    @unique
@@ -253,7 +253,7 @@ const postsWithAuthorsAndProfiles = await prisma.post.findFirst({
   select: {
     title: true,
     author: {
-      select: {
+      select: { 
         name: true,
         profile: {
           select: { biography: true }
@@ -285,7 +285,7 @@ const postsWithAuthorsAndProfiles = await prisma.post.findFirst({
 
 :::note
 
-Be careful when deeply nesting relations because the underlying database query may become slow due it needing to access a lot of different tables. To ensure your queries always have optimal speed, consider adding a caching layer with [Prisma Accelerate](/accelerate) or use [Prisma Optimize](/optimize/) to get query insights and recommendations for performance optimizations.
+Be careful when deeply nesting relations because the underlying database query may become slow due it needing to access a lot of different tables. To ensure your queries always have optimal speed, consider adding a caching layer with [Prisma Accelerate](/accelerate) or use [Prisma Optimize](/optimize/) to get query insights and recommendations for performance optimizations.  
 
 :::
 

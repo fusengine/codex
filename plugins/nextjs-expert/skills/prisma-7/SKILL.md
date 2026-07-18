@@ -5,17 +5,19 @@ description: Prisma 7 ORM with Rust-free client, 90% smaller bundles, TypedSQL, 
 
 # Prisma 7 ORM
 
+> Targets: Prisma 7.3, Nodejs 20.19, Typescript 5.4.
+
 Rust-free TypeScript ORM with 90% smaller bundles and 3x faster queries.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing schema and database patterns
-2. **ai-pilot:research / research-expert** - Verify latest Prisma 7 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing schema and database patterns
+2. **research-expert** - Verify latest Prisma 7 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check breaking changes and migration guide
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -343,16 +345,3 @@ Exclude fields globally or per-query. Perfect for passwords and sensitive data.
 | No output path | Required in v7 | Set `output` in generator |
 | MongoDB | Not supported in v7.0-7.3 | Stay on Prisma 6 |
 | url in datasource | Deprecated | Use `prisma.config.ts` |
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-16`, `better-auth`, `solid-nextjs`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/client.md, references/client-api.md, references/prisma-config.md, references/cli-reference.md, references/editor-setup.md, references/schema.md, references/schema-reference.md, references/data-modeling.md, references/field-attributes.md, references/model-attributes.md, references/enums.md, references/default-values.md, references/composite-types.md, references/scalar-lists.md, references/referential-actions.md, references/queries.md, references/relations.md, references/filtering.md, references/sorting.md, references/select-include.md, references/pagination-cursor.md, references/pagination-offset.md, references/distinct.md, references/count-exists.md, references/case-sensitivity.md, references/aggregations.md, references/transactions.md, references/typedsql.md, references/raw-queries.md, references/json-fields.md, references/full-text-search.md, references/views.md, references/stored-procedures.md, references/triggers.md, references/constraints.md, references/indexes-advanced.md, references/migrations.md, references/seeding.md, references/baselining.md, references/shadow-database.md, references/migration-history.md, references/squashing.md, references/hotfixing.md, references/down-migrations.md, references/data-migrations.md, references/zero-downtime.md, references/optimization.md, references/query-optimization.md, references/n-plus-one.md, references/batching.md, references/lazy-loading.md, references/caching-strategies.md, references/connection-limits.md, references/cold-starts.md, references/bundle-size.md, references/accelerate.md, references/connection-pooling.md, references/connection-urls.md, references/environment-variables.md, references/ssl-tls.md, references/sql-injection.md, references/row-level-security.md, references/encryption.md, references/audit-logging.md, references/gdpr-compliance.md, references/postgresql.md, references/mysql.md, references/sqlite.md, references/mongodb.md, references/cockroachdb.md, references/planetscale.md, references/supabase.md, references/neon.md, references/turso.md, references/extensions.md, references/driver-adapters.md, references/omit-api.md, references/middleware.md, references/soft-delete.md, references/read-replicas.md, references/multi-database.md, references/multi-schema.md, references/nextjs-integration.md, references/astro.md, references/nuxt.md, references/sveltekit.md, references/solidstart.md, references/remix.md, references/react-router.md, references/hono.md, references/express.md, references/clerk.md, references/authjs.md, references/betterauth.md, references/permit-io.md, references/deployment.md, references/vercel.md, references/netlify.md, references/railway.md, references/render.md, references/flyio.md, references/aws-lambda.md, references/cloudflare-workers.md, references/docker.md, references/heroku.md, references/deno-deploy.md, references/vscode.md, references/github-copilot.md, references/tabnine.md, references/safeql.md, references/prisma-ai.md, references/mcp-server.md, references/turborepo.md, references/pnpm-workspaces.md, references/error-handling.md, references/error-codes.md, references/logging.md, references/opentelemetry.md, references/datadog.md, references/studio.md, references/testing.md, references/vs-typeorm.md, references/vs-sequelize.md, references/vs-drizzle.md, references/vs-mongoose.md, references/vs-kysely.md, references/migrate-from-typeorm.md, references/migrate-from-sequelize.md, references/migrate-from-drizzle.md
-related-skills: nextjs-16, better-auth, solid-nextjs

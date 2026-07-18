@@ -1,8 +1,7 @@
 ---
 name: seo-entity
-description: "Use when optimizing entity-based / semantic SEO 2026. Covers entity maps, Google Knowledge Graph resolution, salience scoring, passage-level ranking, about/sameAs/knowsAbout schema, Cloud Natural Language API validation."
+description: Use when optimizing entity-based / semantic SEO 2026. Covers entity maps, Google Knowledge Graph resolution, salience scoring, passage-level ranking, about/sameAs/knowsAbout schema, Cloud Natural Language API validation.
 ---
-
 
 # Entity-Based / Semantic SEO 2026
 

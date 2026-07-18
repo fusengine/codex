@@ -3,18 +3,19 @@ name: laravel-architecture
 description: "Design Laravel app architecture with services, repositories, actions, and clean code patterns. Use when structuring projects, creating services, implementing DI, or organizing code layers."
 ---
 
-
 # Laravel Architecture Patterns
+
+_Targets: laravel 13.0, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Laravel patterns via Context7
-3. **mcp__context7__query-docs** - Check service container and DI patterns
+1. `explore-codebase` - Analyze existing architecture
+2. `research-expert` - Verify Laravel patterns via Context7
+3. `mcp__context7__query-docs` - Check service container and DI patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -234,7 +235,7 @@ Voir [[laravel-queues]] pour le routing déclaratif par job (connexion/queue cib
 ### `new Model()` dans boot() → LogicException
 Laravel 13 jette une `LogicException` si vous instanciez un modèle Eloquent dans `register()` d'un ServiceProvider (container pas prêt). Utiliser `boot()` ou un listener.
 
-## Migration Laravel 13 → 13
+## Migration Laravel 12 → 13
 
 | Sujet | Avant (12) | Après (13) |
 |-------|-----------|------------|

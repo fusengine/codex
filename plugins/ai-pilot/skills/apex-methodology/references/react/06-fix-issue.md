@@ -184,6 +184,12 @@ git commit -m "test(Button): fix async assertion"
 
 ---
 
+## Escalation
+
+**Attempt cap before escalation.** Diagnosis is hypothesis-driven: one candidate cause documented → one atomic fix → immediate retest. The same fix twice is forbidden; a new attempt needs a new hypothesis (fresh research first). After 3 failed cycles on the same issue, STOP and escalate with a root-cause note (what was tried, sources consulted, why each attempt failed) — do not keep trying or widen the scope to work around it. Canonical implementation: sniper's Fix Retry Loop.
+
+---
+
 ## Fix Checklist
 
 ```text
@@ -195,6 +201,17 @@ git commit -m "test(Button): fix async assertion"
 [ ] All tests pass
 [ ] Browser testing done
 [ ] Ready for re-review
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "fix-issue" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

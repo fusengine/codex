@@ -19,15 +19,15 @@ next_step: references/laravel/02-features-plan.md
 
 ## Dual-Agent Analysis
 
-### Launch in Parallel (ONE message)
+### Launch in Parallel (one dispatch)
 
 ```text
-Agent 1: explore-codebase
+spawn_agent: explore-codebase
 -> Map app/ structure
 -> Identify patterns (Services, Repositories)
 -> Find existing Models, Controllers
 
-Agent 2: research-expert
+spawn_agent: research-expert
 -> Verify Laravel 12 documentation
 -> Confirm Eloquent methods/patterns
 -> Check package compatibility
@@ -208,6 +208,17 @@ Use outdated Laravel 10 patterns
 [ ] Eloquent APIs verified
 [ ] Laravel 12 features checked
 [ ] Routes understood
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "analyze-code" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

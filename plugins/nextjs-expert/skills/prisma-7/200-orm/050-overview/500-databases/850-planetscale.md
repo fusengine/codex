@@ -260,7 +260,7 @@ For a more detailed example, see the [Getting started guide for PlanetScale](/ge
 
 ## How to define shard keys in your Prisma schema (Preview)
 
-[Sharding](https://planetscale.com/docs/vitess/sharding) is a popular technique to scale up when database load grows.
+[Sharding](https://planetscale.com/docs/vitess/sharding) is a popular technique to scale up when database load grows. 
 
 As of [v6.10.0](https://github.com/prisma/prisma/releases/tag/6.10.0), Prisma ORM supports sharding on PlanetScale natively (as a [Preview](/orm/more/releases#preview) feature) via the [`@shardKey`](/orm/reference/prisma-schema-reference#shardkey) and [`@@shardKey`](/orm/reference/prisma-schema-reference#shardkey-1) attributes in the Prisma schema which you can apply to the fields in your models that should serve as shard keys in your database setup.
 

@@ -3,18 +3,19 @@ name: laravel-billing
 description: "Integrate Stripe and Paddle payments with Laravel Cashier. Use when implementing subscriptions, invoices, payment methods, webhooks, or billing portals."
 ---
 
-
 # Laravel Billing (Cashier)
+
+_Targets: laravel 13.0, cashier-stripe 16.x, cashier-paddle 2.x, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing billing setup, User model
-2. **ai-pilot:research / research-expert** - Verify latest Cashier docs via Context7
-3. **mcp__context7__query-docs** - Query specific patterns (Stripe/Paddle)
+1. `explore-codebase` - Check existing billing setup, User model
+2. `research-expert` - Verify latest Cashier docs via Context7
+3. `mcp__context7__query-docs` - Query specific patterns (Stripe/Paddle)
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

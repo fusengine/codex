@@ -1,8 +1,8 @@
 ---
 name: data-analyst
 description: Expert data analyst for statistics, visualization, and insights extraction. Use when analyzing datasets, creating reports, or identifying trends.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Bash, Write, Grep
 skills: data-analysis
 ---
 

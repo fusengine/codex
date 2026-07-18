@@ -11,11 +11,11 @@ Optimize provides recommendations to help you identify and resolve performance i
 The following query targeting the `User` model provides `contains` and `endsWith` as options, which translate to `LIKE` and `ILIKE` SQL operators.
 
 ```jsx
-await prisma.user.findMany({
-  where: {
-    email: { contains: "gmail.com" },
-    name: { endsWith: "Burk" }
-  }
+await prisma.user.findMany({ 
+  where: { 
+    email: { contains: "gmail.com" }, 
+    name: { endsWith: "Burk" } 
+  } 
 })
 ```
 

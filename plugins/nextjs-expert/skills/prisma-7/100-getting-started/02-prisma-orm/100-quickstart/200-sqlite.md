@@ -10,7 +10,7 @@ import CreateProject from '../../_components/_create-project.mdx'
 import ExploreData from '../../_components/_explore-data.mdx'
 import NextSteps from '../../_components/_next-steps.mdx'
 
-[SQLite](https://sqlite.org) is a lightweight, file-based database that's perfect for development, prototyping, and small applications. It requires no setup and stores data in a local file.
+[SQLite](https://sqlite.org) is a lightweight, file-based database that's perfect for development, prototyping, and small applications. It requires no setup and stores data in a local file. 
 
 In this guide, you will learn how to set up a new TypeScript project from scratch, connect it to SQLite using Prisma ORM, and generate a Prisma Client for easy, type-safe access to your database.
 
@@ -27,7 +27,7 @@ In this guide, you will learn how to set up a new TypeScript project from scratc
 Install the packages needed for this quickstart:
 
 ```terminal
-npm install prisma @types/node @types/better-sqlite3 --save-dev
+npm install prisma @types/node @types/better-sqlite3 --save-dev 
 npm install @prisma/client @prisma/adapter-better-sqlite3 dotenv
 ```
 

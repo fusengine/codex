@@ -41,7 +41,7 @@ To keep existing names, run `prisma db pull` against the target environment. Thi
      name  String @unique
      posts Post[]
    }
-
+   
    model Post {
      id         Int    @id @default(autoincrement())
      title      String
@@ -64,7 +64,7 @@ To keep existing names, run `prisma db pull` against the target environment. Thi
      name  String @unique
      posts Post[]
    }
-
+   
    model Post {
      id         Int    @id @default(autoincrement())
      title      String
@@ -89,7 +89,7 @@ Afterwards, do not forget to `prisma migrate deploy` against your production env
      name  String @id //inferred as User_pkey
      posts Post[]
    }
-
+   
    model Post {
      id         Int    @id @default(autoincrement()) //inferred as Post_pkey
      authorName String @default("Anonymous")

@@ -1,19 +1,19 @@
 ---
 name: rust-tooling-cicd
-description: Use when structuring a Cargo workspace, wiring features, or building a Rust CI pipeline — fmt, clippy, cargo-deny, cargo-audit, nextest, doc-tests, coverage, MSRV. Covers the canonical CI gate order and supply-chain checks. Do NOT use for writing the tests themselves (use rust-testing-quality) or non-Rust CI.
+description: "Use when structuring a Cargo workspace, wiring features, or building a Rust CI pipeline — fmt, clippy, cargo-deny, cargo-audit, nextest, doc-tests, coverage, MSRV. Covers the canonical CI gate order and supply-chain checks. Do NOT use for writing the tests themselves (use rust-testing-quality) or non-Rust CI."
 ---
 
 # Rust Tooling & CI/CD
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY tooling/CI work, use available Codex subagents when useful:
+Before ANY tooling/CI work, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Inspect existing `Cargo.toml`, workspace layout, `.github/workflows`
-2. **ai-pilot:research / research-expert** - Verify current cargo / cargo-deny / nextest docs via Context7/Exa
+1. **explore-codebase** - Inspect existing `Cargo.toml`, workspace layout, `.github/workflows`
+2. **research-expert** - Verify current cargo / cargo-deny / nextest docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check workspace-inheritance and feature-unification specifics
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -118,18 +118,3 @@ serde = { workspace = true }
 - Duplicate crate versions across members instead of inheriting
 - Skip `cargo deny` because "audit already ran" — they check different things
 - Forget `cargo test --doc` after nextest
-
-## References
-
-references: references/workspaces-features.md, references/ci-gate.md, references/templates/ci-workflow.md, references/templates/deny-toml.md
-
-- [references/workspaces-features.md](references/workspaces-features.md)
-- [references/ci-gate.md](references/ci-gate.md)
-- [references/templates/ci-workflow.md](references/templates/ci-workflow.md)
-- [references/templates/deny-toml.md](references/templates/deny-toml.md)
-
-## Related skills
-
-related-skills: rust-testing-quality, solid:solid-rust
-
-`rust-testing-quality`, `solid:solid-rust`.

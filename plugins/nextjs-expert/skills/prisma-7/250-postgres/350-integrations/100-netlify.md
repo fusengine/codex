@@ -49,7 +49,7 @@ Perform the following steps _for every Netlify site_ in which you want to use Pr
 
 Ensure that the data source in your `prisma.config.ts` file is configured to use the `DATABASE_URL` environment variable:
 
-```typescript
+```typescript 
 // prisma.config.ts
 import 'dotenv/config';
 import { defineConfig, env } from '@prisma/config';

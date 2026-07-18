@@ -18,13 +18,13 @@ To get started with Prisma Migrate in a development environment:
     datasource db {
       provider = "postgresql"
     }
-
+    
     model User {
       id    Int    @id @default(autoincrement())
       name  String
       posts Post[]
     }
-
+    
     model Post {
       id        Int     @id @default(autoincrement())
       title     String
@@ -40,7 +40,7 @@ To get started with Prisma Migrate in a development environment:
 
     :::
 
-
+    
 
     1.  Create the first migration:
 

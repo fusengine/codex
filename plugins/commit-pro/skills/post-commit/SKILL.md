@@ -1,8 +1,7 @@
 ---
 name: post-commit
-description: "Universal post-commit actions. Updates CHANGELOG and marketplace versions, while the commit skill owns post-merge tag publication or local-only fallback tagging. Triggered after any code commit except wip, amend, or undo."
+description: "Universal post-commit actions. CHANGELOG update for all repos (git tag is created POST-MERGE, not here — see `commit` command Step 8). Plugin version bumping for marketplace repos. Triggered after any code commit (except wip/amend/undo)."
 ---
-
 
 # Post-Commit Skill
 
@@ -18,12 +17,10 @@ Save the commit message for CHANGELOG entry.
 
 ## Step 2: Detect Repo Type
 
-Check if `.agents/plugins/marketplace.json` exists in the repo root.
+Check if `.codex-plugin/marketplace.json` exists in the repo root.
 
 - **EXISTS** → Follow **Marketplace Path** (Steps M1–M5)
 - **DOES NOT EXIST** → Follow **Standard Path** (Steps S1–S2)
-
----
 
 ## Standard Path (any repo without marketplace.json)
 
@@ -35,17 +32,7 @@ Read the latest git tag to determine current version:
 git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0"
 ```
 
-Increment PATCH: `X.Y.Z` → `X.Y.(Z+1)`.
-
-If `CHANGELOG.md` does not exist, create it with `# Changelog` heading.
-
-Add a new entry at the top (after the `# Changelog` heading):
-
-```markdown
-## [X.Y.Z] - DD-MM-YYYY
-
-- commit message from Step 1
-```
+Increment PATCH: `X.Y.Z` → `X.Y.(Z+1)`. Add a new entry at the top of `CHANGELOG.md` (create it with a `# Changelog` heading first if missing). Load `references/changelog-templates.md` for the exact entry format and `references/changelog-type-mapping.md` for the commit-type prefix.
 
 ### Step S2: Commit CHANGELOG
 
@@ -57,11 +44,9 @@ EOF
 )"
 ```
 
-STOP. Output summary. Do not create or push a tag here. The `commit` skill owns Step 8: it creates and pushes a tag only after a confirmed FULL-mode merge, or creates a local-only tag in LOCAL/DEGRADED mode. See `references/tag-timing.md`.
+STOP. Output summary. **No tag here** — it is created POST-MERGE by the `commit` command's Step 8 (or locally-only in LOCAL/DEGRADED mode when no remote/`gh` is available — see the Step 7 decision tree in `commands/commit.md`). Load `references/tag-timing.md` for the full post-merge rationale and the standalone-use exception.
 
----
-
-## Marketplace Path (repo with .agents/plugins/marketplace.json)
+## Marketplace Path (repo with .codex-plugin/marketplace.json)
 
 ### Step M1: Detect Modified Plugins
 
@@ -69,55 +54,32 @@ STOP. Output summary. Do not create or push a tag here. The `commit` skill owns 
 git diff --name-only HEAD~1 | grep '^plugins/' | cut -d/ -f2 | sort -u
 ```
 
-If no plugins modified → Skip to Step M3 (still bump suite version).
-
-Skip directories without `.codex-plugin/plugin.json`.
+If no plugins modified, skip to Step M3 (still bump suite version). Skip directories without `.codex-plugin/plugin.json`.
 
 ### Step M2: Bump Plugin Versions
 
-For each modified plugin detected in Step M1:
+For each modified plugin: read `plugins/{name}/.codex-plugin/plugin.json`, increment PATCH (`X.Y.Z` → `X.Y.(Z+1)`), write it back. Load `references/plugin-version-bump.md` for the marketplace.json type-detection rule (`plugins[]` vs `core[]`).
 
-1. Read `plugins/{name}/.codex-plugin/plugin.json`
-2. Increment PATCH version: `X.Y.Z` → `X.Y.(Z+1)`
-3. Write the new version back to `plugin.json`
+### Step M3: Bump Suite Version + Recompute README Badges
 
-Then determine plugin type from `marketplace.json`:
+Read `metadata.version` from `.codex-plugin/marketplace.json`, increment PATCH (`X.Y.Z` → `X.Y.(Z+1)`), write it back.
 
-- **In `plugins[]` array** → Also update matching `version` field in `marketplace.json`
-- **In `core[]` array** → Only bump `plugin.json` (core entries have no version field)
+Then recompute EVERY shields.io badge in `README.md` from the filesystem — never hand-maintain counts (they drift). Load `references/badge-recompute.md` for the exact count commands and `sed` replacements (version/plugins/agents/skills tokens).
 
-### Step M3: Bump Suite Version
+### Step M3.5: Documentation Parity
 
-Read top-level `version` from `.agents/plugins/marketplace.json`.
-
-Increment PATCH: `X.Y.Z` → `X.Y.(Z+1)`.
-
-Write the new suite version back to `.agents/plugins/marketplace.json` → `version`.
-
-If `README.md` contains a shields.io version badge, update it to match the new version:
-
-Replace `version-vOLD_VERSION-` with `version-vNEW_VERSION-` in the badge URL.
+For any plugin **added** in this commit, create its docs page and link it. Doc filenames are abbreviated (e.g. dir `nextjs-expert` → `docs/plugins/nextjs.md`), so match existing naming in `docs/plugins/`, not the raw dir. Load `references/plugin-docs-parity.md` for the detection command and the full per-plugin checklist.
 
 ### Step M4: Update CHANGELOG
 
-Add a new entry at the top of `CHANGELOG.md` (after the `# Changelog` heading):
-
-```markdown
-## [X.Y.Z] - DD-MM-YYYY
-
-- type(plugin-name): description from the code commit message
-```
-
-Where `X.Y.Z` is the new suite version from Step M3.
-
-Include `(plugin-name X.Y.Z)` in each line for bumped plugins.
+Add a new entry at the top of `CHANGELOG.md`, using the new suite version `X.Y.Z` from Step M3 and `(plugin-name X.Y.Z)` for each bumped plugin. Load `references/changelog-templates.md` for the exact entry format and `references/changelog-type-mapping.md` for the commit-type prefix.
 
 ### Step M5: Commit the Bump
 
 Stage all modified files:
 
 ```bash
-git add CHANGELOG.md README.md .agents/plugins/marketplace.json plugins/*/.codex-plugin/plugin.json docs/
+git add CHANGELOG.md README.md .codex-plugin/marketplace.json plugins/*/.codex-plugin/plugin.json docs/
 ```
 
 Commit with HEREDOC format:
@@ -129,11 +91,7 @@ EOF
 )"
 ```
 
-This MUST be a separate commit from the code changes. Never combine.
-
-Do not create or push a tag here. The `commit` skill applies the FULL versus LOCAL/DEGRADED decision documented in `references/tag-timing.md`.
-
----
+This MUST be a separate commit from the code changes. Never combine. **No tag here** — same post-merge rationale as Step S2. Load `references/tag-timing.md` for details.
 
 ## Version Bump Rules
 
@@ -143,32 +101,4 @@ Do not create or push a tag here. The `commit` skill applies the FULL versus LOC
 
 ## CHANGELOG Type Mapping
 
-| Commit Type | CHANGELOG Prefix |
-|-------------|-----------------|
-| `feat` | Added |
-| `fix` | Fixed |
-| `refactor` | Changed |
-| `docs` | Documentation |
-| `perf` | Performance |
-| `test` | Tests |
-| `chore` | Maintenance |
-| `style` | Style |
-| `ci` | CI/CD |
-| `build` | Build |
-
-## Detailed References
-
-- [changelog-templates.md](references/changelog-templates.md) — Entry shapes.
-- [changelog-type-mapping.md](references/changelog-type-mapping.md) — Conventional type mapping.
-- [plugin-version-bump.md](references/plugin-version-bump.md) — Manifest and marketplace version rules.
-- [badge-recompute.md](references/badge-recompute.md) — Filesystem-derived README counts.
-- [plugin-docs-parity.md](references/plugin-docs-parity.md) — Documentation updates for new plugins.
-- [tag-timing.md](references/tag-timing.md) — Merge and local/degraded tagging decisions.
-
-## Related skills
-
-`commit`, `git-flow`.
-
-## Skill routing metadata
-
-related-skills: commit, git-flow
+See `references/changelog-type-mapping.md` for the commit-type → CHANGELOG-prefix table used in Step S1 and Step M4 entries.

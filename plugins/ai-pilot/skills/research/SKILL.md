@@ -3,11 +3,9 @@ name: research
 description: Technical research methodology using Context7, Exa, and Sequential Thinking for documentation, best practices, and complex investigations.
 ---
 
-**Research Topic:** Derive from the user's request.
+Runs in a forked subagent context (spawn_agent) via the `research-expert` agent. The research topic is passed as the skill argument.
 
 # Research Skill
-
-Suggested Codex agent: `research-expert`.
 
 ## Research Workflows
 
@@ -60,7 +58,7 @@ Suggested Codex agent: `research-expert`.
 - ❌ Start deep researcher without checking completion
 - ❌ Mix opinions with facts without distinction
 - ❌ Provide code without version verification
-- ❌ Ignore fetch/browser redirects
+- ❌ Ignore WebFetch redirects
 - ❌ Recommend without citing sources
 - ❌ Skip Sequential Thinking for multi-step problems
 

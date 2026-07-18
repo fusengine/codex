@@ -1,8 +1,7 @@
 ---
 name: tailwindcss-accessibility
-description: "Tailwind CSS v4.1 accessibility utilities for focus visibility, screen readers, reduced motion, contrast, and touch targets. Use when implementing keyboard access, assistive content, motion preferences, or WCAG compliance. Do NOT use for general visual styling."
+description: "Tailwind CSS v4.1 accessibility utilities. focus-visible, sr-only, reduced-motion, WCAG enforcement, touch targets, contrast ratios. Use when: implementing keyboard-accessible components, screen-reader-only content, prefers-reduced-motion support, WCAG 2.2 AA/AAA compliance, or accessible touch targets."
 ---
-
 
 # Tailwind CSS Accessibility
 
@@ -10,13 +9,13 @@ Accessible-by-default patterns using Tailwind CSS v4.1 utility classes.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing a11y patterns
-2. **ai-pilot:research / research-expert** - Verify latest WCAG 2.2 guidelines via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing a11y patterns
+2. **research-expert** - Verify latest WCAG 2.2 guidelines
 3. **mcp__context7__query-docs** - Check Tailwind CSS a11y utilities
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

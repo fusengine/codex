@@ -26,7 +26,7 @@ description: ASCII flow diagram of the full APEX workflow, start to finish
                       │
                       ▼
               ┌───────────────┐
-              │ 02-plan       │ ← Codex plan
+              │ 02-plan       │ ← update_plan
               └───────┬───────┘
                       │
                       ▼

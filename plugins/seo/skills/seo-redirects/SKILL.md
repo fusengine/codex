@@ -1,8 +1,7 @@
 ---
 name: seo-redirects
-description: "Use when planning redirects or site migration. Covers 301 vs 302 vs 307/308, migration plans, redirect chains, link equity preservation, www/non-www, HTTP→HTTPS, 404 monitoring."
+description: Use when planning redirects or site migration. Covers 301 vs 302 vs 307/308, migration plans, redirect chains, link equity preservation, www/non-www, HTTP→HTTPS, 404 monitoring.
 ---
-
 
 # Redirects & Migrations
 

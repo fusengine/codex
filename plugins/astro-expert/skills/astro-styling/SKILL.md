@@ -5,15 +5,17 @@ description: Use when styling Astro components with scoped CSS, CSS Modules, Tai
 
 # Astro Styling
 
+> Targets: Astro 7.
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing styles, integrations, and patterns
-2. **ai-pilot:research / research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check integration compatibility with Astro 6
+1. **explore-codebase** - Analyze existing styles, integrations, and patterns
+2. **research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa
+3. **Context7 (official docs)** - Check integration compatibility with Astro 7
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -81,25 +83,3 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 - Using `is:global` inside non-layout components
 - Importing CSS in multiple components without CSS Modules
 - Mixing Tailwind and custom class naming without a clear convention
-
-## References
-
-- [references/scoped-css.md](references/scoped-css.md)
-- [references/css-modules.md](references/css-modules.md)
-- [references/global-styles.md](references/global-styles.md)
-- [references/tailwind.md](references/tailwind.md)
-- [references/unocss.md](references/unocss.md)
-- [references/sass.md](references/sass.md)
-- [references/css-variables.md](references/css-variables.md)
-- [references/templates/scoped-component.md](references/templates/scoped-component.md)
-- [references/templates/tailwind-setup.md](references/templates/tailwind-setup.md)
-- [references/templates/unocss-setup.md](references/templates/unocss-setup.md)
-
-## Related skills
-
-`astro-6`, `astro-integrations`, `solid-astro`.
-
-## Skill routing metadata
-
-references: references/scoped-css.md, references/css-modules.md, references/global-styles.md, references/tailwind.md, references/unocss.md, references/sass.md, references/css-variables.md, references/templates/scoped-component.md, references/templates/tailwind-setup.md, references/templates/unocss-setup.md
-related-skills: astro-6, astro-integrations, solid-astro

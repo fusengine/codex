@@ -19,10 +19,10 @@ next_step: references/design/09-create-pr.md
 
 ## Launch Sniper Agent
 
-### Task Command
+### Spawn Command
 
 ```text
-Task: sniper
+spawn_agent: sniper
 Prompt: "Validate design component changes. Check:
 1. TypeScript errors
 2. ESLint issues

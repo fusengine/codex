@@ -1,8 +1,7 @@
 ---
 name: seo-technical
-description: "Use when auditing technical SEO. Covers robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, HTTPS, redirects chains."
+description: Use when auditing technical SEO. Covers robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, HTTPS, redirects chains.
 ---
-
 
 # Technical SEO
 
@@ -27,8 +26,6 @@ description: "Use when auditing technical SEO. Covers robots.txt, sitemap.xml, C
 - Canonical points to indexable URL
 - No `nofollow` on internal navigation
 
-## Related
+## References
 
-- `seo-sitemap` — sitemap structure + robots.txt sitemap reference
-- `seo-redirects` — redirect chains, HTTPS, status codes
-- `seo-geo` — AI crawler allowlist for robots.txt
+- `skills/seo/05-technical-seo/` (core-web-vitals, crawlability, mobile-first, structured-data-testing)

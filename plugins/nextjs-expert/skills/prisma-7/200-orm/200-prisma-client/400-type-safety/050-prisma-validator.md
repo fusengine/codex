@@ -12,12 +12,12 @@ This page introduces the `Prisma.validator` and offers some motivations behind w
 
 </TopBlock>
 
-:::warning
+:::warning  
 	The `Prisma.validator` API is only available when using the **legacy** `prisma-client-js` generator. It’s **not supported** in the new `prisma-client` generator.
-
-	In most cases, you can achieve the same behavior using TypeScript’s native `satisfies` operator instead of `Prisma.validator`.
-
-	If you previously used `Prisma.validator`, check out this [blog post](https://www.prisma.io/blog/satisfies-operator-ur8ys8ccq7zb) to learn how the new `satisfies` keyword can improve and simplify your Prisma Client workflows.
+	
+	In most cases, you can achieve the same behavior using TypeScript’s native `satisfies` operator instead of `Prisma.validator`.  
+	
+	If you previously used `Prisma.validator`, check out this [blog post](https://www.prisma.io/blog/satisfies-operator-ur8ys8ccq7zb) to learn how the new `satisfies` keyword can improve and simplify your Prisma Client workflows.  
 	:::
 ## Creating a typed query statement
 

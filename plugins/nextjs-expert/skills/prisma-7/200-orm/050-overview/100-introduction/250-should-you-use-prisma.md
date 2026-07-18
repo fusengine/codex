@@ -61,7 +61,7 @@ Prisma ORM is the only _fully_ type-safe ORM in the TypeScript ecosystem. The ge
 
 ### ... you want to write raw, type-safe SQL
 
-In addition to the intuitive, higher-level query API, Prisma ORM also offers a way for you to [write raw SQL with full type safety](https://www.prisma.io/blog/announcing-typedsql-make-your-raw-sql-queries-type-safe-with-prisma-orm).
+In addition to the intuitive, higher-level query API, Prisma ORM also offers a way for you to [write raw SQL with full type safety](https://www.prisma.io/blog/announcing-typedsql-make-your-raw-sql-queries-type-safe-with-prisma-orm). 
 
 ### ... you want an ORM with a transparent development process, proper maintenance & support
 

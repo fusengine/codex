@@ -32,7 +32,7 @@ You also need:
 Install the packages needed for this quickstart:
 
 ```terminal
-npm install prisma @types/node @types/mssql --save-dev
+npm install prisma @types/node @types/mssql --save-dev 
 npm install @prisma/client @prisma/adapter-mssql dotenv
 ```
 

@@ -142,7 +142,7 @@ This error occurs when Prisma Accelerate detects a high volume of requests that 
 If your application retries queries immediately or with minimal delay, especially after receiving certain errors, the rapid accumulation of requests can surpass the threshold.
 
 **Suggested solution:**
-- Implement an exponential backoff strategy. Rather than retrying immediately or with a fixed delay, gradually increase the delay period after each failed attempt.
+- Implement an exponential backoff strategy. Rather than retrying immediately or with a fixed delay, gradually increase the delay period after each failed attempt.  
 - This allows the system time to recover and reduces the likelihood of overwhelming Prisma Accelerate and your database.
 
 #### Sudden traffic spikes
@@ -150,7 +150,7 @@ If your application retries queries immediately or with minimal delay, especiall
 Unpredicted traffic surges (for example, during product launches, flash sales, or viral growth events) can cause the threshold to be met and result into `P5011`.
 
 **Suggested solution:**
-- Consider proactive scaling strategies for both Prisma Accelerate and your database.
+- Consider proactive scaling strategies for both Prisma Accelerate and your database.  
 - Monitor traffic and resource usage. If you anticipate a surge, please contact [support](/platform/support) for capacity planning and potential configuration adjustments.
 
 #### Prolonged or planned high workloads
@@ -158,8 +158,8 @@ Unpredicted traffic surges (for example, during product launches, flash sales, o
 Certain processes, such as bulk data imports, ETL operations, or extended CRON jobs, can generate continuous high query volume over time.
 
 **Suggested solution:**
-- Use batching or chunking techniques to break large operations into smaller parts.
-- Establish throttling or scheduling to distribute the load more evenly.
+- Use batching or chunking techniques to break large operations into smaller parts.  
+- Establish throttling or scheduling to distribute the load more evenly.  
 
 ## Other errors
 
@@ -167,7 +167,7 @@ Certain processes, such as bulk data imports, ETL operations, or extended CRON j
 
 #### Issue
 
-When using an Aiven MySQL connection string that includes the `?ssl-mode=REQUIRED` parameter, you may encounter the following error:
+When using an Aiven MySQL connection string that includes the `?ssl-mode=REQUIRED` parameter, you may encounter the following error:  
 
 ```
 We were unable to process your request. Please refresh and try again.
@@ -177,7 +177,7 @@ We were unable to process your request. Please refresh and try again.
 
 The `ssl-mode=REQUIRED` parameter is incompatible with Accelerate, which leads to connection issues.
 
-#### Suggested solution
+#### Suggested solution 
 
 To resolve this error, remove the `?ssl-mode=REQUIRED` parameter from your MySQL connection string.
 

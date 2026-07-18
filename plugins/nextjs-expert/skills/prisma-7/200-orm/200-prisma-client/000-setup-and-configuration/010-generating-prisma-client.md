@@ -22,7 +22,7 @@ generator client {
   output     = "./generated"
   engineType = "client"
 }
-```
+``` 
 
 Prisma ORM without Rust binaries has been [Generally Available](/orm/more/releases#generally-available-ga) since [v6.16.0](https://pris.ly/release/6.16.0).
 
@@ -33,7 +33,7 @@ When using this architecture:
 - No Rust query engine binary is downloaded or shipped.
 - The database connection pool is maintained by the native JS database driver you install (e.g., `@prisma/adapter-pg` for PostgreSQL).
 
-This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine).
+This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine). 
 
 :::
 
@@ -118,7 +118,7 @@ To import the `PrismaClient` from a custom location (for example, from a file na
 import { PrismaClient } from './generated/client'
 ```
 
-:::note
+:::note 
 
 
 For improved compatibility with ECMAScript modules (ESM) and to ensure consistent behaviour of Prisma ORM across different Node.js runtimes, you can also use the newer [`prisma-client`](/orm/prisma-schema/overview/generators#prisma-client) generator. This generator is specifically designed to handle common challenges with module resolution and runtime variations, providing a smoother integration experience and less friction with bundlers.

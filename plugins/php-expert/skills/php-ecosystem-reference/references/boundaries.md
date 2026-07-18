@@ -24,7 +24,7 @@ matching expert.
 | One standalone Symfony component | [symfony-components.md](symfony-components.md) → research agent | Console, Process, Validator, etc. — no framework needed. |
 | API-first product on Symfony | [api-platform.md](api-platform.md) → research agent | API Platform 4.3. |
 | Small PSR-based micro-service | [slim-framework.md](slim-framework.md) → research agent | Slim 4.15+. |
-| SOLID / file-size / interface rules for PHP | **[[laravel-expert:solid-php]]** | Architecture enforcement. |
+| SOLID / file-size / interface rules for PHP | **[[solid-php]]** | Architecture enforcement. |
 
 ## The gap: no deep Symfony full-stack expert
 

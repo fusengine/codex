@@ -5,7 +5,7 @@ metaDescription: 'This page explains how to search for text within a field.'
 sidebar_class_name: preview-badge
 ---
 
-Prisma Client supports full-text search for **PostgreSQL** databases in versions 2.30.0 and later, and **MySQL** databases in versions 3.8.0 and later. With full-text search (FTS) enabled, you can add search functionality to your application by searching for text within a database column.
+Prisma Client supports full-text search for **PostgreSQL** databases in versions 2.30.0 and later, and **MySQL** databases in versions 3.8.0 and later. With full-text search (FTS) enabled, you can add search functionality to your application by searching for text within a database column. 
 
 :::info
 
@@ -194,7 +194,7 @@ Prisma Client does not currently support using indexes to speed up full text sea
 
 ### MySQL
 
-For MySQL, it is necessary to add indexes to any columns you search using the `@@fulltext` argument in the `schema.prisma` file.
+For MySQL, it is necessary to add indexes to any columns you search using the `@@fulltext` argument in the `schema.prisma` file. 
 
 In the following example, one full text index is added to the `content` field of the `Blog` model, and another is added to both the `content` and `title` fields together:
 
@@ -265,7 +265,7 @@ With [TypedSQL](/orm/prisma-client/using-raw-sql), you can use PostgreSQL's `to_
 
   ```ts
   import { fullTextSearch } from "@prisma/client/sql"
-
+  
   const term = `cat`
   const result = await prisma.$queryRawTyped(fullTextSearch(term))
   ```

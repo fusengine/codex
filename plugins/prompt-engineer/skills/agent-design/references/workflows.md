@@ -28,7 +28,7 @@ X - eXamine    : Validate the result
 │ 1. Use update_plan to decompose                      │
 │ 2. Estimate file sizes (<100 lines)                 │
 │ 3. Identify necessary modifications                 │
-│ 4. Validate and update the Codex plan                │
+│ 4. Validate plan (record it with update_plan)       │
 └─────────────────────────────────────────────────────┘
                          │
                          ▼
@@ -51,6 +51,8 @@ X - eXamine    : Validate the result
 │ 4. Re-run if corrections applied                    │
 └─────────────────────────────────────────────────────┘
 ```
+
+> **Codex note — planning:** Codex has no Claude-style task-list calls; track the plan with the native **`update_plan`** tool. Params: `explanation` (optional) + `plan` (required array); each item is exactly `{ step: string, status: "pending" | "in_progress" | "completed" }` (only those two keys). Semantics are REPLACE — every call sends the whole array. Rules: at most ONE item `in_progress` at a time; never jump an item `pending` → `completed` directly (pass through `in_progress`); no batch-completing. Seed a plan by calling `update_plan` with all items `pending`; advance by calling it again with the full array and the one changed status. There is no separate list/read tool — the plan is whatever the last `update_plan` call set.
 
 ## TDD Workflow with Agents
 

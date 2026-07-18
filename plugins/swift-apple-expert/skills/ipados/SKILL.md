@@ -3,20 +3,19 @@ name: ipados
 description: "iPadOS platform-specific development with adaptive layouts, keyboard shortcuts, multitasking, and Stage Manager. Use when building iPad apps with split views, external keyboard support, or multi-window features."
 ---
 
-
 # iPadOS Platform
 
 iPadOS-specific development for tablet and productivity experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing iPad patterns
-2. **ai-pilot:research / research-expert** - Verify latest iPadOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing iPad patterns
+2. **research-expert** - Verify latest iPadOS 26 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check iPad multitasking patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

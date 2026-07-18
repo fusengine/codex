@@ -3,18 +3,19 @@ name: fusecore
 description: "FuseCore Modular Architecture - Laravel 13 modular monolith with auto-discovery, React 19 integration, and SOLID principles. Use when creating modules, understanding FuseCore structure, or implementing features in FuseCore projects."
 ---
 
-
 # FuseCore Modular Architecture
+
+_Targets: laravel 13.0, php 8.3, react 19, typescript 5.8._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation in FuseCore project, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation in a FuseCore project, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing modules in `/FuseCore/`
-2. **ai-pilot:research / research-expert** - Verify Laravel 13 patterns via Context7
-3. **fuse-laravel:laravel-expert** - Apply Laravel best practices
+1. `explore-codebase` - Analyze existing modules in `/FuseCore/`
+2. `research-expert` - Verify Laravel 13 patterns via Context7
+3. `laravel-expert` - Apply Laravel best practices
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

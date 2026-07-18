@@ -150,9 +150,9 @@ const prisma = new PrismaClient({ adapter })
 
 See the docs for the driver adapter you're using for concrete setup instructions.
 
-:::tip[Tuning pool sizes, timeouts, or other connection parameters]
+:::tip[Tuning pool sizes, timeouts, or other connection parameters] 
 
-See the [connection pool guide](/orm/prisma-client/setup-and-configuration/databases-connections/connection-pool) for the Prisma ORM v7 driver adapter defaults and how they map from Prisma ORM v6 URL parameters.
+See the [connection pool guide](/orm/prisma-client/setup-and-configuration/databases-connections/connection-pool) for the Prisma ORM v7 driver adapter defaults and how they map from Prisma ORM v6 URL parameters. 
 
 :::
 

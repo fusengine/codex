@@ -1,21 +1,23 @@
 ---
 name: ts-testing
-description: Use when writing or configuring TypeScript tests and choosing between bun test and Vitest. Covers runner selection, config, mocks, snapshots, and coverage. Do NOT use for framework-specific testing (React components → react-expert react-testing, Laravel → laravel-testing) or browser E2E suites.
+description: "Use when writing or configuring TypeScript tests and choosing between bun test and Vitest. Covers runner selection, config, mocks, snapshots, and coverage. Do NOT use for framework-specific testing (React components → react-expert react-testing, Laravel → laravel-testing) or browser E2E suites."
 ---
 
 # TypeScript Testing
+
+_Targets: bun 1.3.14, vitest 4.1.9._
 
 Pick the right runner, then write tests with a shared Jest-compatible API.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing runner, config, test layout
-2. **ai-pilot:research / research-expert** - Verify latest bun test / Vitest docs via Context7/Exa/fuse-browser
-3. **mcp__context7__query-docs** - Check mock, coverage, config APIs
+1. `explore-codebase` - Detect existing runner, config, test layout
+2. `research-expert` - Verify latest bun test / Vitest docs via Context7/Exa
+3. `mcp__context7__query-docs` - Check mock, coverage, config APIs
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -123,21 +125,3 @@ npx vitest run --coverage
 - Mix both runners in one package
 - Rely on test execution order
 - Ship experimental Bun coverage as the sole quality gate on huge suites
-
-## References
-
-- [references/choosing-runner.md](references/choosing-runner.md)
-- [references/bun-test.md](references/bun-test.md)
-- [references/vitest.md](references/vitest.md)
-- [references/common-patterns.md](references/common-patterns.md)
-- [references/templates/bun-setup.md](references/templates/bun-setup.md)
-- [references/templates/vitest-setup.md](references/templates/vitest-setup.md)
-
-## Related skills
-
-`solid-generic`, `ts-packaging`.
-
-## Skill routing metadata
-
-references: references/choosing-runner.md, references/bun-test.md, references/vitest.md, references/common-patterns.md, references/templates/bun-setup.md, references/templates/vitest-setup.md
-related-skills: solid-generic, ts-packaging

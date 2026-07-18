@@ -3,20 +3,19 @@ name: tvos
 description: "tvOS platform-specific development with focus system, large screen UI, Siri Remote, and media playback. Use when building Apple TV apps, video streaming, or living room experiences."
 ---
 
-
 # tvOS Platform
 
 tvOS-specific development for Apple TV living room experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing tvOS patterns
-2. **ai-pilot:research / research-expert** - Verify latest tvOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing tvOS patterns
+2. **research-expert** - Verify latest tvOS 26 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check tvOS patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -49,7 +48,7 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 ```swift
 Button("Watch Now") { }
     .buttonStyle(.bordered)
-    .glassEffect(.regular)
+    .glassEffect(.regular)  // Glass effect on focus
 
 TabView {
     // Tab bar with Liquid Glass

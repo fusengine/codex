@@ -1,30 +1,58 @@
-# Visual and design profile
+---
+name: visual-design
+description: "Visual capture profile — responsive + dark screenshots in one call, multi-URL shot batches, full-site shots, and visual regression diffs. For the full design pipeline, point to the fuse-design skills, do not duplicate them."
+keywords: screenshot, viewports, colorScheme, shots_batch, site_shots, visual_diff, regression
+related: research-docs, webapp-testing
+---
 
-Use this profile for pixels: responsive layouts, light/dark rendering, multi-route capture, and regression comparison.
+# Profile: Visual / Design (pixels)
 
-| Need | Tool |
-|------|------|
-| Responsive and color-scheme capture | `browser_screenshot` with batched viewports |
-| Several URLs | `browser_shots_batch` |
-| A site-wide capture | `browser_site_shots` |
-| Baseline comparison | `browser_visual_diff` |
+For capturing what a page looks like — responsive breakpoints, light/dark, and regression. Batch everything; never loop one screenshot at a time.
 
-Prefer one batched capture over per-viewport or per-URL loops. This profile covers raw capture and comparison only. Route full identity, generation, motion, and design-audit work through the relevant `design-expert` skills.
+## Tool choice
 
-## Examples
+| Need | Tool | Note |
+|------|------|------|
+| Responsive + dark in ONE call | `browser_screenshot { viewports:[...], colorScheme }` | Rule 3 — one call |
+| N URLs shot at once | `browser_shots_batch { urls:[...] }` | Not a per-URL loop |
+| Every page of one site | `browser_site_shots { url }` | Crawl + shoot |
+| Regression vs baseline | `browser_visual_diff { baseline, current }` | Pixel/structural delta |
 
-```text
+## Concrete calls
+
+Responsive + dark in a single call (not four screenshots):
+```
 browser_screenshot {
-  sessionId: "<session-id>",
-  viewports: ["mobile", "tablet", "desktop"],
+  url: "http://localhost:4321",
+  viewports: ["375x812", "768x1024", "1440x900"],
   colorScheme: "dark"
 }
-
-browser_shots_batch {
-  urls: ["http://localhost:4321/", "http://localhost:4321/pricing"]
-}
-
-browser_visual_diff { baseline: "home-v1.png", sessionId: "<session-id>" }
 ```
 
-Open and navigate the session before `browser_screenshot` or session-based `browser_visual_diff`, then close it on every exit path. For two existing PNGs, call `browser_visual_diff` with `a` and `b`. Use `design-expert:design-web` for generation and `design-expert:design-review` for the deterministic final gate. Do not reproduce that pipeline here.
+Shoot several routes at once:
+```
+browser_shots_batch { urls: [
+  "http://localhost:4321/",
+  "http://localhost:4321/pricing",
+  "http://localhost:4321/blog"
+] }
+```
+
+Catch a visual regression against a saved baseline:
+```
+browser_visual_diff { baseline: "home-v1.png", current: "http://localhost:4321/" }
+```
+
+## Rules
+
+- One `browser_screenshot` with a `viewports` array + `colorScheme` beats N single shots. Same for `shots_batch` over looping.
+- `browser_metrics` gives real Core Web Vitals (LCP/INP/CLS) when the visual check also needs performance evidence.
+
+## Full design pipeline — do NOT reimplement here
+
+This profile is raw capture only. For identity → research → generate → motion → audit, use the design plugin, which already owns that flow and the deterministic quality gate:
+
+- `design-web` — marketing sites / landing pages / components (inspiration browsing, layout discipline).
+- `design-review` — the final gate: contrast, forbidden fonts, per-section light+dark screenshot review, max 2 fix cycles.
+
+Route design work to those skills instead of scripting screenshots by hand.

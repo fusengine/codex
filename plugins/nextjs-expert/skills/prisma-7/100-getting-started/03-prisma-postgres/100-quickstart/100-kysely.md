@@ -104,7 +104,7 @@ Then the CLI tool should output:
 │
 │    Database will be deleted on 11/18/2025, 1:55:39 AM if not claimed.
 │
-└
+└  
 ```
 
 Create a `.env` file and add the connection string from the output:
@@ -193,9 +193,9 @@ const dialect = new PostgresDialect({
   })
 })
 
-// Database interface is passed to Kysely's constructor, and from now on, Kysely
+// Database interface is passed to Kysely's constructor, and from now on, Kysely 
 // knows your database structure.
-// Dialect is passed to Kysely's constructor, and from now on, Kysely knows how
+// Dialect is passed to Kysely's constructor, and from now on, Kysely knows how 
 // to communicate with your database.
 export const db = new Kysely<Database>({
   dialect,

@@ -1,89 +1,76 @@
 ---
 name: registration
-description: How to make skills available in Codex plugins
-when-to-use: After creating a skill, to make it loadable
-keywords: registration, skill, plugin, codex, manifest
-priority: high
-related: architecture.md
+description: How to make a skill available to an agent
 ---
 
 # Skill Registration
 
 ## Overview
 
-In this Codex plugin repository, skills live under `plugins/<plugin>/skills/<skill-name>/SKILL.md`.
-
-The plugin manifest points Codex at the skills directory:
-
-```json
-{
-  "skills": "./skills/"
-}
-```
+For a skill to be usable by an agent, two things matter:
+1. The agent attaches it via `[[skills.config]]` in its `.toml`
+2. The plugin is registered in the marketplace manifest (skills are auto-discovered from the plugin dir)
 
 ---
 
-## Step 1: Create Skill Directory
+## Step 1: Attach in the Agent .toml
 
-```
-plugins/<plugin>/skills/<skill-name>/SKILL.md
-plugins/<plugin>/skills/<skill-name>/references/
-```
+Add a `[[skills.config]]` table to the agent that should use the skill:
 
-The folder name must match the skill `name` in frontmatter.
+**Location**: `plugins/<plugin>/agents/<agent>.toml`
 
----
+```toml
+name = "agent-name"
+# ...
 
-## Step 2: Check Skill Frontmatter
-
-```yaml
----
-name: skill-name
-description: Use when <trigger>. Covers <scope>.
-user-invocable: true
-references: references/patterns.md
-related-skills: other-skill
----
+[[skills.config]]
+path = "plugins/<plugin>/skills/<new-skill-name>/SKILL.md"
+enabled = true
 ```
 
-### Rules
+### Important
 
 | Rule | Reason |
 |------|--------|
-| Exact name match | Loader and user-facing skill name stay aligned |
-| Clear description | Codex uses it for skill selection |
-| Valid references | Referenced files must exist |
-| English content | Repository standard |
+| Exact folder match | `path` must point to the real `SKILL.md` |
+| One table per skill | `[[skills.config]]` repeats |
+| `enabled = true` | Skill is active |
+
+Users can also invoke a skill directly with `$skill-name` or via `/skills`.
 
 ---
 
-## Step 3: Check Plugin Manifest
+## Step 2: Register the Plugin
 
-Local manifest:
+The skill's plugin must appear in the marketplace manifest:
 
-```
-plugins/<plugin>/.codex-plugin/plugin.json
-```
-
-Required when the plugin exposes skills:
+**Location**: marketplace manifest (repo root)
 
 ```json
 {
-  "skills": "./skills/"
+  "plugins": [
+    {
+      "name": "<plugin>",
+      "source": "./plugins/<plugin>",
+      "version": "1.0.0"
+    }
+  ]
 }
 ```
+
+Individual skills are NOT listed — they are auto-discovered from `skills/*/SKILL.md` under the plugin.
 
 ---
 
 ## Verification
 
-After registration:
+After registration, verify:
 
-1. Parse `.codex-plugin/plugin.json` as JSON.
-2. Confirm `skills` points at `./skills/`.
-3. Confirm every ported skill has `SKILL.md`.
-4. Confirm every `references:` path exists.
-5. Search for legacy non-Codex primitives before calling it done.
+| Check | How |
+|-------|-----|
+| Skill loads | Invoke `$skill-name` in conversation |
+| References load | Skill has access to its `references/` |
+| No errors | Check for load errors |
 
 ---
 
@@ -91,7 +78,38 @@ After registration:
 
 | Issue | Cause | Fix |
 |-------|-------|-----|
-| Skill not found | Missing `SKILL.md` or wrong folder | Align folder and `name` |
-| References fail | Path listed but file missing | Create file or remove reference |
-| Legacy wording remains | Unported source text | Replace with Codex terms |
-| Plugin skills missing | Manifest has no `skills` pointer | Add `"skills": "./skills/"` |
+| Skill not found | Plugin not in manifest | Add plugin entry |
+| Skill not attached | No `[[skills.config]]` | Add the table to the agent |
+| Wrong references | Mismatched path | Ensure `path` matches the real `SKILL.md` |
+
+---
+
+## Example Registration
+
+### For a new `tanstack-query` skill in `react-expert`:
+
+**1. Agent .toml** (`plugins/react-expert/agents/react-expert.toml`):
+```toml
+[[skills.config]]
+path = "plugins/react-expert/skills/tanstack-query/SKILL.md"
+enabled = true
+```
+
+**2. Marketplace manifest**:
+```json
+{
+  "plugins": [
+    { "name": "react-expert", "source": "./plugins/react-expert", "version": "1.0.0" }
+  ]
+}
+```
+
+---
+
+## Checklist
+
+- [ ] Added `[[skills.config]]` to the agent `.toml`
+- [ ] `path` matches the real `SKILL.md`
+- [ ] Plugin registered in the marketplace manifest
+- [ ] Folder name matches exactly
+- [ ] Tested the skill loads correctly

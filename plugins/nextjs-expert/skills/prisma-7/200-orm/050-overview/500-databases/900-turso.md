@@ -106,7 +106,7 @@ You can use Prisma Client as you normally would with full type-safety in your pr
 
 Prisma CLI commands such as `prisma migrate dev` or `prisma db push` require a local SQLite connection. To roll out schema changes to Turso, use this workflow:
 
-1. **Configure Prisma CLI to target a local SQLite file.**
+1. **Configure Prisma CLI to target a local SQLite file.**  
    Update `.env` and `prisma.config.ts` so Prisma CLI commands write to the local file instead of your remote Turso database:
 
 ```bash file=.env showLineNumbers
@@ -128,10 +128,10 @@ export default defineConfig({
 })
 ```
 
-2. **Generate migrations locally.**
+2. **Generate migrations locally.**  
    Run `prisma migrate dev --name <migration-name>` to update the local SQLite database and produce SQL files in `prisma/migrations`.
 
-3. **Apply the generated SQL using the Turso CLI.**
+3. **Apply the generated SQL using the Turso CLI.**  
    Use the [`turso db shell` command](https://docs.turso.tech/cli/introduction) to run the SQL against your remote database (replace `test` with your database name):
 
 ```bash showLineNumbers
@@ -196,12 +196,12 @@ const prisma = new PrismaClient().$extends({
     $allModels: {
       async $allOperations({ operation, model, args, query }) {
         const result = await query(args)
-
+        
         // Synchronize the embedded replica after any write operation
         if (['create', 'update', 'delete'].includes(operation)) {
           await libsql.sync()
         }
-
+        
         return result
       }
     }

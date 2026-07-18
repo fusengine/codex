@@ -93,7 +93,7 @@ password:  <none>
 
 Copy the **`port`** from the output above, you will need it in the next step.
 
-Keep this tunnel process running while you are using the database editor to maintain the connection.
+Keep this tunnel process running while you are using the database editor to maintain the connection. 
 
 ### 2a. Connect to Prisma Postgres using TablePlus
 
@@ -103,7 +103,7 @@ Based on the database editor you are using, you can connect to your Prisma Postg
 2. Select **PostgreSQL** as the database type.
 3. Enter the following details:
     - **Name**: Any name you want to give to your connection.
-    - **Host**: `127.0.0.1` in this case.
+    - **Host**: `127.0.0.1` in this case. 
     - **Port**: The **`port`** number you obtained from the output of the `@prisma/ppg-tunnel` package.
     - **User**: This will be ignored due to the tunnel, you can provide any value here.
     - **Password**:  This will be ignored due to the tunnel, you can provide any value here.
@@ -119,7 +119,7 @@ Based on the database editor you are using, you can connect to your Prisma Postg
 2. Select **PostgreSQL** as the database type.
 3. Enter the following details:
     - **Name**: Any name you want to give to your connection.
-    - **Host**: `127.0.0.1` in this case.
+    - **Host**: `127.0.0.1` in this case. 
     - **Port**: The **`port`** number you obtained from the output of the `@prisma/ppg-tunnel` package.
     - **User**: This will be ignored due to the tunnel, you can keep this field empty.
     - **Password**:  This will be ignored due to the tunnel, you can keep this field empty.
@@ -136,7 +136,7 @@ Based on the database editor you are using, you can connect to your Prisma Postg
 2. Select **PostgreSQL** as the database type.
 3. Select **URL** option in Connect by section.
 4. Enter the URL in this format:
-    - **URL**: Your URL should be in this format: `jdbc:postgresql://localhost:52604/postgres?sslmode=disable`. Here make sure that you enter the port number you obtained from the output of the `@prisma/ppg-tunnel` package. In this case, the port number is `52604`. There is no need to enter Username or Password as authentication is manged by Tunnel.
+    - **URL**: Your URL should be in this format: `jdbc:postgresql://localhost:52604/postgres?sslmode=disable`. Here make sure that you enter the port number you obtained from the output of the `@prisma/ppg-tunnel` package. In this case, the port number is `52604`. There is no need to enter Username or Password as authentication is manged by Tunnel. 
 5. Click on **Test Connection** to ensure that DBeaver can connect to your Prisma Postgres instance. If successful, click **Finish**.
 
 ![View of DBeaver connected to Prisma Postgres via tunnel](/img/ppg-dbeaver.png)
@@ -148,7 +148,7 @@ Based on the database editor you are using, you can connect to your Prisma Postg
 1. Open Postico and click on the **New Server** button to add a new connection.
 2. Enter the following details:
     - **Name**: Any name you want to give to your connection.
-    - **Host**: `127.0.0.1` in this case.
+    - **Host**: `127.0.0.1` in this case. 
     - **Port**: The **`port`** number you obtained from the output of the `@prisma/ppg-tunnel` package.
     - **User**: This will be ignored due to the tunnel, you can keep this field empty.
     - **Password**:  This will be ignored due to the tunnel, you can keep this field empty.

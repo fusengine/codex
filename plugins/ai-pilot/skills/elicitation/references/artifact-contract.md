@@ -1,14 +1,20 @@
 # Artifact Contract
 
-Step 5 writes `.codex/apex/docs/elicit-{task-slug}.json` in addition to the human-facing report. It records `{technique_id, verdict, correction_applied, evidence}` for each technique actually applied. A later elicitation pass loads this artifact and re-applies only failed, deferred, or newly relevant techniques.
+Step 5 does not stop at an in-context markdown report -- it writes
+`.codex/apex/docs/elicit-{task-slug}.json`: a list of `{technique_id,
+verdict, correction_applied, evidence}` per technique applied. A later
+elicitation pass on the same task loads this file first (Step 0) and
+**diffs against it** instead of re-deriving technique selection from
+scratch -- only re-apply techniques that were `fail`/`deferred` or are
+newly relevant. See `steps/step-05-report.md` for the exact JSON schema and
+`steps/step-00-init.md` for the load/diff logic.
 
-Derive `{task-slug}` consistently:
+`{task-slug}`: derive per `apex-methodology/references/init-tracking.md`'s
+"Task Slug" section (canonical: git branch stripped of
+its `type/` prefix and slugified, else `task-<unix-timestamp>`) -- same
+pattern used by the `verification` skill's `verify-{task-slug}.md`. Do not
+improvise another derivation: a branch like `feat/use-harness` slugifies to
+`use-harness`, not `feat-use-harness` -- a mismatched slug means gates never
+find the artifact.
 
-1. Use `task_slug` from `.codex/apex/task.json` when present.
-2. Otherwise use the current git branch without its `type/` prefix, slugified.
-3. Without a usable branch, use `task-{current_task}` from `.codex/apex/task.json`.
-4. Fall back to `task-{unix-timestamp}`.
-
-For example, `feat/use-harness` becomes `use-harness`, not `feat-use-harness`. A mismatched slug prevents later gates from finding the artifact.
-
-See `steps/step-05-report.md` for the JSON schema and `steps/step-00-init.md` for load/diff behavior. Optional per-repository tuning is documented in `elicit-profile.md`.
+Optional per-repo tuning of which techniques apply: `references/elicit-profile.md`.

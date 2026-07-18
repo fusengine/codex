@@ -5,7 +5,7 @@ description: "Code quality validation with linters, SOLID principles, DRY detect
 
 # Code Quality Skill
 
-Canonical workflow definition: `agents/sniper.md` (this skill and the sniper agent share the same 7-phase workflow — update both together).
+Canonical workflow definition: `agents/sniper.toml` (this skill and the sniper agent share the same 7-phase workflow — update both together).
 
 ## 🚨 MANDATORY 7-PHASE WORKFLOW
 
@@ -26,9 +26,9 @@ PHASE 6: Verification (re-run linters, tests, duplication)
 
 ## PHASE 1: Architecture Exploration
 
-**Use explore-codebase FIRST** through the available Codex subagent workflow when exposed, or do the exploration locally:
+**Spawn the `explore-codebase` agent FIRST** (`spawn_agent`, agent defined under `.codex/agents/`):
 ```
-explore-codebase: inspect project structure, configs, dependencies, and conventions
+> spawn_agent(agent="explore-codebase", prompt="...")
 ```
 
 **Gather**:
@@ -45,10 +45,12 @@ explore-codebase: inspect project structure, configs, dependencies, and conventi
 
 ## PHASE 2: Documentation Research
 
-**Use research-expert** through the available Codex subagent workflow when exposed, or call Context7/Exa directly:
+**Spawn the `research-expert` agent** (`spawn_agent`):
 ```
-research-expert: verify [library/framework] documentation for [error type] and [language] best practices
+> spawn_agent(agent="research-expert", prompt="Verify [library/framework] documentation for [error type]. Find [language] best practices for [specific issue].")
 ```
+
+> Phases 1 and 2 are independent — dispatch both `spawn_agent` calls in parallel (one MultiAgentV2 dispatch) and wait for both before Phase 3.
 
 **Request for each error**:
 - Official API documentation

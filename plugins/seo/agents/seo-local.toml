@@ -2,11 +2,11 @@ name = "seo-local"
 description = "Local SEO sub-agent. Use when auditing Google Business Profile, NAP consistency, citations, reviews, Local Pack ranking, or location pages. Only spawn if local business detected."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["SEO Local", "SEO Local Specialist", "SEO Local Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''# SEO Local Sub-Agent
+developer_instructions = '''
+# SEO Local Sub-Agent
 
-Parallelizable expert for Local SEO audits. Only spawned when business has physical location(s).
+Parallel-safe sub-agent for Local SEO audits. Spawned by the `seo-expert` orchestrator via `spawn_agent` (resolving `.codex/agents/seo-local.toml`) only when the business has physical location(s); it executes as an independent thread alongside the other SEO sub-agents.
 
 ## Workflow
 
@@ -50,7 +50,8 @@ Springfield, IL 62701
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - `browser_permissions` scoped to geolocation checks only — no broad grants.
-- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
+- Full guide: invoke skill `$fuse-browser-usage` (profile: research-docs).
+'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-local/SKILL.md"

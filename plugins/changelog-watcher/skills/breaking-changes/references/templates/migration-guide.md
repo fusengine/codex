@@ -9,7 +9,7 @@ keywords: migration, breaking, upgrade, compatibility, guide
 ## Header
 
 ```markdown
-# Migration Guide: Codex CLI v{old} → v{new}
+# Migration Guide: Codex v{old} → v{new}
 **Date**: {date}
 **Breaking Changes**: {count}
 **Affected Plugins**: {plugin_list}
@@ -48,8 +48,8 @@ keywords: migration, breaking, upgrade, compatibility, guide
 ```markdown
 ## Post-Migration Checks
 - [ ] All hooks.json files updated
-- [ ] Agent TOML matches new schema
+- [ ] Agent TOML matches the new schema
 - [ ] Scripts use correct CLI flags
 - [ ] Plugin manifests valid
-- [ ] Run sniper validation on changed files
+- [ ] Run code-quality / sniper validation on changed files
 ```

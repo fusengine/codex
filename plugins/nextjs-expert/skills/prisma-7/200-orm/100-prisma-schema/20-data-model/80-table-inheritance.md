@@ -208,7 +208,7 @@ model Video {
 
 model Article {
   id         Int      @id @default(autoincrement())
-  body       String // article-only
+  body       String // article-only 
   activityId Int      @unique
   activity   Activity @relation(fields: [activityId], references: [id])
 }

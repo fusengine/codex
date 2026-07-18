@@ -41,7 +41,7 @@ const prisma = new PrismaClient().$extends(withAccelerate())
 
 // 2. (Optionally) add cache to your Prisma queries
 const users = await prisma.user.findMany({
-  cacheStrategy: {
+  cacheStrategy: { 
     ttl: 30, // Consider data fresh for 30 seconds
     swr: 60  // Serve stale data for up to 60 seconds while fetching fresh data
   }
@@ -64,7 +64,7 @@ Improving developer experience doesn’t stop at Prisma Postgres, Accelerate and
 
 
 <div className="container">
-  <div className="row">
+  <div className="row"> 
     <div className="col col--4">
       [Accelerate](https://www.prisma.io/accelerate?utm_source=docs&utm_medium=orm-docs)
     </div>

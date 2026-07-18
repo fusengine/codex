@@ -8,12 +8,12 @@ image: '/img/ai/astro-prisma-cover.png'
 
 ## How to use
 
-Include this prompt in your AI assistant to guide consistent code generation for Astro + Prisma + Prisma Postgres projects.
+Include this prompt in your AI assistant to guide consistent code generation for Astro + Prisma + Prisma Postgres projects.  
 
-- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.
-- **Cursor**: Use `@Files` and select your prompt file.
-- **Zed**: Use `/file` followed by your prompt's path.
-- **Windsurf**: Use `@Files` and choose your prompt file from the list.
+- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.  
+- **Cursor**: Use `@Files` and select your prompt file.  
+- **Zed**: Use `/file` followed by your prompt's path.  
+- **Windsurf**: Use `@Files` and choose your prompt file from the list.  
 
 ## Prompt
 

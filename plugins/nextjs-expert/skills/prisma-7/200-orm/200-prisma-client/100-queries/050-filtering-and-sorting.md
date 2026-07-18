@@ -400,7 +400,7 @@ generator client {
 }
 ```
 
-Ordering by relevance can be used either separately from or together with the `search` filter: `_relevance` is used to order the list, while `search` filters the unordered list.
+Ordering by relevance can be used either separately from or together with the `search` filter: `_relevance` is used to order the list, while `search` filters the unordered list. 
 
 For example, the following query uses `_relevance` to filter by the term `developer` in the `bio` field, and then sorts the result by relevance in a _descending_ manner:
 

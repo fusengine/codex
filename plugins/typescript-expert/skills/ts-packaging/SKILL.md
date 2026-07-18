@@ -1,21 +1,23 @@
 ---
 name: ts-packaging
-description: Use when publishing a TypeScript library — exports map, JSR vs npm, dual ESM/CJS, type validation, provenance. Covers modern package.json, jsr.json, and release CI. Do NOT use for application deployment (not a library) or framework build pipelines (use the framework expert's skills).
+description: "Use when publishing a TypeScript library — exports map, JSR vs npm, dual ESM/CJS, type validation, provenance. Covers modern package.json, jsr.json, and release CI. Do NOT use for application deployment (not a library) or framework build pipelines (use the framework expert's skills)."
 ---
 
 # TypeScript Packaging
+
+_Targets: node 26, attw 0.18.4._
 
 Ship a TypeScript library with a correct exports map, on the right registry.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Inspect package.json, build output, targets
-2. **ai-pilot:research / research-expert** - Verify latest JSR / npm / Node exports docs via Context7/Exa/fuse-browser
-3. **mcp__context7__query-docs** - Check conditions ordering, attw usage
+1. `explore-codebase` - Inspect package.json, build output, targets
+2. `research-expert` - Verify latest JSR / npm / Node exports docs via Context7/Exa
+3. `mcp__context7__query-docs` - Check conditions ordering, attw usage
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -111,22 +113,3 @@ npx @arethetypeswrong/cli --pack
 - Ship dual CJS when every consumer is ESM (dead weight)
 - Order `"default"` before `"types"` (breaks type resolution)
 - Use `--allow-slow-types` on JSR as a habit (degrades docs + npm compat)
-
-## References
-
-- [references/exports-map.md](references/exports-map.md)
-- [references/jsr-publishing.md](references/jsr-publishing.md)
-- [references/npm-publishing.md](references/npm-publishing.md)
-- [references/validation.md](references/validation.md)
-- [references/templates/package-json-dual.md](references/templates/package-json-dual.md)
-- [references/templates/jsr-json.md](references/templates/jsr-json.md)
-- [references/templates/publish-workflow.md](references/templates/publish-workflow.md)
-
-## Related skills
-
-`solid-generic`, `ts-testing`.
-
-## Skill routing metadata
-
-references: references/exports-map.md, references/jsr-publishing.md, references/npm-publishing.md, references/validation.md, references/templates/package-json-dual.md, references/templates/jsr-json.md, references/templates/publish-workflow.md
-related-skills: solid-generic, ts-testing

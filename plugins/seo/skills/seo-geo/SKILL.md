@@ -1,8 +1,7 @@
 ---
 name: seo-geo
-description: "Use when optimizing for AI search engines (Generative Engine Optimization 2026). Covers Google AI Overviews, ChatGPT, Perplexity, Codex, Gemini, Copilot, LLM-readiness scoring 0-100, llms.txt."
+description: Use when optimizing for AI search engines (Generative Engine Optimization 2026). Covers Google AI Overviews, ChatGPT, Perplexity, Claude, Gemini, Copilot, LLM-readiness scoring 0-100, llms.txt.
 ---
-
 
 # GEO — Generative Engine Optimization 2026
 
@@ -11,7 +10,7 @@ description: "Use when optimizing for AI search engines (Generative Engine Optim
 - **Google AI Overviews** (formerly SGE)
 - **ChatGPT** with web search
 - **Perplexity**
-- **Codex** with web search
+- **Claude** with web search
 - **Gemini**
 - **Bing Copilot**
 
@@ -83,8 +82,8 @@ Numbered steps...
 - [Docs](https://example.com/docs/): description
 ```
 
-## Related
+## References
 
 - `seo-entity` — entity signals + schema that drive AI citations
-- `seo-schema` — Organization/Article/FAQ JSON-LD
-- `seo-technical` — AI crawler allowlist in robots.txt
+- `skills/seo/04-geo-2026/` (ai-platforms, citation-strategies, content-structure, llm-crawlability, zero-click-optimization)
+- `skills/seo/08-measurement/share-of-model.md`

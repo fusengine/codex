@@ -204,7 +204,7 @@ const userData: Prisma.UserCreateInput[] = [
 
 export async function main() {
   console.log("Starting to seed...");
-
+  
   for (const u of userData) {
     await prisma.user.upsert({
       where: { email: u.email },
@@ -212,7 +212,7 @@ export async function main() {
       create: u,
     });
   }
-
+  
   console.log("Seeding finished.");
 }
 

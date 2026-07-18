@@ -1,8 +1,8 @@
 ---
 name: technical-writer
 description: Expert technical writer for documentation, API docs, tutorials, and user guides. Use when creating or improving technical documentation.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Write, Edit, Grep, Glob
 skills: technical-writing
 ---
 

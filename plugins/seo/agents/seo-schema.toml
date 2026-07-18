@@ -2,11 +2,11 @@ name = "seo-schema"
 description = "Schema.org JSON-LD sub-agent. Use when detecting, validating, or generating structured data (Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe). Do NOT use for technical SEO (use seo-technical)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["SEO Schema", "SEO Schema Specialist", "SEO Schema Agent"]
-sandbox_mode = "workspace-write"
-developer_instructions = '''# SEO Schema Sub-Agent
+sandbox_mode = "read-only"
+developer_instructions = '''
+# SEO Schema Sub-Agent
 
-Parallelizable expert for Schema.org JSON-LD operations.
+Parallel-safe sub-agent for Schema.org JSON-LD operations. Spawned by the `seo-expert` orchestrator via `spawn_agent` (resolving `.codex/agents/seo-schema.toml`) during a `/seo audit` run — it executes as an independent thread alongside the other SEO sub-agents.
 
 ## Workflow
 
@@ -49,7 +49,8 @@ Parallelizable expert for Schema.org JSON-LD operations.
 
 - **Deterministic extraction** — `browser_extract_schema` + `containerSelector` over manual snapshot parsing.
 - **Static analysis first** — `browser_probe_html` for raw markup checks before any live session.
-- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
+- Full guide: invoke skill `$fuse-browser-usage` (profile: research-docs).
+'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-schema/SKILL.md"

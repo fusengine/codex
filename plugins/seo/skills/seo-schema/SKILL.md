@@ -1,8 +1,7 @@
 ---
 name: seo-schema
-description: "Use when detecting, validating, or generating Schema.org JSON-LD markup. Covers Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe."
+description: Use when detecting, validating, or generating Schema.org JSON-LD markup. Covers Article, Product, LocalBusiness, Organization, BreadcrumbList, FAQPage, VideoObject, Event, Recipe.
 ---
-
 
 # Schema.org JSON-LD
 
@@ -33,8 +32,6 @@ description: "Use when detecting, validating, or generating Schema.org JSON-LD m
 - **FAQ**: Restricted to government/health sites since August 2023
 - **SpecialAnnouncement**: Deprecated July 2025
 
-## Related
+## References
 
-- `seo-entity` — `about`/`sameAs`/`knowsAbout` to resolve entities to Wikidata
-- `seo-video` — VideoObject / Clip / SeekToAction
-- `seo-local` — LocalBusiness markup
+- `skills/seo/03-schema-org/` (all 9 schema docs)

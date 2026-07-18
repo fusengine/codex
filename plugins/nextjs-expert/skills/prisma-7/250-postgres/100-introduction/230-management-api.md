@@ -6,7 +6,7 @@ metaDescription: 'Management API reference documentation for Prisma Postgres.'
 
 ## Overview
 
-This page covers the Prisma Management API which enables you to programmatically manage [platform](/platform/about) resources (e.g. projects or Prisma Postgres instances) in [Prisma Console](https://console.prisma.io).
+This page covers the Prisma Management API which enables you to programmatically manage [platform](/platform/about) resources (e.g. projects or Prisma Postgres instances) in [Prisma Console](https://console.prisma.io). 
 
 :::tip OpenAPI
 An interactive [**OpenAPI 3.1 specification** is available here](https://api.prisma.io/v1/swagger-editor), where you can explore endpoints, request/response bodies, and detailed examples.
@@ -38,7 +38,7 @@ https://api.prisma.io/v1/projects/{projectId}
 
 The Prisma Postgres API supports two authentication methods:
 
-- **Service tokens** — for accessing resources in your own workspace
+- **Service tokens** — for accessing resources in your own workspace  
 - **OAuth 2.0 access tokens** — for accessing or managing resources on behalf of users
 
 ### Service tokens
@@ -131,11 +131,11 @@ curl --location "https://api.prisma.io/v1/projects" \
 
 1. In the **Authorization** tab, set type to **OAuth 2.0**.
 2. Click **Get New Access Token** and fill in the details:
-   - **Token Name**: Any name
-   - **Grant Type**: Authorization Code
-   - **Redirect URI**: Your app's redirect URI (must match what you configured in OAuth credentials)
-   - **Auth URL**: `https://auth.prisma.io/authorize`
-   - **Client ID / Secret**: From your OAuth app
+   - **Token Name**: Any name  
+   - **Grant Type**: Authorization Code  
+   - **Redirect URI**: Your app's redirect URI (must match what you configured in OAuth credentials)  
+   - **Auth URL**: `https://auth.prisma.io/authorize`  
+   - **Client ID / Secret**: From your OAuth app  
    - **Scope**: `workspace:admin offline_access` (as needed)
 3. Complete the flow and use the token in your requests.
 
@@ -247,7 +247,7 @@ Transfer a project to a new workspace owner.
 ### Databases
 
 #### `GET /projects/{projectId}/databases`
-
+  
 Retrieve all databases for a project.
 
 - **Path parameters**:
@@ -272,8 +272,8 @@ Create a new database.
     "region": "us-east-1",
     "name": "My Database",
     "isDefault": false,
-    "fromDatabase": {
-      "id": "databaseId",
+    "fromDatabase": { 
+      "id": "databaseId", 
       "backupId": "string"
     }
   }

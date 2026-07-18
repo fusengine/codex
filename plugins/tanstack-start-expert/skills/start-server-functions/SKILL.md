@@ -1,13 +1,6 @@
 ---
 name: start-server-functions
-description: >-
-  Use when creating type-safe RPC server logic in TanStack Start with
-  createServerFn — GET/POST methods, .validator() (Zod or function),
-  .handler(), useServerFn hook, FormData input, Response output, strict
-  serialization, throw redirect()/notFound(), server context utilities,
-  and CSRF protection. Do NOT use for: raw external HTTP endpoints
-  (use start-server-routes), reusable middleware chains (use
-  start-middleware), or Next.js/Remix "use server" patterns.
+description: ">- Use when creating type-safe RPC server logic in TanStack Start with createServerFn — GET/POST methods, .validator() (Zod or function), .handler(), useServerFn hook, FormData input, Response output, strict serialization, throw redirect()/notFound(), server context utilities, and CSRF protection. Do NOT use for: raw external HTTP endpoints (use start-server-routes), reusable middleware chains (use start-middleware), or Next.js/Remix \"use server\" patterns."
 ---
 
 # TanStack Start Server Functions
@@ -20,8 +13,8 @@ components, hooks, and other server functions. This skill targets
 ## Agent Workflow (MANDATORY)
 
 Before implementing, verify current APIs against Context7
-(`/websites/tanstack_start_framework_react`) + Exa/fuse-browser, then explore the target
-codebase. After changes, run `ai-pilot:sniper-check / sniper`.
+(`/websites/tanstack_start_framework_react`) + Exa, then explore the target
+codebase. After changes, run `sniper`.
 
 ## Critical Rules (read first)
 
@@ -123,15 +116,3 @@ const signupFn = useServerFn(signup)
 - Use `"use server"`, `getServerSideProps`, or Remix `action`
 - Put DB queries or secrets in a route loader
 - Dynamically `import()` server functions (breaks bundler shaking)
-
-## References
-
-- [references/creating.md](references/creating.md)
-- [references/calling.md](references/calling.md)
-- [references/security.md](references/security.md)
-- [references/templates/crud-server-functions.md](references/templates/crud-server-functions.md)
-- [references/templates/form-with-validation.md](references/templates/form-with-validation.md)
-
-## Skill routing metadata
-
-references: references/creating.md, references/calling.md, references/security.md, references/templates/crud-server-functions.md, references/templates/form-with-validation.md

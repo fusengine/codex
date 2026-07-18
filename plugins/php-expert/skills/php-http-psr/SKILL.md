@@ -1,19 +1,21 @@
 ---
 name: php-http-psr
-description: Use when building framework-agnostic HTTP code in PHP — PSR-7 messages, PSR-15 middleware pipelines, PSR-17 factories, PSR-18 HTTP clients. Covers immutable Request/Response/Stream/Uri, RequestHandler + Middleware, factory interfaces, and reference implementations (nyholm/psr7, guzzlehttp/psr7, laminas-diactoros). Do NOT use for Laravel HTTP (use laravel-expert) or Symfony HttpFoundation (not PSR-7 — see references/implementations.md).
+description: "Use when building framework-agnostic HTTP code in PHP — PSR-7 messages, PSR-15 middleware pipelines, PSR-17 factories, PSR-18 HTTP clients. Covers immutable Request/Response/Stream/Uri, RequestHandler + Middleware, factory interfaces, and reference implementations (nyholm/psr7, guzzlehttp/psr7, laminas-diactoros). Do NOT use for Laravel HTTP (use laravel-expert) or Symfony HttpFoundation (not PSR-7 — see references/implementations.md)."
 ---
 
 # PHP HTTP — PSR-7 / 15 / 17 / 18
 
+_Targets: psr-http-message 2.0, psr-http-server-middleware 1.0, psr-http-factory 1.1, psr-http-client 1.0._
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect the PSR-7 implementation already in use (composer.json)
-2. **ai-pilot:research / research-expert** - Verify current interface versions on php-fig.org + Packagist
-3. **mcp__context7__query-docs** - Check the chosen implementation's factory API
+1. `explore-codebase` - Detect the PSR-7 implementation already in use (composer.json)
+2. `research-expert` - Verify current interface versions on php-fig.org + Packagist
+3. `mcp__context7__query-docs` - Check the chosen implementation's factory API
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -127,21 +129,3 @@ $request = $request->withBody($streamFactory->createStream('{"ping":true}'));
 - Treat a 404/500 response from a PSR-18 client as an exception
 - Confuse Symfony `HttpFoundation` with PSR-7 — they are different; bridge via `symfony/psr-http-message-bridge`
 - Hardcode `new GuzzleHttp\Psr7\Response()` in library code — depend on the factory
-
-## References
-
-- [references/psr7-messages.md](references/psr7-messages.md)
-- [references/psr15-middleware.md](references/psr15-middleware.md)
-- [references/psr17-factories.md](references/psr17-factories.md)
-- [references/psr18-client.md](references/psr18-client.md)
-- [references/implementations.md](references/implementations.md)
-- [references/templates/middleware-pipeline.md](references/templates/middleware-pipeline.md)
-
-## Related skills
-
-`php-ecosystem-reference`, `laravel-expert:solid-php`.
-
-## Skill routing metadata
-
-references: references/psr7-messages.md, references/psr15-middleware.md, references/psr17-factories.md, references/psr18-client.md, references/implementations.md, references/templates/middleware-pipeline.md
-related-skills: php-ecosystem-reference, laravel-expert:solid-php

@@ -12,7 +12,7 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
-export const prisma = globalForPrisma.prisma ??
+export const prisma = globalForPrisma.prisma ?? 
   new PrismaClient().$extends(withAccelerate())
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma`}
@@ -123,9 +123,9 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma`}
 import { PrismaPlanetScale } from '@prisma/adapter-planetscale'
 import { fetch as undiciFetch } from 'undici'
 
-const adapter = new PrismaPlanetScale({
-  url: process.env.DATABASE_URL,
-  fetch: undiciFetch
+const adapter = new PrismaPlanetScale({ 
+  url: process.env.DATABASE_URL, 
+  fetch: undiciFetch 
 })
 
 const globalForPrisma = globalThis as unknown as {

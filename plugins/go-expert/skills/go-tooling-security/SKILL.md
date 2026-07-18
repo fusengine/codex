@@ -5,17 +5,16 @@ description: "Use when: setting up Go modules/workspaces, configuring golangci-l
 
 # Go Tooling & Security
 
-## Codex Workflow (MANDATORY)
+## Agent Workflow (MANDATORY)
 
-Before any tooling/security change, inspect local `go.mod`, `go.work`,
-`.golangci.yml`, and CI files first. Use available Codex subagents when the task
-is broad or risky:
+Before ANY tooling/security change, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Find existing go.mod/go.work, `.golangci.yml`, CI files
-2. **ai-pilot:research / research-expert** - Verify current golangci-lint v2 + govulncheck docs via Context7/Exa/fuse-browser
-3. **Context7** - Check the current Go 1.26 `go fix` modernizer set
+1. **explore-codebase** - Find existing go.mod/go.work, `.golangci.yml`, CI files
+2. **research-expert** - Verify latest golangci-lint v2 + govulncheck docs via Context7/Exa
 
-After changes, run **ai-pilot:sniper-check / sniper** for validation when available.
+Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to check the current Go 1.26 `go fix` modernizer set.
+
+After changes, spawn **sniper** for validation.
 
 ---
 
@@ -133,21 +132,3 @@ go fix ./...                         # apply Go 1.26 modernizers
 - Commit `go.work` in repos whose modules are also developed with external modules
 - Suppress govulncheck findings without confirming the vulnerable symbol is unreachable
 - Assume `go vet`/`gofmt` changed in 1.26 — the 1.26 change is `go fix`, not those
-
-## References
-
-- [references/modules-workspaces.md](references/modules-workspaces.md)
-- [references/golangci-lint-v2.md](references/golangci-lint-v2.md)
-- [references/govulncheck.md](references/govulncheck.md)
-- [references/go-fix-modernizers.md](references/go-fix-modernizers.md)
-- [references/templates/golangci-v2-config.md](references/templates/golangci-v2-config.md)
-- [references/templates/ci-workflow.md](references/templates/ci-workflow.md)
-
-## Related skills
-
-`go-core-idioms`, `go-testing-quality`, `solid:solid-go`, `security-expert:dependency-audit`.
-
-## Skill routing metadata
-
-references: references/modules-workspaces.md, references/golangci-lint-v2.md, references/govulncheck.md, references/go-fix-modernizers.md, references/templates/golangci-v2-config.md, references/templates/ci-workflow.md
-related-skills: go-core-idioms, go-testing-quality, solid:solid-go, security-expert:dependency-audit

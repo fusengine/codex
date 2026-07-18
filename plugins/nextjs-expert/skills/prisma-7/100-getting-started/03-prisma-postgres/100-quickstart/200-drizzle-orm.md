@@ -77,7 +77,7 @@ Then the CLI tool should output:
 │
 │    Database will be deleted on 11/18/2025, 1:55:39 AM if not claimed.
 │
-└
+└  
 ```
 
 Create a `.env` file and add the connection string from the output:

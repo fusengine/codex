@@ -1,15 +1,14 @@
 ---
 name: solid-nextjs
-description: "Applies SOLID architecture to Next.js with reviewable files, separated interfaces, modular boundaries, and project-aligned JSDoc. Use for architecture, code organization, or structural refactoring. Do NOT use for isolated component or style fixes."
+description: This skill should be used when the user asks about "SOLID principles", "Next.js architecture", "modular structure", "code organization", "file size limits", "interface separation", or "JSDoc documentation". Enforces files < 100 lines with mandatory JSDoc and separated interfaces.
 ---
 
 # SOLID Next.js - Modular Architecture
 
 ## Current Date (CRITICAL)
 
-Use the current session date for searches and version checks. Prefer the current
-year and previous year only when looking for recent Next.js, React, TypeScript,
-and Prisma guidance.
+**Today: January 2026** - ALWAYS use the current year for your searches.
+Search with "2025" or "2026", NEVER with past years.
 
 ## MANDATORY: Research Before Coding
 
@@ -50,13 +49,13 @@ and Prisma guidance.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze project structure and existing patterns
-2. **ai-pilot:research / research-expert** - Verify latest docs for all stack technologies
+1. **explore-codebase** - Analyze project structure and existing patterns
+2. **research-expert** - Verify latest docs for all stack technologies
 3. **mcp__context7__query-docs** - Check integration compatibility
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -189,11 +188,3 @@ Ready-to-copy code in `references/templates/`:
 - ❌ Barrel exports
 - ❌ Duplicating existing utility/helper without Grep search first
 - ❌ Copy-pasting logic blocks instead of extracting shared function
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Skill routing metadata
-
-references: references/solid-principles.md, references/single-responsibility.md, references/open-closed.md, references/liskov-substitution.md, references/interface-segregation.md, references/dependency-inversion.md, references/architecture-patterns.md, references/templates/server-component.md, references/templates/client-component.md, references/templates/service.md, references/templates/hook.md, references/templates/interface.md, references/templates/store.md, references/templates/action.md, references/templates/api-route.md, references/templates/validator.md, references/templates/factory.md, references/templates/adapter.md, references/templates/error.md, references/templates/test.md, references/templates/middleware.md, references/templates/prisma.md, references/templates/i18n.md, references/templates/query.md

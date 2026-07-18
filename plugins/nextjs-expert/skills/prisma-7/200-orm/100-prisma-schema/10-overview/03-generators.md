@@ -170,7 +170,7 @@ Below are the options for the `prisma-client` generator:
 
 ### Importing types
 
-The new `prisma-client` generator creates individual `.ts` files which allow for a more fine granular import of types. This can improve compile and typecheck performance and be useful for tree-shaking, too.
+The new `prisma-client` generator creates individual `.ts` files which allow for a more fine granular import of types. This can improve compile and typecheck performance and be useful for tree-shaking, too. 
 You can still use the top level barrel files that export all types through a single import.
 
 The overall structure of the generated output looks like this:
@@ -192,9 +192,9 @@ generated/
 
 #### `client.ts`
 
-For use in your server code.
+For use in your server code. 
 
-- Provides access to the `PrismaClient` instance and all model and utility types.
+- Provides access to the `PrismaClient` instance and all model and utility types. 
 - Provides best compatibility with the `prisma-client-js` generated output.
 - Contains transitive dependencies on server only-packages, so cannot be used in browser contexts.
 
@@ -206,9 +206,9 @@ import { Prisma, type Post, PrismaClient } from "./generated/prisma/client"
 
 #### `browser.ts`
 
-For using types in your frontend (i.e. code that runs in the browser).
+For using types in your frontend (i.e. code that runs in the browser). 
 
-- Contains no transitive dependencies on Node.js or other server-only packages.
+- Contains no transitive dependencies on Node.js or other server-only packages. 
 - Contains no real `PrismaClient` constructor.
 - Contains all model and enum types and values.
 - Provides access to various utilities like `Prisma.JsonNull` and `Prisma.Decimal`.
@@ -216,7 +216,7 @@ For using types in your frontend (i.e. code that runs in the browser).
 
 :::note
 
-The old `prisma-client-js` generator created a `node_modules` package and used export maps to dynamically provide a browser compatible export of the generated Prisma Client library. As the new `prisma-client` generator creates direct TypeScript source code and no `package.json` file anymore, this approach is not possible. Hence you need to be explicit about your imports and whether things run on server or client!
+The old `prisma-client-js` generator created a `node_modules` package and used export maps to dynamically provide a browser compatible export of the generated Prisma Client library. As the new `prisma-client` generator creates direct TypeScript source code and no `package.json` file anymore, this approach is not possible. Hence you need to be explicit about your imports and whether things run on server or client! 
 
 You can still wrap the generated code in a package and use a similar approach as with `prisma-client-js` on your own.
 
@@ -288,7 +288,7 @@ import type { UserModel, UserWhereInput, UserUpdateInput } from "./generated/pri
 
 Provides shared utility types that you should rarely directly need.
 
-Example:
+Example: 
 
 ```ts
 import type { IntFilter } from "./generated/prisma/commonInputTypes"

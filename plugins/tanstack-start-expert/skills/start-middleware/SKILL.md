@@ -1,14 +1,6 @@
 ---
 name: start-middleware
-description: >-
-  Use when composing cross-cutting server logic in TanStack Start with
-  createMiddleware — request vs server function middleware, chaining via
-  .middleware([...]), shared context with next({ context }), client↔server
-  sendContext, client middleware (.client), global middleware via createStart
-  in src/start.ts, middleware factories for authorization, and
-  staticFunctionMiddleware. Do NOT use for: defining the RPC itself (use
-  start-server-functions), raw HTTP endpoints (use start-server-routes), or
-  route-level UX guards (use router beforeLoad).
+description: ">- Use when composing cross-cutting server logic in TanStack Start with createMiddleware — request vs server function middleware, chaining via .middleware([...]), shared context with next({ context }), client↔server sendContext, client middleware (.client), global middleware via createStart in src/start.ts, middleware factories for authorization, and staticFunctionMiddleware. Do NOT use for: defining the RPC itself (use start-server-functions), raw HTTP endpoints (use start-server-routes), or route-level UX guards (use router beforeLoad)."
 ---
 
 # TanStack Start Middleware
@@ -21,8 +13,8 @@ Import `createMiddleware` from `@tanstack/react-start`. This skill targets
 ## Agent Workflow (MANDATORY)
 
 Before implementing, verify current APIs against Context7
-(`/websites/tanstack_start_framework_react`) + Exa/fuse-browser, then explore the target
-codebase. After changes, run `ai-pilot:sniper-check / sniper`.
+(`/websites/tanstack_start_framework_react`) + Exa, then explore the target
+codebase. After changes, run `sniper`.
 
 ## Critical Rules (read first)
 
@@ -124,15 +116,3 @@ const fn = createServerFn().middleware([auth]).handler(async ({ context }) =>
 - Trust `sendContext` shape as authorization
 - Call `localStorage`/`window` in `.client()` without an SSR guard
 - Place `staticFunctionMiddleware` anywhere but last
-
-## References
-
-- [references/types.md](references/types.md)
-- [references/context.md](references/context.md)
-- [references/global.md](references/global.md)
-- [references/templates/auth-authorization.md](references/templates/auth-authorization.md)
-- [references/templates/client-middleware.md](references/templates/client-middleware.md)
-
-## Skill routing metadata
-
-references: references/types.md, references/context.md, references/global.md, references/templates/auth-authorization.md, references/templates/client-middleware.md

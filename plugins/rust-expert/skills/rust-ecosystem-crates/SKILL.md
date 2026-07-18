@@ -1,19 +1,19 @@
 ---
 name: rust-ecosystem-crates
-description: Use when choosing crates for a Rust project — serialization, CLI, async runtime, web, database, HTTP client, error handling, observability. Provides a domain→crate decision map of the de-facto 2026 standards, with selection criteria. Do NOT use for API usage details of a chosen crate (load the matching domain skill, or verify via Context7 → Exa → fuse-browser fast-path on docs.rs/crates.io).
+description: "Use when choosing crates for a Rust project — serialization, CLI, async runtime, web, database, HTTP client, error handling, observability. Provides a domain→crate decision map of the de-facto 2026 standards, with selection criteria. Do NOT use for API usage details of a chosen crate (load the matching domain skill, or verify via fuse-browser fast-path on docs.rs/crates.io → Context7 → Exa)."
 ---
 
 # Rust Ecosystem & Crates
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY crate selection, use available Codex subagents when useful:
+Before ANY crate selection, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Read existing `Cargo.toml` to match established choices
-2. **ai-pilot:research / research-expert** - Confirm the CURRENT version + maintenance status on crates.io via Context7/Exa
+1. **explore-codebase** - Read existing `Cargo.toml` to match established choices
+2. **research-expert** - Confirm the CURRENT version + maintenance status on crates.io via Context7/Exa
 3. **mcp__context7__query-docs** - Pull the chosen crate's current API before writing code
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -111,18 +111,3 @@ let cfg = std::fs::read_to_string(path).context("reading config")?;
 - Hardcode a remembered patch version without checking
 - Expose `anyhow::Error` from a library API
 - Mix async runtimes in one binary
-
-## References
-
-- [references/crate-decision-map.md](references/crate-decision-map.md)
-- [references/db-and-async.md](references/db-and-async.md)
-- [references/templates/cargo-toml-stack.md](references/templates/cargo-toml-stack.md)
-
-## Related skills
-
-`rust-tooling-cicd`, `solid:solid-rust`.
-
-## Skill routing metadata
-
-references: references/crate-decision-map.md, references/db-and-async.md, references/templates/cargo-toml-stack.md
-related-skills: rust-tooling-cicd, solid:solid-rust

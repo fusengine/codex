@@ -8,7 +8,7 @@ toc: true
 
 ## Overview
 
-The [Model-Context-Protocol](https://modelcontextprotocol.io/introduction) (MCP) gives LLMs a way to call APIs and thus access external systems in a well-defined manner.
+The [Model-Context-Protocol](https://modelcontextprotocol.io/introduction) (MCP) gives LLMs a way to call APIs and thus access external systems in a well-defined manner. 
 
 Prisma's provides two MCP servers: a _local_ and a _remote_ one. See below for specific information on each.
 
@@ -88,7 +88,7 @@ If you're using VS Code, you can use [VS Code agent mode](https://code.visualstu
 - `Prisma-Postgres-account-status`: Checks your authentication status with [Prisma Console](https://console.prisma.io) via the `platform auth show --early-access` command.
 - `Create-Prisma-Postgres-Database`: Creates a new Prisma Postgres database via the `'init --db --name' <name> '--region' <region> '--non-interactive'` command.  The LLM will provide the `<name>` and `<region>` options.
 - `Prisma-Login`: Authenticates with [Prisma Console](https://console.prisma.io) via the `platform auth login --early-access` command.
-- `Prisma-Studio`: Open Prisma Studio via the `prisma studio` command.
+- `Prisma-Studio`: Open Prisma Studio via the `prisma studio` command. 
 
 ### Usage
 
@@ -118,7 +118,7 @@ AI tools have different ways of integrating MCP servers. In most cases, there ar
 
 In this section, we're covering the config formats of the most popular AI tools.
 
-### VS Code
+### VS Code 
 
 Install the Prisma MCP server in VS Code with a single click using the link below:
 
@@ -142,7 +142,7 @@ Install the Prisma MCP server in VS Code with a single click using the link belo
   </span>
 </a>
 
-This will prompt you to open VS Code. Once opened, you'll be guided to install the Prisma MCP server directly into your VS Code configuration.
+This will prompt you to open VS Code. Once opened, you'll be guided to install the Prisma MCP server directly into your VS Code configuration. 
 
 If your browser blocks the link, [you can set it up manually](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-workspace) by creating a `.vscode/mcp.json` file in your workspace and adding:
 
@@ -359,8 +359,8 @@ Alternatively, you can add the _remote_ MCP server as an [integration](https://w
 1. In a new chat, find the **Connect apps** field in the main Claude UI below the input prompt field
 1. Click **+ Add integration**
 1. Enter the following:
-  - **Integration name**: `Prisma Postgres`
-  - **Integration URL**: `https://mcp.prisma.io/mcp`
+  - **Integration name**: `Prisma Postgres` 
+  - **Integration URL**: `https://mcp.prisma.io/mcp` 
 1. Click **Add**
 
 ### ChatGPT
@@ -394,7 +394,7 @@ async def main():
             "args": ["-y", "mcp-remote", "https://mcp.prisma.io/mcp"]
         }
     ) as remote_server:
-
+        
         # Optional: list tools from both servers
         local_tools = await local_server.list_tools()
         remote_tools = await remote_server.list_tools()

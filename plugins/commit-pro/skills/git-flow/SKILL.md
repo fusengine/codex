@@ -3,7 +3,6 @@ name: git-flow
 description: "Use when committing, branching, opening PRs, or deciding merge strategy. Covers GitHub Flow (default), trunk-based, branch naming conventions, squash vs rebase, branch lifecycle, and protected branch enforcement."
 ---
 
-
 # Git Flow Best Practices (2026)
 
 ## Workflow Choice
@@ -41,9 +40,9 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 
 ## Protected Branches
 
-`main`, `master`, `develop`, `production` → **never commit directly**.
+`main`, `master`, `develop`, `production` → **never commit directly**. Under Codex this is not left to the model's discretion: enforce it with the runtime `approval_policy` (a commit/push touching a protected branch requires explicit owner approval) plus a hard-deny guard on direct writes to those branches.
 
-`commit-pro:commit` enforces this in Step 0:
+`commit` enforces this in Step 0:
 - Detects current branch
 - If protected → blocks + proposes auto-named feature branch from commit type/scope
 - Exceptions: solo prototype (no remote), explicit `--no-branch-check`, or post-commit version bump
@@ -56,7 +55,7 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 3. git push -u origin feat/<scope>    # push with upstream
 4. gh pr create                       # open PR
 5. (review + CI)
-6. gh pr merge --merge --delete-branch   # merge + cleanup
+6. gh pr merge --merge --delete-branch  # merge + cleanup
 ```
 
 **Keep branches short-lived** (< 3 days ideally). Long-lived branches accumulate conflicts and lose context.
@@ -65,11 +64,53 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 
 | Strategy | When | Result |
 |----------|------|--------|
-| **Merge commit** | commit-pro default | Branch commits, including the version bump, land intact |
-| **Rebase merge** | Atomic commits worth preserving without a merge commit | Linear history |
-| **Squash merge** | Not used by commit-pro tagging flow | Would replace the tagged bump commit |
+| **Merge commit** | commit-pro default | Branch commits (incl. the bump commit) land on `main` intact, no rewrite |
+| **Rebase merge** | Small atomic commits worth preserving, no merge commit wanted | Linear history, individual commits kept |
+| **Squash merge** | *not used here*: the release tag points at the bump commit, squash would orphan it | 1 commit per feature, but incompatible with commit-pro's post-merge tagging |
 
-**commit-pro recommendation**: `gh pr merge --merge --delete-branch`. Create and push the release tag only after the merge succeeds; see `post-commit/references/tag-timing.md`.
+**commit-pro recommendation**: real merge commit via `gh pr merge --merge --delete-branch` (see `commands/commit.md` Step 7).
+
+## CI Gate Before Merge
+
+**Cardinal rule: never merge before CI checks are resolved; never assume "zero CI" without verifying.**
+
+**Known race condition** ([cli/cli#7401](https://github.com/cli/cli/issues/7401), confirmed by GitHub CLI maintainers): checks take a few seconds to register on a freshly-created PR. Calling `gh pr checks --watch` immediately after `gh pr create` can error out — exit code 1, `no checks reported on the '<branch>' branch` — even though checks are about to appear. The GitHub API gives no way to tell "genuinely zero checks" apart from "not registered yet," so the client must either sidestep the race (native auto-merge) or poll for registration before watching.
+
+Determine which of the three cases applies from what actually exists on the PR — never from assumption. The key branch point is **whether the repo enforces *required* status checks in branch protection**, not merely whether auto-merge is available: `gh pr merge --auto` only ever waits for *required* checks. On a repo where checks run but aren't marked required (e.g. this repo — CodeQL + Analyze execute but aren't required), `--auto` merges **immediately without waiting**, silently reproducing the exact race this section exists to close. Check first with `gh pr checks <pr> --required` (empty output / `no required checks reported on the '<branch>' branch` → no required checks configured) before picking a branch:
+
+1. **Repo has required status checks in branch protection** → the only case where `--auto` actually gates. GitHub waits server-side for the *required* checks to appear and pass — no race, regardless of their state at call time:
+   ```bash
+   gh pr merge <pr> --auto --merge --delete-branch
+   ```
+   Also requires "Allow auto-merge" enabled in repo Settings → General (otherwise `GraphQL: Auto merge is not allowed for this repository`).
+2. **Repo has checks but none are required** (this repo's current state — CodeQL/Analyze run but aren't required) — `--auto` would merge immediately without waiting, so don't use it here. Poll client-side until checks register, then watch: don't `--watch` right after `gh pr create`/a push. Poll `gh pr checks` until it stops reporting "no checks reported" (bounded retries), THEN watch. The poll's pipe to `grep` only detects check registration — it never gates the merge, which still runs un-piped via `&&`:
+   ```bash
+   pr=<pr>
+   max_attempts=18   # 18 × 5s ≈ 90s — raise if this repo's CI is known to queue slower
+   attempt=0
+   until gh pr checks "$pr" 2>&1 | grep -qv "no checks reported"; do
+     attempt=$((attempt + 1))
+     if [ "$attempt" -ge "$max_attempts" ]; then
+       echo "Timeout: no checks registered after $((max_attempts * 5))s — verify .github/workflows/ before treating this as zero-CI." >&2
+       break
+     fi
+     sleep 5
+   done
+   gh pr checks "$pr" --watch && gh pr merge "$pr" --merge --delete-branch
+   ```
+   **Never pipe** the final `gh pr checks <pr> --watch` call itself (e.g. `| tail`): a pipe swallows the exit code and lets a merge proceed after failing CI. Chain with `&&` so the merge only runs if checks passed.
+3. **Repo has zero CI checks (verified, not assumed — e.g. no `.github/workflows/*` and the poll above timed out)** → immediate merge is allowed:
+   ```bash
+   gh pr merge <pr> --merge --delete-branch
+   ```
+
+**A non-required check never blocks the merge** — only *required* checks actually gate. Mark CI checks as required in branch protection so case 1's `--auto` has teeth; without that, checks stay in case 2 forever.
+
+**Note on `--required`**: the poll loop in case 2 intentionally queries `gh pr checks` *without* `--required` — it only needs to know "has *any* check registered yet." If a future revision adds `--required` to that same loop, the zero-checks message becomes `no required checks reported on the '<branch>' branch`, which does **not** contain the substring `no checks reported` (the inserted word "required" breaks the contiguous match) — the grep would need to change to `checks reported on the` (matches both variants) or handle both strings explicitly.
+
+Merge is always `--merge` (real merge commit) — **never `--squash`**, it would orphan the release tag's target (see Tagging timing below).
+
+**Tagging timing**: never push the tag before the merge is validated — CI could still fail or branch protection could still block the merge, and a tag pushed early would point at a commit that never lands on `main`. Tag `vX.Y.Z` on `main` AFTER the merge completes, then push the tag (`commit` does this automatically in Step 8 — see also `commands/commit.md` Step 8 and `post-commit/references/tag-timing.md`).
 
 ## After Merge
 
@@ -99,7 +140,7 @@ None / <description with migration path>
 
 - ❌ **Long-lived feature branches** (> 1 week) — rebase early or split
 - ❌ **Commits on main "to save time"** — bypasses review, breaks CI gates
-- ❌ **Force push to main** — never. Forbidden in fuse-commit-pro.
+- ❌ **Force push to main** — never. Hard-denied under Codex (a hard-deny guard on `git push --force`/`--force-with-lease` to protected branches, backed by `approval_policy`), not merely discouraged.
 - ❌ **Branch named `wip`, `temp`, `test123`** — meaningless, can't be found later
 - ❌ **PR without description** — reviewers can't context-switch
 - ❌ **Merging your own PR without review** (when working in a team)
@@ -111,12 +152,4 @@ If you're alone on a repo with no PR review:
 - Still use feature branches (rollback safety net)
 - Self-PR is fine for sanity check (you'll see the diff fresh)
 - Or commit-then-push on main with strong CI as safety
-- `commit-pro:commit` detects the no-remote case and skips Step 7
-
-## Related skills
-
-`commit-optimization`, `post-commit`, `commit-detection`.
-
-## Skill routing metadata
-
-related-skills: commit-optimization, post-commit, commit-detection
+- `commit` detects no-remote case and skips Step 7

@@ -5,17 +5,19 @@ description: "TanStack Query v5 integration with Next.js 16. Server-side prefetc
 
 # TanStack Query for Next.js
 
+> Targets: Tanstack-query 5, Nextjs 16, React 19.
+
 TanStack Query v5 provides powerful server state management with Next.js 16 integration.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing data fetching patterns
-2. **ai-pilot:research / research-expert** - Verify latest TanStack Query v5 docs
+1. **explore-codebase** - Analyze existing data fetching patterns
+2. **research-expert** - Verify latest TanStack Query v5 docs
 3. **mcp__context7__query-docs** - Check TanStack Query + Next.js patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -79,17 +81,3 @@ bun add @tanstack/react-query @tanstack/react-query-devtools
 | Server prefetching | [hydration.md](references/hydration.md) |
 | QueryClient setup | [hydration.md](references/hydration.md) |
 | Cache invalidation | [query-patterns.md](references/query-patterns.md) |
-
-## References
-
-- [references/query-patterns.md](references/query-patterns.md)
-- [references/hydration.md](references/hydration.md)
-
-## Related skills
-
-`nextjs-16`, `nextjs-server-components`, `react-19`.
-
-## Skill routing metadata
-
-references: references/query-patterns.md, references/hydration.md
-related-skills: nextjs-16, nextjs-server-components, react-19

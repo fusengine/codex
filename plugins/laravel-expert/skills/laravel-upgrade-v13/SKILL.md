@@ -3,20 +3,21 @@ name: laravel-upgrade-v13
 description: "Use when upgrading a Laravel 12 application to Laravel 13.0. Covers PHP 8.3 requirement, composer commands, breaking changes (PHPUnit 12, Pest 4, VerifyCsrfToken → PreventRequestForgery, cache prefixes, serializable_classes, pheanstalk 8.0+), Attributes migration (Eloquent + Queue), Symfony 7.4/8.0 upgrade, and Laravel Boost MCP automated upgrade."
 ---
 
-
 # Laravel 12 → 13 Upgrade Guide
+
+_Targets: laravel 13.0, php 8.3._
 
 Centralized upgrade path from Laravel 12.46 to Laravel 13.0 (released March 17, 2026).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY upgrade, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY upgrade, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
-2. **ai-pilot:research / research-expert** — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
-3. **fuse-laravel:laravel-expert** — Apply Laravel 13 best practices
+1. `explore-codebase` — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
+2. `research-expert` — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
+3. `laravel-expert` — Apply Laravel 13 best practices
 
-After upgrade, run **ai-pilot:sniper-check / sniper** for validation.
+After upgrade, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

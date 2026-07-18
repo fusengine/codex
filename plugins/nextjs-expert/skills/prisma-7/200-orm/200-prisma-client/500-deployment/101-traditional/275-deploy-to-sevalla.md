@@ -12,16 +12,16 @@ It supports Git-based deployments, Dockerfiles, and Procfiles and runs on Google
 
 For this example, it's helpful to know:
 
-* Sevalla supports long-running “serverful” applications with built-in autoscaling and flexible pod sizes.
-* Git-based deployments are integrated with GitHub, GitLab, and Bitbucket.
-* PostgreSQL, MySQL, MariaDB, Redis, and Valkey databases are natively supported.
+* Sevalla supports long-running “serverful” applications with built-in autoscaling and flexible pod sizes.  
+* Git-based deployments are integrated with GitHub, GitLab, and Bitbucket.  
+* PostgreSQL, MySQL, MariaDB, Redis, and Valkey databases are natively supported.  
 * Applications and databases can be securely connected through private networking with automatic environment variable injection.
 
 ## Prerequisites
 
 To get started, all you need is:
 
-* A [Sevalla account](https://sevalla.com) (comes with $50 in free credits)
+* A [Sevalla account](https://sevalla.com) (comes with $50 in free credits)  
 * A GitHub repository with your application code.
 
 > **Note:** If you don't have a project ready, you can use our [example Prisma project](https://github.com/sevalla-templates/express-prisma-demo). It's a simple Express.js application that uses Prisma ORM and includes a REST API, a frontend for testing endpoints, a defined Prisma schema with migrations, and an optional database seeding script.

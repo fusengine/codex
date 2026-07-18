@@ -48,7 +48,7 @@ The fields passed to the `datasource` block are:
 
 As of [`v5.4.0`](https://github.com/prisma/prisma/releases/tag/5.4.0), you can use Prisma ORM with database drivers from the JavaScript ecosystem (instead of using Prisma ORM's built-in drivers). You can do this by using a [driver adapter](/orm/overview/databases/database-drivers).
 
-For SQLite, [`node-mssql`](https://github.com/tediousjs/node-mssql) is one of the most popular drivers in the JavaScript ecosystem.
+For SQLite, [`node-mssql`](https://github.com/tediousjs/node-mssql) is one of the most popular drivers in the JavaScript ecosystem. 
 
 This section explains how you can use it with Prisma ORM and the `@prisma/adapter-mssql` driver adapter.
 
@@ -250,7 +250,7 @@ _However_, creating an index makes it impossible to use `license_number` as a fo
 
 #### Raw queries with `String @db.VarChar(n)` fields / `VARCHAR(N)` columns
 
-`String` query parameters in [raw queries](/orm/prisma-client/using-raw-sql/raw-queries) are always encoded to SQL Server as `NVARCHAR(4000)` (if your `String` length is \<= 4000) or `NVARCHAR(MAX)`. If you compare a `String` query parameter to a column of type `String @db.VarChar(N)`/`VARCHAR(N)`, this can lead to implicit conversion on SQL Server which affects your index performance and can lead to high CPU usage.
+`String` query parameters in [raw queries](/orm/prisma-client/using-raw-sql/raw-queries) are always encoded to SQL Server as `NVARCHAR(4000)` (if your `String` length is \<= 4000) or `NVARCHAR(MAX)`. If you compare a `String` query parameter to a column of type `String @db.VarChar(N)`/`VARCHAR(N)`, this can lead to implicit conversion on SQL Server which affects your index performance and can lead to high CPU usage. 
 
 Here is an example:
 ```prisma

@@ -31,7 +31,7 @@ Before diving into implementation, let's clarify the main concepts involved in t
 - **Tokens**: There are two main types of tokens:
   - **Service token**: Issued to your partner integration, scoped to provision and manage databases on your own workspace.
   - **OAuth 2 access token**: Obtained via OAuth 2 when a user authenticates with your app; it is scoped to the user's workspace and used to transfer project/database ownership to that workspace.
-
+  
 ## How to become a partner
 
 To use the Prisma Postgres Management API, you first need to set up as a partner:

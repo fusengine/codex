@@ -71,7 +71,7 @@ enum Role {
 </TabItem>
 <TabItem value="MongoDB">
 
-```prisma highlight=10-45;normal
+```prisma highlight=10-45;normal 
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")

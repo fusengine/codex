@@ -4,12 +4,12 @@
 
 ```toml
 name = "my-agent"
-description = "Short description"
-model = "gpt-5.6-sol"
+description = "Short description — Use when <trigger>. Do NOT use for: <exclusions>."
+model = "gpt-5.6-terra"            # gpt-5.6-sol (heavy reasoning / orchestrator) | gpt-5.6-terra (execution)
 model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
+sandbox_mode = "workspace-write"   # or read-only
+nickname_candidates = ["<Nickname>"]
 developer_instructions = '''
-
 # Identity
 [Who the agent is]
 
@@ -20,7 +20,7 @@ developer_instructions = '''
 [Steps to follow]
 
 # Tools
-[How to use each tool]
+[How to use each tool — Codex has no `tools` field; describe essential capabilities in prose here]
 
 # Constraints
 [Limits and rules]
@@ -31,18 +31,22 @@ developer_instructions = '''
 # Forbidden
 [What it must NEVER do]
 '''
+
+[[skills.config]]
+path = "plugins/<plugin>/skills/<skill>/SKILL.md"
+enabled = true
 ```
 
 ## Codex Agent Template
 
 ```toml
-name = "[kebab-case-name]"
-description = "[1-2 lines max]"
+name = "kebab-case-name"
+description = "1-2 lines max — Use when… / Do NOT use for…"
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
+nickname_candidates = ["<Nickname>"]
 developer_instructions = '''
-
 # [Agent Name]
 
 [Purpose description]
@@ -55,14 +59,10 @@ developer_instructions = '''
 ## Workflow (MANDATORY)
 
 ### Phase 1: [Name]
-```
 [Numbered actions]
-```
 
 ### Phase 2: [Name]
-```
 [Numbered actions]
-```
 
 ## Output Format
 
@@ -73,4 +73,8 @@ developer_instructions = '''
 - [Prohibition 1]
 - [Prohibition 2]
 '''
+
+[[skills.config]]
+path = "plugins/<plugin>/skills/<skill>/SKILL.md"
+enabled = true
 ```

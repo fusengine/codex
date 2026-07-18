@@ -1,18 +1,17 @@
 ---
 name: solid-ruby
-description: "SOLID principles for Ruby 3.3+ and Rails 8 with files under 100 lines, separated contracts, and mandatory modular architecture. Use when writing or refactoring Ruby/Rails code or feature modules. Do NOT use for stack detection."
+description: "SOLID principles for Ruby 3.3+ and Rails 8. Files < 100 lines, contracts separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules."
 ---
-
 
 # SOLID Ruby - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Ruby/Rails docs via Context7
-3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Ruby/Rails docs via Context7
+3. **sniper** - Post-implementation validation
 
 ---
 

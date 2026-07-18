@@ -1,19 +1,19 @@
 ---
 name: rust-async-concurrency
-description: Use when writing async Rust — spawning tasks, sharing state across tasks/threads, choosing channels vs mutexes, or hitting Send-bound errors with async traits. Covers tokio runtime, Mutex/RwLock/atomics, mpsc/oneshot/broadcast/watch, spawn_blocking, and the async-fn-in-traits Send problem. Do NOT use for HTTP service structure — routing, extractors, middleware (use rust-web-backend) — or sync-only ownership questions (use rust-core-language).
+description: "Use when writing async Rust — spawning tasks, sharing state across tasks/threads, choosing channels vs mutexes, or hitting Send-bound errors with async traits. Covers tokio runtime, Mutex/RwLock/atomics, mpsc/oneshot/broadcast/watch, spawn_blocking, and the async-fn-in-traits Send problem. Do NOT use for HTTP service structure — routing, extractors, middleware (use rust-web-backend) — or sync-only ownership questions (use rust-core-language)."
 ---
 
 # Rust Async & Concurrency
 
 ## Agent Workflow (MANDATORY)
 
-Before writing async code, use available Codex subagents when useful:
+Before writing async code, spawn in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** — find the existing runtime, channel, and lock patterns already in use
-2. **ai-pilot:research / research-expert** — verify current tokio/crate APIs via Context7/Exa (async APIs churn)
+1. **explore-codebase** — find the existing runtime, channel, and lock patterns already in use
+2. **research-expert** — verify current tokio/crate APIs via Context7/Exa (async APIs churn)
 3. **mcp__context7__query-docs** — pull exact signatures for the primitives you touch
 
-After writing, run **ai-pilot:sniper-check / sniper**.
+After writing, run **sniper**.
 
 ---
 
@@ -106,21 +106,3 @@ do_async_work().await;
 - tokio.rs/tokio/tutorial — shared-state, spawning, channels (fetched 2026-07-05)
 - rust-lang.github.io/async-fundamentals-initiative/roadmap.html — AFIT status
 - crates.io — tokio 1.52.3 (current at fetch)
-
-## References
-
-- [references/runtime-and-tasks.md](references/runtime-and-tasks.md)
-- [references/shared-state.md](references/shared-state.md)
-- [references/channels.md](references/channels.md)
-- [references/async-traits.md](references/async-traits.md)
-- [references/templates/task-patterns.md](references/templates/task-patterns.md)
-- [references/templates/graceful-shutdown.md](references/templates/graceful-shutdown.md)
-
-## Related skills
-
-`rust-web-backend`, `solid:solid-rust`.
-
-## Skill routing metadata
-
-references: references/runtime-and-tasks.md, references/shared-state.md, references/channels.md, references/async-traits.md, references/templates/task-patterns.md, references/templates/graceful-shutdown.md
-related-skills: rust-web-backend, solid:solid-rust

@@ -25,7 +25,7 @@ import NextSteps from '../../_components/_next-steps.mdx'
 Install the packages needed for this quickstart:
 
 ```terminal
-npm install prisma @types/node --save-dev
+npm install prisma @types/node --save-dev 
 npm install @prisma/client @prisma/adapter-pg dotenv
 ```
 

@@ -5,7 +5,7 @@ metaDescription: 'Build data-driven applications with ease using Prisma ORM, add
 hide_title: true
 sidebar_position: 0
 sidebar_class_name: firstTitle
-pagination_next: getting-started/prisma-orm/quickstart/prisma-postgres
+pagination_next: getting-started/prisma-orm/quickstart/prisma-postgres 
 ---
 
 import {
@@ -39,7 +39,7 @@ import {
 npx prisma init --db
 ```
 </BorderBox >
-
+      
 
 <BorderBox>
 
@@ -49,7 +49,7 @@ npx prisma init --db
 npx create-db
 ```
 </BorderBox >
-
+      
 </List>
 
 <br/>

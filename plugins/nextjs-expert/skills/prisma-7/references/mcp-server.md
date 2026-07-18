@@ -1,8 +1,8 @@
 ---
 name: mcp-server
 description: Prisma MCP Server for AI assistants and LLM integration
-when-to-use: Codex integration, AI-powered query generation, schema exploration
-keywords: mcp, ai-assistants, codex, llm-integration, server
+when-to-use: Claude integration, AI-powered query generation, schema exploration
+keywords: mcp, ai-assistants, claude, llm-integration, server
 priority: high
 requires: /plugins/nextjs-expert/skills/prisma-7/references/installation.md
 related: /plugins/nextjs-expert/skills/prisma-7/references/prisma-ai.md, /plugins/nextjs-expert/skills/prisma-7/references/github-copilot.md
@@ -10,7 +10,7 @@ related: /plugins/nextjs-expert/skills/prisma-7/references/prisma-ai.md, /plugin
 
 # Prisma MCP Server
 
-Model Context Protocol server for integrating Prisma with AI coding assistants.
+Model Context Protocol server for integrating Prisma with AI assistants like Claude.
 
 ## Installation
 
@@ -29,10 +29,10 @@ pnpm add -D @prisma/mcp-server
 
 ### Configuration
 
-Add to Codex MCP configuration:
+Add to Claude configuration:
 
 ```json
-// .mcp.json
+// .claude/claude.json
 {
   "mcpServers": {
     "prisma": {
@@ -41,6 +41,23 @@ Add to Codex MCP configuration:
       "env": {
         "DATABASE_URL": "postgresql://...",
         "PRISMA_SCHEMA_PATH": "./prisma/schema.prisma"
+      }
+    }
+  }
+}
+```
+
+Or configure in Claude desktop:
+
+```json
+// ~/Library/Application Support/Claude/claude_desktop_config.json
+{
+  "mcpServers": {
+    "prisma": {
+      "command": "npx",
+      "args": ["@prisma/mcp-server"],
+      "env": {
+        "DATABASE_URL": "postgresql://user:pass@localhost/db"
       }
     }
   }
@@ -56,14 +73,14 @@ Add to Codex MCP configuration:
 - **Documentation** - Model documentation and examples
 - **Error debugging** - Diagnose Prisma errors
 
-## Usage with Codex
+## Usage with Claude
 
 ### Query Generation
 
 ```
 User: "Create a Prisma query to find all published posts by a specific author"
 
-Codex: "I'll use the Prisma MCP server to check your schema first."
+Claude: "I'll use the Prisma MCP server to check your schema first."
 
 Generated:
 const posts = await prisma.post.findMany({
@@ -82,7 +99,7 @@ const posts = await prisma.post.findMany({
 ```
 User: "What relations does the Post model have?"
 
-Codex uses MCP to query schema:
+Claude uses MCP to query schema:
 
 Response:
 The Post model has:
@@ -97,7 +114,7 @@ The Post model has:
 ```
 User: "I need to add a status field to posts with default 'draft'"
 
-Codex with MCP suggests:
+Claude with MCP suggests:
 1. Update schema
 2. Generate migration
 3. Verify no data loss
@@ -153,7 +170,7 @@ const mcp = new PrismaMCPServer({
   schemaPath: './prisma/schema.prisma'
 })
 
-// Query with Prisma context
+// Query Claude with Prisma context
 const response = await mcp.generateQuery({
   description: 'Find active users who commented in the last 7 days',
   modelName: 'User'
@@ -191,7 +208,7 @@ console.log(response.query)
 User: "Get me the top 10 users by engagement (posts + comments)
        with their recent content and follower count"
 
-Codex uses Prisma MCP:
+Claude uses Prisma MCP:
 1. Checks User, Post, Comment models
 2. Verifies available fields
 3. Generates optimized query
@@ -228,7 +245,7 @@ const topUsers = await prisma.user.findMany({
 ```
 User: "Why is this relation not working?"
 
-Codex with MCP:
+Claude with MCP:
 1. Inspects relation definition
 2. Checks foreign key configuration
 3. Suggests fixes

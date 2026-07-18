@@ -1,18 +1,17 @@
 ---
 name: solid-rust
-description: "SOLID principles for Rust 2024+ with files under 100 lines, separated traits, and mandatory modular architecture. Use when writing or refactoring Rust code, feature modules, or traits. Do NOT use for stack detection."
+description: "SOLID principles for Rust 2024+. Files < 100 lines, traits separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Rust code, structuring src/modules/[feature]/ layers, or defining traits.rs interfaces."
 ---
-
 
 # SOLID Rust - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Rust docs via Context7
-3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Rust docs via Context7
+3. **sniper** - Post-implementation validation
 
 ---
 

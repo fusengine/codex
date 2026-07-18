@@ -18,7 +18,7 @@ Prisma ORM v7 introduces **breaking changes** when you upgrade from an earlier P
 </details>
 
 For developers using AI Agents, we have a [migration prompt](/ai/prompts/prisma-7) that you can
-add to your project for automatic migrations.
+add to your project for automatic migrations. 
 
 ## Upgrade the `prisma` and `@prisma/client` packages to v7
 
@@ -79,7 +79,7 @@ This section gives an overview of breaking changes in Prisma ORM v7.
 | Node       | 20.19.0         | 22.x        |
 | TypeScript | 5.4.0           | 5.9.x       |
 
-### ESM support
+### ESM support 
 Prisma ORM now ships as an ES module, the module format supported in Bun, Deno, and Node. Set the
 `type` field in your `package.json` to `module`
 
@@ -168,8 +168,8 @@ const prisma = new PrismaClient({
 import { PrismaClient } from './generated/prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL
+const adapter = new PrismaPg({ 
+  connectionString: process.env.DATABASE_URL 
 });
 const prisma = new PrismaClient({ adapter });
 ```
@@ -220,13 +220,13 @@ pnpm add dotenv
 
 </TabbedContent>
 
-For bun users, no action is required as bun will automatically load `.env` files.
+For bun users, no action is required as bun will automatically load `.env` files. 
 
 ### Prisma config is now used to configure the Prisma CLI
 
 Prisma Config is now the default place for configuring how the Prisma CLI interacts with your
 database. You now configure your database URL, schema location, migration output, and custom seed
-scripts.
+scripts. 
 
 ```ts
 import 'dotenv/config'
@@ -241,9 +241,9 @@ export default defineConfig({
     path: 'prisma/migrations',
     seed: 'tsx prisma/seed.ts',
   },
-  // The database URL
+  // The database URL 
   datasource: {
-    // Type Safe env() helper
+    // Type Safe env() helper 
     // Does not replace the need for dotenv
     url: env('DATABASE_URL'),
   },
@@ -254,10 +254,10 @@ export default defineConfig({
 
 ### Metrics has been removed from the Client extensions
 
-The Metrics preview feature was deprecated in [Prisma ORM 6.14.0](https://github.com/prisma/prisma/releases/tag/6.14.0) and has been removed for Prisma ORM 7.0.0.
+The Metrics preview feature was deprecated in [Prisma ORM 6.14.0](https://github.com/prisma/prisma/releases/tag/6.14.0) and has been removed for Prisma ORM 7.0.0. 
 If you need this feature, you can use the underlying driver adapter for your database, or Client Extensions to make this information available.
 
-For example, a basic `totalQueries` counter:
+For example, a basic `totalQueries` counter: 
 
 ```ts
 const total = 0
@@ -285,7 +285,7 @@ async function main() {
 
 ### Client middleware has been removed
 
-The client middleware API has been removed. If possible, use [Client Extensions](/orm/prisma-client/client-extensions).
+The client middleware API has been removed. If possible, use [Client Extensions](/orm/prisma-client/client-extensions). 
 
 ```ts
 // ❌ Old (removed)
@@ -308,7 +308,7 @@ const prisma = new PrismaClient().$extends({
 
 ### Various environment variables have been removed
 
-We've removed a small selection of Prisma-specific environment variables.
+We've removed a small selection of Prisma-specific environment variables. 
 
 - `PRISMA_CLI_QUERY_ENGINE_TYPE`
 - `PRISMA_CLIENT_ENGINE_TYPE`

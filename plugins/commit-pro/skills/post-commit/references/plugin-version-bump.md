@@ -1,10 +1,14 @@
-# Plugin Version Bump
+# Plugin Version Bump Detail (Step M2)
 
-For every modified plugin detected by the marketplace path:
+Load when: doing Step M2 and you need the full per-plugin bump procedure, including the marketplace.json type-detection rule.
 
-1. Read `plugins/{name}/.codex-plugin/plugin.json`.
-2. Increment its PATCH version.
-3. Update the matching entry under `.agents/plugins/marketplace.json` when that entry carries a version.
-4. Core entries without a marketplace version update only their local plugin manifest.
+For each modified plugin detected in Step M1:
 
-Read and write JSON structurally. Re-read the final values before preparing the CHANGELOG claim.
+1. Read `plugins/{name}/.codex-plugin/plugin.json`
+2. Increment PATCH version: `X.Y.Z` → `X.Y.(Z+1)`
+3. Write the new version back to `plugin.json`
+
+Then determine plugin type from `marketplace.json`:
+
+- **In `plugins[]` array** → Also update matching `version` field in `marketplace.json`
+- **In `core[]` array** → Only bump `plugin.json` (core entries have no version field)

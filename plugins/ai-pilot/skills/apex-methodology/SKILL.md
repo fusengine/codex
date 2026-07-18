@@ -5,11 +5,11 @@ description: |
   Use for ANY development task: features, bug fixes, refactoring, hotfixes.
   Triggers: "implement", "create", "build", "fix", "add feature", "refactor", "develop".
   Auto-detects project type (Laravel, Next.js, React, Swift) and loads framework-specific references.
-  Enforces: files under 100 lines, interfaces separated, SOLID principles, expert self-review, sniper validation.
+  Enforces: files <100 lines, interfaces separated, SOLID principles, expert self-review, sniper validation.
   Modes: --auto (default), --manual, --skip-elicit
 ---
 
-**Current Task:** Derive the active task from the user's request and current Codex plan.
+**Current Task:** $ARGUMENTS
 
 # APEX Methodology Skill
 
@@ -17,13 +17,15 @@ description: |
 
 Complete development workflow for features, fixes, and refactoring.
 
+> **APEX RULE (non-negotiable):** after ANY code modification via Edit or Write, you MUST immediately spawn the `sniper` agent to validate that change before proceeding — no exceptions.
+
 ---
 
 ## Step 0: Initialize Tracking (MANDATORY FIRST ACTION)
 
 **BEFORE anything else**, initialize APEX tracking — see `references/init-tracking.md` for the exact command.
 
-This creates `.codex/apex/task.json` (documentation consultation status) and `.codex/apex/docs/` (consulted documentation summaries). **The configured Codex hooks can block writes until documentation is consulted.**
+This creates `.codex/apex/task.json` (documentation consultation status) and `.codex/apex/docs/` (consulted documentation summaries). **The PreToolUse hooks will BLOCK Write/Edit until documentation is consulted.**
 
 ---
 
@@ -65,7 +67,7 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 | --- | --- | --- |
 | **00** | `references/00-init-branch.md` | Create feature branch |
 | **01** | `references/01-analyze-code.md` | Explore + Research (APEX A) |
-| **02** | `references/02-features-plan.md` | Codex plan creation (APEX P) |
+| **02** | `references/02-features-plan.md` | update_plan planning (APEX P) |
 | **03** | `references/03-execution.md` | Implementation (APEX E) |
 | **03.5** | `references/03.5-elicit.md` | Expert self-review (APEX L) ← NEW |
 | **04** | `references/04-validation.md` | sniper validation (APEX X) |

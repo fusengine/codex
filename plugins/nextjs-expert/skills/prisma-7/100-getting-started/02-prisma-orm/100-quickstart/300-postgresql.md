@@ -36,7 +36,7 @@ If you don't already have a PostgreSQL database, follow the quickstart to set up
 Install the packages needed for this quickstart:
 
 ```terminal
-npm install prisma @types/node @types/pg --save-dev
+npm install prisma @types/node @types/pg --save-dev 
 npm install @prisma/client @prisma/adapter-pg pg dotenv
 ```
 
@@ -152,7 +152,7 @@ DATABASE_URL="postgresql://username:password@localhost:5432/mydb?schema=public"
 
 Replace the placeholders with your actual database credentials:
 - `username`: Your PostgreSQL username
-- `password`: Your PostgreSQL password
+- `password`: Your PostgreSQL password  
 - `localhost:5432`: Your PostgreSQL host and port
 - `mydb`: Your database name
 

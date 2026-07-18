@@ -333,7 +333,7 @@ Because views are virtual tables, they cannot have indexes. Therefore, `@index` 
 
 While Prisma ORM lets you place `@unique` and `@@unique` attributes on views, the underlying database and Prisma do not enforce those constraints. Multiple rows can therefore share the same value for a supposedly unique field.
 
-Neither the database nor Prisma ORM enforce the unique constraint expressed by that attribute.
+Neither the database nor Prisma ORM enforce the unique constraint expressed by that attribute. 
 
 The purpose of the `@unique` attribute in this case is only to enable relationships across views as well as `findUnique` queries and cursor-based pagination in Prisma Client.
 

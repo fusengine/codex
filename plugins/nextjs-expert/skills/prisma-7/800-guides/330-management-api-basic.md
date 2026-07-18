@@ -10,7 +10,7 @@ community_section: true
 
 ## Overview
 
-This guide walks you through setting up a basic TypeScript project that uses the [Prisma Postgres Management API](/postgres/introduction/management-api) to create a new [Prisma Console project](/platform/about#project) with a [Prisma Postgres](/postgres/introduction/overview) database, and print out all connection details.
+This guide walks you through setting up a basic TypeScript project that uses the [Prisma Postgres Management API](/postgres/introduction/management-api) to create a new [Prisma Console project](/platform/about#project) with a [Prisma Postgres](/postgres/introduction/overview) database, and print out all connection details. 
 
 You'll authenticate via a [service token](/postgres/introduction/management-api#service-tokens), set up your environment, and run a script to interact with the API.
 
@@ -128,7 +128,7 @@ async function main() {
     console.log(`- Created at: ${key.createdAt}`);
     console.log(`- API key: ${key.apiKey}`);
     console.log(`- Prisma Postgres connection string: ${key.connectionString}`);
-
+    
     if (key.ppgDirectConnection) {
       console.log(`- Direct TCP connection: ${key.ppgDirectConnection.host}`);
       console.log(`  - Host: ${key.ppgDirectConnection.host}`);
@@ -159,7 +159,7 @@ npx tsx index.ts
 <cmdResult>
 
 ```code no-copy
-Created project:
+Created project: 
  {
   createdAt: '2025-07-09T11:52:15.341Z',
   id: 'cmcvwftgs00v5zq0vh3kp7pms',

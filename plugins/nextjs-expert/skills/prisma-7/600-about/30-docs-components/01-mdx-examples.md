@@ -350,7 +350,7 @@ Initialized Prisma in your project
 Next, choose how you want to set up your database:
 
 CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in `prisma.config.ts`
+  1. Configure your DATABASE_URL in `prisma.config.ts` 
   2. Run `npx prisma db pull` to introspect your database.
 
 CREATE NEW DATABASE:
@@ -396,7 +396,7 @@ Initialized Prisma in your project
 Next, choose how you want to set up your database:
 
 CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in `prisma.config.ts`
+  1. Configure your DATABASE_URL in `prisma.config.ts` 
   2. Run `npx prisma db pull` to introspect your database.
 
 CREATE NEW DATABASE:
@@ -443,7 +443,7 @@ Initialized Prisma in your project
 Next, choose how you want to set up your database:
 
 CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in `prisma.config.ts`
+  1. Configure your DATABASE_URL in `prisma.config.ts` 
   2. Run `npx prisma db pull` to introspect your database.
 
 CREATE NEW DATABASE:
@@ -489,7 +489,7 @@ Initialized Prisma in your project
 Next, choose how you want to set up your database:
 
 CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in `prisma.config.ts`
+  1. Configure your DATABASE_URL in `prisma.config.ts` 
   2. Run `npx prisma db pull` to introspect your database.
 
 CREATE NEW DATABASE:

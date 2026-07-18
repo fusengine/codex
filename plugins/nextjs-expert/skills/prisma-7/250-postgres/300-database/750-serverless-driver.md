@@ -54,7 +54,7 @@ Install the appropriate package based on your use case:
 <TabItem value="Without Prisma ORM">
 
 ```terminal
-npm install @prisma/ppg
+npm install @prisma/ppg 
 ```
 
 </TabItem>
@@ -327,3 +327,4 @@ try {
 - [`@prisma/ppg` npm package](https://www.npmjs.com/package/@prisma/ppg)
 - [prisma/ppg-client GitHub repository](https://github.com/prisma/ppg-client)
 - [Prisma Postgres documentation](/postgres/introduction)
+

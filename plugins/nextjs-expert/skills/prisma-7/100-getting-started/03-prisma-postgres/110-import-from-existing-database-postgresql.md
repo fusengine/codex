@@ -8,7 +8,7 @@ toc: true
 search: true
 ---
 
-This guide provides step-by-step instructions for importing data from an existing PostgreSQL database into Prisma Postgres.
+This guide provides step-by-step instructions for importing data from an existing PostgreSQL database into Prisma Postgres. 
 
 You can accomplish this migration in three steps:
 
@@ -54,7 +54,7 @@ Save the connection string, you'll need it in step 3.
 
 ## 2. Export data from your existing database
 
-In this step, you're going to export the data from your existing database and store it in a `.bak` file on your local machine.
+In this step, you're going to export the data from your existing database and store it in a `.bak` file on your local machine. 
 
 Make sure to have the connection URL for your existing database ready, it should be [structured](/orm/overview/databases/postgresql#connection-url) like this:
 
@@ -70,7 +70,7 @@ Expand below for provider-specific instructions that help you determine the righ
 <br />
 
 - Make sure to select non-pooled connection string by switching off the **Connection pooling** toggle.
-- The `sslmode` has to be set to `require` and appended to your Neon database url for the command to work.
+- The `sslmode` has to be set to `require` and appended to your Neon database url for the command to work. 
 - The connection URL should look similar to this:
     ```no-copy
     postgresql://USER:PASSWORD@YOUR-NEON-HOST/DATABASE?sslmode=require

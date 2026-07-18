@@ -77,7 +77,7 @@ You'll need to answer a few questions while setting up your Prisma Postgres data
 This will create:
 
 - A `prisma` directory with a `schema.prisma` file.
-- A `prisma.config.ts` file for configuring Prisma
+- A `prisma.config.ts` file for configuring Prisma 
 - A Prisma Postgres database.
 - A `.env` file containing the `DATABASE_URL` at the project root.
 - A schema configuration that specifies where the Prisma Client will be generated (`../app/generated/prisma`).

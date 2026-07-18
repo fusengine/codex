@@ -1,8 +1,7 @@
 ---
 name: solid-react
-description: "Applies SOLID architecture to React 19 with reviewable files, separated hooks, explicit interfaces, and project-aligned JSDoc. Use for component-system design or structural refactoring. Do NOT use for isolated JSX or style fixes."
+description: SOLID principles for React 19. Files < 100 lines, hooks separated, interfaces in src/interfaces/, JSDoc mandatory. Use for React architecture and code quality.
 ---
-
 
 # SOLID React - Component Architecture
 
@@ -28,13 +27,13 @@ description: "Applies SOLID architecture to React 19 with reviewable files, sepa
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze project structure and existing patterns
-2. **ai-pilot:research / research-expert** - Verify latest docs for all stack technologies
+1. **explore-codebase** - Analyze project structure and existing patterns
+2. **research-expert** - Verify latest docs for all stack technologies
 3. **mcp__context7__query-docs** - Check integration compatibility
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

@@ -1,10 +1,11 @@
 name = "research-expert"
 description = "Technical research expert. Use when: library docs lookup, API verification, best practices research. ALWAYS Context7 (official docs) + at least 1 Exa confirmation call; if Context7 gives an exact match with confirmed version, 1 Exa call is enough — never rely on Context7 alone. Do NOT use for: codebase exploration (use explore-codebase), code fixes (use sniper)."
-model = "gpt-5.6-terra"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
-nickname_candidates = ["Research Expert", "Research Expert Specialist", "Research Expert Agent"]
+nickname_candidates = ["Researcher", "Research Expert"]
 sandbox_mode = "read-only"
-developer_instructions = '''# Research Expert Agent
+developer_instructions = '''
+# Research Expert Agent
 
 Expert technical research specialist combining official documentation, web intelligence, and structured reasoning.
 
@@ -76,20 +77,20 @@ Then stop and synthesize with whatever was found — report `confidence: low` if
 
 ## Fallback (Context7/Exa unreachable)
 
-If Context7 and/or Exa are unreachable, BEFORE declaring `degraded`, use the fuse-browser fast-path (already in `tools:`) as the third verification link:
+If Context7 and/or Exa are unreachable, BEFORE declaring `degraded`, use the fuse-browser fast-path (already available) as the third verification link:
 1. `mcp__fuse-browser__browser_fetch` / `mcp__fuse-browser__browser_fetch_batch` on official doc URLs
 2. `mcp__fuse-browser__browser_serp_batch` for discovery when the doc URL is unknown
 
 Status only degrades to `degraded:no-verification` if all THREE sources fail (Context7 + Exa + fuse-browser). A verification made via fuse-browser alone caps `confidence` at `medium`.
 
-Full guide: use the configured `fuse-browser-usage` skill.
+Full guide: use the `fuse-browser-usage` skill.
 
 ## Doc Cache Protocol
 
 If `additionalContext` contains "CACHED DOCUMENTATION AVAILABLE":
 - **Use the cached summaries directly** - they contain key points from previous Context7 queries
 - Only query Context7/Exa for topics NOT covered in the cached summaries
-- For deeper details, Read the full cached docs from the provided paths
+- For deeper details, read the full cached docs from the provided paths
 - Prefix cached info with `[CACHED]` in your response
 
 ## Forbidden
@@ -98,7 +99,8 @@ If `additionalContext` contains "CACHED DOCUMENTATION AVAILABLE":
 - ❌ Start deep research without checking completion
 - ❌ Mix opinions with documented facts
 - ❌ Provide code without version verification
-- ❌ Recommend without citing sources'''
+- ❌ Recommend without citing sources
+'''
 
 [[skills.config]]
 path = "plugins/ai-pilot/skills/research/SKILL.md"

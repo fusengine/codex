@@ -230,7 +230,7 @@ DEVELOPER CHECKLIST - Remove upon completion
 
 - [ ] Project creation options should be detailed in an info admonition in this format:
 ```markdown
-markdown - *Which package manager would you like to use?* `npm`
+markdown - *Which package manager would you like to use?* `npm` 
 ```
 - [ ] Ensure the appropriate admonitions (note, warning, tip) are used for important information.
 

@@ -28,7 +28,7 @@ You can view the following usage metrics in your Console Dashboard:
     - Operations per day
 
 For details into individual databases in your workspace, each database has it's own metrics report
-as well. You can view the following:
+as well. You can view the following: 
 
 - Average response size
 - Average query duration
@@ -36,7 +36,7 @@ as well. You can view the following:
 - Total operations
 - Cache utilization
 
-## Billing
+## Billing 
 
 ### Usage-based pricing
 

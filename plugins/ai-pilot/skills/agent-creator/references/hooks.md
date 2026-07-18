@@ -1,45 +1,110 @@
 ---
 name: hooks
-description: Codex plugin hook configuration notes
-when-to-use: Understanding where hook wiring belongs for Codex plugins
-keywords: hooks, codex, plugin, lifecycle, scripts
-priority: medium
-related: frontmatter.md, architecture.md
+description: Pre/Post tool validation hooks for plugins
 ---
 
-# Codex Plugin Hooks
+# Plugin Hooks
 
 ## Overview
 
-Hooks are plugin configuration, not agent TOML. This skill may describe hook patterns, but do not modify hook files unless the user explicitly asks for hook changes.
+Hooks run scripts before or after tool execution to enforce rules. In Codex they live in the plugin's `hooks/hooks.json` (plugin level) — NOT in the agent `.toml`.
 
 ---
 
-## Location
+## Hook Types
 
-| Item | Location |
-|------|----------|
-| Hook config | `plugins/<plugin>/hooks/hooks.json` |
-| Plugin manifest pointer | `.codex-plugin/plugin.json` field `hooks` |
-| Runtime | `@fusengine/harness` canonical Codex route |
-
----
-
-## Environment
-
-| Variable | Meaning |
-|----------|---------|
-| `PLUGIN_ROOT` | Plugin directory path |
-| `PLUGIN_DATA` | Plugin data directory |
-| `CODEX_HOME` | Codex home directory |
-
-Legacy environment variables are allowed only in migration compatibility code.
+| Type | When | Purpose |
+|------|------|---------|
+| `PreToolUse` | Before tool runs | Validate, block if invalid |
+| `PostToolUse` | After tool runs | Track, analyze, notify |
 
 ---
 
-## Agent Rule
+## hooks.json Configuration
 
-Agent TOML files should reference hook behavior only as prose. They must not embed legacy hook frontmatter.
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/track-reads.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Matcher Patterns
+
+| Pattern | Matches |
+|---------|---------|
+| `Write` | Write tool only |
+| `Write\|Edit` | Write OR Edit |
+| `Read` | Read tool only |
+| `Bash` | Bash tool only |
+
+---
+
+## Common Hooks
+
+### SOLID Validation (PreToolUse)
+
+```json
+{
+  "matcher": "Write|Edit",
+  "hooks": [
+    { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh" }
+  ]
+}
+```
+
+**Purpose**: Check file size, interface location before writing.
+
+### Skill Tracking (PostToolUse)
+
+```json
+{
+  "matcher": "Read",
+  "hooks": [
+    { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/track-skill-read.sh" }
+  ]
+}
+```
+
+**Purpose**: Track which skills are being consulted.
+
+---
+
+## Environment Variables
+
+| Variable | Value |
+|----------|-------|
+| `$PLUGIN_ROOT` | Plugin directory path |
+| `$TOOL_NAME` | Name of tool being used |
+| `$FILE_PATH` | Target file path (if applicable) |
+
+---
+
+## Script Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| Executable | `chmod +x scripts/*.sh` |
+| Exit codes | 0 = success, non-zero = block |
+| Location | `plugins/<name>/scripts/` |
 
 ---
 
@@ -47,12 +112,10 @@ Agent TOML files should reference hook behavior only as prose. They must not emb
 
 | DO | DON'T |
 |----|-------|
-| Keep hooks in `hooks/hooks.json` | Put hooks in agent TOML |
-| Use the registered Harness route | Wire a new direct plugin script |
-| Keep hook scripts fast | Run broad validations on every read |
-| Validate hook config separately | Assume hook wiring works |
+| Use `$PLUGIN_ROOT` | Hard-code paths |
+| Keep scripts fast | Long-running validations |
+| Exit 0 on success | Swallow errors silently |
+| Log issues clearly | Cryptic error messages |
+| Wire hooks in hooks.json | Put hooks in the agent .toml |
 
-The repository gate scans every plugin hook. Every command must match the
-canonical Harness command for its exact plugin/event/matcher route. There is no
-direct-command exception path. A missing runtime behavior belongs in Harness;
-do not bypass it with a plugin script.
+→ See [templates/hook-scripts.md](templates/hook-scripts.md) for script examples

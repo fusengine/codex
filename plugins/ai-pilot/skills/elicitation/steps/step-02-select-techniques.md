@@ -32,7 +32,11 @@ next_step: steps/step-03-apply-review.md
 
 ## YOUR TASK:
 
-Before selecting, apply `.codex/apex/elicit-profile.md` when present using [elicit-profile.md](../references/elicit-profile.md). Then apply `{prior_artifact}`: deselect prior `pass` techniques by default and prioritize `fail` or `deferred` techniques.
+**Before selecting**: if `.codex/apex/elicit-profile.md` exists, apply its
+`Exclude` / `Always Apply` / `Add for Code Type` precedence (see
+`references/elicit-profile.md`) to whatever this step would otherwise select.
+Also apply `{prior_artifact}` from Step 0 if present: deselect `"pass"`
+techniques by default, prioritize `"fail"`/`"deferred"` ones.
 
 ### Mode: MANUAL
 

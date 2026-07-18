@@ -1,15 +1,14 @@
 ---
 name: seo-audit
-description: "Use when running a full-site SEO audit via /seo audit. Covers parallel sub-agent orchestration, business-type detection, SEO Health Score 0-100, prioritized action plan."
+description: Use when running a full-site SEO audit via /seo audit. Covers parallel sub-agent orchestration, business-type detection, SEO Health Score 0-100, prioritized action plan.
 ---
-
 
 # SEO Audit Orchestrator
 
 ## Workflow
 
 1. **Detect business type** from homepage signals (SaaS, local, ecommerce, publisher, agency)
-2. **Spawn sub-agents in parallel** (single message, multiple Agent calls):
+2. **Spawn sub-agents in parallel** (via `spawn_agent`, one per audit domain — dispatch them together):
    - `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, `seo-images`, `seo-sitemap`
 3. **Conditional spawns**:
    - Local business → `seo-local`
@@ -57,4 +56,4 @@ Local (10 pts):      NAP consistent + GBP linked (if applicable)
 ## Related
 
 - Scripts: `parse-meta.ts`, `check-cwv.ts`, `validate-schema.ts`
-- Skills: `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, `seo-images`, `seo-sitemap` (spawned), plus `seo-local` / `seo-cluster` conditionally
+- References: `skills/seo/09-checklists/` (pre-publication, technical audit)

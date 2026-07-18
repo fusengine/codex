@@ -17,6 +17,6 @@ Prisma Postgres comes with Prisma Studio built-in. You can use it in several way
 
 :::note
 
-If you want to use Prisma Studio with another database than Prisma Postgres, check the docs [here](/orm/tools/prisma-studio).
+If you want to use Prisma Studio with another database than Prisma Postgres, check the docs [here](/orm/tools/prisma-studio). 
 
 :::

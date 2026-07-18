@@ -127,7 +127,7 @@ To invalidate cached query results on-demand, a paid plan is required. Each plan
 
 :::
 
-### Example
+### Example 
 
 To invalidate the query below:
 

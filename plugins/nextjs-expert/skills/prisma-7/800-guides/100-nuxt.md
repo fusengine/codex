@@ -22,13 +22,13 @@ Here's what you'll learn:
 
 ## Prerequisites
 
-To follow this guide, ensure you have the following:
+To follow this guide, ensure you have the following:  
 
-- Node.js version: A [compatible Node.js version](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#minimum-supported-nodejs-versions) required for Prisma 6.
-- Accounts:
-  - [GitHub](https://github.com)
-  - [Vercel](https://vercel.com)
-- Basic knowledge of Git and Vercel deployment (helpful but not required).
+- Node.js version: A [compatible Node.js version](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#minimum-supported-nodejs-versions) required for Prisma 6.  
+- Accounts:  
+  - [GitHub](https://github.com)  
+  - [Vercel](https://vercel.com)  
+- Basic knowledge of Git and Vercel deployment (helpful but not required).  
 
 ## 1. Create a New Nuxt Project and install Prisma ORM dependencies
 
@@ -148,7 +148,7 @@ With Prisma configured, the next step is to update your application code to fetc
    </template>
    ```
 
-3. Modify the `app.vue` file in the root directory to include the new server component using Nuxt Islands:
+3. Modify the `app.vue` file in the root directory to include the new server component using Nuxt Islands:  
    ```html file=app.vue
    <template>
      <div>
@@ -157,12 +157,12 @@ With Prisma configured, the next step is to update your application code to fetc
    </template>
    ```
 
-4. Run the following command to start the development server again:
+4. Run the following command to start the development server again:  
    ```terminal
    npm run dev
    ```
-5. Verify the application code is working by opening your application in a browser at `https://localhost:3000`.
-   As there are no users in the database yet, the application will display:
+5. Verify the application code is working by opening your application in a browser at `https://localhost:3000`.  
+   As there are no users in the database yet, the application will display:  
    ```no-copy
    No user has been added yet.
    ```
@@ -279,7 +279,7 @@ Then, find your database credentials in the **Set up database access** section, 
 DATABASE_URL=<your-database-url>
 ```
 
-The `DATABASE_URL` environment variable will be required in the next steps.
+The `DATABASE_URL` environment variable will be required in the next steps. 
 
 ## 7. Set up Prisma Postgres in your Nuxt app
 

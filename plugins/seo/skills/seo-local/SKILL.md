@@ -1,8 +1,7 @@
 ---
 name: seo-local
-description: "Use when optimizing local SEO. Covers Google Business Profile, NAP consistency, citations, reviews acquisition, Local Pack ranking, location pages, LocalBusiness schema."
+description: Use when optimizing local SEO. Covers Google Business Profile, NAP consistency, citations, reviews acquisition, Local Pack ranking, location pages, LocalBusiness schema.
 ---
-
 
 # Local SEO
 
@@ -67,7 +66,8 @@ AI engines (ChatGPT, Perplexity, Gemini) parse LocalBusiness JSON-LD to answer "
 - `sameAs` array (GBP + directories + socials): confirms existence across authoritative sources.
 - LLMs **do cite local businesses** when schema + GBP + reviews are solid.
 
-## Related
+## References
 
 - `seo-schema` — LocalBusiness JSON-LD (`templates/json-ld/localbusiness.json`)
 - `seo-entity` — declare the business entity via sameAs (Wikidata, GBP)
+- `skills/seo/10-local-seo/` (gbp, nap-citations, reviews, local-pack, landing-pages, local-backlinks)

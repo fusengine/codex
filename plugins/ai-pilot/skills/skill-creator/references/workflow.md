@@ -19,12 +19,12 @@ Simple 3-step process: Research → Create → Validate
 
 ## Step 1: Research (MANDATORY)
 
-Use available Codex subagents/tools before writing any file when they materially help:
+**Launch ALL 3 in parallel BEFORE writing any file:**
 
 | Agent/Tool | Purpose | Required |
 |------------|---------|----------|
-| **ai-pilot:exploration / explore-codebase** | Check existing skills, analyze structure | ✅ YES |
-| **ai-pilot:research / research-expert** | Fetch latest official documentation | ✅ YES |
+| **explore-codebase** | Check existing skills, analyze structure | ✅ YES |
+| **research-expert** | Fetch latest official documentation | ✅ YES |
 | **mcp__context7__query-docs** | Get code examples from official sources | ✅ YES |
 
 ### What to Gather
@@ -57,7 +57,7 @@ Use available Codex subagents/tools before writing any file when they materially
 
 ## Step 3: Validate
 
-Run **ai-pilot:sniper-check / sniper** to verify:
+Run **sniper** to verify:
 
 | Check | Requirement |
 |-------|-------------|

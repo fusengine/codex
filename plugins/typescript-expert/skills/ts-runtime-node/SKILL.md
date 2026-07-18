@@ -1,19 +1,21 @@
 ---
 name: ts-runtime-node
-description: Use when running TypeScript directly on Node.js without a build step — native type stripping, its limits, when to reach for tsx, ESM setup, watch mode, and node:test. Covers Node 24 LTS. Do NOT use for Bun runtime specifics (ts-runtime-bun) or tsconfig details (ts-config).
+description: "Use when running TypeScript directly on Node.js without a build step — native type stripping, its limits, when to reach for tsx, ESM setup, watch mode, and node:test. Covers Node 24 LTS. Do NOT use for Bun runtime specifics (ts-runtime-bun) or tsconfig details (ts-config)."
 ---
 
 # TypeScript on Node.js
 
+_Targets: node 24 LTS, typescript 5.8+ (latest stable 6.0), tsx 4.x._
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Inspect existing `package.json`, `tsconfig.json`, entry scripts
-2. **ai-pilot:research / research-expert** - Verify latest Node LTS + type-stripping behavior via Context7/Exa/fuse-browser
-3. **mcp__context7__query-docs** - Check Node `Modules: TypeScript` and CLI flag docs
+1. `explore-codebase` - Inspect existing `package.json`, `tsconfig.json`, entry scripts
+2. `research-expert` - Verify latest Node LTS + type-stripping behavior via Context7/Exa
+3. `mcp__context7__query-docs` - Check Node `Modules: TypeScript` and CLI flag docs
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ## Use when
 
@@ -79,19 +81,3 @@ project/
 - Assume `tsconfig` `paths` or `target` downleveling work at runtime — they don't
 - Publish `.ts` files inside `node_modules` — Node refuses to strip them
 - Rely on native stripping for decorators (TC39 Stage 3, not transformed)
-
-## References
-
-- [references/type-stripping.md](references/type-stripping.md)
-- [references/tsx-when-needed.md](references/tsx-when-needed.md)
-- [references/node24-features.md](references/node24-features.md)
-- [references/templates/node-esm-setup.md](references/templates/node-esm-setup.md)
-
-## Related skills
-
-`ts-runtime-bun`, `ts-lint-format`, `solid-generic`.
-
-## Skill routing metadata
-
-references: references/type-stripping.md, references/tsx-when-needed.md, references/node24-features.md, references/templates/node-esm-setup.md
-related-skills: ts-runtime-bun, ts-lint-format, solid-generic

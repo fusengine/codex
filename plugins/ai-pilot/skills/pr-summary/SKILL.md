@@ -3,18 +3,20 @@ name: pr-summary
 description: Summarize current pull request with diff, comments, and changed files. Use when reviewing PRs or before merging.
 ---
 
+Runs in a forked subagent context (spawn_agent) via the `explore-codebase` agent. The PR number is passed as the skill argument.
+
 # PR Summary Skill
 
 Summarize the current pull request.
 
-Suggested Codex agent: `explore-codebase`.
-
 ## Pull Request Context
 
-- **PR diff:** !`gh pr diff`
-- **PR comments:** !`gh pr view --comments`
-- **Changed files:** !`gh pr diff --name-only`
-- **PR status:** !`gh pr status`
+Gather the context by running:
+
+- **PR diff:** `gh pr diff`
+- **PR comments:** `gh pr view --comments`
+- **Changed files:** `gh pr diff --name-only`
+- **PR status:** `gh pr status`
 
 ## Task
 
@@ -46,5 +48,5 @@ Analyze this pull request and provide:
 
 ## Debug
 
-- Session: current Codex thread
-- Timestamp: !`date +%Y-%m-%d_%H:%M:%S`
+- Session: the current session id
+- Timestamp: run `date +%Y-%m-%d_%H:%M:%S`

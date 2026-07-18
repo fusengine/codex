@@ -1,14 +1,13 @@
 ---
 name: seo-page
-description: "Use when analyzing a single page via /seo page. Covers meta extraction, schema validation, header hierarchy, content quality, and GEO readiness for one URL or local file."
+description: Use when analyzing a single page via /seo page. Covers meta extraction, schema validation, header hierarchy, content quality, and GEO readiness for one URL or local file.
 ---
-
 
 # Single-Page SEO Analysis
 
 ## Workflow
 
-1. Fetch page (URL via fuse-browser/Exa, or read local file)
+1. Fetch the page — a remote URL over the network, or read a local file
 2. Run `scripts/parse-meta.ts <input>` → extract title, description, OG, Twitter, canonical
 3. Run `scripts/validate-schema.ts <input>` → JSON-LD validation
 4. Analyze H1-H6 hierarchy
@@ -29,9 +28,7 @@ description: "Use when analyzing a single page via /seo page. Covers meta extrac
 | Schema | At least one JSON-LD block, validates against schema.org |
 | Images | All have alt, lazy-loaded, WebP/AVIF |
 
-## Related Skills
+## References
 
-- `seo-schema` — JSON-LD detect/validate/generate
-- `seo-images` — alt text, formats, lazy loading
-- `seo-featured-snippets` — position 0 / AI Overviews structure
-- `seo-geo` — LLM-readiness scoring
+- `skills/seo/02-onpage-seo/` (meta-tags, open-graph, twitter-cards, headers, alt-text)
+- `skills/seo/09-checklists/pre-publication.md`

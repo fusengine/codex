@@ -127,4 +127,4 @@ These anti-patterns overlap with SOLID principles enforced by framework skills:
 | **DIP** (Dependency Inversion) | #7, #8 - Direct coupling to fetch/DOM APIs |
 | **ISP** (Interface Segregation) | #5 - Fat callback props instead of focused ones |
 
-**Cross-reference**: `fuse-nextjs:solid-nextjs`, `fuse-react:solid-react` for architecture rules.
+**Cross-reference**: `solid-nextjs`, `solid-react` for architecture rules.

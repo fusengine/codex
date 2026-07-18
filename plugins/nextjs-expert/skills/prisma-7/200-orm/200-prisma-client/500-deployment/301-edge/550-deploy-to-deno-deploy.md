@@ -19,7 +19,7 @@ generator client {
   provider   = "prisma-client-js" // or "prisma-client"
   engineType = "client"
 }
-```
+``` 
 
 Prisma ORM without Rust binaries has been [Generally Available](/orm/more/releases#generally-available-ga) since [v6.16.0](https://pris.ly/release/6.16.0).
 
@@ -30,7 +30,7 @@ When using this architecture:
 - No Rust query engine binary is downloaded or shipped.
 - The database connection pool is maintained by the native JS database driver you install (e.g., `@prisma/adapter-pg` for PostgreSQL).
 
-This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine).
+This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine). 
 
 Curious why we moved away from the Rust engine? Take a look at why we transitioned from Rust binary engines to an all-TypeScript approach for a faster, lighter Prisma ORM in this [blog post](https://www.prisma.io/blog/prisma-orm-without-rust-latest-performance-benchmarks).
 
@@ -228,7 +228,7 @@ Use the GitHub repository to add your application to Deno Deploy:
 1. Select `index.ts` as the entry point to your project.
 1. Click `Create & Deploy`.
 
-The deployment should fail as you have to add the `DATABASE_URL` environment variable.
+The deployment should fail as you have to add the `DATABASE_URL` environment variable. 
 
 Locate and navigate to the settings for the project.
 
@@ -236,7 +236,7 @@ Locate and navigate to the settings for the project.
    1. For **KEY**, enter `DATABASE_URL`.
    1. For **VALUE**, paste the database connection string.
 1. Click **Save**.<br />
-
+   
 You have to add some code and create another commit to trigger a re-dployment.
 
 Add the following code in your `index.ts` file:
@@ -282,7 +282,7 @@ serve(handler);
 Commit the new changes:
 
 ```terminal
-git add .
+git add . 
 git commit -m "add log"
 git push origin main
 ```

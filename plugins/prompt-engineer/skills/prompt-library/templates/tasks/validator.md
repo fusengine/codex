@@ -1,8 +1,8 @@
 ---
 name: validator
 description: Data validator for form inputs, financial data, and product catalogs. Use when validating user input, data imports, or quality checks.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read
 skills: data-validation
 ---
 

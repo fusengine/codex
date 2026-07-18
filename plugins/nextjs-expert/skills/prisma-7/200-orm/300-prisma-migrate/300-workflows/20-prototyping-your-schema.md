@@ -56,11 +56,11 @@ The following scenario demonstrates how to use `db push` to synchronize a new sc
       provider = "prisma-client"
       output   = "./generated"
     }
-
+    
     datasource db {
       provider = "postgresql"
     }
-
+    
     model User {
       id       Int      @id @default(autoincrement())
       name     String
@@ -68,14 +68,14 @@ The following scenario demonstrates how to use `db push` to synchronize a new sc
       posts    Post[]
       profile  Profile?
     }
-
+    
     model Profile {
       id       Int    @id @default(autoincrement())
       biograpy String // Intentional typo!
       userId   Int    @unique
       user     User   @relation(fields: [userId], references: [id])
     }
-
+    
     model Post {
       id         Int        @id @default(autoincrement())
       title      String
@@ -85,12 +85,12 @@ The following scenario demonstrates how to use `db push` to synchronize a new sc
       author     User       @relation(fields: [authorId], references: [id])
       categories Category[]
     }
-
+    
     model Category {
       id    Int    @id @default(autoincrement())
       name  String @db.VarChar(50)
       posts Post[]
-
+    
       @@unique([name])
     }
     ```
@@ -122,7 +122,7 @@ The following scenario demonstrates how to use `db push` to synchronize a new sc
 
     ```prisma highlight=6;add
     // ... //
-
+    
     model Post {
       id          Int        @id @default(autoincrement())
       title       String
@@ -134,7 +134,7 @@ The following scenario demonstrates how to use `db push` to synchronize a new sc
       author      User       @relation(fields: [authorId], references: [id])
       categories  Category[]
     }
-
+    
     // ... //
     ```
 
@@ -179,11 +179,11 @@ The following scenario demonstrates how to use `db push` to prototype a change t
      provider = "prisma-client"
      output   = "./generated"
    }
-
+   
    datasource db {
      provider = "postgresql"
    }
-
+   
    model User {
      id       Int      @id @default(autoincrement())
      name     String
@@ -191,14 +191,14 @@ The following scenario demonstrates how to use `db push` to prototype a change t
      posts    Post[]
      profile  Profile?
    }
-
+   
    model Profile {
      id       Int    @id @default(autoincrement())
      biograpy String // Intentional typo!
      userId   Int    @unique
      user     User   @relation(fields: [userId], references: [id])
    }
-
+   
    model Post {
      id         Int        @id @default(autoincrement())
      title      String
@@ -208,12 +208,12 @@ The following scenario demonstrates how to use `db push` to prototype a change t
      author     User       @relation(fields: [authorId], references: [id])
      categories Category[]
    }
-
+   
    model Category {
      id    Int    @id @default(autoincrement())
      name  String @db.VarChar(50)
      posts Post[]
-
+   
      @@unique([name])
    }
    ```

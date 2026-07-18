@@ -11,7 +11,7 @@ related: artisan.md, container.md
 
 ## Overview
 
-Laravel MCP integrates with the Model Context Protocol, allowing AI clients (Codex, ChatGPT) to interact with your application via servers, tools, resources, and prompts.
+Laravel MCP integrates with the Model Context Protocol, allowing AI clients (Claude, ChatGPT) to interact with your application via servers, tools, resources, and prompts.
 
 ## Core Components
 

@@ -12,7 +12,7 @@ slugSwitch: /orm/more/upgrade-guides/upgrade-from-prisma-1/schema-incompatibilit
 This guide explains common schema incompatibility issues you may encounter when upgrading from Prisma 1 to Prisma ORM (v2+) with PostgreSQL, and how to address them.
 :::
 
-
+ 
 ## Overview
 
 Each section on this page describes a potential problem when upgrading from Prisma 1 to Prisma ORM 2._x_ and later and explains the available workarounds.

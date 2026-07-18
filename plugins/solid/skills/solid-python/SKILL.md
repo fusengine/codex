@@ -1,18 +1,17 @@
 ---
 name: solid-python
-description: "SOLID principles for Python 3.12+ with files under 100 lines, separated interfaces, Protocol contracts, and mandatory modular architecture. Use when writing or refactoring Python code or feature modules. Do NOT use for stack detection."
+description: "SOLID principles for Python 3.12+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Python code, structuring modules/[feature]/ layers, or defining Protocol-based interfaces."
 ---
-
 
 # SOLID Python - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Python docs via Context7
-3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Python docs via Context7
+3. **sniper** - Post-implementation validation
 
 ---
 

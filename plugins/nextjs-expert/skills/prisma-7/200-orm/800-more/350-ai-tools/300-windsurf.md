@@ -11,8 +11,8 @@ community_section: true
 
 This guide provides detailed instructions for effectively using Prisma with Windsurf to:
 
-- Define project-specific best practices with `.windsurfrules`.
-- Use Windsurf's context-aware capabilities.
+- Define project-specific best practices with `.windsurfrules`.  
+- Use Windsurf's context-aware capabilities.  
 - Generate schemas, queries, and seed data tailored to your database.
 
 :::note
@@ -23,7 +23,7 @@ While this guide is focused on Windsurf, these patterns should work with any AI 
 
 ## Prisma MCP server
 
-Prisma provides its own [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server that lets you manage Prisma Postgres databases, model database schemas, and even chat through migrations.
+Prisma provides its own [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server that lets you manage Prisma Postgres databases, model database schemas, and even chat through migrations. 
 
 ### Add Prisma MCP server via Windsurf Plugins
 
@@ -68,7 +68,7 @@ Nomenclature
   - isLoading, hasError, canDelete
 - Use complete words, avoiding unnecessary abbreviations.
   - Exceptions: standard abbreviations like API, URL
-  - Accepted short forms:
+  - Accepted short forms: 
     - i, j for loop indices
     - err for errors
     - ctx for contexts
@@ -178,8 +178,8 @@ Windsurf comes with built-in knowledge of common libraries, but you can further 
 
 For example, you might reference:
 
-- [Prisma Changelog](https://www.prisma.io/changelog)
-- [Prisma Blog](https://www.prisma.io/blog)
+- [Prisma Changelog](https://www.prisma.io/changelog)  
+- [Prisma Blog](https://www.prisma.io/blog)  
 - [Prisma Documentation](/)
 
 #### Reference the resource in your requests:
@@ -192,15 +192,15 @@ Generate a migration script using best practices from prisma.io/docs.
 
 #### Request persistent awareness:
 
-Ask Windsurf to always consider a specific resource for all Prisma-related work in your project.
+Ask Windsurf to always consider a specific resource for all Prisma-related work in your project.  
 
 ```terminal
 Always use the Prisma Changelog at prisma.io/changelog for Prisma updates in this project.
 ```
 
-#### Ask for regular updates:
+#### Ask for regular updates:  
 
-If you want Windsurf to check for updates or new features, explicitly request it.
+If you want Windsurf to check for updates or new features, explicitly request it.  
 
 ```terminal
 Before suggesting Prisma code, check the latest changes from prisma.io/changelog.
@@ -571,5 +571,6 @@ Beyond managing your database instances, the Prisma VS Code extension embeds Pri
 
 Using Windsurf with Prisma can speed up development while ensuring clean and maintainable database code. To keep learning:
 
-- [Windsurf Documentation](https://docs.windsurf.com/windsurf/getting-started)
-- [Prisma Documentation](/)
+- [Windsurf Documentation](https://docs.windsurf.com/windsurf/getting-started)  
+- [Prisma Documentation](/)  
+

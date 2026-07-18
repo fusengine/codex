@@ -17,18 +17,29 @@ next_step: references/03-execution.md
 
 ---
 
-## Codex Plan
+## Plan Creation (update_plan)
 
 ### Create Task Breakdown
 
 ```text
-Use `update_plan` to create:
+Call the `update_plan` tool with:
+- plan (required): the ordered array of items, each item EXACTLY { step, status } where
+  status is "pending" | "in_progress" | "completed" (no id, no priority — those 2 keys only)
+- explanation (optional): a short note on the plan or the change you just made
+
+Content of each step:
 1. Ordered list of implementation steps
 2. Each step <100 lines of code
 3. Clear acceptance criteria
-4. Dependencies stated explicitly in the ordered step text
-Use `update_plan` to track `pending`, `in_progress`, and `completed` statuses.
+4. Dependencies between steps (note them in the step text)
 ```
+
+`update_plan` REPLACES the whole plan on every call — always resend the FULL array with
+the updated statuses (there is no per-item merge, no separate read tool: the current plan
+is whatever you last sent). Usage rules: at most ONE item `in_progress` at a time; never
+jump a step from `pending` straight to `completed` (set it `in_progress` first); no
+batch-completing several steps at once; end the turn with every item `completed` (or the
+plan explicitly abandoned). Skip `update_plan` entirely for a trivial single-step task.
 
 ### Task Structure
 
@@ -202,13 +213,24 @@ tests
 ## Validation Checklist
 
 ```text
-□ Codex plan created
+□ update_plan plan created
 □ All tasks <100 lines each
 □ Interfaces planned FIRST
 □ File splits pre-planned
 □ Dependencies mapped
 □ Risks identified
 □ Total scope reasonable
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "features-plan" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

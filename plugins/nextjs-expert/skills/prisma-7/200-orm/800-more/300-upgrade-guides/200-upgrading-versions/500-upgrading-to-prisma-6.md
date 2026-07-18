@@ -86,7 +86,7 @@ The new minimum supported TypeScript version for Prisma ORM v6 is: **5.1.0**.
 
 :::info
 
-This schema change only applies to PostgreSQL.
+This schema change only applies to PostgreSQL.  
 If you are using CockroachDB, you do not need to take any action—the schema for implicit m-to-n relationships remains unchanged.
 
 :::
@@ -126,7 +126,7 @@ CREATE TABLE "_PostToTag" (
 );
 
 -- CreateIndex
--- highlight-next-line
+-- highlight-next-line 
 CREATE UNIQUE INDEX "_PostToTag_AB_unique" ON "_PostToTag"("A", "B");
 
 -- CreateIndex
@@ -147,7 +147,7 @@ CREATE TABLE "_PostToTag" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL,
 
-    -- highlight-next-line
+    -- highlight-next-line 
     CONSTRAINT "_PostToTag_AB_pkey" PRIMARY KEY ("A","B")
 );
 
@@ -380,7 +380,7 @@ try {
     error.code === 'P2025' // Specific code for "record not found"
   ) {
     console.error("User not found!");
-  }
+  } 
   // highlight-end
   else {
     console.error("Unexpected error:", error);

@@ -189,7 +189,7 @@ To change the direction of a 1-1 relation:
      profile   Profile? @relation(fields: [profileId], references: [id])
      profileId Int      @unique
    }
-
+   
    model Profile {
      id        Int    @id @default(autoincrement())
      biography String

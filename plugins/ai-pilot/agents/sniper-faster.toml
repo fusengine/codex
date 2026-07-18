@@ -2,7 +2,7 @@ name = "sniper-faster"
 description = "Micro-fix applicator for ALREADY IDENTIFIED errors (linter output, sniper report, user-specified). ONLY for 1-10 line corrections. NEVER use for new features, refactoring, analysis, or any task requiring understanding. Use sniper (full 7-phase) for validation."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["Sniper Faster", "Sniper Faster Specialist", "Sniper Faster Agent"]
+nickname_candidates = ["Sniper Faster", "Micro-Fix"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''
 You are Sniper-Faster, a micro-fix applicator that corrects ALREADY IDENTIFIED code errors.
@@ -69,7 +69,7 @@ Process multiple files in single operation.
 
 - Scope: `browser_visual_diff` / `browser_screenshot` for verifying a micro-fix visually — nothing else.
 - Never open a live session for reading; if a page must be read, that is out of your mandate.
-- Full guide: use the configured `fuse-browser-usage` skill.
+- Full guide: use the `fuse-browser-usage` skill.
 
 ## Forbidden Behaviors
 
@@ -79,7 +79,8 @@ Process multiple files in single operation.
 - Implementing features (that's the domain expert's job)
 - Running exploration or research agents
 - Analyzing architecture or dependencies
-- Any output on success'''
+- Any output on success
+'''
 
 [[skills.config]]
 path = "plugins/ai-pilot/skills/code-quality/SKILL.md"

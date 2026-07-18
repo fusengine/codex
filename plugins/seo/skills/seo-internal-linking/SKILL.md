@@ -1,8 +1,7 @@
 ---
 name: seo-internal-linking
-description: "Use when designing internal linking strategy. Covers pillar/cluster architecture, anchor text optimization, link distribution, orphan page detection, click depth, broken link audit."
+description: Use when designing internal linking strategy. Covers pillar/cluster architecture, anchor text optimization, link distribution, orphan page detection, click depth, broken link audit.
 ---
-
 
 # Internal Linking
 
@@ -19,13 +18,6 @@ description: "Use when designing internal linking strategy. Covers pillar/cluste
 - ✅ Descriptive, varied, natural ("learn how to validate JSON-LD")
 - ❌ Generic ("click here", "read more")
 - ❌ Over-optimized exact match (looks spammy, can trigger penalties)
-
-## Audits
-
-- **Orphan pages**: pages with 0 internal incoming links
-- **Click depth**: every page reachable in ≤ 3 clicks from homepage
-- **Link distribution**: no page concentrates >10% of internal links
-- **Broken internal links**: 404s within site
 
 ## Local vs Global Architecture (2026)
 
@@ -48,6 +40,13 @@ Link mesh:
 ### Doorway pages — quality, not a number
 
 Doorway risk is a quality judgement, not an absolute page-count threshold. One local page per documented presence/service area, each differentiable on **>= 3-4 dimensions** (local testimonials, local FAQ, geo context, area-specific services/hours). Risk signal: **70-90% identical content** across local pages (templated city-name swap) → near-duplicate suppression.
+
+## Audits
+
+- **Orphan pages**: pages with 0 internal incoming links
+- **Click depth**: every page reachable in ≤ 3 clicks from homepage
+- **Link distribution**: no page concentrates >10% of internal links
+- **Broken internal links**: 404s within site
 
 ## Workflow
 

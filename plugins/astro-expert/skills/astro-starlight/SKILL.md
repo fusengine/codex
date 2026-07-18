@@ -5,17 +5,19 @@ description: Astro Starlight documentation theme — setup, sidebar config, Page
 
 # Astro Starlight
 
+> Targets: Astro 7, Starlight 0.41+.
+
 Production-ready documentation theme for Astro with built-in search, dark mode, i18n, and rich plugin ecosystem.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing Starlight config, sidebar, and content structure
-2. **ai-pilot:research / research-expert** - Verify Starlight plugin APIs via Context7/Exa
-3. **mcp__context7__query-docs** - Check Starlight docs for Content Layer and i18n patterns
+1. **explore-codebase** - Analyze existing Starlight config, sidebar, and content structure
+2. **research-expert** - Verify Starlight plugin APIs via Context7/Exa
+3. **Context7 (official docs)** - Check Starlight docs for Content Layer and i18n patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -38,7 +40,7 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 | Dark/light mode | Automatic, CSS custom properties |
 | Sidebar config | Filesystem-based or manual groups |
 | Plugin ecosystem | DocSearch, blog, openapi, typedoc |
-| Content Layer API | Astro 6 content collections integration |
+| Content Layer API | Astro 7 content collections integration |
 | llms.txt support | `starlight-llms-txt` for AI discoverability |
 
 ---
@@ -73,24 +75,3 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 3. **Use `starlight-llms-txt`** - AI crawlers increasingly important for docs
 4. **Content Layer schema** - Type-safe frontmatter prevents runtime errors
 5. **CSS custom properties** - Override theme without component slots
-
-## References
-
-- [references/setup.md](references/setup.md)
-- [references/sidebar-config.md](references/sidebar-config.md)
-- [references/search.md](references/search.md)
-- [references/plugins.md](references/plugins.md)
-- [references/i18n-multilang.md](references/i18n-multilang.md)
-- [references/content-layer.md](references/content-layer.md)
-- [references/customization.md](references/customization.md)
-- [references/templates/starlight-config.md](references/templates/starlight-config.md)
-- [references/templates/sidebar-example.md](references/templates/sidebar-example.md)
-
-## Related skills
-
-`astro-6`, `astro-content`, `astro-i18n`, `astro-seo`.
-
-## Skill routing metadata
-
-references: references/setup.md, references/sidebar-config.md, references/search.md, references/plugins.md, references/i18n-multilang.md, references/content-layer.md, references/customization.md, references/templates/starlight-config.md, references/templates/sidebar-example.md
-related-skills: astro-6, astro-content, astro-i18n, astro-seo

@@ -122,5 +122,5 @@ The 78% compilation time reduction demonstrated here scales exponentially with s
 
 ## Benchmark
 
-The complete benchmark code and test cases used to verify this analysis are available in the ts-bench repository:
+The complete benchmark code and test cases used to verify this analysis are available in the ts-bench repository:  
 https://github.com/ToyB0x/ts-bench/pull/211

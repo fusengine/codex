@@ -3,18 +3,19 @@ name: laravel-testing
 description: "Write tests with Pest 4/PHPUnit 12, feature tests, unit tests, mocking, fakes, and factories. Use when testing controllers, services, models, or implementing TDD on Laravel 13."
 ---
 
-
 # Laravel Testing
+
+_Targets: laravel 13.0, pest 4.0, phpunit 12.0, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing test patterns
-2. **ai-pilot:research / research-expert** - Verify Pest/PHPUnit docs via Context7
-3. **mcp__context7__query-docs** - Check assertion and mocking patterns
+1. `explore-codebase` - Analyze existing test patterns
+2. `research-expert` - Verify Pest/PHPUnit docs via Context7
+3. `mcp__context7__query-docs` - Check assertion and mocking patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -193,15 +194,15 @@ php artisan test
 ## Laravel 13 Notes
 
 ### PHPUnit 12 + Pest 4
-Laravel 13 exige **PHPUnit 12** et supporte **Pest 4**. Les attributs PHP remplacent les annotations docblock.
+Laravel 13 requires **PHPUnit 12** and supports **Pest 4**. PHP attributes replace docblock annotations.
 
 ```php
 use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Foundation\Testing\Attributes\Seed;
 use Illuminate\Foundation\Testing\Attributes\Seeder;
 
-#[Seed]                          // exécute DatabaseSeeder
-#[Seeder(UserSeeder::class)]     // exécute un seeder ciblé
+#[Seed]                          // runs DatabaseSeeder
+#[Seeder(UserSeeder::class)]     // runs a targeted seeder
 final class UserTest extends TestCase
 {
     #[Test]
@@ -210,9 +211,9 @@ final class UserTest extends TestCase
 ```
 
 ### Str cache reset
-Laravel 13 réinitialise automatiquement les caches `Str` (random, slug) entre tests pour éviter le state leak. Aucun setup manuel requis.
+Laravel 13 automatically resets `Str` caches (random, slug) between tests to avoid state leak. No manual setup required.
 
-### Migration depuis Pest 3
-- `pest --init` regénère `Pest.php` avec la nouvelle API
-- Datasets supportent désormais les générateurs natifs PHP
-- `expect()->toBeInstanceOf()` → typage strict requis
+### Migration from Pest 3
+- `pest --init` regenerates `Pest.php` with the new API
+- Datasets now support native PHP generators
+- `expect()->toBeInstanceOf()` → strict typing required

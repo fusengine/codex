@@ -29,7 +29,7 @@ Relational database connectors use Prisma ORM's own connection pool, and the Mon
 
 ## Relational databases
 
-Starting with Prisma ORM v7, relational datasources instantiate Prisma Client with [driver adapters](/orm/overview/databases/database-drivers) by default. Driver adapters rely on the Node.js driver you supply, so connection pooling defaults (and configuration) now come from the driver itself.
+Starting with Prisma ORM v7, relational datasources instantiate Prisma Client with [driver adapters](/orm/overview/databases/database-drivers) by default. Driver adapters rely on the Node.js driver you supply, so connection pooling defaults (and configuration) now come from the driver itself. 
 
 Use the tables below to translate Prisma ORM v6 connection URL parameters to the Prisma ORM v7 driver adapter fields alongside their defaults.
 
@@ -287,3 +287,4 @@ datasource db {
 ```
 
 You can choose to [disable the connection pool timeout if queries **must** remain in the queue](/orm/prisma-client/setup-and-configuration/databases-connections#disabling-the-pool-timeout) - for example, if you are importing a large number of records in parallel and are confident that the queue will not use up all available RAM before the job is complete.
+

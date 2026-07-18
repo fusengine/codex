@@ -78,7 +78,7 @@ You will need to create the down migration first, before creating the correspond
      authorId Int
    }
    //add-start
-
+   
    model Profile {
      id     Int     @id @default(autoincrement())
      bio    String?
@@ -86,7 +86,7 @@ You will need to create the down migration first, before creating the correspond
      userId Int     @unique
    }
    //add-end
-
+   
    model User {
      id      Int      @id @default(autoincrement())
      name    String?

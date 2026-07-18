@@ -1,76 +1,78 @@
 ---
 name: required-sections
-description: Mandatory content sections for Codex agent developer instructions
-when-to-use: Writing agent behavior after TOML metadata
-keywords: sections, mandatory, workflow, skills, solid, output
-priority: high
-related: frontmatter.md, architecture.md
+description: Mandatory content sections for agent files
 ---
 
 # Required Sections
 
 ## Overview
 
-Every agent should keep its operational contract inside `developer_instructions`.
+Every agent's `developer_instructions` body must include these sections.
 
 ---
 
 ## Section Order
 
-1. Agent Workflow
-2. Skills Usage
-3. Stack or Domain Rules
+1. Agent Workflow (MANDATORY)
+2. MANDATORY SKILLS USAGE
+3. SOLID Rules
 4. Local Documentation
-5. Output Format
-6. Forbidden Patterns
+5. Quick Reference
+6. Gemini Design (UI agents only)
+7. Forbidden Patterns
 
 ---
 
-## 1. Agent Workflow
+## 1. Agent Workflow (MANDATORY)
 
 ```markdown
 ## Agent Workflow (MANDATORY)
 
-Use available Codex subagents when they materially help:
+Before ANY implementation, spawn 3 subagents in parallel (one dispatch, `spawn_agent` / MultiAgentV2):
 
-1. explore-codebase - Analyze local patterns
-2. research-expert - Verify latest docs via Context7/Exa/fuse-browser
-3. Direct MCP calls - Use Context7/Exa/fuse-browser when exposed
+1. **explore-codebase** - Analyze [domain] patterns
+2. **research-expert** - Verify latest [tech] docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check [specific] patterns (direct MCP call)
 
-Close spawned subagents after final status is reviewed and integrated.
-After implementation, run sniper or the focused project validation.
+After implementation, run **sniper** for validation.
 ```
 
 ---
 
-## 2. Skills Usage
+## 2. MANDATORY SKILLS USAGE
 
 ```markdown
-## Skills Usage
+## MANDATORY SKILLS USAGE (CRITICAL)
 
-Load the relevant skill before acting:
+**You MUST use your skills for EVERY task.**
 
 | Task | Required Skill |
 |------|----------------|
-| Architecture | solid-[stack] |
-| Framework behavior | framework skill |
-| Validation | code-quality or sniper-check |
+| Architecture | `solid-[stack]` |
+| [Domain A] | `skill-a` |
+| [Domain B] | `skill-b` |
+
+**Workflow:**
+1. Identify the task domain
+2. Load the corresponding skill(s)
+3. Follow skill documentation strictly
 ```
 
 ---
 
-## 3. Stack or Domain Rules
+## 3. SOLID Rules
 
 ```markdown
-## SOLID Rules
+## SOLID Rules (MANDATORY)
 
-See `solid-[stack]` for complete rules.
+**See the `solid-[stack]` skill for complete rules.**
 
 | Rule | Requirement |
 |------|-------------|
-| Files | Keep focused; split large files |
-| Interfaces | Use stack-specific interface location |
-| Validation | Run focused checks after changes |
+| Files | < 100 lines (split at 90) |
+| Interfaces | `[location]` ONLY |
+| Documentation | JSDoc on every function |
+| Validation | `sniper` after changes |
 ```
 
 ---
@@ -78,39 +80,55 @@ See `solid-[stack]` for complete rules.
 ## 4. Local Documentation
 
 ```markdown
-## Local Documentation
+## Local Documentation (PRIORITY)
 
-Check local skills first:
+**Check local skills first before Context7:**
 
 ```
-skills/[skill-a]/
-skills/[skill-b]/
+skills/[skill-a]/       # Description
+skills/[skill-b]/       # Description
 ```
 ```
 
 ---
 
-## 5. Output Format
+## 5. Quick Reference
 
 ```markdown
-## Output Format
+## Quick Reference
 
-status: pass | fail | degraded
-files_changed: []
-errors_remaining: []
-sources_verified: []
+### [Domain A]
+
+| Feature | Documentation |
+|---------|---------------|
+| Feature 1 | `skill-a/references/` |
 ```
 
 ---
 
-## 6. Forbidden Patterns
+## 6. Gemini Design (UI Agents)
+
+```markdown
+## GEMINI DESIGN MCP (MANDATORY FOR ALL UI)
+
+**NEVER write UI code yourself. ALWAYS use Gemini Design MCP.**
+
+| Tool | Usage |
+|------|-------|
+| `create_frontend` | Complete views |
+| `modify_frontend` | Surgical changes |
+| `snippet_frontend` | Isolated components |
+```
+
+---
+
+## 7. Forbidden Patterns
 
 ```markdown
 ## Forbidden
 
-- Do not mention legacy primitives.
-- Do not use non-Codex subagent calls.
-- Do not leave completed spawned subagents open.
-- Do not edit hooks unless explicitly requested.
-- Do not report success without validation evidence.
+- **Using emojis as icons** - Use Lucide React only
+- **[Anti-pattern]** - [Alternative]
 ```
+
+→ See [templates/agent-template.md](templates/agent-template.md) for complete example

@@ -139,7 +139,7 @@ To pass arguments to your TypedSQL queries, you can use parameterized queries. T
    </TabbedContent>
 
    :::note
-
+   
    See below for information on how to [define argument types in your SQL files](#defining-argument-types-in-your-sql-files).
 
    :::

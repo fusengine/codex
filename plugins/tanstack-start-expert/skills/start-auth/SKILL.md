@@ -22,13 +22,13 @@ Server-fn middleware    → SECURITY: the real data/API boundary — enforce aut
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, spawn in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** — find `src/routes/_authed*`, `src/server/`, existing session code
-2. **ai-pilot:research / research-expert** — verify Start auth API via Context7 `/websites/tanstack_start_framework_react`
+1. **explore-codebase** — find `src/routes/_authed*`, `src/server/`, existing session code
+2. **research-expert** — verify Start auth API via Context7 `/websites/tanstack_start_framework_react`
 3. **mcp__context7__query-docs** — confirm `useSession`, `createMiddleware`, `getRequest` signatures
 
-After implementation, run **ai-pilot:sniper-check / sniper**, then consider **security-expert:auth-audit**.
+After implementation, run **sniper**, then consider **auth-audit**.
 
 ---
 
@@ -91,22 +91,3 @@ The official [authentication guide](https://tanstack.com/start/latest/docs/frame
 - Treat `beforeLoad` as the security boundary
 - Read `process.env` at module top level
 - Vary response/status/timing between existing and non-existing accounts
-
-## References
-
-- [references/data-boundary.md](references/data-boundary.md)
-- [references/route-protection.md](references/route-protection.md)
-- [references/sessions-cookies.md](references/sessions-cookies.md)
-- [references/hardening.md](references/hardening.md)
-- [references/templates/authed-middleware.md](references/templates/authed-middleware.md)
-- [references/templates/session-and-csrf.md](references/templates/session-and-csrf.md)
-- [references/templates/oauth-pkce.md](references/templates/oauth-pkce.md)
-
-## Related skills
-
-`better-auth`, `auth-audit`.
-
-## Skill routing metadata
-
-references: references/data-boundary.md, references/route-protection.md, references/sessions-cookies.md, references/hardening.md, references/templates/authed-middleware.md, references/templates/session-and-csrf.md, references/templates/oauth-pkce.md
-related-skills: better-auth, auth-audit

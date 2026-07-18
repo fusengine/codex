@@ -55,7 +55,7 @@ MongoDB's document-based structure and flexible schema means that using Prisma O
 - **Enabling replication**: Prisma ORM uses [MongoDB transactions](https://www.mongodb.com/docs/manual/core/transactions/) internally to avoid partial writes on nested queries. When using transactions, MongoDB requires replication of your data set to be enabled. To do this, you will need to configure a [replica set](https://www.mongodb.com/docs/manual/replication/) — this is a group of MongoDB processes that maintain the same data set. Note that it is still possible to use a single database, by creating a replica set with only one node in it. If you use MongoDB's [Atlas](https://www.mongodb.com/atlas/database) hosting service, the replica set is configured for you, but if you are running MongoDB locally you will need to set up a replica set yourself. For more information, see MongoDB's [guide to deploying a replica set](https://www.mongodb.com/docs/manual/tutorial/deploy-replica-set/).
 
 ### Performance considerations for large collections
-#### Problem
+#### Problem 
 When working with large MongoDB collections through Prisma, certain operations can become slow and resource-intensive. In particular, operations that require scanning the entire collection, such as `count()`, can hit query execution time limits and significantly impact performance as your dataset grows.
 
 #### Solution
@@ -106,8 +106,8 @@ There are a number of strategies you could use for migrating this schema:
   }
   ```
 
-  Then regenerate your Prisma Client using the `npx prisma generate` command.
-
+  Then regenerate your Prisma Client using the `npx prisma generate` command. 
+  
   Next, update your application to reflect the new field, and redeploy your app.
 
   As the `phoneNumber` field is optional, you can still query the old users where the phone number has not been defined. The records in the database will be updated "on demand" as the application's users begin to enter their phone number in the new field.

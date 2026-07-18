@@ -75,7 +75,7 @@ The deployment process uses several key Vercel API endpoints:
 
 ## Required API keys and environment variables
 
-:::tip Contact us for elevated partner level access for db creation
+:::tip Contact us for elevated partner level access for db creation 
 
 By default, every new partner is on our free plan which limited to 5 dbs per account, so if you are trying out this API and need higher db creation limits (which we suspect that most of you will), then please [contact us](https://www.prisma.io/partners#contact-us) to get partner level access.
 :::
@@ -135,7 +135,7 @@ Your team's Prisma integration configuration identifier.
 INTEGRATION_CONFIG_ID="icfg_abc123xyz"
 ```
 
-### Prisma Product ID
+### Prisma Product ID 
 
 The Prisma Product ID is used to identify the Prisma integration in the Vercel API and it's a constant value of: `iap_yVdbiKqs5fLkYDAB` or `prisma-postgres`.
 
@@ -243,7 +243,7 @@ Every deployment starts with creating a project container.
 ```typescript
 async function createProject(): Promise<{ id: string; name: string }> {
   const projectName = `demo-project-${Date.now()}`;
-
+  
   const response = await fetch(
     `${CONFIG.VERCEL_API_URL}/v10/projects?teamId=${CONFIG.TEAM_ID}`,
     {
@@ -258,7 +258,7 @@ async function createProject(): Promise<{ id: string; name: string }> {
 
   const project = await response.json();
   console.log(`✅ Project created: ${project.name} (${project.id})`);
-
+  
   return { id: project.id, name: project.name };
 }
 ```
@@ -297,7 +297,7 @@ async function createPrismaAuthorization(): Promise<{
   );
 
   const authData = await response.json();
-
+  
   return {
     id: authData.authorization.id,
     configId: authData.authorization.integrationConfigurationId,
@@ -343,7 +343,7 @@ async function createPrismaDatabase(
   );
 
   const storageData = await response.json();
-
+  
   return {
     id: storageData.store.id
   };
@@ -414,7 +414,7 @@ async function deployApplication(
   );
 
   const deploymentData = await response.json();
-
+  
   return {
     id: deploymentData.id,
     url: deploymentData.alias?.[0] || deploymentData.url,
@@ -506,7 +506,7 @@ Learn more in the [Claim Deployments documentation](https://vercel.com/docs/depl
 async function handleApiErrors(response: Response, operation: string) {
   if (!response.ok) {
     const errorData = await response.text();
-
+    
     // Handle specific error cases
     switch (response.status) {
       case 401:
@@ -535,13 +535,13 @@ async function apiCallWithRetry(url: string, options: RequestInit, maxRetries = 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       const response = await fetch(url, options);
-
+      
       if (response.status === 429) {
         const waitTime = Math.pow(2, attempt) * 1000; // Exponential backoff
         await new Promise(resolve => setTimeout(resolve, waitTime));
         continue;
       }
-
+      
       return response;
     } catch (error) {
       if (attempt === maxRetries) throw error;
@@ -577,16 +577,16 @@ class DeploymentService {
   async deployGeneratedApp(code: string, userId: string) {
     // 1. Package generated code
     const packagedCode = await this.packageCode(code);
-
+    
     // 2. Deploy with Vercel + Prisma
     const deployment = await this.deployApp(packagedCode);
-
+    
     // 3. Store deployment info
     await this.storeDeployment(userId, deployment);
-
+    
     // 4. Notify user
     await this.notifyUser(userId, deployment.claimUrl);
-
+    
     return deployment;
   }
 }

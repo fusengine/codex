@@ -52,30 +52,32 @@ Collection of professional, tested, and optimized prompt templates.
 /prompt library search "code review"
 
 # View a template
-show code-reviewer
+/prompt library show code-reviewer
 
 # Use a template (copy and customize)
-use code-reviewer
+/prompt library use code-reviewer
 
 # Use with customization
-use code-reviewer with language python and security focus
+/prompt library use code-reviewer --lang python --focus security
 ```
 
 ## Agent Structure
 
-Agent templates are written as portable prompt templates. When installing one as
-a real Codex subagent, convert its metadata to TOML:
+Each agent is a Codex `.toml` definition (in `.codex/agents/<name>.toml` or a plugin's `agents/`):
 
 ```toml
 name = "agent-name"
-description = "Clear description for automatic triggering"
-model = "gpt-5.5"
-sandbox_mode = "workspace-write"
+description = "Trigger + usage context — Use when… / Do NOT use for…"
+model = "gpt-5.6-terra"            # gpt-5.6-sol | gpt-5.6-terra | gpt-5.6-luna
+model_reasoning_effort = "high"    # minimal | low | medium | high | xhigh
+sandbox_mode = "workspace-write"   # read-only | workspace-write | danger-full-access
 developer_instructions = '''
-# Agent Name
-
-Instructions and process.
+<agent instructions: process, output format, examples, Forbidden>
 '''
+
+[[skills.config]]
+path = "plugins/<plugin>/skills/<skill>/SKILL.md"
+enabled = true
 ```
 
 ### Required Fields
@@ -83,14 +85,17 @@ Instructions and process.
 | Field | Description | Values |
 |-------|-------------|--------|
 | `name` | Unique identifier | kebab-case |
-| `description` | Trigger + usage context | Descriptive text |
-| `model` | Codex model to use | Runtime-supported model id |
-| `sandbox_mode` | File access mode | Usually `workspace-write` |
-| `developer_instructions` | Agent instructions | TOML multiline string |
+| `description` | Trigger + usage context | Descriptive text (Use when… / Do NOT use for…) |
+| `developer_instructions` | Agent body (required) | Multi-line `'''…'''` string |
+| `model` | Codex model | `gpt-5.6-terra` (default), `gpt-5.6-sol` (heavy reasoning), `gpt-5.6-luna` |
+| `model_reasoning_effort` | Reasoning budget | `minimal` … `high` … `xhigh` |
+| `sandbox_mode` | Filesystem access | `read-only`, `workspace-write`, `danger-full-access` |
+| `nickname_candidates` | Optional display names | list of strings |
+| `[[skills.config]]` | Attached skills | `path` + `enabled` per skill |
 
 ### Agent Body
 
-After the YAML frontmatter, the Markdown body contains:
+`developer_instructions` contains:
 - Instructions and processes
 - Output formats
 - Examples and patterns
@@ -100,7 +105,7 @@ After the YAML frontmatter, the Markdown body contains:
 
 To add an agent:
 
-1. Create the `.md` file in the appropriate category (`agents/`, `tasks/`, `specialized/`)
-2. Use the standard YAML frontmatter (name, description, model, color, tools, skills)
+1. Create the `.toml` file in the appropriate category (`agents/`, `tasks/`, `specialized/`)
+2. Use the Codex agent schema (name, description, developer_instructions + model, model_reasoning_effort, sandbox_mode, skills.config)
 3. Test the agent with at least 3 use cases
 4. Document output formats and rules (Forbidden)

@@ -17,9 +17,9 @@ standard library and small, composable libraries over heavy frameworks.
 
 **Do NOT use for:**
 - Writing tests, benchmarks, fuzzing, coverage — use `go-testing-quality`
-- SOLID line-limit / interface-placement enforcement — use `solid:solid-go` when available
+- SOLID line-limit / interface-placement enforcement — use `solid-go`
 - Non-Go backends (Laravel, Next.js, Rust) — use the matching expert
-- Frontend / UI work — use `fuse-design` or a framework expert
+- Frontend / UI work — use `design-expert` or a framework expert
 
 ---
 
@@ -62,7 +62,7 @@ standard library and small, composable libraries over heavy frameworks.
    source URLs before writing code — APIs move.
 4. **Scaffold** from [templates/rest-service.md](references/templates/rest-service.md)
    when starting fresh.
-5. **Keep files small** and interfaces separated (defer to `solid:solid-go` when available).
+5. **Keep files small** and interfaces separated (defer to `solid-go`).
 6. **Validate** with `go-testing-quality` + sniper after any code change.
 
 ---
@@ -73,20 +73,3 @@ The community skill set at `github.com/samber/cc-skills-golang` covers overlappi
 Go territory. This skill deliberately scopes to **architecture / structure /
 routing / DB wiring** and hands testing off to `go-testing-quality`. When in
 doubt about which skill owns a topic, prefer the more specific one.
-
-## References
-
-- [references/project-layout.md](references/project-layout.md)
-- [references/http-routing.md](references/http-routing.md)
-- [references/database-access.md](references/database-access.md)
-- [references/dependency-injection.md](references/dependency-injection.md)
-- [references/templates/rest-service.md](references/templates/rest-service.md)
-
-## Related skills
-
-`go-core-idioms`, `go-testing-quality`, `solid:solid-go`.
-
-## Skill routing metadata
-
-references: references/project-layout.md, references/http-routing.md, references/database-access.md, references/dependency-injection.md, references/templates/rest-service.md
-related-skills: go-core-idioms, go-testing-quality, solid:solid-go

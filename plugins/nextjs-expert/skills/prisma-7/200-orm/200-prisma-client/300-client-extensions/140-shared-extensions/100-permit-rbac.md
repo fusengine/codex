@@ -80,7 +80,7 @@ npm install @permitio/permit-prisma @prisma/client
 
 You'll also need to sign up for a [Permit account](https://app.permit.io) to define your authorization policies.
 
-> **Note:**
+> **Note:**  
 > Ensure that the Permit PDP container is running. It is recommended to run it using Docker for better performance, security, and availability. For instructions, refer to the Permit documentation: [Deploy Permit to Production](https://docs.permit.io/how-to/deploy/deploy-to-production/) and [PDP Overview](https://docs.permit.io/concepts/pdp/overview/).
 
 ## Basic setup

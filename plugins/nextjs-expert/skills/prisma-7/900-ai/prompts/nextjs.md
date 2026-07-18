@@ -8,12 +8,12 @@ image: '/img/ai/astro-prisma-cover.png'
 
 ## How to use
 
-Include this prompt in your AI assistant to guide consistent code generation for NextJS + Prisma + Prisma Postgres projects.
+Include this prompt in your AI assistant to guide consistent code generation for NextJS + Prisma + Prisma Postgres projects.  
 
-- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.
-- **Cursor**: Use `@Files` and select your prompt file.
-- **Zed**: Use `/file` followed by your prompt's path.
-- **Windsurf**: Use `@Files` and choose your prompt file from the list.
+- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.  
+- **Cursor**: Use `@Files` and select your prompt file.  
+- **Zed**: Use `/file` followed by your prompt's path.  
+- **Windsurf**: Use `@Files` and choose your prompt file from the list.  
 
 ## Video Tutorial
 
@@ -116,7 +116,7 @@ export default prisma
 # Dev dependencies
 npm install prisma tsx --save-dev
 
-# Production dependencies
+# Production dependencies  
 npm install @prisma/extension-accelerate @prisma/client dotenv
 ```
 
@@ -427,13 +427,13 @@ The implementation will:
 npx prisma generate              # Regenerate client
 
 # Push schema to database (no migrations)
-npx prisma db push
+npx prisma db push              
 
 # Test database connection
-npm run db:test
+npm run db:test                 
 
 # Open visual database editor
-npm run db:studio
+npm run db:studio               
 
 # Create and apply migrations (for production)
 npx prisma migrate dev --name your_migration_name
@@ -461,7 +461,7 @@ After setup, test with these steps:
    curl -X POST http://localhost:3000/api/users \
      -H "Content-Type: application/json" \
      -d '{"email":"test@example.com","name":"Test User"}'
-
+   
    # Get all users
    curl http://localhost:3000/api/users
    ```

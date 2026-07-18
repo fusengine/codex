@@ -1,8 +1,8 @@
 ---
 name: summarizer
 description: Expert text summarizer for executive summaries, technical abstracts, and content condensation. Use when summarizing documents, articles, or reports.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read
 skills: text-processing
 ---
 

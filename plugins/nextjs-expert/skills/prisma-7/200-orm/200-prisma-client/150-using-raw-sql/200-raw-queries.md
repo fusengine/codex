@@ -855,12 +855,12 @@ const result = await prisma.user.aggregateRaw({
 #### Caveats
 
 When working with custom objects like `ObjectId` or `Date,` you will have to pass them according to the [MongoDB extended JSON Spec](https://www.mongodb.com/docs/manual/reference/mongodb-extended-json/#type-representations).
-Example:
+Example: 
 ```ts no-lines
 const result = await prisma.user.aggregateRaw({
   pipeline: [
     { $match: { _id: { $oid: id } } }
-//                     ^ notice the $oid convention here
+//                     ^ notice the $oid convention here 
   ],
 });
 

@@ -1,21 +1,23 @@
 ---
 name: astro-deployment
-description: Deploying Astro 6 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration.
+description: Deploying Astro 7 apps — @astrojs/cloudflare (Workers, D1, KV, R2), @astrojs/vercel (Serverless/Edge, Image CDN), @astrojs/netlify (Edge Functions), @astrojs/node (standalone), ISR patterns, edge middleware, skew protection. Use for any deployment configuration.
 ---
 
 # Astro Deployment
 
-Production deployment for Astro 6 across all major platforms — Cloudflare, Vercel, Netlify, and Node.js.
+> Targets: Astro 7.
+
+Production deployment for Astro 7 across all major platforms — Cloudflare, Vercel, Netlify, and Node.js.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze astro.config.mjs, output mode, and existing adapter
-2. **ai-pilot:research / research-expert** - Verify adapter docs via Context7/Exa for target platform
-3. **mcp__context7__query-docs** - Check Astro 6 adapter compatibility and breaking changes
+1. **explore-codebase** - Analyze astro.config.mjs, output mode, and existing adapter
+2. **research-expert** - Verify adapter docs via Context7/Exa for target platform
+3. **Context7 (official docs)** - Check Astro 7 adapter compatibility and breaking changes
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -49,7 +51,7 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 - `output: 'server'` — Full SSR, adapter required
 - Per-page: Mix with `export const prerender = true/false`
 
-### Cloudflare Astro 6
+### Cloudflare Astro
 
 Astro 6 runs `astro dev` on workerd — same runtime as production. Enables D1, KV, R2 bindings in local dev via `platformProxy`. No more simulation gaps. Requires `@astrojs/cloudflare` v13+ and Node.js 22+.
 
@@ -88,27 +90,7 @@ On Vercel, enable skew protection to prevent asset mismatches between old client
 ## Best Practices
 
 1. **Match adapter to platform early** - Switching adapters mid-project is painful
-2. **Cloudflare: use v13+ for Astro 6** - Required for workerd local dev
-3. **Node.js 22+ for Astro 6** - Drops Node 18/20 support
+2. **Cloudflare: use v13+ for Astro 7** - Required for workerd local dev
+3. **Node.js 22+ for Astro 7** - Drops Node 18/20 support
 4. **Per-page prerender** - Mix static and SSR for optimal performance
 5. **Test bindings locally** - Cloudflare platformProxy enables local D1/KV/R2
-
-## References
-
-- [references/cloudflare-adapter.md](references/cloudflare-adapter.md)
-- [references/vercel-adapter.md](references/vercel-adapter.md)
-- [references/netlify-adapter.md](references/netlify-adapter.md)
-- [references/node-adapter.md](references/node-adapter.md)
-- [references/isr-patterns.md](references/isr-patterns.md)
-- [references/edge-middleware.md](references/edge-middleware.md)
-- [references/templates/cloudflare-setup.md](references/templates/cloudflare-setup.md)
-- [references/templates/vercel-setup.md](references/templates/vercel-setup.md)
-
-## Related skills
-
-`astro-6`, `astro-db`, `astro-islands`.
-
-## Skill routing metadata
-
-references: references/cloudflare-adapter.md, references/vercel-adapter.md, references/netlify-adapter.md, references/node-adapter.md, references/isr-patterns.md, references/edge-middleware.md, references/templates/cloudflare-setup.md, references/templates/vercel-setup.md
-related-skills: astro-6, astro-db, astro-islands

@@ -97,7 +97,7 @@ Let's walk through a sample scenario with three developers sharing schema change
 
 <TabItem value="Before">
 
-```prisma file=schema.prisma
+```prisma file=schema.prisma 
 model Post {
   id        Int     @id @default(autoincrement())
   title     String

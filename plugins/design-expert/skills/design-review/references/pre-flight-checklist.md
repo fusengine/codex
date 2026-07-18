@@ -1,6 +1,6 @@
 ---
 name: pre-flight-checklist
-description: "Mechanical grep/count checks run as the last filter before a design is declared audit-clean (em-dash ban, eyebrow count, theme lock, motion-claimed-motion-shown)."
+description: "Mechanical grep/count checks run as the last filter before a design is declared audit-clean (em-dash crutch threshold, eyebrow count, theme lock, motion-claimed-motion-shown, cluster #1 co-occurrence)."
 when-to-use: "The last mechanical filter before the output is declared audit-clean, after the audit checklist and anti-slop pass."
 keywords: pre-flight, mechanical, grep, audit, checklist
 priority: critical
@@ -17,13 +17,15 @@ These are **verifiable commands**, not intentions. Run each against the generate
 HTML/CSS (assume `$FILE` is the artifact). A non-empty match on a "must be 0" grep, or a
 count over its cap, is a hard fail — fix, then re-run. Do not eyeball; execute.
 
-## 1. Zero em-dashes anywhere visible
+## 1. Em-dash used as a crutch, not a single occurrence
 
 ```bash
-grep -nE '—|–' "$FILE"        # must return NOTHING (exit 1)
+grep -noE '—' "$FILE" | wc -l   # count em-dash occurrences specifically
 ```
-Headlines, eyebrows, pills, body, quotes, captions, buttons, alt text — zero `—`/`–`.
-Any hit fails the check and the string must be rewritten.
+En-dashes (`–`) used for numeric ranges (e.g. "2020–2024") are fine — don't flag those.
+A single em-dash (`—`) isn't a hard fail on its own; it fails once it reads as a repeated
+crutch/tic across the artifact — **2+ occurrences** flags for rewrite (vary the
+punctuation, don't lean on the same mark everywhere).
 
 ## 2. Uppercase-tracking eyebrow count ≤ ceil(sections / 3)
 
@@ -80,19 +82,63 @@ Count the direct text children of the hero block (eyebrow OR brand strip, headli
 subtext, CTAs). More than 4 — e.g. a tiny tagline below the CTAs or a trust micro-strip
 inside the hero — is a fail. Move the logo wall UNDER the hero.
 
+## 8. Cluster #1 signature co-occurrence, undeclared
+
+```bash
+CREAM=$(grep -qiE 'background(-color)?:\s*(oklch\([^)]*0\.9[0-8][^)]*(6[0-9]|[7-8][0-9]|9[0-9])\)|#f4f1ea|#f7f5f1)' "$FILE" && echo 1 || echo 0)
+SERIF_ITALIC=$(grep -qiE 'font-family:[^;]*serif' "$FILE" && grep -qiE 'font-style:\s*italic' "$FILE" && echo 1 || echo 0)
+TERRACOTTA=$(grep -qiE '#b6553a|#bc7c3a|oklch\([^)]*0\.1[0-9][^)]*(3[0-9]|4[0-9])\)' "$FILE" && echo 1 || echo 0)
+SUM=$((CREAM + SERIF_ITALIC + TERRACOTTA))
+[ "$SUM" -ge 2 ]   # ≥2/3 present
+```
+Warm-cream background ∧ serif with an italic title accent ∧ terracotta accent — the
+default "editorial SaaS" look. ≥2/3 present **and** not declared as the Step 2 signature
+element (`design-method`) is a **FLAG-with-justification**, not a hard block — a
+deliberate, declared signature is a valid override. Fast mechanical trigger; full
+compound detector at `design-review/references/anti-ai-slop-audit.md` entry 9.
+
+## 9. Ban bounce/elastic easing
+
+```bash
+grep -niE 'cubic-bezier\([^)]*1\.[1-9]|elastic|spring[^-]*bounc|bounceOut|bounceIn' "$FILE"   # must return nothing
+```
+Overshoot easing (`cubic-bezier` y-control-points >1, `elastic`, or a "bouncy spring") reads
+as a toy interaction, not a premium one. Hard grep — any match fails; use a standard ease
+(`ease-out`, `cubic-bezier(0.16, 1, 0.3, 1)`) from `design-motion/references/motion-tokens.md` instead.
+
+## 10. Layout-property animation is a WARNING, not a block
+
+```bash
+grep -noE '(transition|animation)[^;]*:(.*\b(width|height|top|left|margin|padding)\b)' "$FILE"
+```
+Animating `width`/`height`/`top`/`left`/`margin`/`padding` forces layout on every frame —
+janky on lower-end devices. **WARNING, not a hard block.** Whitelisted exceptions: the
+accordion pattern (`grid-template-rows: 0fr → 1fr`) and FLIP-technique reflows. Everything
+else should animate `transform`/`opacity` only — see
+`design-motion/references/motion-performance.md`.
+
 ---
 
-Any fail here blocks the "audit passed" verdict (`design-review` Part 1). Fix and re-run
-the failing command; do not proceed to the visual review (Part 2) with an open mechanical fail.
+Any fail here blocks the "audit passed" verdict (`design-review` Part 1), except check 10
+(layout-property animation), which is a WARNING — reported, not blocking. Fix and re-run
+the failing command; do not proceed to the visual review (Part 2) with an open mechanical
+fail (warnings excepted).
 
 ## Provenance
 
 Each check was verified against the raw `taste-skill/SKILL.md`
 (github.com/Leonxlnx/taste-skill) via direct fetch, not via any second-hand summary.
 
-- **Verified verbatim in taste-skill §14** — checks 1 (em-dash), 2 (eyebrow count
+- **Verified verbatim in taste-skill §14** — checks 2 (eyebrow count
   ≤ ceil(sections/3)), 3 (theme lock / no mid-page flip), 5 (max one marquee),
-  6 (premium-consumer palette; hex families from §4.2), 7 (hero ≤ 4 elements).
+  6 (premium-consumer palette; hex families from §4.2), 7 (hero ≤ 4 elements). Check 1
+  (em-dash) originates in §14 but we operationalize it as a crutch/repetition threshold
+  (2+ occurrences) rather than a binary zero-tolerance rule — see below.
 - **Fusengine design decision** — check 4 ("motion claimed, motion shown"): a mechanical
   grep gate we defined on top of the repo's real `MOTION_INTENSITY` dial (§1) and its
-  §14 "Motion motivated" check. The `> 4` threshold is ours.
+  §14 "Motion motivated" check. The `> 4` threshold is ours. Check 8 (cluster #1
+  co-occurrence) is also ours, mirroring `design-review/references/anti-ai-slop-audit.md`
+  entry 9. Checks 9-10 (bounce/elastic easing ban, layout-property animation warning) are
+  also ours — not in the source taste-skill — deterministic guardrails mirroring
+  `design-motion/references/motion-performance.md` (transform/opacity-only) and the
+  `animation-decision-framework.md` gate; canonical-once, not restated there.

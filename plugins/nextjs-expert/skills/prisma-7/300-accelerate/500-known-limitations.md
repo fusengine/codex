@@ -23,7 +23,7 @@ Client Extensions (which are used in Accelerate) currently do not correctly forw
 
 ## Not compatible with extremely heavy or long-running queries
 
-Accelerate is designed to work with high-performance, low-latency queries. It is not intended for use with extremely heavy or long-running queries that may cause performance issues or resource contention. While limits are configurable, we recommend optimizing your queries to ensure they fit within the recommended guidelines.
+Accelerate is designed to work with high-performance, low-latency queries. It is not intended for use with extremely heavy or long-running queries that may cause performance issues or resource contention. While limits are configurable, we recommend optimizing your queries to ensure they fit within the recommended guidelines. 
 
 For queries that cannot be optimized or pared down, we recommend one of two solutions:
 

@@ -24,12 +24,12 @@ You can define your config in either of two ways:
 
   export default defineConfig({
     schema: 'prisma/schema.prisma',
-    migrations: {
+    migrations: { 
       path: 'prisma/migrations',
       seed: 'tsx prisma/seed.ts',
     },
-    datasource: {
-      url: env("DATABASE_URL")
+    datasource: { 
+      url: env("DATABASE_URL") 
     }
   });
   ```
@@ -46,8 +46,8 @@ You can define your config in either of two ways:
       path: "prisma/migrations",
       seed: 'tsx prisma/seed.ts',
     },
-    datasource: {
-      url: env("DATABASE_URL")
+    datasource: { 
+      url: env("DATABASE_URL") 
     }
   } satisfies PrismaConfig;
   ```
@@ -83,13 +83,13 @@ export declare type PrismaConfig = {
   typedSql?: {
     path: string;
   };
-
+  
   // Database connection configuration
   datasource?: {
     url: string;
     shadowDatabaseUrl?: string;
   }
-
+  
 };
 ```
 
@@ -112,8 +112,8 @@ Prisma Config files can be named as `prisma.config.*` or `.config/prisma.*` with
 
 :::tip[Recommendation]
 
-- Use **`prisma.config.ts`** for small TypeScript projects.
-- Use **`.config/prisma.ts`** for larger TypeScript projects with multiple configuration files (following the [`.config` directory proposal](https://github.com/pi0/config-dir)).
+- Use **`prisma.config.ts`** for small TypeScript projects.  
+- Use **`.config/prisma.ts`** for larger TypeScript projects with multiple configuration files (following the [`.config` directory proposal](https://github.com/pi0/config-dir)).  
 
 :::
 
@@ -164,7 +164,7 @@ export default defineConfig({
 });
 ```
 
-Learn more about the [`externalTables` feature here](/orm/prisma-schema/data-model/externally-managed-tables).
+Learn more about the [`externalTables` feature here](/orm/prisma-schema/data-model/externally-managed-tables). 
 
 ### `migrations.path`
 
@@ -234,7 +234,7 @@ export default defineConfig({
 });
 ```
 
-Learn more about the [`externalTables` feature here](/orm/prisma-schema/data-model/externally-managed-tables).
+Learn more about the [`externalTables` feature here](/orm/prisma-schema/data-model/externally-managed-tables). 
 
 ### `views.path`
 
@@ -307,7 +307,7 @@ In Prisma ORM v7, the `url` field is configured in `prisma.config.ts` instead of
 
 For Prisma ORM v6.19 and earlier, the `url` field remains in the `schema.prisma` file's `datasource` block.
 
-:::
+::: 
 
 | Property         | Type               | Required | Default           |
 | --------         | ------------------ | -------- | ----------------- |
@@ -361,7 +361,7 @@ The `datasource.directUrl` property has been removed in Prisma ORM v7 in favor o
 
 Connection URL for direct connection to the database.
 
-If you use a connection pooler URL in the `url` argument (for example, pgBouncer), Prisma CLI commands that require a direct connection to the database use the URL in the `directUrl` argument.
+If you use a connection pooler URL in the `url` argument (for example, pgBouncer), Prisma CLI commands that require a direct connection to the database use the URL in the `directUrl` argument. 
 
 The `directUrl` property is supported by Prisma Studio from version 5.1.0 upwards. The `directUrl` property is not needed when using [Prisma Postgres](/postgres) database.
 
@@ -437,7 +437,7 @@ Configure the schema engine your project should use.
 | -------- | ------------------ | -------- | ----------------- |
 | `engine` | `classic` or `js`  | No       | `classic`         |
 
-By default it is set to use the classic engine, which requires that `datasource` be set in your `prisma.config.ts`.
+By default it is set to use the classic engine, which requires that `datasource` be set in your `prisma.config.ts`. 
 
 ```ts
 import 'dotenv/config'
@@ -787,3 +787,4 @@ To load environment variables in your Prisma application, you can use the `prism
       },
     });
     ```
+

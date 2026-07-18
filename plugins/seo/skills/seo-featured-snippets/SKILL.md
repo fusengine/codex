@@ -1,8 +1,7 @@
 ---
 name: seo-featured-snippets
-description: "Use when optimizing for position 0 featured snippets and AI Overviews. Covers paragraph, list, table, and video snippet recipes with format-specific HTML patterns."
+description: Use when optimizing for position 0 featured snippets and AI Overviews. Covers paragraph, list, table, and video snippet recipes with format-specific HTML patterns.
 ---
-
 
 # Featured Snippets (Position 0)
 

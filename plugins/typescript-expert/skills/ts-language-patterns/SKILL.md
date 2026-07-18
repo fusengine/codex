@@ -5,15 +5,17 @@ description: "Use when: writing or reviewing modern TypeScript syntax and idioms
 
 # TypeScript Language Patterns (TS 6.0)
 
+_Targets: typescript 6.0._
+
 ## Agent Workflow (MANDATORY)
 
-Before writing non-trivial TypeScript, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before writing non-trivial TypeScript, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing idioms, `verbatimModuleSyntax`, tsconfig
-2. **ai-pilot:research / research-expert** - Verify current syntax on typescriptlang.org
-3. **mcp__context7__query-docs** - `/microsoft/typescript` for exact API shapes
+1. `explore-codebase` - Detect existing idioms, `verbatimModuleSyntax`, tsconfig
+2. `research-expert` - Verify current syntax on typescriptlang.org
+3. `mcp__context7__query-docs` - `/microsoft/typescript` for exact API shapes
 
-After writing, run **ai-pilot:sniper-check / sniper** for validation.
+After writing, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -105,21 +107,3 @@ const config = {
 - Write `import { SomeType }` for a type-only import — use `import type { SomeType }`
 - Enable `experimentalDecorators` or `emitDecoratorMetadata` for new code
 - Use `namespace` to organize runtime code — that is what ESM modules are for
-
-## References
-
-- [references/resource-management.md](references/resource-management.md)
-- [references/generics-and-inference.md](references/generics-and-inference.md)
-- [references/decorators.md](references/decorators.md)
-- [references/llm-pitfalls.md](references/llm-pitfalls.md)
-- [references/templates/modern-patterns.md](references/templates/modern-patterns.md)
-- [references/templates/resource-management.md](references/templates/resource-management.md)
-
-## Related skills
-
-`ts-config`, `solid-generic`.
-
-## Skill routing metadata
-
-references: references/resource-management.md, references/generics-and-inference.md, references/decorators.md, references/llm-pitfalls.md, references/templates/modern-patterns.md, references/templates/resource-management.md
-related-skills: ts-config, solid-generic

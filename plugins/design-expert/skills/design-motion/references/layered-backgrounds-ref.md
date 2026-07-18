@@ -13,12 +13,12 @@ related-skills: glassmorphism-advanced, generating-components
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, use available Codex subagents when they materially help:
+Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing background patterns
-2. **ai-pilot:research / research-expert** - CSS filter and blend modes
+1. **explore-codebase** - Check existing background patterns
+2. **research-expert** - CSS filter and blend modes
 
-After code changes: run **ai-pilot:sniper-check / sniper** for validation.
+After: Run **sniper** for validation.
 
 ---
 

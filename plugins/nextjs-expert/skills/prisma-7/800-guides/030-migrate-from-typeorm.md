@@ -127,8 +127,8 @@ Start replacing your TypeORM queries with Prisma Client. Here's an example of ho
 
 ```typescript
 // Find one
-const user = await userRepository.findOne({
-  where: { id: 1 }
+const user = await userRepository.findOne({ 
+  where: { id: 1 } 
 });
 
 // Create
@@ -138,8 +138,8 @@ const user = await userRepository.save({
 });
 
 // Update
-await userRepository.update(1, {
-  name: 'New name'
+await userRepository.update(1, { 
+  name: 'New name' 
 });
 
 // Delete
@@ -152,8 +152,8 @@ await userRepository.delete(1);
 
 ```typescript
 // Find one
-const user = await prisma.user.findUnique({
-  where: { id: 1 }
+const user = await prisma.user.findUnique({ 
+  where: { id: 1 } 
 });
 
 // Create
@@ -190,14 +190,14 @@ import { prisma } from '../client'
 export class CreateUserAction {
   async run(req: Request, res: Response) {
     const { email, name } = req.body
-
+    
     const result = await prisma.user.create({
       data: {
         email,
         name,
       },
     })
-
+    
     return res.json(result)
   }
 }

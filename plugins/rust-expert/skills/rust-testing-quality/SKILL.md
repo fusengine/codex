@@ -1,19 +1,19 @@
 ---
 name: rust-testing-quality
-description: Use when writing, organizing, or running Rust tests — unit, integration, doc-tests, property-based (proptest), benchmarks (criterion), or mutation testing (cargo-mutants). Covers test layout, the nextest doctest pitfall, and quality gates. Do NOT use for CI pipeline wiring (use rust-tooling-cicd) or non-Rust test suites.
+description: "Use when writing, organizing, or running Rust tests — unit, integration, doc-tests, property-based (proptest), benchmarks (criterion), or mutation testing (cargo-mutants). Covers test layout, the nextest doctest pitfall, and quality gates. Do NOT use for CI pipeline wiring (use rust-tooling-cicd) or non-Rust test suites."
 ---
 
 # Rust Testing & Quality
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY test work, use available Codex subagents when useful:
+Before ANY test work, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Map existing `tests/`, `#[cfg(test)]`, `benches/`
-2. **ai-pilot:research / research-expert** - Verify current nextest/proptest/criterion docs via Context7/Exa
+1. **explore-codebase** - Map existing `tests/`, `#[cfg(test)]`, `benches/`
+2. **research-expert** - Verify current nextest/proptest/criterion docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check crate-specific API (proptest strategies, criterion groups)
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -113,19 +113,3 @@ proptest! {
 - Put timing benchmarks in `#[test]` (use criterion in `benches/`)
 - Gitignore `proptest-regressions/` — commit it
 - Run `cargo mutants` on every push (schedule it instead)
-
-## References
-
-- [references/test-organization.md](references/test-organization.md)
-- [references/property-and-mutation.md](references/property-and-mutation.md)
-- [references/templates/test-suite.md](references/templates/test-suite.md)
-- [references/templates/criterion-bench.md](references/templates/criterion-bench.md)
-
-## Related skills
-
-`solid:solid-rust`, `rust-tooling-cicd`.
-
-## Skill routing metadata
-
-references: references/test-organization.md, references/property-and-mutation.md, references/templates/test-suite.md, references/templates/criterion-bench.md
-related-skills: solid:solid-rust, rust-tooling-cicd

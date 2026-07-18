@@ -1,22 +1,17 @@
 ---
 name: seo-content-brief
-description: "Use when generating detailed SEO content briefs. Covers target keywords, search intent, outline (H2/H3), word count, internal links, schema requirements, GEO readiness checklist."
+description: Use when generating detailed SEO content briefs. Covers target keywords, search intent, outline (H2/H3), word count, internal links, schema requirements, GEO readiness checklist.
 ---
-
 
 # Content Brief Generator
 
 ## Content Intelligence First
 
-Before generating a brief, run `scripts/analyze-keywords.ts` when available. Use the result to shape target keywords, semantic variants, heading coverage, local modifiers, and cannibalization warnings.
+Before generating a brief, run `scripts/analyze-keywords.ts` (local-first, no API key) on the target or a top competitor URL. Use the result to shape target keywords, semantic variants, heading coverage, local modifiers, and stuffing warnings.
 
 ```bash
-bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
-bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
-bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --synonyms "<syn1,syn2>" --locations "<city1,city2>" --format markdown
 ```
-
-Use Serper-backed rank checks before the brief when ranking context matters: confirm the target site's real Google position, list competitor URLs above it, and separate competitor pressure from same-domain cannibalization.
 
 ## Metadata and Heading Rules
 
@@ -27,8 +22,6 @@ Use Serper-backed rank checks before the brief when ranking context matters: con
 - Meta title and H1 need the primary keyword or a strong variant.
 - H2/H3 headings should distribute synonyms, long-tail phrases, questions, and sub-intents.
 - Avoid repeating the exact keyword across every heading.
-- The client's target localities (primary [city] + neighbouring municipalities/[region]) must appear naturally near service terms, never as a dumped city list.
-- Keyword stuffing requires multiple signals: exact repetition, repeated n-grams, local repetition, weak semantic diversity, thin content, and unnatural placement. Do not use a fixed density threshold alone.
 
 ## Long-Tail by Buyer State (2026)
 
@@ -95,9 +88,10 @@ AI Overviews capture ~30-60% of the informational CTR. Optimize for **verbatim L
 - Use tables/lists for comparison data
 ```
 
-## Related Skills
+## References
 
 - `seo-geo` — AI Overviews / LLM readiness
 - `seo-content` — copywriting 2026 (answer capsules, named entities)
-- `seo-cluster` — buyer-state clustering
 - `seo-entity` — entity salience and knowledge graph
+- `skills/seo/04-geo-2026/content-structure.md`
+- `skills/seo/06-content-strategy/keyword-research.md`

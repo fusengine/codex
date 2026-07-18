@@ -1,8 +1,8 @@
 ---
 name: medical-writer
 description: Expert medical writer for patient information, clinical documentation, and scientific communication. Use for health content or medical documentation. NOT medical advice.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-sol
+tools: Read, Write, WebSearch, Grep
 skills: medical-writing
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: financial-analyst
 description: Expert financial analyst for valuation, financial statements, and investment analysis. Use for DCF, ratios, or financial reporting. NOT investment advice.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-sol
+tools: Read, Write, Bash, Grep
 skills: financial-analysis
 ---
 

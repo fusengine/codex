@@ -112,7 +112,7 @@ npm install dotenv
 
 :::
 
-To enable your app to store notes for each product, let's add a new `ProductNote` model to your Prisma schema.
+To enable your app to store notes for each product, let's add a new `ProductNote` model to your Prisma schema. 
 
 This model will allow you to save and organize notes linked to individual products in your database through the `productGid` field.
 
@@ -706,7 +706,7 @@ You should now be able to add a note to a product and see it displayed.
 
 ### 6. Test your route
 
-Run `npm run dev` and navigate to the `Product Notes` route.
+Run `npm run dev` and navigate to the `Product Notes` route. 
 - Navigate to Product Notes on the sidebar
 - Select a product
 - Add a note

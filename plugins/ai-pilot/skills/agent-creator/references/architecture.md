@@ -1,17 +1,13 @@
 ---
 name: architecture
-description: Codex agent file structure and organization
-when-to-use: Understanding how agents are organized in plugins
-keywords: architecture, structure, directory, files, plugin, codex
-priority: high
-related: frontmatter.md, registration.md
+description: Agent file structure and organization
 ---
 
 # Agent Architecture
 
 ## Overview
 
-Agents in this repository are Codex custom-agent TOML files packaged inside plugin directories.
+Agents live in plugin directories and reference skills for domain knowledge. Codex agents are TOML files; at runtime they resolve under `.codex/agents/`.
 
 ---
 
@@ -20,14 +16,16 @@ Agents in this repository are Codex custom-agent TOML files packaged inside plug
 ```
 plugins/<plugin-name>/
 ├── agents/
-│   └── <agent-name>.toml    # Codex custom agent definition
+│   └── <agent-name>.toml    # Agent definition file (TOML)
 ├── skills/
-│   ├── skill-a/
+│   ├── skill-a/             # Domain skills
 │   │   ├── SKILL.md
 │   │   └── references/
-│   └── solid-[stack]/
+│   └── solid-[stack]/       # SOLID rules for this stack
+├── hooks/
+│   └── hooks.json           # Pre/Post-tool validation (plugin level)
 ├── scripts/
-│   └── validate-*.ts        # Optional hook/runtime scripts
+│   └── validate-*.sh        # Hook validation scripts
 └── .codex-plugin/
     └── plugin.json          # Plugin manifest
 ```
@@ -38,18 +36,19 @@ plugins/<plugin-name>/
 
 | File | Purpose |
 |------|---------|
-| `agents/<name>.toml` | Codex agent config with `developer_instructions` |
-| `skills/*/SKILL.md` | Skill entry points loaded by Codex |
-| `hooks/hooks.json` | Plugin hook wiring when the plugin uses hooks |
-| `.codex-plugin/plugin.json` | Plugin metadata and local paths |
+| `agents/<name>.toml` | Agent definition: TOML fields + `developer_instructions` body |
+| `skills/*/SKILL.md` | Skill entry points the agent can access |
+| `hooks/hooks.json` | Pre/Post-tool validation wiring |
+| `scripts/*.sh` | Hook scripts for validation |
+| `plugin.json` | Plugin metadata and paths |
 
 ---
 
-## Agent TOML Structure
+## Agent File Structure
 
 ```toml
 name = "agent-name"
-description = "When Codex should select this agent."
+description = "..."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
@@ -57,18 +56,27 @@ developer_instructions = '''
 # Agent Title
 
 ## Agent Workflow (MANDATORY)
+... (spawns subagents in parallel via spawn_agent / MultiAgentV2, one dispatch)
+
+## MANDATORY SKILLS USAGE
 ...
 
-## Skills Usage
+## SOLID Rules
 ...
 
-## Output Format
+## Local Documentation
+...
+
+## Quick Reference
 ...
 '''
+
+[[skills.config]]
+path = "plugins/<plugin>/skills/solid-<stack>/SKILL.md"
+enabled = true
 ```
 
-Required keys: `name`, `description`, `developer_instructions`.
-Common optional keys: `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_servers`, `skills.config`.
+→ See [required-sections.md](required-sections.md) for section details
 
 ---
 
@@ -78,8 +86,22 @@ Common optional keys: `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_se
 |---------|------------|---------|
 | Plugin folder | kebab-case | `nextjs-expert` |
 | Agent file | kebab-case.toml | `nextjs-expert.toml` |
+| Script file | validate-*.sh | `validate-nextjs-solid.sh` |
 | Skill folder | kebab-case | `solid-nextjs` |
-| Hook config | `hooks/hooks.json` | `plugins/ai-pilot/hooks/hooks.json` |
+
+---
+
+## Plugin Manifest
+
+```json
+// .codex-plugin/plugin.json
+{
+  "name": "nextjs-expert",
+  "version": "1.0.0"
+}
+```
+
+Agents (`agents/*.toml`) and skills (`skills/*/SKILL.md`) are auto-discovered from the plugin directory.
 
 ---
 
@@ -87,7 +109,8 @@ Common optional keys: `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_se
 
 | DO | DON'T |
 |----|-------|
-| Keep one primary expert agent per plugin | Create competing agents with overlapping triggers |
-| Put operational rules in `developer_instructions` | Use legacy YAML agent config |
-| Use Codex subagent wording | Mention legacy subagent commands |
-| Keep hooks in plugin hook config | Put hook blocks in agent TOML |
+| One agent per plugin (main) | Multiple competing agents |
+| Attach and reference the solid-[stack] skill | Duplicate SOLID rules |
+| Use relative paths | Hard-code absolute paths |
+| Keep the agent body focused | Put all docs in the agent file |
+| Put hooks in hooks/hooks.json | Put hooks in the agent .toml |

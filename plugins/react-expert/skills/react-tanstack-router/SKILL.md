@@ -1,22 +1,23 @@
 ---
 name: react-tanstack-router
-description: "TanStack Router - 100% type-safe routing, file-based routes, loaders, search params. Use when implementing routing in React apps (NOT Next.js)."
+description: TanStack Router - 100% type-safe routing, file-based routes, loaders, search params. Use when implementing routing in React apps (NOT Next.js).
 ---
 
-
 # TanStack Router
+
+> Targets: Tanstack-router 1.x (latest), React 19, Zod 3.x.
 
 100% type-safe router for React with file-based routing, loaders, search params validation, and deep TanStack Query integration.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing routes and navigation patterns
-2. **ai-pilot:research / research-expert** - Verify latest TanStack Router docs via Context7/Exa
+1. **explore-codebase** - Analyze existing routes and navigation patterns
+2. **research-expert** - Verify latest TanStack Router docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check file-based routing and type-safe patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

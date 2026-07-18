@@ -3,7 +3,7 @@ name: react-effects-audit
 description: "Audit React components for unnecessary useEffect patterns. Detects 9 anti-patterns from \"You Might Not Need an Effect\" and proposes fixes with severity levels. Use when: auditing React or Next.js components for unnecessary or unsafe useEffect usage."
 ---
 
-**Target:** Derive from the user's requested audit scope.
+**Target:** $ARGUMENTS
 
 # React Effects Audit
 
@@ -68,8 +68,8 @@ This audit complements existing SOLID skills. Always cross-reference:
 
 | Project Type | SOLID Skill | Key Rule |
 |---|---|---|
-| **Next.js** | `fuse-nextjs:solid-nextjs` | No `useEffect` for data fetching; use Server Components |
-| **React** | `fuse-react:solid-react` | No `useEffect` for data fetching; use TanStack Query |
+| **Next.js** | `solid-nextjs` | No `useEffect` for data fetching; use Server Components |
+| **React** | `solid-react` | No `useEffect` for data fetching; use TanStack Query |
 
 **Integration**: When auditing a Next.js or React project, also load the corresponding SOLID skill to check architecture-level violations (file size, interface separation, business logic in components).
 

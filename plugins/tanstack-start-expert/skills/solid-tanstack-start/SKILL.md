@@ -1,13 +1,6 @@
 ---
 name: solid-tanstack-start
-description: >-
-  SOLID principles for TanStack Start projects. Reviewable files, interfaces in
-  src/interfaces/, JSDoc on all exports, modular structure around the Start route
-  tree. Use when: organizing a Start codebase, splitting oversized routes/server
-  functions, reviewing architecture, deciding where isomorphic vs server-only
-  code lives. Do NOT use for: framework setup (use start-core), execution
-  boundaries deep-dive (use start-execution-model), generic React SPA without a
-  Start route tree (use solid-react).
+description: ">- SOLID principles for TanStack Start projects. Files < 100 lines, interfaces in src/interfaces/, JSDoc on all exports, modular structure around the Start route tree. Use when: organizing a Start codebase, splitting oversized routes/server functions, reviewing architecture, deciding where isomorphic vs server-only code lives. Do NOT use for: framework setup (use start-core), execution boundaries deep-dive (use start-execution-model), generic React SPA without a Start route tree (use solid-react)."
 ---
 
 # SOLID TanStack Start
@@ -116,20 +109,4 @@ Ready-to-copy code in `references/templates/`:
 - Module importing another feature module (except `cores/`).
 - Files > 100 lines, missing JSDoc on exports, `any` type.
 - Barrel exports (`index.ts` re-exports).
-- Coding without checking current docs (Context7 + Exa/fuse-browser) first.
-
-## References
-
-- [references/solid-principles.md](references/solid-principles.md)
-- [references/single-responsibility.md](references/single-responsibility.md)
-- [references/architecture-patterns.md](references/architecture-patterns.md)
-- [references/interface-segregation.md](references/interface-segregation.md)
-- [references/dependency-inversion.md](references/dependency-inversion.md)
-- [references/templates/route.md](references/templates/route.md)
-- [references/templates/server-fn.md](references/templates/server-fn.md)
-- [references/templates/interface.md](references/templates/interface.md)
-- [references/templates/hook.md](references/templates/hook.md)
-
-## Skill routing metadata
-
-references: references/solid-principles.md, references/single-responsibility.md, references/architecture-patterns.md, references/interface-segregation.md, references/dependency-inversion.md, references/templates/route.md, references/templates/server-fn.md, references/templates/interface.md, references/templates/hook.md
+- Coding without checking current docs (Context7 + Exa) first.

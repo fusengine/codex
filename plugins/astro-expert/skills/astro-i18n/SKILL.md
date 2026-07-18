@@ -5,15 +5,17 @@ description: Use when implementing internationalization in Astro, configuring i1
 
 # Astro i18n
 
+> Targets: Astro 7.
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing routing, content collections, and locale files
-2. **ai-pilot:research / research-expert** - Verify latest Astro i18n docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check `astro:i18n` API and sitemap integration
+1. **explore-codebase** - Analyze existing routing, content collections, and locale files
+2. **research-expert** - Verify latest Astro i18n docs via Context7/Exa
+3. **Context7 (official docs)** - Check `astro:i18n` API and sitemap integration
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -78,24 +80,3 @@ Astro's built-in i18n system provides:
 - Parsing the URL manually to detect locale (use `Astro.currentLocale`)
 - Skipping hreflang configuration for SEO-sensitive sites
 - Using `getRelativeLocaleUrl` without configuring `site` in Astro config
-
-## References
-
-- [references/routing-config.md](references/routing-config.md)
-- [references/strategies.md](references/strategies.md)
-- [references/helper-functions.md](references/helper-functions.md)
-- [references/content-translation.md](references/content-translation.md)
-- [references/sitemap-hreflang.md](references/sitemap-hreflang.md)
-- [references/fallback.md](references/fallback.md)
-- [references/templates/i18n-config.md](references/templates/i18n-config.md)
-- [references/templates/locale-page.md](references/templates/locale-page.md)
-- [references/templates/language-switcher.md](references/templates/language-switcher.md)
-
-## Related skills
-
-`astro-6`, `astro-content`, `astro-seo`, `solid-astro`.
-
-## Skill routing metadata
-
-references: references/routing-config.md, references/strategies.md, references/helper-functions.md, references/content-translation.md, references/sitemap-hreflang.md, references/fallback.md, references/templates/i18n-config.md, references/templates/locale-page.md, references/templates/language-switcher.md
-related-skills: astro-6, astro-content, astro-seo, solid-astro

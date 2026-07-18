@@ -291,7 +291,7 @@ Create a new file at `lib/save-chat.ts` to save the chat sessions and messages t
 touch lib/save-chat.ts
 ```
 
-To start, create a basic function called `saveChat` that will be used to save the chat sessions and messages to the database.
+To start, create a basic function called `saveChat` that will be used to save the chat sessions and messages to the database. 
 
 Pass into it the `messages` and `id` parameters typed as `UIMessage[]` and `string` respectively:
 
@@ -428,7 +428,7 @@ export default function Chat() {
   //add-start
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const { messages, sendMessage, setMessages } = useChat();
   //add-end
 }
@@ -449,7 +449,7 @@ import { useState, useEffect } from 'react';
 export default function Chat() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const { messages, sendMessage, setMessages } = useChat();
 
   //add-start
@@ -483,7 +483,7 @@ import { useState, useEffect } from 'react';
 export default function Chat() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const { messages, sendMessage, setMessages } = useChat();
 
   useEffect(() => {
@@ -508,8 +508,8 @@ export default function Chat() {
       {messages.map(message => (
         <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
           <div className={`max-w-[80%] rounded-lg px-4 py-3 ${
-            message.role === 'user'
-              ? 'bg-neutral-600 text-white'
+            message.role === 'user' 
+              ? 'bg-neutral-600 text-white' 
               : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
           }`}>
             <div className="whitespace-pre-wrap">
@@ -542,7 +542,7 @@ import { useState, useEffect } from 'react';
 export default function Chat() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const { messages, sendMessage, setMessages } = useChat();
 
   useEffect(() => {
@@ -566,8 +566,8 @@ export default function Chat() {
       {messages.map(message => (
         <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
           <div className={`max-w-[80%] rounded-lg px-4 py-3 ${
-            message.role === 'user'
-              ? 'bg-neutral-600 text-white'
+            message.role === 'user' 
+              ? 'bg-neutral-600 text-white' 
               : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
           }`}>
             <div className="whitespace-pre-wrap">

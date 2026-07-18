@@ -21,7 +21,7 @@ generator client {
   provider   = "prisma-client-js" // or "prisma-client"
   engineType = "client"
 }
-```
+``` 
 
 Prisma ORM without Rust binaries has been [Generally Available](/orm/more/releases#generally-available-ga) since [v6.16.0](https://pris.ly/release/6.16.0).
 
@@ -32,7 +32,7 @@ When using this architecture:
 - No Rust query engine binary is downloaded or shipped.
 - The database connection pool is maintained by the native JS database driver you install (e.g., `@prisma/adapter-pg` for PostgreSQL).
 
-This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine).
+This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine). 
 
 Curious why we moved away from the Rust engine? Take a look at why we transitioned from Rust binary engines to an all-TypeScript approach for a faster, lighter Prisma ORM in this [blog post](https://www.prisma.io/blog/prisma-orm-without-rust-latest-performance-benchmarks).
 
@@ -144,7 +144,7 @@ For more information on connection management for serverless environments, refer
 
 Use `attachDatabasePool` together with [Prisma's driver adapters](/orm/overview/databases/database-drivers) to safely manage connections in Fluid:
 
-```ts
+```ts 
 import { Pool } from 'pg'
 import { attachDatabasePool } from '@vercel/functions'
 import { PrismaPg } from '@prisma/adapter-pg'

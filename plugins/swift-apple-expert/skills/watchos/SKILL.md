@@ -3,20 +3,19 @@ name: watchos
 description: "watchOS platform-specific development with complications, workouts, HealthKit, and Watch Connectivity. Use when building Apple Watch apps, health features, or iPhone-Watch communication."
 ---
 
-
 # watchOS Platform
 
 watchOS-specific development for Apple Watch experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing watchOS patterns
-2. **ai-pilot:research / research-expert** - Verify latest watchOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing watchOS patterns
+2. **research-expert** - Verify latest watchOS 26 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check watchOS patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

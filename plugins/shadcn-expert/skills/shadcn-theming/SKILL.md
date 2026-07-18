@@ -1,19 +1,18 @@
 ---
 name: shadcn-theming
-description: "Designs shadcn/ui tokens and themes with CSS variables, OKLCH, dark/light modes, and Tailwind integration. Use for semantic color systems and theme configuration. Do NOT use for registry setup, component APIs, or primitive migration."
+description: "Design tokens and theming for shadcn/ui. Covers CSS variables, OKLCH colors, dark/light mode, and theme configuration for both Radix and Base UI primitives. Use when: defining or auditing shadcn/ui design tokens, OKLCH colors, or dark/light mode CSS variables."
 ---
-
 
 # shadcn Theming
 
 ## Agent Workflow (MANDATORY)
 
-Before theming work, use the available Codex subagent capability when it materially helps:
+Before theming work, spawn sub-agents in parallel via `spawn_agent`:
 
-1. **ai-pilot:exploration / explore-codebase** - Find existing theme tokens
-2. **ai-pilot:research / research-expert** - Verify OKLCH patterns via Context7
+1. **explore-codebase** - Find existing theme tokens
+2. **research-expert** - Verify OKLCH patterns via Context7
 
-After: Run **ai-pilot:sniper-check / sniper** for validation.
+After: Run **sniper** for validation.
 
 ## Overview
 

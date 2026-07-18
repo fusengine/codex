@@ -51,7 +51,7 @@ For each file in {code_files}:
 | **Database** | query, model, migration, prisma, eloquent |
 | **UI Components** | component, render, JSX, template, view |
 | **Business Logic** | service, useCase, calculate, process |
-| **Config/Docs/Plugin** | env, config, settings, constants, agent/skill Markdown frontmatter, hooks JSON, plugin manifests |
+| **Config/Docs/Plugin** | env, config, settings, constants, `.md` agent/skill frontmatter, `hooks.json`, plugin manifests |
 | **Tests** | test, spec, describe, it, expect |
 
 ### 3. Identify Risk Areas

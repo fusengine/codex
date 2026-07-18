@@ -7,12 +7,12 @@ sidebar_label: 'Prisma 7 Migration'
 
 ## How to use
 
-Include this prompt in your AI assistant to guide in upgrading to Prisma ORM 7.0.
+Include this prompt in your AI assistant to guide in upgrading to Prisma ORM 7.0.  
 
-- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.
-- **Cursor**: Use `@Files` and select your prompt file.
-- **Zed**: Use `/file` followed by your prompt's path.
-- **Windsurf**: Use `@Files` and choose your prompt file from the list.
+- **GitHub Copilot**: Type `#<filename>` to reference the prompt file.  
+- **Cursor**: Use `@Files` and select your prompt file.  
+- **Zed**: Use `/file` followed by your prompt's path.  
+- **Windsurf**: Use `@Files` and choose your prompt file from the list.  
 
 
 ## Video Tutorial
@@ -70,9 +70,9 @@ alwaysApply: false
             - Look for `PRISMA_ACCELERATE_CACHE_*` environment variables
             - Look for `accelerate:` block in config (if any)
 2. In the migration plan output:
-    - If Accelerate + Caching is detected →
+    - If Accelerate + Caching is detected →  
       **Print a message: “Prisma Accelerate Caching detected — Prisma recommends keeping Accelerate for caching scenarios.”**
-    - If Accelerate without Caching →
+    - If Accelerate without Caching →  
       **Print: “Accelerate detected but caching is not enabled. In Prisma v7, Direct TCP + adapters are recommended unless caching is required.”**
     - If no Accelerate → continue normally.
 
@@ -228,10 +228,10 @@ Continue generating examples using Direct TCP, but **do not replace or remove th
     import 'dotenv/config'
     import { PrismaClient } from '../generated/prisma/client.js'
     import { PrismaPg } from '@prisma/adapter-pg'
-
+    
     const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
     const prisma = new PrismaClient({ adapter })
-
+    
     // seed…
 ```
 - Set seed command via prisma.config.ts (no package.json#prisma.seed).
@@ -276,28 +276,28 @@ Your project will be migrated accordingly using the appropriate adapter.
 ---
 
 ## 9) Scripts & CI
-- Verify scripts:
-    - "generate": "prisma generate"
-    - "migrate": "prisma migrate dev"
+- Verify scripts: 
+    - "generate": "prisma generate" 
+    - "migrate": "prisma migrate dev" 
     - "dev"/"start" run with ESM and ensure dotenv/config is effective.
 - In CI, ensure Node **≥ 20.19** and TypeScript **≥ 5.4**.
 
 ---
 ## 10) Run & Verify
 
-1. prisma generate → should succeed and emit client to ./generated.
-2. prisma migrate dev → runs against DATABASE_URL (direct TCP).
-3. tsx prisma/seed.ts → inserts sample record(s) cleanly.
-4. App boot: instantiate PrismaClient with adapter; confirm queries work.
-5. If **P1017 / connection** errors: - Confirm DATABASE_URL and network reachability. - Confirm import 'dotenv/config' executes early.
+1. prisma generate → should succeed and emit client to ./generated. 
+2. prisma migrate dev → runs against DATABASE_URL (direct TCP). 
+3. tsx prisma/seed.ts → inserts sample record(s) cleanly. 
+4. App boot: instantiate PrismaClient with adapter; confirm queries work. 
+5. If **P1017 / connection** errors: - Confirm DATABASE_URL and network reachability. - Confirm import 'dotenv/config' executes early. 
 6. If **module resolution** errors: - Confirm "type": "module", ESM imports, and re-generate client.
 
 ---
 
 ## Safety Checks & Edge Cases
-- **MongoDB provider** detected → stop and recommend staying on Prisma 6 until v7 MongoDB support returns.
-- **Multiple entrypoints** (workers, scripts, tests): apply the same client/adapter/dotenv pattern everywhere.
-- **Typed SQL** or custom extensions: keep as-is; ensure they compile after client re-generation.
+- **MongoDB provider** detected → stop and recommend staying on Prisma 6 until v7 MongoDB support returns. 
+- **Multiple entrypoints** (workers, scripts, tests): apply the same client/adapter/dotenv pattern everywhere. 
+- **Typed SQL** or custom extensions: keep as-is; ensure they compile after client re-generation. 
 - Preserve existing output path if the project uses custom locations.
 
 ---

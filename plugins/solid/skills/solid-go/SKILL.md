@@ -1,18 +1,17 @@
 ---
 name: solid-go
-description: "SOLID principles for Go 1.23+ with files under 100 lines, separated interfaces, and mandatory modular architecture. Use when writing or refactoring Go code, feature modules, or ports. Do NOT use for stack detection."
+description: "SOLID principles for Go 1.23+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Go code, structuring internal/modules/[feature]/ layers, or defining ports/ interfaces."
 ---
-
 
 # SOLID Go - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Go docs via Context7
-3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Go docs via Context7
+3. **sniper** - Post-implementation validation
 
 ---
 
