@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.38] - 2026-07-20
+
+- fix(nextjs-expert): `nickname_candidates` contained dots (`"Next.js Expert"`, `"Next.js Expert Agent"`) — outside the ASCII charset Codex's agent-role loader enforces (`codex-rs/core/src/config/agent_roles.rs`, tag `rust-v0.144.6`), so Codex 0.144.6 discarded the entire role file at startup with a one-line warning and `nextjs-expert` became silently non-spawnable. Nicknames trimmed of dots.
+- test(scripts): new `scripts/lib/agent-role-validation.ts` (`agentRoleViolations()`) guards the fatal agent-role load conditions — required non-blank `name`/`description`/`developer_instructions`, and the 4 `nickname_candidates` rules (non-empty array, no blank entries, no case-sensitive duplicates, ASCII `[A-Za-z0-9 _-]` charset); new guardrail test asserts every shipped agent TOML survives it
+- chore(release): bump nextjs-expert 1.1.29 + suite to 1.0.38
+
 ## [1.0.37] - 2026-07-20
 
 - feat(harness): auto-deposit Codex execpolicy rules on install — new `exec-policy{,-generator,-approval}.ts` generate the Starlark ruleset via the local harness `codex-rules` command and deposit `$CODEX_HOME/rules/fusengine.rules` idempotently (head marker, foreign files untouched), then guarantee `approval_policy = "on-request"` post-hoc; bump `@fusengine/harness` ^0.1.67 -> ^0.1.79 (0.1.78 makes the injected APEX template target-aware for Codex, `update_plan` replaces `TaskCreate`/`TaskUpdate`; 0.1.79 ships `codex-rules`)
