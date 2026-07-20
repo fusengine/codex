@@ -10,7 +10,7 @@ By default, the PostgreSQL connector contains a database driver responsible for 
 
 :::info
 
-Need a Postgres instance yesterday?
+Need a Postgres instance yesterday? 
 
 With [Prisma Postgres](https://www.prisma.io/postgres?utm_source=docs&utm_campaign=postgresql) you can get a database running on bare-metal in three clicks. Connection pooling, query caching, and automated backups are all included. [Visit the Console](https://console.prisma.io?utm_source=docs&utm_campaign=postgresql) to get started today.
 

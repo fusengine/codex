@@ -19,7 +19,7 @@ This guide will walk you through integrating Prisma ORM with a Prisma Postgres d
 
 ## 1. Set up your project
 
-To begin, create a new TanStack Start project.
+To begin, create a new TanStack Start project. 
 
 :::note
 

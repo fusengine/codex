@@ -5,6 +5,8 @@ description: "Orientation map of the PHP framework ecosystem — NOT deep expert
 
 # PHP Ecosystem Reference (Orientation)
 
+_Targets: api-platform 4.3, slim 4.15._
+
 ## Scope (read this first)
 
 This skill is a **routing / orientation map**, NOT an implementation expert. It answers
@@ -18,10 +20,10 @@ For actual implementation:
 
 ## Agent Workflow (MANDATORY)
 
-Before relying on any detail here, use available Codex subagents when useful:
+Before relying on any detail here, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:research / research-expert** - Verify current versions/APIs on symfony.com, api-platform.com, slimframework.com
-2. **ai-pilot:exploration / explore-codebase** - Detect which of these are already in composer.json
+1. `research-expert` - Verify current versions/APIs on symfony.com, api-platform.com, slimframework.com
+2. `explore-codebase` - Detect which of these are already in composer.json
 
 This skill orients; the research agent supplies verified specifics before any code.
 
@@ -97,19 +99,3 @@ composer require symfony/serializer
 - Present version-specific API details from here as verified — they are orientation
 - Attempt deep Laravel or deep Symfony full-stack work under this skill
 - Assume Symfony HttpFoundation and PSR-7 are interchangeable
-
-## References
-
-- [references/symfony-components.md](references/symfony-components.md)
-- [references/api-platform.md](references/api-platform.md)
-- [references/slim-framework.md](references/slim-framework.md)
-- [references/boundaries.md](references/boundaries.md)
-
-## Related skills
-
-`php-http-psr`, `laravel-expert:solid-php`.
-
-## Skill routing metadata
-
-references: references/symfony-components.md, references/api-platform.md, references/slim-framework.md, references/boundaries.md
-related-skills: php-http-psr, laravel-expert:solid-php

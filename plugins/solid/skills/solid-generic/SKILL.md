@@ -1,20 +1,19 @@
 ---
 name: solid-generic
-description: "SOLID principles for generic TypeScript, Bun, and Node.js with files under 100 lines, separated interfaces, and mandatory JSDoc. Use when building CLI tools, libraries, scripts, hooks, or non-framework TypeScript. Do NOT use for React, Next.js, Laravel, or another stack with a dedicated SOLID skill."
+description: "SOLID principles for generic TypeScript, Bun, and Node.js projects. Files < 100 lines, interfaces separated, JSDoc mandatory. Use when: building CLI tools, libraries, scripts, hooks, or non-framework TypeScript code."
 ---
-
 
 # SOLID Generic - TypeScript / Bun / Node.js
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze project structure and existing patterns
-2. **ai-pilot:research / research-expert** - Verify latest TypeScript/Bun docs via Context7
+1. **explore-codebase** - Analyze project structure and existing patterns
+2. **research-expert** - Verify latest TypeScript/Bun docs via Context7
 3. **mcp__context7__query-docs** - Check integration compatibility
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

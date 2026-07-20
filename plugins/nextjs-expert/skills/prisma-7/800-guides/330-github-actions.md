@@ -14,7 +14,7 @@ This guide shows you how to automatically create and delete [Prisma Postgres](ht
 
 ![GitHub Actions comment](/img/guides/github-comment.png)
 
-After the PR is closed, the database is automatically deleted. This allows you to test changes in isolation without affecting the main development database.
+After the PR is closed, the database is automatically deleted. This allows you to test changes in isolation without affecting the main development database. 
 
 ## Prerequisites
 
@@ -513,9 +513,9 @@ Append the following to your `jobs:` section, after the `provision-database` job
               -H "Authorization: Bearer ${{ env.PRISMA_POSTGRES_SERVICE_TOKEN }}" \
               -H "Content-Type: application/json" \
               "https://api.prisma.io/v1/databases/$DB_EXISTS")
-
+            
             echo "Delete API Response: $DELETE_RESPONSE"
-
+            
             if echo "$DELETE_RESPONSE" | grep -q '"error":'; then
               ERROR_MSG=$(echo "$DELETE_RESPONSE" | jq -r '.message // "Unknown error"')
               echo "Failed to delete database: $ERROR_MSG"
@@ -571,7 +571,7 @@ curl -X POST https://api.prisma.io/v1/projects \
   -d "{\"region\": \"us-east-1\", \"name\": \"$PROJECT_NAME\"}"
 ```
 
-:::note
+:::note 
 
 Make sure to replace the `$PRISMA_POSTGRES_SERVICE_TOKEN` variable with the service token you stored earlier.
 

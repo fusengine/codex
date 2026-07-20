@@ -3,18 +3,19 @@ name: laravel-queues
 description: "Laravel 13 background jobs - PHP Attributes (#[Queue], #[Connection], #[Tries], #[Backoff]), workers, batches, chains, middleware, Queue::route() centralised routing. Use for async tasks."
 ---
 
-
 # Laravel Queues (L13 — Attributes-first)
+
+_Targets: laravel 13.0, horizon 5.43, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Audit job classes, connections, queue routes
-2. **ai-pilot:research / research-expert** - Verify L13 Queue + Queue::route() via Context7
-3. **mcp__context7__query-docs** - Check queue attribute patterns
+1. `explore-codebase` - Audit job classes, connections, queue routes
+2. `research-expert` - Verify L13 Queue + Queue::route() via Context7
+3. `mcp__context7__query-docs` - Check queue attribute patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

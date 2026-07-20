@@ -48,6 +48,41 @@ test("setRootKey: unquoted value has no comment to preserve", () => {
 	expect(next).toBe("max_threads = 12\n");
 });
 
+test("hasKey: false when the key only exists inside a [profiles.*] table", () => {
+	const src = 'model = "gpt-5"\n\n[profiles.yolo]\napproval_policy = "never"\nmodel = "gpt-4"\n';
+	expect(hasKey(src, "approval_policy")).toBe(false);
+});
+
+test("getRootKey: undefined when the key only exists inside a [profiles.*] table", () => {
+	const src = 'model = "gpt-5"\n\n[profiles.yolo]\napproval_policy = "never"\nmodel = "gpt-4"\n';
+	expect(getRootKey(src, "approval_policy")).toBeUndefined();
+});
+
+test("setRootKey: prefixes the root key and preserves an untouched [profiles.*] table", () => {
+	const src = 'model = "gpt-5"\n\n[profiles.yolo]\napproval_policy = "never"\nmodel = "gpt-4"\n';
+	const next = setRootKey(src, "approval_policy", "on-request");
+	expect(next).toBe(
+		'approval_policy = "on-request"\nmodel = "gpt-5"\n\n[profiles.yolo]\napproval_policy = "never"\nmodel = "gpt-4"\n',
+	);
+});
+
+test("setRootKey: a root key present both at root and inside a table only updates the root one", () => {
+	const src = 'model = "gpt-9"\n\n[profiles.yolo]\nmodel = "gpt-4"\n';
+	const next = setRootKey(src, "model", "gpt-9.1");
+	expect(next).toBe('model = "gpt-9.1"\n\n[profiles.yolo]\nmodel = "gpt-4"\n');
+});
+
+test("setRootKey: file starting directly with a table prefixes the key ahead of it", () => {
+	const src = '[projects."/Users/x"]\ntrust_level = "trusted"\n';
+	const next = setRootKey(src, "model", "gpt-5.5");
+	expect(next).toBe('model = "gpt-5.5"\n[projects."/Users/x"]\ntrust_level = "trusted"\n');
+});
+
+test("setRootKey: file with no table at all behaves exactly as before", () => {
+	const next = setRootKey('model = "gpt-5.4"\nother = 1\n', "model", "gpt-5.5");
+	expect(next).toBe('model = "gpt-5.5"\nother = 1\n');
+});
+
 test("setTableKey: creates a missing table", () => {
 	expect(setTableKey('model = "gpt-5.5"\n', "features", "hooks", "true"))
 		.toBe('model = "gpt-5.5"\n\n[features]\nhooks = true\n');

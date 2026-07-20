@@ -39,7 +39,7 @@ const prisma = new PrismaClient().$extends(
 await prisma.post.findMany()
 
 // Query is run against the primary database
-await prisma.post.create({
+await prisma.post.create({ 
   data: ,
 })
 ```

@@ -21,7 +21,7 @@ In this guide, you'll learn how to set up Datadog tracing for a new Prisma proje
 ### What are spans and tracing?
 
 - **Spans** are the individual operations or units of work within a distributed system or complex application. Each database query, service call, or external request is represented by a span.
-
+  
 - **Tracing** ties these spans together to form a complete, end-to-end picture of a request’s lifecycle. With tracing, you can visualize bottlenecks, identify problematic queries, and pinpoint where errors occur from your queries.
 
 ### Why use Datadog with Prisma ORM?
@@ -198,7 +198,7 @@ In addition to Prisma, you will need the following packages for Datadog tracing:
 
 ```terminal
 npm install @prisma/instrumentation \
-  dd-trace
+  dd-trace 
 ```
 
 Also ensure you have development dependencies for TypeScript:
@@ -452,7 +452,7 @@ main()
   });
 ```
 
-:::note
+:::note 
 
 If you encounter a linting error on the line `tracerProvider: provider` due to incompatible types, it's likely caused by a version mismatch in the `@opentelemetry/api` package.
 

@@ -1,13 +1,13 @@
 ---
 name: 03-plan-component
-description: Plan component implementation with the Codex plan
+description: Plan component implementation with update_plan
 prev_step: references/design/02-search-inspiration.md
 next_step: references/design/04-code-component.md
 ---
 
 # 03 - Plan Component (APEX Phase P)
 
-**Plan implementation with `update_plan` before coding.**
+**Plan implementation using update_plan before coding.**
 
 ## When to Use
 
@@ -17,12 +17,12 @@ next_step: references/design/04-code-component.md
 
 ---
 
-## Codex Plan Structure
+## Plan Structure (update_plan)
 
 ### Example: Hero Section
 
 ```text
-Create one Codex plan step for each item:
+update_plan with an item for each step:
 1. [ ] Create HeroSection component shell
 2. [ ] Add typography (heading, subheading)
 3. [ ] Implement background (gradient orbs)
@@ -30,13 +30,13 @@ Create one Codex plan step for each item:
 5. [ ] Implement Framer Motion animations
 6. [ ] Add responsive styles
 7. [ ] Validate accessibility
-State dependencies in the ordered step text. Use `update_plan` to track progress.
+Note dependencies in the step text. Call `update_plan` again to update each item's status as you progress.
 ```
 
 ### Example: Card Component
 
 ```text
-Create one Codex plan step for each item:
+update_plan with an item for each step:
 1. [ ] Create Card base component
 2. [ ] Add CardHeader, CardContent, CardFooter
 3. [ ] Implement hover animation
@@ -99,7 +99,7 @@ If component > 90 lines:
 ## Validation Checklist
 
 ```text
-[ ] Codex plan created
+[ ] update_plan plan created
 [ ] Tasks are atomic
 [ ] File sizes estimated (< 100 lines each)
 [ ] Design tokens documented

@@ -9,6 +9,30 @@ next_step: references/05-review.md
 
 **Verify code quality with sniper agent (APEX Phase X).**
 
+## Gate — Required Proof Artefacts
+
+**Validation does NOT start** unless both proof files exist on disk for the current task. A claim made in context ("I already verified/elicited this") is not proof — only the file on disk is:
+
+```bash
+TASK_SLUG=$(jq -r '.current_task' .codex/apex/task.json)
+if [ ! -f ".codex/apex/docs/elicit-${TASK_SLUG}.json" ]; then
+  echo "❌ Missing .codex/apex/docs/elicit-${TASK_SLUG}.json — go back to references/03.5-elicit.md first."
+  exit 1
+fi
+if [ ! -f ".codex/apex/docs/verify-${TASK_SLUG}.md" ]; then
+  echo "❌ Missing .codex/apex/docs/verify-${TASK_SLUG}.md — go back to the verification skill (runs between eLicit and eXamine) first."
+  exit 1
+fi
+if [ ! -f ".codex/apex/docs/challenge-${TASK_SLUG}.md" ]; then
+  echo "❌ Missing .codex/apex/docs/challenge-${TASK_SLUG}.md — the challenger runs SYSTEMATICALLY at every eLicit round and every Verify gate (Step 4.5 of 03.5-elicit.md, Step 6 of the verification skill), no exceptions. Go run it first."
+  exit 1
+fi
+```
+
+Only once all three checks pass does this phase proceed. `challenge-${TASK_SLUG}.md` holds the verdict (`CONFIRMED` / `REFUTED` / `UNCERTAIN`); a `REFUTED` verdict must be resolved or explicitly owner-accepted before this gate is considered passed — soft-gate on content, hard-gate on artefact presence (same pattern as `elicit-*.json` / `verify-*.md`).
+
+---
+
 ## When to Use
 
 - After execution phase complete
@@ -177,6 +201,10 @@ Fix: Verify path, check exports, check package installed
 | Format error | Run formatter |
 | File too long | Split file |
 
+### Fix Discipline (Hypothesis-Driven)
+
+**Fix discipline (hypothesis-driven).** One candidate cause documented before any edit → one atomic change → retest immediately. If it still fails, the hypothesis was wrong: the same fix is FORBIDDEN — run a fresh research round (Context7 → Exa) for a new hypothesis. Cap: 3 cycles per error; at the 3rd failure STOP and escalate (`status: fail` + root-cause: what was tried, sources, why each failed). Never stack two unverified corrections. Canonical implementation: sniper's Fix Retry Loop.
+
 ---
 
 ## Validation Report
@@ -214,6 +242,17 @@ Fix: Verify path, check exports, check package installed
 □ All files <100 lines verified
 □ Build successful
 □ No regressions detected
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "validation" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

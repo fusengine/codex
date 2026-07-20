@@ -5,17 +5,21 @@ description: Astro DB — defineDb, defineTable, column types, CRUD with db.sele
 
 # Astro DB
 
+> Targets: Astro 7.
+
 Type-safe SQL database built into Astro, powered by libSQL/Turso. Use for structured data without external backend services.
+
+> **⚠️ Deprecation notice**: `@astrojs/db` is **deprecated and no longer actively maintained** (still published on npm, currently v0.21.3 — it has not been removed from Astro 7). For new projects, prefer **Drizzle**, **Kysely**, or a direct **libSQL** client instead. Existing projects can keep using it, but should plan a migration.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing db/config.ts, tables, and Actions
-2. **ai-pilot:research / research-expert** - Verify Astro DB API via Context7/Exa
-3. **mcp__context7__query-docs** - Check Astro 6 DB docs for column types and CRUD
+1. **explore-codebase** - Check existing db/config.ts, tables, and Actions
+2. **research-expert** - Verify Astro DB API via Context7/Exa
+3. **Context7 (official docs)** - Check Astro 6 DB docs for column types and CRUD
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -87,22 +91,4 @@ Combine with `astro:actions` for end-to-end type safety: Zod input validation �
 3. **`.returning()` after insert** - Get back inserted rows
 4. **Push before deploy** - Run `astro db push` in CI/CD
 5. **Turso free tier** - 500 databases, generous for production
-
-## References
-
-- [references/schema-definition.md](references/schema-definition.md)
-- [references/crud-operations.md](references/crud-operations.md)
-- [references/seed-data.md](references/seed-data.md)
-- [references/turso-production.md](references/turso-production.md)
-- [references/actions-integration.md](references/actions-integration.md)
-- [references/templates/db-config.md](references/templates/db-config.md)
-- [references/templates/crud-example.md](references/templates/crud-example.md)
-
-## Related skills
-
-`astro-6`, `astro-actions`, `astro-deployment`.
-
-## Skill routing metadata
-
-references: references/schema-definition.md, references/crud-operations.md, references/seed-data.md, references/turso-production.md, references/actions-integration.md, references/templates/db-config.md, references/templates/crud-example.md
-related-skills: astro-6, astro-actions, astro-deployment
+6. **New projects: consider Drizzle/Kysely/libSQL instead** - `@astrojs/db` is deprecated and unmaintained; still usable for existing projects, but not recommended as a starting point

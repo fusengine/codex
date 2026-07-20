@@ -1,11 +1,22 @@
-# Badge Recompute
+# Badge Recompute (Step M3)
 
-Load during the marketplace path when README badges must be recomputed. Never hand-maintain counts.
+Load when: doing Step M3 and you need the exact commands to recompute README.md shields.io badges from the filesystem.
+
+Never hand-maintain badge counts (they drift) — always recompute from the filesystem:
 
 ```bash
-PLUGINS=$(grep -cE '"path": "\./plugins/' .agents/plugins/marketplace.json)
-AGENTS=$(find plugins -path '*/agents/*.toml' -type f | wc -l | tr -d ' ')
-SKILLS=$(find plugins -path '*/skills/*/SKILL.md' -type f | wc -l | tr -d ' ')
+PLUGINS=$(grep -cE '"source": "\./plugins/' .codex-plugin/marketplace.json)
+AGENTS=$(ls plugins/*/agents/*.md 2>/dev/null | wc -l | tr -d ' ')
+SKILLS=$(ls -d plugins/*/skills/*/ 2>/dev/null | wc -l | tr -d ' ')
 ```
 
-Update only the numeric/version token in each existing shields.io badge: suite version, plugins, agents, and skills. Re-run the counts immediately before writing the CHANGELOG or commit message; do not reuse sampled or remembered numbers.
+Update each badge token in `README.md` so it matches reality (replace the token, not the whole line):
+
+- `version-v<any>-` → `version-v<newSuite>-`
+- `plugins-<any>-` → `plugins-$PLUGINS-`
+- `agents-<any>-` → `agents-$AGENTS-`
+- `skills-<any>-` → `skills-$SKILLS-`
+
+```bash
+sed -i '' -E "s/version-v[0-9.]+-/version-v${NEW}-/; s/plugins-[0-9]+-/plugins-${PLUGINS}-/; s/agents-[0-9]+-/agents-${AGENTS}-/; s/skills-[0-9]+-/skills-${SKILLS}-/" README.md
+```

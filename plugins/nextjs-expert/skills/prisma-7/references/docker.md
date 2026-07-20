@@ -41,6 +41,7 @@ CMD ["npm", "start"]
 ## Docker Compose Setup
 
 ```yaml
+version: '3.8'
 
 services:
   app:

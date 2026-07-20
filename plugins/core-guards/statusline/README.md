@@ -1,6 +1,6 @@
-# Claude Code Statusline
+# Codex Statusline
 
-Modular SOLID statusline for Claude Code.
+Modular SOLID statusline for Codex.
 
 ## Architecture
 

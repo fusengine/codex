@@ -1,31 +1,26 @@
 ---
 name: commit-optimization
-description: "Optimize the commit-pro workflow for Codex. Use when reducing commit workflow overhead, avoiding duplicate git guidance, or migrating commit settings from another agent runtime."
+description: "Optimization guide for the commit-pro commit workflow. Documents how to keep the plugin authoritative and reduce token usage."
 ---
 
 # Commit Optimization
 
-## Codex Guidance
+## Optimization: Keep commit-pro authoritative for git
 
-Codex has no verified equivalent to external-agent git-instruction toggles such as `includeGitInstructions`. Do not add unsupported runtime settings to Codex config.
+commit-pro ships its own comprehensive git workflow (branch flow, security gate,
+conventional commits, post-merge tagging) that supersedes any generic git guidance
+a host runtime injects. Keeping the plugin as the single source of truth for git
+operations avoids duplicated/contradictory instructions and reclaims context tokens.
 
-## Recommended Usage
+- In `~/.codex/config.toml`, let the commit-pro plugin own commit/PR behavior; do not
+  restate generic commit or PR conventions in `AGENTS.md`.
+- If a project-level `AGENTS.md` documents its own commit conventions, make sure they
+  do not contradict commit-pro's flow (protected-branch enforcement, PATCH-only bumps,
+  post-merge tagging).
+- Route every commit/release through the commit-pro `commit` flow (the `commit` agent),
+  never a bare `git commit` outside its steps — that is what guarantees the security
+  gate, branch-protection check, and CHANGELOG/version bump actually run.
 
-Use the narrowest commit-pro skill for the current task:
-
-| Need | Skill |
-|------|-------|
-| Detect commit type only | `commit-detection` or `commit-detector` agent |
-| Full commit workflow | `commit` |
-| Known type | `feat`, `fix`, `docs`, `test`, `chore`, `refactor` |
-| CHANGELOG/version bump after commit | `post-commit` |
-
-Keep the detector read-only. Run mutating git operations only after explicit user confirmation and repository policy checks.
-
-## Related skills
-
-`commit`, `commit-detection`, `git-flow`, `post-commit`.
-
-## Skill routing metadata
-
-related-skills: commit, commit-detection, git-flow, post-commit
+Treating commit-pro as the authority — and removing redundant built-in git guidance
+where the runtime allows — is the whole optimization: one consistent workflow, fewer
+tokens, no drift.

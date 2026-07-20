@@ -1,13 +1,6 @@
 ---
 name: start-core
-description: >-
-  TanStack Start setup and project anatomy — tanstackStart() Vite (and Rsbuild)
-  plugin, getRouter() factory, root route document shell (HeadContent, Outlet,
-  Scripts), routeTree.gen.ts, tsconfig, src/ layout. Use when: scaffolding a
-  Start project from scratch, wiring the build tool, understanding where files
-  go, debugging setup (blank page, hydration, no client JS). Do NOT use for:
-  server-only vs isomorphic boundaries (use start-execution-model), SOLID/code
-  organization (use solid-tanstack-start), plain React SPA without Start.
+description: ">- TanStack Start setup and project anatomy — tanstackStart() Vite (and Rsbuild) plugin, getRouter() factory, root route document shell (HeadContent, Outlet, Scripts), routeTree.gen.ts, tsconfig, src/ layout. Use when: scaffolding a Start project from scratch, wiring the build tool, understanding where files go, debugging setup (blank page, hydration, no client JS). Do NOT use for: server-only vs isomorphic boundaries (use start-execution-model), SOLID/code organization (use solid-tanstack-start), plain React SPA without Start."
 ---
 
 # TanStack Start Core
@@ -29,8 +22,8 @@ RPCs), middleware, and universal deployment. This skill targets
 ## Agent Workflow (MANDATORY)
 
 Before implementing, verify current APIs against Context7
-(`/websites/tanstack_start_framework_react`) + Exa/fuse-browser, then explore the target
-codebase. After changes, run `ai-pilot:sniper-check / sniper`.
+(`/websites/tanstack_start_framework_react`) + Exa, then explore the target
+codebase. After changes, run `sniper`.
 
 ---
 
@@ -105,12 +98,3 @@ npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic
 - Omitting `<Scripts />` in `__root.tsx` (no hydration).
 - Enabling `verbatimModuleSyntax` (leaks server code into client bundle).
 - Next.js/Remix patterns (`getServerSideProps`, `"use server"`).
-
-## References
-
-references: references/project-setup.md, references/project-anatomy.md, references/common-mistakes.md, references/templates/minimal-project.md
-
-- [references/project-setup.md](references/project-setup.md)
-- [references/project-anatomy.md](references/project-anatomy.md)
-- [references/common-mistakes.md](references/common-mistakes.md)
-- [references/templates/minimal-project.md](references/templates/minimal-project.md)

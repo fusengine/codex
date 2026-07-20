@@ -1,8 +1,8 @@
 ---
 name: generator
 description: Content generator for articles, emails, social posts, and marketing copy. Use when generating blog posts, LinkedIn content, email campaigns, or creative content.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Write
 skills: content-generation
 ---
 

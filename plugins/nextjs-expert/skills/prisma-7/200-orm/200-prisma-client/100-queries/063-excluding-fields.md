@@ -69,9 +69,9 @@ const user = await prisma.user.findUnique({
   omit: {
     password: true
   },
-  where: {
-    id: 1
-  }
+  where: { 
+    id: 1 
+  } 
 })
 ```
 

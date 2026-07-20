@@ -31,7 +31,7 @@ Postgres extensions support in Prisma Postgres is currently in [Early Access](/p
 
 ## Using extensions with Prisma ORM
 
-Some extensions may already be supported by Prisma Postgres but not yet by Prisma ORM. Native support for some Postgres extensions in Prisma ORM is coming soon. In the meantime, you can still use these extensions with Prisma ORM by using [customized migrations](/orm/prisma-migrate/workflows/customizing-migrations) and [TypedSQL](/orm/prisma-client/using-raw-sql/typedsql) (or another mechanism to send [raw SQL](/orm/prisma-client/using-raw-sql) via in Prisma ORM).
+Some extensions may already be supported by Prisma Postgres but not yet by Prisma ORM. Native support for some Postgres extensions in Prisma ORM is coming soon. In the meantime, you can still use these extensions with Prisma ORM by using [customized migrations](/orm/prisma-migrate/workflows/customizing-migrations) and [TypedSQL](/orm/prisma-client/using-raw-sql/typedsql) (or another mechanism to send [raw SQL](/orm/prisma-client/using-raw-sql) via in Prisma ORM). 
 
 Let's walk through an example with `pgvector`.
 
@@ -94,7 +94,7 @@ Prisma schema loaded from prisma/schema.prisma
 Datasource "db": PostgreSQL database "postgres", schema "public" at "accelerate.prisma-data.net"
 
 ✔ Introspected 3 models and wrote them into prisma/schema.prisma in 3.23s
-
+      
 *** WARNING ***
 
 These fields are not supported by Prisma Client, because Prisma currently does not support their types:

@@ -181,7 +181,7 @@ Check `app/globals.css`:
 
 ## Step 6: Configure MCP Server (Codex)
 
-Create `.mcp.json` at project root for Codex MCP integration:
+Create `.mcp.json` at project root for Codex integration:
 
 ```json
 {

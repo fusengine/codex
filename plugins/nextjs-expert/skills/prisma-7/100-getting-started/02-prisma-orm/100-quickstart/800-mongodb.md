@@ -34,7 +34,7 @@ This guide uses Prisma ORM v6.19 to ensure full compatibility with MongoDB.
 Install the packages needed for this quickstart:
 
 ```terminal
-npm install prisma@6.19 @types/node --save-dev
+npm install prisma@6.19 @types/node --save-dev 
 npm install @prisma/client@6.19 dotenv
 ```
 

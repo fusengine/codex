@@ -47,6 +47,6 @@ Run the following command to deploy the migration and apply to your database:
 npx prisma migrate deploy
 ```
 
-### 4. Use the extension
+### 4. Use the extension 
 
 You can now use the extension in your queries with Prisma Client. If the extension has special data types that currently can't be natively represented in the Prisma schema, you can still define fields of that type on your models using the [`Unsupported`](/orm/prisma-schema/data-model/models#unsupported-types) fallback type.

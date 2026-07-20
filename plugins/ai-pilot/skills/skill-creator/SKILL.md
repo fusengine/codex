@@ -7,13 +7,13 @@ description: Use when creating new skills, restructuring existing skills, or imp
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY skill creation, use the available Codex subagent workflow when it materially helps. Suggested parallel checks:
+Before ANY skill creation, spawn 3 subagents in parallel (one dispatch, `spawn_agent` / MultiAgentV2):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing skills, analyze structure
-2. **ai-pilot:research / research-expert** - Fetch latest official documentation online
-3. **mcp__context7__query-docs** - Get code examples from official sources
+1. **explore-codebase** - Check existing skills, analyze structure
+2. **research-expert** - Fetch latest official documentation online
+3. **mcp__context7__query-docs** - Get code examples from official sources (direct MCP call)
 
-After creation, run **ai-pilot:sniper-check / sniper** for validation.
+After creation, run **sniper** for validation.
 
 ---
 
@@ -31,11 +31,12 @@ After creation, run **ai-pilot:sniper-check / sniper** for validation.
 ## Critical Rules
 
 1. **ALL content in English** - Never French or other languages
-2. **SKILL.md is descriptive** - Guides agent to references/templates
-3. **References are conceptual** - WHY + WHEN, max 150 lines
-4. **Templates are complete** - Copy-paste ready code
-5. **Expose through plugin manifest** - `.codex-plugin/plugin.json` must point at `./skills/`
-6. **Run sniper after creation** - Validate all files
+2. **SKILL.md is descriptive** - Guides the agent to references/templates
+3. **Frontmatter = name + description ONLY** - Codex skills support only these two keys
+4. **References are conceptual** - WHY + WHEN, max 150 lines
+5. **Templates are complete** - Copy-paste ready code
+6. **Register the plugin** - Or the skill won't load
+7. **Run sniper after creation** - Validate all files
 
 ---
 
@@ -66,7 +67,7 @@ skills/<skill-name>/
 | **Workflow** | [workflow.md](references/workflow.md) | Creating/improving skills |
 | **Architecture** | [architecture.md](references/architecture.md) | Understanding skill structure |
 | **Content Rules** | [content-rules.md](references/content-rules.md) | Writing references/templates |
-| **Registration** | [registration.md](references/registration.md) | Making skill available |
+| **Registration** | [registration.md](references/registration.md) | Making the skill available |
 | **Adaptation** | [adaptation.md](references/adaptation.md) | Converting between frameworks |
 
 ### Templates
@@ -88,15 +89,14 @@ skills/<skill-name>/
 → research-expert + context7/exa
 
 # 2. Create structure
-mkdir -p plugins/<agent>/skills/<name>/references/templates
+mkdir -p plugins/<plugin>/skills/<name>/references/templates
 
 # 3. Create files
-→ SKILL.md (from template)
+→ SKILL.md (from template, frontmatter = name + description)
 → references/*.md (conceptual)
 → references/templates/*.md (code)
 
-# 4. Register
-→ ensure `.codex-plugin/plugin.json` exposes `./skills/`
+# 4. Register the plugin in the marketplace manifest
 
 # 5. Validate
 → sniper
@@ -123,13 +123,12 @@ mkdir -p plugins/<agent>/skills/<name>/references/templates
 ## Validation Checklist
 
 - [ ] ALL content in English
-- [ ] SKILL.md has proper frontmatter
-- [ ] All references listed in frontmatter
+- [ ] SKILL.md frontmatter = name + description ONLY
 - [ ] Agent Workflow section present
 - [ ] Reference Guide has Concepts + Templates tables
 - [ ] References < 150 lines each
 - [ ] Templates have complete, working code
-- [ ] Plugin manifest exposes `./skills/`
+- [ ] Plugin registered in the marketplace manifest
 
 ---
 
@@ -146,5 +145,5 @@ mkdir -p plugins/<agent>/skills/<name>/references/templates
 - Write in French (English only)
 - Copy-paste raw documentation
 - Exceed 150 lines in references
-- Forget registration step
+- Add frontmatter keys beyond name + description
 - Skip sniper validation

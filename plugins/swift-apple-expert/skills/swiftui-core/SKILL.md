@@ -3,20 +3,19 @@ name: swiftui-core
 description: "SwiftUI fundamentals for all Apple platforms. Use when building views, navigation, data persistence, or state management with SwiftUI across iOS, macOS, iPadOS, watchOS, visionOS."
 ---
 
-
 # SwiftUI Core
 
 SwiftUI fundamentals shared across all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing SwiftUI patterns
-2. **ai-pilot:research / research-expert** - Verify latest SwiftUI docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing SwiftUI patterns
+2. **research-expert** - Verify latest SwiftUI docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check SwiftUI view patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

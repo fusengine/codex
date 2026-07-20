@@ -3,7 +3,6 @@ name: commit-detection
 description: "Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing."
 ---
 
-
 # Commit Type Detection Skill
 
 Expert knowledge for detecting the optimal conventional commit type.
@@ -24,15 +23,6 @@ git diff --staged --stat
 # Check for keywords in diff
 git diff | grep -i "fix\|bug\|error" | head -5
 ```
-
-## Skill routing metadata
-
-related-skills: commit, git-flow
-
-
-## Related skills
-
-`commit`, `git-flow`.
 
 ### Step 2: Categorize Files
 
@@ -77,7 +67,7 @@ IF formatting only (whitespace, semicolons):
   → style
 
 DEFAULT:
-  → Use /commit-pro:commit for smart analysis
+  → Use /commit for smart analysis
 ```
 
 ### Step 4: Determine Scope
@@ -117,18 +107,18 @@ See the `post-commit` skill for universal CHANGELOG, version bump, and tag logic
 **Example 1: Only README changed**
 ```
 Files: README.md
-→ /commit-pro:docs
+→ /docs
 ```
 
 **Example 2: New component + test**
 ```
 Files: src/Button.tsx, src/Button.test.tsx
-→ /commit-pro:feat (primary is new feature)
+→ /feat (primary is new feature)
 ```
 
 **Example 3: Fix in existing file**
 ```
 Files: src/api/auth.ts
 Diff contains: "fix login bug"
-→ /commit-pro:fix
+→ /fix
 ```

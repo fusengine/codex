@@ -10,7 +10,7 @@ community_section: true
 
 ## Introduction
 
-Prisma ORM offers type-safe database access, and [Hono](https://hono.dev/) is built for fast, lightweight web apps. Together with [Prisma Postgres](https://www.prisma.io/postgres), you get a fast, lightweight backend, that can be deployed through Node.js, Cloudflare, or many other runtimes.
+Prisma ORM offers type-safe database access, and [Hono](https://hono.dev/) is built for fast, lightweight web apps. Together with [Prisma Postgres](https://www.prisma.io/postgres), you get a fast, lightweight backend, that can be deployed through Node.js, Cloudflare, or many other runtimes. 
 
 In this guide, you'll learn to integrate Prisma ORM with a Prisma Postgres database in a Hono backend application. You can find a complete example of this guide on [GitHub](https://github.com/prisma/prisma-examples/tree/latest/orm/hono).
 
@@ -269,7 +269,7 @@ If you choose not to use one, in long-lived environments (for example, a Node.js
 By default, Hono does not load any environment variables from a `.env`. `dotenv` handles this and will be read that file and expose them via `process.env`. Hono can get additional types to know that the `withPrisma` middleware will set a `prisma`
 key on the Hono context
 
-```ts file=src/index.ts
+```ts file=src/index.ts 
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 // add-next-line
@@ -335,7 +335,7 @@ npm run dev
 ```
 
 There should be a "Server is running on http://localhost:3000" log printed out. From here, the data
-can be viewed by visting `http://localhost:3000/users` or by running `curl` from the command line
+can be viewed by visting `http://localhost:3000/users` or by running `curl` from the command line 
 
 ```terminal
 curl http://localhost:3000/users | jq

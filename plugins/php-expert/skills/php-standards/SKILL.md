@@ -1,19 +1,21 @@
 ---
 name: php-standards
-description: Use when setting up a PHP package, choosing a coding style, wiring autoloading, or selecting PSR interfaces — PSR-4 autoloading, PER Coding Style 3.0 vs PSR-12, the active PSR catalog, and modern composer.json. Do NOT use for language syntax/features (use php-language-modern) or Laravel-specific conventions (use the laravel plugin).
+description: "Use when setting up a PHP package, choosing a coding style, wiring autoloading, or selecting PSR interfaces — PSR-4 autoloading, PER Coding Style 3.0 vs PSR-12, the active PSR catalog, and modern composer.json. Do NOT use for language syntax/features (use php-language-modern) or Laravel-specific conventions (use the laravel plugin)."
 ---
 
 # PHP Standards (PSR / PER / Composer)
 
+_Targets: per-coding-style 3.0, psr-4 accepted, composer 2._
+
 ## Agent Workflow (MANDATORY)
 
-Before applying a standard, use available Codex subagents when useful:
+Before applying a standard, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing style config (`.php-cs-fixer.php`, `phpcs.xml`), `composer.json` autoload
-2. **ai-pilot:research / research-expert** - Verify a PSR's current status on php-fig.org before recommending it
-3. **mcp__context7__query-docs** - Cross-check composer.json schema
+1. `explore-codebase` - Detect existing style config (`.php-cs-fixer.php`, `phpcs.xml`), `composer.json` autoload
+2. `research-expert` - Verify a PSR's current status on php-fig.org before recommending it
+3. `mcp__context7__query-docs` - Cross-check composer.json schema
 
-After changes, run **ai-pilot:sniper-check / sniper** for validation.
+After changes, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -90,20 +92,3 @@ my-package/
 - Claim PER "replaced" PSR-12 as the official standard — PSR-12 is still *Accepted*
 - Depend on PSR-2/PSR-0 (deprecated) or PSR-8/9/10 (abandoned)
 - Hardcode a concrete logger/cache when a PSR interface exists
-
-## References
-
-- [references/per-coding-style.md](references/per-coding-style.md)
-- [references/psr-catalog.md](references/psr-catalog.md)
-- [references/psr4-autoloading.md](references/psr4-autoloading.md)
-- [references/templates/composer-json.md](references/templates/composer-json.md)
-- [references/templates/project-structure.md](references/templates/project-structure.md)
-
-## Related skills
-
-`php-language-modern`.
-
-## Skill routing metadata
-
-references: references/per-coding-style.md, references/psr-catalog.md, references/psr4-autoloading.md, references/templates/composer-json.md, references/templates/project-structure.md
-related-skills: php-language-modern

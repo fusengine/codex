@@ -66,7 +66,7 @@ export default defineConfig({
 Add `dotenv` to `prisma.config.ts` so that Prisma can load environment variables from your `.env` file:
 
 ```typescript file=prisma.config.ts
-// add-start
+// add-start  
 import 'dotenv/config'
 // add-end
 import { defineConfig, env } from 'prisma/config'
@@ -218,7 +218,7 @@ To make changes to your database schema:
 Update your Prisma schema file to reflect the changes you want to make to your database schema. For example, add a new model:
 
 ```prisma file=prisma/schema.prisma
-// add-start
+// add-start  
 model Post {
   id        Int      @id @default(autoincrement())
   title     String

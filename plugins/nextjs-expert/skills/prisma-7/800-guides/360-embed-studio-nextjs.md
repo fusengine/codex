@@ -40,7 +40,7 @@ Currently, Embedded Prisma Studio supports [**Prisma Postgres**](/postgres), wit
 
 - [Node.js 18+](https://nodejs.org)
 - Basic knowledge of React and Next.js
-- A Prisma Postgres database
+- A Prisma Postgres database 
 
 ## 1. Setting up Next.js
 
@@ -106,7 +106,7 @@ You'll need to answer a few questions while setting up your Prisma Postgres data
 The `prisma init --db` command creates:
 
 - A `prisma/` directory with your `schema.prisma` file
-- A `prisma.config.ts` file for configuring Prisma
+- A `prisma.config.ts` file for configuring Prisma 
 - A new Prisma Postgres database
 - A `.env` file with your `DATABASE_URL`
 - An output directory at `app/generated/prisma` for the Prisma Client
@@ -269,7 +269,7 @@ npx prisma db seed
 
 ## 3. Setting up the embedded Prisma Studio in your app
 
-Now that you have Prisma ORM and Prisma Postgres set up, you can embed Prisma Studio in your Next.js app.
+Now that you have Prisma ORM and Prisma Postgres set up, you can embed Prisma Studio in your Next.js app. 
 
 ### 3.1. Install the Prisma Studio Core package
 

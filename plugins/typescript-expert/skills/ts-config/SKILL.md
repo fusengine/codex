@@ -5,15 +5,17 @@ description: "Use when: creating or migrating a tsconfig.json, choosing module/m
 
 # TypeScript Config (TS 6.0)
 
+_Targets: typescript 6.0, node 24, bun 1.3._
+
 ## Agent Workflow (MANDATORY)
 
-Before writing any tsconfig, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before writing any tsconfig, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect runtime (Bun/Node/bundler), existing tsconfig, `package.json` `type`
-2. **ai-pilot:research / research-expert** - Confirm current flags on typescriptlang.org release notes + runtime docs
-3. **mcp__context7__query-docs** - `/microsoft/typescript` for any flag whose behavior is unclear
+1. `explore-codebase` - Detect runtime (Bun/Node/bundler), existing tsconfig, `package.json` `type`
+2. `research-expert` - Confirm current flags on typescriptlang.org release notes + runtime docs
+3. `mcp__context7__query-docs` - `/microsoft/typescript` for any flag whose behavior is unclear
 
-After writing, run **ai-pilot:sniper-check / sniper** for validation.
+After writing, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -118,20 +120,3 @@ Migrating an existing 5.x config / seeing deprecation errors?
 - Mix `module: Preserve` with `moduleResolution: nodenext` (or vice-versa)
 - Set `esModuleInterop`, `allowSyntheticDefaultImports`, or `alwaysStrict` to `false` (no longer allowed)
 - Use `enum`, `namespace` with runtime code, or parameter properties in files run by Node's type stripping
-
-## References
-
-- [references/bundler-track.md](references/bundler-track.md)
-- [references/node-track.md](references/node-track.md)
-- [references/deprecations-6.md](references/deprecations-6.md)
-- [references/templates/tsconfig.bundler.md](references/templates/tsconfig.bundler.md)
-- [references/templates/tsconfig.node.md](references/templates/tsconfig.node.md)
-
-## Related skills
-
-`ts-language-patterns`, `solid-generic`.
-
-## Skill routing metadata
-
-references: references/bundler-track.md, references/node-track.md, references/deprecations-6.md, references/templates/tsconfig.bundler.md, references/templates/tsconfig.node.md
-related-skills: ts-language-patterns, solid-generic

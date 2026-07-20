@@ -41,7 +41,7 @@ This configuration uses an [environment variable](/orm/prisma-schema/overview#ac
 
 As of [`v5.4.0`](https://github.com/prisma/prisma/releases/tag/5.4.0), you can use Prisma ORM with database drivers from the JavaScript ecosystem (instead of using Prisma ORM's built-in drivers). You can do this by using a [driver adapter](/orm/overview/databases/database-drivers).
 
-For MySQL and MariaDB, [`mariadb`](https://github.com/mariadb-corporation/mariadb-connector-nodejs) is one of the most popular drivers in the JavaScript ecosystem.
+For MySQL and MariaDB, [`mariadb`](https://github.com/mariadb-corporation/mariadb-connector-nodejs) is one of the most popular drivers in the JavaScript ecosystem. 
 
 This section explains how you can use it with Prisma ORM and the `@prisma/adapter-mariadb` driver adapter.
 
@@ -173,7 +173,7 @@ The MySQL connector maps the [scalar types](/orm/prisma-schema/data-model/models
 ### Native type mapping from Prisma ORM to MySQL
 
 | Prisma ORM | MySQL            | Notes                                                                                 |
-| ---------- | ---------------- | ------------------------------------------------------------------------------------- |
+| ---------- | ---------------- | ------------------------------------------------------------------------------------- |                            
 | `String`   | `VARCHAR(191)`   |                                                                                       |
 | `Boolean`  | `BOOLEAN`        | In MySQL `BOOLEAN` is a synonym for `TINYINT(1)`                                      |
 | `Int`      | `INT`            |                                                                                       |

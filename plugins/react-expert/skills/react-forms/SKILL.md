@@ -1,20 +1,19 @@
 ---
 name: react-forms
-description: "TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation, async validation, arrays, nested fields, React 19 Server Actions"
+description: TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation, async validation, arrays, nested fields, React 19 Server Actions
 ---
-
 
 # TanStack Form v1 Core Features
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing form components and validation patterns
-2. **ai-pilot:research / research-expert** - Verify latest TanStack Form v1 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing form components and validation patterns
+2. **research-expert** - Verify latest TanStack Form v1 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check Zod validation and React 19 Server Actions patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

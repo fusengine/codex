@@ -33,7 +33,7 @@ Enabling static IP for Accelerate will provide you with a list of static IPv4 an
 
 Once you have these addresses, configure your database firewall to allow incoming connections only from these IPs and any other trusted IPs that need access to your database.
 
-:::note
+:::note 
 
 Since you cannot enable static IP for an existing Accelerate-enabled environment, we recommend opting for static IP when enabling Accelerate in a new environment. Use the same database URL as your existing Accelerate environment to instantly access static IP support for Accelerate.
 

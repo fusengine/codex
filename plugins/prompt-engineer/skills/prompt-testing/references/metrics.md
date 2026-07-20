@@ -122,8 +122,8 @@ Cost = (Tokens Input × Input Price) + (Tokens Output × Output Price)
 
 | Model | Input/1M | Output/1M |
 |-------|----------|-----------|
-| Codex Sonnet | $3 | $15 |
-| Codex Opus | $15 | $75 |
+| Claude Sonnet | $3 | $15 |
+| Claude Opus | $15 | $75 |
 | GPT-4o | $5 | $15 |
 
 ### 4. Throughput

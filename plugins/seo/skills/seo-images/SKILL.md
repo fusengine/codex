@@ -1,8 +1,7 @@
 ---
 name: seo-images
-description: "Use when optimizing images for SEO. Covers alt text, descriptive filenames, modern formats (WebP/AVIF), lazy loading, responsive sizing (srcset), ImageObject schema."
+description: Use when optimizing images for SEO. Covers alt text, descriptive filenames, modern formats (WebP/AVIF), lazy loading, responsive sizing (srcset), ImageObject schema.
 ---
-
 
 # Image SEO
 
@@ -23,7 +22,6 @@ description: "Use when optimizing images for SEO. Covers alt text, descriptive f
 | Content | WebP | 100 KB | 75 |
 | Thumbnail | WebP | 30 KB | 70 |
 
-## Related
+## References
 
-- `seo-schema` — ImageObject JSON-LD
-- `seo-sitemap` — sitemap-image.xml
+- `skills/seo/02-onpage-seo/alt-text-images.md`

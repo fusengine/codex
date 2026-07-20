@@ -1,17 +1,16 @@
 ---
 name: shadcn-detection
-description: "Detects whether a shadcn/ui project uses Radix UI, Base UI, a mixed state, or neither. Use before component work or migration when the primitive library is uncertain. Do NOT use to implement components, configure registries, or change themes."
+description: "Detect whether a project uses Radix UI or Base UI as shadcn/ui primitives. Analyzes package.json, components.json, imports, and data attributes to determine the primitive library in use. Use when: determining which primitive a project uses before any shadcn component work or migration."
 ---
-
 
 # shadcn Detection
 
 ## Agent Workflow (MANDATORY)
 
-Before detection, use the available Codex subagent capability when it materially helps:
+Before detection, spawn sub-agents in parallel via `spawn_agent`:
 
-1. **ai-pilot:exploration / explore-codebase** - Scan project structure
-2. **ai-pilot:research / research-expert** - Verify latest primitive patterns
+1. **explore-codebase** - Scan project structure
+2. **research-expert** - Verify latest primitive patterns
 
 After: Use results to configure component workflow.
 

@@ -267,7 +267,7 @@ You can wrap your extended queries into a [batch transaction](/orm/prisma-client
 The following example extends `findFirst` so that it runs in a batch transaction.
 
 ```ts
-const transactionExtension = Prisma.defineExtension((prisma) =>
+const transactionExtension = Prisma.defineExtension((prisma) => 
   prisma.$extends({
     query: {
       user: {
@@ -282,3 +282,4 @@ const transactionExtension = Prisma.defineExtension((prisma) =>
 )
 const prisma = new PrismaClient().$extends(transactionExtension)
 ```
+

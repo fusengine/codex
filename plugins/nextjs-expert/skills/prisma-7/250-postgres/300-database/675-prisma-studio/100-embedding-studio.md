@@ -180,7 +180,7 @@ Here's an overview of the key concepts in your frontend:
 
 ## Backend setup
 
-Your backend needs to expose a `/studio` endpoint where the frontend sends its requests. The implementation below uses `createPrismaPostgresHttpClient` from `@prisma/studio-core`.
+Your backend needs to expose a `/studio` endpoint where the frontend sends its requests. The implementation below uses `createPrismaPostgresHttpClient` from `@prisma/studio-core`. 
 
 The backend also needs to have access to the Prisma Postgres API key, we recommend setting it as an environment variable as a best practice.
 
@@ -188,7 +188,7 @@ The backend also needs to have access to the Prisma Postgres API key, we recomme
 
 ### Minimal implementation
 
-Here's what a minimal implementation for the `/studio` endpoint looks like with [Hono](https://hono.dev/). This assumes that your connection URL is available via the `DATABASE_URL` env var:
+Here's what a minimal implementation for the `/studio` endpoint looks like with [Hono](https://hono.dev/). This assumes that your connection URL is available via the `DATABASE_URL` env var: 
 
 ```ts
 import { Hono } from "hono";
@@ -200,18 +200,18 @@ const app = new Hono().use("*", cors());
 app.post("/studio", async (c) => {
   // 1. Extract the query and custom data from the request
   const { query } = await c.req.json();
-
+  
   // 2. Read DB URL from env vars
   const url = process.env.DATABASE_URL;
-
+  
   // 3. Execute the query against Prisma Postgres
   const [error, results] = await createPrismaPostgresHttpClient({ url }).execute(query);
-
+  
   // 6. Return results or errors
   if (error) {
     return c.json([serializeError(error)]);
   }
-
+  
   return c.json([null, results]);
 });
 ```
@@ -231,25 +231,25 @@ const app = new Hono().use("*", cors());
 app.post("/studio", async (c) => {
   // 1. Extract the query and custom data from the request
   const { query, customPayload } = await c.req.json();
-
+  
   // 2. Access custom headers (great for auth!)
   const customHeader = c.req.header("X-Custom-Header");
   console.log("Received headers:", { customHeader });
-
+  
   // 3. Use custom payload data
   console.log("Received value:", customPayload.customValue);
-
+  
   // 4. Determine the URL (this is where you'd implement your auth logic)
   const url = determineUrlFromContext(customHeader, customPayload);
-
+  
   // 5. Execute the query using Prisma Postgres or Prisma Accelerate
   const [error, results] = await createPrismaPostgresHttpClient({ url }).execute(query);
-
+  
   // 6. Return results or errors
   if (error) {
     return c.json([serializeError(error)]);
   }
-
+  
   return c.json([null, results]);
 });
 ```
@@ -316,11 +316,12 @@ const userApiKey = await getUserApiKey(userId, token);
 
 Embeddable Prisma Studio (Free) is licensed under Apache 2.0.
 
-✔️ Free for production use
-⚠️ Prisma branding must remain visible and unaltered
+✔️ Free for production use  
+⚠️ Prisma branding must remain visible and unaltered  
 🔐 To remove our branding or to inquire about upcoming partner-only features, ping us here: [partnerships@prisma.io](mailto:partnerships@prisma.io)
 
 ## Telemetry
 
-This package includes anonymized telemetry to help us improve Prisma Studio.
+This package includes anonymized telemetry to help us improve Prisma Studio.  
 Use implies consent. Learn more in our [Privacy Policy](https://www.prisma.io/privacy).
+

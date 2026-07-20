@@ -47,7 +47,7 @@ postgresql://USER:PASSWORD@HOST:PORT/DATABASE?pgbouncer=true
 
 :::info
 `PORT` specified for PgBouncer pooling is sometimes different from the default `5432` port. Check your database provider docs for the correct port number.
-:::
+::: 
 
 ### Configure `max_prepared_statements` in PgBouncer to be greater than zero
 

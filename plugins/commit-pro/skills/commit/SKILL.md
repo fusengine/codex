@@ -18,6 +18,8 @@ git branch --show-current
 
 ## Instructions
 
+Before any write action, ask explicit user confirmation. This includes `git add`, `git commit`, tags, push, branch creation, reset, and revert.
+
 Based on the context above, create a professional commit.
 
 ### Step 0: Branch Check (GitHub Flow enforcement)
@@ -92,7 +94,7 @@ Pattern detected: [type]
 Format: `type(scope): imperative description`
 
 **FORBIDDEN (NO AI SIGNATURE):**
-- NEVER add "Co-authored-by: Codex" or any AI mention
+- NEVER add any AI signature, Co-authored-by line, or generated-by mention
 - Commit must appear 100% human-written
 
 ### Step 4: Propose Commit
@@ -135,43 +137,33 @@ If the user provides commit context, use it as a hint for the message.
 
 ### Step 6: Post-Commit (universal)
 
-After step 5 succeeds, execute the `post-commit` skill for CHANGELOG and version bump only. Tagging is delegated entirely to Step 8: post-merge push in FULL mode, local-only creation in LOCAL or DEGRADED mode.
+After step 5 succeeds, execute the `post-commit` skill (CHANGELOG + version bump only — **no tag here**, see Step 8 for why).
 
 This runs for ALL repos — the skill auto-detects the repo type internally.
 
-### Step 7: Remote Flow (push + PR + CI + merge)
+### Step 7: Optional Remote Flow (push + PR + CI watch + merge)
 
-Run remote mutations only when the user explicitly authorized the corresponding scope:
+Run only the remote mutations explicitly authorized by the user. Permission to commit does not imply permission to push, create a PR, or merge.
 
-- commit only → stop after Step 6;
-- push or PR → push/create or reuse the PR, then leave it open;
-- full release flow or explicit merge → run the FULL-mode merge sequence below.
-
-Never infer push, PR, or merge authority from permission to commit.
-
-#### Remote-flow decision tree
+Inspect the execution mode first:
 
 ```bash
 git remote -v
+command -v gh
+gh auth status
 ```
 
-- **No remote → LOCAL mode.** Do not push, create a PR, or merge. For an explicitly requested release flow, use Step 8 LOCAL mode and print the commands needed after a remote is configured.
-- **Remote exists → check GitHub CLI:**
-  ```bash
-  command -v gh
-  gh auth status
-  ```
-  - `gh` missing or unauthenticated → **DEGRADED mode**. Push only when authorized, then stop and report the failed prerequisite plus the manual PR/merge commands. For an explicitly requested release flow, use Step 8 DEGRADED mode.
-  - `gh` installed and authenticated → **FULL mode**.
+- **LOCAL**: no remote. Do not push, create a PR, or merge. For an explicitly requested release flow, create only the local tag described in Step 8 and report the future manual commands.
+- **DEGRADED**: a remote exists but `gh` is missing or unauthenticated. Push only when authorized, report the failed prerequisite, and do not create or merge a PR. For an explicitly requested release flow, use the local-only tag behavior from Step 8.
+- **FULL**: remote exists and `gh` is authenticated. Continue below.
 
 After post-commit completes, if the current branch is a feature branch:
 
-1. **Push branch with upstream**:
+1. **Push branch**:
    ```bash
    git push -u origin <current-branch>
    ```
-2. **Create the PR if absent; otherwise reuse it.** Pipe the body through stdin to avoid quoting bugs and temporary files:
-
+2. **Create the PR if absent** (else reuse the existing one). Pipe the body through stdin to avoid quoting bugs and temporary files:
    ```bash
    gh pr view --json url -q .url 2>/dev/null || gh pr create --base main --title "<commit subject>" --body-file - <<'EOF'
    ## Summary
@@ -187,39 +179,32 @@ After post-commit completes, if the current branch is a feature branch:
    None / <description>
    EOF
    ```
+3. If only push/PR was authorized, output the PR URL and STOP.
+4. **Surveillance + merge auto** — only when merge or full release flow was explicitly authorized. Use a real merge commit, **never squash**:
+   - Prefer GitHub native auto-merge (merges once required checks pass):
+     ```bash
+     gh pr merge <pr> --auto --merge --delete-branch
+     ```
+     `--auto` may only enable auto-merge. Before Step 8, require proof that the merge completed:
+     ```bash
+     test -n "$(gh pr view <pr> --json mergedAt -q .mergedAt)" || { echo "merge pending; tag skipped"; exit 1; }
+     ```
+   - If auto-merge is not enabled, watch checks then merge. Never pipe `gh pr checks`; preserve its exit status:
+     ```bash
+     gh pr checks <pr> --watch && gh pr merge <pr> --merge --delete-branch
+     ```
+   - If the repo has **no CI checks**, merge immediately:
+     ```bash
+     gh pr merge <pr> --merge --delete-branch
+     ```
+5. After every merge path, require a non-empty `mergedAt`. Output the PR URL + merge status and proceed to **Step 8** only after that proof succeeds.
 
-3. **If only push/PR was authorized**, output the PR URL and STOP.
+**Leave the PR OPEN (push + PR only, do NOT merge, skip Step 8) if**:
+- User explicitly requests `--no-merge`
+- CI checks **FAIL** → report the failing check, leave PR open for the user
+- Branch protection rejects the merge → report, leave open
 
-When merge or full release flow was explicitly authorized, use a real merge commit, **never squash**. Prefer native auto-merge:
-
-```bash
-gh pr merge <pr> --auto --merge --delete-branch
-```
-
-`--auto` may only enable auto-merge. Before Step 8, require proof that the merge actually completed:
-
-```bash
-test -n "$(gh pr view <pr> --json mergedAt -q .mergedAt)" || { echo "merge pending; tag skipped"; exit 1; }
-```
-
-If auto-merge is unavailable, preserve the check command's exit status and merge only after success:
-
-```bash
-gh pr checks <pr> --watch && gh pr merge <pr> --merge --delete-branch
-```
-
-If the repository has no CI checks:
-
-```bash
-gh pr merge <pr> --merge --delete-branch
-```
-
-Never pipe `gh pr checks`; a pipeline can hide a failing exit status. After every merge path, require a non-empty `mergedAt` before Step 8. If checks fail, the merge remains pending, or branch protection rejects it, leave the PR open and do not tag.
-
-**Skip Step 7 if**:
-- User explicitly requests `--no-pr`
-- User explicitly requests `--no-merge` for the merge portion
-- Branch already merged
+`--no-pr` skips PR creation. `--no-merge` leaves the PR open. Failed CI or rejected branch protection also leaves it open and forbids tagging.
 
 ### Step 8: Release Tag
 
@@ -231,13 +216,13 @@ Run only after Step 7 confirms the PR actually merged:
 
 ```bash
 git checkout main && git pull --ff-only
-git fetch --prune
+git fetch --prune   # drop remote-tracking refs (origin/*) of branches already deleted on the remote
 git tag vX.Y.Z
 git push origin vX.Y.Z
 git merge-base --is-ancestor vX.Y.Z main && echo "tag on main ok"
 ```
 
-The real merge commit preserves the feature-branch commits, including the version bump. Waiting until the merge succeeds prevents publishing a tag for a commit rejected by CI or branch protection.
+The real merge commit preserves the feature-branch commits, including the bump commit. Waiting until merge succeeds prevents publishing a tag for a commit rejected by CI or branch protection.
 
 #### LOCAL or DEGRADED mode
 
@@ -247,7 +232,7 @@ For an explicitly requested release flow, create the tag locally after the Step 
 git tag vX.Y.Z
 ```
 
-Never push that tag automatically. Print the manual push command for use only after the change reaches its permanent branch.
+Never push that local tag automatically. Print the manual push command for use only after the change reaches its permanent branch.
 
 ## Related skills
 

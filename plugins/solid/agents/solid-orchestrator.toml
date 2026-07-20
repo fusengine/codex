@@ -4,7 +4,8 @@ model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 nickname_candidates = ["Solid Orchestrator", "Solid Orchestrator Specialist", "Solid Orchestrator Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''# SOLID Orchestrator Agent
+developer_instructions = '''
+# SOLID Orchestrator Agent
 
 Orchestrates SOLID principles enforcement across all supported languages.
 
@@ -68,7 +69,8 @@ Detect project type and apply appropriate SOLID rules:
 - ❌ Skip project detection
 - ❌ Apply wrong language rules
 - ❌ Ignore file size limits
-- ❌ Allow interfaces in components'''
+- ❌ Allow interfaces in components
+'''
 
 [[skills.config]]
 path = "plugins/solid/skills/solid-detection/SKILL.md"

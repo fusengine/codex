@@ -5,9 +5,9 @@ metaDescription: 'Learn how to easily add Prisma ORM to your Nuxt apps, use its 
 community_section: true
 ---
 
-The Nuxt Prisma module simplifies the integration of Prisma ORM into your Nuxt applications.
+The Nuxt Prisma module simplifies the integration of Prisma ORM into your Nuxt applications. 
 
-[Prisma ORM](/orm/overview/introduction/what-is-prisma) is a database library that lets you model your database schema, provides auto-generated migrations and lets you query the database in an intuitive and type-safe way.
+[Prisma ORM](/orm/overview/introduction/what-is-prisma) is a database library that lets you model your database schema, provides auto-generated migrations and lets you query the database in an intuitive and type-safe way. 
 
 This module provides several features to streamline the setup and usage of Prisma ORM in a Nuxt application, making it easier to interact with your database.
 
@@ -90,7 +90,7 @@ The `@prisma/nuxt` module is currently not supported with Prisma ORM 7 or when u
 
 ## Using a different database provider
 
-The `@prisma/nuxt` module works with any [database provider that Prisma ORM supports](/orm/reference/supported-databases). You can configure the [getting started example](#getting-started) to use a database of your choice. The steps would be different for a [database without existing data](#using-a-database-without-existing-data) and a [database with pre-existing data](#using-a-database-with-pre-existing-data).
+The `@prisma/nuxt` module works with any [database provider that Prisma ORM supports](/orm/reference/supported-databases). You can configure the [getting started example](#getting-started) to use a database of your choice. The steps would be different for a [database without existing data](#using-a-database-without-existing-data) and a [database with pre-existing data](#using-a-database-with-pre-existing-data). 
 
 ### Using a database without existing data
 
@@ -172,7 +172,7 @@ To configure [the getting started example](#getting-started) to use a PostgreSQL
 5. Starting the development server will skip the prompt to migrate the schema changes to the database, as the migrations folder already exists. Agree to the prompt to install and access Prisma Studio from the Nuxt Devtools.
 6. The `@prisma/nuxt` module is ready to be used with your PostgreSQL database. See the [usage section](#usage) to learn how to use Prisma Client in your app.
 
-## Usage
+## Usage 
 
 ### Option A: `usePrismaClient` composable
 
@@ -303,7 +303,7 @@ The `usePrismaClient` module does not currently allow for configuration of `Pris
 
 ### The `usePrismaClient` composable is not supported in edge runtimes
 
-The `usePrismaClient` composable currently relies on a `PrismaClient` instance that does not work in edge runtimes. If you require edge support for the composable, please let us know on [Discord](https://pris.ly/discord?utm_source=docs&utm_medium=inline_text) or [GitHub](https://github.com/prisma/nuxt-prisma).
+The `usePrismaClient` composable currently relies on a `PrismaClient` instance that does not work in edge runtimes. If you require edge support for the composable, please let us know on [Discord](https://pris.ly/discord?utm_source=docs&utm_medium=inline_text) or [GitHub](https://github.com/prisma/nuxt-prisma). 
 
 ## Troubleshooting
 
@@ -328,7 +328,7 @@ This will ensure that Prisma dependencies are properly resolved by `pnpm`.
 If you encounter the following error message in the browser console after building and previewing your application:
 
 ```
-TypeError: Failed to resolve module specifier ".prisma/client/index-browser"
+TypeError: Failed to resolve module specifier ".prisma/client/index-browser" 
 ```
 To resolve this issue, add the following configuration to your nuxt.config.ts file:
 

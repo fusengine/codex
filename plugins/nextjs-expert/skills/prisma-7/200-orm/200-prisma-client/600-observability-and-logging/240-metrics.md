@@ -12,9 +12,9 @@ Prisma Client metrics give you a detailed insight into how Prisma Client interac
 
 :::danger[`metrics` preview feature has been removed ]
 
-The `metrics` preview feature has been **removed** as of [Prisma ORM v7.0.0](https://github.com/prisma/prisma/releases/tag/7.0.0).
+The `metrics` preview feature has been **removed** as of [Prisma ORM v7.0.0](https://github.com/prisma/prisma/releases/tag/7.0.0).  
 
-If you need visibility into query or connection pool behavior, we recommend using the *native metrics provided by your database driver* (for example, pool statistics) or setting up *OpenTelemetry* for a more complete observability solution.
+If you need visibility into query or connection pool behavior, we recommend using the *native metrics provided by your database driver* (for example, pool statistics) or setting up *OpenTelemetry* for a more complete observability solution.  
 
 :::
 
@@ -140,12 +140,12 @@ let statsd = new StatsD({
   port: 8125,
 })
 
-const diffMetrics = (metrics: Metric<MetricHistogram>[]) =>
+const diffMetrics = (metrics: Metric<MetricHistogram>[]) => 
 
 let previousHistograms: Metric<MetricHistogram>[] = []
 
 
-const statsdSender = async () =>
+const statsdSender = async () => 
 
 setInterval(async () => await statsdSender(), 10000)
 ```
@@ -351,3 +351,4 @@ This returns information in the following format:
 ```json highlight=5,11;add
 
 ```
+

@@ -40,15 +40,6 @@
             "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex aipilot"
           }
         ]
-      },
-      {
-        "matcher": "Task",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex aipilot"
-          }
-        ]
       }
     ],
     "SubagentStop": [
@@ -85,15 +76,6 @@
       },
       {
         "matcher": "context7|exa|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex aipilot"
-          }
-        ]
-      },
-      {
-        "matcher": "TaskCreate|TaskUpdate",
         "hooks": [
           {
             "type": "command",

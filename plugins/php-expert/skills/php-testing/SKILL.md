@@ -1,22 +1,24 @@
 ---
 name: php-testing
-description: Use when writing or configuring tests on a framework-agnostic PHP project and choosing between PHPUnit and Pest. Covers PHPUnit 12 attributes, Pest 4, test doubles, fixtures, and coverage. Do NOT use for Laravel test helpers (RefreshDatabase, HTTP tests → laravel-expert laravel-testing) or quality tooling (PHPStan/Rector/Fixer → php-quality-tooling).
+description: "Use when writing or configuring tests on a framework-agnostic PHP project and choosing between PHPUnit and Pest. Covers PHPUnit 12 attributes, Pest 4, test doubles, fixtures, and coverage. Do NOT use for Laravel test helpers (RefreshDatabase, HTTP tests → laravel-expert laravel-testing) or quality tooling (PHPStan/Rector/Fixer → php-quality-tooling)."
 ---
 
 # PHP Testing
+
+_Targets: phpunit 12, pest 4._
 
 Two frameworks, one engine. Pest is a layer over PHPUnit — both need **PHP 8.3+**
 and share the same runner and assertions underneath.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing framework (phpunit.xml vs Pest.php), test layout, PHP version
-2. **ai-pilot:research / research-expert** - Verify latest PHPUnit 12 / Pest 4 docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check attribute names, test-double API, config schema
+1. `explore-codebase` - Detect existing framework (phpunit.xml vs Pest.php), test layout, PHP version
+2. `research-expert` - Verify latest PHPUnit 12 / Pest 4 docs via Context7/Exa
+3. `mcp__context7__query-docs` - Check attribute names, test-double API, config schema
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -119,22 +121,3 @@ it('greets', function () {
 - Keep `@test` / `@dataProvider` annotations (removed in PHPUnit 12)
 - Configure expectations on `createStub()` results
 - Mock the class under test — mock its collaborators
-
-## References
-
-- [references/choosing-framework.md](references/choosing-framework.md)
-- [references/phpunit-12.md](references/phpunit-12.md)
-- [references/pest-4.md](references/pest-4.md)
-- [references/annotations-to-attributes.md](references/annotations-to-attributes.md)
-- [references/templates/phpunit-xml.md](references/templates/phpunit-xml.md)
-- [references/templates/pest-setup.md](references/templates/pest-setup.md)
-- [references/templates/test-doubles.md](references/templates/test-doubles.md)
-
-## Related skills
-
-`php-quality-tooling`, `php-language-modern`.
-
-## Skill routing metadata
-
-references: references/choosing-framework.md, references/phpunit-12.md, references/pest-4.md, references/annotations-to-attributes.md, references/templates/phpunit-xml.md, references/templates/pest-setup.md, references/templates/test-doubles.md
-related-skills: php-quality-tooling, php-language-modern

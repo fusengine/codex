@@ -7,13 +7,13 @@ description: "Use when: building or deploying a TanStack Start app — Nitro/Vit
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, spawn in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** — read `vite.config.ts`, `package.json` scripts, existing adapter/wrangler config
-2. **ai-pilot:research / research-expert** — verify adapter setup via Context7 `/websites/tanstack_start_framework_react`
+1. **explore-codebase** — read `vite.config.ts`, `package.json` scripts, existing adapter/wrangler config
+2. **research-expert** — verify adapter setup via Context7 `/websites/tanstack_start_framework_react`
 3. **mcp__context7__query-docs** — confirm `tanstackStart` plugin + adapter options for the target host
 
-After implementation, run **ai-pilot:sniper-check / sniper**.
+After implementation, run **sniper**.
 
 ---
 
@@ -84,21 +84,3 @@ package.json          # scripts differ per target (deploy vs start)
 - Read `process.env` at import time (edge = undefined; bundle leak)
 - Mix a Nitro `node` start script with a Cloudflare build
 - Expect `$param` routes to prerender without `crawlLinks`
-
-## References
-
-- [references/build-and-adapters.md](references/build-and-adapters.md)
-- [references/cloudflare.md](references/cloudflare.md)
-- [references/prerendering.md](references/prerendering.md)
-- [references/env-and-checklist.md](references/env-and-checklist.md)
-- [references/templates/vite-config-adapters.md](references/templates/vite-config-adapters.md)
-- [references/templates/cloudflare-deploy.md](references/templates/cloudflare-deploy.md)
-
-## Related skills
-
-`nextjs-16`, `astro-deployment`.
-
-## Skill routing metadata
-
-references: references/build-and-adapters.md, references/cloudflare.md, references/prerendering.md, references/env-and-checklist.md, references/templates/vite-config-adapters.md, references/templates/cloudflare-deploy.md
-related-skills: nextjs-16, astro-deployment

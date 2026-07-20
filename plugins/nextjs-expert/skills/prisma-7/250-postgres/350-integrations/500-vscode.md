@@ -1,9 +1,9 @@
 ---
-title: 'VS Code'
-description: 'The Prisma VS Code extension provides a management UI for Prisma Postgres and superpowers for Copilot agent mode.'
-metaTitle: 'Prisma VS Code extension'
-metaDescription: 'The Prisma VS Code extension provides a management UI for Prisma Postgres and superpowers for Copilot agent mode.'
-tocDepth: 3
+title: 'VS Code' 
+description: 'The Prisma VS Code extension provides a management UI for Prisma Postgres and superpowers for Copilot agent mode.' 
+metaTitle: 'Prisma VS Code extension' 
+metaDescription: 'The Prisma VS Code extension provides a management UI for Prisma Postgres and superpowers for Copilot agent mode.' 
+tocDepth: 3 
 toc: true
 ---
 
@@ -39,7 +39,7 @@ To manage Prisma Postgres instances via the UI in the Prisma VS Code extension:
 
 The Prisma Extension can support both version 6 and version 7 of Prisma ORM. If you open a project
 using either version, you can set the supported version by the command palette or the diagnostics
-prompt.
+prompt. 
 
 ![](/img/vscode/version-command-picker.png)
 
@@ -50,7 +50,7 @@ Beyond managing your database instances, the Prisma VS Code extension embeds Pri
 
 ## Prisma MCP server
 
-Prisma provides its own [Model Context Protocol](/postgres/integrations/mcp-server) (MCP) server that lets you manage Prisma Postgres databases, model database schemas and chat through migrations.
+Prisma provides its own [Model Context Protocol](/postgres/integrations/mcp-server) (MCP) server that lets you manage Prisma Postgres databases, model database schemas and chat through migrations. 
 
 You can add the Prisma MCP server to VS Code using the one-click installation by clicking on the following link:
 
@@ -101,7 +101,7 @@ VS Code includes an [agent mode](https://pris.ly/vs-code-docs) (powered by GitHu
 
 ### Capabilities
 
-The [Prisma VS Code extension](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) enables support for VS Code agent mode.
+The [Prisma VS Code extension](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) enables support for VS Code agent mode. 
 
 VS Code agent mode can perform the following tasks:
 

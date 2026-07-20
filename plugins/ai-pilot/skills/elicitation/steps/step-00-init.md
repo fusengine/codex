@@ -54,16 +54,16 @@ Gather from previous phase:
 - What framework/language was used
 ```
 
-### 3. Load Prior Artifact
+### 3. Load Prior Artifact (if present)
 
 ```
-Derive {task-slug} using references/artifact-contract.md.
+Derive {task-slug} (see SKILL.md's Artifact Contract).
 IF .codex/apex/docs/elicit-{task-slug}.json exists:
   → Load it as {prior_artifact}
-  → Deselect prior pass techniques by default
-  → Prioritize fail/deferred techniques
+  → In Step 2, techniques already "pass" in {prior_artifact} are
+    deselected by default; "fail"/"deferred" ones are re-selected first
 ELSE:
-  → {prior_artifact} = none
+  → {prior_artifact} = none, proceed as first pass
 ```
 
 ### 4. Validate Context

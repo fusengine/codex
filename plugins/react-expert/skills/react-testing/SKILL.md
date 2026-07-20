@@ -1,22 +1,23 @@
 ---
 name: react-testing
-description: "Testing Library for React 19 - render, screen, userEvent, waitFor, Suspense. Use when writing tests for React components with Vitest."
+description: Testing Library for React 19 - render, screen, userEvent, waitFor, Suspense. Use when writing tests for React components with Vitest.
 ---
 
-
 # React Testing Library
+
+> Targets: @testing-library/react 16.1.0, @testing-library/user-event 14.5.2, Vitest 2.1.8, Msw 2.7.0, React 19.
 
 Test React components the way users interact with them.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing test patterns
-2. **ai-pilot:research / research-expert** - Verify latest Testing Library docs via Context7/Exa
+1. **explore-codebase** - Analyze existing test patterns
+2. **research-expert** - Verify latest Testing Library docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check userEvent, waitFor patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

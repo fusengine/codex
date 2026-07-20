@@ -1,10 +1,6 @@
 ---
 name: architecture
 description: Skill directory structure and file organization
-when-to-use: Understanding how skills are organized
-keywords: architecture, structure, directory, files, organization
-priority: high
-related: workflow.md, content-rules.md
 ---
 
 # Skill Architecture
@@ -18,7 +14,7 @@ Every skill follows a consistent directory structure for predictability and auto
 ## Structure & File Types
 
 ```
-plugins/<agent>/skills/<skill-name>/
+plugins/<plugin>/skills/<skill-name>/
 ├── SKILL.md                    # Entry point (~150 lines)
 └── references/                 # Conceptual docs (150 max)
     ├── installation.md
@@ -52,40 +48,25 @@ plugins/<agent>/skills/<skill-name>/
 
 ## Frontmatter Requirements
 
-### SKILL.md
+### SKILL.md (Codex — name + description ONLY)
 
 ```yaml
 ---
 name: skill-name
 description: Use when [trigger]. Covers [topics].
-versions:
-  library: X.Y.Z
-user-invocable: true|false
-references: references/file1.md, references/file2.md
-related-skills: skill-a, skill-b
 ---
 ```
 
-### References
+Any other metadata (version, related skills, keywords) goes in prose in the body — Codex parses only `name` and `description`.
+
+### References / Templates (internal metadata only)
+
+Reference and template files are plain markdown; their frontmatter is an internal authoring convention (not parsed by Codex). Keep it light — a `name` and `description` line is enough:
 
 ```yaml
 ---
 name: reference-name
 description: What this covers
-when-to-use: Trigger conditions
-keywords: keyword1, keyword2
-priority: high|medium|low
-related: other-ref.md
----
-```
-
-### Templates
-
-```yaml
----
-name: template-name
-description: Complete example of [what]
-keywords: keyword1, keyword2
 ---
 ```
 

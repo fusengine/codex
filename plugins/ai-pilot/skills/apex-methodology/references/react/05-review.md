@@ -180,6 +180,17 @@ const [user, setUser] = useState<User>({ name: '', email: '', phone: '' })
 
 ---
 
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "review" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+```
+
+---
+
 ## Next Phase
 
 -> Proceed to `07-add-test.md` (if tests not done)

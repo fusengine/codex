@@ -62,7 +62,7 @@ return [
     ],
 
     'defaults' => [
-        'text' => ['provider' => 'anthropic', 'model' => 'codex-haiku-4-5-20251001'],
+        'text' => ['provider' => 'anthropic', 'model' => 'claude-haiku-4-5-20251001'],
         'embeddings' => ['provider' => 'openai', 'model' => 'text-embedding-3-small'],
         'image' => ['provider' => 'openai', 'model' => 'dall-e-3'],
         'audio' => ['provider' => 'openai', 'model' => 'tts-1'],

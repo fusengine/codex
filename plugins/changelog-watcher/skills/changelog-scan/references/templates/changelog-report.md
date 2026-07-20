@@ -1,6 +1,6 @@
 ---
 name: changelog-report
-description: Template for structured Codex CLI update reports
+description: Template for structured Codex update reports
 keywords: report, changelog, version, update, template
 ---
 
@@ -9,7 +9,7 @@ keywords: report, changelog, version, update, template
 ## Report Header
 
 ```markdown
-# Codex CLI Update Report
+# Codex Update Report
 **Date**: {date}
 **Latest Version**: {latest_version}
 **Previous Check**: {last_check_date} (v{last_version})

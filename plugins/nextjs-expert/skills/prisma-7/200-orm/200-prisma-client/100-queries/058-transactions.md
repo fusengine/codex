@@ -517,7 +517,7 @@ await prisma.$transaction(async (prisma) => {
 
 The reason for this behaviour is that:
 - One transaction means that all queries inside it have to be run on the same connection.
-- A database connection can only ever execute one query at a time.
+- A database connection can only ever execute one query at a time. 
 - As one query blocks the connection while it is doing its work, putting a transaction into `Promise.all` effectively means that queries should be ran one after another.
 
 
@@ -1134,7 +1134,7 @@ if (customer) {
     externalId: teamId,
     plan: 'plan_id',
     quantity: numTeammates,
-//highlight-end
+//highlight-end 
   })
 } else {
   customer = await stripe.customers.create({

@@ -1,6 +1,6 @@
 ---
 name: rust-error-handling
-description: Use when designing Rust error handling — picking thiserror for libraries vs anyhow for applications, building typed error enums, converting errors with #[from], and deciding recoverable errors vs panics. Do NOT use for general ownership/borrowing (use rust-core-language) or async runtime errors specifically.
+description: "Use when designing Rust error handling — picking thiserror for libraries vs anyhow for applications, building typed error enums, converting errors with #[from], and deciding recoverable errors vs panics. Do NOT use for general ownership/borrowing (use rust-core-language) or async runtime errors specifically."
 ---
 
 # Rust Error Handling
@@ -11,12 +11,12 @@ type and rich context. Getting this boundary right is the whole discipline.
 
 ## Agent Workflow (MANDATORY)
 
-1. **ai-pilot:exploration / explore-codebase** — is this crate a library (published API, other
+1. **explore-codebase** — is this crate a library (published API, other
    code depends on it) or a binary/application? That answer picks the tool.
-2. **ai-pilot:research / research-expert** — confirm current `thiserror` / `anyhow` API
-   before writing derives (verification chain: Context7 → Exa → fuse-browser
-   fast-path on `docs.rs/thiserror` and `docs.rs/anyhow`).
-3. After writing, run **ai-pilot:sniper-check / sniper** and `cargo clippy`.
+2. **research-expert** — confirm current `thiserror` / `anyhow` API
+   before writing derives (verification chain: fuse-browser fast-path on
+   `docs.rs/thiserror` and `docs.rs/anyhow` → Context7 → Exa).
+3. After writing, run **sniper** and `cargo clippy`.
 
 ## The rule
 
@@ -66,20 +66,3 @@ type and rich context. Getting this boundary right is the whole discipline.
 - [ ] `?` used instead of `unwrap()` on fallible values
 - [ ] Panics only guard genuine invariants, with a reason
 - [ ] `cargo clippy` clean, sniper passed
-
-## References
-
-- [references/thiserror-libraries.md](references/thiserror-libraries.md)
-- [references/anyhow-applications.md](references/anyhow-applications.md)
-- [references/error-design.md](references/error-design.md)
-- [references/templates/library-error.md](references/templates/library-error.md)
-- [references/templates/application-error.md](references/templates/application-error.md)
-
-## Related skills
-
-`rust-core-language`.
-
-## Skill routing metadata
-
-references: references/thiserror-libraries.md, references/anyhow-applications.md, references/error-design.md, references/templates/library-error.md, references/templates/application-error.md
-related-skills: rust-core-language

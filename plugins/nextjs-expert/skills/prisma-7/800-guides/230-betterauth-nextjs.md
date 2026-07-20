@@ -31,11 +31,11 @@ It will prompt you to customize your setup. Choose the defaults:
 
 :::info
 
-- *Would you like to use TypeScript?* `Yes`
-- *Would you like to use ESLint?* `Yes`
-- *Would you like to use Tailwind CSS?* `Yes`
-- *Would you like your code inside a `src/` directory?* `Yes`
-- *Would you like to use App Router?* `Yes`
+- *Would you like to use TypeScript?* `Yes`  
+- *Would you like to use ESLint?* `Yes`  
+- *Would you like to use Tailwind CSS?* `Yes`  
+- *Would you like your code inside a `src/` directory?* `Yes`  
+- *Would you like to use App Router?* `Yes`  
 - *Would you like to use Turbopack?* `Yes`
 - *Would you like to customize the import alias (`@/*` by default)?* `No`
 
@@ -353,7 +353,7 @@ Add the following code to the newly created `route.ts` file. This code uses a he
 ```ts
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
-
+ 
 export const { POST, GET } = toNextJsHandler(auth);
 ```
 
@@ -913,14 +913,14 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold">Dashboard</h1>
       <p>Welcome, {user.name || "User"}!</p>
       <p>Email: {user.email}</p>
-
+      
       <button
         onClick={() => signOut()}
         className="w-full bg-white text-black font-medium rounded-md px-4 py-2 hover:bg-gray-200"
       >
         Sign Out
       </button>
-
+      
     </main>
   );
 }

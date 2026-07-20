@@ -1,20 +1,19 @@
 ---
 name: react-i18n
-description: "react-i18next for React 19 - useTranslation hook, TypeScript Selector API, namespaces, pluralization, lazy loading, Suspense integration. Use when implementing translations in React apps (not Next.js)."
+description: react-i18next for React 19 - useTranslation hook, TypeScript Selector API, namespaces, pluralization, lazy loading, Suspense integration. Use when implementing translations in React apps (not Next.js).
 ---
-
 
 # react-i18next for React 19
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing i18n setup and translation patterns
-2. **ai-pilot:research / research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa
+1. **explore-codebase** - Analyze existing i18n setup and translation patterns
+2. **research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check TypeScript Selector API and React 19 Suspense patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

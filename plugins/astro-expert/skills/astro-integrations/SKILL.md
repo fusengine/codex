@@ -5,17 +5,19 @@ description: Expert Astro UI framework integrations — @astrojs/react, @astrojs
 
 # Astro Integrations Expert
 
+> Targets: Astro 7.
+
 Framework-agnostic: use React, Vue, Svelte, Solid, and more in the same Astro project.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing integrations and astro.config.ts
-2. **ai-pilot:research / research-expert** - Verify latest integration docs via Context7/Exa
-3. **mcp__context7__query-docs** - Get setup and configuration examples
+1. **explore-codebase** - Check existing integrations and astro.config.ts
+2. **research-expert** - Verify latest integration docs via Context7/Exa
+3. **Context7 (official docs)** - Get setup and configuration examples
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -83,25 +85,3 @@ The CLI auto-installs packages and updates `astro.config.ts`.
 3. **`include` for multiple JSX frameworks** — Avoid React/Preact/Solid conflicts
 4. **Apply client directives** — All framework components need hydration directive for interactivity
 5. **Prefer single framework** — Mix only when truly necessary for performance
-
-## References
-
-- [references/overview.md](references/overview.md)
-- [references/react.md](references/react.md)
-- [references/vue.md](references/vue.md)
-- [references/svelte.md](references/svelte.md)
-- [references/solid.md](references/solid.md)
-- [references/preact.md](references/preact.md)
-- [references/others.md](references/others.md)
-- [references/multi-framework.md](references/multi-framework.md)
-- [references/templates/react-setup.md](references/templates/react-setup.md)
-- [references/templates/multi-framework.md](references/templates/multi-framework.md)
-
-## Related skills
-
-`astro-6`, `astro-islands`, `astro-styling`.
-
-## Skill routing metadata
-
-references: references/overview.md, references/react.md, references/vue.md, references/svelte.md, references/solid.md, references/preact.md, references/others.md, references/multi-framework.md, references/templates/react-setup.md, references/templates/multi-framework.md
-related-skills: astro-6, astro-islands, astro-styling

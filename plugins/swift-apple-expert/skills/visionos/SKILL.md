@@ -3,20 +3,19 @@ name: visionos
 description: "visionOS platform-specific development with spatial computing, RealityKit, immersive spaces, and volumes. Use when building Vision Pro apps, 3D experiences, or mixed reality features."
 ---
 
-
 # visionOS Platform
 
 visionOS-specific development for Apple Vision Pro spatial computing.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing visionOS patterns
-2. **ai-pilot:research / research-expert** - Verify latest visionOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing visionOS patterns
+2. **research-expert** - Verify latest visionOS 26 docs via Context7/Exa
 3. **mcp__apple-docs__search_apple_docs** - Check spatial computing patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

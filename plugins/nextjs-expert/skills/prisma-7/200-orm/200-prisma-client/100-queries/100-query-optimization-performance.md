@@ -244,7 +244,7 @@ The **only** reason you need to use the fluent API (`user.findUnique(...).posts(
 
 When the dataloader batches `findMany()` queries or your query has the `relationStrategy` set to `join`, you no longer need to use `findUnique()` with the fluent API in this way.
 
-:::
+::: 
 
 <CodeWithResult>
 <cmd>

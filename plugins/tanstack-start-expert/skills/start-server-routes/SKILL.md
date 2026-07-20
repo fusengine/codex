@@ -1,13 +1,6 @@
 ---
 name: start-server-routes
-description: >-
-  Use when building raw HTTP API endpoints in TanStack Start — the server
-  property on createFileRoute, method handlers (GET/POST/PUT/DELETE), the
-  handler context (request, params, context), createHandlers for per-handler
-  middleware, file-route conventions, dynamic/splat params, request body
-  parsing, and Response helpers. Do NOT use for: internal type-safe RPC from
-  your own app (use start-server-functions), reusable middleware chains (use
-  start-middleware), or UI route rendering.
+description: ">- Use when building raw HTTP API endpoints in TanStack Start — the server property on createFileRoute, method handlers (GET/POST/PUT/DELETE), the handler context (request, params, context), createHandlers for per-handler middleware, file-route conventions, dynamic/splat params, request body parsing, and Response helpers. Do NOT use for: internal type-safe RPC from your own app (use start-server-functions), reusable middleware chains (use start-middleware), or UI route rendering."
 ---
 
 # TanStack Start Server Routes
@@ -20,8 +13,8 @@ targets `@tanstack/react-start` **v1.166.2**.
 ## Agent Workflow (MANDATORY)
 
 Before implementing, verify current APIs against Context7
-(`/websites/tanstack_start_framework_react`) + Exa/fuse-browser, then explore the target
-codebase. After changes, run `ai-pilot:sniper-check / sniper`.
+(`/websites/tanstack_start_framework_react`) + Exa, then explore the target
+codebase. After changes, run `sniper`.
 
 ## Critical Rules (read first)
 
@@ -122,13 +115,3 @@ export const Route = createFileRoute('/api/users/$id')({
 - Duplicate a route path across multiple files
 - Reach for a server route when you want internal type-safe RPC
 - Forget to return a `Response`
-
-## References
-
-- [references/defining.md](references/defining.md)
-- [references/vs-server-functions.md](references/vs-server-functions.md)
-- [references/templates/rest-endpoint.md](references/templates/rest-endpoint.md)
-
-## Skill routing metadata
-
-references: references/defining.md, references/vs-server-functions.md, references/templates/rest-endpoint.md

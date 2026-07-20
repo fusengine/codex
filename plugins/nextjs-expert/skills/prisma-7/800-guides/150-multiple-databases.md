@@ -44,7 +44,7 @@ For completeness, those are:
 - No `src` directory
 - App Router
 - Turbopack
-- Default custom import alias: `@/*`
+- Default custom import alias: `@/*` 
 
 :::
 
@@ -252,7 +252,7 @@ To simplify your workflow, add helper scripts to your `package.json` file that r
     "migrate": "npx prisma migrate dev --schema ./prisma-user-database/schema.prisma && npx prisma migrate dev --schema ./prisma-post-database/schema.prisma",
     "deploy": "npx prisma migrate deploy --schema ./prisma-user-database/schema.prisma && npx prisma migrate deploy --schema ./prisma-post-database/schema.prisma",
     "studio": "npx prisma studio --schema ./prisma-user-database/schema.prisma --port 5555 & npx prisma studio --schema ./prisma-post-database/schema.prisma --port 5556"
-    // add-end
+    // add-end   
 }
 ```
 
@@ -463,7 +463,7 @@ Deploy your app by following these steps:
 5. Click the **Deploy** button. Vercel will build your project and deploy it to a live URL.
 
 Open the live URL provided by Vercel and verify that your application is working.
-
+  
 Congratulations! You have deployed an application that uses multiple Prisma Clients to query two different databases, and it is now live and fully operational on Vercel.
 
 ## Next steps
@@ -476,7 +476,7 @@ In this guide, you learned how to use multiple databases using Prisma ORM in a s
 - Instantiating and integrating multiple Prisma Clients into your application.
 - Deploying your multi-database application to Vercel.
 
-This approach allows you to maintain a clear separation of data models and simplifies multi-tenant or multi-database scenarios.
+This approach allows you to maintain a clear separation of data models and simplifies multi-tenant or multi-database scenarios. 
 
 For further improvements in managing your project, consider using a monorepo setup. Check out our related guides:
 

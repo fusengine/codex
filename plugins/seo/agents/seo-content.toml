@@ -2,11 +2,11 @@ name = "seo-content"
 description = "Content quality sub-agent. Use when scoring E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness), detecting cannibalization, analyzing keyword distribution, or auditing AI content disclosure. Do NOT use for technical SEO or schema."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["SEO Content", "SEO Content Specialist", "SEO Content Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''# SEO Content Sub-Agent
+developer_instructions = '''
+# SEO Content Sub-Agent
 
-Parallelizable expert for content quality analysis.
+Parallel-safe sub-agent for content quality analysis. Spawned by the `seo-expert` orchestrator via `spawn_agent` (resolving `.codex/agents/seo-content.toml`) during a `/seo audit` run — it executes as an independent thread alongside the other SEO sub-agents.
 
 ## Workflow
 
@@ -53,7 +53,8 @@ Parallelizable expert for content quality analysis.
 - **Fast-path FIRST** — `browser_fetch`: NO browser launch, ~10× faster. This agent never opens a live session.
 - **Batch, don't loop** — `browser_collect` across multiple pages in one call where possible.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
-- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
+- Full guide: invoke skill `$fuse-browser-usage` (profile: research-docs).
+'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-content/SKILL.md"

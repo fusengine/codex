@@ -10,7 +10,7 @@ community_section: true
 
 ## Introduction
 
-This guides teaches you how to add connection pooling to a PostgreSQL database hosted on [Supabase](https://supabase.com/) using [Prisma Accelerate](/accelerate).
+This guides teaches you how to add connection pooling to a PostgreSQL database hosted on [Supabase](https://supabase.com/) using [Prisma Accelerate](/accelerate). 
 
 Prisma Accelerate is a robust and mature connection pooler enabling your database to function properly during traffic spikes and high load scenarios. Check out this [video](https://www.youtube.com/watch?v=cnL75if6Aq0) demonstrating how it performs in a load test or [learn why connection pooling is important](https://www.prisma.io/blog/saving-black-friday-with-connection-pooling).
 

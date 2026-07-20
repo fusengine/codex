@@ -8,16 +8,16 @@ description: "Use when: writing or reviewing idiomatic sequential Go — error h
 Idiomatic sequential Go for 1.26. For anything touching goroutines, channels,
 `errgroup`, or `context` cancellation, use **go-concurrency** instead.
 
-## Codex Workflow (MANDATORY)
+## Agent Workflow (MANDATORY)
 
-Before implementation, inspect local error/logging/interface patterns first.
-Use available Codex subagents when the task is broad or risky:
+Before ANY implementation, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Map existing error/logging/interface patterns
-2. **ai-pilot:research / research-expert** - Verify current Go docs via Context7/Exa/fuse-browser
-3. **Context7** - Confirm stdlib signatures for `errors` and `log/slog`
+1. **explore-codebase** - Map existing error/logging/interface patterns
+2. **research-expert** - Verify latest Go docs via Context7/Exa
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation when available.
+Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to confirm stdlib signatures (errors, log/slog).
+
+After implementation, spawn **sniper** for validation.
 
 ---
 
@@ -120,21 +120,3 @@ logger.Info("user created", "id", id, slog.Duration("took", elapsed))
 - Define interfaces next to their implementation "just in case"
 - Reach for pointer receivers without a mutation or size reason
 - Write Java-esque getters/setters or `IFoo` interface prefixes
-
-## References
-
-- [references/error-handling.md](references/error-handling.md)
-- [references/slog-logging.md](references/slog-logging.md)
-- [references/generics-and-1.26.md](references/generics-and-1.26.md)
-- [references/interfaces-and-style.md](references/interfaces-and-style.md)
-- [references/templates/error-patterns.md](references/templates/error-patterns.md)
-- [references/templates/slog-setup.md](references/templates/slog-setup.md)
-
-## Related skills
-
-`go-concurrency`, `solid:solid-go`.
-
-## Skill routing metadata
-
-references: references/error-handling.md, references/slog-logging.md, references/generics-and-1.26.md, references/interfaces-and-style.md, references/templates/error-patterns.md, references/templates/slog-setup.md
-related-skills: go-concurrency, solid:solid-go

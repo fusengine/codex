@@ -79,7 +79,7 @@ final class Post extends Model
 2. Convert each property to its attribute counterpart on the class.
 3. **Delete** the legacy property — keeping both is forbidden.
 4. Run the test suite + `php artisan model:show <Model>` to verify resolved metadata.
-5. Run `ai-pilot:sniper-check / sniper` for static validation.
+5. Run `sniper` for static validation.
 
 ---
 

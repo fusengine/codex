@@ -1,19 +1,21 @@
 ---
 name: ts-lint-format
-description: Use when choosing and configuring a TypeScript linter/formatter — Biome 2.x (one binary, type-aware) vs ESLint 9 flat config + typescript-eslint (full typed linting). Includes the 2026 arbitrage and Oxlint note. Do NOT use for type checking itself (tsc, ts-config skill) or test-runner configuration (ts-testing).
+description: "Use when choosing and configuring a TypeScript linter/formatter — Biome 2.x (one binary, type-aware) vs ESLint 9 flat config + typescript-eslint (full typed linting). Includes the 2026 arbitrage and Oxlint note. Do NOT use for type checking itself (tsc, ts-config skill) or test-runner configuration (ts-testing)."
 ---
 
 # TypeScript Linting & Formatting
 
+_Targets: biome 2.x, eslint 9 (flat config), typescript-eslint 8.x, typescript 5.8+ (latest stable 6.0)._
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing lint/format config, project age, framework
-2. **ai-pilot:research / research-expert** - Verify latest Biome 2.x + typescript-eslint via Context7/Exa/fuse-browser
-3. **mcp__context7__query-docs** - Check Biome and typescript-eslint docs
+1. `explore-codebase` - Detect existing lint/format config, project age, framework
+2. `research-expert` - Verify latest Biome 2.x + typescript-eslint via Context7/Exa
+3. `mcp__context7__query-docs` - Check Biome and typescript-eslint docs
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ## Use when
 
@@ -76,19 +78,3 @@ project/
 - Run Biome and Prettier on the same files (conflicting formatting)
 - Enable typed linting and then complain about speed — it's the type checker cost
 - Assume Biome covers every typescript-eslint rule — check the gaps first
-
-## References
-
-- [references/tool-choice.md](references/tool-choice.md)
-- [references/biome-setup.md](references/biome-setup.md)
-- [references/eslint-typed.md](references/eslint-typed.md)
-- [references/templates/config-examples.md](references/templates/config-examples.md)
-
-## Related skills
-
-`ts-runtime-node`, `ts-runtime-bun`, `solid-generic`.
-
-## Skill routing metadata
-
-references: references/tool-choice.md, references/biome-setup.md, references/eslint-typed.md, references/templates/config-examples.md
-related-skills: ts-runtime-node, ts-runtime-bun, solid-generic

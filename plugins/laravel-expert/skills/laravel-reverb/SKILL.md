@@ -3,18 +3,19 @@ name: laravel-reverb
 description: "Implement real-time WebSocket communication with Laravel Reverb. Use when adding live updates, chat, notifications, or presence features."
 ---
 
-
 # Laravel Reverb
+
+_Targets: laravel 13.0, reverb 1.4, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing broadcasting patterns
-2. **ai-pilot:research / research-expert** - Verify Reverb docs via Context7
-3. **mcp__context7__query-docs** - Check WebSocket and event patterns
+1. `explore-codebase` - Analyze existing broadcasting patterns
+2. `research-expert` - Verify Reverb docs via Context7
+3. `mcp__context7__query-docs` - Check WebSocket and event patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

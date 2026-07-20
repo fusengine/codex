@@ -53,7 +53,11 @@ Sniper needs to know:
 
 ### 3. Persist the Artifact
 
-Write `.codex/apex/docs/elicit-{task-slug}.json` using the slug contract in `../references/artifact-contract.md`.
+Write `.codex/apex/docs/elicit-{task-slug}.json` -- see `SKILL.md`'s
+"Artifact Contract" section for `{task-slug}` derivation. This is what a
+later elicitation pass diffs against instead of restarting technique
+selection from scratch; the markdown report below is for the human handoff,
+this file is for the machine one.
 
 ```json
 {
@@ -66,13 +70,21 @@ Write `.codex/apex/docs/elicit-{task-slug}.json` using the slug contract in `../
       "technique_id": "SEC-02",
       "verdict": "pass|fail|deferred",
       "correction_applied": true,
-      "evidence": "auth.ts:45 — added validation"
+      "evidence": "auth.ts:45 -- added isValidEmail() + null check"
     }
   ]
 }
 ```
 
-Record one entry per technique actually applied. Use `pass` only when no finding remains, `deferred` for low-severity work left to sniper, and `fail` for an unresolved critical/high finding.
+Rules:
+- One entry per technique actually applied this pass (Step 3), not per
+  technique merely selected.
+- `verdict: "pass"` only if Step 3 found no finding, or Step 4 fixed every
+  finding for that technique. `"deferred"` for Low-severity items left for
+  sniper. `"fail"` if a Critical/High finding could not be corrected.
+- On a later pass for the same `{task-slug}`, load this file in Step 0: skip
+  re-applying any technique already `"pass"`, re-apply `"fail"`/`"deferred"`
+  ones first.
 
 ### 4. Generate Final Report
 
@@ -164,7 +176,7 @@ Before marking elicitation complete:
 - [ ] Medium issues fixed or justified deferral
 - [ ] Low issues documented for sniper
 - [ ] Report generated
-- [ ] `elicit-{task-slug}.json` persisted under `.codex/apex/docs/`
+- [ ] `elicit-{task-slug}.json` written to `.codex/apex/docs/`
 - [ ] Handoff context provided
 
 ---

@@ -3,18 +3,19 @@ name: laravel-attributes
 description: "Use when migrating Eloquent models, Jobs, Console commands, Controllers, API Resources, Validation, Factories or Seeders to native PHP 8.3 attributes introduced in Laravel 13. Covers all 7 categories of first-party attributes."
 ---
 
-
 # Laravel 13 PHP Attributes
+
+_Targets: laravel 13.0, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
-2. **ai-pilot:research / research-expert** - Verify Laravel 13 release notes for attribute coverage and edge cases
-3. **mcp__context7__query-docs** - Pull authoritative examples from `laravel.com/docs/13.x`
+1. `explore-codebase` - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
+2. `research-expert` - Verify Laravel 13 release notes for attribute coverage and edge cases
+3. `mcp__context7__query-docs` - Pull authoritative examples from `laravel.com/docs/13.x`
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

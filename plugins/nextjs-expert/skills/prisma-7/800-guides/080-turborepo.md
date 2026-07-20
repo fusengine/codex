@@ -12,7 +12,7 @@ tags:
 community_section: true
 ---
 
-Prisma is a powerful ORM for managing databases, and [Turborepo](https://turbo.build/) simplifies monorepo workflows. By combining these tools, you can create a scalable, modular architecture for your projects.
+Prisma is a powerful ORM for managing databases, and [Turborepo](https://turbo.build/) simplifies monorepo workflows. By combining these tools, you can create a scalable, modular architecture for your projects. 
 
 This guide will show you how to set up Prisma as a standalone package in a Turborepo monorepo, enabling efficient configuration, type sharing, and database management across multiple apps.
 
@@ -359,7 +359,7 @@ To generate the types from Prisma schema, from the project root run:
 
 ### 2.4. Export the Prisma client and types
 
-Next, export the generated types and an instance of `PrismaClient` so it can used in your applications.
+Next, export the generated types and an instance of `PrismaClient` so it can used in your applications. 
 
 In the `packages/database` directory, create a `src` folder and add a `client.ts` file. This file will define an instance of `PrismaClient`:
 
@@ -438,7 +438,7 @@ The `turborepo-prisma` project should have an app called `web` at `apps/web`. Ad
       // ...
     }
     // ...
-  }
+  } 
   ```
 
   </TabItem>
@@ -454,7 +454,7 @@ The `turborepo-prisma` project should have an app called `web` at `apps/web`. Ad
       // ...
     }
     // ...
-  }
+  } 
   ```
 
   </TabItem>
@@ -470,7 +470,7 @@ The `turborepo-prisma` project should have an app called `web` at `apps/web`. Ad
       // ...
     }
     // ...
-  }
+  } 
   ```
 
   </TabItem>
@@ -518,7 +518,7 @@ import styles from "./page.module.css";
 import { prisma } from "@repo/db";
 
 export default async function Home() {
-  const user = await prisma.user.findFirst()
+  const user = await prisma.user.findFirst() 
   return (
     <div className={styles.page}>
       {user?.name ?? "No user added yet"}
@@ -547,9 +547,9 @@ Keep in mind that Turborepo [recommends using separate `.env` files for each pac
 
 ## 4. Configure task dependencies in Turborepo
 
-The `db:generate` and `db:deploy` scripts are not yet optimized for the monorepo setup but are essential for the `dev` and `build` tasks.
+The `db:generate` and `db:deploy` scripts are not yet optimized for the monorepo setup but are essential for the `dev` and `build` tasks. 
 
-If a new developer runs `turbo dev` on an application without first running `db:generate`, they will encounter errors.
+If a new developer runs `turbo dev` on an application without first running `db:generate`, they will encounter errors. 
 
 To prevent this, ensure that `db:generate` is always executed before running `dev` or `build`. Additionally, make sure both `db:deploy` and `db:generate` are executed before `db:build`. Here's how to configure this in your `turbo.json` file:
 
@@ -645,7 +645,7 @@ No user added yet
 
 :::note
 
-You can add users to your database by creating a seed script or manually by using [Prisma Studio](/orm/tools/prisma-studio).
+You can add users to your database by creating a seed script or manually by using [Prisma Studio](/orm/tools/prisma-studio). 
 
 To use Prisma Studio to add manually data via a GUI, navigate inside the `packages/database` directory and run `prisma studio` using your package manager:
 
@@ -693,3 +693,4 @@ Congratulations, you're done setting up Prisma for Turborepo!
 - [Turborepo Docs](https://turbo.build/repo/docs)
 - [Next.js Docs](https://nextjs.org/docs)
 - [Prisma ORM Docs](/orm/overview/introduction)
+

@@ -22,7 +22,7 @@ community_section: true
 
 </details>
 
-This guide shows you how to use Prisma with Next.js 16, a fullstack React framework. You'll learn how to create a [Prisma Postgres](/postgres/) instance, set up Prisma ORM with Next.js, handle migrations, and deploy your application to Vercel.
+This guide shows you how to use Prisma with Next.js 16, a fullstack React framework. You'll learn how to create a [Prisma Postgres](/postgres/) instance, set up Prisma ORM with Next.js, handle migrations, and deploy your application to Vercel. 
 
 You can find a [deployment-ready example on GitHub](https://github.com/prisma/prisma-examples/blob/latest/orm/nextjs).
 
@@ -381,7 +381,7 @@ Just reload the page and you'll see the changes.
 
 ## 4. Add a new Posts list page
 
-You have your home page working, but you should add a new page that displays all of your posts.
+You have your home page working, but you should add a new page that displays all of your posts. 
 
 First create a new `posts` directory in the `app` directory and create a new `page.tsx` file inside of it.
 
@@ -517,7 +517,7 @@ It's not the prettiest page, but it's a good start. Try it out by navigating to 
 
 ## 6. Add a new Posts create page
 
-To round out your application, you'll add a "create" page for posts. This will let you write your own posts and save them to the database.
+To round out your application, you'll add a "create" page for posts. This will let you write your own posts and save them to the database. 
 
 As with the other pages, you'll start with a static page and then update it to be dynamic.
 
@@ -645,7 +645,7 @@ export default function NewPost() {
 }
 ```
 
-This page now has a functional form! When you submit the form, it will create a new post in the database and redirect you to the posts list page.
+This page now has a functional form! When you submit the form, it will create a new post in the database and redirect you to the posts list page. 
 
 You also added a `revalidatePath` call to revalidate the posts list page so that it will be updated with the new post. That way everyone can read the new post immediately.
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.37] - 2026-07-20
+
+- feat(harness): auto-deposit Codex execpolicy rules on install — new `exec-policy{,-generator,-approval}.ts` generate the Starlark ruleset via the local harness `codex-rules` command and deposit `$CODEX_HOME/rules/fusengine.rules` idempotently (head marker, foreign files untouched), then guarantee `approval_policy = "on-request"` post-hoc; bump `@fusengine/harness` ^0.1.67 -> ^0.1.79 (0.1.78 makes the injected APEX template target-aware for Codex, `update_plan` replaces `TaskCreate`/`TaskUpdate`; 0.1.79 ships `codex-rules`)
+- fix(installer): `toml-helpers` `hasKey`/`getRootKey`/`setRootKey` scoped to the file head before the first `[table]` (`splitHead()`) — previously matched a same-named key inside any TOML table, so `setRootKey` could clobber a `[profiles.*]` entry instead of creating a root key; 6 new tests
+- feat(agents): rebalance agent model tiers per owner decision — 23 `gpt-5.6-sol` / 13 `gpt-5.6-terra` (36 agents total), `model_reasoning_effort = "high"` on all
+- refactor(ai-pilot): remove dead APEX task-tracking code superseded by `update_plan` (`task-helpers.ts`, `sync-task-tracking.ts`)
+- chore(release): bump 16 touched plugins (ai-pilot 1.2.47, codex-rules 1.0.22, commit-pro 1.2.28, core-guards 1.1.50, design-expert 2.1.37, go-expert 1.0.10, laravel-expert 1.2.13, nextjs-expert 1.1.28, php-expert 1.0.10, prompt-engineer 1.1.16, rust-expert 1.0.10, shadcn-expert 1.0.22, swift-apple-expert 1.1.25, tailwindcss 1.1.15, tanstack-start-expert 1.0.10, typescript-expert 1.0.10) + suite to 1.0.37
+
+## [1.0.36] - 2026-07-18
+
+- feat(agents): re-port claude-plugins agents and skills to native Codex format — 36 agent `.toml` (Codex closed schema), 197 skill `SKILL.md` (frontmatter reduced to name+description), `AGENTS.md`/templates/`docs/reference/creating-skills-agents.md` rewritten to the real Codex shape, mechanism translation (`TeamCreate`/`Task`->`spawn_agent`, `Skill`->`$skill`, `CLAUDE.md`->`AGENTS.md`, `fuse-x:y`->bare names, `TaskCreate`/`TaskUpdate`/`TaskList`/`EnterPlanMode`->`update_plan`), 254 previously-emptied references restored, orphan `plugins/lessons/skills/lessons/` removed
+- chore(release): bump 21 touched plugins (ai-pilot 1.2.46, astro-expert 1.0.14, cartographer 1.0.17, changelog-watcher 1.0.18, commit-pro 1.2.27, design-expert 2.1.36, go-expert 1.0.9, laravel-expert 1.2.12, nextjs-expert 1.1.27, php-expert 1.0.9, prompt-engineer 1.1.15, react-expert 1.0.25, rust-expert 1.0.9, security-expert 1.0.24, seo 1.0.14, shadcn-expert 1.0.21, solid 1.0.22, swift-apple-expert 1.1.24, tailwindcss 1.1.14, tanstack-start-expert 1.0.9, typescript-expert 1.0.9) + suite to 1.0.36
+
 ## [1.0.35] - 2026-07-12
 
 - feat(agents): align `AGENTS.md`, its installation template, all 34 agent profiles, and 234 skills with the current Claude-plugin guidance while preserving Codex V2 identity, Sol/Terra model selection, high reasoning, and exact reference metadata

@@ -5,17 +5,19 @@ description: SEO for Astro sites — meta tags, Open Graph, Twitter Cards, JSON-
 
 # Astro SEO
 
-Complete SEO strategy for Astro 6 sites — zero JS by default makes Astro naturally SEO-friendly.
+> Targets: Astro 7.
+
+Complete SEO strategy for Astro 7 sites — zero JS by default makes Astro naturally SEO-friendly.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing layouts, head components, and metadata
-2. **ai-pilot:research / research-expert** - Verify latest SEO best practices via Context7/Exa
-3. **mcp__context7__query-docs** - Check Astro 6 sitemap/RSS integration docs
+1. **explore-codebase** - Analyze existing layouts, head components, and metadata
+2. **research-expert** - Verify latest SEO best practices via Context7/Exa
+3. **Context7 (official docs)** - Check Astro 7 sitemap/RSS integration docs
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -89,22 +91,3 @@ Inject JSON-LD via `<script type="application/ld+json" set:html={JSON.stringify(
 3. **`set:html` for JSON-LD** - Prevents XSS vulnerabilities
 4. **sitemap + robots.txt** - Always configure both for crawlability
 5. **hreflang on all locales** - Include x-default for language variants
-
-## References
-
-- [references/meta-tags.md](references/meta-tags.md)
-- [references/structured-data.md](references/structured-data.md)
-- [references/sitemap-rss.md](references/sitemap-rss.md)
-- [references/canonical-hreflang.md](references/canonical-hreflang.md)
-- [references/core-web-vitals.md](references/core-web-vitals.md)
-- [references/templates/seo-head.md](references/templates/seo-head.md)
-- [references/templates/json-ld.md](references/templates/json-ld.md)
-
-## Related skills
-
-`astro-6`, `astro-content`, `astro-assets`, `astro-i18n`.
-
-## Skill routing metadata
-
-references: references/meta-tags.md, references/structured-data.md, references/sitemap-rss.md, references/canonical-hreflang.md, references/core-web-vitals.md, references/templates/seo-head.md, references/templates/json-ld.md
-related-skills: astro-6, astro-content, astro-assets, astro-i18n

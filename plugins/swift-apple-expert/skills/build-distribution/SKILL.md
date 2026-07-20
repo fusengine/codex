@@ -3,20 +3,19 @@ name: build-distribution
 description: "App build, code signing, TestFlight, and App Store distribution for all Apple platforms. Use when preparing releases, configuring signing, uploading to TestFlight, or submitting to App Store."
 ---
 
-
 # Build & Distribution
 
 App build, signing, and distribution for all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY distribution, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY distribution, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing build configuration
-2. **ai-pilot:research / research-expert** - Verify latest App Store requirements
+1. **explore-codebase** - Check existing build configuration
+2. **research-expert** - Verify latest App Store requirements
 3. **mcp__XcodeBuildMCP__show_build_settings** - Review build settings
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

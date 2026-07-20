@@ -1,20 +1,19 @@
 ---
 name: shadcn-components
-description: "Builds or edits shadcn/ui components after the project's primitive library is known. Use when implementing Radix UI or Base UI composition patterns. Do NOT use for primitive detection, registry setup, theming, or migration planning."
+description: "Component patterns for shadcn/ui with both Radix UI and Base UI primitives. Covers API differences, mapping between primitives, and correct usage patterns. Use when: building or editing shadcn/ui components, mapping Radix vs Base UI APIs, or choosing composition patterns (asChild vs render)."
 ---
-
 
 # shadcn Components
 
 ## Agent Workflow (MANDATORY)
 
-Before component work, use the available Codex subagent capability when it materially helps:
+Before component work, spawn sub-agents in parallel via `spawn_agent`:
 
-1. **ai-pilot:exploration / explore-codebase** - Find existing components
-2. **ai-pilot:research / research-expert** - Verify component APIs via Context7
+1. **explore-codebase** - Find existing components
+2. **research-expert** - Verify component APIs via Context7
 3. **mcp__shadcn__search_items_in_registries** - Search available components
 
-After: Run **ai-pilot:sniper-check / sniper** for validation.
+After: Run **sniper** for validation.
 
 ---
 

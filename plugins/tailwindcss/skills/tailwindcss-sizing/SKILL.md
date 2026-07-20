@@ -1,8 +1,7 @@
 ---
 name: tailwindcss-sizing
-description: "Tailwind CSS v4.1 width, height, dynamic viewport, min/max constraint, and aspect-ratio utilities. Use when sizing elements or constraining dimensions. Do NOT use for margins, padding, layout placement, or breakpoints."
+description: "Sizing utilities Tailwind CSS v4.1. Width (w-*, w-screen, w-full, w-auto), Height (h-*, h-screen, h-full, h-dvh NEW), Min/Max (min-w-*, max-w-*, min-h-*, max-h-*), Aspect ratio (aspect-video, aspect-square). Use when: setting element width/height, constraining min/max dimensions, using dynamic viewport height (h-dvh), or fixing an aspect ratio."
 ---
-
 
 # Tailwind CSS Sizing Utilities
 

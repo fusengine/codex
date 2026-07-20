@@ -5,7 +5,7 @@ metaDescription: 'Prisma Studio is a visual database editor.'
 toc_max_heading_level: 2
 ---
 
-Prisma Studio is a standalone visual database editor that lets you view and manipulate data directly in your browser. Prisma 7 introduces a brand new standalone Studio, built from the ground up to work everywhere, with or without Prisma ORM.
+Prisma Studio is a standalone visual database editor that lets you view and manipulate data directly in your browser. Prisma 7 introduces a brand new standalone Studio, built from the ground up to work everywhere, with or without Prisma ORM. 
 
 Unlike previous versions, the new Prisma Studio is SQL-driven and does not rely on the Prisma schema file at all. Instead, it introspects your database directly to understand the schema structure. This means you can use it with any supported database without needing a Prisma schema or project.
 

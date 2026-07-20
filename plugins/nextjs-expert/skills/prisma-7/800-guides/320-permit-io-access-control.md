@@ -10,12 +10,12 @@ community_section: true
 
 ## Introduction
 
-[Permit.io](https://www.permit.io/) is an authorization-as-a-service platform that lets you implement fine-grained access control
+[Permit.io](https://www.permit.io/) is an authorization-as-a-service platform that lets you implement fine-grained access control 
 rules based on real-world relationships.
 
-This guide explains how to connect Permit.io to a new Express + Prisma app, define a
-[Relationship-Based Access Control (ReBAC)](https://www.permit.io/blog/what-is-rebac) policy,
-and automatically filter Prisma queries so users only see the data they're allowed to access.
+This guide explains how to connect Permit.io to a new Express + Prisma app, define a 
+[Relationship-Based Access Control (ReBAC)](https://www.permit.io/blog/what-is-rebac) policy, 
+and automatically filter Prisma queries so users only see the data they're allowed to access. 
 
 You'll build a small project-task API to demonstrate access inheritance in action - no manual `WHERE` clauses required.
 
@@ -31,7 +31,7 @@ You can find a complete example of this guide [here](https://www.permit.io/blog/
 
 ## 1. Set up your project
 
-First of all, you'll create a new Express + Prisma project from scratch using TypeScript.
+First of all, you'll create a new Express + Prisma project from scratch using TypeScript. 
 You'll also install the tools needed to support ReBAC filtering with Permit.io.
 
 ### 1.1 Create the project folder
@@ -101,9 +101,9 @@ You're now ready to define your Prisma data model.
 
 ## 2. The authorization model
 
-Before we continue with the setup, it's important to define how access control will work in your application.
+Before we continue with the setup, it's important to define how access control will work in your application. 
 
-This guide uses **Relationship-Based Access Control (ReBAC)** to automatically restrict database queries based on a user's relationship to the data.
+This guide uses **Relationship-Based Access Control (ReBAC)** to automatically restrict database queries based on a user's relationship to the data. 
 
 Let's see what this looks like:
 
@@ -161,9 +161,9 @@ This model ensures that:
 - Users can only access the projects and tasks they're assigned to
 - No cross-team visibility
 - Access automatically stays in sync with the business structure
-
+    
 ![Access control planning](/img/guides/permitio/planning.png)
-
+    
 
 ## 3. Define your data model
 
@@ -384,7 +384,7 @@ export const clientExtensionConfig = {
 };
 ```
 
-:::tip API Key
+:::tip API Key  
 You can find your API key and PDP URL in your [Permit.io dashboard](https://app.permit.io/).
 :::
 
@@ -560,7 +560,7 @@ export const getProjects = async (req: AuthRequest, res: Response) => {
 ```
 
 > Even though this is a raw findMany() query, only authorized records will be returned for the current user.
->
+> 
 
 ### 8.2 Get user-visible tasks
 
@@ -591,7 +591,7 @@ export const getTasks = async (req: AuthRequest, res: Response) => {
 };
 ```
 
-:::info projectId
+:::info projectId 
 Even if you provide a projectId manually, the query results are still filtered by permissions.
 :::
 
@@ -668,7 +668,7 @@ curl -H "x-user-email: mary@company.com" http://localhost:3000/api/tasks
 
 This should only return tasks from Project Beta.
 
-:::tip
+:::tip 
 If you haven't yet assigned users to project memberships in the Permit.io UI, visit the Policy Editor and assign users to roles (project#Member).
 :::
 

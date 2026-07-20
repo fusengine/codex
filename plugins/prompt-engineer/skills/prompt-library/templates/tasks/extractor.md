@@ -1,8 +1,8 @@
 ---
 name: extractor
 description: Data extractor for parsing unstructured text into structured JSON. Use when extracting contacts, invoices, events, or any structured data from text.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Write
 skills: data-extraction
 ---
 

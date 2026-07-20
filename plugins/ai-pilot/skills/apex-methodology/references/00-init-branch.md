@@ -116,6 +116,20 @@ git merge origin/main
 
 ---
 
+## Update Task Phase
+
+At the **start** of this phase, record it (and the resolved task subject) in `.codex/apex/task.json` — the harness reads `tasks[current_task].phase` to brief sub-agents, so a stale/missing value shows them the wrong step:
+
+```bash
+jq --arg p "init-branch" --arg s "$TASK_SUBJECT" \
+  '.tasks[.current_task].phase = $p | .tasks[.current_task].subject = $s' \
+  .codex/apex/task.json > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+```
+
+Replace `$TASK_SUBJECT` with the real task description (the branch name or the user's request), quoted for the shell.
+
+---
+
 ## Next Phase
 
 → Proceed to `01-analyze-code.md`

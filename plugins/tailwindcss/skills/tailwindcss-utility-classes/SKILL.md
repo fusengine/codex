@@ -1,23 +1,20 @@
 ---
 name: tailwindcss-utility-classes
-description: "Routes Tailwind CSS class lookups to focused category skills while retaining the exhaustive legacy reference. Use when a request spans several utility families or needs a broad lookup. Do NOT use for a single known category."
+description: "Index of Tailwind CSS utility-class categories (layout, spacing, typography, colors, borders, effects, state variants). Use when: unsure which category skill covers a given utility class and need routing to the right one. Do NOT use for: concrete class lookup or worked examples — go directly to the category skill (tailwindcss-layout/spacing/typography/backgrounds/borders/effects/interactivity), this file only routes."
 ---
 
-# Tailwind CSS Utility Classes Router
+# Tailwind CSS Utility Classes — Index
 
-Choose the focused skill first:
+Routing index only. Each category has its own skill with full worked examples — load that skill directly instead of this one when the category is known.
 
-| Need | Skill |
-|---|---|
-| Layout | [tailwindcss-layout](../tailwindcss-layout/SKILL.md) |
-| Spacing | [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md) |
-| Sizing | [tailwindcss-sizing](../tailwindcss-sizing/SKILL.md) |
-| Typography | [tailwindcss-typography](../tailwindcss-typography/SKILL.md) |
-| Backgrounds | [tailwindcss-backgrounds](../tailwindcss-backgrounds/SKILL.md) |
-| Borders | [tailwindcss-borders](../tailwindcss-borders/SKILL.md) |
-| Effects | [tailwindcss-effects](../tailwindcss-effects/SKILL.md) |
-| Interaction states | [tailwindcss-interactivity](../tailwindcss-interactivity/SKILL.md) |
-| Responsive behavior | [tailwindcss-responsive](../tailwindcss-responsive/SKILL.md) |
-| Transforms and animation | [tailwindcss-transforms](../tailwindcss-transforms/SKILL.md) |
+| Category | Skill | Covers |
+|----------|-------|--------|
+| Layout | [tailwindcss-layout](../tailwindcss-layout/SKILL.md) | display, flexbox, grid, position, container queries |
+| Spacing | [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md) | margin, padding, space-between |
+| Typography | [tailwindcss-typography](../tailwindcss-typography/SKILL.md) | font family/size/weight, text color/align/wrap, letter/line spacing, decoration |
+| Backgrounds/Colors | [tailwindcss-backgrounds](../tailwindcss-backgrounds/SKILL.md) | background colors, gradients, images, blend modes |
+| Borders | [tailwindcss-borders](../tailwindcss-borders/SKILL.md) | border width/color/style/radius, outline, ring, divide |
+| Effects | [tailwindcss-effects](../tailwindcss-effects/SKILL.md) | shadows, opacity, filters, backdrop filters, masks |
+| State variants | [tailwindcss-interactivity](../tailwindcss-interactivity/SKILL.md#pseudo-class-state-variants) | hover/focus/active/disabled pseudo-class variants, cursor, scroll, pointer-events |
 
-Load [the exhaustive legacy utility reference](references/utility-class-reference.md) only when the focused skills do not answer the lookup.
+Border colors specifically live in [tailwindcss-borders/references/border.md](../tailwindcss-borders/references/border.md); text colors in [tailwindcss-typography/references/text.md](../tailwindcss-typography/references/text.md).

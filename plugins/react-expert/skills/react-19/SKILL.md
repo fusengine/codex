@@ -1,20 +1,19 @@
 ---
 name: react-19
-description: "React 19.2 features - use(), useOptimistic, useActionState, useEffectEvent, Activity component, React Compiler. Use when implementing React 19 patterns."
+description: React 19.2 features - use(), useOptimistic, useActionState, useEffectEvent, Activity component, React Compiler. Use when implementing React 19 patterns.
 ---
-
 
 # React 19.2 Core Features
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing React patterns and component structure
-2. **ai-pilot:research / research-expert** - Verify latest React 19.2 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing React patterns and component structure
+2. **research-expert** - Verify latest React 19.2 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check use(), useOptimistic, useActionState, Activity patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

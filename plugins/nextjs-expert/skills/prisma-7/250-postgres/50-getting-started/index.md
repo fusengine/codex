@@ -16,7 +16,7 @@ npx prisma init --db
 
 After running this command, the terminal will guide you with next steps. Follow [this page](/getting-started/prisma-postgres/from-the-cli) to complete the setup for your first Prisma Postgres project.
 
-If you need a database quickly for testing, or want to try out Prisma Postgres, you can run the following command to spin up a temporary 24-hour database:
+If you need a database quickly for testing, or want to try out Prisma Postgres, you can run the following command to spin up a temporary 24-hour database: 
 
 ```terminal
 npx create-db@latest

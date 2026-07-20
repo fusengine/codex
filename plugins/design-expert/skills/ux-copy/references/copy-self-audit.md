@@ -1,6 +1,6 @@
 ---
 name: copy-self-audit
-description: Pre-ship copy audit — em-dash ban, AI "production tell" catalogue, fake-precise-number flag, and final string review before handoff
+description: Pre-ship copy audit — em-dash crutch threshold, AI "production tell" catalogue, fake-precise-number flag, and final string review before handoff
 when-to-use: Before declaring any copy or page done — re-read every visible string against these gates
 keywords: copy-audit, em-dash, ai-tells, fake-numbers, pre-flight, self-review
 priority: critical
@@ -13,16 +13,14 @@ related: microcopy-patterns.md, voice-tone-sectors.md
 
 Run this pass on **every visible string** before handing copy off to component generation (`design-web`/`design-webapp`): headlines, subheads, eyebrows, button labels, body, captions, alt text, footer, error messages. A single failure below is a blocking pre-flight failure, not a warning.
 
-## 1. Em-dash ban (binary, blocking)
+## 1. Em-dash — avoid as a crutch, not a hard ban
 
-`—` (em-dash) and `–` (en-dash used as a separator) are **forbidden everywhere on the page** — headlines, eyebrows, labels, pills, button text, body, quotes, attribution, captions, alt text. No "sparingly", no "fine in body copy". The em-dash is the single most reliable machine-writing tell.
+`—` (em-dash) is a real risk of reading as a machine-writing tic, but a single occurrence anywhere on the page (headline, eyebrow, label, body, quote, caption, alt text) does not block on its own. Flag and rewrite it when it shows up as a **recurring crutch** — the same writer reaching for it repeatedly instead of a period, comma, colon, or parentheses — or whenever a plainer mark reads better.
 
-- Replace a pause em-dash with a period, a comma, a colon, or parentheses. Split into two sentences when in doubt.
-- Ranges use a plain hyphen: `2018-2026`, `€40-80k`.
-- Attribution uses a spaced hyphen (` - `) or a line break, never an em-dash.
-- The only dash characters allowed are the regular hyphen `-` and the math minus (`-5°C`).
-
-If any `—` or `–` survives to handoff, the copy fails and must be rewritten.
+- Prefer a period, a comma, a colon, or parentheses over a pause em-dash. Split into two sentences when in doubt.
+- En-dashes for ranges are fine: `2018-2026`, `€40-80k` (plain hyphen also acceptable).
+- Attribution uses a spaced hyphen (` - `) or a line break.
+- One-off em-dash use is not a failure; repeated use across a page's strings is.
 
 ## 2. AI "production tell" catalogue (banned unless the brief demands it)
 
@@ -50,7 +48,25 @@ Numbers such as `92%`, `4.1×`, `48k`, `5.8 mm`, `13.4 lb` must trace to one of:
 
 Also avoid fake-perfect numbers (`99.99%`, `50%`, `1234567`); real data is organic and messy (`47.2%`).
 
-## 4. Final string review before handoff
+## 4. "Not X. Y." contrast fragments — count, don't feel
+
+Grep for the manufactured-contrast pattern: a short negation clause immediately followed
+by a period-terminated affirmation (e.g. "Not features. Focus."). A single instance is
+fine; **2+ occurrences on one page is a blocking tic**.
+
+## 5. "theater" keyword
+
+Grep for the literal word `theater`/`théâtre` (case-insensitive) in any visible string
+(e.g. "security theater", "performance theater") — a near-universal AI copy tell. Any
+hit blocks.
+
+## 6. All-caps body copy
+
+Grep for a run of ≥ 3 consecutive all-caps words outside a recognized UI label (button,
+eyebrow, badge). All-caps body paragraphs/subheads block; all-caps is fine inside a
+label/button/eyebrow.
+
+## 7. Final string review before handoff
 
 Re-read each visible string and flag any that is:
 
@@ -59,3 +75,11 @@ Re-read each visible string and flag any that is:
 - **LLM-trying-to-sound-thoughtful** — passive-aggressive humility, mock-poetic micro-meta, fake-craftsman asides.
 
 Rewrite every flagged string. When unsure whether a line lands, replace it with a plain functional sentence. Boring correct copy beats clever wrong copy. Keep **one copy register per page** — do not mix technical mono, editorial prose, and marketing punch unless the brand voice explicitly calls for it.
+
+## Not self-audited — routed to challenger
+
+Aphoristic cadence (the "feel" of the copy: does it read punchy-staccato ad copy
+pretending to be product copy) is a subjective judgment call, not a grep/count. Self-audit
+above stays mechanical only — this one goes to the challenger pass instead (fresh-context,
+per `design-review/references/review-procedure.md`'s Part 2 Challenger gate, item 9) —
+never scored as a self-audit item.

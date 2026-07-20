@@ -37,7 +37,7 @@ It will prompt you to customize your setup. Here are the options you'll choose:
 
 - *Which template would you like?* `SvelteKit minimal`
 - *Add type checking with TypeScript?* `Yes, using TypeScript syntax`
-- *What would you like to add to your project?*
+- *What would you like to add to your project?* 
   - `prettier`
   - `eslint`
 - *Which package manager do you want to install dependencies with?* `npm`
@@ -320,7 +320,7 @@ export async function load() {
 		users
 	};
 }
-```
+```  
 
 Now, every user in the result will also include a `posts` array.
 

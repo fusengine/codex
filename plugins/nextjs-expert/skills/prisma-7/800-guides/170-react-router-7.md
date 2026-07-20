@@ -366,7 +366,7 @@ Just reload the page and you'll see the changes.
 
 ## 4. Add a new Posts list page
 
-You have your home page working, but you should add a new page that displays all of your posts.
+You have your home page working, but you should add a new page that displays all of your posts. 
 
 First, create a new `posts` directory under the `app/routes` directory and add a `home.tsx` file:
 
@@ -555,7 +555,7 @@ It's not the prettiest page, but it's a good start. Try it out by navigating to 
 
 ## 6. Add a new Posts create page
 
-To round out your application, you'll add a "create" page for posts. This will allow you to write your own posts and save them to the database.
+To round out your application, you'll add a "create" page for posts. This will allow you to write your own posts and save them to the database. 
 
 As with the other pages, you'll start with a static page and then update it to be dynamic.
 
@@ -641,7 +641,7 @@ import prisma from "~/lib/prisma";
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const title = formData.get("title") as string;
-  const content = formData.get("content") as string;
+  const content = formData.get("content") as string;  
 
   //add-start
   try {
@@ -702,7 +702,7 @@ export default function NewPost() {
 }
 ```
 
-This page now has a functional form! When you submit the form, it will create a new post in the database and redirect you to the posts list page.
+This page now has a functional form! When you submit the form, it will create a new post in the database and redirect you to the posts list page. 
 
 Try it out by navigating to `localhost:5173/posts/new` and submitting the form.
 

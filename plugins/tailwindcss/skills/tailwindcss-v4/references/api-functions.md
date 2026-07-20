@@ -24,4 +24,3 @@ Inline utility classes:
   @apply px-4 py-2 rounded-lg font-bold;
 }
 ```
-

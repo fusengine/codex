@@ -17,7 +17,7 @@ generator client {
   output     = "./generated"
   engineType = "client"
 }
-```
+``` 
 
 Prisma ORM without Rust binaries has been [Generally Available](/orm/more/releases#generally-available-ga) since [v6.16.0](https://pris.ly/release/6.16.0).
 
@@ -28,7 +28,7 @@ When using this architecture:
 - No Rust query engine binary is downloaded or shipped.
 - The database connection pool is maintained by the native JS database driver you install (e.g., `@prisma/adapter-pg` for PostgreSQL).
 
-This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine).
+This setup can simplify deployments in serverless or edge runtimes. Learn more in the [docs here](/orm/prisma-client/setup-and-configuration/no-rust-engine). 
 
 Curious why we moved away from the Rust engine? Take a look at why we transitioned from Rust binary engines to an all-TypeScript approach for a faster, lighter Prisma ORM in this [blog post](https://www.prisma.io/blog/prisma-orm-without-rust-latest-performance-benchmarks).
 
@@ -643,7 +643,7 @@ const result = await prisma.user.findUnique({
 
 `findUniqueOrThrow()` retrieves a single record in the same way as [`findUnique()`](#findunique). However, if the query does not find the requested record, it throws a `PrismaClientKnownRequestError`.
 
-Note that [before Prisma v6](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#removed-notfounderror), it would throw a `NotFoundError: No User found error`.
+Note that [before Prisma v6](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#removed-notfounderror), it would throw a `NotFoundError: No User found error`. 
 
 Here’s an example of its usage:
 
@@ -749,7 +749,7 @@ main();
 
 `findFirstOrThrow()` retrieves a single data record in the same way as [`findFirst()`](#findfirst). However, if the query does not find a record, it throws a `PrismaClientKnownRequestError`.
 
-Note that [before Prisma v6](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#removed-notfounderror), it would throw a `NotFoundError: No User found error`.
+Note that [before Prisma v6](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#removed-notfounderror), it would throw a `NotFoundError: No User found error`. 
 
 `findFirstOrThrow()` differs from `findFirst()` as follows:
 
@@ -2945,7 +2945,7 @@ const distinctCitiesAndCountries = await prisma.user.findMany({
 
 ## `nativeDistinct`
 
-Enabling `nativeDistinct` in your Prisma schema pushes the `distinct` operation to the database layer
+Enabling `nativeDistinct` in your Prisma schema pushes the `distinct` operation to the database layer 
 (where supported). This can significantly improve performance. However, note that:
 
 - Some databases may not fully support DISTINCT on certain field combinations.

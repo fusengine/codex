@@ -90,4 +90,4 @@ five-dependency service is over-engineering.
 - **No global/singleton state** for dependencies — pass them explicitly.
 - **`context.Context` is the first parameter**, never stored in a struct.
 - Keep interface declarations in an `interfaces` location per your SOLID rules
-  (`solid:solid-go` when available).
+  (`solid-go`).

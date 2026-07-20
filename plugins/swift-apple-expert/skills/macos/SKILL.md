@@ -3,20 +3,19 @@ name: macos
 description: "macOS platform-specific development with menu bar apps, window management, AppKit integration, and notarization. Use when building Mac apps, creating menu bar extras, or distributing outside App Store."
 ---
 
-
 # macOS Platform
 
 macOS-specific development with window management and distribution tools.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing macOS patterns
-2. **ai-pilot:research / research-expert** - Verify latest macOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing macOS patterns
+2. **research-expert** - Verify latest macOS 26 docs via Context7/Exa
 3. **mcp__XcodeBuildMCP__build_macos** - Build for macOS validation
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

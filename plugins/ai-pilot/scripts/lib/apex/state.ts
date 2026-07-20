@@ -1,7 +1,6 @@
 /**
  * APEX state file management with directory-based locking.
  * Handles state read/write for enforce-apex-phases hook.
- * Task manipulation helpers are in apex/task-helpers.ts.
  */
 import { mkdir, rmdir } from "node:fs/promises";
 import { readJsonFile, writeJsonFile } from "../core";
@@ -61,5 +60,3 @@ export async function loadState(path: string): Promise<ApexState> {
 export async function saveState(path: string, state: ApexState): Promise<void> {
   await writeJsonFile(path, state);
 }
-
-export { taskCreate, taskStart, taskComplete } from "./task-helpers";

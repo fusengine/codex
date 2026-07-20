@@ -5,17 +5,19 @@ description: Expert Astro Islands Architecture — client:load, client:idle, cli
 
 # Astro Islands Expert
 
+> Targets: Astro 7.
+
 Partial hydration architecture: zero JS by default, selective interactivity via directives.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing components and hydration patterns
-2. **ai-pilot:research / research-expert** - Verify latest Islands docs via Context7/Exa
-3. **mcp__context7__query-docs** - Get client directive and server:defer examples
+1. **explore-codebase** - Analyze existing components and hydration patterns
+2. **research-expert** - Verify latest Islands docs via Context7/Exa
+3. **Context7 (official docs)** - Get client directive and server:defer examples
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -83,23 +85,3 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 3. **`client:only` for browser APIs** — localStorage, window, canvas
 4. **`server:defer` for personalized content** — Avatars, prices, auth state
 5. **`transition:persist`** — Preserve media players or forms during navigation
-
-## References
-
-- [references/overview.md](references/overview.md)
-- [references/client-directives.md](references/client-directives.md)
-- [references/server-islands.md](references/server-islands.md)
-- [references/transitions.md](references/transitions.md)
-- [references/view-transitions.md](references/view-transitions.md)
-- [references/prop-serialization.md](references/prop-serialization.md)
-- [references/templates/interactive-island.md](references/templates/interactive-island.md)
-- [references/templates/server-island.md](references/templates/server-island.md)
-
-## Related skills
-
-`astro-6`, `astro-integrations`, `astro-actions`.
-
-## Skill routing metadata
-
-references: references/overview.md, references/client-directives.md, references/server-islands.md, references/transitions.md, references/view-transitions.md, references/prop-serialization.md, references/templates/interactive-island.md, references/templates/server-island.md
-related-skills: astro-6, astro-integrations, astro-actions

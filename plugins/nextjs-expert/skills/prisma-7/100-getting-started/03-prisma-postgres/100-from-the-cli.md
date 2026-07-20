@@ -224,7 +224,7 @@ export default defineConfig({
 
 ### 2.5. Create a script to query the database
 
-Create an `index.ts` file in the root directory, this will be used to query your application with Prisma ORM:
+Create an `index.ts` file in the root directory, this will be used to query your application with Prisma ORM: 
 
 ```terminal
 touch index.ts
@@ -581,7 +581,7 @@ Prisma ORM comes with a built-in GUI to view and edit the data in your database.
 npx prisma studio --config ./prisma.config.ts
 ```
 
-With Prisma Postgres, you can also directly use Prisma Studio inside the [Console](https://console.prisma.io) by selecting the **Studio** tab in your project.
+With Prisma Postgres, you can also directly use Prisma Studio inside the [Console](https://console.prisma.io) by selecting the **Studio** tab in your project. 
 
 
 ### Build a fullstack app with Next.js

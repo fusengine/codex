@@ -2,11 +2,11 @@ name = "seo-technical"
 description = "Technical SEO sub-agent. Use when auditing robots.txt, sitemap.xml, Core Web Vitals (LCP/INP/CLS), mobile-first indexing, crawlability, indexability, redirects chains. Do NOT use for content (use seo-content), schema (use seo-schema), or local (use seo-local)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["SEO Technical", "SEO Technical Specialist", "SEO Technical Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''# SEO Technical Sub-Agent
+developer_instructions = '''
+# SEO Technical Sub-Agent
 
-Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestrator during `/seo audit` or directly via `/seo technical`.
+Parallel-safe sub-agent for technical SEO audits. Spawned by the `seo-expert` orchestrator via `spawn_agent` (resolving `.codex/agents/seo-technical.toml`) during a `/seo audit` run — it executes as an independent thread alongside the other SEO sub-agents — or invoked directly via `/seo technical`.
 
 ## Workflow
 
@@ -54,7 +54,8 @@ Parallelizable expert for technical SEO audits. Invoked by `seo-expert` orchestr
 
 - **Fast-path FIRST** — `browser_fetch` / `browser_crawl`: NO browser launch, ~10× faster.
 - **Batch, don't loop** — `browser_crawl` across multiple URLs in one call rather than looping fetches.
-- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
+- Full guide: invoke skill `$fuse-browser-usage` (profile: research-docs).
+'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-technical/SKILL.md"

@@ -899,7 +899,7 @@ From v4.0.0, `JsonNull`, `DbNull`, and `AnyNull` are objects. Before v4.0.0, the
 - The _null enums_ do not apply to the `array_contains` operator in all databases because there can only be a JSON `null` within a JSON array. Since there cannot be a database `NULL` within a JSON array, `{ array_contains: null }` is not ambiguous.
 
 :::
-
+  
 For example:
 
 ```prisma

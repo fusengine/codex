@@ -85,3 +85,16 @@ final class ProfileViewModel {
 - [ ] Define protocols before implementations
 - [ ] Plan file splits if > 100 lines expected
 - [ ] Identify localization keys
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "features-plan" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+```
+
+## Next Phase
+
+→ Proceed to `03-execution.md`

@@ -8,16 +8,16 @@ description: "Use when: writing or reviewing Go concurrency — goroutines, chan
 Goroutines, channels, `context`, and `errgroup` for Go 1.26 — plus the number-one
 documented pitfall: **leaking goroutines on an unbuffered channel + early return.**
 
-## Codex Workflow (MANDATORY)
+## Agent Workflow (MANDATORY)
 
-Before implementation, inspect local goroutine/channel/context usage first.
-Use available Codex subagents when the task is broad or risky:
+Before ANY implementation, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Map existing goroutine/channel/context usage
-2. **ai-pilot:research / research-expert** - Verify errgroup/context docs via Context7/Exa/fuse-browser
-3. **Context7** - Confirm `golang.org/x/sync/errgroup` signatures
+1. **explore-codebase** - Map existing goroutine/channel/context usage
+2. **research-expert** - Verify errgroup/context docs via Context7/Exa
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation when available, and run tests
+Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to confirm `golang.org/x/sync/errgroup` signatures.
+
+After implementation, spawn **sniper** for validation, and run tests
 with `go test -race ./...`.
 
 ---
@@ -120,21 +120,3 @@ ch := make(chan result, len(items)) // buffered → early return can't strand se
 - Store a `context.Context` in a struct field
 - Use a bare `sync.WaitGroup` when goroutines return errors (use `errgroup`)
 - Assume tests are race-free without the `-race` flag
-
-## References
-
-- [references/goroutines-channels.md](references/goroutines-channels.md)
-- [references/errgroup.md](references/errgroup.md)
-- [references/context-propagation.md](references/context-propagation.md)
-- [references/goroutine-leaks.md](references/goroutine-leaks.md)
-- [references/templates/errgroup-patterns.md](references/templates/errgroup-patterns.md)
-- [references/templates/worker-pool.md](references/templates/worker-pool.md)
-
-## Related skills
-
-`go-core-idioms`, `solid:solid-go`.
-
-## Skill routing metadata
-
-references: references/goroutines-channels.md, references/errgroup.md, references/context-propagation.md, references/goroutine-leaks.md, references/templates/errgroup-patterns.md, references/templates/worker-pool.md
-related-skills: go-core-idioms, solid:solid-go

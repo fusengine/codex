@@ -45,8 +45,12 @@ Run the full test suite. Compare results before and after. No new failures, no n
 **Step 5: Check for side effects**
 Review every modified file. Confirm no accidental changes to unrelated code. Verify dependencies and configuration are unchanged unless required.
 
-**Step 6: Persist evidence and confirm functional resolution**
-Write `.codex/apex/docs/verify-{task-slug}.md` using `references/verify-template.md`. Include one evidence item per criterion: command output, log excerpt, screenshot path, or diff. Then state explicitly: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
+**Step 6: Confirm functional resolution -- challenge, then write the artifact**
+Before writing "Original problem is FUNCTIONALLY resolved," ALWAYS route the claim through the `challenger` agent (or `challenge` skill), fresh-context: claim = "functionally resolved" + evidence from Steps 3-5, NEVER the investigation reasoning. This is systematic -- every Verify gate, no exception, exactly like sniper runs at every eXamine. Only write the "FUNCTIONALLY resolved" verdict after a `CONFIRMED` result (or an `UNCERTAIN` explicitly accepted by the owner). A `REFUTED` verdict must be resolved (fix and re-verify) before the claim reaches the owner -- soft-gate, not a hard veto.
+
+Write `.codex/apex/docs/verify-{task-slug}.md` (template: `references/verify-template.md`): every verification step checked, one evidence item per criterion (command output, log excerpt, screenshot path, or diff), plus the challenge verdict from this step. A context-only "it works" declaration does not survive a session boundary; the written artifact is the guardrail gates (sniper, later elicitation passes) actually check. Then state explicitly in your response: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
+
+`{task-slug}`: derive per `apex-methodology/references/init-tracking.md` (git branch slug) -- same pattern used by the `elicitation` skill's artifact.
 
 ---
 
@@ -56,7 +60,7 @@ Write `.codex/apex/docs/verify-{task-slug}.md` using `references/verify-template
 |----------|------|---------|
 | Checklist | `references/checklist.md` | Full verification checklist with all categories |
 | Common Misses | `references/common-misses.md` | Frequently forgotten verification items |
-| Artifact Template | `references/verify-template.md` | Persistent evidence template and slug derivation |
+| Artifact Template | `references/verify-template.md` | `verify-{task-slug}.md` template + task-slug derivation |
 
 ---
 
@@ -81,4 +85,4 @@ This ensures functional correctness is confirmed before code quality validation.
 | Full test suite, not just new tests | Catches regressions |
 | Review ALL modified files | Catches accidental side effects |
 | Both verification AND sniper must pass | Quality without correctness is useless |
-| Persist `verify-{task-slug}.md` | In-context claims do not survive session boundaries |
+| Step 6 writes `verify-{task-slug}.md` to disk | In-context self-review without persisted state regresses across sessions |

@@ -63,7 +63,7 @@ Nomenclature
   - isLoading, hasError, canDelete
 - Use complete words, avoiding unnecessary abbreviations.
   - Exceptions: standard abbreviations like API, URL
-  - Accepted short forms:
+  - Accepted short forms: 
     - i, j for loop indices
     - err for errors
     - ctx for contexts
@@ -173,7 +173,7 @@ To improve Cursor's understanding of Prisma-related suggestions in your project,
 
 ### Adding additional Prisma documentation
 
-Cursor already includes built-in context from Prisma documentation, so you don't need to add anything to make us of our docs!
+Cursor already includes built-in context from Prisma documentation, so you don't need to add anything to make us of our docs! 
 
 To stay updated with the latest changes or incorporate additional context, add these resources as `@Docs` context:
 

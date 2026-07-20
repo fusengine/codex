@@ -114,7 +114,7 @@ npm install @opentelemetry/semantic-conventions @opentelemetry/exporter-trace-ot
 
 ### Step 3: Register tracing in your application
 
-The following code provides two examples of configuring OpenTelemetry tracing in Prisma:
+The following code provides two examples of configuring OpenTelemetry tracing in Prisma: 
 
 1. Using `@opentelemetry/sdk-trace-node` (existing example), which gives fine-grained control over tracing setup.
 2. Using `@opentelemetry/sdk-node`, which offers a simpler configuration and aligns with OpenTelemetry's JavaScript getting started guide.

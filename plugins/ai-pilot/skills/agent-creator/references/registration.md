@@ -1,87 +1,85 @@
 ---
 name: registration
-description: How to make Codex plugin agents discoverable
-when-to-use: Making an agent available after creation
-keywords: registration, marketplace, json, plugin, manifest, codex
-priority: high
-related: architecture.md, frontmatter.md
+description: How to register a plugin so its agents load
 ---
 
 # Agent Registration
 
 ## Overview
 
-For this plugin ecosystem, keep Codex agents in `plugins/<plugin>/agents/*.toml` and make sure the plugin itself is registered in the root marketplace.
+A Codex plugin's agents are auto-discovered from `agents/*.toml`, and its skills from `skills/*/SKILL.md`. The plugin itself must be registered in the marketplace manifest to be installable/discoverable.
 
 ---
 
-## Plugin Marketplace
-
-Root registry: `.agents/plugins/marketplace.json`
+## Marketplace Manifest Structure
 
 ```json
 {
-  "name": "new-plugin",
-  "source": {
-    "source": "local",
-    "path": "./plugins/new-plugin"
-  },
-  "version": "1.0.0",
-  "category": "Framework",
-  "policy": {
-    "installation": "AVAILABLE",
-    "authentication": "ON_INSTALL"
-  }
+  "name": "fusengine-plugins",
+  "plugins": [
+    {
+      "name": "nextjs-expert",
+      "source": "./plugins/nextjs-expert",
+      "description": "Expert Next.js 16 with App Router...",
+      "version": "1.1.0"
+    }
+  ]
 }
 ```
 
+Agents and skills are NOT listed individually — they are resolved from the plugin directory (`agents/*.toml`, `skills/*/SKILL.md`).
+
 ---
 
-## Plugin Manifest
+## Required Fields
 
-Local manifest: `plugins/<plugin>/.codex-plugin/plugin.json`
+| Field | Description |
+|-------|-------------|
+| `name` | Plugin identifier |
+| `source` | Path to plugin directory |
+| `description` | Plugin description |
+| `version` | Semantic version |
+
+---
+
+## Registration Steps
+
+### 1. Add the Plugin Entry
 
 ```json
 {
-  "name": "new-plugin",
-  "version": "1.0.0",
-  "description": "Plugin description",
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
-  "mcpServers": "./.mcp.json"
+  "name": "new-expert",
+  "source": "./plugins/new-expert",
+  "description": "...",
+  "version": "1.0.0"
 }
 ```
 
----
+### 2. Verify the Plugin Layout
 
-## Agent File
+- Agent files: `agents/<name>.toml`
+- Skill dirs: `skills/<name>/SKILL.md`
+- `name` inside each `.toml` matches the filename
 
-Place the agent at:
+### 3. Validate
 
-```
-plugins/<plugin>/agents/<agent-name>.toml
-```
-
-The TOML must include:
-
-```toml
-name = "agent-name"
-description = "Trigger guidance."
-developer_instructions = '''
-# Agent Name
-'''
-```
+Run sniper to verify registration.
 
 ---
 
-## Verification
+## Plugin.json (Local)
 
-After registration:
+Also keep `.codex-plugin/plugin.json` in the plugin up to date:
 
-1. Parse `.codex-plugin/plugin.json` as JSON.
-2. Parse each `agents/*.toml` as TOML.
-3. Confirm each agent has `name`, `description`, and `developer_instructions`.
-4. Confirm root marketplace points at the plugin path.
+```json
+{
+  "name": "new-expert",
+  "version": "1.0.0",
+  "description": "..."
+}
+```
+
+Mirror the same `version` between `.codex-plugin/plugin.json` and the marketplace entry for a plugin listed in `plugins[]`.
 
 ---
 
@@ -89,7 +87,28 @@ After registration:
 
 | Mistake | Fix |
 |---------|-----|
-| Agent saved as `.md` | Use `.toml` |
-| Legacy YAML agent config | Use Codex TOML keys |
-| Marketplace path wrong | Point to `./plugins/<plugin>` |
-| Missing `developer_instructions` | Add the full behavior contract |
+| Wrong path prefix | Use `./` for relative `source` |
+| Agent name mismatch | Match `name` in the `.toml` to the filename |
+| Version drift | Keep plugin.json == marketplace version |
+| Forgot plugin.json | Update both files |
+
+---
+
+## Verification
+
+After registration:
+
+1. Agent appears in the available agents list
+2. Skills are accessible via `$skill-name` / `/skills`
+3. No errors on plugin load
+
+---
+
+## Best Practices
+
+| DO | DON'T |
+|----|-------|
+| Match folder names | Use different names |
+| Update version on changes | Keep stale version |
+| Keep plugin.json == marketplace version | Let versions drift |
+| Test after registration | Assume it works |

@@ -9,6 +9,26 @@ next_step: references/laravel/05-review.md
 
 **Verify code quality with Larastan, Pint, Pest (APEX Phase X).**
 
+## Gate — Required Proof Artefacts
+
+**Validation does NOT start** unless both proof files exist on disk for the current task. A claim made in context is not proof — only the file on disk is:
+
+```bash
+TASK_SLUG=$(jq -r '.current_task' .codex/apex/task.json)
+if [ ! -f ".codex/apex/docs/elicit-${TASK_SLUG}.json" ]; then
+  echo "❌ Missing .codex/apex/docs/elicit-${TASK_SLUG}.json — go back to references/laravel/03.5-elicit.md first."
+  exit 1
+fi
+if [ ! -f ".codex/apex/docs/verify-${TASK_SLUG}.md" ]; then
+  echo "❌ Missing .codex/apex/docs/verify-${TASK_SLUG}.md — go back to the verification skill (runs between eLicit and eXamine) first."
+  exit 1
+fi
+```
+
+Only once both checks pass does this phase proceed.
+
+---
+
 ## When to Use
 
 - After execution phase complete
@@ -237,6 +257,10 @@ public function find(int $id): ?User
 // Or configure in pint.json
 ```
 
+### Fix Discipline (Hypothesis-Driven)
+
+**Fix discipline (hypothesis-driven).** One candidate cause documented before any edit → one atomic change → retest immediately. If it still fails, the hypothesis was wrong: the same fix is FORBIDDEN — run a fresh research round (Context7 → Exa) for a new hypothesis. Cap: 3 cycles per error; at the 3rd failure STOP and escalate (`status: fail` + root-cause: what was tried, sources, why each failed). Never stack two unverified corrections. Canonical implementation: sniper's Fix Retry Loop.
+
 ---
 
 ## Validation Report Template
@@ -275,6 +299,17 @@ public function find(int $id): ?User
 [ ] All files < 100 lines
 [ ] No type errors
 [ ] No code style issues
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "validation" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

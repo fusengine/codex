@@ -1,19 +1,18 @@
 ---
 name: shadcn-migration
-description: "Migrates shadcn/ui components between Radix UI and Base UI after detection. Use for API transformations, selector updates, and staged migration validation. Do NOT use for ordinary component edits, initial setup, or theme-only changes."
+description: "Migration guide between Radix UI and Base UI primitives for shadcn/ui. Covers step-by-step migration, API transformations, and validation checklists. Use when: migrating a project between Radix UI and Base UI primitives, or validating a migration's API transformations."
 ---
-
 
 # shadcn Migration
 
 ## Agent Workflow (MANDATORY)
 
-Before migration, use the available Codex subagent capability when it materially helps:
+Before migration, spawn sub-agents in parallel via `spawn_agent`:
 
-1. **ai-pilot:exploration / explore-codebase** - Inventory all affected components
-2. **ai-pilot:research / research-expert** - Verify migration patterns via Context7
+1. **explore-codebase** - Inventory all affected components
+2. **research-expert** - Verify migration patterns via Context7
 
-After: Run **ai-pilot:sniper-check / sniper** for validation.
+After: Run **sniper** for validation.
 
 ---
 

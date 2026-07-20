@@ -5,17 +5,19 @@ description: Expert Astro Content Layer API — content.config.ts, glob/file loa
 
 # Astro Content Layer Expert
 
+> Targets: Astro 7, Zod 4.
+
 Type-safe content management with loaders, Zod schemas, and the unified Content Layer API.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing collections, loaders, and content structure
-2. **ai-pilot:research / research-expert** - Verify latest Content Layer docs via Context7/Exa
-3. **mcp__context7__query-docs** - Get loader and schema examples
+1. **explore-codebase** - Check existing collections, loaders, and content structure
+2. **research-expert** - Verify latest Content Layer docs via Context7/Exa
+3. **Context7 (official docs)** - Get loader and schema examples
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -87,23 +89,3 @@ The config file moved from `src/content/config.ts` to `src/content.config.ts` in
 3. **Use `glob()` for local files** — Supports MD, MDX, JSON, YAML, TOML
 4. **Custom loaders for remote data** — CMS, REST API, GraphQL
 5. **`render()` for MDX** — Returns `Content` component + headings array
-
-## References
-
-- [references/overview.md](references/overview.md)
-- [references/config.md](references/config.md)
-- [references/loaders.md](references/loaders.md)
-- [references/querying.md](references/querying.md)
-- [references/rendering.md](references/rendering.md)
-- [references/mdx.md](references/mdx.md)
-- [references/templates/blog-collection.md](references/templates/blog-collection.md)
-- [references/templates/custom-loader.md](references/templates/custom-loader.md)
-
-## Related skills
-
-`astro-6`, `astro-actions`, `astro-seo`.
-
-## Skill routing metadata
-
-references: references/overview.md, references/config.md, references/loaders.md, references/querying.md, references/rendering.md, references/mdx.md, references/templates/blog-collection.md, references/templates/custom-loader.md
-related-skills: astro-6, astro-actions, astro-seo

@@ -118,7 +118,7 @@ Environment variables loaded from .env
 
 ### `init`
 
-Bootstraps a fresh Prisma ORM project within the current directory.
+Bootstraps a fresh Prisma ORM project within the current directory. 
 
 The `init` command does not interpret any existing files. Instead, it creates a `prisma` directory containing a bare-bones `schema.prisma` file within your current directory.
 
@@ -166,7 +166,7 @@ Initialized Prisma in your project
 Next, choose how you want to set up your database:
 
 CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in `prisma.config.ts`
+  1. Configure your DATABASE_URL in `prisma.config.ts` 
   2. Run `npx prisma db pull` to introspect your database.
 
 CREATE NEW DATABASE:
@@ -835,7 +835,7 @@ npx prisma@latest debug
 
 ## `dev`
 
-The `dev` command starts a [local Prisma Postgres](/postgres/database/local-development) database that you can run Prisma ORM commands against. It is useful for development and testing purposes and also allows you to switch to [Prisma Postgres](/postgres) in production easily.
+The `dev` command starts a [local Prisma Postgres](/postgres/database/local-development) database that you can run Prisma ORM commands against. It is useful for development and testing purposes and also allows you to switch to [Prisma Postgres](/postgres) in production easily. 
 
 ### Arguments
 

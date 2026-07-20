@@ -22,7 +22,7 @@ In this guide, you'll learn how to integrate Prisma ORM with a Prisma Postgres d
 Begin by creating a new SolidStart app. In your terminal, run:
 
 ```terminal
-npm init solid@latest
+npm init solid@latest 
 ```
 
 Use the following options when prompted:

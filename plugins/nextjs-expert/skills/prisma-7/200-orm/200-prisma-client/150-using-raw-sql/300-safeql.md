@@ -338,8 +338,8 @@ const prisma = new PrismaClient().$extends({
             st_x: number | null
             st_y: number | null
           }[]
-        >`SELECT id, name, ST_X(location::geometry), ST_Y(location::geometry)
-            FROM "PointOfInterest"
+        >`SELECT id, name, ST_X(location::geometry), ST_Y(location::geometry) 
+            FROM "PointOfInterest" 
             ORDER BY ST_DistanceSphere(location::geometry, ST_MakePoint(${longitude}, ${latitude})) DESC`
 
         // Transform to our custom type

@@ -36,7 +36,7 @@ For the names of GUI elements (buttons, drop-down menus, and so on), use **bold*
 
 ### Avoid exclamation points
 
-In keeping with our calm tone, do not use exclamation points (exclamation marks).
+In keeping with our calm tone, do not use exclamation points (exclamation marks). 
 
 Exception: they are acceptable in congratulatory or welcome messages, for example: "Congratulations - you've completed the tutorial!"
 

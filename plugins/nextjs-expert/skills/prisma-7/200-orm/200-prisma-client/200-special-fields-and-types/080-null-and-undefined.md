@@ -70,7 +70,7 @@ prisma.user.deleteMany({
 Invalid \`prisma.user.deleteMany()\` invocation in
 /client/tests/functional/strictUndefinedChecks/test.ts:0:0
   XX })
-  XX
+  XX 
   XX test('throws on undefined input field', async () => {
 → XX   const result = prisma.user.deleteMany({
          where: {

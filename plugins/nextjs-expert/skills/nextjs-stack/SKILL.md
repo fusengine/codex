@@ -5,17 +5,19 @@ description: "Next.js 16+ complete stack with App Router, Prisma 7, Better Auth,
 
 # Next.js Complete Stack
 
+> Targets: Nextjs 16, React 19, Prisma 7, Better-auth 1.2, Shadcn-ui 3.8.0, Tailwindcss 4.
+
 Master skill combining all framework documentation for modern Next.js development.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze project structure and existing patterns
-2. **ai-pilot:research / research-expert** - Verify latest docs for all stack technologies
+1. **explore-codebase** - Analyze project structure and existing patterns
+2. **research-expert** - Verify latest docs for all stack technologies
 3. **mcp__context7__query-docs** - Check integration compatibility
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -67,11 +69,3 @@ Detailed guidance lives in `references/` to keep this file scannable — load on
 | [references/getting-started.md](references/getting-started.md) | Bootstrapping a brand-new project step by step |
 
 For framework-specific detail, go directly to the sub-skill: `nextjs-16`, `prisma-7`, `better-auth`, `nextjs-shadcn`, `nextjs-tanstack-form`, `nextjs-zustand`, `nextjs-i18n`, `solid-nextjs`.
-
-## Related skills
-
-`nextjs-16`, `prisma-7`, `better-auth`, `nextjs-shadcn`, `nextjs-tanstack-form`, `nextjs-zustand`, `nextjs-i18n`, `solid-nextjs`.
-
-## Skill routing metadata
-
-related-skills: nextjs-16, prisma-7, better-auth, nextjs-shadcn, nextjs-tanstack-form, nextjs-zustand, nextjs-i18n, solid-nextjs

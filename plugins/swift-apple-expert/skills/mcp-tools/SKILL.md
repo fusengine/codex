@@ -3,7 +3,6 @@ name: mcp-tools
 description: "MCP tools for Xcode automation and Apple documentation access. XcodeBuildMCP for builds, apple-docs for WWDC and API docs. Use when building projects, searching documentation, or accessing WWDC content."
 ---
 
-
 # MCP Tools for Swift Development
 
 **Model Context Protocol servers for enhanced Swift/Xcode workflows.**

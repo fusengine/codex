@@ -11,10 +11,10 @@ detect framework → explore structure → build migration plan → confirm with
 
 | Signal | Framework | Delegate To |
 |---|---|---|
-| `FuseCore/` dir + `artisan` file | Laravel + FuseCore | `fuse-laravel:laravel-expert` |
-| `composer.json` + `artisan` (no FuseCore/) | Laravel standard | `fuse-laravel:laravel-expert` |
-| `src/modules/` or `app/` + `next.config` | Next.js + modules/ | `fuse-nextjs:nextjs-expert` |
-| `src/` + `package.json` (React, no Next) | React | `fuse-react:react-expert` |
+| `FuseCore/` dir + `artisan` file | Laravel + FuseCore | `laravel-expert` |
+| `composer.json` + `artisan` (no FuseCore/) | Laravel standard | `laravel-expert` |
+| `src/modules/` or `app/` + `next.config` | Next.js + modules/ | `nextjs-expert` |
+| `src/` + `package.json` (React, no Next) | React | `react-expert` |
 
 ## Critical Rules
 
@@ -22,7 +22,7 @@ detect framework → explore structure → build migration plan → confirm with
 2. **Show migration map** — present file-by-file plan before touching any code
 3. **User confirms** — never move or modify files without explicit approval
 4. **Cores = central hub** — no module-to-module imports; all shared logic goes through core
-5. **Sniper after each file** — run `ai-pilot:sniper-check` or the `sniper` agent after every file moved or created
+5. **Sniper after each file** — run the `sniper` agent after every file moved or created
 
 ## Workflow Steps
 

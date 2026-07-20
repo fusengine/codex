@@ -1,24 +1,32 @@
 ---
 name: tailwindcss-utilities
-description: "Routes Tailwind CSS utility questions to the focused category skill. Use when the needed utility category is unknown or spans categories. Do NOT use when a concrete category skill already matches."
+description: "Complete reference for Tailwind CSS utility classes, indexing the categorical skills (layout, spacing, typography, backgrounds, effects, borders, transforms). Use when: you need a single entry point to locate which categorical tailwindcss-* skill covers a given utility class. Router/index only: identifies WHICH category skill to load. Do NOT use for: actual utility class content (load the category skill it points to)."
 ---
 
-# Tailwind CSS Utilities Router
+# Tailwind CSS Utilities Reference
 
-Select the narrowest category before loading detailed guidance.
+## Layout
+- Flexbox, Grid, Position, Display -> [tailwindcss-layout](../tailwindcss-layout/SKILL.md)
 
-| Need | Skill |
-|---|---|
-| Display, position, flexbox, grid | [tailwindcss-layout](../tailwindcss-layout/SKILL.md) |
-| Margin, padding, gap | [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md) |
-| Width, height, min/max sizing | [tailwindcss-sizing](../tailwindcss-sizing/SKILL.md) |
-| Fonts, text, line height | [tailwindcss-typography](../tailwindcss-typography/SKILL.md) |
-| Background colors and images | [tailwindcss-backgrounds](../tailwindcss-backgrounds/SKILL.md) |
-| Shadows, opacity, filters | [tailwindcss-effects](../tailwindcss-effects/SKILL.md) |
-| Borders, radius, outlines | [tailwindcss-borders](../tailwindcss-borders/SKILL.md) |
-| Transforms, transitions, animation | [tailwindcss-transforms](../tailwindcss-transforms/SKILL.md) |
-| Hover, focus, cursor, selection | [tailwindcss-interactivity](../tailwindcss-interactivity/SKILL.md) |
-| Breakpoints and container queries | [tailwindcss-responsive](../tailwindcss-responsive/SKILL.md) |
-| Accessibility utilities | [tailwindcss-accessibility](../tailwindcss-accessibility/SKILL.md) |
+## Spacing
+- Padding -> [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md#padding-classes)
+- Margin -> [tailwindcss-spacing](../tailwindcss-spacing/SKILL.md#margin-classes)
+- Width -> [tailwindcss-sizing](../tailwindcss-sizing/SKILL.md#width-utilities)
+- Height -> [tailwindcss-sizing](../tailwindcss-sizing/SKILL.md#height-utilities)
 
-For a broad legacy lookup after category routing, use [the preserved utility-class reference](../tailwindcss-utility-classes/references/utility-class-reference.md).
+## Typography
+- Font size, font weight, text align, line height -> [tailwindcss-typography](../tailwindcss-typography/SKILL.md)
+
+## Colors & Effects
+- Color palette, background color -> [tailwindcss-backgrounds](../tailwindcss-backgrounds/SKILL.md#background-colors)
+- Box shadow -> [tailwindcss-effects](../tailwindcss-effects/SKILL.md#box-shadow)
+- Opacity -> [tailwindcss-effects](../tailwindcss-effects/SKILL.md#opacity)
+
+## Borders
+- Border width, border radius, outline -> [tailwindcss-borders](../tailwindcss-borders/SKILL.md)
+
+## Transforms
+- Transform, translate, rotate, scale -> [tailwindcss-transforms](../tailwindcss-transforms/SKILL.md#transform-utilities)
+
+## Transitions
+- Transition property, animation -> [tailwindcss-transforms](../tailwindcss-transforms/SKILL.md#transition-utilities)

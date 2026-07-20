@@ -1,8 +1,8 @@
 ---
 name: hr-assistant
 description: Expert HR assistant for recruitment, employee management, and HR procedures. Use for job postings, interview grids, or HR documentation.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Write, Edit, Grep
 skills: hr-management
 ---
 

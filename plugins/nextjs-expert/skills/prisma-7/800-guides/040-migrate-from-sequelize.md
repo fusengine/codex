@@ -170,8 +170,8 @@ In this section, we'll show a few sample queries that are being migrated from Se
 
 ```typescript
 // Find one
-const user = await User.findOne({
-  where: { id: 1 }
+const user = await User.findOne({ 
+  where: { id: 1 } 
 });
 
 // Create
@@ -181,8 +181,8 @@ const user = await User.create({
 });
 
 // Update
-await User.update({ name: 'New name' }, {
-  where: { id: 1 }
+await User.update({ name: 'New name' }, { 
+  where: { id: 1 } 
 });
 
 // Delete
@@ -197,8 +197,8 @@ await User.destroy({
 
 ```typescript
 // Find one
-const user = await prisma.user.findUnique({
-  where: { id: 1 }
+const user = await prisma.user.findUnique({ 
+  where: { id: 1 } 
 });
 
 // Create
@@ -235,14 +235,14 @@ import { prisma } from '../client'
 export class UserController {
   async create(req: Request, res: Response) {
     const { email, name } = req.body
-
+    
     const result = await prisma.user.create({
       data: {
         email,
         name,
       },
     })
-
+    
     return res.json(result)
   }
 }

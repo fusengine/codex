@@ -9,7 +9,7 @@ toc: true
 
 This guide helps resolve common issues when working with Prisma Postgres.
 
-## The `--db` option is not recognized when running `prisma init`
+## The `--db` option is not recognized when running `prisma init` 
 
 ### Problem
 

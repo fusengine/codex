@@ -1,8 +1,7 @@
 ---
 name: auth-audit
-description: "Audit authentication and authorization patterns. Checks JWT, sessions, OAuth2, PKCE implementations for security best practices and common vulnerabilities."
+description: "Audit authentication and authorization patterns. Checks JWT, sessions, OAuth2, PKCE implementations for security best practices and common vulnerabilities. Use when: auditing JWT, session, OAuth2/PKCE, password, or MFA implementations for security vulnerabilities."
 ---
-
 
 # Auth Audit Skill
 

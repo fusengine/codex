@@ -261,7 +261,7 @@ model Todo {
 
 ## Step 3. Generate Prisma Client
 
-Now that you have installed Prisma Client in Step 1, you need to run `generate` in order to have your schema reflected in TypeScript types and autocomplete.
+Now that you have installed Prisma Client in Step 1, you need to run `generate` in order to have your schema reflected in TypeScript types and autocomplete. 
 
 ```terminal
 npx prisma generate

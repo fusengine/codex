@@ -29,4 +29,3 @@ npm install -D @tailwindcss/cli
 - Custom Variant Creation
 - Animation Keyframes Definition
 - CSS Variables Usage
-

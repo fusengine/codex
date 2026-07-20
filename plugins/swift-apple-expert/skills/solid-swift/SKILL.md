@@ -1,18 +1,17 @@
 ---
 name: solid-swift
-description: "Applies SOLID architecture to Swift 6 and SwiftUI with reviewable files, separated protocols, Observation, actors, previews, and feature modules. Use for Apple-platform architecture or structural refactoring. Do NOT use for isolated view tweaks."
+description: "SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 lines, protocols separated, @Observable, actors, Preview-driven development. Features Modular MANDATORY."
 ---
-
 
 # SOLID Swift - Apple Best Practices 2026
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Swift/Apple docs via Apple Docs MCP + Context7
-3. **XcodeBuildMCP** - Build validation after code changes. Then run **ai-pilot:sniper-check / sniper**.
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Swift/Apple docs via Apple Docs MCP + Context7
+3. **XcodeBuildMCP** - Build validation after code changes. Then run **sniper**.
 
 ---
 

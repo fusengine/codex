@@ -1,9 +1,11 @@
 ---
 name: php-quality-tooling
-description: Use when setting up or tuning static analysis, automated refactoring, and code-style enforcement on a framework-agnostic PHP project. Covers PHPStan, Rector, PHP-CS-Fixer, composer scripts, and CI wiring. Do NOT use for Laravel projects (Pint + Larastan → laravel-expert), test frameworks (→ php-testing), or language syntax questions (→ php-language-modern).
+description: "Use when setting up or tuning static analysis, automated refactoring, and code-style enforcement on a framework-agnostic PHP project. Covers PHPStan, Rector, PHP-CS-Fixer, composer scripts, and CI wiring. Do NOT use for Laravel projects (Pint + Larastan → laravel-expert), test frameworks (→ php-testing), or language syntax questions (→ php-language-modern)."
 ---
 
 # PHP Quality Tooling
+
+_Targets: phpstan 2.x, rector 2.x, php-cs-fixer 3.x._
 
 Three complementary tools. PHPStan **finds** type bugs, Rector **rewrites** code
 (upgrades + refactors), PHP-CS-Fixer **formats** to a coding standard. They do not
@@ -11,13 +13,13 @@ overlap — run all three.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Detect existing config (phpstan.neon, rector.php, .php-cs-fixer.dist.php), PHP version in composer.json
-2. **ai-pilot:research / research-expert** - Verify latest PHPStan/Rector/PHP-CS-Fixer docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check current config API surface
+1. `explore-codebase` - Detect existing config (phpstan.neon, rector.php, .php-cs-fixer.dist.php), PHP version in composer.json
+2. `research-expert` - Verify latest PHPStan/Rector/PHP-CS-Fixer docs via Context7/Exa
+3. `mcp__context7__query-docs` - Check current config API surface
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 
@@ -107,22 +109,3 @@ vendor/bin/rector process --dry-run # preview refactors
 - Run Rector on an uncommitted working tree
 - Mix PHP-CS-Fixer and Pint in the same repo
 - Silence PHPStan with `@phpstan-ignore` where a real type fix is cheap
-
-## References
-
-- [references/phpstan-levels.md](references/phpstan-levels.md)
-- [references/rector-upgrades.md](references/rector-upgrades.md)
-- [references/php-cs-fixer.md](references/php-cs-fixer.md)
-- [references/templates/phpstan-neon.md](references/templates/phpstan-neon.md)
-- [references/templates/rector-php.md](references/templates/rector-php.md)
-- [references/templates/php-cs-fixer-dist.md](references/templates/php-cs-fixer-dist.md)
-- [references/templates/composer-ci.md](references/templates/composer-ci.md)
-
-## Related skills
-
-`php-testing`, `php-language-modern`.
-
-## Skill routing metadata
-
-references: references/phpstan-levels.md, references/rector-upgrades.md, references/php-cs-fixer.md, references/templates/phpstan-neon.md, references/templates/rector-php.md, references/templates/php-cs-fixer-dist.md, references/templates/composer-ci.md
-related-skills: php-testing, php-language-modern

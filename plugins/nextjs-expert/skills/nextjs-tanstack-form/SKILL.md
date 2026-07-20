@@ -5,17 +5,19 @@ description: TanStack Form v1 for Next.js 16 with Server Actions, Zod validation
 
 # TanStack Form for Next.js 16
 
+> Targets: Tanstack-form 1.0, Nextjs 16, React 19, Zod 3.24.
+
 Type-safe, performant forms with Server Actions and signal-based reactivity.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing forms and validation patterns
-2. **ai-pilot:research / research-expert** - Verify latest TanStack Form docs via Context7/Exa
+1. **explore-codebase** - Analyze existing forms and validation patterns
+2. **research-expert** - Verify latest TanStack Form docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check form options and field API
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -136,16 +138,3 @@ Errors exist at field-level and form-level. Use `field.state.meta.errors` for fi
 | Bundle Size | ~12KB | ~9KB |
 | Learning Curve | Medium | Low |
 | Use Case | Complex apps | Standard forms |
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-16`, `nextjs-shadcn`, `solid-nextjs`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/basic-usage.md, references/field-api.md, references/form-state.md, references/validation-zod.md, references/server-actions.md, references/array-fields.md, references/async-validation.md, references/shadcn-integration.md, references/typescript.md, references/multi-step-form.md, references/performance.md, references/testing.md, references/migration-rhf.md
-related-skills: nextjs-16, nextjs-shadcn, solid-nextjs

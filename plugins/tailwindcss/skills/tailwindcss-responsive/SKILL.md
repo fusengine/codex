@@ -1,8 +1,7 @@
 ---
 name: tailwindcss-responsive
-description: "Tailwind CSS v4 responsive breakpoints, mobile-first variants, custom @theme breakpoints, and container queries. Use when styles must respond to viewport or container width. Do NOT use for the underlying layout or sizing utilities."
+description: "Responsive design utilities in Tailwind CSS v4: default breakpoints (sm/md/lg/xl/2xl), custom breakpoints via @theme, container queries (@container, @md, @lg), and mobile-first patterns. Use when: applying responsive variants at different screen widths, defining a custom breakpoint, or building container-query-based responsive components."
 ---
-
 
 # Responsive Design
 

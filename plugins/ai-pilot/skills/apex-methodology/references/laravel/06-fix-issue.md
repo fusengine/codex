@@ -243,6 +243,12 @@ php artisan test
 
 ---
 
+## Escalation
+
+**Attempt cap before escalation.** Diagnosis is hypothesis-driven: one candidate cause documented → one atomic fix → immediate retest. The same fix twice is forbidden; a new attempt needs a new hypothesis (fresh research first). After 3 failed cycles on the same issue, STOP and escalate with a root-cause note (what was tried, sources consulted, why each attempt failed) — do not keep trying or widen the scope to work around it. Canonical implementation: sniper's Fix Retry Loop.
+
+---
+
 ## Fix Checklist
 
 ```text
@@ -267,6 +273,17 @@ php artisan test
 | Route not found | Check route:list, clear route cache |
 | Model not found | Use findOrFail, handle exception |
 | Auth middleware fails | Check guards, verify token |
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "fix-issue" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+```
 
 ---
 

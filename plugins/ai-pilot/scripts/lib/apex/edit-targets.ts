@@ -22,8 +22,8 @@ function parseApplyPatch(body: string): EditTarget[] {
     const match = line.match(/^\*\*\*\s+(Add|Update|Delete) File:\s+(.+)$/);
     if (match) {
       flush();
-      action = match[1];
-      filePath = match[2].trim();
+      action = match[1] ?? "";
+      filePath = (match[2] ?? "").trim();
       added = [];
     } else if ((action === "Add" || action === "Update") && line.startsWith("+") && !line.startsWith("+++")) {
       added.push(line.slice(1));

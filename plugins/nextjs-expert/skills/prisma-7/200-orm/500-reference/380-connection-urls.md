@@ -40,7 +40,7 @@ Here are examples for the connection URLs of the databases Prisma ORM supports:
 
 ### Prisma Postgres
 
-[Prisma Postgres](/postgres) is a managed PostgreSQL service running on unikernels. There are several ways to connect to Prisma Postgres:
+[Prisma Postgres](/postgres) is a managed PostgreSQL service running on unikernels. There are several ways to connect to Prisma Postgres: 
 
 - via direct TCP connections (lets you connect via any ORM or database tool)
 - via [Prisma Accelerate](/accelerate) (only supported with Prisma ORM)
@@ -70,7 +70,7 @@ When connecting via Prisma Accelerate, the connection string doesn't require a u
 datasource db {
   provider = "postgresql"
   url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=API_KEY"
-}
+} 
 ```
 
 In this snippet, `API_KEY` is a placeholder for the API key you are receiving when setting up a new Prismas Postgres instance via the [Prisma Console](https://console.prisma.io). Here is an example for what a real connection URL to Prisma Postgres may look like:
@@ -90,7 +90,7 @@ The connection string for connecting to a [local Prisma Postgres](/postgres/data
 datasource db {
   provider = "postgresql"
   url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=API_KEY"
-}
+} 
 ```
 
 However, in this case the `API_KEY` doesn't provide authentication details. Instead, it encodes information about the local Prisma Postgres instance. You can obtain a local connection string via the [`prisma dev`](/orm/reference/prisma-cli-reference#dev) command.

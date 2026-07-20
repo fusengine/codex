@@ -109,3 +109,4 @@ export function createPrismaClient(config: TenantConfig): PrismaClient {
 ```
 
 Ensure that you manage the lifecycle of dynamically created Prisma Clients to avoid resource exhaustion.
+

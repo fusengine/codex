@@ -8,7 +8,7 @@ toc: true
 
 ## Overview
 
-Prisma Postgres is the perfect choice for your applications, whether you connect to it via [Prisma ORM](/orm) or any other ORM, database library / tool of your choice. If you use it with Prisma ORM, Prisma Postgres comes with built-in connection pooling, and an integrated caching layer (powered by [Prisma Accelerate](/accelerate/)).
+Prisma Postgres is the perfect choice for your applications, whether you connect to it via [Prisma ORM](/orm) or any other ORM, database library / tool of your choice. If you use it with Prisma ORM, Prisma Postgres comes with built-in connection pooling, and an integrated caching layer (powered by [Prisma Accelerate](/accelerate/)). 
 
 If you connect to it via another tool, you can do so with a [direct connection string](#connection-string) following the conventional PostgreSQL format.
 
@@ -23,7 +23,7 @@ In order to get a direct connection string, you need to:
 1. If enabling connection pooling, click the toggle button
 1. Copy the connection string that is generated below.
 
-![](/img/postgres/connection-string.gif)
+![](/img/postgres/connection-string.gif) 
 
 ## Connection string
 

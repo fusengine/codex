@@ -1,6 +1,14 @@
-# Elicit Profile
+# Elicit Profile (optional, per-repo)
 
-An optional `.codex/apex/elicit-profile.md` tunes technique selection without modifying the skill. Its absence keeps the default auto-detection matrix and catalog unchanged.
+`.codex/apex/elicit-profile.md`, if present, tunes technique selection
+(Step 2) for the current repo without editing the skill itself.
+
+Not required. Absence means: use `SKILL.md`'s Auto-Detection Matrix and
+`techniques-catalog.md` unmodified.
+
+---
+
+## Format
 
 ```markdown
 # Elicit Profile
@@ -10,19 +18,33 @@ An optional `.codex/apex/elicit-profile.md` tunes technique selection without mo
 - ARCH-04
 
 ## Exclude
-- UX-05
+- UX-05   # this repo has no responsive UI surface
+- OBS-06  # no alerting infra yet
 
 ## Add for Code Type
 | Code Type | Extra Techniques |
-|-----------|------------------|
+|-----------|-------------------|
 | Config/Docs/Plugin | DOC-04, MAINT-03 |
 ```
 
-## Precedence
+---
 
-1. `Exclude` always removes matching techniques.
-2. `Always Apply` adds techniques to every run.
-3. `Add for Code Type` augments the matching matrix row.
-4. If the same technique is both required and excluded, exclusion wins and the conflict is reported.
+## Precedence (Step 2)
 
-Create a profile only after repeated irrelevant findings or repeated missed categories demonstrate a repository-specific need.
+1. `Exclude` entries are removed from any auto-selected or manual-presented list, always.
+2. `Always Apply` entries are added to every run's selection, regardless of code type.
+3. `Add for Code Type` entries are merged into the matrix row for a matching
+   detected type (SKILL.md's Auto-Detection Matrix, or step-01's categorization
+   table).
+4. If the profile conflicts with itself (a technique in both `Always Apply`
+   and `Exclude`), `Exclude` wins -- state this explicitly in the Step 5 report
+   so the conflict is visible, not silently resolved.
+
+---
+
+## When to Create One
+
+Create `.codex/apex/elicit-profile.md` when a repo repeatedly surfaces
+irrelevant findings (e.g. UX-05 on a CLI-only repo) or repeatedly misses a
+category the default matrix does not cover for that stack. Do not create it
+speculatively -- it is a corrective, not a default scaffold.

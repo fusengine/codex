@@ -7,13 +7,13 @@ description: "Use when: loading data in TanStack Start routes with isomorphic lo
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested checks:
+Before ANY implementation, spawn in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** — map `src/routes/`, existing loaders, `router.tsx`, queryClient wiring
-2. **ai-pilot:research / research-expert** — verify Start API via Context7 `/websites/tanstack_start_framework_react`
+1. **explore-codebase** — map `src/routes/`, existing loaders, `router.tsx`, queryClient wiring
+2. **research-expert** — verify Start API via Context7 `/websites/tanstack_start_framework_react`
 3. **mcp__context7__query-docs** — confirm loader / ssr / ensureQueryData signatures
 
-After implementation, run **ai-pilot:sniper-check / sniper**.
+After implementation, run **sniper**.
 
 ---
 
@@ -95,21 +95,3 @@ src/
 - Duplicate query keys between loader and component (breaks hydration dedupe)
 - Read `localStorage`/`window` at loader top level (loader also runs on the server)
 - Re-fetch in `useEffect` when the loader already primed the cache
-
-## References
-
-- [references/isomorphic-loaders.md](references/isomorphic-loaders.md)
-- [references/query-in-loader.md](references/query-in-loader.md)
-- [references/selective-ssr.md](references/selective-ssr.md)
-- [references/mutations.md](references/mutations.md)
-- [references/templates/query-loader-route.md](references/templates/query-loader-route.md)
-- [references/templates/selective-ssr-route.md](references/templates/selective-ssr-route.md)
-
-## Related skills
-
-`react-tanstack-router`, `nextjs-tanstack-query`.
-
-## Skill routing metadata
-
-references: references/isomorphic-loaders.md, references/query-in-loader.md, references/selective-ssr.md, references/mutations.md, references/templates/query-loader-route.md, references/templates/selective-ssr-route.md
-related-skills: react-tanstack-router, nextjs-tanstack-query

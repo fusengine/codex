@@ -5,17 +5,19 @@ description: shadcn/ui for Next.js App Router with TanStack Form. Use when build
 
 # shadcn/ui for Next.js
 
+> Targets: Shadcn-ui 3.8.0, Nextjs 16, Tailwindcss 4.
+
 Beautiful, accessible components built on Radix UI with Tailwind CSS styling.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing components and patterns
-2. **ai-pilot:research / research-expert** - Verify latest shadcn/ui docs via Context7/Exa
+1. **explore-codebase** - Analyze existing components and patterns
+2. **research-expert** - Verify latest shadcn/ui docs via Context7/Exa
 3. **mcp__shadcn__*** - Search registry for component availability
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -71,7 +73,7 @@ Components installed to `@/modules/cores/shadcn/components/ui/` following SOLID 
 
 ## MCP Server Integration
 
-Create `.mcp.json` at project root for Codex MCP integration with the shadcn registry.
+Create `.mcp.json` at project root for Codex integration with shadcn registry.
 
 ### Available MCP Tools
 
@@ -119,16 +121,3 @@ See [installation.md](references/installation.md) for complete MCP setup.
 | Data tables | [table.md](references/table.md) |
 | Modal dialogs | [dialog.md](references/dialog.md), [alert-dialog.md](references/alert-dialog.md) |
 | Navigation | [sidebar.md](references/sidebar.md), [navigation-menu.md](references/navigation-menu.md) |
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-16`, `nextjs-tanstack-form`, `tailwindcss-core`, `solid-nextjs`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/configuration.md, references/theming.md, references/button.md, references/input.md, references/label.md, references/textarea.md, references/card.md, references/select.md, references/checkbox.md, references/switch.md, references/radio-group.md, references/slider.md, references/toggle.md, references/toggle-group.md, references/input-otp.md, references/dialog.md, references/alert-dialog.md, references/sheet.md, references/drawer.md, references/popover.md, references/tooltip.md, references/hover-card.md, references/context-menu.md, references/collapsible.md, references/toast.md, references/alert.md, references/skeleton.md, references/progress.md, references/spinner.md, references/table.md, references/tabs.md, references/accordion.md, references/badge.md, references/avatar.md, references/separator.md, references/scroll-area.md, references/aspect-ratio.md, references/resizable.md, references/carousel.md, references/chart.md, references/dropdown.md, references/command.md, references/breadcrumb.md, references/navigation-menu.md, references/menubar.md, references/sidebar.md, references/pagination.md, references/calendar.md, references/field-patterns.md, references/form-examples.md
-related-skills: nextjs-16, nextjs-tanstack-form, tailwindcss-core, solid-nextjs

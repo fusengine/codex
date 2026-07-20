@@ -1,8 +1,7 @@
 ---
 name: seo-hreflang
-description: "Use when auditing or generating hreflang for i18n SEO. Covers HTML link tags, HTTP headers, XML sitemap hreflang, self-referencing, return tags, x-default, ISO 639-1 + ISO 3166-1 code validation."
+description: Use when auditing or generating hreflang for i18n SEO. Covers HTML link tags, HTTP headers, XML sitemap hreflang, self-referencing, return tags, x-default, ISO 639-1 + ISO 3166-1 code validation.
 ---
-
 
 # Hreflang / i18n SEO
 

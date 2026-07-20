@@ -1,21 +1,23 @@
 ---
 name: astro-assets
-description: "Optimizes images and assets in Astro 6 with Astro image components, getImage(), remote sources, fonts, and OG generation. Use for asset pipelines and responsive image delivery. Do NOT use for general page styling or content collections."
+description: Image and asset optimization in Astro 7 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task.
 ---
 
 # Astro Assets
 
-Production-ready image optimization and asset management with `astro:assets` in Astro 6.
+> Targets: Astro 7.
+
+Production-ready image optimization and asset management with `astro:assets` in Astro 7.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing image usage and asset patterns
-2. **ai-pilot:research / research-expert** - Verify astro:assets API via Context7/Exa
-3. **mcp__context7__query-docs** - Check Astro 6 Fonts API and image component docs
+1. **explore-codebase** - Analyze existing image usage and asset patterns
+2. **research-expert** - Verify astro:assets API via Context7/Exa
+3. **Context7 (official docs)** - Check Astro 6 Fonts API and image component docs
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -36,15 +38,7 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 |--------|---------|
 | `astro:assets` | `<Image />`, `<Picture />`, `getImage()` |
 | `@astrojs/sharp` | Default image processing service |
-| Fonts API (Astro 6) | Built-in `experimental.fonts` config |
-
----
-
-## Related Skills
-
-- `astro-6` - Core Astro config, routing, and framework behavior
-- `astro-seo` - OG images, metadata, Core Web Vitals, and social sharing
-- `astro-deployment` - CDN behavior, image services, and platform adapters
+| Fonts API (stable, Astro 6.0+) | Built-in `fonts` config |
 
 ---
 
@@ -62,9 +56,9 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 For server-side image generation (API routes, CSS background images). Returns `{ src, attributes }` object.
 
-### Fonts API (Astro 6)
+### Fonts API (stable, Astro 6.0+)
 
-Built-in font optimization via `experimental.fonts` in `astro.config.mjs`. Zero layout shift, automatic preloading, supports Google Fonts and local fonts.
+Built-in font optimization via the top-level `fonts` config in `astro.config.mjs` (stable since Astro 6.0 — no experimental flag). Zero layout shift, automatic preloading, supports Google Fonts and local fonts.
 
 ---
 
@@ -97,23 +91,3 @@ Built-in font optimization via `experimental.fonts` in `astro.config.mjs`. Zero 
 3. **`inferSize` for remote** - Avoids layout shift without known dimensions
 4. **Fonts API over @font-face** - Built-in optimization, no manual preload
 5. **Satori at build time** - Run OG generation during SSG, not SSR
-
-## References
-
-- [references/image-component.md](references/image-component.md)
-- [references/picture-responsive.md](references/picture-responsive.md)
-- [references/remote-images.md](references/remote-images.md)
-- [references/fonts-api.md](references/fonts-api.md)
-- [references/og-satori.md](references/og-satori.md)
-- [references/cdn-integration.md](references/cdn-integration.md)
-- [references/templates/image-setup.md](references/templates/image-setup.md)
-- [references/templates/og-image-route.md](references/templates/og-image-route.md)
-
-## Related skills
-
-`astro-6`, `astro-seo`, `astro-deployment`.
-
-## Skill routing metadata
-
-references: references/image-component.md, references/picture-responsive.md, references/remote-images.md, references/fonts-api.md, references/og-satori.md, references/cdn-integration.md, references/templates/image-setup.md, references/templates/og-image-route.md
-related-skills: astro-6, astro-seo, astro-deployment

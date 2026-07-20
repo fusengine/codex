@@ -452,3 +452,5 @@ const prisma = new PrismaClient({ adapter })
 If you went through the previous steps, you can query your database as you're used to with Prisma Client. No other changes are needed.
 
 </details>
+
+

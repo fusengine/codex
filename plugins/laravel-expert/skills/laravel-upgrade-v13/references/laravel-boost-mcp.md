@@ -1,6 +1,6 @@
 ---
 name: laravel-boost-mcp
-description: Automated upgrade via Laravel Boost MCP server inside Codex CLI/Cursor
+description: Automated upgrade via Laravel Boost MCP server inside Codex/Cursor
 when-to-use: Want guided/automated upgrade instead of manual
 keywords: laravel-boost, mcp, automation, ai-assisted
 ---
@@ -16,9 +16,9 @@ composer require laravel/boost --dev
 php artisan boost:install
 ```
 
-The installer registers an MCP server for Codex CLI / Cursor / Windsurf.
+The installer registers an MCP server for Codex / Cursor / Windsurf.
 
-## Usage in Codex CLI
+## Usage in Codex
 
 ```
 /upgrade-laravel-v13

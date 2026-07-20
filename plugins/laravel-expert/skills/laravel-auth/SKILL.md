@@ -3,18 +3,19 @@ name: laravel-auth
 description: "Use when implementing user authentication, API tokens, social login, or authorization. Covers Sanctum, Passport, Socialite, Fortify, policies, and gates for Laravel 13."
 ---
 
-
 # Laravel Authentication & Authorization
+
+_Targets: laravel 13.0, sanctum 4.0, php 8.3._
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing auth setup, guards, policies
-2. **ai-pilot:research / research-expert** - Verify latest Laravel 13 auth docs via Context7
-3. **mcp__context7__query-docs** - Query specific patterns (Sanctum, Passport, etc.)
+1. `explore-codebase` - Check existing auth setup, guards, policies
+2. `research-expert` - Verify latest Laravel 13 auth docs via Context7
+3. `mcp__context7__query-docs` - Query specific patterns (Sanctum, Passport, etc.)
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run the `sniper` agent via `spawn_agent` for validation.
 
 ---
 

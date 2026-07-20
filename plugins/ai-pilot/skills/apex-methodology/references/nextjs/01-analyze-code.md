@@ -48,15 +48,15 @@ src/
 
 ## Dual-Agent Analysis
 
-### Launch in Parallel (ONE message)
+### Launch in Parallel (one dispatch)
 
 ```text
-Agent 1: explore-codebase
+spawn_agent: explore-codebase
 → Map App Router structure
 → Identify Server vs Client Components
 → Find existing patterns
 
-Agent 2: research-expert
+spawn_agent: research-expert
 → Verify Next.js 16 APIs
 → Confirm Server Actions patterns
 → Check Prisma 7 methods
@@ -192,6 +192,17 @@ Check for 'use server' functions:
 [ ] Existing patterns documented
 [ ] APIs verified with Next.js 16 docs
 [ ] Change locations identified
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "analyze-code" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

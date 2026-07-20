@@ -5,17 +5,19 @@ description: Expert Astro Server Actions — defineAction, astro:actions, Zod va
 
 # Astro Actions Expert
 
+> Targets: Astro 7, Zod 4.
+
 Type-safe server functions with automatic validation, standardized errors, and progressive enhancement.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Check existing actions in `src/actions/`
-2. **ai-pilot:research / research-expert** - Verify latest Actions docs via Context7/Exa
-3. **mcp__context7__query-docs** - Get defineAction and ActionError examples
+1. **explore-codebase** - Check existing actions in `src/actions/`
+2. **research-expert** - Verify latest Actions docs via Context7/Exa
+3. **Context7 (official docs)** - Get defineAction and ActionError examples
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -91,22 +93,3 @@ Standard HTTP-aligned codes: `UNAUTHORIZED`, `FORBIDDEN`, `NOT_FOUND`, `BAD_REQU
 3. **`accept: 'form'` for HTML forms** — Native form submission support
 4. **Progressive enhancement** — Form works without JS, enhanced with it
 5. **Check `ctx.cookies` for auth** — Throw `UNAUTHORIZED` when not logged in
-
-## References
-
-- [references/overview.md](references/overview.md)
-- [references/defining-actions.md](references/defining-actions.md)
-- [references/error-handling.md](references/error-handling.md)
-- [references/forms.md](references/forms.md)
-- [references/progressive-enhancement.md](references/progressive-enhancement.md)
-- [references/templates/contact-form.md](references/templates/contact-form.md)
-- [references/templates/json-action.md](references/templates/json-action.md)
-
-## Related skills
-
-`astro-6`, `astro-content`, `astro-islands`.
-
-## Skill routing metadata
-
-references: references/overview.md, references/defining-actions.md, references/error-handling.md, references/forms.md, references/progressive-enhancement.md, references/templates/contact-form.md, references/templates/json-action.md
-related-skills: astro-6, astro-content, astro-islands

@@ -8,6 +8,8 @@ import { installAgentsMd } from "./agents-md";
 import { mergeAgentsMd } from "./merge-agents-md";
 import { ensureFeaturesEnabled } from "./features";
 import { promptCodexConfig } from "./config-prompt";
+import { depositExecPolicy } from "./exec-policy";
+import { ensureApprovalPolicy } from "./exec-policy-approval";
 import { installAgents, installCommands } from "./install-agents";
 import { configureShellAutoLoad } from "./shell-install";
 import { backupConfig } from "./backup";
@@ -88,7 +90,9 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	const cachedPluginsRoot = join(opts.codexHome, "plugins", "cache", opts.marketplaceName);
 	await installAgents(opts.codexHome, (await pathExists(cachedPluginsRoot)) ? cachedPluginsRoot : join(opts.projectRoot, "plugins"));
 	await installCommands(opts.codexHome, (await pathExists(cachedPluginsRoot)) ? cachedPluginsRoot : join(opts.projectRoot, "plugins"));
+	await depositExecPolicy(opts.codexHome);
 	await promptCodexConfig(opts.codexHome);
+	await ensureApprovalPolicy(opts.codexHome);
 	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);
 	await promptHarnessEnv(opts.codexHome);

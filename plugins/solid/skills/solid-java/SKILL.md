@@ -1,18 +1,17 @@
 ---
 name: solid-java
-description: "SOLID principles for Java 21+ with files under 100 lines, separated interfaces, and mandatory modular architecture. Use when writing or refactoring Java code, feature modules, or contracts. Do NOT use for stack detection."
+description: "SOLID principles for Java 21+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Java code, structuring modules/[feature]/ layers, or defining interfaces/ contracts."
 ---
-
 
 # SOLID Java - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing architecture
-2. **ai-pilot:research / research-expert** - Verify Java docs via Context7
-3. **ai-pilot:sniper-check / sniper** - Post-implementation validation
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Java docs via Context7
+3. **sniper** - Post-implementation validation
 
 ---
 

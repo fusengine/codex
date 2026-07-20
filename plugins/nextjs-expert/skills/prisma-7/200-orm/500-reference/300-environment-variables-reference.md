@@ -222,7 +222,7 @@ PRISMA_QUERY_ENGINE_BINARY=custom/query-engine-<target>
 # Example: ./prisma/binaries/query-engine-linux-arm64-openssl-1.0.x
 ```
 
-For Prisma CLI it allows you to define the query engine file to be used.
+For Prisma CLI it allows you to define the query engine file to be used.  
 For Prisma Client, on build time (during `prisma generate`), it defines where the query engine file will be copied from into Prisma Client. At run time (when using the generated Client) it can be used to define the specific query engine file to be used instead of the included one.
 
 Note: This can only have an effect if the engine type of CLI or Client are set to `binary`. If the engine type is `library` (the default), use PRISMA_QUERY_ENGINE_LIBRARY instead.
@@ -242,7 +242,7 @@ PRISMA_QUERY_ENGINE_LIBRARY=custom/libquery_engine-<target>.so.node
 # Example: ./prisma/binaries/libquery_engine-linux-arm64-openssl-1.0.x.so.node
 ```
 
-For Prisma CLI it allows you to define the query engine file to be used.
+For Prisma CLI it allows you to define the query engine file to be used.  
 For Prisma Client, on build time (during `prisma generate`), it defines where the query engine file will be copied from into Prisma Client. At run time (when using the generated Client) it can be used to define the specific query engine file to be used instead of the included one.
 
 Note: This can only have an effect if the engine type of CLI or Client are set to `library` (the default)

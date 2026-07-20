@@ -1,158 +1,101 @@
 ---
 name: api-surface
-description: Current Codex CLI API surface used by our plugins - single source of truth for compatibility checks
-when-to-use: When comparing new Codex CLI versions against our current usage
-keywords: api, hooks, plugins, schema, frontmatter, compatibility
+description: Current Codex API surface used by our plugins - single source of truth for compatibility checks
+when-to-use: When comparing new Codex versions against our current usage
+keywords: api, hooks, agents, toml, schema, mcp, compatibility
 priority: high
 related: templates/migration-guide.md
 ---
 
-# Current API Surface (Fusengine Plugins)
+# Current API Surface (Fusengine Codex Plugins)
 
-## Hook Types Used
+This baseline records the Codex platform surface our plugins depend on. Diff each new `openai/codex` release against it; version-specific deltas are populated by the changelog scan. Do not invent version tags here — record only what is observed in a release or in this repo.
 
-| Hook Type | Plugins Using It |
-|-----------|-----------------|
-| `PreToolUse` | ai-pilot, security-expert, core-guards |
+## Hook Events Used
+
+Codex plugins declare hooks in `hooks/hooks.json`. Events currently wired across our plugins:
+
+| Event | Plugins Using It |
+|-------|-----------------|
+| `SessionStart` | core-guards, fuse-rules |
+| `SubagentStart` | ai-pilot, fuse-rules |
+| `UserPromptSubmit` | ai-pilot, core-guards, fuse-rules |
 | `PostToolUse` | ai-pilot, security-expert, changelog-watcher, core-guards |
-| `UserPromptSubmit` | ai-pilot, core-guards |
-| `SessionStart` | ai-pilot |
-| `Stop` | ai-pilot, core-guards |
-| `SessionStart` | core-guards |
+| `SubagentStop` | ai-pilot, core-guards |
 | `SessionEnd` | ai-pilot, core-guards |
 | `Stop` | core-guards |
-| `TeammateIdle` | core-guards |
-| `TaskCompleted` | core-guards |
-| `PostToolUseFailure` | core-guards |
-| `PermissionRequest` | core-guards |
-| `unsupported PreCompact` | core-guards |
-| `InstructionsLoaded` | core-guards |
-| `Notification` | core-guards |
 
-## Hook Response Formats
+When a release adds, renames, or removes an event, flag every `hooks.json` that references the affected event.
 
-### PreToolUse (new format — mandatory)
+## Hook Handler Types
 
-```json
-{
-  "hookSpecificOutput": {
-    "hookEventName": "PreToolUse",
-    "permissionDecision": "allow|deny|ask|defer",
-    "permissionDecisionReason": "Reason shown to Codex",
-    "updatedInput": {},
-    "additionalContext": "Extra context for Codex"
-  }
-}
-```
+| `type` | Purpose | Notes |
+|--------|---------|-------|
+| `command` | Shell command (default) | Supports `args: string[]` exec form, `timeout`, and async wake-up |
+| `mcp_tool` | Invoke an MCP tool as a hook | Tool result becomes the hook response |
+| `prompt` | Prompt-template hook | Bounded timeout |
+| `agent` | Full-agent hook | Bounded timeout |
 
-### PostToolUse / Stop / UserPromptSubmit (top-level)
+## Hook I/O Notes (verified in-session)
 
-```json
-{
-  "decision": "block",
-  "reason": "Reason shown to Codex"
-}
-```
+- `hide_spawn_agent_metadata` defaults to `true`; `agent_type` is only exposed when it is `false`.
+- The namespaced spawn tool name is the concatenation **without** a separator: `{ns}spawn_agent` (`flat_tool_name`). Any spawn matcher must cover both `spawn_agent` and `endsWith("spawn_agent")`.
+- A stateful gate must carry a freshness window; cumulative `modifiedFiles` without one yields permanent false positives under Codex.
+- The per-model 400 backend error is the known `openai/codex#26753` bug, not a side effect of `hide_spawn_agent_metadata`.
 
-### Stop (prompt/agent type)
+## Agent TOML Fields
 
-```json
-{
-  "ok": false,
-  "reason": "What was missed"
-}
-```
-
-### Stop (command type)
-
-```json
-{
-  "decision": "block",
-  "reason": "Reason"
-}
-```
-
-Or exit code 2 with stderr message.
-
-## Hook Schema
-
-```json
-{
-  "hooks": {
-    "<HookType>": [
-      {
-        "matcher": "<regex>",
-        "if": "<ToolName>(<pattern>)",
-        "hooks": [{ "type": "command", "command": "<cmd>" }]
-      }
-    ]
-  }
-}
-```
-
-## Agent Frontmatter Fields
+Codex agents are `.toml` files (`agents/<name>.toml`). Valid fields:
 
 | Field | Required | Values |
 |-------|----------|--------|
 | `name` | Yes | string |
 | `description` | Yes | string |
-| `model` | No | sonnet, opus, haiku |
-| `color` | No | red, blue, green, etc. |
-| `tools` | Yes | comma-separated tool list |
-| `skills` | No | comma-separated skill names |
-| `initialPrompt` | No | string (v2.1.83+) |
-| `effort` | No | string (v2.1.80+) |
+| `developer_instructions` | Yes | string (agent body) |
+| `model` | No | `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` |
+| `model_reasoning_effort` | No | `minimal`, `low`, `medium`, `high`, `xhigh` |
+| `sandbox_mode` | No | `read-only`, `workspace-write`, `danger-full-access` |
+| `nickname_candidates` | No | array of strings |
+| `mcp_servers` | No | MCP server declarations |
+| `[[skills.config]]` | No | one table per skill: `path`, `enabled` |
+
+No other fields are valid — a release adding a field is `[NEW]`; renaming/removing one is `[BREAKING]`.
 
 ## Skill SKILL.md Frontmatter
 
-Required: name, description
-Optional: argument-hint, user-invocable, versions, references
+Required: `name`, `description`. Nothing else is supported in Codex skill frontmatter.
 
-## Plugin Manifest (plugin.json)
+## Plugin Manifest (.codex-plugin/plugin.json)
 
-Required: name, version, description, author, license
-Optional: homepage, repository, keywords, category, strict
-Arrays: commands, agents, skills
-Directories: `bin/` — executables added to PATH (v2.1.91+)
+Required: `name`, `version`, `description`, `author`, `license`. Optional: `homepage`, `repository`, `keywords`, `category`. Arrays: `commands`, `agents`, `skills`.
 
-## Plugin Variables
+## MCP Declaration (.mcp.json)
 
-| Variable | Description | Since |
-|----------|-------------|-------|
-| `${PLUGIN_ROOT}` | Plugin install directory | — |
-| `${PLUGIN_DATA}` | Persistent data directory (survives updates) | v2.1.78 |
-| `${CODEX_MCP_SERVER_NAME}` | MCP server name in hook context | v2.1.85 |
-| `${CODEX_MCP_SERVER_URL}` | MCP server URL in hook context | v2.1.85 |
+Per-plugin MCP server declarations consumed by Codex. Changes to the schema affect every plugin shipping a `.mcp.json`.
+
+## Plugin / Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `${PLUGIN_ROOT}` | Plugin install directory |
+| `${CODEX_HOME}` | Codex home (defaults to `~/.codex`); state lives under `${CODEX_HOME}/fusengine/state/`, never in `agents/` or `prompts/` |
+
+Never place fusengine state files inside a directory Codex scans for its own artifacts (`~/.codex/agents/`, `~/.codex/prompts/`).
 
 ## Reference Frontmatter
 
-Required: name, description
-Optional: when-to-use, keywords, priority, related
+Required: `name`, `description`. Optional: `when-to-use`, `keywords`, `priority`, `related`.
 
 ## CLI Flags Used in Scripts
 
 | Flag/Command | Scripts Using It |
 |-------------|-----------------|
 | `jq` | All hook scripts |
-| `grep -rn` | security-scan.sh |
-| fuse-browser / Exa | Official changelog research |
-| `wc -l` | check-solid-compliance.sh |
-
-## New Hook Events (v2.1.69+)
-
-| Event | Version | Description |
-|-------|---------|-------------|
-| `InstructionsLoaded` | v2.1.69 | Fired after AGENTS.md/skills loaded |
-| `Elicitation` | v2.1.76 | MCP interactive dialog started |
-| `ElicitationResult` | v2.1.76 | MCP interactive dialog completed |
-| `PostCompact` | v2.1.76 | After context compaction |
-| `StopFailure` | v2.1.78 | API error during generation |
-| `CwdChanged` | v2.1.83 | Working directory changed |
-| `FileChanged` | v2.1.83 | File modification detected |
-| `TaskCreated` | v2.1.84 | Background task created |
-| `PermissionDenied` | v2.1.89 | User denied a permission prompt |
+| `grep -rn` | security-scan scripts |
+| `gh api` | changelog fetch |
+| `wc -l` | SOLID-compliance checks |
 
 ## Last Updated
 
-Date: 2026-04-04
-Codex CLI Version: 2.1.92
+Date: {populate on each scan}
+Codex Version: {populate from the latest observed openai/codex release}

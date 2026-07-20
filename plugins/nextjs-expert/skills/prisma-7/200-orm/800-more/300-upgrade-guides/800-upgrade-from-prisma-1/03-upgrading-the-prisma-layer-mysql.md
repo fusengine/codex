@@ -8,7 +8,7 @@ sidebar_class_name: hidden-sidebar
 pagination_next: orm/more/upgrade-guides/upgrade-from-prisma-1/upgrading-nexus-prisma-to-nexus
 slugSwitch: /orm/more/upgrade-guides/upgrade-from-prisma-1/upgrading-the-prisma-layer-
 ---
-
+ 
 ## Overview
 
 This page explains the first step of your upgrade process: Taking your Prisma 1 configuration and upgrading it to Prisma ORM 2. Concretely, you will learn how to:
@@ -1050,7 +1050,7 @@ This section contains a high-level and side-by-side comparison of the Prisma Cli
 
 <block content="Prisma Client (v1)">
 
-```ts
+```ts 
 const user = await prisma.user({ id: 1 })
 ```
 

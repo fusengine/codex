@@ -1,22 +1,19 @@
 ---
 name: seo-content
-description: "Use when analyzing content quality. Covers E-E-A-T scoring (Experience, Expertise, Authoritativeness, Trustworthiness), anti-cannibalization, keyword distribution, AI content disclosure, search intent matching."
+description: Use when analyzing content quality. Covers E-E-A-T scoring (Experience, Expertise, Authoritativeness, Trustworthiness), anti-cannibalization, keyword distribution, AI content disclosure, search intent matching.
 ---
-
 
 # Content Quality (E-E-A-T 2026)
 
 ## Content Intelligence Workflow
 
-Before content recommendations, run `scripts/analyze-keywords.ts` when available. Use it as the first-pass evidence for keyword distribution, semantic breadth, local modifier placement, heading coverage, and cannibalization risk.
+Before content recommendations, run `scripts/analyze-keywords.ts` (local-first, no API key). Use it as first-pass evidence for keyword distribution, semantic breadth, local modifier placement, heading coverage, and stuffing risk.
 
 ```bash
-bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --format markdown
-bun run scripts/track-rank.ts "<query>" <domain-or-url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
-bun run scripts/cannibalization-audit.ts "<primary keyword>" <domain> --target-url <url> --gl ch --hl fr --location "<city, region, country>" --pages 3 --format markdown
+bun run scripts/analyze-keywords.ts <url-or-path> --keyword "<primary keyword>" --synonyms "<syn1,syn2>" --locations "<city1,city2>" --format markdown
 ```
 
-Use Serper-backed rank checks to confirm the target site's real Google position, list competitor URLs above it, and decide whether the content gap comes from competitors or same-domain cannibalization.
+It returns density, n-grams, a 0-100 stuffing score, heading coverage, and per-location contextual mentions — purely local HTML parsing.
 
 ## E-E-A-T Pillars
 
@@ -43,9 +40,9 @@ Use Serper-backed rank checks to confirm the target site's real Google position,
 
 ## Local Semantic Distribution
 
-- The client's target localities (primary [city] + neighbouring municipalities/[region]) must appear naturally near service terms, never as a dumped city list.
-- Prefer sentence-level relevance such as [service] + [city] + proof or context.
-- On a LOCAL page, alternate [city] with [region] and district/neighbourhood names instead of repeating the same city token.
+- The client's target localities (primary `[city]` + neighbouring municipalities/`[region]`) must appear naturally near service terms, never as a dumped city list.
+- Prefer sentence-level relevance such as `[service]` + `[city]` + proof or context.
+- On a LOCAL page, alternate `[city]` with `[region]` and district/neighbourhood names instead of repeating the same city token.
 
 ## Keyword Distribution by Zone
 
@@ -63,7 +60,7 @@ Reference counts for a 1000-1500 word page:
 
 - **Primary `[service]`**: 5-8 occurrences (~1-1.5% — the sweet spot, never above ~3%).
 - **Semantic family (synonyms + named entities)**: 12-18 occurrences — this carries topical depth, not exact repetition.
-- **Local modifier `[city]/[region]`**: 4-6 occurrences on a LOCAL page; 1-2 mentions on a GLOBAL page (zone signal, not stuffing). On the local page, rotate [city] with [region]/district rather than repeating one city.
+- **Local modifier `[city]/[region]`**: 4-6 occurrences on a LOCAL page; 1-2 mentions on a GLOBAL page (zone signal, not stuffing). On the local page, rotate `[city]` with `[region]`/district rather than repeating one city.
 
 ## Keyword Stuffing Detection
 
@@ -75,6 +72,8 @@ Do not use a fixed `>3%` density threshold as the stuffing rule. Flag keyword st
 - Low semantic diversity
 - Thin content
 - Unnatural heading, anchor, or paragraph placement
+
+`scripts/analyze-keywords.ts` computes these signals into a 0-100 stuffing score.
 
 ## Copywriting 2026 (citation-eligible writing)
 
@@ -93,9 +92,8 @@ Do not use a fixed `>3%` density threshold as the stuffing rule. Flag keyword st
 
 For entity-based optimization (knowledge graph alignment, `sameAs`, entity salience, semantic depth), use the `seo-entity` skill. Anchor each page to a primary entity and its attributes rather than to a keyword string alone.
 
-## Related Skills
+## References
 
 - `seo-entity` — entity SEO, knowledge graph, semantic depth
-- `seo-content-brief` — buyer-state long-tail briefs
-- `seo-cluster` — anti-cannibalization clustering
 - `seo-featured-snippets` — answer capsule / position 0 formats
+- `skills/seo/06-content-strategy/` (eeat-implementation, anti-cannibalization, ai-content-guidelines, keyword-research, keyword-distribution)

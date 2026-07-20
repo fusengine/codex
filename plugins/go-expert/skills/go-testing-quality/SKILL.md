@@ -18,9 +18,9 @@ Idiomatic, 2026-current testing and quality practices for Go, built on the stand
 
 **Do NOT use for:**
 - Project layout, routing, DB wiring, DI — use `go-architecture`
-- SOLID line-limit / interface enforcement — use `solid:solid-go` when available
+- SOLID line-limit / interface enforcement — use `solid-go`
 - Non-Go test suites (Pest, Vitest, Jest, cargo test) — use the matching expert
-- Security scanning / CVE audit — use `security-expert:cve-research` or `security-expert:dependency-audit` when available
+- Security scanning / CVE audit — use `security-expert`
 
 ---
 
@@ -70,20 +70,3 @@ Idiomatic, 2026-current testing and quality practices for Go, built on the stand
 Overlaps with `github.com/samber/cc-skills-golang` (community Go skills) — this
 skill owns **testing and quality tooling**; architecture/structure lives in
 `go-architecture`. Cross-referenced for boundaries only, not copied.
-
-## References
-
-- [references/table-driven.md](references/table-driven.md)
-- [references/testify-mocks.md](references/testify-mocks.md)
-- [references/fuzzing-benchmarks.md](references/fuzzing-benchmarks.md)
-- [references/coverage-profiling.md](references/coverage-profiling.md)
-- [references/templates/table-test.md](references/templates/table-test.md)
-
-## Related skills
-
-`go-architecture`, `go-tooling-security`, `solid:solid-go`.
-
-## Skill routing metadata
-
-references: references/table-driven.md, references/testify-mocks.md, references/fuzzing-benchmarks.md, references/coverage-profiling.md, references/templates/table-test.md
-related-skills: go-architecture, go-tooling-security, solid:solid-go

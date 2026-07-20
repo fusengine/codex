@@ -185,7 +185,7 @@ const getAuthor = await prisma.user.findUnique({
     id: "20",
   },
   include: {
-    //highlight-next-line
+    //highlight-next-line 
     posts: true, // All posts where authorId == 20
   },
 });
@@ -569,3 +569,4 @@ model Post {
 
 </TabItem>
 </TabbedContent>
+ 

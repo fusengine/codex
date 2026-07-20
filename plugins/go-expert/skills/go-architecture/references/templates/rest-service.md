@@ -261,5 +261,5 @@ func main() {
 - Swap the inline SQL in `store` for sqlc-generated methods once you add
   `sqlc.yaml` (`sql_package: "pgx/v5"`); the `httpapi.PostStore` interface stays
   identical, so handlers do not change.
-- Keep every file under the SOLID line limit (`solid:solid-go` when available); split
+- Keep every file under the SOLID line limit (`solid-go`); split
   handlers per resource as the API grows.

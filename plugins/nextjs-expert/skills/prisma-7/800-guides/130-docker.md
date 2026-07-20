@@ -26,7 +26,7 @@ This guide walks you through setting up a Prisma ORM application within a Docker
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
-- Node.js version: A [compatible Node.js version](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#minimum-supported-nodejs-versions), required for Prisma 6.
+- Node.js version: A [compatible Node.js version](/orm/more/upgrade-guides/upgrading-versions/upgrading-to-prisma-6#minimum-supported-nodejs-versions), required for Prisma 6.  
 
 Before starting, ensure that no PostgreSQL services are running locally, and that the following ports are free to avoid conflicts: `5432` (PostgreSQL), `3000` (application server) or `5555` (Prisma Studio server).
 
@@ -55,7 +55,7 @@ First, create a new project directory and initialize a Node.js project:
 ```terminal
 mkdir docker-test
 cd docker-test
-npm init -y
+npm init -y 
 ```
 
 This will generate a `package.json` file:
@@ -96,10 +96,10 @@ Now, initialize Prisma to generate the necessary files:
 npx prisma init --output ../generated/prisma
 ```
 
-This creates:
+This creates:  
 
-- A `prisma` folder containing `schema.prisma`, where you will define your database schema.
-- An `.env` file in the project root, which stores environment variables.
+- A `prisma` folder containing `schema.prisma`, where you will define your database schema.  
+- An `.env` file in the project root, which stores environment variables.  
 
 Add a `User` model to the `schema.prisma` file located in the `prisma/schema.prisma` folder:
 
@@ -330,7 +330,7 @@ Now that we've tested the application locally, let's containerize it using Docke
 ## 3. Run the app and database together with Docker Compose
 
 We'll now containerize the application using Docker, ensuring it can run in any environment.
-
+ 
 To do that create a `Dockerfile` in project root:
 
 ```terminal
@@ -438,8 +438,8 @@ services:
       retries: 20
 
   server:
-    build:
-      context: .
+    build: 
+      context: .  
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
@@ -458,7 +458,7 @@ networks:
 // add-end
 ```
 
-### 3.3. Configure environment variable for the container
+### 3.3. Configure environment variable for the container 
 
 Before running the app, we need to configure the environment variables. Create a `.env.prod` file:
 
@@ -517,8 +517,8 @@ services:
       retries: 20
 
   server:
-    build:
-      context: .
+    build: 
+      context: .  
       dockerfile: Dockerfile
     ports:
       - '3000:3000'

@@ -52,4 +52,3 @@ module.exports = {
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 /* Usage: dark:bg-gray-900 */
 ```
-

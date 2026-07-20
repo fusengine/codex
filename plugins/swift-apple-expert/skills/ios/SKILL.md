@@ -3,20 +3,19 @@ name: ios
 description: "iOS platform-specific development with XcodeBuildMCP tools for simulator, device, UI automation, and debugging. Use when building iPhone apps, testing on simulator/device, or automating UI interactions."
 ---
 
-
 # iOS Platform
 
 iOS-specific development with XcodeBuildMCP automation tools.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, use `spawn_agent` to run these agents in parallel:
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing iOS patterns
-2. **ai-pilot:research / research-expert** - Verify latest iOS 26 docs via Context7/Exa/fuse-browser
+1. **explore-codebase** - Analyze existing iOS patterns
+2. **research-expert** - Verify latest iOS 26 docs via Context7/Exa
 3. **mcp__XcodeBuildMCP__discover_projs** - Find Xcode projects
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

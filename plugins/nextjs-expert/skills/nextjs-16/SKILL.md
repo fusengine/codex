@@ -5,17 +5,19 @@ description: "Expert Next.js 16 with Turbopack, App Router, Cache Components, pr
 
 # Next.js 16 Expert
 
+> Targets: Nextjs 16, React 19.
+
 Production-ready React framework with Server Components, streaming, and Turbopack.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing routes, components, and patterns
-2. **ai-pilot:research / research-expert** - Verify latest Next.js 16 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing routes, components, and patterns
+2. **research-expert** - Verify latest Next.js 16 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check breaking changes v15→v16
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -137,16 +139,3 @@ Server Components fetch data directly. Use `fetch()` with native caching or data
 - **Partial hydration** - Only hydrate interactive components
 - **Image optimization** - Automatic WebP/AVIF conversion
 - **Font optimization** - Zero layout shift with next/font
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-i18n`, `better-auth`, `tailwindcss-core`, `solid-nextjs`, `nextjs-stack`, `nextjs-server-components`, `nextjs-tanstack-query`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/upgrade.md, references/project-structure.md, references/typescript.md, references/styling.md, references/app-router.md, references/routing-advanced.md, references/navigation.md, references/route-segment-config.md, references/pages-router.md, references/server-components.md, references/directives.md, references/react-19.md, references/rendering.md, references/streaming.md, references/runtime.md, references/data-fetching.md, references/forms.md, references/static-generation.md, references/cookies-headers.md, references/caching.md, references/cache-components.md, references/turbopack.md, references/react-compiler.md, references/dynamic-imports.md, references/loading-patterns.md, references/error-handling.md, references/proxy.md, references/middleware-migration.md, references/api-routes.md, references/security.md, references/metadata.md, references/metadata-files.md, references/images.md, references/fonts.md, references/scripts.md, references/third-party.md, references/analytics.md, references/instrumentation.md, references/devtools-mcp.md, references/environment.md, references/deployment.md, references/testing.md, references/config-advanced.md
-related-skills: nextjs-i18n, better-auth, tailwindcss-core, solid-nextjs, nextjs-stack, nextjs-server-components, nextjs-tanstack-query

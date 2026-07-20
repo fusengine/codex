@@ -3,11 +3,9 @@ name: sniper-check
 description: Use when validating code quality after modifications. Runs sniper agent in isolated forked context for clean, fast validation.
 ---
 
-**Target:** Derive from the user's requested validation scope.
+Runs in a forked subagent context (spawn_agent) via the `sniper` agent. The target file or directory is passed as the skill argument.
 
 # Sniper Check
-
-Suggested Codex agent: `sniper`.
 
 ## Overview
 
@@ -45,7 +43,7 @@ Execute the mandatory 6-phase `code-quality` workflow:
 4. **PHASE 5**: Apply corrections → Minimal changes
 5. **PHASE 6**: Re-run linters → Zero errors
 
-**CRITICAL**: Phases 1+2 should run in parallel when the current Codex runtime exposes subagent capability; otherwise perform both checks locally before fixing.
+**CRITICAL**: Phases 1+2 must run in PARALLEL (spawn both subagents in parallel, one dispatch).
 
 ---
 

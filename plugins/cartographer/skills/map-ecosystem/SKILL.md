@@ -1,8 +1,9 @@
 ---
 name: map-ecosystem
-description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files. Use when cartography index descriptions are truncated, a new plugin/skill was just added, or after SessionStart regenerates the map."
+description: "Enrich auto-generated .cartographer/ maps with full descriptions from source files. Use when: cartography index descriptions are truncated, a new plugin/skill was just added, or after a session start regenerates the map."
 ---
 
+Runs in a forked subagent context (spawn_agent).
 
 # Map Ecosystem — Enrich Descriptions
 
@@ -10,7 +11,7 @@ Enrich the auto-generated `.cartographer/` index.md files with complete descript
 
 ## When to Use
 
-- After SessionStart has generated the cartography structure
+- After a session start has generated the cartography structure
 - When descriptions appear truncated in index.md files
 - When a new plugin/skill was added and needs full descriptions
 
@@ -23,9 +24,9 @@ Enrich the auto-generated `.cartographer/` index.md files with complete descript
 
 1. **Read** the ecosystem index: `${PLUGIN_ROOT}/../.cartographer/index.md`
 2. **For each plugin** listed, read its `.cartographer/index.md`
-3. **For each linked file** (`agents/*.toml`, `skills/*/SKILL.md`, command-derived skills):
+3. **For each linked file** (agents/*.toml, skills/*/SKILL.md):
    - Read the source file
-   - Extract the full `description` from TOML or YAML frontmatter
+   - Extract the full `description` from its frontmatter/metadata (TOML for agents, YAML for skills)
    - Replace the truncated description in the index.md line
 4. **Write** the updated index.md with complete descriptions
 
@@ -46,11 +47,3 @@ After (enriched by agent):
 - Do not modify source files (only .cartographer/*.md)
 - Do not delete or restructure the tree
 - Do not assume — always read actual frontmatter
-
-## Related skills
-
-`map`.
-
-## Skill routing metadata
-
-related-skills: map

@@ -29,7 +29,7 @@ function buildInstruction(projectType: string, expertAgent: string): string {
    - Launch ${expertAgent} agent (framework expertise)
    - Project type detected: ${projectType}
 
-2. **PLAN**: Use TaskCreate to break down tasks (<100 lines per file)
+2. **PLAN**: Use the native update_plan tool to record the plan (items {step, status:"pending"}); keep exactly one step in_progress at a time (<100 lines per file)
 
 3. **EXECUTE**: Use ${expertAgent}, follow SOLID principles, split at 90 lines
 

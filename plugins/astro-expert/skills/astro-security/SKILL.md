@@ -1,19 +1,21 @@
 ---
 name: astro-security
-description: Use when configuring Content Security Policy (CSP) in Astro 6, setting security headers, managing script/style hashes, using nonces, or implementing experimentalStaticHeaders for adapter deployments.
+description: Use when configuring Content Security Policy (CSP) in Astro 7, setting security headers, managing script/style hashes, using nonces, or implementing experimentalStaticHeaders for adapter deployments.
 ---
 
 # Astro Security
 
+> Targets: Astro 7.
+
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents/tools when they materially help:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing security config, adapters, headers
-2. **ai-pilot:research / research-expert** - Verify latest Astro 6 CSP docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check CSP compatibility with deployment adapter
+1. **explore-codebase** - Analyze existing security config, adapters, headers
+2. **research-expert** - Verify latest Astro 7 CSP docs via Context7/Exa
+3. **Context7 (official docs)** - Check CSP compatibility with deployment adapter
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -21,13 +23,13 @@ After implementation, run **ai-pilot:sniper-check / sniper** for validation.
 
 ### When to Use
 
-- Enabling CSP in an Astro 6 project (stable in v6.0.0)
+- Enabling CSP in an Astro project (stable in v6.0.0)
 - Configuring `security.csp` in `astro.config.mjs`
 - Adding SHA-256/384/512 hashes for external scripts or styles
 - Using nonces for dynamic script injection
 - Setting up `experimentalStaticHeaders` for adapter-based CSP headers
 
-### CSP in Astro 6
+### CSP in Astro
 
 Astro 6 ships Content Security Policy as a **stable** feature (previously experimental). When enabled:
 - Astro automatically generates SHA hashes for all bundled scripts and styles
@@ -48,7 +50,7 @@ Astro 6 ships Content Security Policy as a **stable** feature (previously experi
 
 | Topic | Reference | When to Consult |
 |-------|-----------|-----------------|
-| CSP overview | [csp-overview.md](references/csp-overview.md) | Understanding CSP in Astro 6 |
+| CSP overview | [csp-overview.md](references/csp-overview.md) | Understanding CSP in Astro |
 | Configuration | [csp-config.md](references/csp-config.md) | All config options |
 | Script directive | [script-directive.md](references/script-directive.md) | script-src configuration |
 | Style directive | [style-directive.md](references/style-directive.md) | style-src configuration |
@@ -80,23 +82,3 @@ Astro 6 ships Content Security Policy as a **stable** feature (previously experi
 - Using `<ClientRouter />` with CSP enabled
 - Forgetting to add `'self'` when using `resources` array
 - Adding `unsafe-inline` (defeats purpose of CSP)
-
-## References
-
-- [references/csp-overview.md](references/csp-overview.md)
-- [references/csp-config.md](references/csp-config.md)
-- [references/script-directive.md](references/script-directive.md)
-- [references/style-directive.md](references/style-directive.md)
-- [references/nonces.md](references/nonces.md)
-- [references/static-headers.md](references/static-headers.md)
-- [references/templates/csp-basic.md](references/templates/csp-basic.md)
-- [references/templates/csp-advanced.md](references/templates/csp-advanced.md)
-
-## Related skills
-
-`astro-6`, `astro-deployment`, `solid-astro`.
-
-## Skill routing metadata
-
-references: references/csp-overview.md, references/csp-config.md, references/script-directive.md, references/style-directive.md, references/nonces.md, references/static-headers.md, references/templates/csp-basic.md, references/templates/csp-advanced.md
-related-skills: astro-6, astro-deployment, solid-astro

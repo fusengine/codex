@@ -48,7 +48,7 @@ In each workspace, you can:
 ### Database Metrics
 
 You can have a single workspace that hosts several database. Within each database, you can view
-detailed reports on how your database is performing, with various metrics like:
+detailed reports on how your database is performing, with various metrics like: 
 
 - Average response size
 - Average query duration
@@ -167,6 +167,8 @@ Read more about the [Prisma CLI](/platform/platform-cli).
 
 ## API keys
 
-An API key is required to authenticate requests from your Prisma Client to products such as Prisma Accelerate and Prisma Optimize.
+An API key is required to authenticate requests from your Prisma Client to products such as Prisma Accelerate and Prisma Optimize. 
 
-You may generate multiple API keys per environment and manage those via the **API Keys** section in an environment.
+You may generate multiple API keys per environment and manage those via the **API Keys** section in an environment. 
+
+

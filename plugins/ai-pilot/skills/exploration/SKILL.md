@@ -3,9 +3,9 @@ name: exploration
 description: Codebase exploration techniques for rapid discovery, architecture analysis, pattern detection, and dependency mapping.
 ---
 
-# Exploration Skill
+Runs in a forked subagent context (spawn_agent) via the `explore-codebase` agent. The target directory is passed as the skill argument.
 
-Suggested Codex agent: `explore-codebase`.
+# Exploration Skill
 
 ## Exploration Protocol
 

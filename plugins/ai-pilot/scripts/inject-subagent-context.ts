@@ -79,7 +79,7 @@ ${agentsContent}
 - Pending: ${pending}
 
 ### 3. Before Starting Work
-- Use TaskUpdate(taskId, status: in_progress) before starting
+- Use update_plan to mark the current step in_progress (one at a time) before starting
 
 ### 4. SOLID Rules
 - Files < 100 lines | Interfaces in src/interfaces/ | JSDoc/PHPDoc required
@@ -88,7 +88,7 @@ ${agentsContent}
 - Use Context7/Exa for docs | Write notes to .codex/apex/docs/
 
 ### 6. When Done
-- TaskUpdate(taskId, status: completed) triggers auto-commit${buildCartographerContext()}`;
+- Use update_plan to mark the step completed when done${buildCartographerContext()}`;
 
   outputHookResponse({
     hookSpecificOutput: { hookEventName: "SubagentStart", additionalContext: context },

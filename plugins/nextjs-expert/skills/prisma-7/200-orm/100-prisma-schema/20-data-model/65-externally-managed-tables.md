@@ -155,7 +155,7 @@ model posts {
 }
 ```
 
-You have created that `posts` table already via a prior migration.
+You have created that `posts` table already via a prior migration. 
 You now also have a `users` table and `role` enum in your database which you want to treat as externally managed.
 
 So the tables in your PostgreSQL database in the default `public` schema look like this:
@@ -221,7 +221,7 @@ export default defineConfig({
 ### 2. Update the Prisma schema
 
 Next, you need to update your Prisma schema. You can do this either:
-- by manually creating the models
+- by manually creating the models 
 - or by using [introspection](/orm/prisma-schema/introspection):
 
 ```terminal

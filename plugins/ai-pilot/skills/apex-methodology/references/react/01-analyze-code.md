@@ -19,15 +19,15 @@ next_step: references/react/02-features-plan.md
 
 ## Dual-Agent Analysis
 
-### Launch in Parallel (ONE message)
+### Launch in Parallel (one dispatch)
 
 ```text
-Agent 1: explore-codebase
+spawn_agent: explore-codebase
 -> Map modules/ structure
 -> Identify component patterns
 -> Find where changes should go
 
-Agent 2: research-expert
+spawn_agent: research-expert
 -> Verify React 19 APIs
 -> Check TanStack Router/Query patterns
 -> Confirm shadcn/ui usage
@@ -141,6 +141,17 @@ src/
 [ ] Component patterns documented
 [ ] APIs verified with docs
 [ ] Change locations identified
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "analyze-code" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 name: marketing-strategist
 description: Expert marketing strategist for positioning, campaigns, and growth strategies. Use for brand strategy, SWOT analysis, or campaign planning.
-model: gpt-5.5
-capabilities: Codex tools as available; use Context7/Exa/fuse-browser for current facts
+model: gpt-5.6-terra
+tools: Read, Write, WebSearch, Grep
 skills: marketing-strategy
 ---
 

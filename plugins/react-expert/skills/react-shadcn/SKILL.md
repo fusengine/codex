@@ -1,22 +1,23 @@
 ---
 name: react-shadcn
-description: "shadcn/ui for React with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components."
+description: shadcn/ui for React with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components.
 ---
 
-
 # shadcn/ui for React
+
+> Targets: Shadcn-ui 3.8.0, React 19, Tailwindcss 4.
 
 Beautiful, accessible components built on Radix UI with Tailwind CSS styling.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing components and patterns
-2. **ai-pilot:research / research-expert** - Verify latest shadcn/ui docs via Context7/Exa
+1. **explore-codebase** - Analyze existing components and patterns
+2. **research-expert** - Verify latest shadcn/ui docs via Context7/Exa
 3. **mcp__shadcn__*** - Search registry for component availability
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -71,7 +72,7 @@ Components installed to `@/modules/cores/shadcn/components/ui/` following SOLID 
 
 ## MCP Server Integration
 
-Create `.mcp.json` at project root for Codex CLI integration with shadcn registry.
+Create `.mcp.json` at project root for Codex integration with shadcn registry.
 
 ### Available MCP Tools
 

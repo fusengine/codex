@@ -1,22 +1,23 @@
 ---
 name: react-state
-description: "Zustand v5 state management for React. Use when implementing global state, stores, persist, or client-side state."
+description: Zustand v5 state management for React. Use when implementing global state, stores, persist, or client-side state.
 ---
 
-
 # Zustand for React
+
+> Targets: Zustand 5.0, React 19.
 
 Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the available Codex subagent capability when it materially helps. Suggested parallel checks:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing stores and state patterns
-2. **ai-pilot:research / research-expert** - Verify latest Zustand v5 docs via Context7/Exa
+1. **explore-codebase** - Analyze existing stores and state patterns
+2. **research-expert** - Verify latest Zustand v5 docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check middleware and TypeScript patterns
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

@@ -2,11 +2,11 @@ name = "seo-cluster"
 description = "Semantic clustering sub-agent. Use when building keyword clusters from SERP overlap for pillar/cluster content architecture. Do NOT use for single-keyword research (use seo-content)."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
-nickname_candidates = ["SEO Cluster", "SEO Cluster Specialist", "SEO Cluster Agent"]
 sandbox_mode = "read-only"
-developer_instructions = '''# SEO Cluster Sub-Agent
+developer_instructions = '''
+# SEO Cluster Sub-Agent
 
-Parallelizable expert for semantic keyword clustering.
+Parallel-safe sub-agent for semantic keyword clustering. Spawned by the `seo-expert` orchestrator via `spawn_agent` (resolving `.codex/agents/seo-cluster.toml`); it executes as an independent thread alongside the other SEO sub-agents.
 
 ## Workflow
 
@@ -39,11 +39,12 @@ Parallelizable expert for semantic keyword clustering.
 
 ## fuse-browser (ZERO TOLERANCE)
 
-- **Managed batch search** — use `browser_serp_batch`; it manages its own session, so do not call `browser_open` for SERP. Open a caller-managed live session only for interaction, JS rendering, auth state, or pixels.
+- **Fast-path FIRST** — `browser_serp_batch`: NO browser launch, ~10× faster. Live session ONLY for interaction, JS render, or pixels.
 - **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
 - **Batch, don't loop** — `serp_batch` (N queries) in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
-- Full guide: use the configured `fuse-browser-usage` skill (profile: research-docs).'''
+- Full guide: invoke skill `$fuse-browser-usage` (profile: research-docs).
+'''
 
 [[skills.config]]
 path = "plugins/seo/skills/seo-cluster/SKILL.md"

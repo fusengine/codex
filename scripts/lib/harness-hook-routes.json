@@ -85,6 +85,12 @@
   },
   {
     "plugin": "codex-rules",
+    "event": "SubagentStart",
+    "matcher": "",
+    "scope": "rules"
+  },
+  {
+    "plugin": "codex-rules",
     "event": "UserPromptSubmit",
     "matcher": "",
     "scope": "rules"

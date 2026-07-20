@@ -7,7 +7,7 @@ toc_max_heading_level: 4
 
 You can share your [Prisma Client extensions](/orm/prisma-client/client-extensions) with other users, either as packages or as modules, and import extensions that other users create into your project.
 
-If you would like to build a shareable extension, we also recommend using the [`prisma-client-extension-starter`](https://github.com/prisma/prisma-client-extension-starter) template.
+If you would like to build a shareable extension, we also recommend using the [`prisma-client-extension-starter`](https://github.com/prisma/prisma-client-extension-starter) template. 
 
 To explore examples of Prisma's official Client extensions and those made by the community, visit [this](/orm/prisma-client/client-extensions/extension-examples) page.
 
@@ -107,7 +107,7 @@ You can then share the extension on `npm`. When you choose a package name, we re
 
 There's currently a limitation for extensions that reference a `PrismaClient` and call a client-level method, like the example below.
 
-If you trigger the extension from inside a [transaction](/orm/prisma-client/queries/transactions) (interactive or batched), the extension code will issue the queries in a new connection and ignore the current transaction context.
+If you trigger the extension from inside a [transaction](/orm/prisma-client/queries/transactions) (interactive or batched), the extension code will issue the queries in a new connection and ignore the current transaction context. 
 
 Learn more in this issue on GitHub: [Client extensions that require use of a client-level method silently ignore transactions](https://github.com/prisma/prisma/issues/20678).
 

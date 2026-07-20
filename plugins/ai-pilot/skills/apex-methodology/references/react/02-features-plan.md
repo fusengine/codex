@@ -17,7 +17,7 @@ next_step: references/react/03-execution.md
 
 ---
 
-## Codex Plan
+## Plan Creation (update_plan)
 
 ### React Feature Breakdown
 
@@ -151,12 +151,23 @@ modules/[feature]/
 ## Validation Checklist
 
 ```text
-[ ] Codex plan created
+[ ] update_plan plan created
 [ ] All tasks <100 lines each
 [ ] Interfaces planned FIRST
 [ ] Hooks separated from components
 [ ] File splits pre-planned
 [ ] Dependencies mapped
+```
+
+---
+
+## Update Task Phase
+
+At the **start** of this phase, record it in `.codex/apex/task.json`:
+
+```bash
+jq --arg p "features-plan" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
 
 ---

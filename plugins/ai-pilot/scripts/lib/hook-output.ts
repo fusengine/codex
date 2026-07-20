@@ -6,7 +6,7 @@ function codexHome(): string {
 }
 
 function summary(reason: string): string {
-  return reason.split(/\r?\n/, 1)[0].slice(0, 180);
+  return (reason.split(/\r?\n/, 1)[0] ?? "").slice(0, 180);
 }
 
 async function logHook(scriptName: string, detail: string): Promise<void> {

@@ -76,18 +76,24 @@ skill-name/
 ---
 name: skill-name
 description: Clear description for auto-invocation
-references: references/patterns.md, references/examples.md
-related-skills: nextjs-16, solid-nextjs
+version: 1.0.0
+user-invocable: false
+references:
+  - path: references/patterns.md
+    title: Code Patterns
+  - path: references/examples.md
+    title: Advanced Examples
 ---
 ```
 
 ### Required fields
 - `name` - Unique identifier
-- `description` - Description for Codex skill invocation
+- `description` - Description for Claude
 
 ### Recommended fields
+- `version` - Semantic versioning
+- `user-invocable` - `false` for knowledge-only
 - `references` - List of reference files
-- `related-skills` - Adjacent skills to load when the task crosses boundaries
 
 ---
 

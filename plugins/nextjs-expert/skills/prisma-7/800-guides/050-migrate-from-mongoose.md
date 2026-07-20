@@ -336,8 +336,8 @@ const user = await User.create({
 });
 
 // Update
-await User.findByIdAndUpdate(id, {
-  name: 'New name'
+await User.findByIdAndUpdate(id, { 
+  name: 'New name' 
 });
 
 // Delete
@@ -350,8 +350,8 @@ await User.findByIdAndDelete(id);
 
 ```typescript
 // Find one
-const user = await prisma.user.findUnique({
-  where: { id }
+const user = await prisma.user.findUnique({ 
+  where: { id } 
 });
 
 // Create
@@ -388,14 +388,14 @@ import { prisma } from '../client'
 export class UserController {
   async create(req: Request, res: Response) {
     const { email, name } = req.body
-
+    
     const result = await prisma.user.create({
       data: {
         email,
         name,
       },
     })
-
+    
     return res.json(result)
   }
 }

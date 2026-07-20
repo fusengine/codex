@@ -80,7 +80,7 @@ echo "✅ Upgrade complete!"
 echo ""
 echo "Next steps:"
 echo "1. Review breaking changes manually (validateCsrfTokens → validateOrigin)"
-echo "2. Commit: use commit-pro:commit"
+echo "2. Commit: /commit"
 echo "3. Open PR: gh pr create"
 ```
 

@@ -5,17 +5,19 @@ description: Complete Better Auth - 40+ OAuth providers, 20+ plugins, all adapte
 
 # Better Auth - Complete Authentication
 
+> Targets: Better-auth 1.2.
+
 TypeScript-first authentication library with 40+ OAuth providers and 20+ plugins.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use available Codex subagents when useful:
+Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
 
-1. **ai-pilot:exploration / explore-codebase** - Analyze existing auth setup and patterns
-2. **ai-pilot:research / research-expert** - Verify latest Better Auth docs via Context7/Exa
+1. **explore-codebase** - Analyze existing auth setup and patterns
+2. **research-expert** - Verify latest Better Auth docs via Context7/Exa
 3. **mcp__context7__query-docs** - Check providers/plugins availability
 
-After implementation, run **ai-pilot:sniper-check / sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
@@ -118,16 +120,3 @@ Core concepts explained in [concepts/](references/concepts/):
 - **OAuth** - Provider configuration, callbacks
 - **Security** - CSRF, rate limiting, password hashing
 - **Cookies** - Session storage, cross-domain
-
-## References
-
-Read [references/index.md](references/index.md) to route to the relevant reference before implementation.
-
-## Related skills
-
-`nextjs-16`, `prisma-7`, `solid-nextjs`.
-
-## Skill routing metadata
-
-references: references/installation.md, references/basic-usage.md, references/comparison.md, references/server-config.md, references/client.md, references/session.md, references/middleware.md, references/server-actions.md, references/hooks.md, references/email.md, references/rate-limiting.md, references/cli.md, references/security.md, references/api.md, references/migrations.md, references/typescript.md, references/user-accounts.md, references/errors.md, references/telemetry.md, references/faq.md, references/concepts/sessions.md, references/concepts/database.md, references/concepts/plugins.md, references/concepts/users.md, references/concepts/oauth.md, references/concepts/security.md, references/concepts/cookies.md, references/adapters/prisma.md, references/adapters/drizzle.md, references/adapters/mongodb.md, references/adapters/sql-databases.md, references/adapters/community-adapters.md, references/providers/overview.md, references/providers/google.md, references/providers/github.md, references/providers/discord.md, references/providers/apple.md, references/providers/microsoft.md, references/providers/social-providers.md, references/providers/generic-oauth.md, references/providers/oauth-providers-all.md, references/plugins/overview.md, references/plugins/2fa.md, references/plugins/admin.md, references/plugins/organization.md, references/plugins/passkey.md, references/plugins/magic-link.md, references/plugins/email-otp.md, references/plugins/phone.md, references/plugins/anonymous.md, references/plugins/username.md, references/plugins/sso.md, references/plugins/jwt.md, references/plugins/bearer.md, references/plugins/multi-session.md, references/plugins/oidc-provider.md, references/plugins/api-key.md, references/plugins/captcha.md, references/plugins/stripe.md, references/plugins/polar.md, references/plugins/scim.md, references/plugins/siwe.md, references/plugins/device-auth.md, references/integrations/nextjs.md, references/integrations/other-frameworks.md, references/integrations/frameworks-all.md, references/examples/nextjs-app-router.md, references/examples/oauth-complete.md, references/examples/2fa-complete.md, references/examples/organization-complete.md, references/examples/passkey-complete.md, references/guides/performance.md, references/guides/plugin-development.md, references/guides/saml-okta.md, references/guides/database-adapter.md, references/guides/auth0-migration.md, references/guides/clerk-migration.md, references/guides/authjs-migration.md, references/guides/supabase-migration.md, references/guides/workos-migration.md, references/guides/browser-extension.md
-related-skills: nextjs-16, prisma-7, solid-nextjs

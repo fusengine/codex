@@ -19,7 +19,7 @@ A: Let's think step-by-step.
    So I have 2 apples left.
 ```
 
-### Extended Thinking (Codex 4+)
+### Extended Thinking (Claude 4+)
 Progressive thinking budgets:
 
 | Command | Budget | Usage |
@@ -58,7 +58,7 @@ Input: [actual input]
 
 ## XML Tags
 
-Codex responds particularly well to XML tags:
+Claude responds particularly well to XML tags:
 
 ```xml
 <instructions>

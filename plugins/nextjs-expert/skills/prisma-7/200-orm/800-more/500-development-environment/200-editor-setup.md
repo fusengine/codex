@@ -31,11 +31,11 @@ You can install the official [Prisma VS Code extension](https://marketplace.visu
   - Jump to or peek a model or enum's declaration.
 - Formatting
   - Format code either manually or on save (if configured).
-    - To automatically format on save, add the following to your `settings.json` file:
+    - To automatically format on save, add the following to your `settings.json` file:    
       ```json
       "editor.formatOnSave": true
       ```
-    - To enable formatting in combination with `prettier`, add the following to your `settings.json` file:or use the [Prettier plugin for Prisma](https://github.com/umidbekk/prettier-plugin-prisma)
+    - To enable formatting in combination with `prettier`, add the following to your `settings.json` file:or use the [Prettier plugin for Prisma](https://github.com/umidbekk/prettier-plugin-prisma)        
       ```json
       "[prisma]": {
         "editor.defaultFormatter": "Prisma.prisma"

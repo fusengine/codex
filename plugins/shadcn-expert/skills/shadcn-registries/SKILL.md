@@ -1,19 +1,18 @@
 ---
 name: shadcn-registries
-description: "Configures shadcn/ui registries, components.json, CLI usage, and component installation. Use for default, Base UI, or custom registry setup. Do NOT use for component internals, primitive migration, or theme design."
+description: "Configure shadcn/ui registries, components.json, and CLI commands. Covers default Radix registry, Base UI registry, and custom registries. Use when: configuring shadcn/ui registries, components.json, or CLI add/init commands."
 ---
-
 
 # shadcn Registries
 
 ## Agent Workflow (MANDATORY)
 
-Before registry configuration, use the available Codex subagent capability when it materially helps:
+Before registry configuration, spawn sub-agents in parallel via `spawn_agent`:
 
-1. **ai-pilot:exploration / explore-codebase** - Find existing components.json
-2. **ai-pilot:research / research-expert** - Verify latest CLI options via Context7
+1. **explore-codebase** - Find existing components.json
+2. **research-expert** - Verify latest CLI options via Context7
 
-After: Run **ai-pilot:sniper-check / sniper** for validation.
+After: Run **sniper** for validation.
 
 ---
 
