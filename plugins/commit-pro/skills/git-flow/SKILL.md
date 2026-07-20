@@ -108,7 +108,7 @@ Determine which of the three cases applies from what actually exists on the PR �
 
 **Note on `--required`**: the poll loop in case 2 intentionally queries `gh pr checks` *without* `--required` — it only needs to know "has *any* check registered yet." If a future revision adds `--required` to that same loop, the zero-checks message becomes `no required checks reported on the '<branch>' branch`, which does **not** contain the substring `no checks reported` (the inserted word "required" breaks the contiguous match) — the grep would need to change to `checks reported on the` (matches both variants) or handle both strings explicitly.
 
-Merge is always `--merge` (real merge commit) — **never `--squash`**, it would orphan the release tag's target (see Tagging timing below).
+Merge is always `--merge` (real merge commit) — **never a squash merge**, it would orphan the release tag's target (see Tagging timing below).
 
 **Tagging timing**: never push the tag before the merge is validated — CI could still fail or branch protection could still block the merge, and a tag pushed early would point at a commit that never lands on `main`. Tag `vX.Y.Z` on `main` AFTER the merge completes, then push the tag (`commit` does this automatically in Step 8 — see also `commands/commit.md` Step 8 and `post-commit/references/tag-timing.md`).
 

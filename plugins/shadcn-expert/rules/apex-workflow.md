@@ -12,7 +12,7 @@ next_step: "shadcn-rules"
 | **A** | 00-load-skills | Read required shadcn skills FIRST |
 | **A** | 01-detect-primitive | Run detection (Radix vs Base UI) |
 | **A** | 02-analyze-components | `explore-codebase` → component inventory |
-| **P** | 03-plan-changes | TaskCreate + file planning (<100 lines) |
+| **P** | 03-plan-changes | `update_plan` (whole-plan REPLACE, one `in_progress` at a time) + file planning (<100 lines) |
 | **E** | 04-consult-mcp | ALWAYS query shadcn MCP + Context7 |
 | **E** | 05-implement | Apply changes based on detected primitive |
 | **E** | 06-validate-patterns | Verify correct API for detected primitive |

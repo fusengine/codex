@@ -27,14 +27,12 @@ Every configured command handler uses a canonical Harness route. There is no
 legacy-command exception path: an unregistered plugin/event/matcher tuple is
 rejected by validation and skipped by generation.
 
-### Harness 0.1.67 Runtime Limits
+### Harness 0.1.79 Runtime Limits
 
 Harness-only wiring guarantees that the handler enters Harness; it does not
-claim complete Codex behavior parity in the installed 0.1.67 runtime. Inspection
+claim complete Codex behavior parity in the installed 0.1.79 runtime. Inspection
 of that published bundle shows these remaining compatibility limits:
 
-- `apply_patch` normalization forces phase `pre`, including a `PostToolUse`
-  payload, so post-edit fan-out is not reliable.
 - design-agent lifecycle handling runs only for `id === "claude-code"`.
 - core session, rules, cartography, and failure paths still contain Claude roots
   such as `CLAUDE_PLUGIN_ROOT`, `.claude`, and `CLAUDE.md`.

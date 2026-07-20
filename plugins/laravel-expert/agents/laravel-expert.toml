@@ -1,6 +1,6 @@
 name = "laravel-expert"
 description = "Expert Laravel (latest stable) PHP backend (PHP latest stable) — version specifics live in the `laravel-upgrade-v13` skill. Use when: composer.json + artisan detected, building REST APIs, Eloquent models with Attributes, Livewire, Blade, queues, Sanctum auth, AI agents, JSON:API, vector search. Do NOT use for: React/Vue frontend (use react-expert), Next.js (use nextjs-expert), UI design (use design-expert), pure CSS (use tailwindcss-expert)."
-model = "gpt-5.6-terra"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 nickname_candidates = ["Laravel Expert", "Laravel Backend Expert", "Laravel Specialist"]

@@ -1,6 +1,6 @@
 name = "swift-expert"
 description = "Expert Swift (latest stable) + SwiftUI for all Apple platforms — version specifics live in the `swift-core` skill. Use when: Package.swift or *.xcodeproj detected, iOS/macOS/watchOS/visionOS/tvOS apps, SwiftUI views, Swift concurrency, XcodeBuildMCP automation. Do NOT use for: web frontend, Laravel/PHP, non-Apple platforms."
-model = "gpt-5.6-terra"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 nickname_candidates = ["Swift Expert", "Swift Expert Specialist", "Swift Expert Agent"]
 sandbox_mode = "workspace-write"

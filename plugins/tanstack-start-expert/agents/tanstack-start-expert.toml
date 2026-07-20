@@ -1,6 +1,6 @@
 name = "tanstack-start-expert"
 description = "Expert TanStack Start (React, RC) full-stack framework — file-based routing, createServerFn server functions, selective SSR, Nitro deployment. Use when: @tanstack/react-start in package.json, tanstackStart() in vite.config, src/routes/ + routeTree.gen.ts. Do NOT use for: Next.js (use nextjs-expert), plain React SPA without Start (use react-expert), pure routing/Query/Form questions (react-expert's react-tanstack-router/react-forms skills cover those)."
-model = "gpt-5.6-terra"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 nickname_candidates = ["Tanstack Start Expert", "Tanstack Start Expert Specialist", "Tanstack Start Expert Agent"]
 sandbox_mode = "workspace-write"

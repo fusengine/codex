@@ -40,11 +40,11 @@ function buildContext(taskId: string, subject: string, phase: string, docs: stri
     + `Agent must:\n`
     + `1. Read task.json → find last 3 completed tasks\n`
     + `2. Read their notes in docs/ (task-{ID}-{subject}.md)\n`
-    + `3. TaskList → see pending tasks\n`
-    + `4. TaskUpdate(in_progress) → before starting\n`
+    + `3. update_plan → review/record the plan (items {step, status})\n`
+    + `4. update_plan → mark the current step in_progress (one at a time) before starting\n`
     + `5. Apply SOLID (files < 100 lines)\n`
     + `6. Write notes to docs/task-{ID}-{subject}.md\n`
-    + `7. TaskUpdate(completed) → triggers auto-commit`;
+    + `7. update_plan → mark the step completed when done`;
 }
 
 let data: { tool_name?: string };

@@ -50,7 +50,7 @@ The setup writes configuration under `${CODEX_HOME:-~/.codex}` and installs:
 - shell environment helpers
 
 Hook execution is Harness-only. Every configured command handler invokes its
-registered `@fusengine/harness` Codex route; setup installs Harness `^0.1.67`.
+registered `@fusengine/harness` Codex route; setup installs Harness `^0.1.79`.
 Generation skips an unregistered tuple instead of preserving or synthesizing a
 direct plugin-script command.
 

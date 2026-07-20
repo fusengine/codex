@@ -33,8 +33,8 @@ function buildTaskJson(): Record<string, unknown> {
 const AGENTS_MD = `# APEX Agent Rules
 
 ## For Main Agent (Orchestrator)
-1. Use \`TaskCreate\` to add tasks to task.json
-2. Use \`TaskUpdate\` to change task status
+1. Use \`update_plan\` to record the plan (items {step, status:"pending"})
+2. Use \`update_plan\` to change a step's status (send the whole plan; one step in_progress at a time)
 3. Fill task.json with subject, description for each task
 4. Consult docs BEFORE writing code (MCP or skills)
 
@@ -42,11 +42,11 @@ const AGENTS_MD = `# APEX Agent Rules
 1. **Read your skills first**: Check your SOLID principles in your agent config
 2. Read \`task.json\` - find last 3 completed tasks (status: "completed")
 3. Read their research notes in \`docs/\` folder
-4. Use \`TaskList\` to see pending tasks
-5. Pick a task not blocked by others
-6. Use \`TaskUpdate(taskId, status: "in_progress")\` before starting
+4. Use \`update_plan\` to review the plan and see pending steps
+5. Pick a step not blocked by others
+6. Use \`update_plan\` to mark the step in_progress (one at a time) before starting
 7. Apply YOUR SOLID principles (from your agent definition)
-8. Use \`TaskUpdate(taskId, status: "completed")\` when done
+8. Use \`update_plan\` to mark the step completed when done
 
 ## Research Tools (Use BEFORE coding)
 - \`mcp__context7__resolve-library-id\` + \`mcp__context7__query-docs\`
@@ -65,9 +65,9 @@ Write notes to: \`docs/task-{ID}-{subject-slug}.md\`
 ## Validation
 After modifications, run \`sniper\` agent for ZERO linter errors.
 
-## Auto-Commit
-- Do NOT run \`git commit\` - hooks handle it
-- \`TaskUpdate(status: "completed")\` triggers auto-commit
+## Commits
+- Do NOT assume updating a step's status triggers a commit
+- Use the commit workflow explicitly when changes are ready to record
 
 ## Files
 \`\`\`

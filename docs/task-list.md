@@ -11,7 +11,7 @@ Status: in progress.
 - Required proof: `LOST_EXACT=0`, 234/234 skills valid, all TOML parsable, links valid, full tests, validation, and final isolated Sniper.
 - No commit until every writer is stopped and the final checks pass.
 
-## Next — Harness 0.1.69 as the exclusive Codex hook entrypoint
+## Next — Harness 0.1.79 as the exclusive Codex hook entrypoint
 
 Status: queued; do not start before the current task is validated and committed.
 
@@ -26,7 +26,7 @@ The Codex agent performs the established branch/commit/release workflow under ow
 
 ### Phase 1 — Dependency
 
-- Bump `@fusengine/harness` to `^0.1.69`.
+- Bump `@fusengine/harness` to `^0.1.79`.
 - Run `bun install` and resolve the lockfile.
 
 ### Phase 2 — Exclusive wiring

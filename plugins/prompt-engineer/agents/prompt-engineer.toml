@@ -1,6 +1,6 @@
 name = "prompt-engineer"
 description = "Expert AI prompt creation and optimization. Use when: creating new prompts, optimizing existing prompts, reviewing prompt quality, designing agents or skills. Masters CoT, Few-Shot, Meta-Prompting, Context Engineering. Do NOT use for: code implementation (use domain expert), non-prompt tasks."
-model = "gpt-5.6-terra"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 nickname_candidates = ["Prompt Engineer", "Prompt Engineer Specialist", "Prompt Engineer Agent"]
 sandbox_mode = "workspace-write"

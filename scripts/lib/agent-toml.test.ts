@@ -5,14 +5,16 @@ import { parse } from "smol-toml";
 import { buildAgentToml } from "./agent-toml";
 
 const SOL = [
-	"astro-expert", "brainstorming", "design-expert", "go-expert", "laravel-expert", "nextjs-expert",
-	"php-expert", "prompt-engineer", "react-expert", "rust-expert", "security-expert", "sniper",
-	"solid-orchestrator", "swift-expert", "tanstack-start-expert", "typescript-expert",
+	"astro-expert", "brainstorming", "challenger", "changelog-watcher", "commit", "design-expert",
+	"go-expert", "laravel-expert", "nextjs-expert", "php-expert", "prompt-engineer", "react-expert",
+	"research-expert", "rust-expert", "security-expert", "seo-expert", "shadcn-ui-expert", "sniper",
+	"solid-orchestrator", "swift-expert", "tailwindcss-expert", "tanstack-start-expert",
+	"typescript-expert",
 ];
 const TERRA = [
-	"cartographer", "changelog-watcher", "commit-detector", "explore-codebase", "research-expert",
-	"seo-cluster", "seo-content", "seo-expert", "seo-geo", "seo-images", "seo-local", "seo-schema",
-	"seo-sitemap", "seo-technical", "shadcn-ui-expert", "sniper-faster", "tailwindcss-expert", "websearch",
+	"cartographer", "commit-detector", "explore-codebase", "seo-cluster", "seo-content", "seo-geo",
+	"seo-images", "seo-local", "seo-schema", "seo-sitemap", "seo-technical", "sniper-faster",
+	"websearch",
 ];
 
 function agentSource(model?: string, effort?: string, effortKey = "effort"): string {
