@@ -11,13 +11,17 @@
  * JSDoc: "with no refs the SOLID-read gate stays off" — no error, no signal).
  *
  * Mirrors claude-plugins' setHarnessRefs (services/harness-env.ts): called unconditionally,
- * outside the _FUSENGINE_HARNESS_ASKED gate, so every existing install (including ones that
- * already have the marker set) picks this up on its next setup run.
+ * before any interactive prompt and even under `--skip-env`, so every existing install
+ * picks this up on its next setup run regardless of prior state.
  */
 import { MARKETPLACE } from "./agents-resync";
 import { loadEnvFile, saveEnvFile } from "./env-file";
 
 const KEY = "FUSE_HARNESS_MARKETPLACES";
+
+// Dead key from the removed "already asked" marker gate (see harness-env.ts) — no longer
+// read anywhere. Actively purged (not just ignored) so an existing .env doesn't carry it forever.
+const LEGACY_ASKED_MARKER = "_FUSENGINE_HARNESS_ASKED";
 
 /** Comma-separated marketplace list → trimmed, blank-free entries. */
 function parseMarketplaces(value: string | undefined): string[] {
@@ -35,5 +39,17 @@ export function ensureHarnessMarketplace(codexHome: string): void {
 	const names = parseMarketplaces(env[KEY]);
 	if (names.includes(MARKETPLACE)) return;
 	env[KEY] = [...names, MARKETPLACE].join(",");
+	saveEnvFile(codexHome, env);
+}
+
+/**
+ * Drop the removed `_FUSENGINE_HARNESS_ASKED` marker from `${codexHome}/.env` if present.
+ * Unconditional, not a prompt — no-op when already absent.
+ * @param codexHome - Codex home directory (`~/.codex` or `$CODEX_HOME`)
+ */
+export function purgeLegacyAskedMarker(codexHome: string): void {
+	const env = loadEnvFile(codexHome);
+	if (env[LEGACY_ASKED_MARKER] === undefined) return;
+	delete env[LEGACY_ASKED_MARKER];
 	saveEnvFile(codexHome, env);
 }

@@ -7,7 +7,10 @@
  * (`FUSE_HARNESS_SOUND_STOP/_PERMISSION/_HUMAN`) are NOT toggles: `resolveSound()` treats
  * each as an absolute-path override to a custom .mp3, falling back to the packaged asset
  * when unset or the path does not exist on disk. Corrected from the original "4 opt-out
- * toggles" brief after reading the compiled source — see the caller's report.
+ * toggles" brief after reading the compiled source — see the caller's report. Replayed on
+ * every setup run (no "already asked" marker) — any already-set key (master or per-kind
+ * override) is surfaced via an explicit keep/replace confirm first, mirroring
+ * claude-plugins' services/harness-gates.ts.
  */
 import * as p from "@clack/prompts";
 import { loadEnvFile, saveEnvFile } from "./env-file";
@@ -25,6 +28,45 @@ const OVERRIDES: readonly SoundOverride[] = [
 	{ key: "FUSE_HARNESS_SOUND_HUMAN", label: "Custom sound file for human-needed (absolute path, empty = default)" },
 ];
 
+/** Ask "<key> is set to <current>. Keep it?" — returns undefined on cancel, else the choice. */
+async function keepCurrent(key: string, current: string): Promise<boolean | undefined> {
+	const keep = await p.confirm({ message: `${key} is set to "${current}". Keep it?`, initialValue: true });
+	return p.isCancel(keep) ? undefined : keep;
+}
+
+/** Prompt the master toggle, honoring an already-set value's keep/replace choice. @returns true if cancelled. */
+async function promptMaster(env: Record<string, string>): Promise<boolean> {
+	const current = env[MASTER_KEY];
+	if (current !== undefined) {
+		const keep = await keepCurrent(MASTER_KEY, current);
+		if (keep === undefined || keep) return keep === undefined;
+	}
+	const wantsSound = await p.confirm({
+		message: "Keep hook notification sounds enabled? (native OS sound on Stop/permission/human events)",
+		initialValue: current !== "0",
+	});
+	if (p.isCancel(wantsSound)) return true;
+	if (wantsSound) delete env[MASTER_KEY];
+	else env[MASTER_KEY] = "0";
+	return false;
+}
+
+/** Prompt each per-kind override path, honoring an already-set value's keep/replace choice. */
+async function promptOverrides(env: Record<string, string>): Promise<void> {
+	for (const o of OVERRIDES) {
+		const current = env[o.key];
+		if (current !== undefined) {
+			const keep = await keepCurrent(o.key, current);
+			if (keep === undefined || keep) continue;
+		}
+		const value = await p.text({ message: o.label, initialValue: env[o.key] ?? "" });
+		if (p.isCancel(value)) continue;
+		const v = value.trim();
+		if (v) env[o.key] = v;
+		else delete env[o.key];
+	}
+}
+
 /**
  * Prompt for the sound master toggle and optional per-kind file overrides, persisted to
  * ~/.codex/.env.
@@ -32,27 +74,16 @@ const OVERRIDES: readonly SoundOverride[] = [
  */
 export async function promptHarnessSound(codexHome: string): Promise<void> {
 	const env = loadEnvFile(codexHome);
-	const keep = await p.confirm({
-		message: "Keep hook notification sounds enabled? (native OS sound on Stop/permission/human events)",
-		initialValue: env[MASTER_KEY] !== "0",
-	});
-	if (p.isCancel(keep)) return;
-	if (keep) delete env[MASTER_KEY];
-	else env[MASTER_KEY] = "0";
+	const cancelled = await promptMaster(env);
+	if (cancelled) return;
 
 	const customize = await p.confirm({
 		message: "Customize per-event sound files? (advanced, optional overrides)",
 		initialValue: false,
 	});
-	if (!p.isCancel(customize) && customize) {
-		for (const o of OVERRIDES) {
-			const value = await p.text({ message: o.label, initialValue: env[o.key] ?? "" });
-			if (p.isCancel(value)) continue;
-			const v = value.trim();
-			if (v) env[o.key] = v;
-			else delete env[o.key];
-		}
-	}
+	if (!p.isCancel(customize) && customize) await promptOverrides(env);
+
 	saveEnvFile(codexHome, env);
-	p.log.success(`Harness sound settings updated (${MASTER_KEY}${keep ? " default-on" : "=0"}) → ~/.codex/.env`);
+	const state = env[MASTER_KEY] === "0" ? "=0" : " default-on";
+	p.log.success(`Harness sound settings updated (${MASTER_KEY}${state}) → ~/.codex/.env`);
 }

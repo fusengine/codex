@@ -20,25 +20,30 @@ export const HARNESS_ENV_OPTIONS: readonly HarnessEnvOption[] = [
 	{ key: "FUSE_ENFORCE_TTL_SEC", label: "SOLID-read freshness window", hint: "APEX SOLID-read freshness, seconds (harness default 120s). Edit to tune", value: "120" },
 ] as const;
 
-export const HARNESS_ASKED_MARKER = "_FUSENGINE_HARNESS_ASKED";
-
-/** @returns keys of harness toggles currently set to their preset value in ~/.codex/.env */
+/**
+ * @returns keys of harness toggles currently PRESENT in ~/.codex/.env, active or not — a key
+ * whose value was hand-tuned away from its preset (e.g. `FUSE_MCP_TTL_SEC` edited per the
+ * option's own hint) still counts as active/pre-checked. None of these options use "0" as an
+ * explicit off-state (unlike `FUSE_HARNESS_SOUND`, handled separately in harness-sound.ts) —
+ * for every key here, "off" is deletion, so presence alone is a safe activity signal.
+ */
 export function getEnabledHarnessEnv(env: Record<string, string>): string[] {
-	return HARNESS_ENV_OPTIONS.filter((o) => env[o.key] === o.value).map((o) => o.key);
+	return HARNESS_ENV_OPTIONS.filter((o) => env[o.key] !== undefined).map((o) => o.key);
 }
 
-/** @returns true if the harness env prompt was already answered (skip on re-install) */
-export function isHarnessEnvAsked(env: Record<string, string>): boolean {
-	return env[HARNESS_ASKED_MARKER] === "1";
-}
-
-/** Apply selection: set chosen keys to their preset, drop unselected harness keys, mark asked. Foreign keys are preserved. */
+/**
+ * Apply selection: keys newly selected (previously absent) get their preset value; keys that
+ * stay selected AND were already present keep their existing (possibly hand-tuned) value
+ * untouched; unselected keys are dropped. Foreign keys are preserved.
+ */
 export function configureHarnessEnv(env: Record<string, string>, selectedKeys: readonly string[]): Record<string, string> {
 	const next = { ...env };
 	for (const opt of HARNESS_ENV_OPTIONS) {
-		if (selectedKeys.includes(opt.key)) next[opt.key] = opt.value;
-		else delete next[opt.key];
+		if (!selectedKeys.includes(opt.key)) {
+			delete next[opt.key];
+		} else if (next[opt.key] === undefined) {
+			next[opt.key] = opt.value;
+		}
 	}
-	next[HARNESS_ASKED_MARKER] = "1";
 	return next;
 }

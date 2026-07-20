@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.40] - 2026-07-20
+
+- fix(installer): the harness env toggles were only ever proposed once per machine — a `_FUSENGINE_HARNESS_ASKED` marker blocked the prompt block for life after the first install. The marker is removed from the code and actively purged from existing `.env` files (`purgeLegacyAskedMarker`), so machines that already installed repair themselves on the next setup run
+- fix(installer): `FUSE_HARNESS_MARKETPLACES=fusengine-codex` is now written unconditionally. Without it, the harness filtered the plugin cache on the default allowlist `fusengine-plugins` and saw none of our skills — the SOLID-read gate stayed off
+- fix(installer): `~/.codex/.env` is no longer rewritten wholesale. Writes are now a targeted upsert — comments, blank lines, unexported `KEY=value` lines, empty values, and line order are all preserved; an updated key keeps its position; file mode 600 is re-applied explicitly (`writeFileSync`'s `mode` is a no-op on an existing file). Previously a line without `export` — typically a hand-pasted API key — was destroyed on every setup
+- fix(installer): custom values are no longer overwritten. A key present with a value different from the preset (e.g. `FUSE_MCP_TTL_SEC=3600`) is now recognized as active and its value preserved; previously a plain Enter on the multiselect deleted it
+- feat(installer): drop the umbrella confirm before the SOLID / debug / sound / tuning toggles — they are now presented directly, aligned with `claude-plugins` behavior
+- feat(installer): add `--skip-env` to skip the env prompt block as an interactive-install shortcut (not a non-TTY/CI mode — `promptPerfEnv` still has no non-TTY guard and would hang without a terminal; that fix is deferred)
+- test(installer): +17 tests, including `--skip-env` path coverage and a TTY-simulated test that reaches the prompt block itself
+- chore(release): bump suite to 1.0.40 (no plugin touched — installer-only change under `scripts/`)
+
 ## [1.0.39] - 2026-07-20
 
 - fix(installer): the harness SOLID-read gate was silently disabled on every machine running only this Codex marketplace — `@fusengine/harness` filters `~/.claude`/`~/.codex` skill caches by `FUSE_HARNESS_MARKETPLACES` (default `"fusengine-plugins"`), and our marketplace is named `fusengine-codex`, so it was excluded from the default allowlist (0 references found, gate off with no refs per the harness's own JSDoc). `ensureHarnessMarketplace()` now writes `FUSE_HARNESS_MARKETPLACES=fusengine-codex` into `~/.codex/.env` unconditionally, ahead of both the non-TTY guard and the `_FUSENGINE_HARNESS_ASKED` marker guard, so already-installed machines pick it up on next run too
