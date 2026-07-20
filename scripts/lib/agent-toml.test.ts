@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse } from "smol-toml";
 import { buildAgentToml } from "./agent-toml";
+import { agentRoleViolations } from "./agent-role-validation";
 
 const SOL = [
 	"astro-expert", "brainstorming", "challenger", "changelog-watcher", "commit", "design-expert",
@@ -42,7 +43,8 @@ test("selects the agent model tier and always uses high reasoning", () => {
 	}
 });
 
-test("ships the exact Sol and Terra agent matrix with high reasoning", () => {
+/** Every agent TOML the repo ships, keyed by the `name` it declares. */
+function shippedAgentConfigs(): Map<string, Record<string, unknown>> {
 	const configs = new Map<string, Record<string, unknown>>();
 	for (const plugin of readdirSync("plugins")) {
 		const agentsDir = join("plugins", plugin, "agents");
@@ -53,9 +55,20 @@ test("ships the exact Sol and Terra agent matrix with high reasoning", () => {
 			}
 		} catch { /* plugin has no agents */ }
 	}
+	return configs;
+}
+
+test("ships the exact Sol and Terra agent matrix with high reasoning", () => {
+	const configs = shippedAgentConfigs();
 
 	expect([...configs.keys()].sort()).toEqual([...SOL, ...TERRA].sort());
 	for (const name of SOL) expect(configs.get(name)?.model).toBe("gpt-5.6-sol");
 	for (const name of TERRA) expect(configs.get(name)?.model).toBe("gpt-5.6-terra");
 	for (const config of configs.values()) expect(config.model_reasoning_effort).toBe("high");
+});
+
+test("every shipped agent survives Codex agent role validation", () => {
+	const violations = [...shippedAgentConfigs()].flatMap(([agent, config]) => agentRoleViolations(agent, config));
+
+	expect(violations).toEqual([]);
 });
