@@ -1,12 +1,13 @@
 /**
  * harness-marketplaces.test.ts — ensureHarnessMarketplace is unconditional, idempotent, and
  * never destroys an existing FUSE_HARNESS_MARKETPLACES value or unrelated .env content.
+ * purgeLegacyAskedMarker actively drops the removed _FUSENGINE_HARNESS_ASKED key.
  */
 import { test, expect } from "bun:test";
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { ensureHarnessMarketplace } from "./harness-marketplaces";
+import { ensureHarnessMarketplace, purgeLegacyAskedMarker } from "./harness-marketplaces";
 import { loadEnvFile } from "./env-file";
 
 function tmpCodexHome(): string {
@@ -54,5 +55,22 @@ test(".env stays chmod 600 after write", () => {
 	ensureHarnessMarketplace(home);
 	const mode = statSync(join(home, ".env")).mode & 0o777;
 	expect(mode).toBe(0o600);
+	rmSync(home, { recursive: true, force: true });
+});
+
+test("purgeLegacyAskedMarker drops the removed _FUSENGINE_HARNESS_ASKED key", () => {
+	const home = tmpCodexHome();
+	writeFileSync(join(home, ".env"), 'export _FUSENGINE_HARNESS_ASKED="1"\nexport OPENAI_API_KEY="sk-test"\n', { mode: 0o600 });
+	purgeLegacyAskedMarker(home);
+	const env = loadEnvFile(home);
+	expect(env._FUSENGINE_HARNESS_ASKED).toBeUndefined();
+	expect(env.OPENAI_API_KEY).toBe("sk-test");
+	rmSync(home, { recursive: true, force: true });
+});
+
+test("purgeLegacyAskedMarker is a no-op when the marker is already absent", () => {
+	const home = tmpCodexHome();
+	purgeLegacyAskedMarker(home);
+	expect(loadEnvFile(home)).toEqual({});
 	rmSync(home, { recursive: true, force: true });
 });

@@ -15,11 +15,13 @@ const CODEX_HOME = process.env.CODEX_HOME || join(homedir(), ".codex");
 async function main(): Promise<void> {
 	p.intro("Fusengine Codex Plugins Setup");
 	const skipInstall = process.argv.includes("--skip-install");
+	const skipEnv = process.argv.includes("--skip-env");
 	await runCodexSetup({
 		projectRoot: PROJECT_ROOT,
 		codexHome: CODEX_HOME,
 		marketplaceName: "fusengine-codex",
 		skipPluginInstall: skipInstall,
+		skipEnv,
 	});
 	p.outro("Setup complete. Restart Codex CLI to apply.");
 }

@@ -31,10 +31,36 @@ function tmpCodexHome(): string {
 test("keeping sounds enabled removes FUSE_HARNESS_SOUND (default-on, no key)", async () => {
 	const home = tmpCodexHome();
 	writeFileSync(join(home, ".env"), 'export FUSE_HARNESS_SOUND="0"\n', { mode: 0o600 });
-	queue.confirms = [true, false];
+	// keep the "0"? no (replace) -> keep sounds enabled? yes -> customize? no
+	queue.confirms = [false, true, false];
 	queue.texts = [];
 	await promptHarnessSound(home);
 	expect(loadEnvFile(home).FUSE_HARNESS_SOUND).toBeUndefined();
+	rmSync(home, { recursive: true, force: true });
+});
+
+test("keep/replace: keeping an already-disabled master leaves FUSE_HARNESS_SOUND=0 untouched", async () => {
+	const home = tmpCodexHome();
+	writeFileSync(join(home, ".env"), 'export FUSE_HARNESS_SOUND="0"\n', { mode: 0o600 });
+	queue.confirms = [true, false]; // keep the "0"? yes -> customize? no
+	queue.texts = [];
+	await promptHarnessSound(home);
+	expect(loadEnvFile(home).FUSE_HARNESS_SOUND).toBe("0");
+	rmSync(home, { recursive: true, force: true });
+});
+
+test("keep/replace: keeping an existing per-kind override leaves it untouched", async () => {
+	const home = tmpCodexHome();
+	writeFileSync(join(home, ".env"), 'export FUSE_HARNESS_SOUND_STOP="/tmp/old.mp3"\n', { mode: 0o600 });
+	// no master value set -> straight to "keep sounds enabled?" -> customize? yes ->
+	// STOP already set: keep it? yes -> PERMISSION/HUMAN prompted fresh (empty = default)
+	queue.confirms = [true, true, true];
+	queue.texts = ["", ""];
+	await promptHarnessSound(home);
+	const env = loadEnvFile(home);
+	expect(env.FUSE_HARNESS_SOUND_STOP).toBe("/tmp/old.mp3");
+	expect(env.FUSE_HARNESS_SOUND_PERMISSION).toBeUndefined();
+	expect(env.FUSE_HARNESS_SOUND_HUMAN).toBeUndefined();
 	rmSync(home, { recursive: true, force: true });
 });
 

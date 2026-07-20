@@ -5,7 +5,10 @@
  * process.env with fallback 100 (DEFAULT_MAX_LINES) — binary-confirmed. Mirrors
  * claude-plugins' services/solid-lines.ts (promptSolidMaxLines): same 4 options, same
  * default, always offered (no opt-in gate) once the caller's harness-toggle prompt is
- * entered, since it is the single most consulted SOLID knob.
+ * entered, since it is the single most consulted SOLID knob. Replayed on every setup run
+ * (no "already asked" marker) — an already-set value is surfaced via an explicit
+ * keep/replace confirm first, mirroring claude-plugins' services/harness-gates.ts, so it
+ * is never silently re-defaulted.
  */
 import * as p from "@clack/prompts";
 import { loadEnvFile, saveEnvFile } from "./env-file";
@@ -20,15 +23,22 @@ const OPTIONS = [
 ] as const;
 
 /**
- * Prompt for the SOLID max-lines-per-file limit and persist it to ~/.codex/.env.
+ * Prompt for the SOLID max-lines-per-file limit and persist it to ~/.codex/.env. An
+ * already-set value is confirmed with a keep/replace choice before offering the select.
  * @param codexHome - Codex home directory (`~/.codex` or `$CODEX_HOME`)
  */
 export async function promptSolidMaxLines(codexHome: string): Promise<void> {
 	const env = loadEnvFile(codexHome);
+	const current = env[KEY];
+	if (current !== undefined) {
+		const keep = await p.confirm({ message: `${KEY} is set to "${current}". Keep it?`, initialValue: true });
+		if (p.isCancel(keep)) return;
+		if (keep) return;
+	}
 	const choice = await p.select({
 		message: "SOLID max lines per file (file-size enforcement hooks)?",
 		options: OPTIONS.map((o) => ({ value: o.value, label: o.label })),
-		initialValue: env[KEY] ?? "100",
+		initialValue: current ?? "100",
 	});
 	if (p.isCancel(choice)) return;
 	env[KEY] = choice as string;

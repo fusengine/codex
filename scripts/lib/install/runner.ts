@@ -11,14 +11,12 @@ import { promptCodexConfig } from "./config-prompt";
 import { depositExecPolicy } from "./exec-policy";
 import { ensureApprovalPolicy } from "./exec-policy-approval";
 import { installAgents, installCommands } from "./install-agents";
-import { configureShellAutoLoad } from "./shell-install";
 import { backupConfig } from "./backup";
 import { scanAndPrepare } from "./setup-plugins";
 import { promptPerfEnv } from "./perf-env";
-import { promptHarnessEnv } from "./harness-env";
+import { runEnvPromptBlock } from "./runner-env";
 import { scanPlugins } from "./plugin-scanner";
 import { reportMcp } from "./mcp";
-import { runMcpStep } from "./runner-finalize";
 import { installPluginsStrict } from "./plugin-install";
 import { installRuntimeDeps } from "./runtime-deps";
 import { cleanupDeprecatedCodexFlags } from "./cleanup-deprecated-flags";
@@ -29,6 +27,9 @@ export interface SetupOptions {
 	codexHome: string;
 	marketplaceName: string;
 	skipPluginInstall: boolean;
+	/** `--skip-env` CLI flag: skip the interactive env-prompt block (shell auto-load, harness
+	 * env toggles, MCP server selection). `ensureHarnessMarketplace` always runs regardless. */
+	skipEnv: boolean;
 }
 
 async function pathExists(path: string): Promise<boolean> {
@@ -93,10 +94,8 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	await depositExecPolicy(opts.codexHome);
 	await promptCodexConfig(opts.codexHome);
 	await ensureApprovalPolicy(opts.codexHome);
-	await configureShellAutoLoad();
 	await promptPerfEnv(opts.codexHome);
-	await promptHarnessEnv(opts.codexHome);
-	await runMcpStep(opts.codexHome, join(opts.projectRoot, "plugins"));
+	await runEnvPromptBlock(opts);
 	await reportMcp(join(opts.projectRoot, "plugins"));
 	const plugins = scanPlugins(join(opts.projectRoot, "plugins"));
 	p.log.info(`Scanned ${plugins.length} plugins`);
