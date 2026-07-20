@@ -6,16 +6,19 @@ import { mkdtempSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parse } from "smol-toml";
+import { clackPromptsMock } from "./clack-prompts-mock";
 
 const state = { confirmAnswer: false, confirmCalls: 0 };
 
-mock.module("@clack/prompts", () => ({
-	confirm: mock(async () => {
-		state.confirmCalls++;
-		return state.confirmAnswer;
+mock.module("@clack/prompts", () =>
+	clackPromptsMock({
+		confirm: mock(async () => {
+			state.confirmCalls++;
+			return state.confirmAnswer;
+		}),
+		isCancel: mock((value: unknown) => typeof value === "symbol"),
 	}),
-	isCancel: mock((value: unknown) => typeof value === "symbol"),
-}));
+);
 
 afterEach(() => mock.restore());
 

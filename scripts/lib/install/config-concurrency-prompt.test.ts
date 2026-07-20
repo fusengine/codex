@@ -3,18 +3,20 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parse } from "smol-toml";
+import { clackPromptsMock } from "./clack-prompts-mock";
 
 const state = { choices: [] as string[], calls: [] as unknown[] };
 
-mock.module("@clack/prompts", () => ({
-	select: mock(async (input: unknown) => {
-		state.calls.push(input);
-		return state.choices.shift() ?? "__skip";
+mock.module("@clack/prompts", () =>
+	clackPromptsMock({
+		select: mock(async (input: unknown) => {
+			state.calls.push(input);
+			return state.choices.shift() ?? "__skip";
+		}),
+		confirm: mock(async () => false),
+		isCancel: mock(() => false),
 	}),
-	confirm: mock(async () => false),
-	isCancel: mock(() => false),
-	log: { step: () => {}, warn: () => {}, info: () => {}, success: () => {} },
-}));
+);
 
 const { promptCodexConfig } = await import("./config-prompt");
 const models = [{
