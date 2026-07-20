@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.39] - 2026-07-20
+
+- fix(installer): the harness SOLID-read gate was silently disabled on every machine running only this Codex marketplace — `@fusengine/harness` filters `~/.claude`/`~/.codex` skill caches by `FUSE_HARNESS_MARKETPLACES` (default `"fusengine-plugins"`), and our marketplace is named `fusengine-codex`, so it was excluded from the default allowlist (0 references found, gate off with no refs per the harness's own JSDoc). `ensureHarnessMarketplace()` now writes `FUSE_HARNESS_MARKETPLACES=fusengine-codex` into `~/.codex/.env` unconditionally, ahead of both the non-TTY guard and the `_FUSENGINE_HARNESS_ASKED` marker guard, so already-installed machines pick it up on next run too
+- feat(installer): expose 9 more harness runtime toggles (6 -> 15) — `FUSE_HARNESS_MARKETPLACES`, `FUSE_SOLID_MAX_LINES`, `FUSE_LESSONS_THROTTLE_MIN`, `FUSENGINE_CACHE_TTL_MIN`, `FUSE_HARNESS_DEBUG`, `FUSE_HARNESS_SOUND`, `FUSE_HARNESS_SOUND_STOP`, `FUSE_HARNESS_SOUND_PERMISSION`, `FUSE_HARNESS_SOUND_HUMAN`, ported from `claude-plugins/scripts/src/` and adapted to `<codexHome>/.env`; only `FUSE_HARNESS_SOUND` is a boolean opt-out, the three `_STOP`/`_PERMISSION`/`_HUMAN` vars are absolute audio-file path overrides
+- test(installer): shared `clack-prompts-mock.ts` helper replaces 8 incomplete inline `@clack/prompts` stubs, fixing cross-file test failures caused by Bun's process-global `mock.module` leaking between files
+- chore(release): bump suite to 1.0.39 (no plugin touched — installer-only change under `scripts/`)
+
 ## [1.0.38] - 2026-07-20
 
 - fix(nextjs-expert): `nickname_candidates` contained dots (`"Next.js Expert"`, `"Next.js Expert Agent"`) — outside the ASCII charset Codex's agent-role loader enforces (`codex-rs/core/src/config/agent_roles.rs`, tag `rust-v0.144.6`), so Codex 0.144.6 discarded the entire role file at startup with a one-line warning and `nextjs-expert` became silently non-spawnable. Nicknames trimmed of dots.
