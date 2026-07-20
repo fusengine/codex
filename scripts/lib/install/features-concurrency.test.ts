@@ -3,11 +3,14 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parse } from "smol-toml";
+import { clackPromptsMock } from "./clack-prompts-mock";
 
-mock.module("@clack/prompts", () => ({
-	confirm: mock(async () => false),
-	isCancel: mock(() => false),
-}));
+mock.module("@clack/prompts", () =>
+	clackPromptsMock({
+		confirm: mock(async () => false),
+		isCancel: mock(() => false),
+	}),
+);
 
 const { ensureFeaturesEnabled } = await import("./features");
 

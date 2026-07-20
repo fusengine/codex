@@ -6,17 +6,19 @@ import { test, expect, mock, describe, afterEach } from "bun:test";
 import { mkdtempSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { clackPromptsMock } from "./clack-prompts-mock";
 const queues = { selects: [] as string[], confirms: [] as boolean[], selectCalls: 0, confirmCalls: 0 };
 
-mock.module("@clack/prompts", () => ({
-	select: mock(async () => (queues.selectCalls++, queues.selects.shift() ?? "__skip")),
-	confirm: mock(async () => {
-		queues.confirmCalls++;
-		return queues.confirms.shift() ?? false;
+mock.module("@clack/prompts", () =>
+	clackPromptsMock({
+		select: mock(async () => (queues.selectCalls++, queues.selects.shift() ?? "__skip")),
+		confirm: mock(async () => {
+			queues.confirmCalls++;
+			return queues.confirms.shift() ?? false;
+		}),
+		isCancel: mock((value: unknown) => value === undefined),
 	}),
-	isCancel: mock((value: unknown) => value === undefined),
-	log: { step: () => {}, warn: () => {}, info: () => {}, success: () => {} },
-}));
+);
 
 afterEach(() => mock.restore());
 
