@@ -1,29 +1,28 @@
 {
-	"name": "nextjs-expert",
-	"version": "1.1.29",
-	"description": "Expert Next.js latest stable + React 19 with App Router, Server Components, Prisma latest stable, and Better Auth",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"nextjs",
-		"react",
-		"prisma",
-		"better-auth",
-		"app-router",
-		"server-components"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "Next.js Expert",
-		"shortDescription": "Next.js App Router, RSC, Server Actions",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "nextjs-expert",
+  "version": "1.1.29",
+  "description": "Expert Next.js latest stable + React 19 with App Router, Server Components, Prisma latest stable, and Better Auth",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "react",
+    "prisma",
+    "better-auth",
+    "app-router",
+    "server-components"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Next.js Expert",
+    "shortDescription": "Next.js App Router, RSC, Server Actions",
+    "developerName": "Fusengine"
+  }
 }

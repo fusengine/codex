@@ -1,8 +1,9 @@
 /**
  * mcp.ts — Verify plugin-scoped MCP servers are wired and report missing
  * environment variables ${API_KEY} so the user knows what to export before
- * the next Codex session. Plugin .mcp.json files are loaded by Codex
- * automatically at plugin enable; we only validate and report.
+ * the next Codex session. Per-plugin definitions live in mcp.json.bak (the
+ * source the installer reads to write [mcp_servers.*] into config.toml — the
+ * single source Codex loads); we only validate and report, no I/O writes.
  */
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
@@ -31,7 +32,7 @@ export async function reportMcp(pluginsRoot: string): Promise<void> {
 	const requiredVars = new Set<string>();
 	for (const e of await readdir(pluginsRoot, { withFileTypes: true })) {
 		if (!e.isDirectory()) continue;
-		const mcp = Bun.file(join(pluginsRoot, e.name, ".mcp.json"));
+		const mcp = Bun.file(join(pluginsRoot, e.name, "mcp.json.bak"));
 		if (!(await mcp.exists())) continue;
 		const cfg = (await mcp.json()) as Record<string, ServerCfg>;
 		for (const [name, srv] of Object.entries(cfg)) {

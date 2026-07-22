@@ -61,7 +61,10 @@ export async function transformManifest(
 		license: source.license ?? "MIT",
 		keywords: source.keywords ?? [],
 		skills: "./skills/",
-		mcpServers: "./.mcp.json",
+		// MCP servers are NOT declared in the plugin manifest: Codex would launch
+		// them from the plugin IN ADDITION to the [mcp_servers.*] blocks the
+		// installer writes to config.toml (double start). config.toml is the single
+		// source. Per-plugin definitions live in mcp.json.bak, read by the installer.
 		hooks: "./hooks/hooks.json",
 		interface: buildInterface(),
 	};

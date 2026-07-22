@@ -132,16 +132,11 @@ Official Codex hook events include `SessionStart`, `UserPromptSubmit`, `PreToolU
 Codex loads hooks unless disabled with `[features].hooks = false`. Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path, but Codex skips them until the current hook definition is reviewed and trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields. Legacy Claude env vars are allowed only in migration compatibility code.
 
 ## Fusengine Plugins - Detailed Rules
-The setup/update workflow merges all detailed rules into `$CODEX_HOME/AGENTS.md`; the `codex-rules` plugin also re-injects them at runtime so critical guidance survives isolated contexts and compaction:
-- `00-critical-rules.md` - response language, writing style, DRY priority, error prevention
-- `01-project-detection.md` - agent/skill discovery and matching
-- `02-apex-workflow.md` - APEX methodology with auto-trigger
-- `03-agent-teams.md` - Codex subagent/team rules and anti-patterns
-- `04-solid-dry-rules.md` - SOLID principles and DRY enforcement
-- `05-frontend-rules.md` - Gemini Design MCP and shadcn for UI tasks
-- `06-tooling-rules.md` - Git, MCP servers, fuse-browser efficient usage, hooks, documentation
-- `07-state-management.md` - React/Next.js: Zustand, TanStack Query, stores
-- `08-subagent-conduct.md` - cartography and hook compliance for subagents
+The setup/update workflow merges the detailed rules corpus into `$CODEX_HOME/AGENTS.md`, between the `fusengine:codex-rules` fences, at install time. The SubagentStart hook that used to re-inject this corpus at runtime is muted (proven: 0 bytes emitted) — do not assume runtime re-injection happens.
+Source of truth for the corpus: `plugins/codex-rules/rules/` (00-critical-rules.md through 08-subagent-conduct.md).
 
-Rules locations are provided by the active source tree or runtime context. Never hardcode marketplace cache versions.
-</content>
+## Code Review Rules
+1. **Merge strategy**: PRs merge with `--merge`, never `--squash` (squash orphans the release tag's target commit). Safe path: `gh pr merge <pr> --merge --delete-branch`.
+2. **Release tags**: tags are created POST-merge only. Safe path: `git merge-base --is-ancestor vX.Y.Z main` must succeed before a release is declared done.
+3. **MCP single source**: never add `mcpServers` to a plugin manifest (`.codex-plugin/plugin.json`) — Codex would launch those servers in addition to the `[mcp_servers.*]` blocks the installer writes to `~/.codex/config.toml` (double start). Safe path: define servers in `plugins/<name>/mcp.json.bak`; the installer merges them into config.toml.
+4. **File renames**: when renaming/moving a file, grep the old basename repo-wide and update every reader, not just the writer — a reader guarded by `if (!exists) continue` degrades to a silent no-op no test catches. Safe path: `grep -rn "<old-basename>"`, update all hits, then run the affected module and assert non-empty output.

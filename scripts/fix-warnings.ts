@@ -52,7 +52,7 @@ async function pruneManifest(dir: string): Promise<boolean> {
 	if (!(await exists(path))) return false;
 	const data = JSON.parse(await Bun.file(path).text());
 	let changed = false;
-	for (const [key, rel] of [["hooks", "hooks/hooks.json"], ["skills", "skills"], ["mcpServers", ".mcp.json"]]) {
+	for (const [key, rel] of [["hooks", "hooks/hooks.json"], ["skills", "skills"]]) {
 		if (data[key] && !(await exists(join(dir, rel)))) { delete data[key]; changed = true; }
 	}
 	if (changed) await Bun.write(path, `${JSON.stringify(data, null, 2)}\n`);

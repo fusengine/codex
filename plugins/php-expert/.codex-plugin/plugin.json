@@ -1,34 +1,33 @@
 {
-	"name": "php-expert",
-	"version": "1.0.10",
-	"description": "Expert modern PHP 8.5/8.4 for non-Laravel projects: libraries, Symfony components, Slim, API-first apps, CLI tools, PER Coding Style 3.0, PHPStan, and SOLID principles.",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"php",
-		"php-8.5",
-		"php-8.4",
-		"symfony-components",
-		"slim",
-		"library",
-		"cli",
-		"composer",
-		"per-coding-style",
-		"phpstan",
-		"solid"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "PHP Expert",
-		"shortDescription": "Modern non-Laravel PHP libraries, APIs, CLI, tooling, and standards",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "php-expert",
+  "version": "1.0.10",
+  "description": "Expert modern PHP 8.5/8.4 for non-Laravel projects: libraries, Symfony components, Slim, API-first apps, CLI tools, PER Coding Style 3.0, PHPStan, and SOLID principles.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "php-8.5",
+    "php-8.4",
+    "symfony-components",
+    "slim",
+    "library",
+    "cli",
+    "composer",
+    "per-coding-style",
+    "phpstan",
+    "solid"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "PHP Expert",
+    "shortDescription": "Modern non-Laravel PHP libraries, APIs, CLI, tooling, and standards",
+    "developerName": "Fusengine"
+  }
 }

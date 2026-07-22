@@ -1,42 +1,41 @@
 {
-	"name": "design-expert",
-	"version": "2.1.37",
-	"description": "Design Director for websites, web apps, iOS, and Android. Generates HTML/CSS design deliverables with Gemini Design MCP, Magic/21st.dev, and shadcn as optional tools. Mobile targets produce tokens, device-framed mockups, and handoff specs, never SwiftUI/Compose implementation code. Anti-AI-Slop, WCAG 2.2.",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"design",
-		"ui-ux",
-		"design-director",
-		"identity-system",
-		"multi-stack",
-		"react",
-		"nextjs",
-		"laravel",
-		"swift",
-		"tailwind",
-		"shadcn",
-		"accessibility",
-		"wcag",
-		"framer-motion",
-		"oklch",
-		"page-layouts",
-		"audit-design",
-		"android",
-		"material-design"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "Design Expert",
-		"shortDescription": "UI designer with 7-phase pipeline and OKLCH tokens",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "design-expert",
+  "version": "2.1.37",
+  "description": "Design Director for websites, web apps, iOS, and Android. Generates HTML/CSS design deliverables with Gemini Design MCP, Magic/21st.dev, and shadcn as optional tools. Mobile targets produce tokens, device-framed mockups, and handoff specs, never SwiftUI/Compose implementation code. Anti-AI-Slop, WCAG 2.2.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui-ux",
+    "design-director",
+    "identity-system",
+    "multi-stack",
+    "react",
+    "nextjs",
+    "laravel",
+    "swift",
+    "tailwind",
+    "shadcn",
+    "accessibility",
+    "wcag",
+    "framer-motion",
+    "oklch",
+    "page-layouts",
+    "audit-design",
+    "android",
+    "material-design"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Design Expert",
+    "shortDescription": "UI designer with 7-phase pipeline and OKLCH tokens",
+    "developerName": "Fusengine"
+  }
 }
