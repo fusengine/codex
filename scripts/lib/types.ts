@@ -38,7 +38,6 @@ export interface CodexManifest {
 	license?: string;
 	keywords?: string[];
 	skills?: string;
-	mcpServers?: string;
 	hooks?: string;
 	interface?: Record<string, unknown>;
 }

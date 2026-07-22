@@ -1,6 +1,6 @@
 # Fusengine Codex Plugins
 
-![version](https://img.shields.io/badge/version-1.0.40-blue?style=flat-square)
+![version](https://img.shields.io/badge/version-1.0.41-blue?style=flat-square)
 ![plugins](https://img.shields.io/badge/plugins-25-brightgreen?style=flat-square)
 ![runtime](https://img.shields.io/badge/runtime-Bun-black?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
@@ -90,12 +90,12 @@ are detected and the prompt is skipped.
 6. Prompts for Codex config and auto-sets `suppress_unstable_features_warning`
 7. Prompts for API keys and writes `~/.codex/.env` with `chmod 600`
 8. Installs the shell autoloader
-9. Resolves `${VAR}` placeholders from plugin `.mcp.json` files into static
+9. Resolves `${VAR}` placeholders from plugin `mcp.json.bak` files into static
    `[mcp_servers.X]` blocks in `~/.codex/config.toml`
 10. Prints the final MCP report and missing environment variables
 
 > **Why resolve variables during setup?** Codex CLI 0.130.x does not interpolate
-> `${VAR}` in plugin `.mcp.json` files
+> `${VAR}` in plugin `mcp.json.bak` files
 > ([openai/codex#19582](https://github.com/openai/codex/issues/19582)). The
 > configurator resolves values during installation so Codex receives static
 > config entries.
@@ -139,7 +139,7 @@ normalized plugin name.
 | Subagent | `agents/<name>.toml` with `sandbox_mode` and `developer_instructions` | `developers.openai.com/codex/subagents` |
 | Hooks | `hooks/hooks.json` with 6 stable events | `developers.openai.com/codex/hooks` |
 | Hook env vars | `${PLUGIN_ROOT}`, `${PLUGIN_DATA}` | same |
-| MCP servers | `.mcp.json` direct map, no wrapper, no `type` field | PR #18780 |
+| MCP servers | `mcp.json.bak` direct map (installer source; written to `config.toml`) | PR #18780 |
 | AGENTS.md | Auto-loaded from `~/.codex/AGENTS.md` plus Git root to CWD walk | `developers.openai.com/codex/guides/agents-md` |
 
 ### 6 Codex Hook Events
@@ -179,7 +179,7 @@ codex-plugins/
 │       ├── skills/<name>/SKILL.md
 │       ├── agents/<name>.toml
 │       ├── hooks/hooks.json
-│       ├── .mcp.json                  # when MCP servers exist
+│       ├── mcp.json.bak               # MCP defs (installer source for config.toml)
 │       ├── scripts/                   # Bun TS + Bun-to-Python wrappers
 │       │   └── _legacy_py/            # archived Python originals
 │       └── .cartographer/             # generated maps
@@ -191,7 +191,6 @@ codex-plugins/
     ├── fix-real-issues.ts             # fix interfaces/matchers after audit
     ├── fix-legacy-py-paths.ts         # patch ~/.claude to ~/.codex in _legacy_py
     ├── final-conformance.ts           # SKILL.md cleanup and wrappers
-    ├── migrate-mcp.ts                 # mcp.json.bak to .mcp.json
     └── lib/
         └── install/                   # runner, marketplace, features, agents-md, enable-plugins, mcp
 ```
@@ -246,7 +245,7 @@ Plugin diagnostic (19 plugins scanned):
   ai-pilot              manifest OK  hooks 4 evt / 12 hdl  mcp 2  skills 6  agents 5
   astro-expert          manifest OK  hooks 2 evt /  4 hdl  mcp 1  skills 12 agents 1
   ...
-Issues: 0 missing manifest, 0 malformed hooks.json, 0 malformed .mcp.json.
+Issues: 0 missing manifest, 0 malformed hooks.json, 0 malformed mcp.json.bak.
 ```
 
 ## Dev Tools
@@ -255,7 +254,6 @@ Issues: 0 missing manifest, 0 malformed hooks.json, 0 malformed .mcp.json.
 bun run migrate                         # regenerate plugins/* from ../claude-plugins/
 bun run scripts/convert-py-to-bun.ts    # batch py to ts conversion
 bun run scripts/fix-conformance.ts      # align manifests/models/marketplace
-bun run scripts/migrate-mcp.ts          # mcp.json.bak to .mcp.json
 ```
 
 ## License

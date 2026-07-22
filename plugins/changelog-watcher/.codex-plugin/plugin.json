@@ -1,29 +1,28 @@
 {
-	"name": "changelog-watcher",
-	"version": "1.0.18",
-	"description": "Codex CLI update watcher: changelog tracking, breaking changes detection, community pulse via Exa, plugin compatibility analysis",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"changelog",
-		"updates",
-		"breaking-changes",
-		"community",
-		"pulse",
-		"watcher"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "Changelog Watcher",
-		"shortDescription": "Monitor Codex CLI updates and breaking changes",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "changelog-watcher",
+  "version": "1.0.19",
+  "description": "Codex CLI update watcher: changelog tracking, breaking changes detection, community pulse via Exa, plugin compatibility analysis",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "changelog",
+    "updates",
+    "breaking-changes",
+    "community",
+    "pulse",
+    "watcher"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Changelog Watcher",
+    "shortDescription": "Monitor Codex CLI updates and breaking changes",
+    "developerName": "Fusengine"
+  }
 }

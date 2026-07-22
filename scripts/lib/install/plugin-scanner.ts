@@ -1,5 +1,5 @@
 /**
- * plugin-scanner.ts — Scan plugins/* for hooks.json + .mcp.json + manifest.
+ * plugin-scanner.ts — Scan plugins/* for hooks.json + mcp.json.bak + manifest.
  * Used by runner.ts at end of install for a diagnostic report.
  * SRP: discovery + counting only (no formatting, no I/O beyond fs reads).
  */
@@ -60,14 +60,14 @@ function scanPlugin(pluginsDir: string, name: string): PluginInfo {
 		}
 	}
 
-	const mcpFile = join(path, ".mcp.json");
+	const mcpFile = join(path, "mcp.json.bak");
 	if (existsSync(mcpFile)) {
 		info.hasMcp = true;
 		try {
 			const cfg = JSON.parse(readFileSync(mcpFile, "utf8")) as Record<string, unknown>;
 			info.mcpServerCount = Object.keys(cfg).length;
 		} catch {
-			/* malformed .mcp.json */
+			/* malformed mcp.json.bak */
 		}
 	}
 

@@ -1,31 +1,30 @@
 {
-	"name": "typescript-expert",
-	"version": "1.0.10",
-	"description": "Expert TypeScript for pure TS projects: CLI tools, libraries, scripts, and backends on Node or Bun with SOLID principles.",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"typescript",
-		"node",
-		"bun",
-		"cli",
-		"library",
-		"backend",
-		"tsconfig",
-		"solid"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "TypeScript Expert",
-		"shortDescription": "Pure TypeScript, Node, Bun, tooling, tests, and packaging",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "typescript-expert",
+  "version": "1.0.11",
+  "description": "Expert TypeScript for pure TS projects: CLI tools, libraries, scripts, and backends on Node or Bun with SOLID principles.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "node",
+    "bun",
+    "cli",
+    "library",
+    "backend",
+    "tsconfig",
+    "solid"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "TypeScript Expert",
+    "shortDescription": "Pure TypeScript, Node, Bun, tooling, tests, and packaging",
+    "developerName": "Fusengine"
+  }
 }

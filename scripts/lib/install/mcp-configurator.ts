@@ -1,7 +1,8 @@
 /**
- * mcp-configurator.ts — Resolve ${VAR} placeholders in plugin .mcp.json using
+ * mcp-configurator.ts — Resolve ${VAR} placeholders in plugin mcp.json.bak using
  * values from ~/.codex/.env (or process.env), then write static
  * [mcp_servers.<name>] blocks to ~/.codex/config.toml between idempotent markers.
+ * config.toml is the single MCP source Codex loads (learn.chatgpt.com/docs/extend/mcp).
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { readdir } from "node:fs/promises";
@@ -68,7 +69,7 @@ export async function configureMcpServers(codexHome: string, pluginsRoot: string
 	const servers = new Map<string, ServerCfg>();
 	for (const e of await readdir(pluginsRoot, { withFileTypes: true })) {
 		if (!e.isDirectory()) continue;
-		const f = Bun.file(join(pluginsRoot, e.name, ".mcp.json"));
+		const f = Bun.file(join(pluginsRoot, e.name, "mcp.json.bak"));
 		if (!(await f.exists())) continue;
 		const cfg = (await f.json()) as Record<string, ServerCfg>;
 		for (const [name, srv] of Object.entries(cfg)) {

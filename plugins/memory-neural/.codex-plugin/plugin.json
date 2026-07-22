@@ -1,29 +1,28 @@
 {
-	"name": "memory-neural",
-	"version": "1.0.8",
-	"description": "Neural memory system: bio-inspired persistent memory with Graphiti + Qdrant",
-	"author": {
-		"name": "Fusengine",
-		"email": "hello@fusengine.ch",
-		"url": "https://github.com/fusengine"
-	},
-	"repository": "https://github.com/fusengine/agents",
-	"homepage": "https://github.com/fusengine/agents",
-	"license": "MIT",
-	"keywords": [
-		"memory",
-		"neural",
-		"graphiti",
-		"qdrant",
-		"knowledge-graph",
-		"vector-store"
-	],
-	"skills": "./skills/",
-	"hooks": "./hooks/hooks.json",
-	"interface": {
-		"displayName": "Memory Neural",
-		"shortDescription": "Persistent file-based memory system",
-		"developerName": "Fusengine"
-	},
-	"mcpServers": "./.mcp.json"
+  "name": "memory-neural",
+  "version": "1.0.9",
+  "description": "Neural memory system: bio-inspired persistent memory with Graphiti + Qdrant",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "neural",
+    "graphiti",
+    "qdrant",
+    "knowledge-graph",
+    "vector-store"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Memory Neural",
+    "shortDescription": "Persistent file-based memory system",
+    "developerName": "Fusengine"
+  }
 }

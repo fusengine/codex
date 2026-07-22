@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.41] - 2026-07-22
+
+- refactor(mcp): `mcp.json.bak` is now the single MCP config source — all 20 `plugins/*/.mcp.json` renamed to `mcp.json.bak`, `mcp-configurator.ts` reads it directly, `mcp.ts` + `plugin-scanner.ts` aligned; the now-redundant `mcpServers` field dropped from `manifest.ts`, `types.ts`, and all 20 `plugin.json` files; obsolete `scripts/migrate-mcp.ts` + `scripts/normalize-mcp.ts` removed (0 references)
+- docs: `AGENTS.md` compacted 147 -> 143 lines, with a new `## Code Review Rules` section (standard from developers.openai.com/blog/custom-code-review-rules-for-codex); `plugins/codex-rules/rules/*.md` corpus deduplicated 258 -> 126 lines, installed merge output 413 -> 278 lines
+- chore(release): bump ai-pilot 1.2.48, changelog-watcher 1.0.19, codex-rules 1.0.23, commit-pro 1.2.29, design-expert 2.1.38, go-expert 1.0.11, laravel-expert 1.2.14, memory-neural 1.0.9, nextjs-expert 1.1.30, php-expert 1.0.11, prompt-engineer 1.1.17, react-expert 1.0.26, rust-expert 1.0.11, security-expert 1.0.25, seo 1.0.15, shadcn-expert 1.0.23, solid 1.0.23, swift-apple-expert 1.1.26, tailwindcss 1.1.16, tanstack-start-expert 1.0.11, typescript-expert 1.0.11 + suite to 1.0.41
+
 ## [1.0.40] - 2026-07-20
 
 - fix(installer): the harness env toggles were only ever proposed once per machine — a `_FUSENGINE_HARNESS_ASKED` marker blocked the prompt block for life after the first install. The marker is removed from the code and actively purged from existing `.env` files (`purgeLegacyAskedMarker`), so machines that already installed repair themselves on the next setup run
