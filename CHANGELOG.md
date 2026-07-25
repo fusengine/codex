@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.42] - 2026-07-25
+
+- feat(codex): wire the 4 missing Codex 0.145 hook events the harness already implements (7 -> 11) — `PreCompact` (`saveApexState`, core), `PostCompact` (`postCompactContext`, core, scope-gated), `SessionEnd` on two disjoint carriers (core `cleanupSession`, aipilot `cacheAnalyticsSave`, 3s timeout cap), and `PermissionRequest` (core); routes declared in `harness-hook-routes.json` (87 -> 92) and `SessionEnd` added to the validation allowlist
+- chore(deps): bump `@fusengine/harness` to `^0.1.83` and align `HARNESS_VERSION`
+- refactor(rules): compress the instruction corpus 31624 -> 13201 bytes (-58%) by deduplication (APEX pipeline, Code Error Prevention, Cartography/Mandate Quality/Git flow/fuse-browser were duplicated), no rule lost; add 5 efficiency thresholds (sniper sized to diff, challenger bounded in-task, research gate conditioned on API surface, 3-column scope table with tie-breaker, on-demand skill reads); fix `gh pr merge --squash` contradiction in the template (squash orphans the post-merge release tag, AGENTS.md already forbade it)
+- fix(apex): replace the `jq ... > f.tmp && mv` idiom across 56 APEX procedure files — it tripped the "Shell redirect to file detected" guard-rail, which hard-DENYs under `codex exec`; `jq` now prints to STDOUT with persistence via the native write tool. Migrate the APEX state path `.codex/apex` -> `.harness/apex` (237 sites) and harden the `doc_consulted` schema
+- feat(installer): add the hooks-trust workstream (`hook-hash*`, `hooks-trust*`) — canonical hashing and cryptographic/canonical validation of hooks before execution, plus `mcp-configurator`/`runner`/`toml-helpers` install-side changes
+- chore(release): bump ai-pilot 1.2.49, codex-rules 1.0.24, core-guards 1.1.51 + suite to 1.0.42
+
 ## [1.0.41] - 2026-07-22
 
 - refactor(mcp): `mcp.json.bak` is now the single MCP config source — all 20 `plugins/*/.mcp.json` renamed to `mcp.json.bak`, `mcp-configurator.ts` reads it directly, `mcp.ts` + `plugin-scanner.ts` aligned; the now-redundant `mcpServers` field dropped from `manifest.ts`, `types.ts`, and all 20 `plugin.json` files; obsolete `scripts/migrate-mcp.ts` + `scripts/normalize-mcp.ts` removed (0 references)
