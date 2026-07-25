@@ -58,7 +58,7 @@ Gather from previous phase:
 
 ```
 Derive {task-slug} (see SKILL.md's Artifact Contract).
-IF .codex/apex/docs/elicit-{task-slug}.json exists:
+IF .harness/apex/docs/elicit-{task-slug}.json exists:
   → Load it as {prior_artifact}
   → In Step 2, techniques already "pass" in {prior_artifact} are
     deselected by default; "fail"/"deferred" ones are re-selected first

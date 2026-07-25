@@ -1,10 +1,6 @@
 ## APEX Shortcuts
-
-**Shortcuts:** `--quick` (skip Brainstorm for trivial scope) | `--skip-elicit` (skip eLicit only for trivial/read-only) | `--no-sniper` (skip eXamine only when no code/config changed).
-
-## sniper 7 Phases
-explore-codebase + research-expert (parallel when useful) -> grep usages -> jscpd/DRY scan when relevant -> react-effects-audit if `.tsx`/`.jsx` -> run linters/typecheck/tests -> apply fixes -> re-run checks = **ZERO errors**
-
+`--quick` (skip Brainstorm) · `--skip-elicit` (trivial/read-only only) · `--no-sniper` (only if no code/config changed).
+## sniper 7 Phases (full pass — size-gated, see Non-Negotiable 10)
+explore-codebase + research-expert (parallel) -> grep usages -> jscpd/DRY -> react-effects-audit (.tsx/.jsx) -> lint/typecheck/tests -> apply fixes -> re-run = ZERO errors.
 ## eLicit Modes
-- `--auto`: Auto-detect code type -> select elicitation techniques.
-- `--manual`: Expert proposes 5 techniques, user chooses.
+`--auto`: auto-detect code type + select techniques. `--manual`: propose 5 techniques, user chooses.

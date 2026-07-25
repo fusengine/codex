@@ -1,7 +1,7 @@
 # Artifact Contract
 
 Step 5 does not stop at an in-context markdown report -- it writes
-`.codex/apex/docs/elicit-{task-slug}.json`: a list of `{technique_id,
+`.harness/apex/docs/elicit-{task-slug}.json`: a list of `{technique_id,
 verdict, correction_applied, evidence}` per technique applied. A later
 elicitation pass on the same task loads this file first (Step 0) and
 **diffs against it** instead of re-deriving technique selection from

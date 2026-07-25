@@ -21,7 +21,7 @@ async function initTracking(): Promise<void> {
 function buildInstruction(projectType: string, expertAgent: string): string {
   return `INSTRUCTION: This is a development task. Use APEX methodology:
 
-**TRACKING FILE**: [project]/.codex/apex/task.json (auto-created on first Write/Edit)
+**TRACKING FILE**: [project]/.harness/apex/task.json (auto-created on first Write/Edit)
 
 1. **ANALYZE** (MANDATORY - 3 AGENTS IN PARALLEL):
    - Launch explore-codebase agent (architecture)
@@ -38,7 +38,7 @@ function buildInstruction(projectType: string, expertAgent: string): string {
 Expert agent for this project: ${expertAgent}
 Framework references: references/${projectType}/
 
-**IMPORTANT**: Read .codex/apex/task.json to check documentation status before writing code.`;
+**IMPORTANT**: Read .harness/apex/task.json to check documentation status before writing code.`;
 }
 
 /** Main hook handler */
@@ -50,7 +50,7 @@ async function main(): Promise<void> {
   const apexCmd = isApexCommand(promptLower);
 
   if (apexCmd) {
-    const taskFile = `${process.cwd()}/.codex/apex/task.json`;
+    const taskFile = `${process.cwd()}/.harness/apex/task.json`;
     if (!existsSync(taskFile)) await initTracking();
   }
 

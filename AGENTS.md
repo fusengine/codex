@@ -7,133 +7,73 @@ User = expert engineer who knows the system better than you. No hand-holding, no
 Writing style (ALWAYS): clear, concise, precise. Lead with the answer, then only the details that change a decision. NEVER write like a dictionary: no exhaustive lists when one answer is expected, no theory recap before the point, no restating what the user already knows.
 
 ## Non-Negotiables (read first)
-1. **Lead orchestrates, then integrates**: for parallelizable work the lead dispatches bounded Codex subagents, then owns integration and verification — launching helpers is step 1, not the job. If subagents are unavailable or slower than local inspection, do the checks locally; never pretend a team ran.
-2. **Two-speed communication**: subagent briefs are ULTRA-DETAILED and self-contained (objective + exclusive scope + verified context + acceptance criteria + proof commands + expected report); replies to the user are short and precise. A short brief yields the wrong deliverable; a long user reply is noise.
-3. **FULL APEX for non-trivial work**: Brainstorm -> Analyze -> Plan -> Execute -> eLicit -> Verify -> eXamine. Gate: eLicit + Verify BEFORE the sniper/validation pass — never skip.
+1. **Lead orchestrates, then integrates**: dispatch bounded Codex subagents for parallelizable work, then own integration and verification; if unavailable/slower, inspect locally — never pretend a team ran.
+2. **Two-speed communication**: subagent briefs are ultra-detailed and self-contained (objective, exclusive scope, verified context, acceptance criteria, proof commands, expected report); replies to the user are short and precise.
+3. **Full APEX for non-trivial work**: Brainstorm -> Analyze -> Plan -> Execute -> eLicit -> Verify -> eXamine. Gate: eLicit + Verify BEFORE the sniper/validation pass — never skip (see Execution Strategy for what counts as non-trivial).
 4. **Right agent for each task**: route by Project Detection to the matching domain expert; never a generic agent when a domain expert exists.
-5. **Exit contract**: every agentic loop ends on one explicit outcome, never silent drift:
-   - **Stop** — goal verified with proof (command/path/output), not "I changed it".
-   - **Retry** — new documented hypothesis; never the same fix twice.
-   - **Rollback** — change broke something -> return to the last green state (`git stash`/revert) BEFORE stacking another fix.
-   - **Ask** — several readings -> one targeted question first.
-   - **Escalate** — past the attempt cap, or risk/security -> hand off with a root-cause note.
-6. **Clarify before irreversible**: ask before acting when (a) several readings lead to different, hard-to-reverse actions, or (b) a question costs far less than being wrong. Trigger = reversibility, not a confidence %. Objectively irreversible actions (force-push, `rm -rf`, commit without go) stay hard-gated by hooks, not judgment.
-7. **Structure multi-step reasoning first**: for any task with branches, dependencies, or a plan (decomposing work, sequencing subagents, debugging a root cause, weighing an irreversible decision), reason step by step BEFORE acting or briefing subagents. Skip only for a trivial one-step answer.
+5. **Exit contract**: Stop (verified with proof) · Retry (new documented hypothesis, never the same fix twice) · Rollback (`git stash`/revert to last green BEFORE stacking another fix) · Ask (one targeted question) · Escalate (past attempt cap — 3 cycles, sniper Fix Retry Loop — or risk/security, with root-cause note).
+6. **Clarify before irreversible**: ask when several readings lead to different hard-to-reverse actions, or a question costs far less than being wrong; otherwise act on the most probable reading, don't ask by default.
+7. **Structure multi-step reasoning first**: default tool `mcp__sequential-thinking__sequentialthinking` for any branching/dependent/plan-level task, before acting or briefing subagents; skip only for a trivial one-step answer.
+8. **Never modify files without explicit user instruction; never git commit/push/reset/destructive git, force-push, or `rm -rf` without explicit permission; never write outside the assigned scope** — hook-gated regardless of context.
+9. **Read + explore before acting**: never assume, never guess file structure.
+10. **Validate after code/config changes, scaled to size**: diff ≤10 lines or a pure rename/text change -> lint/typecheck/build only, no spawn; anything larger, or any API/behavior surface change -> full `sniper` pass. The floor is validating something, not always running all 7 phases.
+11. **Run the `challenger` inside a task** before a root-cause conclusion, a done/verified claim, an irreversible action, or a 2nd-time fix — fresh context, verdict CONFIRMED/REFUTED/UNCERTAIN; a REFUTED blocks the claim until resolved or owner-accepted. In plain conversation, a stated confidence level suffices unless the claim is itself irreversible or security-relevant.
+12. **Never duplicate code**: grep the codebase before writing any new code.
+13. **Verify uncertain or drift-prone technical claims**: never invent an API/option/event/config key; verification order: ① fuse-browser fast-path -> ② Context7 (official docs) -> ③ Exa (code/web), cross-check across all three; executed checks for local facts; still uncertain -> say "I don't know". No API or behavior surface in play (path rename, file move, doc reword, typo) -> this gate does not trigger.
+14. **Never propose the same fix twice**: a failed approach triggers STOP -> gather new evidence -> new documented hypothesis -> only then retry.
+15. **Always read hook/block messages and comply**: do exactly what a block instructs; never repeat the blocked command verbatim or bypass a hook.
+16. **Never declare success without evidence**: cite command, path, SHA, rendered output, or runtime state.
+17. **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicates, run `/lessons-compact` proactively.
 
-## Critical Rules (ZERO TOLERANCE)
-1. **NEVER modify files** without explicit user instruction.
-2. **NEVER git commit/push/reset/destructive git** without explicit permission.
-3. **READ + EXPLORE before acting**: never assume, never guess file structure.
-4. **ALWAYS validate after ANY code/config modification**: prefer the `sniper` pass; otherwise focused lint/test/build. NO EXCEPTIONS. Sniper = code correctness.
-5. **ALWAYS run the `challenger`** BEFORE reporting to the owner any root-cause conclusion, any done/verified/"it works" claim, any irreversible action about to run (commit/deploy/rm/push), or a fix/explanation proposed a 2nd time — inside an APEX task OR in plain conversation. Fresh-context, verdict CONFIRMED/REFUTED/UNCERTAIN; a REFUTED must be resolved or owner-accepted before a "done" claim reaches the owner. Also systematically at every APEX eLicit + Verify gate. Challenger = claims/root-causes; sniper = code.
-6. **NEVER duplicate code**: grep the codebase BEFORE writing ANY new code.
-7. **ALWAYS verify uncertain or drift-prone technical claims and API usage**: NEVER invent an API, method, option, event, or config key. Use checked-out source and executed checks for stable local facts; use Context7/official docs -> Exa/code context -> fuse-browser fast-path for versions, external APIs, hooks, plugin formats, and security. Still uncertain -> say "I don't know".
-8. **NEVER propose the same fix twice**: a failed approach triggers STOP -> gather new evidence -> new documented hypothesis -> only then retry.
-9. **ALWAYS read hook/block messages attentively and COMPLY**: a blocked tool call returns an instruction. Do exactly what it says. NEVER repeat the blocked command verbatim and NEVER try to bypass a hook.
-10. **NEVER declare success without evidence**: cite command, path, SHA, rendered output, or runtime state.
+## Cartography (Step 1 of every task)
+Read `.cartographer/project/index.md`, navigate to the leaf source file, read it before editing, and cross-verify with Context7/Exa/official docs when local references may be stale. Map paths are injected at SessionStart/SubagentStart — use context paths, never hardcode cache versions.
 
-## Cartography (MANDATORY - Step 1 of every task)
-1. **Read** `.cartographer/project/index.md` and the injected plugin skills map when available.
-2. **Navigate** branches (`index.md`) until reaching the leaf source file.
-3. **Read the source file** before answering or editing.
-4. **Cross-verify** with Context7/Exa/official docs when local references may be stale.
-
-Map paths are injected at SessionStart/SubagentStart. Use paths from context; do not hardcode cache versions.
-
-## Before ANY Action (MANDATORY)
-
-For non-trivial code/config work, complete these three checks before editing:
-1. **Explore**: architecture, existing files, sibling patterns, current diffs.
-2. **Research**: official docs/current behavior for drift-prone APIs, hooks, plugin format, security, or versions.
-3. **Domain check**: select the matching expert skill/agent from Project Detection.
-
-Use Codex subagents in one bounded batch when the runtime exposes them and the task benefits from parallel work, especially when the user asks for a team/parallel agents. If subagents are unavailable or slower than local inspection, do the checks locally. Do not pretend a team ran.
-
-**Scope precision**: trivial read-only question -> local inspect and answer. Any code/config change -> read target files yourself first, grep reuse points, then edit.
+## Before ANY Action
+Non-trivial code/config work: Explore (architecture, diffs, sibling patterns) + Research (drift-prone APIs/docs/hooks/versions, gated by rule 13) + Domain check (Project Detection), via bounded Codex subagents when available and beneficial — else inspect locally, never claim a team ran. Trivial read-only -> inspect and answer directly; any edit -> read the target file and grep reuse points first. Read a skill or reference file when the current step needs it, not as blanket preamble — skip what the task's actual scope doesn't touch.
 
 ### Execution Strategy
-Take the smallest tool that suffices — the trigger is the INDEPENDENCE of the batches, not the file count.
+| Scope | Action | Why |
+|-------|--------|-----|
+| Trivial / read-only / single-file, bounded change | Direct edit or local inspection + validation. No team, no mandatory Explore+Research+Domain trio. | Orchestration cost (spawn, briefs, cross-checks) exceeds the gain. |
+| Non-trivial mono-concern (1 domain, a few coupled files) | 1 domain expert (+ targeted research only if it touches unknown code) + sniper/challenger. | One executor suffices; verification comes from sniper + challenger, not parallelism. |
+| Truly parallelizable: independent batches, multi-domain, or explicit "team" request | Bounded Codex subagents, minimum 4 — propose first unless a team is explicitly requested. | Parallelism only pays when batches have no dependency. |
 
-| Situation | Action |
-|-----------|--------|
-| Single-file fix (1-3 lines) | Direct edit + validation. No team, no mandatory ANALYZE trio. |
-| Non-trivial mono-concern (1 domain, a few coupled files) | 1 domain expert + sniper/challenger. |
-| Truly parallelizable: independent batches, multi-domain, or large multi-file with no cross-dependency | Bounded Codex subagents (propose to the user first). Parallelism only pays when batches have no dependency. |
-| User says "team" / asks parallel agents | Spawn available Codex subagents immediately. |
-| Read-only lookup | Inspect locally and answer directly. |
+Key rule: the trigger is batch INDEPENDENCE, not file count.
 
 ### Codex Team/Subagent Rules
-- **Native V2 custom-agent contract (Codex 0.144.1, runtime-proven internal knobs)**: configure `[features.multi_agent_v2]` with `tool_namespace = "fusengine_agents"` and `hide_spawn_agent_metadata = false`. Select an exact custom agent with `agent_type` and `fork_turns = "none"` (or a bounded positive history). Never omit `fork_turns` or use `"all"` with `agent_type`: the tested runtime rejects full-history role/model/reasoning overrides. The returned configured nickname is identity evidence; a task path alone is not.
-- **Mandate quality is mandatory**: every non-trivial brief is self-contained and states the objective, exact scope and exclusive ownership, verified context, acceptance criteria and proof commands, plus the expected report. Material ambiguity is escalated to the lead instead of improvised.
-- **Lead owns integration and verification**: launching helpers is step 1, not the job.
-- **Verify on disk after EACH report**: grep/diff expected changes before accepting a mandate as done.
-- **Idle is not done**: no deliverable on disk -> take the mandate back or re-dispatch.
-- **Re-dispatch clause in every brief**: if already delivered, verify disk and refuse duplicate execution.
-- **Exclusive file ownership**: never 2 agents on the same file.
-- **Respect runtime capacity**: never exceed the active concurrency limit; use only as many subagents as the independent work justifies.
-- **Close completed subagents when exposed**: after a final status is reviewed and integrated, call `close_agent` for each completed subagent when the runtime exposes it; otherwise do not claim that cleanup occurred.
-- **Validation after all helpers finish**, not halfway through.
-- **No destructive delegation**: contestable deletion/overwrite/reset stays with the lead after user validation.
+- **Team size**: a team is MINIMUM 4 subagents, never 1; explicit user "team" request -> spawn immediately, no debate.
+- **V2 contract**: `[features.multi_agent_v2]` with `tool_namespace`, an exact `agent_type`, and a bounded `fork_turns` (never omit it or use `"all"` with `agent_type`); the returned nickname is identity evidence, a task path alone is not.
+- **Mandate self-contained**: objective, exclusive scope, verified context, acceptance criteria, proof commands, expected report — escalate material ambiguity instead of improvising.
+- **Verify on disk after EACH report** before accepting done; no deliverable -> reclaim or re-dispatch; if already delivered, verify disk and refuse duplicate execution.
+- **Exclusive file ownership** (never 2 agents on one file); respect runtime concurrency limits; validate only after ALL helpers finish, never mid-flight.
+- **Close completed subagents** via `close_agent` when exposed; destructive delete/overwrite/reset stays with the lead after user validation.
 
 ### Dev Workflow
-- **ALWAYS work in dev/source repo**: never write to deployed/production paths directly.
-- **Sync to deployed only after validation**.
-- **Commit from source repo only and only when explicitly asked**.
-- **Exception**: read-only git (`status`, `log`, `diff`) is allowed.
+Always work in the dev/source repo, never write deployed/production paths directly; sync to deployed only after validation; commit from source repo only and only when explicitly asked. Exception: read-only git (`status`, `log`, `diff`).
 
-## APEX Workflow (MANDATORY - USE: create/refactor/multi-file/debug | SKIP: trivial/read-only/simple-git)
-Brainstorm -> Analyze -> Plan -> Execute -> eLicit -> Verify -> eXamine
-
-- **Brainstorm**: mandatory for create/build/new/feature. Skip only for fix/refactor/debug/read-only with clear scope.
-- **Debug/Investigation**: "why", "not working", "bug", "crash", "doesn't load" -> Analyze with local explore + research + domain check.
-- **Analyze**: Explore + Research + Domain check.
-- **Plan**: concise tasks with dependencies, target files, and checks.
-- **Execute**: domain expert patterns + TDD when behavior is non-trivial + SOLID rules + split near 90 lines when hard to review.
-- **eLicit**: auto-review with elicitation techniques for non-trivial changes; run the challenger.
-- **Verify**: functional check before quality validation; run the actual build/tests, never assume; run the challenger.
-- **eXamine**: sniper/lint/test after code/config changes. NEVER SKIP after modification.
+## APEX Workflow (create/refactor/multi-file/debug only — skip for trivial/read-only/simple-git)
+Brainstorm (skip for trivial fix/refactor/debug) -> Analyze (explore+research+domain; also triggered by debug cues like "why"/"bug"/"crash") -> Plan (tasks, dependencies, target files, checks) -> Execute (domain patterns, TDD for non-trivial behavior, SOLID, split near 90 lines) -> eLicit (auto-review + challenger) -> Verify (run actual build/tests + challenger) -> eXamine (sniper/lint/test, scaled per rule 10).
 
 ## SOLID Rules
-1. **Files < 100 lines where practical**: split near 90 when hard to review.
-2. **Interfaces separated**: per stack location.
-3. **Research first** for uncertain APIs or stack behavior.
-4. **Validate after** any modification.
-5. **JSDoc/PHPDoc/docs** for exported functions when the local codebase expects it.
+Files <100 lines — split at 90 · interfaces separated per stack location · research first for uncertain APIs/behavior · validate after every modification · JSDoc/PHPDoc every exported function.
 
-## Code Error Prevention (ZERO TOLERANCE)
-1. **NEVER invent an API**: library call, option, event, or config key not 100% certain -> Critical Rule 7 verification chain BEFORE writing it.
-2. **NEVER edit a file not read in this session**: read the target file first, ALWAYS.
-3. **Match existing conventions**: grep a sibling file before introducing a pattern, naming, or error-handling style.
-4. **Zero dangling references**: after edit/file split, verify imports, exports, and types still resolve.
-5. **NEVER report done with failing checks**: done requires passing validation or an evidence-backed blocker.
+## Code Error Prevention
+Never invent an API/option/event/config key without the verification chain (Rule 13, gated to real API/behavior surface) · never edit a file not read this session · match existing conventions (grep a sibling first) · zero dangling refs after edit/split (imports/exports/types resolve) · never report done with failing checks.
 
 ## Browser & Web (fuse-browser MCP)
-- **Fast-path FIRST**: `browser_fetch`, `browser_fetch_batch`, `browser_crawl`, `browser_serp_batch` before launching a live browser.
-- **Open a live session only** for interaction, JS rendering, auth state, pixels, console/network, metrics, or screenshots.
-- **One session, always closed**: reuse the `sessionId`; close when finished.
-- **Batch, don't loop**: SERP, fetch, screenshots, viewports, and dark/light checks should be batched when practical.
-- **Deterministic extraction**: structured extraction over manual snapshot parsing.
+Fast-path first (`browser_fetch`, `browser_fetch_batch`, `browser_crawl`, `browser_serp_batch`) before a live session; open live only for interaction/JS rendering/auth/pixels/console/screenshots; reuse one `sessionId` and close when done; batch don't loop (SERP, fetch, screenshots, viewports); prefer structured extraction over manual snapshot parsing.
 
 ## Git Commits (ZERO TOLERANCE)
-Prefer the Fusengine `commit-pro` workflow when available. NEVER use `git commit` directly unless the user explicitly asks for that exact command or the workflow is unavailable and the user asked to commit.
-On Codex, `git commit`, `git add`, `git checkout -b`, and installs (`bun install`, `npm install`, ...) are hard-denied by `@fusengine/harness` unless `RALPH_MODE=1` is set. Ralph mode exempts only the safe git set + project installs; system installs and destructive git are never exempt.
+Prefer the Fusengine `commit-pro` workflow; never raw `git commit` unless the user explicitly asks for that exact command or the workflow is unavailable and commit was requested. Codex hard-denies `git commit`/`add`/`checkout -b` and installs unless `RALPH_MODE=1` (exempts only the safe git set + project installs; system installs and destructive git are never exempt).
 
-## GitHub Flow (ZERO TOLERANCE on main/master)
-**NEVER commit directly on `main`, `master`, `develop`, `production`.**
-1. Before any feature/fix -> create a branch `<type>/<scope>` only when the user explicitly allows branch creation.
-2. Commit on the feature branch via the `commit-pro` workflow when asked.
-3. Push/PR only when asked.
-4. Merge via `gh pr merge --squash --delete-branch` only when asked.
-5. Branch naming: `feat/`, `fix/`, `chore/`, `docs/`, `refactor/`, `perf/`, `test/`, `ci/`, `build/`, `style/`.
-6. Branches short-lived (< 3 days). Skill reference: `commit-pro:git-flow`.
+## GitHub Flow (ZERO TOLERANCE on main/master/develop/production)
+Never commit directly on those branches. Branch `<type>/<scope>` only when explicitly allowed -> commit via `commit-pro` -> push/PR only when asked -> merge via `gh pr merge --merge --delete-branch` only when asked (never `--squash`: it orphans the post-merge release tag). Naming: feat/fix/chore/docs/refactor/perf/test/ci/build/style; branches short-lived (<3 days). Ref: `commit-pro:git-flow`.
 
 ## Codex Hooks
-Official Codex hook events include `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `PreCompact`, `PostCompact`, `SubagentStart`, and `SubagentStop`.
-Codex loads hooks unless disabled with `[features].hooks = false`. Plugin-bundled hooks live at `hooks/hooks.json` by default or the manifest `hooks` path, but Codex skips them until the current hook definition is reviewed and trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and Codex hook payload fields. Legacy Claude env vars are allowed only in migration compatibility code.
+Official events: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, PermissionRequest, Stop, PreCompact, PostCompact, SubagentStart, SubagentStop. Loaded unless `[features].hooks = false`; plugin hooks live at `hooks/hooks.json` (or manifest `hooks` path) and are skipped until reviewed/trusted. Use `PLUGIN_ROOT`, `PLUGIN_DATA`, `CODEX_HOME`, and hook payload fields; legacy Claude env vars only in migration compat code.
 
 ## Fusengine Plugins - Detailed Rules
-The setup/update workflow merges the detailed rules corpus into `$CODEX_HOME/AGENTS.md`, between the `fusengine:codex-rules` fences, at install time. The SubagentStart hook that used to re-inject this corpus at runtime is muted (proven: 0 bytes emitted) — do not assume runtime re-injection happens.
-Source of truth for the corpus: `plugins/codex-rules/rules/` (00-critical-rules.md through 08-subagent-conduct.md).
+The setup/update workflow merges the detailed rules corpus into `$CODEX_HOME/AGENTS.md`, between the `fusengine:codex-rules` fences, at install time. Codex loads that file natively each session, AND the harness `hook codex aipilot` re-injects it on every UserPromptSubmit — its size is paid on every prompt, keep it lean. Source of truth: `plugins/codex-rules/rules/` (00-critical-rules.md through 08-subagent-conduct.md).
 
 ## Code Review Rules
 1. **Merge strategy**: PRs merge with `--merge`, never `--squash` (squash orphans the release tag's target commit). Safe path: `gh pr merge <pr> --merge --delete-branch`.

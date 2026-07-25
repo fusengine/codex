@@ -5,25 +5,26 @@
  * _legacy_py/inject-apex-context.py.
  *
  * PreToolUse(Task): inject APEX rules + current task state into the sub-agent
- * prompt via hookSpecificOutput.additionalContext. Reads .codex/apex/task.json
+ * prompt via hookSpecificOutput.additionalContext. Reads .harness/apex/task.json
  * under CODEX_PROJECT_DIR (or cwd); the injected context string is
  * byte-identical to the Python.
  */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-
-interface TaskFile {
-  current_task?: string | number;
-  tasks?: Record<string, { subject?: string; phase?: string; doc_consulted?: Record<string, { consulted?: boolean }> }>;
-}
+import type { ApexTask, ApexTaskFile } from "./lib/interfaces/apex.interface";
 
 /** Read (task_id, subject, phase, doc_status) from task.json, with defaults. */
 function loadTaskState(taskFile: string): [string, string, string, string] {
   try {
-    const data = JSON.parse(readFileSync(taskFile, "utf8")) as TaskFile;
+    const data = JSON.parse(readFileSync(taskFile, "utf8")) as Partial<ApexTaskFile>;
     const taskId = String(data.current_task ?? "1");
-    const task = data.tasks?.[taskId] ?? {};
-    const consulted = Object.entries(task.doc_consulted ?? {})
+    const task: Partial<ApexTask> = data.tasks?.[taskId] ?? {};
+    // doc_consulted is always an object per contract (apex.interface.ts), but task.json
+    // is agent-authored: guard explicitly against a malformed non-object value (e.g. a
+    // stray `false`) instead of `?? {}`, which only catches null/undefined.
+    const docConsulted = task.doc_consulted;
+    const consultedMap = docConsulted && typeof docConsulted === "object" ? docConsulted : {};
+    const consulted = Object.entries(consultedMap)
       .filter(([, v]) => v && typeof v === "object" && v.consulted)
       .map(([k]) => k);
     return [taskId, task.subject ?? "", task.phase ?? "analyze", consulted.join(", ") || "none"];
@@ -34,7 +35,7 @@ function loadTaskState(taskFile: string): [string, string, string, string] {
 
 /** Build the APEX context string for injection. */
 function buildContext(taskId: string, subject: string, phase: string, docs: string): string {
-  return `⚠️ APEX MODE - Read .codex/apex/AGENTS.md for rules\n\n`
+  return `⚠️ APEX MODE - Read .harness/apex/AGENTS.md for rules\n\n`
     + `Current: Task #${taskId} - ${subject} (Phase: ${phase})\n`
     + `Docs consulted: ${docs}\n\n`
     + `Agent must:\n`
@@ -57,7 +58,7 @@ try {
 if (data.tool_name !== "Task") process.exit(0);
 
 const projectRoot = process.env.CODEX_PROJECT_DIR || process.cwd();
-const apexDir = join(projectRoot, ".codex", "apex");
+const apexDir = join(projectRoot, ".harness", "apex");
 if (!existsSync(apexDir)) process.exit(0);
 
 const [taskId, subject, phase, docs] = loadTaskState(join(apexDir, "task.json"));

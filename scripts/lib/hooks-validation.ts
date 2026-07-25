@@ -1,6 +1,6 @@
 const EVENTS = new Set([
 	"PreToolUse", "PermissionRequest", "PostToolUse", "PreCompact", "PostCompact",
-	"SessionStart", "UserPromptSubmit", "SubagentStart", "SubagentStop", "Stop",
+	"SessionStart", "UserPromptSubmit", "SubagentStart", "SubagentStop", "Stop", "SessionEnd",
 ]);
 const ROOT_KEYS = new Set(["description", "hooks"]);
 const GROUP_KEYS = new Set(["matcher", "hooks"]);

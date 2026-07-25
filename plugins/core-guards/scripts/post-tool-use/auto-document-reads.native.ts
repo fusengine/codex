@@ -5,7 +5,7 @@
  * _legacy_py/post-tool-use/auto-document-reads.py.
  *
  * PostToolUse(Read): when a doc-like file (SKILL/README/CLAUDE/docs/references)
- * is read, append a bullet to .codex/apex/docs/task-<id>-<fw>.md under the
+ * is read, append a bullet to .harness/apex/docs/task-<id>-<fw>.md under the
  * project root. Patterns, header/bullet text, dedup and outputs match the
  * Python.
  */
@@ -38,13 +38,13 @@ const root = resolveProjectRoot(dirname(fp));
 if (!root) process.exit(0);
 const fw = detectProjectFramework(root);
 
-const taskFile = join(root, ".codex", "apex", "task.json");
+const taskFile = join(root, ".harness", "apex", "task.json");
 let cur = "1";
 if (existsSync(taskFile)) {
   try { cur = JSON.parse(readFileSync(taskFile, "utf-8")).current_task ?? "1"; } catch { /* ignore */ }
 }
 
-const docDir = join(root, ".codex", "apex", "docs");
+const docDir = join(root, ".harness", "apex", "docs");
 mkdirSync(docDir, { recursive: true });
 const docFile = join(docDir, `task-${cur}-${fw}.md`);
 const ts = utcStamp();

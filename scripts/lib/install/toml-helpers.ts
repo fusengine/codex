@@ -57,3 +57,15 @@ export function setRootKey(src: string, key: string, value: string, quoted = tru
 	const comment = existingLine.match(/(\s*#.*)$/)?.[1] ?? "";
 	return head.replace(pattern, line + comment) + tail;
 }
+
+/**
+ * Removes a prior `start`..`end` marker block (if present) from `src`, rejoining the
+ * surrounding content on one blank-line-free boundary. Shared by every installer step that
+ * upserts one idempotent marked block into `config.toml` (mcp-configurator.ts, hooks-trust.ts).
+ */
+export function stripMarkerBlock(src: string, start: string, end: string): string {
+	const s = src.indexOf(start);
+	const e = src.indexOf(end);
+	if (s === -1 || e === -1) return src;
+	return `${src.slice(0, s).trimEnd()}\n${src.slice(e + end.length).trimStart()}`;
+}

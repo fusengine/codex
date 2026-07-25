@@ -88,12 +88,16 @@ git branch -d feature/PROFILE-123-user-profile
 
 ## Update Task Phase
 
-At the **start** of this phase, record it (and mark the task `completed` once the PR is opened) in `.codex/apex/task.json`:
+At the **start** of this phase, record it (and mark the task `completed` once the PR is opened) in `.harness/apex/task.json`:
 
 ```bash
-jq --arg p "create-pr" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
-  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
-# after the PR is created:
-jq '.tasks[.current_task].status = "completed"' .codex/apex/task.json \
-  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+jq --arg p "create-pr" '.tasks[.current_task].phase = $p' .harness/apex/task.json
 ```
+
+Persist that STDOUT output over `.harness/apex/task.json` with your native write tool (`apply_patch` under Codex, `Write` under Claude Code) — never a shell redirect (`>`); see `init-tracking.md` for why. After the PR is created:
+
+```bash
+jq '.tasks[.current_task].status = "completed"' .harness/apex/task.json
+```
+
+Persist that STDOUT output over `.harness/apex/task.json` the same way.

@@ -90,10 +90,10 @@ risk.
 
 ## Tracking
 
-APEX state may be stored in `.codex/apex/`:
+APEX state may be stored in `.harness/apex/`:
 
 ```
-project/.codex/apex/
+project/.harness/apex/
 ├── task.json
 └── docs/
 ```

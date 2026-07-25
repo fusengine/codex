@@ -60,6 +60,12 @@
     "scope": "aipilot"
   },
   {
+    "plugin": "ai-pilot",
+    "event": "SessionEnd",
+    "matcher": "",
+    "scope": "aipilot"
+  },
+  {
     "plugin": "cartographer",
     "event": "SessionStart",
     "matcher": "",
@@ -188,6 +194,30 @@
   {
     "plugin": "core-guards",
     "event": "Stop",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PreCompact",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PostCompact",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "SessionEnd",
+    "matcher": "",
+    "scope": "core"
+  },
+  {
+    "plugin": "core-guards",
+    "event": "PermissionRequest",
     "matcher": "",
     "scope": "core"
   },
