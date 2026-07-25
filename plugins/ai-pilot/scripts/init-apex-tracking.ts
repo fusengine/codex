@@ -1,6 +1,6 @@
 /**
  * init-apex-tracking.ts - Initialize APEX tracking for a project.
- * Creates .codex/apex/ structure with task.json and AGENTS.md.
+ * Creates .harness/apex/ structure with task.json and AGENTS.md.
  * Called by detect-and-inject-apex.ts or directly via CLI.
  */
 import { mkdir } from "node:fs/promises";
@@ -8,7 +8,7 @@ import { existsSync } from "node:fs";
 import { writeJsonFile, writeTextFile, readTextFile } from "./lib/core";
 
 const PROJECT_ROOT = process.cwd();
-const APEX_DIR = `${PROJECT_ROOT}/.codex/apex`;
+const APEX_DIR = `${PROJECT_ROOT}/.harness/apex`;
 const DOCS_DIR = `${APEX_DIR}/docs`;
 const TASK_FILE = `${APEX_DIR}/task.json`;
 const AGENTS_FILE = `${APEX_DIR}/AGENTS.md`;
@@ -71,20 +71,20 @@ After modifications, run \`sniper\` agent for ZERO linter errors.
 
 ## Files
 \`\`\`
-.codex/apex/
+.harness/apex/
 ├── task.json   # Task state (read first)
 ├── AGENTS.md   # This file (rules)
 └── docs/       # Agents write notes here
 \`\`\`
 `;
 
-/** Add .codex/apex/ to .gitignore if not already present */
+/** Add .harness/apex/ to .gitignore if not already present */
 async function updateGitignore(): Promise<void> {
   const gitignore = `${PROJECT_ROOT}/.gitignore`;
   if (!existsSync(gitignore)) return;
   const content = await readTextFile(gitignore);
-  if (content.includes(".codex/apex/")) return;
-  await writeTextFile(gitignore, `${content}\n# APEX tracking (auto-generated)\n.codex/apex/\n`);
+  if (content.includes(".harness/apex/")) return;
+  await writeTextFile(gitignore, `${content}\n# APEX tracking (auto-generated)\n.harness/apex/\n`);
 }
 
 /** Main initialization */

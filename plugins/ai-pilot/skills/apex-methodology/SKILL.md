@@ -25,7 +25,7 @@ Complete development workflow for features, fixes, and refactoring.
 
 **BEFORE anything else**, initialize APEX tracking — see `references/init-tracking.md` for the exact command.
 
-This creates `.codex/apex/task.json` (documentation consultation status) and `.codex/apex/docs/` (consulted documentation summaries). **The PreToolUse hooks will BLOCK Write/Edit until documentation is consulted.**
+This creates `.harness/apex/task.json` (documentation consultation status) and `.harness/apex/docs/` (consulted documentation summaries). **The PreToolUse hooks will BLOCK Write/Edit until documentation is consulted.**
 
 ---
 

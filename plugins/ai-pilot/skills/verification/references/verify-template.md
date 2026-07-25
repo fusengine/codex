@@ -1,6 +1,6 @@
 # Verification Artifact Template
 
-Write this file to `.codex/apex/docs/verify-{task-slug}.md` in Step 6. It is the
+Write this file to `.harness/apex/docs/verify-{task-slug}.md` in Step 6. It is the
 disk-persisted proof a gate (hook, sniper, next elicitation pass) can check --
 a context-only "it works" declaration does not survive a session boundary.
 

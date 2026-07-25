@@ -142,7 +142,7 @@ A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
 
 ## Artifact Contract
 
-Step 5 persists `.codex/apex/docs/elicit-{task-slug}.json` so a later pass
+Step 5 persists `.harness/apex/docs/elicit-{task-slug}.json` so a later pass
 diffs against prior verdicts instead of restarting from scratch. Full
 contract, `{task-slug}` derivation, and JSON schema: `references/artifact-contract.md`.
 

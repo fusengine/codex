@@ -1,21 +1,5 @@
 ## Frontend Tasks
-
-### Web UI Workflow
-1. **Gemini Design MCP** designs layout/pages using **shadcn/ui** components when available; they work together.
-2. **shadcn/ui** (`shadcn-ui-expert`) handles component registry, installation, and patterns (`nextjs-shadcn` / `react-shadcn`).
-3. **Do not hand-write new styled JSX/Tailwind UI from scratch** when Gemini Design, shadcn, or a design expert is available and useful.
-
-### Gemini Design Tools
-
-| Tool | Usage |
-|------|-------|
-| `create_frontend` | Complete responsive views |
-| `modify_frontend` | Surgical redesign |
-| `snippet_frontend` | Isolated components |
-
-**FORBIDDEN without shadcn/Gemini/design expert when available:** new styled React components, CSS/Tailwind layouts, forms, modals, tables.
-**ALLOWED without tools:** text changes, application logic, data wiring, state management, accessibility fixes, and small style fixes following existing patterns.
-
-### Apple UI Workflow
-
-For SwiftUI, use the Apple platform expert and design expert when exposed. Follow existing design-system and platform conventions; shadcn and web-only Gemini output are not SwiftUI requirements.
+`design-expert`/`design-method` first: 4-question brief, signature element, two-pass critique, then routes to the target skill. Direct HTML/CSS generation is the default, primary path (commit to a point of view, verify with tools not vibes).
+Gemini Design MCP, Magic/21st.dev, shadcn MCP: optional fallback tools, NEVER a requirement — native generation is always the fallback if unavailable.
+Mobile (iOS/Android): tokens + HTML device-framed mockup + handoff spec ONLY, never SwiftUI/Compose code.
+FORBIDDEN: raw JSX/Tailwind/SwiftUI/Compose styling that skips the design-expert brief + tokens + verification pass. ALLOWED without design-expert: text/logic/data-wiring/state changes.

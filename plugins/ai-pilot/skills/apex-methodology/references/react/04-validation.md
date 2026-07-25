@@ -14,13 +14,13 @@ next_step: references/react/05-review.md
 **Validation does NOT start** unless both proof files exist on disk for the current task. A claim made in context is not proof — only the file on disk is:
 
 ```bash
-TASK_SLUG=$(jq -r '.current_task' .codex/apex/task.json)
-if [ ! -f ".codex/apex/docs/elicit-${TASK_SLUG}.json" ]; then
-  echo "❌ Missing .codex/apex/docs/elicit-${TASK_SLUG}.json — go back to references/react/03.5-elicit.md first."
+TASK_SLUG=$(jq -r '.current_task' .harness/apex/task.json)
+if [ ! -f ".harness/apex/docs/elicit-${TASK_SLUG}.json" ]; then
+  echo "❌ Missing .harness/apex/docs/elicit-${TASK_SLUG}.json — go back to references/react/03.5-elicit.md first."
   exit 1
 fi
-if [ ! -f ".codex/apex/docs/verify-${TASK_SLUG}.md" ]; then
-  echo "❌ Missing .codex/apex/docs/verify-${TASK_SLUG}.md — go back to the verification skill (runs between eLicit and eXamine) first."
+if [ ! -f ".harness/apex/docs/verify-${TASK_SLUG}.md" ]; then
+  echo "❌ Missing .harness/apex/docs/verify-${TASK_SLUG}.md — go back to the verification skill (runs between eLicit and eXamine) first."
   exit 1
 fi
 ```
@@ -223,12 +223,13 @@ if (!user) return null
 
 ## Update Task Phase
 
-At the **start** of this phase, record it in `.codex/apex/task.json`:
+At the **start** of this phase, record it in `.harness/apex/task.json`:
 
 ```bash
-jq --arg p "validation" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
-  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
+jq --arg p "validation" '.tasks[.current_task].phase = $p' .harness/apex/task.json
 ```
+
+Persist that STDOUT output over `.harness/apex/task.json` with your native write tool (`apply_patch` under Codex, `Write` under Claude Code) — never a shell redirect (`>`); see `init-tracking.md` for why.
 
 ---
 

@@ -1,7 +1,7 @@
 /**
  * inject-subagent-context.ts - SubagentStart hook.
  * Injects APEX rules and cartographer paths into sub-agent prompt via additionalContext.
- * Reads .codex/apex/ structure and provides task context to sub-agents.
+ * Reads .harness/apex/ structure and provides task context to sub-agents.
  */
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -54,10 +54,10 @@ async function main(): Promise<void> {
   if (input.hook_event_name !== "SubagentStart") return;
 
   const projectRoot = process.env.cwd ?? process.cwd();
-  const apexDir = `${projectRoot}/.codex/apex`;
+  const apexDir = `${projectRoot}/.harness/apex`;
 
   if (!existsSync(apexDir)) {
-    outputHookResponse({ systemMessage: "apex-context: no .codex/apex/", hookSpecificOutput: { hookEventName: "SubagentStart" } });
+    outputHookResponse({ systemMessage: "apex-context: no .harness/apex/", hookSpecificOutput: { hookEventName: "SubagentStart" } });
     return;
   }
 
@@ -85,7 +85,7 @@ ${agentsContent}
 - Files < 100 lines | Interfaces in src/interfaces/ | JSDoc/PHPDoc required
 
 ### 5. Research Before Code
-- Use Context7/Exa for docs | Write notes to .codex/apex/docs/
+- Use Context7/Exa for docs | Write notes to .harness/apex/docs/
 
 ### 6. When Done
 - Use update_plan to mark the step completed when done${buildCartographerContext()}`;

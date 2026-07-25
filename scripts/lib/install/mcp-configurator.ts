@@ -9,6 +9,7 @@ import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import { loadEnvFile } from "./env-file";
+import { stripMarkerBlock } from "./toml-helpers";
 
 const START = "# >>> fusengine-codex mcp servers >>>";
 const END = "# <<< fusengine-codex mcp servers <<<";
@@ -57,13 +58,6 @@ function toToml(name: string, cfg: ServerCfg): string {
 	return lines.join("\n");
 }
 
-function stripPrior(content: string): string {
-	const s = content.indexOf(START);
-	const e = content.indexOf(END);
-	if (s === -1 || e === -1) return content;
-	return `${content.slice(0, s).trimEnd()}\n${content.slice(e + END.length).trimStart()}`;
-}
-
 export async function configureMcpServers(codexHome: string, pluginsRoot: string, selected?: Set<string>): Promise<void> {
 	const env = loadEnvFile(codexHome);
 	const servers = new Map<string, ServerCfg>();
@@ -90,7 +84,7 @@ export async function configureMcpServers(codexHome: string, pluginsRoot: string
 	const path = join(codexHome, "config.toml");
 	const current = existsSync(path) ? readFileSync(path, "utf8") : "";
 	const blocks = [...servers.entries()].map(([n, c]) => toToml(n, c)).join("\n\n");
-	const next = `${stripPrior(current).trimEnd()}\n\n${START}\n${blocks}\n${END}\n`;
+	const next = `${stripMarkerBlock(current, START, END).trimEnd()}\n\n${START}\n${blocks}\n${END}\n`;
 	writeFileSync(path, next);
 	p.log.success(`Wrote ${servers.size} [mcp_servers.*] blocks → ${path}`);
 }
