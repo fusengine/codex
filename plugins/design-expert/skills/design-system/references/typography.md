@@ -1,10 +1,6 @@
 ---
 name: typography
 description: Complete typography system with font sizing, spacing, and mobile guidelines
-when-to-use: Choosing fonts, setting type scale, configuring line-height and letter-spacing
-keywords: typography, fonts, font-size, line-height, letter-spacing, mobile, WCAG
-priority: critical
-related: color-system.md, ../../../rules/design-rules.md
 ---
 
 # Typography System

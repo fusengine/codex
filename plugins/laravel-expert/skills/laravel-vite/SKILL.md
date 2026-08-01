@@ -1,21 +1,29 @@
 ---
 name: laravel-vite
-description: "Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks, optimization. Use when configuring frontend build pipeline."
+description: Complete Vite bundling for Laravel - assets, HMR, SSR, frameworks, optimization. Use when configuring frontend build pipeline.
 ---
+
+<objective>
+Covers Vite as Laravel's frontend build tool: initial setup and the
+laravel-vite-plugin, multiple entry points, CSS preprocessors
+(Sass/Less/PostCSS), asset handling, VITE_-prefixed environment variables,
+the dev server and HMR (including Docker configuration), build optimization
+(chunking, minification), server-side rendering, Inertia integration, JS
+framework plugins (Vue/React/Svelte), CSP nonce security, and production
+deployment.
+</objective>
 
 # Laravel Vite
 
-_Targets: laravel 13.0, vite 6.x, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing vite.config.js, package.json
-2. `research-expert` - Verify latest Vite docs via Context7
-3. `mcp__context7__query-docs` - Query specific patterns (SSR, Inertia)
+1. **explore-codebase** - Check existing vite.config.js, package.json
+2. **research-expert** - Verify latest Vite docs via Context7
+3. **mcp__context7__query-docs** - Query specific patterns (SSR, Inertia)
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

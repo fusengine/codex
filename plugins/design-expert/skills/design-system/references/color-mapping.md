@@ -1,10 +1,6 @@
 ---
 name: color-mapping
 description: "Rules for deriving dark-mode OKLCH values from light-mode tokens (lightness inversion, chroma/hue adjustments)."
-when-to-use: "Translating a light-mode OKLCH palette into semantic dark-mode tokens."
-keywords: oklch, dark-mode, color, tokens, semantic
-priority: high
-related: contrast-ratios.md, oklch-system.md
 ---
 
 # Light → Dark OKLCH Color Transformation Rules

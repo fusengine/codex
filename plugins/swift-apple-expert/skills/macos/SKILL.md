@@ -1,7 +1,15 @@
 ---
 name: macos
-description: "macOS platform-specific development with menu bar apps, window management, AppKit integration, and notarization. Use when building Mac apps, creating menu bar extras, or distributing outside App Store."
+description: Use when building Mac apps — menu bar extras, window management, AppKit integration, or notarized distribution outside the App Store.
 ---
+
+<objective>
+Covers macOS-specific development: menu bar apps via MenuBarExtra, multi-window application management, keyboard shortcuts and menus, AppKit integration (NSViewRepresentable) inside SwiftUI, and notarization for distribution outside the Mac App Store.
+
+Lists the XcodeBuildMCP tools for macOS builds (build_macos, build_run_macos, test_macos, launch_mac_app, stop_mac_app) and references for app structure (MenuBarExtra, Settings, Windows), build tooling, AppKit bridging, and code-signing/notarization.
+
+Best practices: support keyboard shortcuts for power users, use MenuBarExtra for utility apps, use WindowGroup/Window for multi-window apps and Settings for the preferences scene, notarize before distributing outside the App Store, and enable sandboxing for App Store submissions.
+</objective>
 
 # macOS Platform
 
@@ -9,7 +17,7 @@ macOS-specific development with window management and distribution tools.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing macOS patterns
 2. **research-expert** - Verify latest macOS 26 docs via Context7/Exa

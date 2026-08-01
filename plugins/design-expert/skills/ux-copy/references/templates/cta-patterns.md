@@ -1,10 +1,6 @@
 ---
 name: cta-patterns
 description: "20+ CTA label examples grouped by context (signup, trial, checkout, upgrade)."
-when-to-use: "Writing button/CTA copy and needing sector-tested label phrasing."
-keywords: cta, copy, button, conversion
-priority: medium
-related: ../microcopy-patterns.md, copy-guide-template.md
 ---
 
 # CTA Patterns — 20+ Examples by Context

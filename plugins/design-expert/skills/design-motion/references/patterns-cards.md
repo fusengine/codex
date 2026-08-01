@@ -1,10 +1,6 @@
 ---
 name: patterns-cards
 description: Card UI patterns and component variations
-when-to-use: Creating card-based layouts, implementing card interactions, designing card hierarchies
-keywords: cards, patterns, components, interactive, feature cards, skeleton
-priority: high
-related: patterns-buttons.md, patterns-navigation.md, ../../design-web/references/design-patterns.md
 ---
 
 # Card Patterns

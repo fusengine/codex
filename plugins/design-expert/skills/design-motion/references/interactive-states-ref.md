@@ -1,18 +1,13 @@
 ---
 name: interactive-states
 description: Use when implementing button states, form field states, or interactive feedback. Covers hover, active, focus, disabled, loading states.
-versions:
-  framer-motion: "11"
-user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Grep
-related-skills: adding-animations, generating-components
 ---
 
 # Interactive States
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing state patterns
 2. **research-expert** - Framer Motion state animations

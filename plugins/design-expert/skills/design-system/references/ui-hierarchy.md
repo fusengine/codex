@@ -1,10 +1,6 @@
 ---
 name: ui-hierarchy
 description: Visual hierarchy principles - size, weight, color contrast, and emphasis
-when-to-use: Creating clear information hierarchy, establishing visual priorities, guiding user attention
-keywords: hierarchy, size, weight, contrast, emphasis, typography scale
-priority: high
-related: ui-spacing.md, ui-trends-2026.md, color-system.md
 ---
 
 # UI Visual Hierarchy

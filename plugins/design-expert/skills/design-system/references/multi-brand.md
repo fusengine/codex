@@ -1,10 +1,6 @@
 ---
 name: multi-brand
 description: "White-label token architecture — same components, brand-specific token sets, never brand values hardcoded in components."
-when-to-use: "The project must support multiple brands or white-label themes sharing one design system."
-keywords: multi-brand, white-label, tokens, theming
-priority: medium
-related: complex-themes.md, color-mapping.md
 ---
 
 # Multi-Brand Theming — White-Label Pattern

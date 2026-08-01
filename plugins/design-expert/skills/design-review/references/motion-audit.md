@@ -1,10 +1,6 @@
 ---
 name: motion-audit
 description: "10 non-negotiable motion standards plus escalation triggers and a delete-first remediation hierarchy, adapted from Emil Kowalski's review-animations."
-when-to-use: "Whenever the output added animation, transition, scroll-reveal, hover, or gesture code (design-motion skill)."
-keywords: motion, audit, standards, remediation
-priority: high
-related: motion-verdict.md, ../../design-motion/references/motion-principles.md
 ---
 
 # Motion Audit

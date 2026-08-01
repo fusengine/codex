@@ -1,13 +1,29 @@
 ---
 name: rust-ecosystem-crates
-description: "Use when choosing crates for a Rust project — serialization, CLI, async runtime, web, database, HTTP client, error handling, observability. Provides a domain→crate decision map of the de-facto 2026 standards, with selection criteria. Do NOT use for API usage details of a chosen crate (load the matching domain skill, or verify via fuse-browser fast-path on docs.rs/crates.io → Context7 → Exa)."
+description: Use when choosing crates for a Rust project — serialization, CLI, async runtime, web, database, HTTP client, error handling, observability. Not for API usage details of an already-chosen crate.
 ---
+
+<objective>
+This skill provides a domain-to-crate decision map of the de-facto 2026 Rust ecosystem
+standards — serde for serialization, clap for CLI parsing, tokio for async, axum for web,
+sqlx/sea-orm/diesel for database access, thiserror/anyhow for error handling split by
+library vs application, and tracing for observability — plus the selection criteria behind
+each choice.
+
+It also covers matching an existing project's Cargo.toml conventions before introducing a
+competing crate, and the version-verification discipline (never trust a remembered patch
+number; confirm current versions on crates.io/Context7/Exa).
+
+Out of scope: once a crate is chosen, its detailed API usage belongs to the matching domain
+skill (rust-web-backend, rust-async-concurrency, rust-error-handling) or direct docs
+verification (docs.rs/crates.io → Context7 → Exa).
+</objective>
 
 # Rust Ecosystem & Crates
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY crate selection, use `spawn_agent` to run these agents in parallel:
+Before ANY crate selection, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Read existing `Cargo.toml` to match established choices
 2. **research-expert** - Confirm the CURRENT version + maintenance status on crates.io via Context7/Exa

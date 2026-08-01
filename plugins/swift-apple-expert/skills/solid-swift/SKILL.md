@@ -1,13 +1,21 @@
 ---
 name: solid-swift
-description: "SOLID principles for Swift 6 and SwiftUI (iOS 26+). Files < 100 lines, protocols separated, @Observable, actors, Preview-driven development. Features Modular MANDATORY."
+description: Use when applying SOLID principles to Swift 6/SwiftUI code — file-size limits, protocol separation, @Observable, actors, feature-modular architecture.
 ---
+
+<objective>
+Enforces SOLID and DRY principles for Swift 6 and SwiftUI (iOS 26+) projects: a mandatory Features/[Feature]/ modular directory structure (never a flat Sources/ layout), strict file-size limits (100 lines, split at 90, with per-layer budgets for Views/ViewModels/Services/Protocols), protocols separated into their own Protocols/ directories, @Observable + @MainActor for ViewModels, Sendable structs for models, and mandatory #Preview on every View.
+
+Covers all five SOLID principles with dedicated references (SRP, OCP, LSP, ISP, DIP), concurrency patterns (actors, @MainActor, Sendable), an anti-pattern catalog, and code templates for views, view models, services, protocols, and models.
+
+Requires grepping the codebase for reusable protocols/services before writing new code, and checking shared locations (Core/Extensions/, Core/Utilities/, Core/Protocols/) before duplicating logic used by 2+ features.
+</objective>
 
 # SOLID Swift - Apple Best Practices 2026
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Swift/Apple docs via Apple Docs MCP + Context7

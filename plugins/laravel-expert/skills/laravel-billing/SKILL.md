@@ -1,21 +1,30 @@
 ---
 name: laravel-billing
-description: "Integrate Stripe and Paddle payments with Laravel Cashier. Use when implementing subscriptions, invoices, payment methods, webhooks, or billing portals."
+description: Use when implementing subscriptions, invoices, payment methods, webhooks, or billing portals with Laravel Cashier (Stripe or Paddle).
 ---
+
+<objective>
+Covers Laravel Cashier for Stripe and Paddle: choosing between the two
+(payment processor vs merchant-of-record, tax handling, fees), subscription
+lifecycle (create, swap, cancel, resume, trials, grace periods), webhooks and
+signature verification, invoices, payment methods, checkout/customer portal,
+metered/usage-based billing, team/per-seat billing, dunning (failed-payment
+recovery), and Pennant-based feature flags per plan. Includes FuseCore
+modular-project integration. For multi-vendor/marketplace split payments, see
+laravel-stripe-connect instead.
+</objective>
 
 # Laravel Billing (Cashier)
 
-_Targets: laravel 13.0, cashier-stripe 16.x, cashier-paddle 2.x, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing billing setup, User model
-2. `research-expert` - Verify latest Cashier docs via Context7
-3. `mcp__context7__query-docs` - Query specific patterns (Stripe/Paddle)
+1. **explore-codebase** - Check existing billing setup, User model
+2. **research-expert** - Verify latest Cashier docs via Context7
+3. **mcp__context7__query-docs** - Query specific patterns (Stripe/Paddle)
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

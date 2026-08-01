@@ -1,10 +1,6 @@
 ---
 name: touch-targets
 description: "iOS minimum touch target size — flagged as HIG-sourced but not re-verified against the live HIG page in this pass."
-when-to-use: "Sizing any tappable control in an iOS mockup."
-keywords: ios, touch-target, accessibility, hig
-priority: high
-related: ../SKILL.md
 ---
 
 # Touch Targets

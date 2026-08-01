@@ -1,10 +1,6 @@
 ---
 name: ux-patterns
 description: Form patterns, validation, mobile UX, and practical implementation guidelines
-when-to-use: Implementing forms, validating user input, optimizing mobile interactions
-keywords: forms, validation, mobile, patterns, touch zone, inline validation
-priority: high
-related: ux-nielsen.md, ux-laws.md, ux-wcag.md
 ---
 
 # UX Patterns & Practical Guidelines

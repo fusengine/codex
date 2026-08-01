@@ -1,7 +1,11 @@
 ---
 name: commit-detection
-description: "Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing."
+description: Detects optimal commit type from git changes. Use when analyzing commits, determining commit type, or before committing.
 ---
+
+<objective>
+Detects the optimal conventional commit type (feat/fix/docs/style/refactor/perf/test/build/ci/chore) from staged and unstaged git changes, using file-pattern categorization (docs/test/config/ci/build/src) plus diff-keyword heuristics ("fix", "bug", "optimize", etc.), and derives a scope suggestion from the primary changed directory (e.g. `src/api/auth.ts` → `auth`). Covers the full detection algorithm, the rule cascade, scope extraction, and worked examples. Does not perform the commit itself — routes to the matching `/commit-pro:<type>` command, or to the `commit` skill for full smart analysis when no rule matches cleanly.
+</objective>
 
 # Commit Type Detection Skill
 
@@ -67,7 +71,7 @@ IF formatting only (whitespace, semicolons):
   → style
 
 DEFAULT:
-  → Use /commit for smart analysis
+  → Use /commit-pro:commit for smart analysis
 ```
 
 ### Step 4: Determine Scope
@@ -107,18 +111,18 @@ See the `post-commit` skill for universal CHANGELOG, version bump, and tag logic
 **Example 1: Only README changed**
 ```
 Files: README.md
-→ /docs
+→ /commit-pro:docs
 ```
 
 **Example 2: New component + test**
 ```
 Files: src/Button.tsx, src/Button.test.tsx
-→ /feat (primary is new feature)
+→ /commit-pro:feat (primary is new feature)
 ```
 
 **Example 3: Fix in existing file**
 ```
 Files: src/api/auth.ts
 Diff contains: "fix login bug"
-→ /fix
+→ /commit-pro:fix
 ```

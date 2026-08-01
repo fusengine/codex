@@ -4,10 +4,14 @@
  * inject-apex-context.native.ts — native TS port of
  * _legacy_py/inject-apex-context.py.
  *
- * PreToolUse(Task): inject APEX rules + current task state into the sub-agent
+ * PreToolUse(spawn_agent): inject APEX rules + current task state into the sub-agent
  * prompt via hookSpecificOutput.additionalContext. Reads .harness/apex/task.json
  * under CODEX_PROJECT_DIR (or cwd); the injected context string is
  * byte-identical to the Python.
+ *
+ * Codex tool_name: `spawn_agent` bare, or separator-less `{namespace}spawn_agent`
+ * when multi_agent_v2 `tool_namespace` is set (e.g. `fusengine_agentsspawn_agent`)
+ * — suffix match per openai/codex hook_names.rs + flat_tool_name @ rust-v0.146.0.
  */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -55,7 +59,8 @@ try {
   process.exit(0);
 }
 
-if (data.tool_name !== "Task") process.exit(0);
+const toolName = data.tool_name ?? "";
+if (toolName !== "spawn_agent" && !toolName.endsWith("spawn_agent")) process.exit(0);
 
 const projectRoot = process.env.CODEX_PROJECT_DIR || process.cwd();
 const apexDir = join(projectRoot, ".harness", "apex");

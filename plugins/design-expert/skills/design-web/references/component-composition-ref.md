@@ -1,18 +1,13 @@
 ---
 name: component-composition
 description: Use when creating reusable components, component APIs, or complex hierarchies. Covers children, slots, compound components, render props.
-versions:
-  react: "19"
-user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Grep
-related-skills: generating-components
 ---
 
 # Component Composition
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing composition patterns
 2. **research-expert** - React 19 composition patterns

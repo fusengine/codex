@@ -1,17 +1,21 @@
 ---
 name: nextjs-zustand
-description: Zustand v5 state management for Next.js 16 App Router. Use when implementing global state, stores, persist, hydration, or client-side state in Client Components.
+description: Use when implementing global state, stores, persist, or hydration in Next.js 16 App Router Client Components with Zustand v5.
 ---
 
-# Zustand for Next.js 16
+<objective>
+Implements Zustand v5 client-side state management in Next.js 16 App Router: the v5 currying syntax (`create<State>()((set) => ({...}))`), Context-based stores built with `createStore` from `zustand/vanilla` + `useRef` (required in App Router to avoid state leaking between requests — never a global store), and middleware composition (devtools → persist → immer, order-sensitive for TypeScript).
 
-> Targets: Zustand 5.0, React 19, Nextjs 16.
+Covers `skipHydration` with the persist middleware plus manual rehydration in `useEffect` to avoid SSR mismatches, `useShallow` for array/object selectors, and SOLID file organization (`store.ts`, `store-provider.tsx`, `use-store.ts`). States explicitly that Zustand is Client-Components-only — never used in Server Components (fetch data directly there instead) and never used to persist auth tokens (use httpOnly cookies). Does not cover server state caching (see nextjs-tanstack-query for that).
+</objective>
+
+# Zustand for Next.js 16
 
 Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing stores and state patterns
 2. **research-expert** - Verify latest Zustand v5 docs via Context7/Exa

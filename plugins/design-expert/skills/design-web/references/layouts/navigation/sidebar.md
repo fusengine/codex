@@ -1,10 +1,6 @@
 ---
 name: sidebar
 description: Three-state sidebar navigation with expanded, collapsed, and hidden modes
-when-to-use: Designing app sidebar navigation, admin panel navigation
-keywords: sidebar, navigation, collapsed, expanded, hidden, menu, responsive
-priority: high
-related: navbar.md, mobile-nav.md, ../page-architecture.md
 ---
 
 # Sidebar Spec

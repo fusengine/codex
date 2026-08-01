@@ -1,11 +1,17 @@
 ---
 name: php-ecosystem-reference
-description: "Orientation map of the PHP framework ecosystem — NOT deep expertise. Use to know WHICH tool fits and WHERE to route: standalone Symfony components (Console, Process, HttpFoundation, EventDispatcher, Validator, Serializer) usable via Composer outside any framework, API Platform 4.3 (API-first on Symfony), and the Slim micro-framework. Do NOT use for implementation — Laravel routes to laravel-expert; deep full-stack Symfony has no dedicated expert (flag to the user)."
+description: Use when picking a non-Laravel PHP tool — Symfony components, API Platform, or Slim — and routing to implementation. Do NOT use for Laravel (laravel-expert).
 ---
 
-# PHP Ecosystem Reference (Orientation)
+<objective>
+This is a routing/orientation map for the non-Laravel PHP framework ecosystem, not an implementation guide. It answers "which tool fits this problem, and where do I go next?" for three areas: standalone Symfony components (Console, Process, HttpFoundation, EventDispatcher, Validator, Serializer) usable via Composer outside any framework, API Platform 4.3 (API-first on Symfony), and the Slim 4.15 micro-framework.
 
-_Targets: api-platform 4.3, slim 4.15._
+It does not carry deep, version-specific how-to knowledge for Symfony full-stack, API Platform, or Slim — for implementation details it hands off to the research-expert agent and to [[php-http-psr]] for framework-agnostic HTTP.
+
+Laravel is entirely out of scope — any Laravel task routes to the laravel-expert agent. Deep Symfony full-stack work has no dedicated expert in this ecosystem; this skill's job is to flag that gap explicitly to the user rather than improvise.
+</objective>
+
+# PHP Ecosystem Reference (Orientation)
 
 ## Scope (read this first)
 
@@ -20,10 +26,10 @@ For actual implementation:
 
 ## Agent Workflow (MANDATORY)
 
-Before relying on any detail here, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before relying on any detail here, use `TeamCreate` to spawn 2 agents:
 
-1. `research-expert` - Verify current versions/APIs on symfony.com, api-platform.com, slimframework.com
-2. `explore-codebase` - Detect which of these are already in composer.json
+1. **research-expert** - Verify current versions/APIs on symfony.com, api-platform.com, slimframework.com
+2. **explore-codebase** - Detect which of these are already in composer.json
 
 This skill orients; the research agent supplies verified specifics before any code.
 

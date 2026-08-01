@@ -1,7 +1,6 @@
 ---
 name: palette-template
 description: Complete palette output format with CSS custom properties and Tailwind config
-keywords: palette, template, css-variables, tailwind, theme, dark-mode, oklch
 ---
 
 # Palette Template

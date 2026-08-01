@@ -1,13 +1,19 @@
 ---
 name: solid-generic
-description: "SOLID principles for generic TypeScript, Bun, and Node.js projects. Files < 100 lines, interfaces separated, JSDoc mandatory. Use when: building CLI tools, libraries, scripts, hooks, or non-framework TypeScript code."
+description: "Use when building CLI tools, libraries, scripts, hooks, or non-framework TypeScript code (Bun/Node.js -- SOLID, files < 100 lines, JSDoc mandatory)."
 ---
+
+<objective>
+SOLID Generic enforces a modular architecture for plain TypeScript/Bun/Node.js code with no framework (CLI tools, libraries, scripts, hooks): interfaces live in `modules/[feature]/src/interfaces/` or `modules/cores/interfaces/` for shared types, never in implementation files; files stay under 100 lines (modules <80, services <60, validators <40); every export carries JSDoc.
+
+Before writing any new code it requires a DRY check across `modules/cores/lib`, `modules/cores/interfaces`, and `modules/cores/errors`, extracting anything repeated 3+ times into a shared helper. Each of the 5 SOLID principles has its own detailed reference (`single-responsibility.md` through `dependency-inversion.md`), plus copy-paste-ready templates for modules, services, interfaces, validators, factories, errors, and tests.
+</objective>
 
 # SOLID Generic - TypeScript / Bun / Node.js
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest TypeScript/Bun docs via Context7

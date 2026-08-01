@@ -1,10 +1,6 @@
 ---
 name: window-size-classes
 description: "Canonical Android window size classes (dp) for choosing the mockup width and adaptive layout behavior."
-when-to-use: "Picking which device class to mock up for, or deciding when a layout must adapt (phone vs foldable vs tablet)."
-keywords: android, window-size-classes, adaptive, dp, tablet, foldable
-priority: critical
-related: ../SKILL.md
 ---
 
 # Window Size Classes

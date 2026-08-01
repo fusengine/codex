@@ -1,21 +1,30 @@
 ---
 name: laravel-queues
-description: "Laravel 13 background jobs - PHP Attributes (#[Queue], #[Connection], #[Tries], #[Backoff]), workers, batches, chains, middleware, Queue::route() centralised routing. Use for async tasks."
+description: Use when implementing Laravel 13 background jobs — queue attributes, workers, batching, chaining, middleware, or Queue::route() routing.
 ---
+
+<objective>
+Covers Laravel 13 queues with PHP Attributes as the primary configuration
+mechanism on Jobs, Listeners, Notifications, Mailables, and Broadcast Events
+(#[Connection], #[Queue], #[Tries], #[Timeout], #[Backoff],
+#[MaxExceptions], #[FailOnTimeout], #[UniqueFor], #[AfterCommit]) alongside
+legacy property equivalents. Includes job lifecycle, dispatching, workers,
+batching, chaining, custom middleware, failed-job handling, Horizon
+monitoring, testing, troubleshooting, and centralised queue routing via
+Queue::route() in AppServiceProvider::boot().
+</objective>
 
 # Laravel Queues (L13 — Attributes-first)
 
-_Targets: laravel 13.0, horizon 5.43, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Audit job classes, connections, queue routes
-2. `research-expert` - Verify L13 Queue + Queue::route() via Context7
-3. `mcp__context7__query-docs` - Check queue attribute patterns
+1. **explore-codebase** - Audit job classes, connections, queue routes
+2. **research-expert** - Verify L13 Queue + Queue::route() via Context7
+3. **mcp__context7__query-docs** - Check queue attribute patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

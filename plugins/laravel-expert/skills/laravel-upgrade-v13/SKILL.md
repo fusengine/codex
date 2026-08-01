@@ -1,23 +1,33 @@
 ---
 name: laravel-upgrade-v13
-description: "Use when upgrading a Laravel 12 application to Laravel 13.0. Covers PHP 8.3 requirement, composer commands, breaking changes (PHPUnit 12, Pest 4, VerifyCsrfToken → PreventRequestForgery, cache prefixes, serializable_classes, pheanstalk 8.0+), Attributes migration (Eloquent + Queue), Symfony 7.4/8.0 upgrade, and Laravel Boost MCP automated upgrade."
+description: Use when upgrading a Laravel 12 application to Laravel 13.0 — composer bump, breaking changes, and Attributes migration.
 ---
 
-# Laravel 12 → 13 Upgrade Guide
+<objective>
+Covers the full Laravel 12 → 13.0 upgrade path: the PHP 8.3 minimum
+requirement, composer commands to bump Laravel/PHPUnit 12/Pest 4/Tinker,
+mandatory breaking changes (VerifyCsrfToken → PreventRequestForgery, cache
+prefix hyphens, serializable_classes hardening, pheanstalk 8.0+ for
+Beanstalkd, Symfony 7.4/8.0 support), the optional Eloquent + Queue
+Attributes migration, and the Laravel Boost MCP automated
+`/upgrade-laravel-v13` path. Provides a phased checklist (pre-upgrade audit
+→ composer bump → breaking-change fixes → attributes migration →
+validation).
+</objective>
 
-_Targets: laravel 13.0, php 8.3._
+# Laravel 12 → 13 Upgrade Guide
 
 Centralized upgrade path from Laravel 12.46 to Laravel 13.0 (released March 17, 2026).
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY upgrade, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY upgrade, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
-2. `research-expert` — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
-3. `laravel-expert` — Apply Laravel 13 best practices
+1. **explore-codebase** — Audit current Laravel 12 patterns (`$fillable`, `$tries`, `VerifyCsrfToken` references)
+2. **research-expert** — Verify latest Laravel 13 docs via Context7 (`/laravel/docs/13.x/upgrade`)
+3. **laravel-expert** — Apply Laravel 13 best practices
 
-After upgrade, run the `sniper` agent via `spawn_agent` for validation.
+After upgrade, run **sniper** for validation.
 
 ---
 

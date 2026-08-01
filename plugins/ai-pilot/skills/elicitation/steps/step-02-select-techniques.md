@@ -32,7 +32,7 @@ next_step: steps/step-03-apply-review.md
 
 ## YOUR TASK:
 
-**Before selecting**: if `.harness/apex/elicit-profile.md` exists, apply its
+**Before selecting**: if `.codex/apex/elicit-profile.md` exists, apply its
 `Exclude` / `Always Apply` / `Add for Code Type` precedence (see
 `references/elicit-profile.md`) to whatever this step would otherwise select.
 Also apply `{prior_artifact}` from Step 0 if present: deselect `"pass"`

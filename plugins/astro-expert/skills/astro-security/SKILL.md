@@ -1,19 +1,23 @@
 ---
 name: astro-security
-description: Use when configuring Content Security Policy (CSP) in Astro 7, setting security headers, managing script/style hashes, using nonces, or implementing experimentalStaticHeaders for adapter deployments.
+description: Use when configuring Content Security Policy (CSP) in Astro 7 — security headers, script/style hashes, nonces, or experimentalStaticHeaders.
 ---
+
+<objective>
+Configures Astro 7's stable Content Security Policy support (`security.csp` in `astro.config.mjs`): automatic SHA-256/384/512 hash generation for bundled scripts and styles, the injected `<meta http-equiv="content-security-policy">` tag, manual hash configuration for external scripts/styles, and nonces for dynamic script injection.
+
+Also covers `experimentalStaticHeaders` for emitting CSP as adapter-based HTTP headers instead of a meta tag. States the known limitations: CSP is inactive in `dev` mode (test with `build` + `preview`), incompatible with `<ClientRouter />` view transitions, and unsupported for Shiki's inline styles. Does not cover general deployment adapter setup beyond the CSP header wiring (astro-deployment).
+</objective>
 
 # Astro Security
 
-> Targets: Astro 7.
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing security config, adapters, headers
 2. **research-expert** - Verify latest Astro 7 CSP docs via Context7/Exa
-3. **Context7 (official docs)** - Check CSP compatibility with deployment adapter
+3. **mcp__context7__query-docs** - Check CSP compatibility with deployment adapter
 
 After implementation, run **sniper** for validation.
 

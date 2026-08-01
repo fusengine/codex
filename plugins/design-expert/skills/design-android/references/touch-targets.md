@@ -1,10 +1,6 @@
 ---
 name: touch-targets
 description: "Android minimum touch target size and spacing — verified against Android accessibility guidance and Material 3."
-when-to-use: "Sizing any tappable control in an Android mockup."
-keywords: android, touch-target, accessibility, material3
-priority: high
-related: ../SKILL.md
 ---
 
 # Touch Targets

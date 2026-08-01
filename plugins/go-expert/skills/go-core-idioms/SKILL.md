@@ -1,7 +1,15 @@
 ---
 name: go-core-idioms
-description: "Use when: writing or reviewing idiomatic sequential Go — error handling (%w wrapping, errors.Join, errors.Is/As, errors.AsType), slog structured logging, generics, small consumer-side interfaces, naming/style, new(expr), go fix modernizers. Do NOT use for: goroutines/channels/errgroup/context concurrency (use go-concurrency), non-Go languages, framework-specific code."
+description: Use when writing or reviewing idiomatic sequential Go — error handling, slog logging, generics, interfaces, style. Not for concurrency (go-concurrency).
 ---
+
+<objective>
+Covers idiomatic sequential Go 1.26: error handling (%w wrapping, errors.Join,
+errors.Is/As, errors.AsType), slog structured logging, generics, small
+consumer-side interfaces, naming/style conventions, new(expr), and go fix
+modernizers. Does not cover goroutines/channels/errgroup/context concurrency
+(see go-concurrency), non-Go languages, or framework-specific code.
+</objective>
 
 # Go Core Idioms
 
@@ -10,14 +18,13 @@ Idiomatic sequential Go for 1.26. For anything touching goroutines, channels,
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Map existing error/logging/interface patterns
 2. **research-expert** - Verify latest Go docs via Context7/Exa
+3. **mcp__context7__query-docs** - Confirm stdlib signatures (errors, log/slog)
 
-Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to confirm stdlib signatures (errors, log/slog).
-
-After implementation, spawn **sniper** for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

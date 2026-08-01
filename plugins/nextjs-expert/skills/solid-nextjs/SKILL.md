@@ -1,7 +1,13 @@
 ---
 name: solid-nextjs
-description: This skill should be used when the user asks about "SOLID principles", "Next.js architecture", "modular structure", "code organization", "file size limits", "interface separation", or "JSDoc documentation". Enforces files < 100 lines with mandatory JSDoc and separated interfaces.
+description: Use when applying SOLID principles to Next.js architecture — modular structure, file size limits, interface separation, JSDoc.
 ---
+
+<objective>
+Enforces SOLID and DRY architecture on Next.js 16 projects: files under 100 lines (pages < 50, Server Components < 80, Client Components < 60, Server Actions < 30), types isolated in `interfaces/` directories (never in components/pages), mandatory JSDoc on exports, and the module/`modules/cores/` directory structure. Requires researching current Next.js/React/Prisma docs (via Context7/Exa with the current year) before writing any code, and grepping for existing utilities before creating new ones.
+
+Provides a dedicated reference guide per SOLID letter (SRP file-splitting, OCP composition/plugin patterns, LSP contract compliance, ISP role-based interfaces, DIP constructor injection/factories) plus 23 ready-to-copy templates covering components, hooks, services, stores, Server Actions, API routes, validators, Prisma singletons, i18n, and queries. This is a cross-cutting code-quality skill, not a feature skill — for the framework APIs themselves see nextjs-16 and its sibling skills.
+</objective>
 
 # SOLID Next.js - Modular Architecture
 
@@ -49,7 +55,7 @@ Search with "2025" or "2026", NEVER with past years.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest docs for all stack technologies

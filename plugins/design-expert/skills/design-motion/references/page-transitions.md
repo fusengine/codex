@@ -1,10 +1,6 @@
 ---
 name: page-transitions
 description: Route change animations, drill-down patterns, and modal transitions
-when-to-use: Animating route changes, page navigations, view transitions
-keywords: page-transition, route, crossfade, drill-down, modal, sheet, navigation
-priority: high
-related: motion-principles.md, entrance-patterns.md
 ---
 
 # Page Transitions

@@ -1,21 +1,29 @@
 ---
 name: laravel-architecture
-description: "Design Laravel app architecture with services, repositories, actions, and clean code patterns. Use when structuring projects, creating services, implementing DI, or organizing code layers."
+description: Use when structuring a Laravel project, creating services/repositories/actions, implementing dependency injection, or organizing code layers.
 ---
+
+<objective>
+Covers Laravel application architecture end to end: project structure
+(Actions, Contracts, DTOs, Services, Repositories layout), the service
+container and dependency injection, service providers and facades,
+environment/configuration, development environments (Sail, Valet, Homestead,
+Octane), Artisan CLI, filesystem/processes/context, feature flags (Pennant),
+MCP servers, concurrency, and production deployment (including Envoy,
+logging, error handling, and package authoring).
+</objective>
 
 # Laravel Architecture Patterns
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing architecture
-2. `research-expert` - Verify Laravel patterns via Context7
-3. `mcp__context7__query-docs` - Check service container and DI patterns
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Laravel patterns via Context7
+3. **mcp__context7__query-docs** - Check service container and DI patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

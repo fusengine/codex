@@ -1,10 +1,6 @@
 ---
 name: container-queries
 description: "CSS @container usage — component-level responsive rules driven by parent size instead of viewport."
-when-to-use: "Component-level responsive rules are needed (e.g. a card or sidebar that resizes based on its container, not the viewport)."
-keywords: container-queries, css, responsive
-priority: low
-related: breakpoint-patterns.md
 ---
 
 # Container Queries

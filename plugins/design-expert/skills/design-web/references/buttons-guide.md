@@ -1,10 +1,6 @@
 ---
 name: buttons-guide
 description: Complete button design guide with states, sizes, and best practices
-when-to-use: Designing buttons, implementing states, sizing CTAs
-keywords: buttons, CTA, states, hover, disabled, sizing, accessibility
-priority: high
-related: forms-guide.md, ../../design-motion/references/interactive-states-ref.md
 ---
 
 # Button Design Guide

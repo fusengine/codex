@@ -1,7 +1,8 @@
 ---
 name: generator
 description: Content generator for articles, emails, social posts, and marketing copy. Use when generating blog posts, LinkedIn content, email campaigns, or creative content.
-model: gpt-5.6-terra
+model: sonnet
+color: pink
 tools: Read, Write
 skills: content-generation
 ---

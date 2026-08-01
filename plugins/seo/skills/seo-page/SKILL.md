@@ -1,13 +1,17 @@
 ---
 name: seo-page
-description: Use when analyzing a single page via /seo page. Covers meta extraction, schema validation, header hierarchy, content quality, and GEO readiness for one URL or local file.
+description: Use when analyzing a single URL or local file via /seo page — meta, schema, headers, GEO readiness.
 ---
+
+<objective>
+Runs a single-page SEO analysis: fetches the page (URL or local file), extracts meta/OG/Twitter/canonical (`scripts/parse-meta.ts`), validates JSON-LD (`scripts/validate-schema.ts`), analyzes H1-H6 hierarchy, and scores LLM-readiness (`scripts/geo-score.ts`). Checklist covers title length/keyword, meta description length, single-H1 rule, heading hierarchy, canonical correctness, Open Graph/Twitter Card completeness, schema presence, and image alt/lazy/format compliance. For a full-site audit spanning multiple pages, use seo-audit instead.
+</objective>
 
 # Single-Page SEO Analysis
 
 ## Workflow
 
-1. Fetch the page — a remote URL over the network, or read a local file
+1. Fetch page (URL via WebFetch, or read local file)
 2. Run `scripts/parse-meta.ts <input>` → extract title, description, OG, Twitter, canonical
 3. Run `scripts/validate-schema.ts <input>` → JSON-LD validation
 4. Analyze H1-H6 hierarchy

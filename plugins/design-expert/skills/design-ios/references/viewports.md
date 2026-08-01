@@ -1,10 +1,6 @@
 ---
 name: viewports
 description: "Canonical iOS device viewports in points, for mocking up screens at exact device dimensions."
-when-to-use: "Building the device-framed HTML mockup and choosing which device(s) to target."
-keywords: ios, viewport, device, points, iphone, ipad
-priority: critical
-related: ../SKILL.md, mockup.md
 ---
 
 # Device Viewports (points)

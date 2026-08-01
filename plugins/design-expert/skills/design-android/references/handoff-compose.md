@@ -1,10 +1,6 @@
 ---
 name: handoff-compose
 description: "Format for the Compose-ready handoff spec — theme mappings, spacing, sizing, states, tonal elevation, and RTL-safe start/end direction. This is the deliverable an Android developer implements from."
-when-to-use: "Writing the final handoff document after the Android mockup is built."
-keywords: android, handoff, compose, spec, material3, rtl
-priority: critical
-related: ../SKILL.md, color-roles.md, type-scale.md
 ---
 
 # Compose Handoff Spec Format

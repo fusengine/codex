@@ -1,10 +1,6 @@
 ---
 name: empty-state
 description: Empty state patterns with illustrations, messaging, and CTAs
-when-to-use: Designing no-data views, first-use experiences, empty lists
-keywords: empty-state, no-data, illustration, cta, first-use, blank, placeholder
-priority: high
-related: ../pages/error-pages.md, data-table.md
 ---
 
 # Empty State Spec

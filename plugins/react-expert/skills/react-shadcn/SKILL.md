@@ -3,15 +3,19 @@ name: react-shadcn
 description: shadcn/ui for React with TanStack Form. Use when building UI components, forms, dialogs, tables, toasts, or accessible components.
 ---
 
-# shadcn/ui for React
+<objective>
+Builds UI components for a React SPA (Vite/CRA) with shadcn/ui 3.8.0 on Radix UI primitives (not Base UI) and Tailwind CSS v4: forms (Field/FieldLabel/FieldError pattern with TanStack Form, never React Hook Form), overlays (Dialog, Sheet, Drawer, Popover, Tooltip), feedback (Alert, Sonner toasts, Progress, Skeleton), data display (Table, Badge, Calendar, Chart), and navigation (Sidebar, Command, DropdownMenu).
 
-> Targets: Shadcn-ui 3.8.0, React 19, Tailwindcss 4.
+Requires installing components via `bunx --bun shadcn@latest add` (never hand-written) to `@/modules/cores/shadcn/components/ui/`, and covers MCP registry tools (`mcp__shadcn__*`) for discovering components before implementing. This is the plain-React variant of shadcn/ui — for Next.js App Router see nextjs-shadcn instead.
+</objective>
+
+# shadcn/ui for React
 
 Beautiful, accessible components built on Radix UI with Tailwind CSS styling.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing components and patterns
 2. **research-expert** - Verify latest shadcn/ui docs via Context7/Exa
@@ -72,7 +76,7 @@ Components installed to `@/modules/cores/shadcn/components/ui/` following SOLID 
 
 ## MCP Server Integration
 
-Create `.mcp.json` at project root for Codex integration with shadcn registry.
+Create `.mcp.json` at project root for Codex CLI integration with shadcn registry.
 
 ### Available MCP Tools
 

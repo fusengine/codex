@@ -1,10 +1,6 @@
 ---
 name: settings
 description: Settings page with sidebar navigation and auto-save pattern
-when-to-use: Designing settings, preferences, account management pages
-keywords: settings, preferences, account, sidebar, auto-save, profile
-priority: high
-related: profile.md, ../../../../design-web/references/layouts/navigation/sidebar.md
 ---
 
 # Settings Spec

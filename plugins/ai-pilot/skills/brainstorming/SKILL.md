@@ -1,7 +1,13 @@
 ---
 name: brainstorming
-description: Use when user requests creative work - creating features, building components, adding functionality, or modifying behavior. Activates BEFORE APEX Analyze phase to refine requirements through structured questioning.
+description: Use when creating a feature/component or adding functionality. Fires BEFORE APEX Analyze to refine requirements via structured questioning.
 ---
+
+<objective>
+Brainstorming runs a design-first, no-code-before-approval process ahead of any non-trivial feature, component, or behavior change: explore project context, ask clarifying questions one at a time, diverge to 6-8 approaches via a named technique before converging on 2-3 with a trade-off table, present the design for explicit approval, save it to `docs/plans/`, then hand off to APEX Analyze along with the research already gathered (so Analyze doesn't repeat it).
+
+Skip it entirely for trivial fixes, typos, or simple renames -- those go straight to APEX.
+</objective>
 
 # Brainstorming Skill
 
@@ -11,7 +17,7 @@ description: Use when user requests creative work - creating features, building 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY brainstorming session, spawn both subagents in parallel (`spawn_agent`, one dispatch):
+Before ANY brainstorming session, use `TeamCreate` to spawn agents:
 
 1. **explore-codebase** - Understand project context, patterns, constraints
 2. **research-expert** - Fetch best practices and documentation

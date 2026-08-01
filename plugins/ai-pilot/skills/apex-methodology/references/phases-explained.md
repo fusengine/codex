@@ -24,14 +24,12 @@ ALWAYS run 2 agents in parallel:
 ## P - Plan
 
 ```text
-ALWAYS use `update_plan` (plan = array of { step, status } items, status
-pending|in_progress|completed; each call resends the FULL array — it REPLACES the plan;
-one item `in_progress` at a time; no pending→completed jump; skip it for a trivial task):
+ALWAYS use update_plan:
 
-1. Break down into steps
-2. Each step <100 lines
+1. Break down into tasks
+2. Each task <100 lines
 3. Plan file splits FIRST
-4. Map dependencies (note them in the step text)
+4. Map dependencies (addBlockedBy)
 ```
 
 ## E - Execute (with TDD)

@@ -1,9 +1,6 @@
 ---
 name: hero-glassmorphism
 description: Hero section with glassmorphism card overlay and 3-layer depth background
-when-to-use: Only when the brief explicitly calls for a glass/depth aesthetic — one gated option among several hero treatments, never the default hero pattern
-keywords: hero, glassmorphism, gradient-orbs, backdrop-blur, depth
-related: hero-section.md
 ---
 
 # Hero Glassmorphism Template

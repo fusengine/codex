@@ -1,33 +1,43 @@
 ---
 name: registration
-description: How to register a plugin so its agents load
+description: How to register agents in marketplace.json
+when-to-use: Making agent available after creation
+keywords: registration, marketplace, json, plugin, manifest
+priority: high
+related: architecture.md, frontmatter.md
 ---
 
 # Agent Registration
 
 ## Overview
 
-A Codex plugin's agents are auto-discovered from `agents/*.toml`, and its skills from `skills/*/SKILL.md`. The plugin itself must be registered in the marketplace manifest to be installable/discoverable.
+Agents must be registered in marketplace.json to be discoverable.
 
 ---
 
-## Marketplace Manifest Structure
+## Marketplace.json Structure
 
 ```json
 {
   "name": "fusengine-plugins",
   "plugins": [
     {
-      "name": "nextjs-expert",
+      "name": "fuse-nextjs",
       "source": "./plugins/nextjs-expert",
       "description": "Expert Next.js 16 with App Router...",
-      "version": "1.1.0"
+      "version": "1.1.0",
+      "agents": [
+        "./agents/nextjs-expert.md"
+      ],
+      "skills": [
+        "./skills/nextjs-16",
+        "./skills/solid-nextjs",
+        "./skills/prisma-7"
+      ]
     }
   ]
 }
 ```
-
-Agents and skills are NOT listed individually — they are resolved from the plugin directory (`agents/*.toml`, `skills/*/SKILL.md`).
 
 ---
 
@@ -35,31 +45,33 @@ Agents and skills are NOT listed individually — they are resolved from the plu
 
 | Field | Description |
 |-------|-------------|
-| `name` | Plugin identifier |
+| `name` | Plugin identifier (fuse-*) |
 | `source` | Path to plugin directory |
 | `description` | Plugin description |
 | `version` | Semantic version |
+| `agents` | Array of agent file paths |
+| `skills` | Array of skill directory paths |
 
 ---
 
 ## Registration Steps
 
-### 1. Add the Plugin Entry
+### 1. Add Plugin Entry
 
 ```json
 {
-  "name": "new-expert",
+  "name": "fuse-new",
   "source": "./plugins/new-expert",
-  "description": "...",
-  "version": "1.0.0"
+  "agents": ["./agents/new-expert.md"],
+  "skills": ["./skills/skill-a"]
 }
 ```
 
-### 2. Verify the Plugin Layout
+### 2. Verify Paths
 
-- Agent files: `agents/<name>.toml`
-- Skill dirs: `skills/<name>/SKILL.md`
-- `name` inside each `.toml` matches the filename
+- Agent path: `./agents/<name>.md`
+- Skill path: `./skills/<name>`
+- Paths relative to plugin source
 
 ### 3. Validate
 
@@ -69,17 +81,17 @@ Run sniper to verify registration.
 
 ## Plugin.json (Local)
 
-Also keep `.codex-plugin/plugin.json` in the plugin up to date:
+Also update `.codex-plugin/plugin.json` in the plugin:
 
 ```json
 {
-  "name": "new-expert",
+  "name": "fuse-new",
   "version": "1.0.0",
-  "description": "..."
+  "description": "...",
+  "agents": ["./agents/new-expert.md"],
+  "skills": ["./skills/skill-a"]
 }
 ```
-
-Mirror the same `version` between `.codex-plugin/plugin.json` and the marketplace entry for a plugin listed in `plugins[]`.
 
 ---
 
@@ -87,9 +99,9 @@ Mirror the same `version` between `.codex-plugin/plugin.json` and the marketplac
 
 | Mistake | Fix |
 |---------|-----|
-| Wrong path prefix | Use `./` for relative `source` |
-| Agent name mismatch | Match `name` in the `.toml` to the filename |
-| Version drift | Keep plugin.json == marketplace version |
+| Wrong path prefix | Use `./` for relative paths |
+| Missing skill | Add to skills array |
+| Typo in agent name | Match filename exactly |
 | Forgot plugin.json | Update both files |
 
 ---
@@ -98,8 +110,8 @@ Mirror the same `version` between `.codex-plugin/plugin.json` and the marketplac
 
 After registration:
 
-1. Agent appears in the available agents list
-2. Skills are accessible via `$skill-name` / `/skills`
+1. Agent appears in available agents list
+2. Skills are accessible via `/skill-name`
 3. No errors on plugin load
 
 ---
@@ -110,5 +122,5 @@ After registration:
 |----|-------|
 | Match folder names | Use different names |
 | Update version on changes | Keep stale version |
-| Keep plugin.json == marketplace version | Let versions drift |
+| List all skills | Forget dependencies |
 | Test after registration | Assume it works |

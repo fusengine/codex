@@ -1,13 +1,19 @@
 ---
 name: shadcn-theming
-description: "Design tokens and theming for shadcn/ui. Covers CSS variables, OKLCH colors, dark/light mode, and theme configuration for both Radix and Base UI primitives. Use when: defining or auditing shadcn/ui design tokens, OKLCH colors, or dark/light mode CSS variables."
+description: "Use when defining or auditing shadcn/ui design tokens, OKLCH colors, or dark/light mode CSS variables."
 ---
+
+<objective>
+Design tokens and theming for shadcn/ui: CSS custom properties (`--background`, `--primary`, etc.), OKLCH wide-gamut colors, dark/light mode via the `.dark` class or `prefers-color-scheme`, and Tailwind v4 `@theme` directive integration — for both Radix and Base UI primitives.
+
+Documents the token hierarchy (component → semantic → primitive OKLCH values) and the validation checklist (dark-mode overrides, chart/sidebar variables, no hard-coded hex).
+</objective>
 
 # shadcn Theming
 
 ## Agent Workflow (MANDATORY)
 
-Before theming work, spawn sub-agents in parallel via `spawn_agent`:
+Before theming work, use `TeamCreate`:
 
 1. **explore-codebase** - Find existing theme tokens
 2. **research-expert** - Verify OKLCH patterns via Context7

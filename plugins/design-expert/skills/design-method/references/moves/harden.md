@@ -1,10 +1,6 @@
 ---
 name: harden
 description: "Resilience pass — text/data extremes, 4xx/5xx/offline error states, i18n expansion (+30% German-class), touch targets. Anti-bug, secondary to the taste moves."
-when-to-use: "Before shipping any body that will receive real user data or run in production. Always run once per surface before polish.md — polish assumes hardening already happened."
-keywords: harden, resilience, extremes, i18n, error-states, touch-targets
-priority: high
-related: audit.md, polish.md, ../../design-review/references/ux-wcag.md
 ---
 
 # Harden — Resilience Pass

@@ -1,8 +1,6 @@
 ---
 name: design-system-devtool
 description: Ready-to-use dev tools design system — dark-first monochrome OKLCH, mono+sans pair, minimal motion, dense spacing
-keywords: devtools, developer, technical, dark-mode, OKLCH, design-system, example
-sector: dev-tools
 ---
 
 # Design System — Dev Tool (Technical/Dark-First)

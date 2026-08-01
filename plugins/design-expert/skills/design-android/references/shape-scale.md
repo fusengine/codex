@@ -1,10 +1,6 @@
 ---
 name: shape-scale
 description: "Canonical Material 3 shape/corner-radius scale (dp) — the only source of border-radius values for Android mockups."
-when-to-use: "Choosing corner-radius values for any shape in an Android mockup."
-keywords: android, material3, shape, corner-radius, dp
-priority: critical
-related: ../SKILL.md, type-scale.md
 ---
 
 # Shape Scale (Corner Radius)

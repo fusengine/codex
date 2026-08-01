@@ -1,21 +1,27 @@
 ---
 name: laravel-api
-description: "Build RESTful APIs with Laravel using API Resources, Sanctum authentication, rate limiting, and versioning. Use when creating API endpoints, transforming responses, or handling API authentication."
+description: Use when creating API endpoints, transforming responses with API Resources, or handling API authentication, rate limiting, or versioning.
 ---
+
+<objective>
+Covers building RESTful APIs with Laravel: API Resources for response
+transformation, Sanctum authentication, rate limiting, route versioning, Form
+Request validation, pagination (offset/cursor), and consuming external APIs
+via the HTTP client. For JSON:API-spec-compliant endpoints (sparse fieldsets,
+inclusion, links), see laravel-jsonapi instead.
+</objective>
 
 # Laravel API Development
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing API patterns
-2. `research-expert` - Verify Laravel API docs via Context7
-3. `mcp__context7__query-docs` - Check API Resources and Sanctum patterns
+1. **explore-codebase** - Analyze existing API patterns
+2. **research-expert** - Verify Laravel API docs via Context7
+3. **mcp__context7__query-docs** - Check API Resources and Sanctum patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

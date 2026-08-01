@@ -156,15 +156,13 @@ git rebase origin/main
 
 ## Update Task Phase
 
-At the **start** of this phase, record it (and the resolved task subject) in `.harness/apex/task.json`:
+At the **start** of this phase, record it (and the resolved task subject) in `.codex/apex/task.json`:
 
 ```bash
 jq --arg p "init-branch" --arg s "$TASK_SUBJECT" \
   '.tasks[.current_task].phase = $p | .tasks[.current_task].subject = $s' \
-  .harness/apex/task.json
+  .codex/apex/task.json > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
-
-Persist that STDOUT output over `.harness/apex/task.json` with your native write tool (`apply_patch` under Codex, `Write` under Claude Code) — never a shell redirect (`>`); see `init-tracking.md` for why.
 
 Replace `$TASK_SUBJECT` with the real task description, quoted for the shell.
 

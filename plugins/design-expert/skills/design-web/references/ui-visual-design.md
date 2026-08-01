@@ -1,10 +1,6 @@
 ---
 name: ui-visual-design
 description: UI visual design principles 2026 - Typography, color, spacing, layout, modern trends
-when-to-use: Understanding visual hierarchy, applying spacing rules, following 2026 design trends
-keywords: visual hierarchy, spacing, layout, trends, 2026, typography, color
-priority: high
-related: design-patterns.md, layout-discipline.md
 ---
 
 # UI Visual Design Principles 2026

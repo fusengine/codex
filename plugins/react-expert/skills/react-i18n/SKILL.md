@@ -1,13 +1,19 @@
 ---
 name: react-i18n
-description: react-i18next for React 19 - useTranslation hook, TypeScript Selector API, namespaces, pluralization, lazy loading, Suspense integration. Use when implementing translations in React apps (not Next.js).
+description: Use when implementing translations in a React app (not Next.js) with react-i18next — useTranslation, namespaces, pluralization, Suspense.
 ---
+
+<objective>
+Implements react-i18next in a React 19 app (Vite/CRA, not Next.js): `useTranslation()` hook usage, the TypeScript Selector API (i18next ≥25.4) for type-safe translation keys, namespace organization for code splitting, pluralization with ICU MessageFormat, interpolation (variables, dates, numbers, currency), lazy-loaded translations, and browser/URL/cookie language detection.
+
+Also covers React 19 Suspense integration, the `Trans` component for JSX inside translations, RTL language support, fallback strategies for missing keys, and unit-testing i18n setups. This skill is explicitly for React apps without Next.js — for Next.js App Router i18n use nextjs-i18n, and for Astro use astro-i18n.
+</objective>
 
 # react-i18next for React 19
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing i18n setup and translation patterns
 2. **research-expert** - Verify latest react-i18next/i18next docs via Context7/Exa

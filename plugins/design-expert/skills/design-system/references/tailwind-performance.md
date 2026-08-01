@@ -1,10 +1,6 @@
 ---
 name: tailwind-performance
 description: Tailwind CSS performance optimization and anti-patterns to avoid
-when-to-use: Optimizing CSS performance, avoiding performance pitfalls, best practice patterns
-keywords: performance, optimization, tailwind, anti-patterns, accessibility, purity
-priority: medium
-related: tailwind-config.md, tailwind-utilities.md
 ---
 
 # Tailwind Performance & Best Practices

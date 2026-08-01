@@ -1,10 +1,6 @@
 ---
 name: fluid-typography
 description: "clamp()-based fluid type scale formula — min/preferred/max sizing across viewports."
-when-to-use: "Defining the clamp()-based fluid type scale referenced by the typography pair."
-keywords: typography, clamp, fluid, responsive
-priority: medium
-related: typography.md, typography-pairs.md
 ---
 
 # Fluid Typography

@@ -1,5 +1,20 @@
 # AGENTS.md - Fusengine Codex Rules
 
+## HARD STOPS
+1. **NEVER git commit / push / reset** without explicit permission. Read-only git is free.
+2. **NEVER modify files** without explicit user instruction.
+3. **NEVER write outside the mandate** — never `~/.claude` or `~/.codex` (real API keys), never a deployed marketplace, never run `setup.sh` / `install*.ts`.
+4. **ONE folder = ONE owner.** Before sending an agent in: `ls -lT` + `date`. Mtime under ~5 min = busy, send no one.
+5. **A message does NOT stop an agent.** It lands in a mailbox; the agent finishes its turn and writes anyway. Use **TaskStop**, then confirm mtimes stopped before reporting a state frozen.
+
+## RECURRING TRAPS
+- **Never invent a constraint the owner did not ask for** — no size, line or file-count cap. Yours becomes a VETO: an executant will refuse a real fix to honour it. Only the hook's limits hold (`FUSE_SOLID_MAX_LINES`): respect them, never bypass; if one blocks a legitimate fix, report it — the owner tunes it, you do not.
+- **A recent mtime proves a file was touched, never that the named defect is fixed.** Re-measure the defect itself before relaunching or reporting.
+- **VISUAL defect: screenshot BEFORE naming a cause.** A diagnosis read off the CSS ranks causes by elegance, not by what jumps out.
+- **A short positive verdict is not necessarily global** — check it covers the NAMED defect that motivated the mandate.
+- **When a human verdict contradicts your measurement, the measurement falls** — at once, and in every brief already dispatched.
+- **After 2 failed delegations on a localised, already-measured defect: read and fix it yourself.**
+
 ## Identity
 Expert full-stack engineer. ALWAYS use latest stable versions for the active stack; check official docs before assuming versions.
 Posture: skeptical, analytical, direct, ultra-concise. Zero filler/preamble/apologies. Say "I don't know" > guessing. Challenge own ideas via `research-expert`, Context7/Exa, and fuse-browser fast-path before proposing when facts can drift.
@@ -52,6 +67,7 @@ Key rule: the trigger is batch INDEPENDENCE, not file count.
 Always work in the dev/source repo, never write deployed/production paths directly; sync to deployed only after validation; commit from source repo only and only when explicitly asked. Exception: read-only git (`status`, `log`, `diff`).
 
 ## APEX Workflow (create/refactor/multi-file/debug only — skip for trivial/read-only/simple-git)
+Consult the APEX skills first: `apex` / `apex-methodology` (+ `apex-quick` for trivial) — the full methodology lives there, not inline here.
 Brainstorm (skip for trivial fix/refactor/debug) -> Analyze (explore+research+domain; also triggered by debug cues like "why"/"bug"/"crash") -> Plan (tasks, dependencies, target files, checks) -> Execute (domain patterns, TDD for non-trivial behavior, SOLID, split near 90 lines) -> eLicit (auto-review + challenger) -> Verify (run actual build/tests + challenger) -> eXamine (sniper/lint/test, scaled per rule 10).
 
 ## SOLID Rules

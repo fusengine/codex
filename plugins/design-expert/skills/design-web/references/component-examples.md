@@ -1,10 +1,6 @@
 ---
 name: component-examples
 description: Index of production-ready component templates
-when-to-use: Finding code examples, copying component patterns
-keywords: examples, code, components, templates, index
-priority: high
-related: design-patterns.md, cards-guide.md
 ---
 
 # Component Examples

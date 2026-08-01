@@ -1,10 +1,6 @@
 ---
 name: register-copy
 description: "Copy-level anti-slop, register-aware — two ban-lists missing from the existing copy-self-audit gate (filler verbs, slop placeholder names), plus how brand vs product register should change what a section's copy is allowed to sound like. Mechanical checks marked separately from judgment calls."
-when-to-use: "Any time copy is written or reviewed for a page with a register already picked at Gate 0 — run alongside, not instead of, ux-copy/references/copy-self-audit.md."
-keywords: register, copy, ban-list, filler-verbs, slop-names, self-audit, mechanical, judgment
-priority: critical
-related: ../SKILL.md, brand.md, product.md, ../../ux-copy/references/copy-self-audit.md
 ---
 
 # Register: Copy — The Missing Ban-Lists + Register Direction

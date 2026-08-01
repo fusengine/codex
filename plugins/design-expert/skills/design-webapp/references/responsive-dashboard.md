@@ -1,10 +1,6 @@
 ---
 name: responsive-dashboard
 description: "Sidebar + content responsive pattern for dashboards — mobile hamburger, tablet icon-rail, desktop full sidebar."
-when-to-use: "Building a dashboard shell that must adapt sidebar behavior across breakpoints."
-keywords: dashboard, sidebar, responsive, layout
-priority: high
-related: layouts/pages/dashboard.md
 ---
 
 # Responsive Dashboard — Sidebar + Content Pattern

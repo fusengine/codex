@@ -1,7 +1,15 @@
 ---
 name: go-testing-quality
-description: Write idiomatic Go tests and measure quality — table-driven tests, subtests with t.Run, testify assertions/mocks, native fuzzing, benchmarks, the race detector, coverage, and pprof/PGO profiling. Use when writing or reviewing Go tests, adding coverage, benchmarking, or profiling a Go program. Do NOT use for CI pipeline wiring — golangci-lint, govulncheck (go-tooling-security) — or non-Go test suites.
+description: Use when writing or reviewing Go tests, adding coverage, benchmarking, or profiling a Go program. Not for CI/lint wiring (go-tooling-security) or non-Go tests.
 ---
+
+<objective>
+Covers idiomatic Go testing and quality practices built on the standard testing
+package plus testify: table-driven tests, subtests with t.Run, testify
+assertions/mocks, native fuzzing, benchmarks, the race detector, coverage, and
+pprof/PGO profiling. Does not cover CI pipeline wiring — golangci-lint,
+govulncheck (see go-tooling-security) — or non-Go test suites.
+</objective>
 
 # Go Testing & Quality
 
@@ -20,7 +28,7 @@ Idiomatic, 2026-current testing and quality practices for Go, built on the stand
 - Project layout, routing, DB wiring, DI — use `go-architecture`
 - SOLID line-limit / interface enforcement — use `solid-go`
 - Non-Go test suites (Pest, Vitest, Jest, cargo test) — use the matching expert
-- Security scanning / CVE audit — use `security-expert`
+- Security scanning / CVE audit — use `fuse-security`
 
 ---
 

@@ -1,10 +1,6 @@
 ---
 name: type-scale
 description: "Canonical Material 3 type scale baseline (sp) plus the Expressive Emphasized variants shipped May 2025."
-when-to-use: "Mapping design-system.md typography to Material 3 type roles for a mockup or handoff spec."
-keywords: android, material3, typography, expressive, sp
-priority: critical
-related: ../SKILL.md, color-roles.md
 ---
 
 # Material 3 Type Scale

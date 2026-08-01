@@ -1,17 +1,23 @@
 ---
 name: skill-creator
-description: Use when creating new skills, restructuring existing skills, or improving skill documentation. Generates SKILL.md + references/ structure with proper patterns.
+description: Use when creating new skills, restructuring existing skills, or improving skill documentation.
 ---
+
+<objective>
+Skill Creator scaffolds a complete `SKILL.md` + `references/` structure following the project's skill conventions: conceptual references (WHY + WHEN, max 150 lines each) separated from copy-paste-ready templates. It covers four flows -- creating a brand-new skill, restructuring one that doesn't follow the pattern, improving a skill missing references or with outdated content, and adapting an existing skill to a different framework -- each ending with registration in the owning agent's frontmatter and marketplace.json, then a `sniper` validation pass.
+
+It generates the skill's structural and documentation content only, not the skill's substantive technical guidance -- that must come from `research-expert` + `explore-codebase` findings gathered before writing.
+</objective>
 
 # Skill Creator
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY skill creation, spawn 3 subagents in parallel (one dispatch, `spawn_agent` / MultiAgentV2):
+Before ANY skill creation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing skills, analyze structure
 2. **research-expert** - Fetch latest official documentation online
-3. **mcp__context7__query-docs** - Get code examples from official sources (direct MCP call)
+3. **mcp__context7__query-docs** - Get code examples from official sources
 
 After creation, run **sniper** for validation.
 
@@ -31,12 +37,11 @@ After creation, run **sniper** for validation.
 ## Critical Rules
 
 1. **ALL content in English** - Never French or other languages
-2. **SKILL.md is descriptive** - Guides the agent to references/templates
-3. **Frontmatter = name + description ONLY** - Codex skills support only these two keys
-4. **References are conceptual** - WHY + WHEN, max 150 lines
-5. **Templates are complete** - Copy-paste ready code
-6. **Register the plugin** - Or the skill won't load
-7. **Run sniper after creation** - Validate all files
+2. **SKILL.md is descriptive** - Guides agent to references/templates
+3. **References are conceptual** - WHY + WHEN, max 150 lines
+4. **Templates are complete** - Copy-paste ready code
+5. **Register in agent + marketplace.json** - Or skill won't load
+6. **Run sniper after creation** - Validate all files
 
 ---
 
@@ -67,7 +72,7 @@ skills/<skill-name>/
 | **Workflow** | [workflow.md](references/workflow.md) | Creating/improving skills |
 | **Architecture** | [architecture.md](references/architecture.md) | Understanding skill structure |
 | **Content Rules** | [content-rules.md](references/content-rules.md) | Writing references/templates |
-| **Registration** | [registration.md](references/registration.md) | Making the skill available |
+| **Registration** | [registration.md](references/registration.md) | Making skill available |
 | **Adaptation** | [adaptation.md](references/adaptation.md) | Converting between frameworks |
 
 ### Templates
@@ -89,14 +94,15 @@ skills/<skill-name>/
 → research-expert + context7/exa
 
 # 2. Create structure
-mkdir -p plugins/<plugin>/skills/<name>/references/templates
+mkdir -p plugins/<agent>/skills/<name>/references/templates
 
 # 3. Create files
-→ SKILL.md (from template, frontmatter = name + description)
+→ SKILL.md (from template)
 → references/*.md (conceptual)
 → references/templates/*.md (code)
 
-# 4. Register the plugin in the marketplace manifest
+# 4. Register
+→ agent frontmatter + marketplace.json
 
 # 5. Validate
 → sniper
@@ -123,12 +129,13 @@ mkdir -p plugins/<plugin>/skills/<name>/references/templates
 ## Validation Checklist
 
 - [ ] ALL content in English
-- [ ] SKILL.md frontmatter = name + description ONLY
+- [ ] SKILL.md has proper frontmatter
+- [ ] All references listed in frontmatter
 - [ ] Agent Workflow section present
 - [ ] Reference Guide has Concepts + Templates tables
 - [ ] References < 150 lines each
 - [ ] Templates have complete, working code
-- [ ] Plugin registered in the marketplace manifest
+- [ ] Registered in agent + marketplace.json
 
 ---
 
@@ -145,5 +152,5 @@ mkdir -p plugins/<plugin>/skills/<name>/references/templates
 - Write in French (English only)
 - Copy-paste raw documentation
 - Exceed 150 lines in references
-- Add frontmatter keys beyond name + description
+- Forget registration step
 - Skip sniper validation

@@ -1,17 +1,21 @@
 ---
 name: nextjs-stack
-description: "Next.js 16+ complete stack with App Router, Prisma 7, Better Auth, shadcn/ui, TanStack Form, Zustand. Use as the master reference combining all framework skills. Do NOT use for: core framework API details — routing, caching, Server Components internals, proxy.ts (use nextjs-16 and its references)."
+description: Use as the master reference for a full Next.js 16+ stack — Prisma 7, Better Auth, shadcn/ui, TanStack Form, Zustand. Not for core framework API details (use nextjs-16).
 ---
 
-# Next.js Complete Stack
+<objective>
+Serves as the master reference tying together the complete recommended Next.js 16+ technology stack: App Router (nextjs-16), Prisma 7 (prisma-7), Better Auth 1.2 (better-auth), shadcn/ui 3.8.0 (nextjs-shadcn), TanStack Form (nextjs-tanstack-form), Zustand (nextjs-zustand), Tailwind CSS 4, and next-intl 4.0 (nextjs-i18n) — pointing to the right sub-skill for each layer rather than duplicating their content.
 
-> Targets: Nextjs 16, React 19, Prisma 7, Better-auth 1.2, Shadcn-ui 3.8.0, Tailwindcss 4.
+Documents forbidden substitutions (NextAuth.js instead of Better Auth, Pages Router instead of App Router, React Hook Form instead of TanStack Form, Client-Components-by-default instead of Server-first) and provides reference material for stack-decision justification, SOLID module structure, cross-part integration points, and project bootstrapping. Does not cover core framework API details like routing internals, caching, or proxy.ts — those live in nextjs-16.
+</objective>
+
+# Next.js Complete Stack
 
 Master skill combining all framework documentation for modern Next.js development.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest docs for all stack technologies

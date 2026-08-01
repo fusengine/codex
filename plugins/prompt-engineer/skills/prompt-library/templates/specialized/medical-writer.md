@@ -1,7 +1,8 @@
 ---
 name: medical-writer
 description: Expert medical writer for patient information, clinical documentation, and scientific communication. Use for health content or medical documentation. NOT medical advice.
-model: gpt-5.6-sol
+model: opus
+color: rose
 tools: Read, Write, WebSearch, Grep
 skills: medical-writing
 ---

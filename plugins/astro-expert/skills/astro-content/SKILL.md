@@ -1,21 +1,25 @@
 ---
 name: astro-content
-description: Expert Astro Content Layer API — content.config.ts, glob/file loaders, custom loaders, getCollection, getEntry, render(), Zod schemas, MDX, Remark/Rehype plugins. Use when managing structured content, blog posts, or any typed data collections.
+description: Use when managing structured content, blog posts, or typed data collections in Astro via the Content Layer API (content.config.ts).
 ---
 
-# Astro Content Layer Expert
+<objective>
+Implements Astro's Content Layer API: the `src/content.config.ts` config file, built-in `glob()` and `file()` loaders for local Markdown/MDX/JSON/YAML content, custom loaders for remote APIs/CMS/databases, Zod 4 schemas for type-safe frontmatter, and the query APIs `getCollection()`, `getEntry()`, and `render()` (which returns a `Content` component plus headings).
 
-> Targets: Astro 7, Zod 4.
+Also covers MDX authoring with Remark/Rehype plugins and the `astro sync` workflow for generating collection types. Does not cover form submission via Astro Actions (astro-actions) or SEO metadata generation from content (astro-seo) — those are handled by their own skills.
+</objective>
+
+# Astro Content Layer Expert
 
 Type-safe content management with loaders, Zod schemas, and the unified Content Layer API.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing collections, loaders, and content structure
 2. **research-expert** - Verify latest Content Layer docs via Context7/Exa
-3. **Context7 (official docs)** - Get loader and schema examples
+3. **mcp__context7__query-docs** - Get loader and schema examples
 
 After implementation, run **sniper** for validation.
 

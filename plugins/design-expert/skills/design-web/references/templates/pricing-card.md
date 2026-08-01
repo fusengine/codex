@@ -1,10 +1,6 @@
 ---
 name: pricing-card
 description: Single pricing tier card with features list and popular badge
-when-to-use: Individual pricing plan cards — use pricing-cards.md for the full 3-tier section
-keywords: pricing, card, features, popular, subscription
-priority: high
-related: pricing-cards.md
 ---
 
 # Pricing Card Template (Single Tier)

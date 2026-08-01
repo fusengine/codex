@@ -1,21 +1,25 @@
 ---
 name: astro-7
-description: Expert Astro 7 framework (stable, 7.0.9) — routing, output modes, middleware, Vite Environment API, single Rust compiler, Content Security Policy, Live Collections, Fonts API. Use when building Astro sites, configuring output, or upgrading from Astro 5/6.
+description: Use when building Astro 7 sites, choosing an output mode (static/server/hybrid), configuring middleware, or upgrading from Astro 5/6.
 ---
 
-# Astro 7 Expert
+<objective>
+Configures and explains Astro 7 (stable, 7.0.9) core framework mechanics: file-based routing, the three output modes (static/server/hybrid) and per-route `prerender`, middleware for auth/redirects/headers, the Vite Environment API, the single Rust compiler (Go compiler removed, strict HTML parsing), stable Content Security Policy, Live Content Collections, and the built-in Fonts API.
 
-> Targets: Astro 7, Node 22.12+, Vite 8.
+Covers initial project setup and migration from Astro 5/6, including breaking changes and Node 22.12+ requirements. Does not cover Content Layer API details (astro-content), Server Actions (astro-actions), Islands hydration directives (astro-islands), UI framework integrations (astro-integrations), or deployment adapters (astro-deployment) — those live in their own skills.
+</objective>
+
+# Astro 7 Expert
 
 Production-ready web framework for content-driven sites with unified dev runtime and Islands Architecture.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing routes, layouts, and config
 2. **research-expert** - Verify latest Astro 7 docs via Context7/Exa
-3. **Context7 (official docs)** - Check breaking changes v6→v7
+3. **mcp__context7__query-docs** - Check breaking changes v6→v7
 
 After implementation, run **sniper** for validation.
 

@@ -1,10 +1,6 @@
 ---
 name: contact-form
 description: Single-column contact form with inline validation and success state
-when-to-use: Contact pages, support forms, lead capture
-keywords: form, contact, validation, single-column, accessible
-priority: high
-related: faq-accordion.md
 ---
 
 # Contact Form Template

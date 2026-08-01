@@ -1,10 +1,6 @@
 ---
 name: copy-self-audit
 description: Pre-ship copy audit — em-dash crutch threshold, AI "production tell" catalogue, fake-precise-number flag, and final string review before handoff
-when-to-use: Before declaring any copy or page done — re-read every visible string against these gates
-keywords: copy-audit, em-dash, ai-tells, fake-numbers, pre-flight, self-review
-priority: critical
-related: microcopy-patterns.md, voice-tone-sectors.md
 ---
 
 # Copy Self-Audit

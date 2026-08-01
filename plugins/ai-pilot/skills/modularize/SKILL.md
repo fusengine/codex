@@ -1,7 +1,13 @@
 ---
 name: modularize
-description: "Use when converting existing code to modular architecture. Detects Laravel (FuseCore or standard) / Next.js / React and applies correct modular patterns. Triggers: \"modularize\", \"convert to modules\", \"migrate to modular\", \"restructure modules\"."
+description: "Use when converting existing code to modular architecture (Laravel, Next.js, React). Triggers: \"modularize\", \"convert to modules\", \"migrate to modular\", \"restructure modules\"."
 ---
+
+<objective>
+Modularize converts an existing, non-modular codebase to a modular architecture. It detects the framework (Laravel + FuseCore, standard Laravel, Next.js with modules/, or plain React) and delegates to the matching framework expert, but owns the process itself: explore the full structure, build and present a file-by-file migration map, wait for explicit user confirmation, execute the move step by step, and run `sniper` after every file change.
+
+The core constraint it enforces is that shared logic always routes through a central core -- never module-to-module imports directly.
+</objective>
 
 ## Agent Workflow (MANDATORY)
 
@@ -22,7 +28,7 @@ detect framework → explore structure → build migration plan → confirm with
 2. **Show migration map** — present file-by-file plan before touching any code
 3. **User confirms** — never move or modify files without explicit approval
 4. **Cores = central hub** — no module-to-module imports; all shared logic goes through core
-5. **Sniper after each file** — run the `sniper` agent after every file moved or created
+5. **Sniper after each file** — run `sniper` after every file moved or created
 
 ## Workflow Steps
 

@@ -1,10 +1,6 @@
 ---
 name: gemini-feedback-loop
 description: "Correction protocol for Gemini Design outputs (optional path) — retry templates and failure signals."
-when-to-use: "Using the optional Gemini Design MCP path and its output does not match the intended design."
-keywords: gemini, feedback, retry, correction, anti-slop, optional
-priority: low
-related: gemini-design-workflow.md
 ---
 
 # Gemini Design Feedback Loop (Optional Path)

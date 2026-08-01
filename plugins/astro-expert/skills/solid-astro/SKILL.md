@@ -1,19 +1,23 @@
 ---
 name: solid-astro
-description: Use when applying SOLID principles and clean architecture to Astro projects. Enforces files < 100 lines, src/interfaces/ for types, JSDoc on all exports, modular directory structure, and DRY enforcement.
+description: Use when applying SOLID principles to an Astro project — file-size limits, src/interfaces/ for types, JSDoc, modular structure, DRY.
 ---
+
+<objective>
+Enforces SOLID and DRY architecture on Astro projects: files under 100 lines (split at 90), all TypeScript types moved to `src/interfaces/` (never in component files), mandatory JSDoc on exported functions, no business logic in `src/pages/`, and mandatory grepping for existing logic/utilities in `src/lib/` and `src/components/` before writing new code.
+
+Provides ready-to-copy templates for components, layouts, services, and interfaces that already follow these rules. This is a cross-cutting code-quality skill, not a feature skill — it doesn't teach Astro APIs themselves (see astro-7, astro-content, astro-i18n, astro-styling for that), only how to structure the code that uses them.
+</objective>
 
 # SOLID Astro — Modular Architecture
 
-> Targets: Astro 7.
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze project structure, naming, and existing patterns
 2. **research-expert** - Verify Astro 7 architecture best practices via Context7/Exa
-3. **Context7 (official docs)** - Check Astro component API and TypeScript integration
+3. **mcp__context7__query-docs** - Check Astro component API and TypeScript integration
 
 After implementation, run **sniper** for validation.
 

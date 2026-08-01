@@ -1,21 +1,35 @@
 ---
 name: ts-lint-format
-description: "Use when choosing and configuring a TypeScript linter/formatter — Biome 2.x (one binary, type-aware) vs ESLint 9 flat config + typescript-eslint (full typed linting). Includes the 2026 arbitrage and Oxlint note. Do NOT use for type checking itself (tsc, ts-config skill) or test-runner configuration (ts-testing)."
+description: Use when choosing or configuring a TS linter/formatter — Biome 2.x vs ESLint 9 flat config + typescript-eslint typed linting. Not for type checking itself (ts-config).
 ---
+
+<objective>
+This skill covers choosing and configuring a TypeScript linting/formatting stack: Biome 2.x
+as a single binary that formats and lints (biome.json, domains, type-aware rules covering
+~75% of typed-linting needs) versus ESLint 9 flat config (eslint.config.mjs) with
+typescript-eslint for full typed linting including cross-file narrowing and no-unsafe-*
+rules.
+
+It covers the 2026 arbitrage between the two — new projects default to Biome for a fast
+zero-config start, established/typed-heavy codebases lean ESLint + typescript-eslint — plus
+a note on Oxlint as a challenger, and the rule to never run Biome and Prettier on the same
+files.
+
+Out of scope: type checking itself (tsc --noEmit, tsconfig flags) belongs to ts-config;
+test-runner configuration belongs to ts-testing.
+</objective>
 
 # TypeScript Linting & Formatting
 
-_Targets: biome 2.x, eslint 9 (flat config), typescript-eslint 8.x, typescript 5.8+ (latest stable 6.0)._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing lint/format config, project age, framework
-2. `research-expert` - Verify latest Biome 2.x + typescript-eslint via Context7/Exa
-3. `mcp__context7__query-docs` - Check Biome and typescript-eslint docs
+1. **explore-codebase** - Detect existing lint/format config, project age, framework
+2. **research-expert** - Verify latest Biome 2.x + typescript-eslint via Context7/Exa
+3. **mcp__context7__query-docs** - Check Biome and typescript-eslint docs
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ## Use when
 

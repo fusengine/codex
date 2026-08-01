@@ -1,10 +1,6 @@
 ---
 name: ui-trends-2026
 description: Emerging UI trends 2026 - Liquid Glass, Digital Texture, GenUI, Spatial UI, Multimodal, Sustainable Design
-when-to-use: Creating modern interfaces, implementing 2026 design trends, building future-ready UIs
-keywords: trends, liquid glass, generative ui, spatial ui, multimodal, sustainable, 2026
-priority: medium
-related: ui-hierarchy.md, ui-spacing.md
 ---
 
 # 2026 UI Emerging Trends

@@ -1,19 +1,13 @@
 ---
 name: layered-backgrounds
 description: Use when creating hero sections, landing pages, or premium visual effects. Covers gradient orbs, blur layers, noise textures.
-versions:
-  tailwindcss: "4.1"
-  framer-motion: "11"
-user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Grep
-related-skills: glassmorphism-advanced, generating-components
 ---
 
 # Layered Backgrounds
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing background patterns
 2. **research-expert** - CSS filter and blend modes

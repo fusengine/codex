@@ -1,10 +1,6 @@
 ---
 name: handoff-swiftui
 description: "Format for the SwiftUI-ready handoff spec — named tokens, Dynamic Type styles, semantic colors, sizing, states, spacing in pt. This is the deliverable swift-expert implements from."
-when-to-use: "Writing the final handoff document after the mockup is built."
-keywords: ios, handoff, swiftui, spec, tokens
-priority: critical
-related: ../SKILL.md, dynamic-type.md, semantic-colors.md
 ---
 
 # SwiftUI Handoff Spec Format

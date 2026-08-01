@@ -3,15 +3,19 @@ name: react-state
 description: Zustand v5 state management for React. Use when implementing global state, stores, persist, or client-side state.
 ---
 
-# Zustand for React
+<objective>
+Implements Zustand v5 global state management for React applications: the v5 currying syntax (`create<State>()((set) => ({...}))`), the selector pattern (`useStore((s) => s.field)`), `useShallow` for array/object selectors to prevent unnecessary re-renders, and middleware composition (devtools → persist → immer, order-sensitive for TypeScript).
 
-> Targets: Zustand 5.0, React 19.
+Covers separating stores by domain (auth, cart, ui, theme) rather than one giant store, SOLID file organization (`store.ts`, `store.interface.ts`, `use-store.ts`), and forbidden patterns (persisting auth tokens, v4 syntax, skipping `useShallow`). This is the plain-React variant of Zustand (no App Router request-isolation concerns) — for Next.js App Router see nextjs-zustand, and for server state use TanStack Query instead of this skill.
+</objective>
+
+# Zustand for React
 
 Minimal, scalable state management with React 18+ useSyncExternalStore.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing stores and state patterns
 2. **research-expert** - Verify latest Zustand v5 docs via Context7/Exa

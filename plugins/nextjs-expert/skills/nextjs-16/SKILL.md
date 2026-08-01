@@ -1,17 +1,21 @@
 ---
 name: nextjs-16
-description: "Expert Next.js 16 with Turbopack, App Router, Cache Components, proxy.ts, React 19. Use when building Next.js apps, routing, caching, server components, or migrating from v15. Do NOT use for: full-stack assembly and scaffolding with Prisma/Better Auth/shadcn/Zustand (use nextjs-stack), pure React SPA without next.config (use react-expert skills)."
+description: Use when building Next.js 16 apps — Turbopack, App Router, Cache Components, proxy.ts, v15 migration. Not for stack scaffolding (nextjs-stack) or React SPA (react-expert).
 ---
 
-# Next.js 16 Expert
+<objective>
+Covers Next.js 16 core framework mechanics: Turbopack (default bundler, Webpack fully removed), the App Router (nested layouts, parallel/intercepting routes, file conventions like page.tsx/layout.tsx/loading.tsx/error.tsx/not-found.tsx), Cache Components (`use cache`, `cacheTag()`, `cacheLife()`, `revalidateTag()`), `proxy.ts` (full Node.js runtime, replaces Edge middleware), and React 19 integration (View Transitions, new hooks).
 
-> Targets: Nextjs 16, React 19.
+Documents the critical v15→v16 breaking changes: proxy.ts replacing middleware.ts, Turbopack-only builds, `use cache` replacing Partial Prerendering, required React 19, and async `params`/`searchParams`. This skill covers core framework APIs only — for assembling a full production stack (Prisma, Better Auth, shadcn/ui, Zustand together) use nextjs-stack instead; for a pure React SPA without `next.config.*` use the react-expert skills instead.
+</objective>
+
+# Next.js 16 Expert
 
 Production-ready React framework with Server Components, streaming, and Turbopack.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing routes, components, and patterns
 2. **research-expert** - Verify latest Next.js 16 docs via Context7/Exa

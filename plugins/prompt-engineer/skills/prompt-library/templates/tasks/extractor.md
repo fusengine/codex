@@ -1,7 +1,8 @@
 ---
 name: extractor
 description: Data extractor for parsing unstructured text into structured JSON. Use when extracting contacts, invoices, events, or any structured data from text.
-model: gpt-5.6-terra
+model: sonnet
+color: orange
 tools: Read, Write
 skills: data-extraction
 ---

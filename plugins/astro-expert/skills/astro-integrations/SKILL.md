@@ -1,21 +1,25 @@
 ---
 name: astro-integrations
-description: Expert Astro UI framework integrations — @astrojs/react, @astrojs/vue, @astrojs/svelte, @astrojs/solid-js, @astrojs/preact, @astrojs/alpinejs, @astrojs/lit, @qwikdev/astro, @analogjs/astro-angular. Setup, multi-framework config, usage patterns.
+description: Use when adding React, Vue, Svelte, Solid, Preact, or another UI framework to an Astro project via @astrojs/* integrations.
 ---
 
-# Astro Integrations Expert
+<objective>
+Sets up and configures Astro's UI framework integrations: `@astrojs/react`, `@astrojs/vue`, `@astrojs/svelte`, `@astrojs/solid-js`, `@astrojs/preact`, `@astrojs/alpinejs`, `@astrojs/lit`, `@qwikdev/astro`, and `@analogjs/astro-angular`. Covers the `astro add` CLI installation flow, per-framework configuration options, and multi-framework projects (e.g. React + Vue in the same codebase) including `include` scoping to avoid JSX-framework conflicts.
 
-> Targets: Astro 7.
+This skill is Astro-specific (the framework is embedded via `astro.config.ts`, not a standalone React/Vue/Svelte app). Does not cover hydration directives once a component is added (astro-islands) or component styling (astro-styling) — those are separate skills.
+</objective>
+
+# Astro Integrations Expert
 
 Framework-agnostic: use React, Vue, Svelte, Solid, and more in the same Astro project.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing integrations and astro.config.ts
 2. **research-expert** - Verify latest integration docs via Context7/Exa
-3. **Context7 (official docs)** - Get setup and configuration examples
+3. **mcp__context7__query-docs** - Get setup and configuration examples
 
 After implementation, run **sniper** for validation.
 

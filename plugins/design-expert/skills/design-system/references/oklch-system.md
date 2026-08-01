@@ -1,10 +1,6 @@
 ---
 name: oklch-system
 description: OKLCH color format explanation, why it matters, and how to generate scales
-when-to-use: Understanding OKLCH, generating color scales, choosing colors
-keywords: oklch, color, perceptual, uniform, p3, gamut, lightness, chroma, hue
-priority: high
-related: contrast-ratios.md, templates/palette-template.md
 ---
 
 # OKLCH Color System

@@ -1,7 +1,15 @@
 ---
 name: go-concurrency
-description: "Use when: writing or reviewing Go concurrency — goroutines, channels, golang.org/x/sync/errgroup, context propagation and cancellation, sync.WaitGroup vs channels, the -race detector, or diagnosing goroutine leaks (incl. the 1.26 goroutineleak profile). Do NOT use for: sequential error handling / slog / generics / interface style (use go-core-idioms), non-Go languages, framework-specific code."
+description: Use when writing or reviewing Go concurrency — goroutines, channels, errgroup, context cancellation, or goroutine leaks. Not for sequential idioms (go-core-idioms).
 ---
+
+<objective>
+Covers Go concurrency for Go 1.26: goroutines and channels, golang.org/x/sync/errgroup,
+context propagation and cancellation, sync.WaitGroup vs channels, the -race detector,
+and diagnosing goroutine leaks (including the 1.26 goroutineleak profile). Does not
+cover sequential error handling, slog, generics, or interface style (see
+go-core-idioms), non-Go languages, or framework-specific code.
+</objective>
 
 # Go Concurrency
 
@@ -10,14 +18,13 @@ documented pitfall: **leaking goroutines on an unbuffered channel + early return
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Map existing goroutine/channel/context usage
 2. **research-expert** - Verify errgroup/context docs via Context7/Exa
+3. **mcp__context7__query-docs** - Confirm `golang.org/x/sync/errgroup` signatures
 
-Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to confirm `golang.org/x/sync/errgroup` signatures.
-
-After implementation, spawn **sniper** for validation, and run tests
+After implementation, run **sniper** for validation, and run tests
 with `go test -race ./...`.
 
 ---

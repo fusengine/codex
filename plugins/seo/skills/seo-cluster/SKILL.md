@@ -1,14 +1,18 @@
 ---
 name: seo-cluster
-description: Use when building semantic keyword clusters from SERP overlap. Covers seed keyword expansion, Jaccard SERP overlap, intent grouping, pillar/cluster content architecture.
+description: Use when building semantic keyword clusters from SERP overlap for pillar/cluster content architecture.
 ---
+
+<objective>
+Builds semantic keyword clusters by expanding a seed keyword (autocomplete + "People Also Ask"), fetching each candidate's SERP, and grouping keywords whose SERP overlaps the seed's by Jaccard index ≥30% into one cluster (pillar = highest-volume keyword). Layers clusters by buyer state (L1 awareness through L4 decision) rather than lexical similarity, splits local vs global intent into separate pages, and runs an anti-cannibalization check against existing pages before proposing new cluster pages. Does not write the content itself — hands off to seo-content-brief per cluster page and seo-internal-linking for the resulting link mesh.
+</objective>
 
 # Semantic Clustering
 
 ## Method
 
-1. Take seed keyword (e.g. "codex cli")
-2. Fetch SERP for seed via URL fetch or the fuse-browser MCP (top 10 results)
+1. Take seed keyword (e.g. "claude code")
+2. Fetch SERP for seed via WebFetch/fuse-browser (top 10 results)
 3. For each related keyword (autocomplete + "People Also Ask"):
    - Fetch its SERP
    - Compute overlap with seed's SERP (Jaccard index)
@@ -18,17 +22,17 @@ description: Use when building semantic keyword clusters from SERP overlap. Cove
 ## Output
 
 ```markdown
-# Cluster: "codex cli"
+# Cluster: "claude code"
 
-## Pillar: codex cli (vol: 12K, KD: 45)
+## Pillar: claude code (vol: 12K, KD: 45)
 - Intent: informational
 - Featured: AI Overview, video
 
 ## Cluster pages
-1. codex cli installation (vol: 2.4K)
-2. codex cli vs cursor (vol: 1.8K)
-3. codex cli mcp servers (vol: 900)
-4. codex cli hooks (vol: 720)
+1. claude code installation (vol: 2.4K)
+2. claude code vs cursor (vol: 1.8K)
+3. claude code mcp servers (vol: 900)
+4. claude code hooks (vol: 720)
 ```
 
 ## Cluster by Buyer State (2026)

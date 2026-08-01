@@ -1,21 +1,28 @@
 ---
 name: laravel-stripe-connect
-description: "Build marketplaces and platforms with Stripe Connect. Use when implementing multi-vendor payments, seller onboarding, commissions, payouts, or split payments."
+description: Use when implementing multi-vendor marketplace payments, seller onboarding, commissions, payouts, or split payments with Stripe Connect.
 ---
+
+<objective>
+Covers Stripe Connect for marketplaces and platforms (Etsy/Uber/Kickstarter-
+style multi-party payments, as opposed to simple SaaS billing — see
+laravel-billing for that): account types (Standard/Express/Custom), seller
+KYC onboarding, payment flows (direct/destination charges, separate charges
++ transfers), platform commission/application fees, payouts, refunds and
+disputes/chargeback liability, and compliance requirements.
+</objective>
 
 # Laravel Stripe Connect
 
-_Targets: laravel 13.0, stripe-php 16.x, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing payment setup, Seller model
-2. `research-expert` - Verify latest Stripe Connect docs via Context7
-3. `mcp__context7__query-docs` - Query specific patterns (account types, payment flows)
+1. **explore-codebase** - Check existing payment setup, Seller model
+2. **research-expert** - Verify latest Stripe Connect docs via Context7
+3. **mcp__context7__query-docs** - Query specific patterns (account types, payment flows)
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

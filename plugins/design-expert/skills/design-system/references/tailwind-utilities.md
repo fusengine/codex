@@ -1,10 +1,6 @@
 ---
 name: tailwind-utilities
 description: Tailwind CSS utilities, class organization, and common patterns
-when-to-use: Writing Tailwind CSS, organizing utility classes, implementing component styles
-keywords: tailwind, utilities, classes, organization, responsive, dark mode
-priority: high
-related: tailwind-config.md, tailwind-performance.md
 ---
 
 # Tailwind CSS Utilities

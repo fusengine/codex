@@ -1,10 +1,6 @@
 ---
 name: ui-spacing
 description: Spacing system, 8px grid, whitespace management, and density levels
-when-to-use: Implementing consistent spacing, applying component padding, managing visual density
-keywords: spacing, grid, whitespace, padding, margins, gaps, density
-priority: high
-related: ui-hierarchy.md, ui-trends-2026.md
 ---
 
 # UI Spacing System

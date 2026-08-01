@@ -1,10 +1,6 @@
 ---
 name: breakpoint-patterns
 description: "Responsive breakpoint recipes — sidebar collapse, nav transforms, and layout shifts across sm/md/lg/xl."
-when-to-use: "Defining the responsive breakpoint strategy for a layout grid or navigation shell."
-keywords: breakpoints, responsive, sidebar, tailwind
-priority: medium
-related: container-queries.md, fluid-typography.md
 ---
 
 # Breakpoint Patterns

@@ -1,10 +1,6 @@
 ---
 name: ux-wcag
 description: WCAG 2.2 AA accessibility requirements and implementation
-when-to-use: Ensuring accessibility compliance, implementing focus management, validating color contrast
-keywords: accessibility, wcag, wcag 2.2, contrast, focus, keyboard navigation
-priority: critical
-related: ux-nielsen.md, ux-laws.md, ux-patterns.md
 ---
 
 # Accessibility (WCAG 2.2 AA)

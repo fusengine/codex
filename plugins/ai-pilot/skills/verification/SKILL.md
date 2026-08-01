@@ -1,7 +1,13 @@
 ---
 name: verification
-description: "Use when marking a task as complete, finishing a feature, or claiming a bug is fixed. Ensures functional resolution is verified with evidence before closing. Do NOT use for: lint/type/code-quality validation (use code-quality / sniper AFTER functional verification passes)."
+description: "Use when marking a task complete, finishing a feature, or claiming a bug fixed -- verifies functional resolution before closing. Do NOT use for lint/quality checks (use sniper AFTER this)."
 ---
+
+<objective>
+Verification confirms the original request is actually fulfilled -- distinct from sniper, which only confirms the code is clean. It runs a 6-step process: re-read the original request word for word, list every acceptance criterion (explicit and implicit), verify each with concrete evidence (test output, logs, screenshots, diffs), run the full test suite to check for regressions, review every modified file for accidental side effects, then route the "functionally resolved" claim through the `challenger` agent before writing it down.
+
+Step 6 always persists `.codex/apex/docs/verify-{task-slug}.md` -- an in-context "it works" declaration doesn't survive a session boundary, and this artifact is what later gates (sniper, elicitation) actually check. It sits between eLicit and eXamine in APEX: a task is only complete when both verification and sniper pass.
+</objective>
 
 # Verification Before Completion
 
@@ -48,9 +54,9 @@ Review every modified file. Confirm no accidental changes to unrelated code. Ver
 **Step 6: Confirm functional resolution -- challenge, then write the artifact**
 Before writing "Original problem is FUNCTIONALLY resolved," ALWAYS route the claim through the `challenger` agent (or `challenge` skill), fresh-context: claim = "functionally resolved" + evidence from Steps 3-5, NEVER the investigation reasoning. This is systematic -- every Verify gate, no exception, exactly like sniper runs at every eXamine. Only write the "FUNCTIONALLY resolved" verdict after a `CONFIRMED` result (or an `UNCERTAIN` explicitly accepted by the owner). A `REFUTED` verdict must be resolved (fix and re-verify) before the claim reaches the owner -- soft-gate, not a hard veto.
 
-Write `.harness/apex/docs/verify-{task-slug}.md` (template: `references/verify-template.md`): every verification step checked, one evidence item per criterion (command output, log excerpt, screenshot path, or diff), plus the challenge verdict from this step. A context-only "it works" declaration does not survive a session boundary; the written artifact is the guardrail gates (sniper, later elicitation passes) actually check. Then state explicitly in your response: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
+Write `.codex/apex/docs/verify-{task-slug}.md` (template: `references/verify-template.md`): every verification step checked, one evidence item per criterion (command output, log excerpt, screenshot path, or diff), plus the challenge verdict from this step. A context-only "it works" declaration does not survive a session boundary; the written artifact is the guardrail gates (sniper, later elicitation passes) actually check. Then state explicitly in your response: "Original problem is FUNCTIONALLY resolved" with a summary of evidence, or list what remains unresolved.
 
-`{task-slug}`: derive per `apex-methodology/references/init-tracking.md` (git branch slug) -- same pattern used by the `elicitation` skill's artifact.
+`{task-slug}`: derive per `apex-methodology/references/init-tracking.md` (git branch slug or active `update_plan` id) -- same pattern used by the `elicitation` skill's artifact.
 
 ---
 

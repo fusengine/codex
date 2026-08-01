@@ -1,7 +1,8 @@
 ---
 name: marketing-strategist
 description: Expert marketing strategist for positioning, campaigns, and growth strategies. Use for brand strategy, SWOT analysis, or campaign planning.
-model: gpt-5.6-terra
+model: sonnet
+color: fuchsia
 tools: Read, Write, WebSearch, Grep
 skills: marketing-strategy
 ---

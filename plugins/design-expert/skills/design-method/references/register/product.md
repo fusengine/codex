@@ -1,10 +1,6 @@
 ---
 name: register-product
 description: "Direction for register `product` (dashboard, app, utility tool) — density/predictability/discreet-motion standards, and the anti-generic floor that still applies: the Domain-Specificity Floor and the product furniture anti-pattern list."
-when-to-use: "Gate 0 declares register `product` — read this before Pass 1, and again at design-review Part 2 to judge whether dashboard/app surfaces are domain-specific or generic demo furniture."
-keywords: register, product, density, predictability, domain-specificity, dashboard-furniture
-priority: critical
-related: ../SKILL.md, brand.md, copy.md, ../../design-webapp/references/responsive-dashboard.md, ../../design-system/references/spacing-density.md
 ---
 
 # Register: Product — Density Over Drama, Never Interchangeable

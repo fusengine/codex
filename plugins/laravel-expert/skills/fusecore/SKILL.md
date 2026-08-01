@@ -1,21 +1,29 @@
 ---
 name: fusecore
-description: "FuseCore Modular Architecture - Laravel 13 modular monolith with auto-discovery, React 19 integration, and SOLID principles. Use when creating modules, understanding FuseCore structure, or implementing features in FuseCore projects."
+description: Use when creating modules, understanding FuseCore structure, or implementing features in a FuseCore modular-monolith Laravel project.
 ---
+
+<objective>
+FuseCore is a modular-monolith architecture for Laravel 13 with React 19
+integration, built on auto-discovery (module.json), SOLID principles, and
+per-module isolation (models, migrations, routes, React resources, i18n).
+Covers creating new modules, understanding the FuseCore directory structure
+and module-discovery mechanism, and implementing features inside FuseCore
+projects — module contracts, traits (HasModule), service providers, and
+cross-module dependency declaration.
+</objective>
 
 # FuseCore Modular Architecture
 
-_Targets: laravel 13.0, php 8.3, react 19, typescript 5.8._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation in a FuseCore project, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation in FuseCore project, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing modules in `/FuseCore/`
-2. `research-expert` - Verify Laravel 13 patterns via Context7
-3. `laravel-expert` - Apply Laravel best practices
+1. **explore-codebase** - Analyze existing modules in `/FuseCore/`
+2. **research-expert** - Verify Laravel 13 patterns via Context7
+3. **laravel-expert** - Apply Laravel best practices
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

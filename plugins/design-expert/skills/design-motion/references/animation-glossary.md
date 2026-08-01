@@ -1,10 +1,6 @@
 ---
 name: animation-glossary
 description: Feel → term reverse glossary for animation specs and handoff — turn "the springy thing when a popover opens" into the exact word
-when-to-use: Writing an animation spec, naming a motion effect for a designer or another agent, precise handoff
-keywords: vocabulary, glossary, term, naming, stagger, morph, crossfade, rubber-banding, origin-aware, spec
-priority: low
-related: animation-decision-framework.md
 ---
 
 # Animation Glossary

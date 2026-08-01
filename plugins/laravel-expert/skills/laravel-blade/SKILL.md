@@ -1,21 +1,29 @@
 ---
 name: laravel-blade
-description: "Create Blade templates with components, slots, layouts, and directives. Use when building views, reusable components, or templating."
+description: Create Blade templates with components, slots, layouts, and directives. Use when building views, reusable components, or templating.
 ---
+
+<objective>
+Covers Laravel Blade templating: anonymous and class-based components, named
+slots and attribute bags ($attributes->merge()), layouts (component-based and
+@extends/@section inheritance), directives (@if, @foreach, @auth, @can, and
+advanced ones like @once/@use/@inject/@switch/stacks), custom directives
+(Blade::if, Blade::directive), security (XSS/CSRF escaping), Vite asset
+integration, forms/validation helpers (@error), and fragments for
+HTMX-style partial updates.
+</objective>
 
 # Laravel Blade
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing views, components structure
-2. `research-expert` - Verify latest Blade docs via Context7
-3. `mcp__context7__query-docs` - Query specific patterns (components, slots)
+1. **explore-codebase** - Check existing views, components structure
+2. **research-expert** - Verify latest Blade docs via Context7
+3. **mcp__context7__query-docs** - Query specific patterns (components, slots)
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

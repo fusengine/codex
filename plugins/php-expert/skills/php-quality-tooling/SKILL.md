@@ -1,11 +1,18 @@
 ---
 name: php-quality-tooling
-description: "Use when setting up or tuning static analysis, automated refactoring, and code-style enforcement on a framework-agnostic PHP project. Covers PHPStan, Rector, PHP-CS-Fixer, composer scripts, and CI wiring. Do NOT use for Laravel projects (Pint + Larastan → laravel-expert), test frameworks (→ php-testing), or language syntax questions (→ php-language-modern)."
+description: Use when setting up PHPStan, Rector, or PHP-CS-Fixer on a non-Laravel PHP project, incl. CI wiring. Do NOT use for Laravel (Pint/Larastan), tests, or syntax.
 ---
 
-# PHP Quality Tooling
+<objective>
+Covers the three complementary quality tools for framework-agnostic PHP: PHPStan for static analysis (finds type bugs, never edits), Rector for automated upgrades and refactors (rewrites source), and PHP-CS-Fixer for coding-standard formatting (rewrites whitespace/style). They do not overlap — a full setup runs all three.
 
-_Targets: phpstan 2.x, rector 2.x, php-cs-fixer 3.x._
+Includes a decision guide for greenfield vs legacy codebases (PHPStan level + baseline strategy, Rector's withPhpSets()/withPhpLevel(), PHP-CS-Fixer rule sets), plus ready-to-copy templates for phpstan.neon, rector.php, .php-cs-fixer.dist.php, and a composer-scripts CI pipeline.
+
+Do NOT use this skill on Laravel projects — Laravel uses Pint (a thin wrapper over PHP-CS-Fixer) and Larastan instead, both owned by laravel-expert. Do NOT use it for test framework setup (php-testing) or language syntax questions (php-language-modern).
+</objective>
+
+
+# PHP Quality Tooling
 
 Three complementary tools. PHPStan **finds** type bugs, Rector **rewrites** code
 (upgrades + refactors), PHP-CS-Fixer **formats** to a coding standard. They do not
@@ -13,13 +20,13 @@ overlap — run all three.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing config (phpstan.neon, rector.php, .php-cs-fixer.dist.php), PHP version in composer.json
-2. `research-expert` - Verify latest PHPStan/Rector/PHP-CS-Fixer docs via Context7/Exa
-3. `mcp__context7__query-docs` - Check current config API surface
+1. **explore-codebase** - Detect existing config (phpstan.neon, rector.php, .php-cs-fixer.dist.php), PHP version in composer.json
+2. **research-expert** - Verify latest PHPStan/Rector/PHP-CS-Fixer docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check current config API surface
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

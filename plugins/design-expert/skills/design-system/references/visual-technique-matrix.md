@@ -1,9 +1,6 @@
 ---
 name: visual-technique-matrix
 description: Matrix mapping personality × density to allowed/forbidden visual techniques
-keywords: glassmorphism, gradients, shadows, blur, noise, animation, visual-techniques, matrix
-priority: high
-related: identity-brief.md, motion-personality.md, sector-palettes.md
 ---
 
 # Visual Technique Matrix

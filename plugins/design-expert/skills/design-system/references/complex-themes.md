@@ -1,10 +1,6 @@
 ---
 name: complex-themes
 description: "3-tier token architecture (primitive → semantic → component) for design systems needing nested or conditional theming."
-when-to-use: "The design system must support nested or conditional theming beyond simple light/dark."
-keywords: tokens, theming, architecture, tiers
-priority: medium
-related: multi-brand.md, color-mapping.md
 ---
 
 # Complex Themes — Multi-Level Token Architecture

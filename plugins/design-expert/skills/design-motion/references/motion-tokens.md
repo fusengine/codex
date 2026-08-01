@@ -1,10 +1,6 @@
 ---
 name: motion-tokens
 description: Default named easing curves and spring configs — the token layer to drop into design-system.md
-when-to-use: Setting up motion tokens for a project, choosing an easing curve or spring config
-keywords: easing, cubic-bezier, spring, bounce, tokens, ease-out, ease-drawer, apple-spring
-priority: high
-related: animation-decision-framework.md, motion-physics.md
 ---
 
 # Motion Tokens

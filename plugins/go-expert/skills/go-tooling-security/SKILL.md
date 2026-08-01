@@ -1,20 +1,28 @@
 ---
 name: go-tooling-security
-description: "Use when: setting up Go modules/workspaces, configuring golangci-lint v2, scanning dependencies with govulncheck, modernizing code with go fix, or building a Go CI quality gate. Do NOT use for: writing Go application logic (use the Go expert), non-Go languages, SOLID/architecture refactoring (use solid-go), or generic dependency audits in other ecosystems."
+description: Use when setting up Go modules/workspaces, configuring golangci-lint v2, running govulncheck, or building a Go CI quality gate. Not for app logic or non-Go audits.
 ---
+
+<objective>
+Covers Go tooling and dependency security: modules and workspaces (go.mod/go.work),
+golangci-lint v2 configuration and migration, dependency vulnerability scanning
+with govulncheck, modernizing code with go fix, and building a Go CI quality gate.
+Does not cover writing Go application logic (see the Go expert), non-Go
+languages, SOLID/architecture refactoring (see solid-go), or generic dependency
+audits in other ecosystems.
+</objective>
 
 # Go Tooling & Security
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY tooling/security change, spawn these agents in parallel via `spawn_agent` (each resides in `.codex/agents/`):
+Before ANY tooling/security change, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Find existing go.mod/go.work, `.golangci.yml`, CI files
 2. **research-expert** - Verify latest golangci-lint v2 + govulncheck docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check current Go 1.26 `go fix` modernizer set
 
-Then call `mcp__context7__query-docs` directly (MCP tool, not a sub-agent) to check the current Go 1.26 `go fix` modernizer set.
-
-After changes, spawn **sniper** for validation.
+After changes, run **sniper** for validation.
 
 ---
 

@@ -1,10 +1,6 @@
 ---
 name: consistency-checks
 description: Cross-component visual consistency validation for border-radius, shadows, icons, and buttons
-when-to-use: Checking visual consistency across components and pages
-keywords: consistency, radius, shadow, icon, button, spacing, elevation, visual
-priority: high
-related: audit-checklist.md, anti-ai-slop-audit.md
 ---
 
 # Consistency Checks

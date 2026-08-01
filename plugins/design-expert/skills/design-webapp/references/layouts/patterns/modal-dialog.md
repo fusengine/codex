@@ -1,10 +1,6 @@
 ---
 name: modal-dialog
 description: Modal and dialog patterns with sizes, mobile sheets, and focus management
-when-to-use: Designing modals, dialogs, confirmation prompts, bottom sheets
-keywords: modal, dialog, sheet, focus-trap, overlay, confirmation, sizes
-priority: high
-related: command-palette.md, toast-notifications.md
 ---
 
 # Modal / Dialog Spec

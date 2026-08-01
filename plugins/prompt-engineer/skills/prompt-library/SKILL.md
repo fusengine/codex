@@ -1,7 +1,13 @@
 ---
 name: prompt-library
-description: "Library of 18+ ready-to-use prompt templates and executable agents. Use when: looking for a ready-made agent or task template (code review, support, data analysis, translation, extraction, etc.) instead of writing one from scratch."
+description: "Use when looking for a ready-made agent or task template (code review, support, data analysis, translation, extraction) instead of writing one from scratch."
 ---
+
+<objective>
+Prompt Library is a collection of 18+ professional, tested prompt templates organized in three categories: general-purpose agents (code reviewer, support assistant, data analyst, technical writer, security auditor, API designer), task agents (summarizer, translator, extractor, classifier, generator, validator), and specialized-domain agents (legal, medical, financial, marketing, HR, educational). Each follows the standard Codex frontmatter (name, description, model, color, tools, skills).
+
+It covers listing, searching, viewing, and using/customizing an existing template -- not designing a new agent architecture from scratch (see `agent-design` for that) or writing a prompt's internal structure (see `prompt-creation`).
+</objective>
 
 # Prompt Library
 
@@ -63,21 +69,17 @@ Collection of professional, tested, and optimized prompt templates.
 
 ## Agent Structure
 
-Each agent is a Codex `.toml` definition (in `.codex/agents/<name>.toml` or a plugin's `agents/`):
+Each agent follows the standard Codex format:
 
-```toml
-name = "agent-name"
-description = "Trigger + usage context — Use when… / Do NOT use for…"
-model = "gpt-5.6-terra"            # gpt-5.6-sol | gpt-5.6-terra | gpt-5.6-luna
-model_reasoning_effort = "high"    # minimal | low | medium | high | xhigh
-sandbox_mode = "workspace-write"   # read-only | workspace-write | danger-full-access
-developer_instructions = '''
-<agent instructions: process, output format, examples, Forbidden>
-'''
-
-[[skills.config]]
-path = "plugins/<plugin>/skills/<skill>/SKILL.md"
-enabled = true
+```yaml
+---
+name: agent-name
+description: Clear description for automatic triggering
+model: sonnet|opus|haiku
+color: color-name
+tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch
+skills: skill-name
+---
 ```
 
 ### Required Fields
@@ -85,17 +87,15 @@ enabled = true
 | Field | Description | Values |
 |-------|-------------|--------|
 | `name` | Unique identifier | kebab-case |
-| `description` | Trigger + usage context | Descriptive text (Use when… / Do NOT use for…) |
-| `developer_instructions` | Agent body (required) | Multi-line `'''…'''` string |
-| `model` | Codex model | `gpt-5.6-terra` (default), `gpt-5.6-sol` (heavy reasoning), `gpt-5.6-luna` |
-| `model_reasoning_effort` | Reasoning budget | `minimal` … `high` … `xhigh` |
-| `sandbox_mode` | Filesystem access | `read-only`, `workspace-write`, `danger-full-access` |
-| `nickname_candidates` | Optional display names | list of strings |
-| `[[skills.config]]` | Attached skills | `path` + `enabled` per skill |
+| `description` | Trigger + usage context | Descriptive text |
+| `model` | Claude model to use | `haiku` (simple), `sonnet` (standard), `opus` (complex) |
+| `color` | Display color | green, blue, red, amber, etc. |
+| `tools` | Available tools | Read, Write, Edit, Bash, Grep, Glob, WebSearch |
+| `skills` | Associated skill | Linked skill name |
 
 ### Agent Body
 
-`developer_instructions` contains:
+After the YAML frontmatter, the Markdown body contains:
 - Instructions and processes
 - Output formats
 - Examples and patterns
@@ -105,7 +105,7 @@ enabled = true
 
 To add an agent:
 
-1. Create the `.toml` file in the appropriate category (`agents/`, `tasks/`, `specialized/`)
-2. Use the Codex agent schema (name, description, developer_instructions + model, model_reasoning_effort, sandbox_mode, skills.config)
+1. Create the `.md` file in the appropriate category (`agents/`, `tasks/`, `specialized/`)
+2. Use the standard YAML frontmatter (name, description, model, color, tools, skills)
 3. Test the agent with at least 3 use cases
 4. Document output formats and rules (Forbidden)

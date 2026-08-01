@@ -1,17 +1,21 @@
 ---
 name: react-tanstack-router
-description: TanStack Router - 100% type-safe routing, file-based routes, loaders, search params. Use when implementing routing in React apps (NOT Next.js).
+description: Use when implementing routing in a React app (NOT Next.js) with TanStack Router — file-based routes, loaders, search params.
 ---
 
-# TanStack Router
+<objective>
+Implements TanStack Router for React SPAs (Vite/Webpack/Rspack, not Next.js): file-based routing with auto-generated type safety, dynamic route params (`$postId`), search-params validation with Zod/Valibot, loaders (`Route.useLoaderData()`) integrated with TanStack Query (`ensureQueryData`), nested layouts with `Outlet`, route context for dependency injection, protected routes via `beforeLoad` guards, and preloading on intent/render.
 
-> Targets: Tanstack-router 1.x (latest), React 19, Zod 3.x.
+Covers the full SOLID module structure (`modules/cores/lib/router/`, feature modules with `interfaces/`/`queries/`/`components/`), migration from React Router (`useParams()`→`Route.useParams()`, `loader`→`loader` option), and error boundaries/404 handling. Does not cover state management (react-state) or forms (react-forms) — those are separate skills; for Next.js routing use the App Router (nextjs-16), not this skill.
+</objective>
+
+# TanStack Router
 
 100% type-safe router for React with file-based routing, loaders, search params validation, and deep TanStack Query integration.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing routes and navigation patterns
 2. **research-expert** - Verify latest TanStack Router docs via Context7/Exa

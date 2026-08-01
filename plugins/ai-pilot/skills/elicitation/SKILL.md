@@ -1,7 +1,13 @@
 ---
 name: elicitation
-description: "Auto-review skill for expert agents. After coding, expert applies elicitation techniques to self-correct before sniper validation. Inspired by BMAD-METHOD. Use when: an expert agent needs to self-review and self-correct code after the Execute phase, before sniper validation."
+description: "Use when an expert agent self-reviews and self-corrects code after the Execute phase, before sniper validation (BMAD-METHOD elicitation techniques)."
 ---
+
+<objective>
+Elicitation lets an expert agent self-review and self-correct its own code before external validation, drawing on 75 elicitation techniques across 12 categories (code quality, security, performance, architecture, testing, docs, UX, data, concurrency, integration, observability, maintainability) inspired by BMAD-METHOD. Three modes control how techniques are chosen: MANUAL (default, user picks from 5 presented options), AUTO (auto-detected and applied silently), and SKIP (bypass straight to sniper).
+
+It sits between Execute and eXamine in the APEX flow, scores itself against an exit threshold (>=90% proceed, 70-89% document gaps, <70% iterate), and persists its findings to `.codex/apex/docs/elicit-{task-slug}.json` so a later pass can diff against prior verdicts instead of restarting.
+</objective>
 
 # Elicitation Skill
 
@@ -142,7 +148,7 @@ A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
 
 ## Artifact Contract
 
-Step 5 persists `.harness/apex/docs/elicit-{task-slug}.json` so a later pass
+Step 5 persists `.codex/apex/docs/elicit-{task-slug}.json` so a later pass
 diffs against prior verdicts instead of restarting from scratch. Full
 contract, `{task-slug}` derivation, and JSON schema: `references/artifact-contract.md`.
 

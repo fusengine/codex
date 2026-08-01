@@ -6,6 +6,7 @@
 	"description": "Fusengine plugin ecosystem migrated to Codex CLI",
 	"scripts": {
 		"migrate": "bun run scripts/migrate.ts",
+		"sync:agents": "bun run scripts/sync-agents.ts",
 		"validate": "bun run scripts/validate.ts",
 		"conformance:fix": "bun run scripts/final-conformance.ts"
 	},
@@ -21,7 +22,7 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "^1.7.0",
-		"@fusengine/harness": "^0.1.83",
+		"@fusengine/harness": "^0.1.87",
 		"cheerio": "^1.2.0",
 		"chrome-launcher": "^1.2.1",
 		"fast-xml-parser": "^5.9.3",

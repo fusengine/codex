@@ -1,10 +1,6 @@
 ---
 name: shadcn
 description: shadcn/ui component library integration and best practices
-when-to-use: Using shadcn/ui components, searching registry, installing components
-keywords: shadcn, radix, components, ui, registry, tailwind
-priority: high
-related: 21st-dev.md
 ---
 
 # shadcn/ui Reference

@@ -1,10 +1,6 @@
 ---
 name: color-roles
 description: "Canonical Material 3 (Expressive) color roles derived from a seed color — the only source of color-role names for Android mockups."
-when-to-use: "Mapping design-system.md OKLCH tokens to Material 3 color roles for a mockup or handoff spec."
-keywords: android, material3, expressive, color, roles, dynamic-color
-priority: critical
-related: ../SKILL.md, type-scale.md
 ---
 
 # Material 3 Color Roles

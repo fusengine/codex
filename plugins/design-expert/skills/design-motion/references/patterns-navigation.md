@@ -1,10 +1,6 @@
 ---
 name: patterns-navigation
 description: Navigation patterns and responsive navbar implementation
-when-to-use: Building navigation systems, creating responsive menus, implementing mobile navigation
-keywords: navigation, navbar, menu, responsive, mobile, patterns
-priority: high
-related: patterns-cards.md, patterns-buttons.md, ../../design-web/references/design-patterns.md
 ---
 
 # Navigation Patterns

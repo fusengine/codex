@@ -1,7 +1,23 @@
 ---
 name: security-scan
-description: Main security scanning orchestration. Detects language, runs OWASP Top 10 patterns, identifies vulnerabilities, generates structured reports. Use when scanning for XSS, SQL injection, command injection, secrets, or any security vulnerability.
+description: Use when scanning for XSS, SQL injection, command injection, hardcoded secrets, or any OWASP Top 10 vulnerability across a codebase.
 ---
+
+<objective>
+This skill orchestrates a full security scan across JavaScript/TypeScript, PHP, Python,
+Swift/iOS, Go, and Rust: it detects the language from project markers, loads the matching
+pattern set, runs the harness's automated scanner (OWASP patterns ported into
+`@fusengine/harness`), maps findings to OWASP Top 10 categories, and generates a structured
+report.
+
+Pattern categories include XSS, SQL injection, command injection, unsafe code execution
+(eval/exec), SSRF, weak cryptography, hardcoded secrets, insecure deserialization, and path
+traversal/LFI/RFI, plus GraphQL-specific patterns (introspection, depth/complexity limiting,
+batching, authorization) when a GraphQL endpoint is present.
+
+After scanning, it delegates fixes to the sniper agent with file:line, vulnerability, and
+fix — it does not apply fixes itself.
+</objective>
 
 # Security Scan Skill
 
@@ -44,7 +60,7 @@ Orchestrates the full security scanning workflow across all supported languages.
 
 After scanning, delegate fixes to sniper:
 ```
-spawn_agent(name="sniper", prompt="Security fixes: [FILE:LINE] [VULN] [FIX]")
+Agent(subagent_type="sniper", prompt="Security fixes: [FILE:LINE] [VULN] [FIX]")
 ```
 
 ## References

@@ -1,10 +1,6 @@
 ---
 name: auth-register
 description: Registration page with delayed signup and progressive form patterns
-when-to-use: Designing signup flows, onboarding registration
-keywords: register, signup, onboarding, progressive, delayed-signup, form
-priority: high
-related: auth-login.md, onboarding.md
 ---
 
 # Auth Register Spec

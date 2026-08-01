@@ -1,10 +1,6 @@
 ---
 name: cards-guide
 description: Card design patterns with anatomy, layouts, and best practices
-when-to-use: Designing card components, creating card grids, setting content hierarchy
-keywords: cards, grid, masonry, anatomy, content priority, responsive
-priority: medium
-related: grids-layout.md, component-examples.md
 ---
 
 # Card Design Guide

@@ -1,10 +1,6 @@
 ---
 name: copy-fintech
 description: "Fintech copy examples — trust language, balances, security, transaction states."
-when-to-use: "Writing copy for a fintech/banking project."
-keywords: copy, fintech, trust, security
-priority: medium
-related: voice-tone-sectors.md, microcopy-patterns.md, ../../design-method/references/register/brand.md, ../../design-method/references/register/product.md, ../../design-method/references/register/copy.md
 ---
 
 # UX Copy — Fintech

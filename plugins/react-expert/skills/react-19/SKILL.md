@@ -1,13 +1,19 @@
 ---
 name: react-19
-description: React 19.2 features - use(), useOptimistic, useActionState, useEffectEvent, Activity component, React Compiler. Use when implementing React 19 patterns.
+description: Use when implementing React 19.2 patterns — use(), useOptimistic, useActionState, useEffectEvent, Activity component, React Compiler.
 ---
+
+<objective>
+Covers React 19.2's new hooks and features: `use()` for reading promises/context in render, `useOptimistic` for instant UI updates, `useActionState` for form action state, `useFormStatus` for child-component pending state, `useEffectEvent` for non-reactive effect callbacks, the `Activity` component for hiding/showing UI while preserving state, and the React Compiler's automatic memoization (making manual `useMemo`/`useCallback` mostly obsolete).
+
+Also documents all classic hooks (useState, useEffect, useLayoutEffect, useRef, useImperativeHandle, useMemo, useCallback, useId, useSyncExternalStore) and React 18→19 breaking changes (`ref` as a prop instead of `forwardRef`, `<Context value={}>` instead of `<Context.Provider>`). This is the core React hooks/features skill — for global state see react-state, for forms see react-forms, and for SOLID architecture rules see solid-react.
+</objective>
 
 # React 19.2 Core Features
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing React patterns and component structure
 2. **research-expert** - Verify latest React 19.2 docs via Context7/Exa

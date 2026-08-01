@@ -1,8 +1,6 @@
 ---
 name: copy-guide-template
 description: Template for generating a project-specific copy guide from the ux-copy skill. Fill one per project based on detected sector and brand identity.
-when-to-use: After sector detection from design-system.md — produce this document as copy-guide.md in the project
-keywords: template, copy-guide, voice, tone, brand-vocabulary, component-copy
 ---
 
 # [Project Name] — Copy Guide

@@ -1,10 +1,6 @@
 ---
 name: feature-grid
 description: Responsive feature grid with icons, stagger scroll reveal, and hover lift
-when-to-use: Displaying product features or benefits in a visual grid layout
-keywords: features, grid, icons, stagger, scroll-reveal
-priority: high
-related: hero-section.md, stats-section.md
 ---
 
 # Feature Grid Template

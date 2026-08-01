@@ -1,10 +1,6 @@
 ---
 name: faq-accordion
 description: FAQ accordion section with chevron indicator and Schema.org structured data
-when-to-use: FAQ pages, support sections, knowledge base with expandable Q&A
-keywords: faq, accordion, questions, collapsible, schema-org
-priority: medium
-related: contact-form.md
 ---
 
 # FAQ Accordion Template

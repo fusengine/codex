@@ -1,17 +1,21 @@
 ---
 name: better-auth
-description: Complete Better Auth - 40+ OAuth providers, 20+ plugins, all adapters, all frameworks. Use when implementing authentication, login, OAuth, 2FA, magic links, SSO, Stripe, SCIM, or session management.
+description: Use when implementing Next.js authentication with Better Auth — OAuth, 2FA, magic links, SSO, Stripe billing, or session management.
 ---
 
-# Better Auth - Complete Authentication
+<objective>
+Implements Better Auth, a TypeScript-first authentication library, in a Next.js 16 App Router project: server config, client (`createAuthClient`), session management, and the `app/api/auth/[...all]/route.ts` handler, plus `proxy.ts` for route protection (replacing middleware).
 
-> Targets: Better-auth 1.2.
+Covers the full surface — 40+ OAuth providers (Google, GitHub, Discord, Apple, Microsoft, and more), 20+ plugins (2FA, magic links, passkeys, organizations/multi-tenant, enterprise SSO/SAML, SCIM provisioning, Stripe/Polar billing, JWT/Bearer, API keys), and database adapters (Prisma, Drizzle, MongoDB, raw SQL). Also covers migration paths from Auth.js, Clerk, Auth0, Supabase, and WorkOS. While Better Auth itself is framework-agnostic, this skill's architecture guidance (proxy.ts, App Router API route) is Next.js-specific — for Prisma schema/query details see prisma-7.
+</objective>
+
+# Better Auth - Complete Authentication
 
 TypeScript-first authentication library with 40+ OAuth providers and 20+ plugins.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing auth setup and patterns
 2. **research-expert** - Verify latest Better Auth docs via Context7/Exa

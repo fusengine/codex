@@ -1,10 +1,6 @@
 ---
 name: hero-section
 description: Above-the-fold hero with badge, headline, dual CTAs, and social proof
-when-to-use: Landing pages requiring a compelling value proposition above the fold
-keywords: hero, landing, headline, cta, above-the-fold
-priority: high
-related: feature-grid.md, pricing-cards.md
 ---
 
 # Hero Section Template

@@ -1,10 +1,6 @@
 ---
 name: empty-states-copy
 description: Copy formulas for all empty state types (first-time, no-results, error recovery, permission, onboarding, loading) with per-sector examples
-when-to-use: Writing text for empty states, no-data views, error recovery states, permission denied screens
-keywords: empty-state, first-time, no-results, error-recovery, permission, onboarding, loading, microcopy
-priority: high
-related: ../../design-webapp/references/layouts/patterns/empty-state.md, voice-tone-sectors.md, microcopy-patterns.md
 ---
 
 # Empty States Copy

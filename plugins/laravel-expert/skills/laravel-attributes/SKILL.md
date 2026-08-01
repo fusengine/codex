@@ -1,21 +1,30 @@
 ---
 name: laravel-attributes
-description: "Use when migrating Eloquent models, Jobs, Console commands, Controllers, API Resources, Validation, Factories or Seeders to native PHP 8.3 attributes introduced in Laravel 13. Covers all 7 categories of first-party attributes."
+description: Use when migrating Eloquent models, Jobs, Console commands, Controllers, API Resources, Validation, Factories or Seeders to Laravel 13 PHP attributes.
 ---
+
+<objective>
+Covers all 7 categories of Laravel 13 first-party PHP 8.3 attributes that
+replace legacy class properties: Eloquent (#[Table], #[Fillable], #[Hidden],
+#[Guarded], #[Appends], #[Touches], #[Connection]), Queue/Job (#[Connection],
+#[Queue], #[Tries], #[Timeout], #[Backoff], #[MaxExceptions],
+#[FailOnTimeout], #[UniqueFor]), Console (#[Signature], #[Description]),
+Controllers (#[Middleware], #[Authorize]), Validation (#[RedirectTo],
+#[StopOnFirstFailure]), API Resources (#[Collects], #[PreserveKeys]), and
+Factories/Seeders (#[UseModel], #[Seed], #[Seeder]).
+</objective>
 
 # Laravel 13 PHP Attributes
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
-2. `research-expert` - Verify Laravel 13 release notes for attribute coverage and edge cases
-3. `mcp__context7__query-docs` - Pull authoritative examples from `laravel.com/docs/13.x`
+1. **explore-codebase** - Scan existing models/jobs/controllers for legacy `protected $fillable / $hidden / $connection` properties to convert
+2. **research-expert** - Verify Laravel 13 release notes for attribute coverage and edge cases
+3. **mcp__context7__query-docs** - Pull authoritative examples from `laravel.com/docs/13.x`
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

@@ -1,10 +1,6 @@
 ---
 name: motion-physics
 description: Physical correctness rules — never scale(0), origin-aware popovers, asymmetric timing, stagger, blur masking, @starting-style
-when-to-use: Building entrances/exits, popovers, tooltips, toasts, buttons, staggered lists
-keywords: scale, transform-origin, origin-aware, asymmetric, stagger, blur, starting-style, tooltip, marquee
-priority: high
-related: motion-tokens.md, motion-performance.md, animation-decision-framework.md
 ---
 
 # Motion Physics

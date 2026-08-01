@@ -1,21 +1,29 @@
 ---
 name: laravel-scout
-description: "Implement full-text search with Laravel Scout. Use when adding search to Eloquent models with Meilisearch, Algolia, or database driver."
+description: Implement full-text search with Laravel Scout. Use when adding search to Eloquent models with Meilisearch, Algolia, or database driver.
 ---
+
+<objective>
+Covers Laravel Scout full-text search: the Searchable trait on Eloquent
+models, driver selection (Meilisearch, Algolia, database, collection),
+automatic index sync on model changes, the fluent search builder with
+filters, toSearchableArray() field control, queued indexing, and bulk
+import/reindexing. For semantic/vector similarity search on PostgreSQL, see
+laravel-vector-search instead — Scout stays the tool for keyword/full-text
+search.
+</objective>
 
 # Laravel Scout
 
-_Targets: laravel 13.0, scout 10.12, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing model and search patterns
-2. `research-expert` - Verify Scout docs via Context7
-3. `mcp__context7__query-docs` - Check search and indexing patterns
+1. **explore-codebase** - Analyze existing model and search patterns
+2. **research-expert** - Verify Scout docs via Context7
+3. **mcp__context7__query-docs** - Check search and indexing patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

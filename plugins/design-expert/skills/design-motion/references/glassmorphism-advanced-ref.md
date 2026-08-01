@@ -1,18 +1,13 @@
 ---
 name: glassmorphism-advanced
 description: Use when creating frosted glass effects, transparent overlays, or modern glass UI. Covers blur, layering, colored shadows.
-versions:
-  tailwindcss: "4.1"
-user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Grep
-related-skills: designing-systems, generating-components
 ---
 
 # Glassmorphism Advanced
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing glass patterns
 2. **research-expert** - Latest backdrop-filter support

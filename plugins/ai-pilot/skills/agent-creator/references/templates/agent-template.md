@@ -1,37 +1,46 @@
 ---
 name: agent-template
-description: Complete template for creating expert agent files (Codex TOML format)
+description: Complete template for creating expert agent files
+keywords: template, agent, complete, copy-paste
 ---
 
 # Agent Template
 
 ## Usage
 
-Copy this template when creating a new agent file. A Codex agent is a **`.toml`** file placed in `plugins/<plugin>/agents/<agent-name>.toml`.
+Copy this template when creating a new agent file.
 
 ---
 
 ## Template
 
-```toml
-name = "<agent-name>"
-description = "Expert <technology> with <features>. Use when <trigger conditions>. Do NOT use for: <exclusions>."
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
-nickname_candidates = ["<Nickname>", "<Alt Nickname>"]
-developer_instructions = '''
+```markdown
+---
+name: <agent-name>
+description: Expert <technology> with <features>. Use when <trigger conditions>.
+model: sonnet
+color: cyan
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa
+skills: solid-<stack>, <skill-a>, <skill-b>, <skill-c>
+hooks:
+  PreToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/validate-<stack>-solid.sh"
+---
+
 # <Agent Name> Expert
 
 Expert <technology> developer for <domain>.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 subagents in parallel (one dispatch, `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing <domain> patterns
 2. **research-expert** - Verify latest <technology> docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check <specific> patterns (direct MCP call, not a spawned agent)
+3. **mcp__context7__query-docs** - Check <specific> patterns
 
 After implementation, run **sniper** for validation.
 
@@ -58,7 +67,7 @@ After implementation, run **sniper** for validation.
 
 ## SOLID Rules (MANDATORY)
 
-**See the `solid-<stack>` skill for complete rules.**
+**See `solid-<stack>` skill for complete rules.**
 
 | Rule | Requirement |
 |------|-------------|
@@ -129,35 +138,7 @@ skills/solid-<stack>/   # SOLID architecture rules
 - **Using emojis as icons** - Use Lucide React only
 - **<Anti-pattern 1>** - <Alternative>
 - **<Anti-pattern 2>** - <Alternative>
-'''
-
-[[skills.config]]
-path = "plugins/<plugin>/skills/solid-<stack>/SKILL.md"
-enabled = true
-
-[[skills.config]]
-path = "plugins/<plugin>/skills/<skill-a>/SKILL.md"
-enabled = true
 ```
-
-> **Hooks do NOT go in the agent `.toml`.** In Codex, pre/post-tool validation lives in the plugin's `hooks/hooks.json` (plugin level), not in agent frontmatter. See [hooks.md](../hooks.md).
-
----
-
-## Field Reference
-
-| Field | Required | Value |
-|-------|----------|-------|
-| `name` | Yes | Agent identifier (kebab-case), matches filename |
-| `description` | Yes | One-line detection string ("Use when… / Do NOT use for…") |
-| `model` | Yes | `gpt-5.6-sol` (heavy reasoning / orchestrator / verifier) or `gpt-5.6-terra` (domain expert / execution) |
-| `model_reasoning_effort` | Yes | `high` |
-| `sandbox_mode` | Yes | `workspace-write` (agents that edit) or `read-only` (read-only agents) |
-| `nickname_candidates` | No | Display nicknames |
-| `developer_instructions` | Yes | Full agent body as a `'''…'''` multiline string |
-| `[[skills.config]]` | No | One table per attached skill: `path = "plugins/<plugin>/skills/<skill>/SKILL.md"`, `enabled = true` |
-
-There is NO `tools:` field (Codex does not map tools 1:1 — describe an essential capability in prose in the body) and NO `color:` field.
 
 ---
 
@@ -179,55 +160,49 @@ There is NO `tools:` field (Codex does not map tools 1:1 — describe an essenti
 
 ## Example: Next.js Expert
 
-```toml
-name = "nextjs-expert"
-description = "Expert Next.js 16 with App Router, Prisma 7, Better Auth. Use when building Next.js apps."
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
-developer_instructions = '''
-# Next.js Expert
-...
-'''
-
-[[skills.config]]
-path = "plugins/nextjs-expert/skills/solid-nextjs/SKILL.md"
-enabled = true
-
-[[skills.config]]
-path = "plugins/nextjs-expert/skills/nextjs-16/SKILL.md"
-enabled = true
+```yaml
+---
+name: nextjs-expert
+description: Expert Next.js 16 with App Router, Prisma 7, Better Auth. Use when building Next.js apps.
+model: sonnet
+color: cyan
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent, mcp__context7__*, mcp__shadcn__*, mcp__gemini-design__*
+skills: solid-nextjs, nextjs-16, prisma-7, better-auth, nextjs-shadcn, nextjs-zustand
+hooks:
+  PreToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/validate-nextjs-solid.sh"
+---
 ```
 
 ---
 
 ## Example: Laravel Expert
 
-```toml
-name = "laravel-expert"
-description = "Expert Laravel 12 with Eloquent, Livewire, Blade. Use when building Laravel apps."
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
-developer_instructions = '''
-# Laravel Expert
-...
-'''
-
-[[skills.config]]
-path = "plugins/laravel-expert/skills/solid-php/SKILL.md"
-enabled = true
-
-[[skills.config]]
-path = "plugins/laravel-expert/skills/laravel-architecture/SKILL.md"
-enabled = true
+```yaml
+---
+name: laravel-expert
+description: Expert Laravel 12 with Eloquent, Livewire, Blade. Use when building Laravel apps.
+model: sonnet
+color: magenta
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent, mcp__context7__*
+skills: solid-php, laravel-architecture, laravel-eloquent, laravel-livewire, laravel-blade
+hooks:
+  PreToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/validate-php-solid.sh"
+---
 ```
 
 ---
 
 ## Notes
 
-- Remove the Gemini Design section for backend-only agents
-- Pick `gpt-5.6-sol` for heavy-reasoning/orchestrator/verifier roles, `gpt-5.6-terra` for domain-expert/execution roles; `model_reasoning_effort` is always `high`
-- Always attach the `solid-<stack>` skill via `[[skills.config]]`
-- Hooks live in `hooks/hooks.json` at the plugin level, not in the agent `.toml`
+- Remove Gemini Design section for backend-only agents
+- Adjust tools list based on agent needs
+- Always include solid-[stack] in skills
+- Hook scripts must be executable (chmod +x)

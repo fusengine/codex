@@ -1,10 +1,6 @@
 ---
 name: forms-guide
 description: Form design best practices with validation, states, and layout
-when-to-use: Designing forms, implementing validation, setting up input states
-keywords: forms, input, validation, error, states, single-column, accessibility
-priority: high
-related: buttons-guide.md, ui-visual-design.md
 ---
 
 # Form Design Guide

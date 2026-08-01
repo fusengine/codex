@@ -1,21 +1,29 @@
 ---
 name: laravel-auth
-description: "Use when implementing user authentication, API tokens, social login, or authorization. Covers Sanctum, Passport, Socialite, Fortify, policies, and gates for Laravel 13."
+description: Use when implementing user authentication, API tokens, social login, or authorization in Laravel 13.
 ---
+
+<objective>
+Covers the Laravel 13 authentication and authorization ecosystem: Sanctum
+(API tokens, SPA auth), Passport (OAuth2 server), Fortify (headless
+custom-UI auth), Socialite (social login), starter kits, policies and gates,
+email verification, password reset, session management, CSRF /
+PreventRequestForgery, encryption, and hashing. Includes FuseCore modular-
+project integration patterns for auth (User module, cross-module
+authorization via policies).
+</objective>
 
 # Laravel Authentication & Authorization
 
-_Targets: laravel 13.0, sanctum 4.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing auth setup, guards, policies
-2. `research-expert` - Verify latest Laravel 13 auth docs via Context7
-3. `mcp__context7__query-docs` - Query specific patterns (Sanctum, Passport, etc.)
+1. **explore-codebase** - Check existing auth setup, guards, policies
+2. **research-expert** - Verify latest Laravel 13 auth docs via Context7
+3. **mcp__context7__query-docs** - Query specific patterns (Sanctum, Passport, etc.)
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 
