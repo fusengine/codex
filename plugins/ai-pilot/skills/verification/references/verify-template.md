@@ -1,11 +1,11 @@
 # Verification Artifact Template
 
-Write this file to `.harness/apex/docs/verify-{task-slug}.md` in Step 6. It is the
+Write this file to `.codex/apex/docs/verify-{task-slug}.md` in Step 6. It is the
 disk-persisted proof a gate (hook, sniper, next elicitation pass) can check --
 a context-only "it works" declaration does not survive a session boundary.
 
 `{task-slug}`: derive per `apex-methodology/references/init-tracking.md`'s
-"Task Slug" section (canonical: git branch stripped of
+"Task Slug" section (canonical: `update_plan` id, else git branch stripped of
 its `type/` prefix and slugified, else `task-<unix-timestamp>`). Do not
 improvise another derivation: a branch like `feat/use-harness` slugifies to
 `use-harness`, not `feat-use-harness` -- a mismatched slug means gates never

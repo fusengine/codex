@@ -1,7 +1,6 @@
 ---
 name: design-system-template
 description: Complete copy-paste template for generating a project's design-system.md file
-keywords: design-system, template, identity, tokens, colors, typography, spacing, motion
 ---
 
 # Design System Template

@@ -1,13 +1,19 @@
 ---
 name: solid-ruby
-description: "SOLID principles for Ruby 3.3+ and Rails 8. Files < 100 lines, contracts separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules."
+description: "Use when writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules (SOLID, files < 100 lines)."
 ---
+
+<objective>
+SOLID Ruby enforces a modular architecture for Ruby 3.3+/Rails 8: every feature lives under `app/modules/[feature]/` (controllers, services, repositories, contracts, models) with shared code in `app/modules/core/`, contracts (duck-typing modules) live only in `contracts/` directories, `# frozen_string_literal: true` is required in every file, and every public method carries YARD documentation.
+
+Before writing any new code it requires a DRY check against `app/modules/core/services` and `app/modules/core/contracts`. See `solid-principles.md` for the overview, the per-principle references for SRP/OCP/LSP/ISP/DIP detail, and the templates for module/service/contract/model/error/test scaffolding.
+</objective>
 
 # SOLID Ruby - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Ruby/Rails docs via Context7

@@ -1,8 +1,6 @@
 ---
 name: design-system-creative
 description: Ready-to-use creative/luxury design system — bold OKLCH palette, expressive display typography, dramatic motion
-keywords: creative, luxury, editorial, agency, bold, OKLCH, design-system, example
-sector: creative
 ---
 
 # Design System — Creative / Luxury (Editorial)

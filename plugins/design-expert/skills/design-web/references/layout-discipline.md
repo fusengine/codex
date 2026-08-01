@@ -1,10 +1,6 @@
 ---
 name: layout-discipline
 description: "Hard layout constraints for HTML/CSS generation — hero hard numbers, eyebrow restraint, zigzag cap, bento cell count, section-repetition ban, CTA and density limits."
-when-to-use: "Before generating or modifying any marketing page — inject these into the generation brief and verify them mechanically in the output."
-keywords: layout, hero, eyebrow, bento, zigzag, forbidden, density, cta, pre-flight
-priority: critical
-related: gemini/gemini-design-workflow.md, ui-visual-design.md, premium-patterns/PATTERNS.md
 ---
 
 # Layout Discipline (Hard Rules)

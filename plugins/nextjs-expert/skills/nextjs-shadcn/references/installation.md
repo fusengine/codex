@@ -179,9 +179,9 @@ Check `app/globals.css`:
 }
 ```
 
-## Step 6: Configure MCP Server (Codex)
+## Step 6: Configure MCP Server (Codex CLI)
 
-Create `.mcp.json` at project root for Codex integration:
+Create `.mcp.json` at project root for Codex CLI integration:
 
 ```json
 {
@@ -200,7 +200,7 @@ This enables:
 - `mcp__shadcn__get_item_examples_from_registries` - Get usage examples
 - `mcp__shadcn__get_add_command_for_items` - Get install commands
 
-### Usage in Codex
+### Usage in Codex CLI
 
 ```bash
 # Search for a component

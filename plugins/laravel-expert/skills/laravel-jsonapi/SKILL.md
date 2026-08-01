@@ -1,21 +1,28 @@
 ---
 name: laravel-jsonapi
-description: "Use when building JSON:API compliant endpoints in Laravel 13 using the first-party `JsonApiResource` base class. Covers sparse fieldsets, inclusion, links, and response headers."
+description: Use when building JSON:API spec-compliant endpoints in Laravel 13 with the first-party `JsonApiResource` base class.
 ---
+
+<objective>
+Covers Laravel 13's JsonApiResource base class for JSON:API v1.1-compliant
+responses: the toAttributes() method, resource $type declaration, sparse
+fieldsets (?fields[type]=a,b), relationship inclusion (?include=) with the
+included array, resource identifiers, self/related links, and the
+application/vnd.api+json content type. For general (non-JSON:API-spec) REST
+API building, see laravel-api instead.
+</objective>
 
 # Laravel 13 JSON:API Resources
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Inventory existing `JsonResource` classes to migrate
-2. `research-expert` - Check JSON:API v1.1 spec for required headers and structure
-3. `mcp__context7__query-docs` - Pull `laravel.com/docs/13.x/eloquent-resources` examples
+1. **explore-codebase** - Inventory existing `JsonResource` classes to migrate
+2. **research-expert** - Check JSON:API v1.1 spec for required headers and structure
+3. **mcp__context7__query-docs** - Pull `laravel.com/docs/13.x/eloquent-resources` examples
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

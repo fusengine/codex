@@ -1,7 +1,15 @@
 ---
 name: swiftui-core
-description: "SwiftUI fundamentals for all Apple platforms. Use when building views, navigation, data persistence, or state management with SwiftUI across iOS, macOS, iPadOS, watchOS, visionOS."
+description: Use when building SwiftUI views, navigation, persistence, or state management — shared across iOS, macOS, watchOS, visionOS.
 ---
+
+<objective>
+Covers SwiftUI fundamentals shared across all Apple platforms: composable views and modifiers, navigation (NavigationStack for stack-based flows, NavigationSplitView for multi-column layouts), data persistence with SwiftData (@Model, replacing Core Data for most cases), state management (@State for local, @Observable for shared, @Environment for injection), Liquid Glass styling, and App Intents for Siri/Shortcuts integration.
+
+References cover views/modifiers, navigation, SwiftData, state management, Liquid Glass across platforms, and App Intents in depth.
+
+Best practices: extract subviews once a view body exceeds ~30 lines, compose with ViewBuilder and modifiers, always include #Preview, use semantic colors (.primary/.secondary), add accessibility labels to icons, and adapt layout by size class.
+</objective>
 
 # SwiftUI Core
 
@@ -9,7 +17,7 @@ SwiftUI fundamentals shared across all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing SwiftUI patterns
 2. **research-expert** - Verify latest SwiftUI docs via Context7/Exa

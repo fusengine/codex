@@ -1,21 +1,29 @@
 ---
 name: laravel-testing
-description: "Write tests with Pest 4/PHPUnit 12, feature tests, unit tests, mocking, fakes, and factories. Use when testing controllers, services, models, or implementing TDD on Laravel 13."
+description: Use when testing controllers, services, or models, or implementing TDD on Laravel 13 with Pest 4 / PHPUnit 12.
 ---
+
+<objective>
+Covers Laravel 13 testing with Pest 4 and PHPUnit 12: feature tests (HTTP,
+full stack), unit tests (isolated classes), and architecture tests; Pest
+syntax (it/test/describe), datasets; HTTP testing (requests, JSON
+assertions, auth/actingAs, status/redirect assertions); database testing
+(RefreshDatabase, factories, DB assertions); mocking (services, spies,
+Mail/Queue/Event fakes, Http::fake, time travel); console/Artisan command
+tests; and PHPUnit-attribute-based seeding (#[Seed], #[Seeder]).
+</objective>
 
 # Laravel Testing
 
-_Targets: laravel 13.0, pest 4.0, phpunit 12.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing test patterns
-2. `research-expert` - Verify Pest/PHPUnit docs via Context7
-3. `mcp__context7__query-docs` - Check assertion and mocking patterns
+1. **explore-codebase** - Analyze existing test patterns
+2. **research-expert** - Verify Pest/PHPUnit docs via Context7
+3. **mcp__context7__query-docs** - Check assertion and mocking patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

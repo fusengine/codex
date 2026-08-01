@@ -1,10 +1,6 @@
 ---
 name: page-architecture
 description: Core page layout architecture with shell, regions, and responsive patterns
-when-to-use: Starting any page layout, understanding the shell structure
-keywords: architecture, shell, layout, grid, responsive, regions, container
-priority: high
-related: navigation/sidebar.md, navigation/navbar.md
 ---
 
 # Page Architecture

@@ -1,39 +1,38 @@
 ---
 name: frontmatter
-description: Agent TOML field configuration
+description: Agent YAML frontmatter configuration
+when-to-use: Configuring agent metadata, tools, skills, hooks
+keywords: frontmatter, yaml, config, tools, skills, hooks, model
+priority: high
+related: hooks.md, architecture.md
 ---
 
-# Agent TOML Fields
+# Agent Frontmatter
 
 ## Overview
 
-A Codex agent is a `.toml` file. Its top-level fields define the agent's behavior and capabilities; the body lives in `developer_instructions`.
+The YAML frontmatter defines agent behavior, capabilities, and validation hooks.
 
 ---
 
 ## Complete Example
 
-```toml
-name = "nextjs-expert"
-description = "Expert Next.js 16 with App Router, Prisma 7, Better Auth. Use when building Next.js apps."
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
-developer_instructions = '''
-# Next.js Expert
-...
-'''
-
-[[skills.config]]
-path = "plugins/nextjs-expert/skills/solid-nextjs/SKILL.md"
-enabled = true
-
-[[skills.config]]
-path = "plugins/nextjs-expert/skills/nextjs-16/SKILL.md"
-enabled = true
+```yaml
+---
+name: nextjs-expert
+description: Expert Next.js 16 with App Router, Prisma 7, Better Auth. Use when building Next.js apps.
+model: sonnet
+color: cyan
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent, mcp__context7__*, mcp__shadcn__*, mcp__gemini-design__*
+skills: solid-nextjs, nextjs-16, prisma-7, better-auth, nextjs-shadcn
+hooks:
+  PreToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/validate-nextjs-solid.sh"
+---
 ```
-
-> Pre/Post-tool validation hooks do NOT belong in the agent `.toml` — they live in the plugin's `hooks/hooks.json`. See [hooks.md](hooks.md).
 
 ---
 
@@ -41,16 +40,13 @@ enabled = true
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | Yes | Unique identifier (kebab-case), matches filename |
-| `description` | Yes | One-line for agent detection ("Use when… / Do NOT use for…") |
-| `model` | Yes | `gpt-5.6-sol` or `gpt-5.6-terra` |
-| `model_reasoning_effort` | Yes | `high` |
-| `sandbox_mode` | Yes | `workspace-write` or `read-only` |
-| `nickname_candidates` | No | Display nicknames (array) |
-| `developer_instructions` | Yes | Full agent body as a `'''…'''` multiline string |
-| `[[skills.config]]` | No | One table per attached skill (`path` + `enabled`) |
-
-There is NO `tools:` field (Codex does not map tools 1:1 — describe an essential capability in prose) and NO `color:` field.
+| `name` | Yes | Unique identifier (kebab-case) |
+| `description` | Yes | One-line for agent detection |
+| `model` | Yes | `sonnet`, `opus`, or `haiku` |
+| `color` | No | Terminal color |
+| `tools` | Yes | Comma-separated tool list |
+| `skills` | Yes | Accessible skills |
+| `hooks` | No | Pre/Post validation |
 
 ---
 
@@ -58,25 +54,25 @@ There is NO `tools:` field (Codex does not map tools 1:1 — describe an essenti
 
 | Model | When to Use |
 |-------|-------------|
-| `gpt-5.6-sol` | Heavy reasoning, architecture, orchestrator/verifier roles (sniper, challenger, research-expert, brainstorming, security, deep-analysis) |
-| `gpt-5.6-terra` | Domain-expert / execution / read-only roles (framework experts, explore-codebase, websearch) |
-
-`model_reasoning_effort` is always `high`. Valid effort values: `minimal`, `low`, `medium`, `high`, `xhigh`. Always use the explicit `-sol`/`-terra` IDs (never the bare `gpt-5.6` alias).
-
----
-
-## Sandbox Mode
-
-| Value | When to Use |
-|-------|-------------|
-| `workspace-write` | Agents that edit/create files (domain experts, sniper, commit) |
-| `read-only` | Agents that never write (explore-codebase, research-expert, challenger, websearch) |
+| `sonnet` | Default for most agents |
+| `opus` | Complex reasoning, architecture |
+| `haiku` | Fast, simple tasks |
 
 ---
 
-## Capabilities via MCP
+## Tools Configuration
 
-MCP servers declared in the plugin's `.mcp.json` are available to the agent. Reference their tools directly in the body:
+### Core Tools
+
+```yaml
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent
+```
+
+### With MCP Servers
+
+```yaml
+tools: Read, Edit, Write, Bash, Grep, Glob, spawn_agent, mcp__context7__*, mcp__shadcn__*, mcp__gemini-design__*
+```
 
 | MCP Tool | Purpose |
 |----------|---------|
@@ -84,19 +80,16 @@ MCP servers declared in the plugin's `.mcp.json` are available to the agent. Ref
 | `mcp__shadcn__*` | UI component registry |
 | `mcp__gemini-design__*` | AI frontend generation |
 | `mcp__exa__*` | Web search |
-| `mcp__fuse-browser__*` | Web fetch/crawl/SERP, browser session |
 
 ---
 
-## Skills Attachment
+## Skills Reference
 
-```toml
-[[skills.config]]
-path = "plugins/<plugin>/skills/solid-<stack>/SKILL.md"
-enabled = true
+```yaml
+skills: solid-nextjs, nextjs-16, prisma-7, better-auth
 ```
 
-**Always attach:**
+**Always include:**
 - `solid-[stack]` - SOLID rules for the stack
 - Main framework skill
 - Related technology skills

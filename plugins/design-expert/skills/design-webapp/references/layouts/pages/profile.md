@@ -1,10 +1,6 @@
 ---
 name: profile
 description: User profile page with avatar upload, inline editing, and activity feed
-when-to-use: Designing user profile pages, account pages with editable fields
-keywords: profile, avatar, user, inline-edit, activity, upload
-priority: high
-related: settings.md, auth-register.md
 ---
 
 # Profile Spec

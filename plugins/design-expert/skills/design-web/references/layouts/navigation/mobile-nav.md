@@ -1,10 +1,6 @@
 ---
 name: mobile-nav
 description: Bottom tab bar navigation for mobile with safe area handling
-when-to-use: Designing mobile navigation, bottom tabs, mobile-first apps
-keywords: mobile, bottom-nav, tabs, safe-area, touch, fitts-law
-priority: high
-related: sidebar.md, navbar.md
 ---
 
 # Mobile Navigation Spec

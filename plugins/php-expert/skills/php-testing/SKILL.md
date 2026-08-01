@@ -1,24 +1,31 @@
 ---
 name: php-testing
-description: "Use when writing or configuring tests on a framework-agnostic PHP project and choosing between PHPUnit and Pest. Covers PHPUnit 12 attributes, Pest 4, test doubles, fixtures, and coverage. Do NOT use for Laravel test helpers (RefreshDatabase, HTTP tests → laravel-expert laravel-testing) or quality tooling (PHPStan/Rector/Fixer → php-quality-tooling)."
+description: Use when writing/configuring tests on a non-Laravel PHP project — PHPUnit vs Pest. Do NOT use for Laravel test helpers or quality tooling (php-quality-tooling).
 ---
 
-# PHP Testing
+<objective>
+Covers testing a framework-agnostic PHP project with PHPUnit 12 (class-based, xUnit-style, attributes only — annotations like @test/@dataProvider were removed) or Pest 4 (closure-based, expressive, adds browser/architecture/mutation testing), both of which run on PHPUnit's engine and require PHP 8.3+.
 
-_Targets: phpunit 12, pest 4._
+Includes a decision matrix for choosing between the two (team preference, not capability), plus templates for phpunit.xml, Pest.php setup, and test doubles (stubs, mocks, fixtures, coverage).
+
+Do NOT use this skill for Laravel test helpers such as RefreshDatabase or HTTP testing — those are covered by laravel-expert's laravel-testing skill. Do NOT use it for static analysis or formatting tooling — that is php-quality-tooling.
+</objective>
+
+
+# PHP Testing
 
 Two frameworks, one engine. Pest is a layer over PHPUnit — both need **PHP 8.3+**
 and share the same runner and assertions underneath.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing framework (phpunit.xml vs Pest.php), test layout, PHP version
-2. `research-expert` - Verify latest PHPUnit 12 / Pest 4 docs via Context7/Exa
-3. `mcp__context7__query-docs` - Check attribute names, test-double API, config schema
+1. **explore-codebase** - Detect existing framework (phpunit.xml vs Pest.php), test layout, PHP version
+2. **research-expert** - Verify latest PHPUnit 12 / Pest 4 docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check attribute names, test-double API, config schema
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

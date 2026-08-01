@@ -9,62 +9,60 @@ related: templates/pulse-report.md
 
 # Exa Query Reference
 
-Target: the Codex CLI (`openai/codex`). Quote `"OpenAI Codex"` for exact match and disambiguation from the older Codex model.
-
 ## Update Tracking
 
 ```
-"OpenAI Codex" CLI changelog OR release OR "new version" 2026
-"OpenAI Codex" CLI update announcement OpenAI
-"OpenAI Codex" breaking change OR migration
+"Codex" changelog OR release OR "new version" 2026
+"Codex" update announcement Anthropic
+"Codex" breaking change OR migration
 ```
 
 ## Bug Reports
 
 ```
-"OpenAI Codex" CLI bug OR issue OR "doesn't work" OR regression
-"OpenAI Codex" hooks broken OR "stopped working"
-"OpenAI Codex" agent OR MCP error OR "not loading"
+"Codex" bug OR issue OR "doesn't work" OR regression
+"Codex" hooks broken OR "stopped working"
+"Codex" plugin error OR "not loading"
 ```
 
 ## Community Experience
 
 ```
-"OpenAI Codex" CLI review OR experience OR workflow
-"OpenAI Codex" plugin development tips
-"OpenAI Codex" hooks tutorial OR guide
-"OpenAI Codex" subagents OR spawn_agent delegation
+"Codex" review OR experience OR workflow
+"Codex" plugin development tips
+"Codex" hooks tutorial OR guide
+"Codex" agent teams OR delegation
 ```
 
 ## Feature Requests
 
 ```
-"OpenAI Codex" feature request OR "wish it could"
-"OpenAI Codex" missing feature OR limitation
-"OpenAI Codex" roadmap OR "coming soon"
+"Codex" feature request OR "wish it could"
+"Codex" missing feature OR limitation
+"Codex" roadmap OR "coming soon"
 ```
 
 ## Competitor Comparison
 
 ```
-"OpenAI Codex" vs "Claude Code" comparison 2026
-"OpenAI Codex" vs Cursor vs Copilot
-"switched from" OR "switched to" "OpenAI Codex"
+"Codex" vs Cursor comparison 2026
+"Codex" vs Windsurf vs Copilot
+"switched from" OR "switched to" "Codex"
 ```
 
 ## Deep Research Prompts
 
-For Exa `deep_researcher_start`:
+For Exa deep_researcher_start:
 ```
-Analyze recent community feedback about the OpenAI Codex CLI tool.
-Focus on: plugin/agent system changes, hooks API stability,
+Analyze recent community feedback about Codex CLI tool.
+Focus on: plugin system changes, hooks API stability,
 breaking changes reported by developers, and overall
 developer satisfaction trends in the last 30 days.
 ```
 
 ## Query Tips
 
-- Always include the current year for freshness
-- Quote `"OpenAI Codex"` (exact match, disambiguates from the model)
+- Always include current year for freshness
+- Use quotes around "Codex" (exact match)
 - Combine with OR for broader coverage
 - Add site-specific filters for quality sources

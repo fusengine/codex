@@ -1,9 +1,15 @@
 ---
 name: exploration
-description: Codebase exploration techniques for rapid discovery, architecture analysis, pattern detection, and dependency mapping.
+description: Use when exploring an unfamiliar codebase -- architecture analysis, pattern detection, dependency mapping, rapid discovery.
 ---
 
-Runs in a forked subagent context (spawn_agent) via the `explore-codebase` agent. The target directory is passed as the skill argument.
+<objective>
+Exploration runs a 5-phase reconnaissance protocol for rapid codebase discovery: initial reconnaissance (root files, config, entry points), structure mapping, entry-point detection per language, dependency analysis (package.json/pyproject.toml/go.mod/Cargo.toml/composer.json), and architecture-pattern detection (MVC, Clean, Hexagonal, feature-based, layered, modular monolith, Next.js App Router, and more).
+
+It is evidence-based only -- no assumptions without code proof -- and produces a structured report of tech stack, entry points, and detected architecture pattern for whoever consumes it (typically the APEX Analyze phase or a domain expert).
+</objective>
+
+**Session:** ${CLAUDE_SESSION_ID}
 
 # Exploration Skill
 

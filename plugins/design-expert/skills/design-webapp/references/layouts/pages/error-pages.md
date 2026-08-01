@@ -1,10 +1,6 @@
 ---
 name: error-pages
 description: Error page designs for 404, 500, and 403 with no dead-ends
-when-to-use: Designing error pages, not-found pages, access denied pages
-keywords: error, 404, 500, 403, not-found, server-error, forbidden
-priority: high
-related: ../../../../design-web/references/layouts/navigation/navbar.md, ../patterns/empty-state.md
 ---
 
 # Error Pages Spec

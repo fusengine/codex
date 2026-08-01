@@ -31,8 +31,6 @@ pnpm add -D @prisma/mcp-server
 
 Add to Claude configuration:
 
-> Codex: configurer le serveur MCP dans la config MCP de l'hôte (les chemins ci-dessous sont l'exemple d'origine de la doc Prisma).
-
 ```json
 // .claude/claude.json
 {

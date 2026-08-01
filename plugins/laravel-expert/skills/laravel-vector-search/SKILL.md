@@ -1,21 +1,30 @@
 ---
 name: laravel-vector-search
-description: "Use when implementing semantic / vector search in Laravel 13 with PostgreSQL + pgvector. Covers schema setup, embedding workflow, and the new query builder methods (`whereVectorSimilarTo`, `selectVectorDistance`, etc.)."
+description: Use when implementing semantic/vector search in Laravel 13 with PostgreSQL + pgvector.
 ---
+
+<objective>
+Covers Laravel 13 vector/semantic search on PostgreSQL with the pgvector
+extension: enabling the extension via Schema::ensureVectorExtensionExists(),
+the vector column type and HNSW/IVFFlat indexing, the embedding generation
+and persistence workflow, and the query builder's vector methods
+(whereVectorSimilarTo, selectVectorDistance, whereVectorDistanceLessThan,
+orderByVectorDistance). PostgreSQL-only — no MySQL/SQLite fallback. For
+full-text/keyword search, see laravel-scout instead (the two can be
+combined for hybrid search).
+</objective>
 
 # Laravel 13 Vector Search (pgvector)
 
-_Targets: laravel 13.0, php 8.3, postgresql 16+, pgvector 0.7+._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check current DB driver (must be PostgreSQL) and existing embedding columns
-2. `research-expert` - Verify pgvector extension version and HNSW vs IVFFlat tradeoffs
-3. `mcp__context7__query-docs` - Pull `laravel.com/docs/13.x/search` + `queries` examples
+1. **explore-codebase** - Check current DB driver (must be PostgreSQL) and existing embedding columns
+2. **research-expert** - Verify pgvector extension version and HNSW vs IVFFlat tradeoffs
+3. **mcp__context7__query-docs** - Pull `laravel.com/docs/13.x/search` + `queries` examples
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

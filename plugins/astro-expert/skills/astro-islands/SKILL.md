@@ -1,21 +1,25 @@
 ---
 name: astro-islands
-description: Expert Astro Islands Architecture — client:load, client:idle, client:visible, client:media, client:only, server:defer (Server Islands), fallback slots, transition:persist, prop serialization. Use when adding interactivity to Astro pages or rendering dynamic server content.
+description: Use when adding interactivity to Astro pages via client:* directives or rendering dynamic server content with server:defer.
 ---
 
-# Astro Islands Expert
+<objective>
+Implements Astro's Islands Architecture: partial hydration via `client:load`, `client:idle`, `client:visible`, `client:media="(query)"`, and `client:only="framework"`, plus Server Islands via `server:defer` (with `slot="fallback"` placeholders) for personalized or auth-gated content rendered after initial page load without blocking SSR.
 
-> Targets: Astro 7.
+Also covers `transition:persist` for preserving component state across View Transitions, and prop serialization rules for data crossing the server/client boundary. Does not cover installing the underlying UI framework itself (astro-integrations) or Server Actions used inside islands (astro-actions) — those are separate skills.
+</objective>
+
+# Astro Islands Expert
 
 Partial hydration architecture: zero JS by default, selective interactivity via directives.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing components and hydration patterns
 2. **research-expert** - Verify latest Islands docs via Context7/Exa
-3. **Context7 (official docs)** - Get client directive and server:defer examples
+3. **mcp__context7__query-docs** - Get client directive and server:defer examples
 
 After implementation, run **sniper** for validation.
 

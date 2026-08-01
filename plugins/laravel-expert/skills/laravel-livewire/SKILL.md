@@ -1,21 +1,30 @@
 ---
 name: laravel-livewire
-description: "Livewire 4 reactive components on Laravel 13 - wire:model, actions, events, Volt, Folio. Use when building reactive UI without JavaScript."
+description: Livewire 4 reactive components on Laravel 13 - wire:model, actions, events, Volt, Folio. Use when building reactive UI without JavaScript.
 ---
+
+<objective>
+Covers Livewire 4 on Laravel 13: reactive class-based components with Blade
+views, wire:model two-way binding and its modifiers (.blur, .live,
+.debounce), actions, component lifecycle hooks, forms/validation, events
+(dispatch/listen), Alpine.js integration ($wire, @entangle), file uploads,
+component nesting, loading states, SPA navigation, testing, security
+(auth/rate limiting), and the Volt (single-file components) and Folio
+(file-based routing) sub-features, including Precognition live validation
+and Reverb WebSocket integration.
+</objective>
 
 # Laravel Livewire
 
-_Targets: laravel 13.0, livewire 4.x, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing Livewire components
-2. `research-expert` - Verify Livewire 3 patterns via Context7
-3. `mcp__context7__query-docs` - Check specific Livewire features
+1. **explore-codebase** - Check existing Livewire components
+2. **research-expert** - Verify Livewire 3 patterns via Context7
+3. **mcp__context7__query-docs** - Check specific Livewire features
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

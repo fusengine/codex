@@ -1,10 +1,6 @@
 ---
 name: patterns-microinteractions
 description: Micro-interactions, transitions, and Framer Motion patterns
-when-to-use: Adding smooth animations, implementing hover effects, creating delightful interactions
-keywords: micro-interactions, framer-motion, animations, transitions, effects, spring
-priority: medium
-related: patterns-cards.md, patterns-buttons.md, motion-patterns.md
 ---
 
 # Micro-Interactions & Animations

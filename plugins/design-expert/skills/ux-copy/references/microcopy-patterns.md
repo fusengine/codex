@@ -1,10 +1,6 @@
 ---
 name: microcopy-patterns
 description: CTA patterns, conversion words, form labels, validation, toasts, and button states for UI copy
-when-to-use: Writing button labels, form labels, validation messages, toast notifications, and inline microcopy
-keywords: microcopy, cta, conversion, form-labels, validation, toast, button-states
-priority: high
-related: voice-tone-sectors.md, empty-states-copy.md, templates/cta-patterns.md
 ---
 
 # Microcopy Patterns

@@ -1,10 +1,6 @@
 ---
 name: gemini-tool-signatures
 description: "Real tool parameter signatures for Gemini Design MCP (optional path), from MCP schema, not website docs."
-when-to-use: "Using the optional Gemini Design MCP path and calling create_frontend, snippet_frontend, or modify_frontend."
-keywords: gemini, mcp, parameters, signatures, schema, optional
-priority: low
-related: gemini-design-workflow.md
 ---
 
 # Gemini Design Tool Signatures (Optional Path)

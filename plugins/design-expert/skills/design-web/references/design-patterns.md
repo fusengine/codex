@@ -1,10 +1,6 @@
 ---
 name: design-patterns
 description: Common UI/UX design patterns and anti-patterns
-when-to-use: Understanding design conventions, avoiding common mistakes, applying proven patterns
-keywords: patterns, anti-patterns, visual hierarchy, spacing, conventions
-priority: high
-related: ui-visual-design.md, component-composition-ref.md
 ---
 
 # Design Patterns UI/UX

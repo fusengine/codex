@@ -1,18 +1,13 @@
 ---
 name: component-variants
 description: Use when creating multi-style components, variant props, or style switching. Covers Glass, Outline, and Flat styles with CVA.
-versions:
-  cva: "1.x"
-user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Grep
-related-skills: glassmorphism-advanced, generating-components
 ---
 
 # Component Variants
 
 ## Agent Workflow (MANDATORY)
 
-Before implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing variant patterns
 2. **research-expert** - cva/class-variance-authority docs

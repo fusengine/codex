@@ -1,21 +1,27 @@
 ---
 name: laravel-i18n
-description: "Laravel localization - __(), trans_choice(), lang files, JSON translations, pluralization, middleware, formatting. Use when implementing translations."
+description: Use when implementing Laravel translations — __(), trans_choice(), lang files, pluralization, locale middleware, or formatting.
 ---
+
+<objective>
+Covers Laravel localization: PHP vs JSON translation files, pluralization
+rules, Blade translation helpers, locale-detection middleware, date/number/
+currency formatting, vendor package translations, and organizing
+translations for large apps. Includes queue-safe locale propagation via
+Context::add() in Laravel 13.
+</objective>
 
 # Laravel Internationalization
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing translation patterns
-2. `research-expert` - Verify Laravel i18n best practices via Context7
-3. `mcp__context7__query-docs` - Check Laravel localization documentation
+1. **explore-codebase** - Check existing translation patterns
+2. **research-expert** - Verify Laravel i18n best practices via Context7
+3. **mcp__context7__query-docs** - Check Laravel localization documentation
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

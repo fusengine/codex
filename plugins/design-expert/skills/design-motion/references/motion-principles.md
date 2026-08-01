@@ -1,10 +1,6 @@
 ---
 name: motion-principles
 description: Core motion design principles including hierarchy, duration scale, and easing
-when-to-use: Establishing motion language for an app, setting up animation tokens
-keywords: motion, principles, hierarchy, duration, easing, spring, reduced-motion
-priority: high
-related: entrance-patterns.md, micro-interactions.md
 ---
 
 # Motion Principles

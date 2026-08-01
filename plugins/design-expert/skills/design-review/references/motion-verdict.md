@@ -1,10 +1,6 @@
 ---
 name: motion-verdict
 description: "Block/Approve verdict format for reviewed motion — Before/After/Why table plus tiered impact summary."
-when-to-use: "The handoff review touches any animation, transition, hover, or gesture found during the light/dark screenshot pass."
-keywords: motion, verdict, review, block, approve
-priority: high
-related: ../../design-motion/references/animation-glossary.md, motion-audit.md
 ---
 
 # Motion Verdict Format

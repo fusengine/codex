@@ -1,11 +1,15 @@
 ---
 name: astro-db
-description: Astro DB — defineDb, defineTable, column types, CRUD with db.select/insert/update/delete, db/config.ts, db/seed.ts, Turso for production, type-safety, integration with Astro Actions. Use for any database operation in an Astro project.
+description: Use when doing database operations in an Astro project via Astro DB (defineDb, defineTable, db/config.ts, Turso).
 ---
 
-# Astro DB
+<objective>
+Implements Astro DB (`@astrojs/db`): schema definition with `defineDb`/`defineTable` in `db/config.ts`, column types (`text`, `number`, `boolean`, `date`, `json`), type-safe CRUD via `db.select/insert/update/delete`, development seeding in `db/seed.ts`, and production deployment to Turso (libSQL) with `ASTRO_DB_REMOTE_URL`/`ASTRO_DB_APP_TOKEN` and `astro db push`.
 
-> Targets: Astro 7.
+Also covers integration with Astro Actions for end-to-end type-safe form-to-database flows. `@astrojs/db` is deprecated and no longer actively maintained (still published, v0.21.3, not removed from Astro 7) — for new projects this skill recommends Drizzle, Kysely, or a direct libSQL client instead; existing projects can keep using it but should plan a migration.
+</objective>
+
+# Astro DB
 
 Type-safe SQL database built into Astro, powered by libSQL/Turso. Use for structured data without external backend services.
 
@@ -13,11 +17,11 @@ Type-safe SQL database built into Astro, powered by libSQL/Turso. Use for struct
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing db/config.ts, tables, and Actions
 2. **research-expert** - Verify Astro DB API via Context7/Exa
-3. **Context7 (official docs)** - Check Astro 6 DB docs for column types and CRUD
+3. **mcp__context7__query-docs** - Check Astro 6 DB docs for column types and CRUD
 
 After implementation, run **sniper** for validation.
 

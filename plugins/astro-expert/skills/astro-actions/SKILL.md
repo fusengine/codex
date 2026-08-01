@@ -1,21 +1,25 @@
 ---
 name: astro-actions
-description: Expert Astro Server Actions — defineAction, astro:actions, Zod validation, ActionError, HTML form actions, accept form, progressive enhancement, redirect patterns. Use when handling form submissions, mutations, or any server-side logic with type safety.
+description: Use when handling form submissions, mutations, or server-side logic with type safety in Astro via defineAction / astro:actions.
 ---
 
-# Astro Actions Expert
+<objective>
+Implements Astro Server Actions: `defineAction()` with Zod-validated `input`, the `astro:actions` client import for type-safe calls, standardized `ActionError` codes (UNAUTHORIZED, FORBIDDEN, NOT_FOUND, BAD_REQUEST, INTERNAL_SERVER_ERROR, CONFLICT, TOO_MANY_REQUESTS), `accept: 'form'` for direct HTML form submission, and progressive enhancement so forms work without JavaScript.
 
-> Targets: Astro 7, Zod 4.
+Covers the full action lifecycle from `src/actions/index.ts` structure through error handling and redirect patterns. Does not cover Astro DB integration in depth (astro-db handles the database layer) or Content Layer schemas (astro-content) — this skill focuses on the request/validation/response boundary.
+</objective>
+
+# Astro Actions Expert
 
 Type-safe server functions with automatic validation, standardized errors, and progressive enhancement.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Check existing actions in `src/actions/`
 2. **research-expert** - Verify latest Actions docs via Context7/Exa
-3. **Context7 (official docs)** - Get defineAction and ActionError examples
+3. **mcp__context7__query-docs** - Get defineAction and ActionError examples
 
 After implementation, run **sniper** for validation.
 

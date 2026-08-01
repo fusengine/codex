@@ -1,7 +1,13 @@
 ---
 name: solid-react
-description: SOLID principles for React 19. Files < 100 lines, hooks separated, interfaces in src/interfaces/, JSDoc mandatory. Use for React architecture and code quality.
+description: Use when applying SOLID principles to React architecture — file-size limits, hook separation, src/interfaces/, JSDoc.
 ---
+
+<objective>
+Enforces SOLID and DRY architecture on React 19 projects: files under 100 lines (components < 50, hooks < 30, services < 40), types isolated in `modules/[feature]/src/interfaces/` (never in component files), mandatory JSDoc on exports, no class components, and mandatory grepping for existing logic/utilities before writing new code (with `jscpd` duplication checks).
+
+Provides a dedicated reference guide per SOLID letter (SRP file-splitting, OCP composition/render-props, LSP contract compliance, ISP role-based props/context, DIP constructor injection via Context) plus 10 ready-to-copy templates covering components, hooks, services, stores, validators, factories, and tests. This is a cross-cutting code-quality skill, not a feature skill — for the React APIs themselves see react-19, react-state, react-forms, and react-tanstack-router.
+</objective>
 
 # SOLID React - Component Architecture
 
@@ -27,7 +33,7 @@ description: SOLID principles for React 19. Files < 100 lines, hooks separated, 
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze project structure and existing patterns
 2. **research-expert** - Verify latest docs for all stack technologies

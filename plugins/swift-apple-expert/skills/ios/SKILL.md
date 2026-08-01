@@ -1,7 +1,15 @@
 ---
 name: ios
-description: "iOS platform-specific development with XcodeBuildMCP tools for simulator, device, UI automation, and debugging. Use when building iPhone apps, testing on simulator/device, or automating UI interactions."
+description: Use when building iPhone apps — simulator/device testing, UI automation, or debugging — with XcodeBuildMCP tools.
 ---
+
+<objective>
+Covers iOS-specific development using XcodeBuildMCP automation tools: building and testing on the iOS Simulator, deploying to physical devices, scripted UI interactions (tap, swipe, screenshot, view-hierarchy snapshot), LLDB debugging, and integrating UIKit views inside SwiftUI.
+
+Lists the concrete MCP tools available for each phase — simulator tools (build_sim, boot_sim, launch_app_sim, test_sim), device tools (build_device, install_app_device, list_devices), and UI automation primitives.
+
+Best practices: build before every commit, iterate on the simulator first, always test on a real device before release, enable accessibility identifiers for UI automation, and validate against the oldest supported iOS version.
+</objective>
 
 # iOS Platform
 
@@ -9,7 +17,7 @@ iOS-specific development with XcodeBuildMCP automation tools.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing iOS patterns
 2. **research-expert** - Verify latest iOS 26 docs via Context7/Exa

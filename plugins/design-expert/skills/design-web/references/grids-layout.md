@@ -1,10 +1,6 @@
 ---
 name: grids-layout
 description: Grid system and layout best practices for responsive design
-when-to-use: Setting up page layouts, creating responsive grids, defining spacing
-keywords: grid, layout, columns, gutters, margins, responsive, 12-column
-priority: high
-related: cards-guide.md
 ---
 
 # Grids & Layout Guide

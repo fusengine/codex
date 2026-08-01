@@ -1,10 +1,6 @@
 ---
 name: footer
 description: Four-column responsive footer with newsletter and social links
-when-to-use: Designing page footers, site-wide footer sections
-keywords: footer, columns, newsletter, social, links, responsive
-priority: medium
-related: navbar.md, mobile-nav.md
 ---
 
 # Footer Spec

@@ -1,21 +1,25 @@
 ---
 name: astro-assets
-description: Image and asset optimization in Astro 7 — <Image />, <Picture />, getImage(), remote images, @astrojs/sharp, Fonts API, OG image generation with Satori, Cloudinary/Imgix. Use for any image optimization or asset handling task.
+description: Use when optimizing images or other assets in Astro — <Image />, <Picture />, getImage(), Fonts API, or OG image generation.
 ---
 
-# Astro Assets
+<objective>
+Handles image and asset optimization in Astro 7 via the `astro:assets` module: `<Image />` and `<Picture />` components (automatic WebP/AVIF conversion, responsive `srcset`/`sizes`, required `alt`), `getImage()` for server-side generation (API routes, CSS backgrounds), remote image handling with `inferSize`, and `@astrojs/sharp` as the default processing service.
 
-> Targets: Astro 7.
+Also covers the built-in Fonts API (stable since Astro 6.0) for zero-layout-shift font loading, dynamic OG image generation with Satori at build time, and CDN integration (Cloudinary, Imgix). Does not cover general SEO meta tags (astro-seo) or deployment-specific image CDN config beyond the adapter itself (astro-deployment).
+</objective>
+
+# Astro Assets
 
 Production-ready image optimization and asset management with `astro:assets` in Astro 7.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing image usage and asset patterns
 2. **research-expert** - Verify astro:assets API via Context7/Exa
-3. **Context7 (official docs)** - Check Astro 6 Fonts API and image component docs
+3. **mcp__context7__query-docs** - Check Astro 6 Fonts API and image component docs
 
 After implementation, run **sniper** for validation.
 

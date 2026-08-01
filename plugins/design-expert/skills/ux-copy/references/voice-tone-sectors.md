@@ -1,10 +1,6 @@
 ---
 name: voice-tone-sectors
 description: Brand voice profiles per sector using NNG 4 dimensions (formal/casual, funny/serious, respectful/irreverent, enthusiastic/matter-of-fact) with do/don't examples
-when-to-use: Defining brand voice for a sector, writing copy that matches sector personality
-keywords: voice, tone, sector, NNG, brand, personality, fintech, health, ecommerce, devtools, creative, enterprise, education
-priority: high
-related: ../../design-system/references/sector-palettes.md, microcopy-patterns.md, empty-states-copy.md
 ---
 
 # Voice & Tone by Sector

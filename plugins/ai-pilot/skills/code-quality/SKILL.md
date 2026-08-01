@@ -1,11 +1,17 @@
 ---
 name: code-quality
-description: "Code quality validation with linters, SOLID principles, DRY detection, error detection, and architecture compliance across all languages. Use when: validating code quality after modifications — SOLID compliance, DRY duplication, linter errors, or architecture violations. Do NOT use for: verifying the original problem is functionally resolved (run verification FIRST — code-quality validates quality AFTER functional verification passes)."
+description: "Use when validating code quality after modifications -- SOLID compliance, DRY duplication, linter errors, architecture violations. Do NOT use for functional verification (run verification FIRST, then code-quality)."
 ---
+
+<objective>
+Code Quality is the canonical 7-phase validation workflow shared with the `sniper` agent (this skill and `agents/sniper.md` must stay in sync): explore architecture, research documentation, analyze impact via Grep usages, detect duplication with jscpd (DRY), detect errors via linters, apply precision corrections informed by docs/impact/DRY findings, then re-verify until linters, tests, and duplication are all clean. It covers SOLID compliance, DRY thresholds, error priority (security/logic/performance/style), file-size limits, and architecture-pattern violations across all languages.
+
+It validates quality AFTER the fact -- it does not confirm the original problem was actually solved. Run the `verification` skill first to confirm functional resolution, then code-quality to confirm the fix is clean.
+</objective>
 
 # Code Quality Skill
 
-Canonical workflow definition: `agents/sniper.toml` (this skill and the sniper agent share the same 7-phase workflow — update both together).
+Canonical workflow definition: `agents/sniper.md` (this skill and the sniper agent share the same 7-phase workflow — update both together).
 
 ## 🚨 MANDATORY 7-PHASE WORKFLOW
 
@@ -26,9 +32,9 @@ PHASE 6: Verification (re-run linters, tests, duplication)
 
 ## PHASE 1: Architecture Exploration
 
-**Spawn the `explore-codebase` agent FIRST** (`spawn_agent`, agent defined under `.codex/agents/`):
+**Launch explore-codebase agent FIRST**:
 ```
-> spawn_agent(agent="explore-codebase", prompt="...")
+> Agent(subagent_type="explore-codebase", prompt="...")
 ```
 
 **Gather**:
@@ -45,12 +51,10 @@ PHASE 6: Verification (re-run linters, tests, duplication)
 
 ## PHASE 2: Documentation Research
 
-**Spawn the `research-expert` agent** (`spawn_agent`):
+**Launch research-expert agent**:
 ```
-> spawn_agent(agent="research-expert", prompt="Verify [library/framework] documentation for [error type]. Find [language] best practices for [specific issue].")
+> Agent(subagent_type="research-expert", prompt="Verify [library/framework] documentation for [error type]. Find [language] best practices for [specific issue].")
 ```
-
-> Phases 1 and 2 are independent — dispatch both `spawn_agent` calls in parallel (one MultiAgentV2 dispatch) and wait for both before Phase 3.
 
 **Request for each error**:
 - Official API documentation

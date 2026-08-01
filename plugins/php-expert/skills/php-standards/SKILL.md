@@ -1,21 +1,27 @@
 ---
 name: php-standards
-description: "Use when setting up a PHP package, choosing a coding style, wiring autoloading, or selecting PSR interfaces — PSR-4 autoloading, PER Coding Style 3.0 vs PSR-12, the active PSR catalog, and modern composer.json. Do NOT use for language syntax/features (use php-language-modern) or Laravel-specific conventions (use the laravel plugin)."
+description: Use when setting up PHP-package autoloading, coding style, or PSR interfaces — PSR-4, PER Coding Style 3.0, composer.json. Do NOT use for syntax or Laravel.
 ---
+
+<objective>
+Covers the standards that shape a framework-agnostic PHP package: PSR-4 autoloading (and why PSR-0 is deprecated), PER Coding Style 3.0 versus the still-Accepted PSR-12, and the current PSR catalog to depend on for logging (PSR-3), caching (PSR-6/16), HTTP (PSR-7/15/17/18), DI containers (PSR-11), events (PSR-14), and time (PSR-20).
+
+Includes composer.json and project-structure templates (src/ for library code, tests/ wired via autoload-dev, PSR-4 namespace mapping), and the core PER/PSR-1 file rules (4 spaces, LF endings, no closing ?>).
+
+Do NOT use this skill for language syntax or feature questions — that is php-language-modern. Do NOT use it for Laravel-specific conventions, which live in the Laravel plugin.
+</objective>
 
 # PHP Standards (PSR / PER / Composer)
 
-_Targets: per-coding-style 3.0, psr-4 accepted, composer 2._
-
 ## Agent Workflow (MANDATORY)
 
-Before applying a standard, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before applying a standard, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing style config (`.php-cs-fixer.php`, `phpcs.xml`), `composer.json` autoload
-2. `research-expert` - Verify a PSR's current status on php-fig.org before recommending it
-3. `mcp__context7__query-docs` - Cross-check composer.json schema
+1. **explore-codebase** - Detect existing style config (`.php-cs-fixer.php`, `phpcs.xml`), `composer.json` autoload
+2. **research-expert** - Verify a PSR's current status on php-fig.org before recommending it
+3. **mcp__context7__query-docs** - Cross-check composer.json schema
 
-After changes, run the `sniper` agent via `spawn_agent` for validation.
+After changes, run **sniper** for validation.
 
 ---
 

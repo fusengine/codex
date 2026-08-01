@@ -1,10 +1,6 @@
 ---
 name: gradients-guide
 description: Gradient types, usage patterns, and implementation guidelines
-when-to-use: Creating gradients, adding depth to UI, implementing background effects
-keywords: gradients, linear, radial, angular, mesh, depth, visual hierarchy
-priority: medium
-related: color-system.md, ../../design-web/references/photos-images.md
 ---
 
 # Gradients Design Guide

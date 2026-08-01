@@ -1,10 +1,6 @@
 ---
 name: register-brand
 description: "Direction for register `brand` (marketing site, launch page, identity) — the POV that ties the WHOLE page, not just the hero; the 'body ≠ SaaS furniture' anti-pattern list; the per-section Competitor Lift Test; expected density/motion/expressiveness."
-when-to-use: "Gate 0 declares register `brand` — read this before Pass 1 of the two-pass process, and again at design-review Part 2 to judge whether the body (not just the hero) carries the direction."
-keywords: register, brand, pov, body, saas-furniture, competitor-lift-test, expressiveness
-priority: critical
-related: ../SKILL.md, product.md, copy.md, ../macrostructure-bank.md, ../../design-web/references/layout-discipline.md
 ---
 
 # Register: Brand — Direction, Not Process
@@ -30,6 +26,26 @@ that claim, it doesn't belong on the page in that form.
   FAQ, a footer CTA still owe the page's claim, not a category-default treatment).
 - Write the POV down. A POV held only "in your head" is not a POV — same discipline as
   Gate 0's four artefacts: present/absent, not a feeling.
+
+### Signature Device Test
+
+The signature element (Gate 0, item 2) must be *derived from the subject*, not applied
+to it. Name the object, gesture, instrument, or ritual it comes from — something that
+already exists in the client's trade — and state what it does on the page beyond
+looking good.
+
+**Test**: if the same element could be lifted onto a brand in an unrelated sector
+without changing a pixel, it is decoration, not signature. Rework it.
+
+A geometric shape, an abstract pattern, a gradient, a floating orb: all fail — they
+satisfy Signature Dominance mechanically while meaning nothing. So does a literal
+picture of the trade's object sitting in a box; the device must *do* something
+structural — carry progress, separate, navigate, reveal, or measure.
+
+Driving school — a rounded card with a car icon is decoration. A continuous road
+marking running the length of the page, doubling as scroll progress, section
+separator, and kilometre-post navigation, is a signature device: it comes from the
+trade and it works.
 
 ## 2. Body ≠ SaaS Furniture
 

@@ -1,10 +1,6 @@
 ---
 name: ux-laws
 description: Laws of UX and cognitive psychology principles applied to interface design
-when-to-use: Understanding user behavior, applying psychology to UX, optimizing decision flows
-keywords: laws of ux, cognitive, fitts, hicks, miller, jakob, peak-end rule
-priority: high
-related: ux-nielsen.md, ux-wcag.md, ux-patterns.md
 ---
 
 # Laws of UX (Cognitive Psychology)

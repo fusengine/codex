@@ -1,10 +1,6 @@
 ---
 name: navbar
 description: Sticky navbar with blur backdrop, notifications, and responsive behavior
-when-to-use: Designing top navigation bar, app header, global navigation
-keywords: navbar, header, sticky, blur, notifications, search, responsive
-priority: high
-related: sidebar.md, mobile-nav.md, ../../../../design-webapp/references/layouts/patterns/command-palette.md
 ---
 
 # Navbar Spec

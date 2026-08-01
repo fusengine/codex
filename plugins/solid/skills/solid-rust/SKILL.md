@@ -1,13 +1,19 @@
 ---
 name: solid-rust
-description: "SOLID principles for Rust 2024+. Files < 100 lines, traits separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Rust code, structuring src/modules/[feature]/ layers, or defining traits.rs interfaces."
+description: "Use when writing or refactoring Rust code, structuring src/modules/[feature]/ layers, or defining traits.rs interfaces (SOLID, files < 100 lines)."
 ---
+
+<objective>
+SOLID Rust enforces a modular architecture for Rust 2024 edition: every feature lives under `src/modules/[feature]/` (handlers.rs, services.rs, repository.rs, traits.rs, models.rs) with shared code in `src/core/`, traits live only in `traits.rs` or `src/core/traits/`, generics use trait bounds instead of concrete types, `thiserror` handles custom errors, and every public item carries a rustdoc `///` comment.
+
+Before writing any new code it requires a DRY check against `src/core/services` and `src/core/traits`. See `solid-principles.md` for the overview, the per-principle references for SRP/OCP/LSP/ISP/DIP detail, and the templates for module/service/trait/handler/error/test scaffolding.
+</objective>
 
 # SOLID Rust - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Rust docs via Context7

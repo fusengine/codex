@@ -11,6 +11,7 @@
 import { existsSync, readdirSync, renameSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { CACHE_DIR } from "./lib/design-state";
+import { deactivateTasteFirstMarker } from "./lib/taste-first";
 
 const MAX_AGE_DAYS = 7;
 
@@ -48,5 +49,6 @@ if (!(data.agent_type ?? "").includes("design")) process.exit(0);
 
 const agentId = data.agent_id ?? "";
 if (agentId) archiveState(agentId);
+deactivateTasteFirstMarker(process.cwd(), agentId);
 cleanupOldStates();
 process.exit(0);

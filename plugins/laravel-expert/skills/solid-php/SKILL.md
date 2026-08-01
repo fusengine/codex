@@ -1,21 +1,31 @@
 ---
 name: solid-php
-description: "SOLID principles for Laravel 13 and PHP 8.3+. Files < 100 lines, interfaces separated, PHPDoc mandatory. Auto-detects Laravel and FuseCore architecture."
+description: Use when applying SOLID principles to Laravel 13 / PHP 8.3+ code — file size limits, interface placement, or PHPDoc enforcement.
 ---
+
+<objective>
+Enforces SOLID principles and DRY on Laravel 13 + PHP 8.3+ code: files under
+100 lines (split at 90), interfaces separated into
+FuseCore/[Module]/App/Contracts/ (or FuseCore/Core/App/Contracts/ for shared
+ones), and mandatory PHPDoc on all public methods. Auto-detects Laravel vs
+FuseCore modular architecture and routes code placement accordingly
+(Controllers/Requests/Actions/Services/Repositories/DTOs/Contracts/Events/
+Policies), with anti-pattern detection (fat classes, business logic in
+models, concrete dependencies, missing strict_types) and refactoring
+guidance per SOLID principle (SRP/OCP/LSP/ISP/DIP).
+</objective>
 
 # SOLID PHP - Laravel 13 + PHP 8.3
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Analyze existing architecture
-2. `research-expert` - Verify Laravel/PHP docs via Context7
-3. `mcp__context7__query-docs` - Check SOLID patterns
+1. **explore-codebase** - Analyze existing architecture
+2. **research-expert** - Verify Laravel/PHP docs via Context7
+3. **mcp__context7__query-docs** - Check SOLID patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

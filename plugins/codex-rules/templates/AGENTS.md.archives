@@ -4,5 +4,5 @@ This file intentionally no longer stores a full legacy prompt. Older versions
 included Claude-era and non-portable orchestration terms such as `TeamCreate`,
 `TaskCreate`, fixed `/agent` usage, and mandatory coordinator-only behavior.
 
-Use `AGENTS.md.template` as the source of truth for the current Codex-native
-prompt.
+The repository-root `AGENTS.md` is the source of truth for the current
+Codex-native prompt; `AGENTS.md.template` is a generated mirror of it.

@@ -1,12 +1,13 @@
 ---
-description: "Generate a single component using existing design-system.md tokens. Skips inspiration browsing — fast path for isolated UI elements."
+description: "Routes single-component generation by register and move: taste-first for brand generation/redesign, existing-token component workflow otherwise."
 ---
 
 # /prompts:design-component — Single Component (COMPONENT scope)
 
-Generate one UI component using existing design tokens.
+Generate one UI component through the applicable register + move workflow.
 
-**Complete documentation**: `skills/design-web/SKILL.md` (or `skills/design-webapp/SKILL.md` for an app-specific pattern like a data table or command palette).
+**Complete documentation**: `skills/taste-first/SKILL.md` for its lane; otherwise
+`skills/design-web/SKILL.md` or `skills/design-webapp/SKILL.md`.
 
 ## Usage
 
@@ -17,15 +18,20 @@ Generate one UI component using existing design tokens.
 ```
 
 ## Prerequisites
-`design-system.md` must exist at project root. If missing, use `/prompts:design` instead.
+Resolve register and move first. Outside taste-first, `design-system.md` must exist at
+project root; if missing, use `/prompts:design` instead.
 
 ## Workflow
 
-1. Read `design-system.md` — this is the single source of truth for tokens.
-2. No inspiration browsing (COMPONENT scope skips it per `design-method`'s routing table). Optionally search `skills/design-web/references/21st-dev.md` or `shadcn.md` for pattern inspiration.
-3. Generate the component directly as HTML/CSS from `design-system.md` tokens, following `skills/design-web/references/component-variants-ref.md` for size/state/color variants.
-4. Read `skills/design-motion/SKILL.md` — gate micro-interactions; mandatory hover/focus/disabled states regardless.
-5. Read `skills/design-review/SKILL.md`, component-scoped: contrast, forbidden fonts, OKLCH-only, all states present, light+dark screenshot of the component in isolation.
+1. Resolve register and move from the request and owning surface.
+2. For `brand` + `generate`/`redesign`, read `skills/taste-first/SKILL.md` and follow it
+   exclusively, including its desktop/mobile first-frame evidence.
+3. For every other route, read the existing `design-system.md`, then use
+   `skills/design-web/SKILL.md` or `skills/design-webapp/SKILL.md` for the owning surface.
+   COMPONENT scope skips inspiration browsing and reuses existing tokens.
+4. Generate the isolated component with its required size/state/color variants, then run
+   `skills/design-motion/SKILL.md` and component-scoped `skills/design-review/SKILL.md`.
 
 ## Forbidden
-Creating a new `design-system.md`. Inspiration browsing (use the search tools above instead). Skipping light+dark validation.
+Loading generic creative requirements into taste-first. Outside taste-first, creating a
+new `design-system.md`, browsing inspiration, or skipping component validation.

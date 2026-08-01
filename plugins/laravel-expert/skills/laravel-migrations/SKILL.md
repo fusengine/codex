@@ -1,21 +1,29 @@
 ---
 name: laravel-migrations
-description: "Laravel 13 database migrations - Schema Builder, columns, indexes, foreign keys, seeders, pgvector. Use when designing database schema or managing migrations."
+description: Use when designing a database schema or managing Laravel 13 migrations — Schema Builder, columns, indexes, foreign keys, or seeders.
 ---
+
+<objective>
+Covers Laravel 13 database migrations: the Schema Builder API for
+creating/modifying/dropping tables, the 50+ column types and modifiers,
+index types (primary, unique, fulltext, spatial), foreign key constraints
+with cascade options, Artisan migration commands, seeders, testing
+migrations, safe production rollout, troubleshooting, and enabling pgvector
+via Schema::ensureVectorExtensionExists() for vector columns (see
+laravel-vector-search for querying them).
+</objective>
 
 # Laravel Migrations
 
-_Targets: laravel 13.0, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing migrations
-2. `research-expert` - Verify Laravel 13 patterns via Context7
-3. `mcp__context7__query-docs` - Check specific Schema Builder features
+1. **explore-codebase** - Check existing migrations
+2. **research-expert** - Verify Laravel 13 patterns via Context7
+3. **mcp__context7__query-docs** - Check specific Schema Builder features
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

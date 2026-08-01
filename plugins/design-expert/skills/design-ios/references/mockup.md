@@ -1,10 +1,6 @@
 ---
 name: mockup
 description: "Device-frame HTML/CSS technique for iOS mockups — exact viewport points, safe-area simulation."
-when-to-use: "Building the actual HTML file for an iOS mockup, after picking a device viewport."
-keywords: ios, mockup, html, css, safe-area, device-frame
-priority: high
-related: ../SKILL.md, viewports.md
 ---
 
 # Device-Framed HTML Mockup

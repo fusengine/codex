@@ -1,7 +1,15 @@
 ---
 name: visionos
-description: "visionOS platform-specific development with spatial computing, RealityKit, immersive spaces, and volumes. Use when building Vision Pro apps, 3D experiences, or mixed reality features."
+description: Use when building Vision Pro apps — spatial computing, RealityKit 3D content, immersive spaces, or volumes.
 ---
+
+<objective>
+Covers visionOS-specific development for Apple Vision Pro spatial computing: 3D spatial interaction, RealityKit-based 3D content rendering, immersive environments, mixed-reality features, and hand/eye tracking.
+
+Covers the three scene types available — WindowGroup (2D windows in space), Volume (3D bounded content), and ImmersiveSpace (full immersive experience) — with references on windows/volumes/spaces, RealityView/3D content, and ornament-based 2D UI attachments.
+
+Best practices: start with familiar 2D windows before adding depth, introduce volumes gradually for 3D content, use ornaments to attach 2D UI to 3D scenes, respect the user's physical space rather than overwhelming it, design for natural hand tracking, and avoid rapid movements that cause eye discomfort.
+</objective>
 
 # visionOS Platform
 
@@ -9,7 +17,7 @@ visionOS-specific development for Apple Vision Pro spatial computing.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing visionOS patterns
 2. **research-expert** - Verify latest visionOS 26 docs via Context7/Exa

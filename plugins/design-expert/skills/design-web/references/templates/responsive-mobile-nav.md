@@ -1,10 +1,6 @@
 ---
 name: responsive-mobile-nav
 description: "Responsive mobile navigation recipes — bottom tab bar, hamburger drawer, and breakpoint transforms for marketing/web nav."
-when-to-use: "Designing a site navigation that must adapt between mobile and desktop breakpoints."
-keywords: navigation, mobile, responsive, tab-bar
-priority: medium
-related: ../layouts/navigation/navbar.md, ../layouts/navigation/mobile-nav.md
 ---
 
 # Responsive Mobile Navigation Patterns

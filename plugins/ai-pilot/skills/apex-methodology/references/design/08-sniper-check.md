@@ -19,7 +19,7 @@ next_step: references/design/09-create-pr.md
 
 ## Launch Sniper Agent
 
-### Spawn Command
+### Task Command
 
 ```text
 spawn_agent: sniper

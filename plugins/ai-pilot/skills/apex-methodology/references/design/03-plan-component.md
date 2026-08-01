@@ -17,12 +17,12 @@ next_step: references/design/04-code-component.md
 
 ---
 
-## Plan Structure (update_plan)
+## update_plan Structure
 
 ### Example: Hero Section
 
 ```text
-update_plan with an item for each step:
+update_plan for each step:
 1. [ ] Create HeroSection component shell
 2. [ ] Add typography (heading, subheading)
 3. [ ] Implement background (gradient orbs)
@@ -30,13 +30,13 @@ update_plan with an item for each step:
 5. [ ] Implement Framer Motion animations
 6. [ ] Add responsive styles
 7. [ ] Validate accessibility
-Note dependencies in the step text. Call `update_plan` again to update each item's status as you progress.
+Use addBlockedBy to set dependencies. update_plan to track progress.
 ```
 
 ### Example: Card Component
 
 ```text
-update_plan with an item for each step:
+update_plan for each step:
 1. [ ] Create Card base component
 2. [ ] Add CardHeader, CardContent, CardFooter
 3. [ ] Implement hover animation

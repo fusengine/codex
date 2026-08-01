@@ -1,10 +1,6 @@
 ---
 name: color-system
 description: Complete color system with psychology, palettes, and OKLCH tokens
-when-to-use: Defining color palettes, creating CSS variables, choosing semantic colors
-keywords: color, palette, psychology, OKLCH, CSS variables, semantic tokens, notification colors
-priority: critical
-related: typography.md, theme-presets.md
 ---
 
 # Color System

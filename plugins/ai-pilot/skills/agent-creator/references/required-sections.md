@@ -1,13 +1,17 @@
 ---
 name: required-sections
 description: Mandatory content sections for agent files
+when-to-use: Writing agent markdown content after frontmatter
+keywords: sections, mandatory, workflow, skills, solid, documentation
+priority: high
+related: frontmatter.md, architecture.md
 ---
 
 # Required Sections
 
 ## Overview
 
-Every agent's `developer_instructions` body must include these sections.
+Every agent file must include these sections after the frontmatter.
 
 ---
 
@@ -28,11 +32,11 @@ Every agent's `developer_instructions` body must include these sections.
 ```markdown
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 subagents in parallel (one dispatch, `spawn_agent` / MultiAgentV2):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze [domain] patterns
 2. **research-expert** - Verify latest [tech] docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check [specific] patterns (direct MCP call)
+3. **mcp__context7__query-docs** - Check [specific] patterns
 
 After implementation, run **sniper** for validation.
 ```
@@ -65,7 +69,7 @@ After implementation, run **sniper** for validation.
 ```markdown
 ## SOLID Rules (MANDATORY)
 
-**See the `solid-[stack]` skill for complete rules.**
+**See `solid-[stack]` skill for complete rules.**
 
 | Rule | Requirement |
 |------|-------------|

@@ -1,19 +1,23 @@
 ---
 name: seo
-description: Use when running SEO, GEO, schema, Core Web Vitals, sitemap, hreflang, E-E-A-T, AI Overviews, technical SEO, or structured data tasks. Covers full-site audits, single-page analysis, schema markup, content quality, AI search optimization, local SEO, sitemap/robots, internal linking, semantic clustering, and search experience.
+description: Use when running any SEO/GEO task via /seo — the top-level orchestrator that routes to all SEO sub-skills.
 ---
+
+<objective>
+Top-level SEO/GEO 2026 orchestrator invoked as `/seo $1 $2` ($1 = command, $2 = URL or local path). Routes to 20 sub-skills covering full-site audits (seo-audit), single-page analysis (seo-page), technical SEO, schema markup, content quality (E-E-A-T), AI search / GEO optimization (AI Overviews readiness), local SEO, sitemap/robots, internal linking, semantic clustering, content briefs, strategic planning by business type, search experience (SXO), featured snippets, entity/semantic SEO, e-commerce, video, hreflang/i18n, and redirects/migration — see the Quick Reference command table in the body for the full command-to-sub-skill mapping. Local-first (zero third-party APIs, zero Google APIs, zero Python — TS/Bun scripts only); delegates framework-specific implementation to fuse-astro/fuse-nextjs/fuse-laravel. Also owns the `.fuse-seo` opt-in activation hook on first invocation per project and post-analysis report generation under `.fuse-seo/reports/`.
+</objective>
 
 # SEO/GEO Orchestrator
 
 **Invocation:** `/seo $1 $2` where `$1` is the command and `$2` is the URL or local path.
 
-Comprehensive SEO + GEO 2026 analysis across all industries (SaaS, local services, e-commerce, publishers, agencies). Orchestrates 20 sub-skills and 8 concurrent sub-agents. Local-first, zero third-party APIs.
+Comprehensive SEO + GEO 2026 analysis across all industries (SaaS, local services, e-commerce, publishers, agencies). Orchestrates 20 sub-skills and 8 parallel sub-agents. Local-first, zero third-party APIs.
 
 ## Quick Reference
 
 | Command | What it does | Sub-skill |
 |---------|--------------|-----------|
-| `/seo audit <url>` | Full audit with concurrent sub-agent delegation | seo-audit |
+| `/seo audit <url>` | Full audit with parallel subagent delegation | seo-audit |
 | `/seo page <url\|path>` | Deep single-page analysis | seo-page |
 | `/seo technical <url>` | Technical SEO (robots, CWV, crawlability) | seo-technical |
 | `/seo schema <url\|path>` | Detect/validate/generate JSON-LD | seo-schema |
@@ -39,7 +43,7 @@ Comprehensive SEO + GEO 2026 analysis across all industries (SaaS, local service
 
 When user invokes `/seo audit <url>`:
 1. Detect business type from homepage (SaaS, local, ecommerce, publisher, agency)
-2. Spawn sub-agents **concurrently** (`spawn_agent` for each, launched in one batch):
+2. Spawn sub-agents **in parallel** (single message, multiple Agent calls):
    - `seo-technical` (robots, sitemap, CWV, hreflang)
    - `seo-schema` (JSON-LD detect/validate)
    - `seo-content` (E-E-A-T, anti-cannibalization)
@@ -80,7 +84,7 @@ references/
 └── 10-local-seo/         → GBP, NAP, citations, Local Pack
 ```
 
-## Scripts Available (`plugins/seo/scripts/`)
+## Scripts Available (`scripts/`)
 
 | Script | Purpose |
 |--------|---------|
@@ -97,7 +101,7 @@ references/
 ## Differentiation
 
 - **Local-first**: zero Google APIs, zero DataForSEO/Moz, zero Python
-- **Framework-native**: delegates implementation to the `astro`, `nextjs`, `laravel` plugins
+- **Framework-native**: delegates implementation to `fuse-astro`, `fuse-nextjs`, `fuse-laravel`
 - **GEO-first**: AI Overviews/ChatGPT/Perplexity as primary target, not afterthought
 - **TS/Bun stack**: all scripts in TypeScript, executed by Bun
 
@@ -125,8 +129,8 @@ When user invokes `/seo` for the first time on a project:
 
 1. Check if `.fuse-seo` marker exists at project root (or any parent up to repo root)
 2. If **absent**, ask the user **before any other work**:
-   > "Activate the fuse-seo hook on this project? It will validate meta/schema/OG on every file write/edit of HTML-like files (`.html`, `.astro`, `.tsx`, `.vue`, `.blade.php`) via the `@fusengine/harness` `seo` scope."
-3. If user confirms → create empty file `.fuse-seo` at project root via `touch .fuse-seo` (or write an empty file)
+   > "Activate the fuse-seo hook on this project? It will validate meta/schema/OG on every Write/Edit of HTML-like files (`.html`, `.astro`, `.tsx`, `.vue`, `.blade.php`) via the `@fusengine/harness` `seo` scope."
+3. If user confirms → create empty file `.fuse-seo` at project root via `touch .fuse-seo` (or Write tool with empty content)
 4. If user declines → proceed without creating the marker (hook stays dormant on this project)
 5. **Do not ask again** in the same session — the marker presence is the persistent answer
 
@@ -136,7 +140,7 @@ This is opt-in by design: never auto-create without explicit user consent.
 
 1. Generate markdown report in `.fuse-seo/reports/<date>-<command>.md`
 2. Offer drift baseline capture: `/seo drift <url>` for future comparisons
-3. Suggest framework-specific implementation via the matching skill:
-   - Astro project → `$astro-seo`
-   - Next.js → `$nextjs-stack`
-   - Laravel → `$laravel-blade`
+3. Suggest framework-specific implementation via delegation:
+   - Astro project → `astro-seo`
+   - Next.js → `nextjs-stack`
+   - Laravel → `laravel-blade`

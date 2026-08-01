@@ -3,7 +3,11 @@ name: sniper-check
 description: Use when validating code quality after modifications. Runs sniper agent in isolated forked context for clean, fast validation.
 ---
 
-Runs in a forked subagent context (spawn_agent) via the `sniper` agent. The target file or directory is passed as the skill argument.
+<objective>
+Sniper Check runs the full sniper agent 6-phase code-quality workflow (parallel explore-codebase + research-expert, Grep-based impact analysis, linter error detection, minimal correction, re-verification to zero errors) in an isolated forked context, so only the final validation report returns to the parent conversation -- nothing of the investigation itself pollutes it. Use it after any code modification, on a specific file, a directory, or the whole project.
+</objective>
+
+**Target:** $ARGUMENTS
 
 # Sniper Check
 
@@ -43,7 +47,7 @@ Execute the mandatory 6-phase `code-quality` workflow:
 4. **PHASE 5**: Apply corrections → Minimal changes
 5. **PHASE 6**: Re-run linters → Zero errors
 
-**CRITICAL**: Phases 1+2 must run in PARALLEL (spawn both subagents in parallel, one dispatch).
+**CRITICAL**: Phases 1+2 must run in PARALLEL (two spawn_agent calls in one message).
 
 ---
 

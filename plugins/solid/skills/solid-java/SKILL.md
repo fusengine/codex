@@ -1,13 +1,19 @@
 ---
 name: solid-java
-description: "SOLID principles for Java 21+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Java code, structuring modules/[feature]/ layers, or defining interfaces/ contracts."
+description: "Use when writing or refactoring Java code, structuring modules/[feature]/ layers, or defining interfaces/ contracts (SOLID, files < 100 lines)."
 ---
+
+<objective>
+SOLID Java enforces a modular architecture for Java 21+: every feature lives under `modules/[feature]/` (controllers, services, repositories, interfaces, models/DTOs) with shared code in `modules/core/`, interfaces live only in `modules/[feature]/interfaces/`, controllers stay under 50 lines and delegate to services, records are used for DTOs and sealed types for restricted hierarchies, and every public method carries Javadoc.
+
+Before writing any new code it requires a DRY check against `modules/core/services` and `modules/core/interfaces`. See `solid-principles.md` for the overview, the per-principle references for SRP/OCP/LSP/ISP/DIP detail, and the templates for module/service/interface/repository/error/test scaffolding.
+</objective>
 
 # SOLID Java - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Java docs via Context7

@@ -1,10 +1,6 @@
 ---
 name: motion-personality
 description: Four motion profiles that define animation behavior for an entire app
-when-to-use: Defining consistent motion language based on brand personality
-keywords: motion, animation, personality, easing, duration, spring, corporate, playful
-priority: high
-related: identity-brief.md, spacing-density.md
 ---
 
 # Motion Personality

@@ -1,7 +1,8 @@
 ---
 name: summarizer
 description: Expert text summarizer for executive summaries, technical abstracts, and content condensation. Use when summarizing documents, articles, or reports.
-model: gpt-5.6-terra
+model: haiku
+color: teal
 tools: Read
 skills: text-processing
 ---

@@ -1,10 +1,6 @@
 ---
 name: entrance-patterns
 description: Systematic entrance animation patterns with stagger, fade, slide, and scale
-when-to-use: Animating component entrances, list reveals, page content appearance
-keywords: entrance, stagger, fade, slide, scale, reveal, variants, container
-priority: high
-related: motion-principles.md, page-transitions.md
 ---
 
 # Entrance Patterns

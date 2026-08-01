@@ -1,23 +1,35 @@
 ---
 name: ts-testing
-description: "Use when writing or configuring TypeScript tests and choosing between bun test and Vitest. Covers runner selection, config, mocks, snapshots, and coverage. Do NOT use for framework-specific testing (React components → react-expert react-testing, Laravel → laravel-testing) or browser E2E suites."
+description: Use when writing or configuring TypeScript tests and choosing between bun test and Vitest. Not for framework-specific testing (React → react-testing).
 ---
 
-# TypeScript Testing
+<objective>
+This skill covers choosing between bun test (fastest cold start, zero-config TS/JSX,
+experimental coverage) and Vitest (V8/Istanbul coverage, multi-worker CI scaling, browser
+mode via Playwright) via a decision matrix by project shape, then configuring the chosen
+runner's shared Jest-like API — describe/it/expect, lifecycle hooks, mocks, and snapshots.
 
-_Targets: bun 1.3.14, vitest 4.1.9._
+It also covers coverage thresholds, deterministic test isolation, and the rule to never mix
+bun:test and vitest imports in one package, or run bun test when the configured runner is
+actually Vitest.
+
+Out of scope: framework-specific testing (React components → react-expert's react-testing,
+Laravel → laravel-testing) and browser E2E suites are not covered.
+</objective>
+
+# TypeScript Testing
 
 Pick the right runner, then write tests with a shared Jest-compatible API.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing runner, config, test layout
-2. `research-expert` - Verify latest bun test / Vitest docs via Context7/Exa
-3. `mcp__context7__query-docs` - Check mock, coverage, config APIs
+1. **explore-codebase** - Detect existing runner, config, test layout
+2. **research-expert** - Verify latest bun test / Vitest docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check mock, coverage, config APIs
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

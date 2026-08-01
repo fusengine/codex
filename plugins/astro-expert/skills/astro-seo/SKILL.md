@@ -1,21 +1,25 @@
 ---
 name: astro-seo
-description: SEO for Astro sites — meta tags, Open Graph, Twitter Cards, JSON-LD structured data, sitemap, RSS, robots.txt, canonical URLs, hreflang, Core Web Vitals. Use when optimizing search engine visibility or social sharing.
+description: Use when optimizing SEO for an Astro site — meta tags, Open Graph, JSON-LD structured data, sitemap/RSS, canonical URLs, hreflang, Core Web Vitals.
 ---
 
-# Astro SEO
+<objective>
+Implements SEO for Astro 7 sites: meta tags, Open Graph, and Twitter Cards via a reusable `<SEO />`/`<Head />` component; JSON-LD structured data injected with `set:html` (never string interpolation, to avoid XSS); `@astrojs/sitemap` and `@astrojs/rss` setup; robots.txt and canonical URLs built with `Astro.site`; hreflang for multilingual SEO; and Core Web Vitals optimization leveraging Astro's zero-JS-by-default output.
 
-> Targets: Astro 7.
+Does not cover locale routing mechanics beyond hreflang tag generation (astro-i18n), Content Layer schema design (astro-content), or image-specific optimization like `<Image />`/`<Picture />` (astro-assets) — those are separate skills.
+</objective>
+
+# Astro SEO
 
 Complete SEO strategy for Astro 7 sites — zero JS by default makes Astro naturally SEO-friendly.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing layouts, head components, and metadata
 2. **research-expert** - Verify latest SEO best practices via Context7/Exa
-3. **Context7 (official docs)** - Check Astro 7 sitemap/RSS integration docs
+3. **mcp__context7__query-docs** - Check Astro 7 sitemap/RSS integration docs
 
 After implementation, run **sniper** for validation.
 

@@ -1,10 +1,6 @@
 ---
 name: liquid-glass
 description: "Canonical Liquid Glass facts (iOS 26) — the only source for this material in this plugin. No numeric corner-radius exists officially; do not invent one."
-when-to-use: "Deciding whether and how to apply Liquid Glass to navigation, controls, or icons in an iOS mockup."
-keywords: ios, liquid-glass, ios26, material, navigation
-priority: high
-related: ../SKILL.md, semantic-colors.md
 ---
 
 # Liquid Glass (iOS 26)

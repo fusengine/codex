@@ -1,10 +1,6 @@
 ---
 name: dynamic-type
 description: "Canonical iOS Dynamic Type scale (Large size category, reflecting UIKit) — the only source of iOS type sizes in this plugin."
-when-to-use: "Mapping design-system.md typography to iOS text styles for a mockup or handoff spec."
-keywords: ios, dynamic-type, typography, sf-pro
-priority: critical
-related: ../SKILL.md, semantic-colors.md
 ---
 
 # Dynamic Type Scale (Large, UIKit-reflected)

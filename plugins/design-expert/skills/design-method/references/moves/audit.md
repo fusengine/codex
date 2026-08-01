@@ -1,10 +1,6 @@
 ---
 name: audit
 description: "Technical review of the body — deterministic checks (contrast, forbidden fonts, OKLCH-only, em-dash, motion transform/opacity, layout-discipline conformance in the output, dark-elevation). Severity Critical/Major/Minor, no aggregate score."
-when-to-use: "After any body pass or correction move (bolder/quieter/distill/harden), before polish.md — whenever a mechanical/deterministic technical read is needed instead of a taste judgment (that's critique.md)."
-keywords: audit, deterministic, contrast, oklch, fonts, motion, dark-elevation, layout-discipline
-priority: critical
-related: critique.md, polish.md, ../../design-review/references/anti-ai-slop-audit.md, ../../design-review/references/audit-checklist.md
 ---
 
 # Audit — Technical Review (Deterministic)

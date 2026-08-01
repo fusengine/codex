@@ -1,10 +1,6 @@
 ---
 name: patterns-buttons
 description: Button component patterns and sizing variants
-when-to-use: Creating button components, implementing button states, designing button hierarchies
-keywords: buttons, components, sizes, variants, patterns, icons
-priority: high
-related: patterns-cards.md, patterns-navigation.md, ../../design-web/references/design-patterns.md
 ---
 
 # Button Patterns

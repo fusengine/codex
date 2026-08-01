@@ -1,8 +1,6 @@
 ---
 name: design-system-fintech
 description: Ready-to-use fintech design system — trust/B2B blue-green OKLCH palette, professional typography, subtle motion
-keywords: fintech, banking, B2B, trust, OKLCH, design-system, example
-sector: fintech
 ---
 
 # Design System — Fintech (Trust/B2B)

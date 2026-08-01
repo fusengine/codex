@@ -1,10 +1,6 @@
 ---
 name: spacing-density
 description: Three density levels with base units, padding, and border-radius profiles
-when-to-use: Defining spacing system and density profile for a project
-keywords: spacing, density, padding, margin, border-radius, grid, layout
-priority: high
-related: identity-brief.md, typography-pairs.md
 ---
 
 # Spacing & Density

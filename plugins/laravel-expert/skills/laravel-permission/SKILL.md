@@ -1,21 +1,28 @@
 ---
 name: laravel-permission
-description: "Spatie Laravel Permission - roles, permissions, middleware, Blade directives, teams, wildcards, super-admin, API, testing. Use when implementing RBAC, role-based access control, or user authorization."
+description: Use when implementing RBAC, role-based access control, or user authorization with Spatie Laravel Permission.
 ---
+
+<objective>
+Covers Spatie Laravel Permission for role-based access control: roles and
+permissions, route middleware, Blade authorization directives, multi-tenant
+team scoping, wildcard/hierarchical permissions, super-admin bypass, cache
+management, direct-vs-role permission inheritance, query scopes,
+event-based audit logging, Policy integration, Sanctum/Passport API usage,
+custom models (UUID support), and testing patterns.
+</objective>
 
 # Laravel Permission (Spatie)
 
-_Targets: laravel 13.0, spatie-permission 6.24, php 8.3._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Check existing auth patterns
-2. `research-expert` - Verify Spatie Permission docs via Context7
-3. `mcp__context7__query-docs` - Check Laravel authorization patterns
+1. **explore-codebase** - Check existing auth patterns
+2. **research-expert** - Verify Spatie Permission docs via Context7
+3. **mcp__context7__query-docs** - Check Laravel authorization patterns
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

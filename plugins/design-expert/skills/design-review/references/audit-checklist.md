@@ -1,10 +1,6 @@
 ---
 name: audit-checklist
 description: Comprehensive design audit checklist covering typography, colors, spacing, motion, and accessibility
-when-to-use: Running a full design quality audit on a project
-keywords: audit, checklist, typography, colors, spacing, motion, accessibility, quality
-priority: high
-related: consistency-checks.md, anti-ai-slop-audit.md
 ---
 
 # Audit Checklist

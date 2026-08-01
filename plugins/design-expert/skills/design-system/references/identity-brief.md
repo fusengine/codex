@@ -1,10 +1,6 @@
 ---
 name: identity-brief
 description: Structured questionnaire and decision tree for brand identity discovery
-when-to-use: Starting a new project, defining visual identity from scratch
-keywords: identity, brand, brief, questionnaire, personality, sector
-priority: high
-related: sector-palettes.md, typography-pairs.md
 ---
 
 # Identity Brief

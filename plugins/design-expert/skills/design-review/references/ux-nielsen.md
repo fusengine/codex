@@ -1,10 +1,6 @@
 ---
 name: ux-nielsen
 description: Nielsen's 10 Usability Heuristics and practical UX principles
-when-to-use: Applying Nielsen heuristics, improving usability, validating UX decisions
-keywords: nielsen, heuristics, usability, system status, user control, feedback
-priority: critical
-related: ux-laws.md, ux-wcag.md, ux-patterns.md
 ---
 
 # Nielsen's 10 Usability Heuristics

@@ -1,21 +1,33 @@
 ---
 name: ts-runtime-bun
-description: "Use when running TypeScript on Bun — bunfig.toml, bun test (coverage, JUnit, preload), Bun.build and --compile, workspaces, and the Bun vs Node transpiler tradeoff. Covers Bun 1.3.x. Do NOT use for Node.js runtime setup (ts-runtime-node) or tsconfig details (ts-config)."
+description: Use when running TypeScript on Bun — bunfig.toml, bun test, Bun.build/--compile, or Bun workspaces. Not for Node.js runtime setup (ts-runtime-node).
 ---
+
+<objective>
+This skill covers running TypeScript natively on Bun 1.3.x: configuring bunfig.toml (test
+coverage thresholds, JUnit reporter, preload), running bun test (Jest-compatible API via
+bun:test), bundling with Bun.build or producing a single-file executable with bun build
+--compile --target=, and structuring a Bun workspaces monorepo.
+
+It also covers the Bun-vs-Node tradeoff — Bun runs .ts/.tsx natively with no transpile step
+and does not down-convert modern syntax, but neither its runtime nor bundler perform type
+checking, so tsc --noEmit stays in CI regardless.
+
+Out of scope: Node.js runtime setup (native type stripping, node:test) belongs to
+ts-runtime-node; tsconfig details belong to ts-config.
+</objective>
 
 # TypeScript on Bun
 
-_Targets: bun 1.3.x, typescript 5.8+ (latest stable 6.0)._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Inspect `package.json`, `bunfig.toml`, `tsconfig.json`
-2. `research-expert` - Verify Bun 1.3.x behavior via Context7/Exa
-3. `mcp__context7__query-docs` - Check Bun runtime, test, and bundler docs
+1. **explore-codebase** - Inspect `package.json`, `bunfig.toml`, `tsconfig.json`
+2. **research-expert** - Verify Bun 1.3.x behavior via Context7/Exa
+3. **mcp__context7__query-docs** - Check Bun runtime, test, and bundler docs
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ## Use when
 

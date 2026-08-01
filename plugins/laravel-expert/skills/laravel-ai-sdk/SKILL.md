@@ -1,21 +1,28 @@
 ---
 name: laravel-ai-sdk
-description: "Use when integrating AI agents, tool calling, embeddings, structured output, or streaming in Laravel 13 via the `laravel/ai` package. Covers 14+ providers (OpenAI, Anthropic, Gemini, Azure, Groq, DeepSeek, Ollama, Mistral, xAI, Cohere, ElevenLabs, Jina, VoyageAI, OpenRouter)."
+description: Use when integrating AI agents, tool calling, embeddings, structured output, or streaming in Laravel 13 via the `laravel/ai` package.
 ---
+
+<objective>
+Covers the `laravel/ai` package for Laravel 13: building class-based Agents
+(Agent contract + Promptable trait), tool calling (FileSearch + custom tools),
+generating and storing embeddings, structured output via JSON Schema, and
+streaming (SSE + Vercel AI SDK protocol). Supports 14+ providers through the
+unified `Lab` enum — OpenAI, Anthropic, Gemini, Azure, Groq, DeepSeek, Ollama,
+Mistral, xAI, Cohere, ElevenLabs, Jina, VoyageAI, OpenRouter.
+</objective>
 
 # Laravel AI SDK
 
-_Targets: laravel 13.0, php 8.3, laravel/ai ^1.0._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Map existing AI usage (custom HTTP clients, OpenAI PHP, etc.) to migrate
-2. `research-expert` - Verify provider model IDs and pricing on the official Laravel AI SDK docs
-3. `mcp__context7__query-docs` - Pull latest `laravel.com/docs/13.x/ai-sdk` examples
+1. **explore-codebase** - Map existing AI usage (custom HTTP clients, OpenAI PHP, etc.) to migrate
+2. **research-expert** - Verify provider model IDs and pricing on the official Laravel AI SDK docs
+3. **mcp__context7__query-docs** - Pull latest `laravel.com/docs/13.x/ai-sdk` examples
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

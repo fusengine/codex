@@ -1,13 +1,19 @@
 ---
 name: react-forms
-description: TanStack Form v1 - type-safe forms with Zod/Yup/Valibot validation, async validation, arrays, nested fields, React 19 Server Actions
+description: Use when building type-safe forms in React with TanStack Form v1 — Zod/Yup/Valibot validation, async validation, field arrays.
 ---
+
+<objective>
+Implements TanStack Form v1 in React: core hooks (`useForm()`, `useField()`, `form.Field`, `form.Subscribe`), validation adapters (Zod ~12KB, Yup ~40KB, Valibot ~6KB, plus Standard Schema support for ArkType/Effect Schema), debounced async validation, and React 19 Server Actions integration via `useActionState`.
+
+Also covers array/nested fields with dot notation, listeners for side effects (onMount/onChange/onBlur with debouncing), linked/cross-field validation, reactivity via `useStore` selectors, the Reset API, SSR/hydration (TanStack Start), devtools, and React Native patterns. This is the React skill for TanStack Form — for the Next.js Server Actions-specific variant see nextjs-tanstack-form, and for SOLID file-organization rules see solid-react.
+</objective>
 
 # TanStack Form v1 Core Features
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing form components and validation patterns
 2. **research-expert** - Verify latest TanStack Form v1 docs via Context7/Exa

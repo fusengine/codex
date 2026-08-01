@@ -53,7 +53,7 @@ Sniper needs to know:
 
 ### 3. Persist the Artifact
 
-Write `.harness/apex/docs/elicit-{task-slug}.json` -- see `SKILL.md`'s
+Write `.codex/apex/docs/elicit-{task-slug}.json` -- see `SKILL.md`'s
 "Artifact Contract" section for `{task-slug}` derivation. This is what a
 later elicitation pass diffs against instead of restarting technique
 selection from scratch; the markdown report below is for the human handoff,
@@ -176,7 +176,7 @@ Before marking elicitation complete:
 - [ ] Medium issues fixed or justified deferral
 - [ ] Low issues documented for sniper
 - [ ] Report generated
-- [ ] `elicit-{task-slug}.json` written to `.harness/apex/docs/`
+- [ ] `elicit-{task-slug}.json` written to `.codex/apex/docs/`
 - [ ] Handoff context provided
 
 ---

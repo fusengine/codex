@@ -1,10 +1,6 @@
 ---
 name: data-table
 description: Advanced data table with TanStack Table, sorting, filtering, and skeleton loading
-when-to-use: Displaying tabular data, admin tables, list views with actions
-keywords: table, data, tanstack, sort, filter, pagination, skeleton, bulk-actions
-priority: high
-related: ../pages/dashboard.md, command-palette.md
 ---
 
 # Data Table Spec

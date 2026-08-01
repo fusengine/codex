@@ -1,10 +1,6 @@
 ---
 name: testimonial-card
 description: Testimonial card with quote, avatar, role, company, and star rating
-when-to-use: Social proof sections with customer testimonials and reviews
-keywords: testimonial, review, rating, avatar, social-proof
-priority: medium
-related: stats-section.md, hero-section.md
 ---
 
 # Testimonial Card Template

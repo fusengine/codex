@@ -1,19 +1,23 @@
 ---
 name: astro-i18n
-description: Use when implementing internationalization in Astro, configuring i18n routing, setting up locale strategies, using getRelativeLocaleUrl/getAbsoluteLocaleUrl, handling Astro.currentLocale, or adding hreflang tags with sitemap.
+description: Use when implementing i18n in Astro — locale routing strategies, getRelativeLocaleUrl/getAbsoluteLocaleUrl, Astro.currentLocale, or hreflang with sitemap.
 ---
+
+<objective>
+Implements Astro's built-in i18n system (Astro 3.5+): file-based locale routing under `src/pages/[locale]/`, `defaultLocale` and routing-strategy configuration (prefix-always vs prefix-other-locales), URL helper functions from `astro:i18n` (`getRelativeLocaleUrl`, `getAbsoluteLocaleUrl`), reading `Astro.currentLocale` in components, and fallback-locale configuration to avoid 404s on missing translations.
+
+Also covers translating Content Collections per locale and adding `hreflang` alternate links via `@astrojs/sitemap`'s `i18n` option for SEO. Does not cover general SEO meta tags beyond hreflang (astro-seo) or the Content Layer API itself (astro-content) — this skill focuses specifically on locale routing and URL generation.
+</objective>
 
 # Astro i18n
 
-> Targets: Astro 7.
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing routing, content collections, and locale files
 2. **research-expert** - Verify latest Astro i18n docs via Context7/Exa
-3. **Context7 (official docs)** - Check `astro:i18n` API and sitemap integration
+3. **mcp__context7__query-docs** - Check `astro:i18n` API and sitemap integration
 
 After implementation, run **sniper** for validation.
 

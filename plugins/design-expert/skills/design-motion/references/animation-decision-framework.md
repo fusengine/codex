@@ -1,10 +1,6 @@
 ---
 name: animation-decision-framework
 description: The 4-question gate to answer BEFORE writing any animation — should it exist, what purpose, what easing, what duration
-when-to-use: Before adding ANY animation. Run every candidate motion through this gate first.
-keywords: decision, framework, gate, frequency, purpose, easing, duration, taste, when-not-to-animate
-priority: high
-related: motion-tokens.md, motion-physics.md, reduced-motion.md
 ---
 
 # Animation Decision Framework

@@ -1,10 +1,6 @@
 ---
 name: edge-cases
 description: "Dark mode edge cases — shadows, images, and other light-mode assumptions that break when a token flips to dark."
-when-to-use: "Defining or auditing a dark theme, debugging why a component looks wrong only in dark mode."
-keywords: dark-mode, shadows, elevation, edge-cases
-priority: medium
-related: color-mapping.md, image-handling.md
 ---
 
 # Dark Mode Edge Cases

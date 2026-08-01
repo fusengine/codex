@@ -1,13 +1,17 @@
 ---
 name: hooks
-description: Pre/Post tool validation hooks for plugins
+description: Pre/Post tool validation hooks for agents
+when-to-use: Configuring automatic validation on tool usage
+keywords: hooks, pretooluse, posttooluse, validation, scripts
+priority: medium
+related: frontmatter.md, architecture.md
 ---
 
-# Plugin Hooks
+# Agent Hooks
 
 ## Overview
 
-Hooks run scripts before or after tool execution to enforce rules. In Codex they live in the plugin's `hooks/hooks.json` (plugin level) — NOT in the agent `.toml`.
+Hooks run scripts before or after tool execution to enforce rules.
 
 ---
 
@@ -20,29 +24,20 @@ Hooks run scripts before or after tool execution to enforce rules. In Codex they
 
 ---
 
-## hooks.json Configuration
+## Frontmatter Configuration
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh" }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Read",
-        "hooks": [
-          { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/track-reads.sh" }
-        ]
-      }
-    ]
-  }
-}
+```yaml
+hooks:
+  PreToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh"
+  PostToolUse:
+    - matcher: "Read"
+      hooks:
+        - type: command
+          command: "bash ${PLUGIN_ROOT}/scripts/track-reads.sh"
 ```
 
 ---
@@ -62,26 +57,24 @@ Hooks run scripts before or after tool execution to enforce rules. In Codex they
 
 ### SOLID Validation (PreToolUse)
 
-```json
-{
-  "matcher": "Write|Edit",
-  "hooks": [
-    { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh" }
-  ]
-}
+```yaml
+PreToolUse:
+  - matcher: "Write|Edit"
+    hooks:
+      - type: command
+        command: "bash ${PLUGIN_ROOT}/scripts/validate-solid.sh"
 ```
 
 **Purpose**: Check file size, interface location before writing.
 
 ### Skill Tracking (PostToolUse)
 
-```json
-{
-  "matcher": "Read",
-  "hooks": [
-    { "type": "command", "command": "bash ${PLUGIN_ROOT}/scripts/track-skill-read.sh" }
-  ]
-}
+```yaml
+PostToolUse:
+  - matcher: "Read"
+    hooks:
+      - type: command
+        command: "bash ${PLUGIN_ROOT}/scripts/track-skill-read.sh"
 ```
 
 **Purpose**: Track which skills are being consulted.
@@ -116,6 +109,5 @@ Hooks run scripts before or after tool execution to enforce rules. In Codex they
 | Keep scripts fast | Long-running validations |
 | Exit 0 on success | Swallow errors silently |
 | Log issues clearly | Cryptic error messages |
-| Wire hooks in hooks.json | Put hooks in the agent .toml |
 
 → See [templates/hook-scripts.md](templates/hook-scripts.md) for script examples

@@ -1,10 +1,6 @@
 ---
 name: pricing-cards
 description: Complete 3-tier pricing section with annual/monthly toggle
-when-to-use: SaaS landing pages with multiple pricing plans and billing toggle
-keywords: pricing, tiers, toggle, annual, comparison
-priority: high
-related: pricing-card.md, hero-section.md
 ---
 
 # Pricing Cards Template

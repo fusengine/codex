@@ -1,13 +1,14 @@
 ---
 name: SKILL-template
-description: Complete template for creating SKILL.md files (Codex format)
+description: Complete template for creating SKILL.md files
+keywords: template, skill, skeleton, boilerplate
 ---
 
 # SKILL.md Template
 
 ## Usage
 
-Copy this template when creating a new skill's SKILL.md file. A Codex skill frontmatter contains **only** `name` and `description`.
+Copy this template when creating a new skill's SKILL.md file.
 
 ---
 
@@ -17,19 +18,23 @@ Copy this template when creating a new skill's SKILL.md file. A Codex skill fron
 ---
 name: <skill-name>
 description: Use when <trigger conditions>. Covers <main topics>.
+versions:
+  <library>: "X.Y.Z"
+  <framework>: "X.Y"
+user-invocable: true
+references: references/installation.md, references/core-concepts.md, references/patterns.md, references/templates/basic-setup.md, references/templates/advanced-example.md
+related-skills: <related-skill-a>, <related-skill-b>
 ---
 
 # <Skill Title>
 
-> Targets <library> X.Y.Z / <framework> X.Y. (Put version info in prose — Codex frontmatter is name + description only.)
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 subagents in parallel (one dispatch, `spawn_agent` / MultiAgentV2):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing <domain> patterns
 2. **research-expert** - Verify latest <library> docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check <specific> patterns (direct MCP call)
+3. **mcp__context7__query-docs** - Check <specific> patterns
 
 After implementation, run **sniper** for validation.
 
@@ -133,6 +138,7 @@ After implementation, run **sniper** for validation.
 | `<framework>` | Framework if applicable |
 | `<trigger conditions>` | When skill should activate |
 | `<main topics>` | What skill covers |
+| `<related-skill-a>` | Related skill names |
 | `<Feature N>` | Key features |
 | `<Rule N>` | Critical rules |
 
@@ -140,13 +146,15 @@ After implementation, run **sniper** for validation.
 
 ## Example Filled
 
-```markdown
+```yaml
 ---
 name: tanstack-query
 description: Use when fetching, caching, or synchronizing server data. Covers queries, mutations, caching, and optimistic updates.
+versions:
+  tanstack-query: "5.67.2"
+  react: "19"
+user-invocable: true
+references: references/installation.md, references/queries.md, references/mutations.md, references/caching.md, references/templates/basic-setup.md
+related-skills: react-19, zustand
 ---
-
-# TanStack Query
-
-> Targets TanStack Query 5.67.2 / React 19.
 ```

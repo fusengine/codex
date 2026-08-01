@@ -1,10 +1,6 @@
 ---
 name: bolder
 description: "Amplify a body that reads as safe/generic — commit harder to what's already declared (palette, signature element, type pair). Never adds new elements."
-when-to-use: "critique.md's persona pass (or the design-method Step 3 Pass-2 self-check) flagged the body as generic/timid/safe-default."
-keywords: bolder, amplify, commitment, signature-dominance
-priority: high
-related: critique.md, quieter.md, distill.md, audit.md, ../SKILL.md
 ---
 
 # Bolder — Amplify, Don't Add

@@ -1,7 +1,17 @@
 ---
 name: solid-tanstack-start
-description: ">- SOLID principles for TanStack Start projects. Files < 100 lines, interfaces in src/interfaces/, JSDoc on all exports, modular structure around the Start route tree. Use when: organizing a Start codebase, splitting oversized routes/server functions, reviewing architecture, deciding where isomorphic vs server-only code lives. Do NOT use for: framework setup (use start-core), execution boundaries deep-dive (use start-execution-model), generic React SPA without a Start route tree (use solid-react)."
+description: Use when organizing TanStack Start code, splitting oversized routes/server functions, or reviewing architecture. Do NOT use for setup or plain React SPA.
 ---
+
+<objective>
+Applies SOLID principles and clean architecture to TanStack Start v1.166.2 projects: files under 100 lines (with per-type budgets — route components < 50, server functions < 40, hooks < 30), types declared only in src/interfaces/ (never inline in a route or component file), JSDoc on every export, and a modular directory structure built around the Start route tree.
+
+Establishes the isomorphic/server-only boundary as an architectural concern: DB access, secrets, and filesystem work must sit behind createServerFn or createServerOnlyFn, never inside a bare loader.
+
+Absolute rules include never hand-editing the generated src/routeTree.gen.ts, no module importing another feature module except cores/, no barrel exports, and no `any` types. Includes code templates for routes, server functions, interfaces, and hooks, and DRY guidance to grep for existing logic in src/modules/cores/ or src/lib/ before writing new code.
+
+Do NOT use this skill for initial framework setup (use start-core), for the server/client execution-boundary deep dive itself (use start-execution-model), or for a generic React SPA that has no Start route tree (use solid-react).
+</objective>
 
 # SOLID TanStack Start
 

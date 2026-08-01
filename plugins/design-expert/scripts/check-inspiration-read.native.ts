@@ -11,6 +11,7 @@
 import { homedir } from "node:os";
 import { gatedAgentId, deny } from "./lib/design-state";
 import { trackingHas } from "./lib/skill-tracking";
+import { tasteFirstBypassActive } from "./lib/taste-first";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
 const SKILLS = `${homedir()}/.codex/plugins/cache/fusengine-codex/design-expert/skills`;
@@ -29,6 +30,10 @@ try {
 
 if (gatedAgentId(data.agent_id ?? "") === null) process.exit(0);
 if (data.tool_name !== "mcp__fuse-browser__browser_navigate") process.exit(0);
+if (tasteFirstBypassActive(process.cwd(), data.agent_id ?? "")) {
+  allowPass("check-inspiration-read", "taste-first bypass");
+  process.exit(0);
+}
 
 const sid = data.session_id || `fallback-${process.pid}`;
 

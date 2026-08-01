@@ -1,8 +1,6 @@
 ---
 name: design-system-ecommerce
 description: Ready-to-use e-commerce design system — warm vibrant OKLCH palette, conversion-focused typography, dynamic motion
-keywords: ecommerce, retail, conversion, CTA, OKLCH, design-system, example
-sector: ecommerce
 ---
 
 # Design System — E-commerce (Conversion)

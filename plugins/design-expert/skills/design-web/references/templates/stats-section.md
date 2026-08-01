@@ -1,10 +1,6 @@
 ---
 name: stats-section
 description: Stats row with countUp animation on scroll intersection
-when-to-use: Social proof sections displaying metrics, achievements, or KPIs
-keywords: stats, counter, animated-numbers, metrics, social-proof
-priority: medium
-related: hero-section.md, feature-grid.md
 ---
 
 # Stats Section Template

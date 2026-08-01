@@ -1,10 +1,6 @@
 ---
 name: theme-presets
 description: Pre-defined theme styles (Brutalist, Solarpunk, Editorial, Cyberpunk, Luxury)
-when-to-use: Choosing a design direction, applying consistent theme, creating design system
-keywords: themes, brutalist, solarpunk, editorial, cyberpunk, luxury, presets
-priority: medium
-related: color-system.md, typography.md
 ---
 
 # Theme Presets

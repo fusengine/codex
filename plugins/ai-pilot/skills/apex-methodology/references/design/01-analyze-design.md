@@ -19,14 +19,14 @@ next_step: references/design/02-search-inspiration.md
 
 ## Dual-Agent Analysis
 
-### Launch in Parallel (one dispatch)
+### Launch in Parallel (ONE message)
 
 ```text
-spawn_agent: explore-codebase
+Agent 1: explore-codebase
 Prompt: "Analyze UI design system: component structure, existing
 UI patterns, Tailwind classes commonly used, animation patterns."
 
-spawn_agent: research-expert (if needed)
+Agent 2: research-expert (if needed)
 Prompt: "Research [specific pattern] best practices for React/Next.js"
 ```
 

@@ -1,10 +1,6 @@
 ---
 name: quieter
 description: "Dial back an overstimulating body across 4 fixed axes — color intensity, motion, density, typographic loudness — while keeping the signature element the loudest voice."
-when-to-use: "The body reads as loud/overstimulating (too many simultaneous focal points, motion everywhere, dense sections), flagged by critique.md's persona pass or the owner directly."
-keywords: quieter, intensity, density, motion, restraint
-priority: high
-related: critique.md, bolder.md, distill.md, ../SKILL.md
 ---
 
 # Quieter — Reduce Intensity on 4 Axes

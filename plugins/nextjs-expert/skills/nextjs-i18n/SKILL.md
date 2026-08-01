@@ -1,17 +1,21 @@
 ---
 name: nextjs-i18n
-description: Next.js 16 internationalization with next-intl or DIY. Use when implementing i18n, translations, localization, multilingual, language switch, locale routing, or formatters.
+description: Use when implementing i18n in Next.js 16 — next-intl or DIY dictionaries, locale routing, language switch, or formatters.
 ---
 
-# Next.js 16 Internationalization
+<objective>
+Implements internationalization for Next.js 16 App Router apps via two approaches: next-intl (recommended — full Server Components support, type-safe messages, ICU MessageFormat, async message loading, proxy.ts-compatible routing) or a lightweight DIY dictionary approach using dynamic imports.
 
-> Targets: Next-intl 4.0, Nextjs 16.
+Covers `[locale]`-prefixed routing, localized navigation components (Link, redirect, usePathname, useRouter), date/number/currency/relative-time formatting, RTL language support, SEO hreflang tags, and localized special files (`[locale]/error.tsx`, `[locale]/not-found.tsx`, `global-error.tsx`). This is the Next.js-specific i18n skill (App Router routing, proxy.ts integration) — for plain React apps without Next.js see react-i18n, and for Astro see astro-i18n.
+</objective>
+
+# Next.js 16 Internationalization
 
 Complete i18n solution with next-intl or DIY dictionary approach.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing i18n setup and message files
 2. **research-expert** - Verify latest next-intl docs via Context7/Exa

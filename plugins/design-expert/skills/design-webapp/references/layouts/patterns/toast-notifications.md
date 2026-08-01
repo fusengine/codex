@@ -1,10 +1,6 @@
 ---
 name: toast-notifications
 description: Toast notification system with sonner, auto-dismiss rules, and undo actions
-when-to-use: Adding notifications, success/error messages, undo patterns
-keywords: toast, notification, sonner, success, error, undo, auto-dismiss
-priority: high
-related: modal-dialog.md, empty-state.md
 ---
 
 # Toast Notifications Spec

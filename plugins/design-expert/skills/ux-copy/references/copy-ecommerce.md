@@ -1,10 +1,6 @@
 ---
 name: copy-ecommerce
 description: "E-commerce copy examples — product descriptions, shipping, reviews, conversion language."
-when-to-use: "Writing copy for an e-commerce project (product pages, cart, checkout)."
-keywords: copy, ecommerce, conversion, product
-priority: medium
-related: voice-tone-sectors.md, microcopy-patterns.md, ../../design-method/references/register/brand.md, ../../design-method/references/register/product.md, ../../design-method/references/register/copy.md
 ---
 
 # UX Copy — E-commerce

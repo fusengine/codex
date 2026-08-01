@@ -1,7 +1,21 @@
 ---
 name: rust-error-handling
-description: "Use when designing Rust error handling — picking thiserror for libraries vs anyhow for applications, building typed error enums, converting errors with #[from], and deciding recoverable errors vs panics. Do NOT use for general ownership/borrowing (use rust-core-language) or async runtime errors specifically."
+description: Use when designing Rust error handling — thiserror vs anyhow, typed error enums, #[from] conversions, or recoverable errors vs panics. Not for ownership/borrowing (rust-core-language).
 ---
+
+<objective>
+This skill covers the thiserror-for-libraries, anyhow-for-applications split in Rust:
+building typed error enums with #[derive(Error)] for library APIs callers can match on,
+using anyhow::Result with .context()/.with_context() in application code, and
+zero-boilerplate error conversion via #[from].
+
+It also covers the recoverable-errors-vs-panics decision — Result for anything a caller
+could reasonably recover from, panic!/unwrap/expect reserved for broken invariants — and
+the rule that anyhow::Error must never leak into a library's public API.
+
+Out of scope: general ownership/borrowing design belongs to rust-core-language;
+async-runtime-specific error handling is not covered here.
+</objective>
 
 # Rust Error Handling
 

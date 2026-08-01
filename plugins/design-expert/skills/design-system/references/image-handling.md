@@ -1,10 +1,6 @@
 ---
 name: image-handling
 description: "Dark-mode image treatment strategies — CSS filters, dual-asset swaps, and background adaptation for photography and illustrations."
-when-to-use: "Defining image aspect ratios, responsive image strategy, or dark-mode fallback/filter treatment."
-keywords: images, dark-mode, filter, assets
-priority: medium
-related: edge-cases.md, color-mapping.md
 ---
 
 # Dark Mode Image Handling

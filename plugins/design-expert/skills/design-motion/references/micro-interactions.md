@@ -1,10 +1,6 @@
 ---
 name: micro-interactions
 description: Small interactive animations for buttons, toggles, copy actions, and loading
-when-to-use: Adding hover effects, press feedback, toggle animations, loading states
-keywords: micro-interaction, hover, press, toggle, copy, skeleton, button, feedback
-priority: high
-related: motion-principles.md, entrance-patterns.md
 ---
 
 # Micro-Interactions

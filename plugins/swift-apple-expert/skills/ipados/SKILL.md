@@ -1,7 +1,15 @@
 ---
 name: ipados
-description: "iPadOS platform-specific development with adaptive layouts, keyboard shortcuts, multitasking, and Stage Manager. Use when building iPad apps with split views, external keyboard support, or multi-window features."
+description: Use when building iPad apps — split views, external keyboard support, multitasking, or Stage Manager — adaptive layouts.
 ---
+
+<objective>
+Covers iPadOS-specific development for tablet and productivity experiences: adaptive layouts across size classes, split views, external keyboard shortcut support, multi-window applications, and Stage Manager / Slide Over multitasking.
+
+Includes the three scene/interaction areas an iPad app typically needs: size-class-aware adaptive layouts, keyboard shortcuts (⌘ commands) for productivity users, and Stage Manager's desktop-like multitasking model.
+
+Best practices: support both compact and regular size classes, add keyboard shortcuts, enable drag and drop, support pointer/trackpad input, allow multiple window instances, and handle external-display output via UIScreen.
+</objective>
 
 # iPadOS Platform
 
@@ -9,7 +17,7 @@ iPadOS-specific development for tablet and productivity experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing iPad patterns
 2. **research-expert** - Verify latest iPadOS 26 docs via Context7/Exa

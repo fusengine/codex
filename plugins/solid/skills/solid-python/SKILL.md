@@ -1,13 +1,19 @@
 ---
 name: solid-python
-description: "SOLID principles for Python 3.12+. Files < 100 lines, interfaces separated, modular architecture. Modules MANDATORY. Use when: writing or refactoring Python code, structuring modules/[feature]/ layers, or defining Protocol-based interfaces."
+description: "Use when writing or refactoring Python code, structuring modules/[feature]/ layers, or defining Protocol-based interfaces (SOLID, files < 100 lines)."
 ---
+
+<objective>
+SOLID Python enforces a modular architecture for Python 3.12+: every feature lives under `modules/[feature]/` (routes, services, repositories, interfaces, models) with shared code in `core/`, interfaces are defined with `typing.Protocol` and live only in `interfaces/` directories, type hints are mandatory on every signature, and every public function carries a docstring.
+
+Before writing any new code it requires a DRY check against `core/services` and `core/interfaces`. See `principles.md` for the 5 SOLID principles and `patterns.md` for directory layout, testing, and typing conventions.
+</objective>
 
 # SOLID Python - Modular Architecture
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing architecture
 2. **research-expert** - Verify Python docs via Context7

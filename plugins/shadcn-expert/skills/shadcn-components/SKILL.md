@@ -1,13 +1,19 @@
 ---
 name: shadcn-components
-description: "Component patterns for shadcn/ui with both Radix UI and Base UI primitives. Covers API differences, mapping between primitives, and correct usage patterns. Use when: building or editing shadcn/ui components, mapping Radix vs Base UI APIs, or choosing composition patterns (asChild vs render)."
+description: "Use when building or editing shadcn/ui components, mapping Radix vs Base UI APIs, or choosing a composition pattern (asChild vs render)."
 ---
+
+<objective>
+Documents component patterns for shadcn/ui with both Radix UI and Base UI primitives — API differences, 1:1 mapping between primitives (Dialog/Select/Tooltip/Accordion/Popover/Menu), and the two composition patterns (`asChild` for Radix, `render` for Base UI).
+
+Requires detecting the project's primitive first (`shadcn-detection`) and consulting the shadcn MCP for registry source instead of hand-writing component internals.
+</objective>
 
 # shadcn Components
 
 ## Agent Workflow (MANDATORY)
 
-Before component work, spawn sub-agents in parallel via `spawn_agent`:
+Before component work, use `TeamCreate` to spawn agents:
 
 1. **explore-codebase** - Find existing components
 2. **research-expert** - Verify component APIs via Context7

@@ -1,10 +1,6 @@
 ---
 name: reduced-motion
 description: Accessibility — prefers-reduced-motion patterns, Framer Motion hooks, WCAG 2.2 compliance
-when-to-use: Implementing reduced motion fallbacks, accessibility audit for animations
-keywords: prefers-reduced-motion, accessibility, a11y, WCAG, useReducedMotion, vestibular
-priority: high
-related: motion-patterns.md, motion-principles.md
 ---
 
 # Reduced Motion Accessibility

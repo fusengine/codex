@@ -88,7 +88,7 @@ references:
 
 ### Required fields
 - `name` - Unique identifier
-- `description` - Description for Claude
+- `description` - Description for Codex
 
 ### Recommended fields
 - `version` - Semantic versioning

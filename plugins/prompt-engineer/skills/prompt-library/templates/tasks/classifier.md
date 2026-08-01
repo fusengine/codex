@@ -1,7 +1,8 @@
 ---
 name: classifier
 description: Content classifier for categorization, tagging, and sentiment analysis. Use when classifying tickets, emails, content, or any categorical data.
-model: gpt-5.6-terra
+model: haiku
+color: lime
 tools: Read
 skills: classification
 ---

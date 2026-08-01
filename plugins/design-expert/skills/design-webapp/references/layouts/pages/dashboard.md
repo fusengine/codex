@@ -1,10 +1,6 @@
 ---
 name: dashboard
 description: Dashboard page layout with F-pattern, KPIs, charts, and data tables
-when-to-use: Designing analytics dashboards, admin panels, overview pages
-keywords: dashboard, kpi, chart, f-pattern, metrics, analytics, recharts
-priority: high
-related: ../patterns/data-table.md, ../../../../design-web/references/layouts/navigation/sidebar.md
 ---
 
 # Dashboard Spec

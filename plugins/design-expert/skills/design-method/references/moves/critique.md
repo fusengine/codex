@@ -1,10 +1,6 @@
 ---
 name: critique
 description: "Design-quality review of the body — visual pass + a fixed 'SaaS-jaded skeptic' persona, no aggregate score, prioritized findings, verdict delegated to the challenger."
-when-to-use: "After a body pass exists (design-web/webapp/ios/android output) and you need a design-quality read — hierarchy, emotional resonance, generic-vs-committed — not a technical audit (see audit.md)."
-keywords: critique, review, persona, hierarchy, findings, challenger
-priority: high
-related: audit.md, bolder.md, quieter.md, distill.md, ../../design-review/references/elicitation-visual.md
 ---
 
 # Critique — Design-Quality Review (Body)

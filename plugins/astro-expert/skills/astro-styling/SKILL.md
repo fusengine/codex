@@ -1,19 +1,23 @@
 ---
 name: astro-styling
-description: Use when styling Astro components with scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, or Sass. Covers class:list directive, global styles, CSS custom properties, and Vite-powered preprocessors.
+description: Use when styling Astro components — scoped CSS, CSS Modules, Tailwind CSS, UnoCSS, Sass, the class:list directive, or global styles.
 ---
+
+<objective>
+Covers styling options for `.astro` components: default component-scoped `<style>`, `<style is:global>` for base styles/resets (reserved for layouts), CSS Modules (`.module.css`) for framework components (React, Vue), Tailwind CSS, UnoCSS, and Sass/SCSS via Vite preprocessors. Includes the `class:list` directive for conditional class application and CSS custom properties for design tokens/themes.
+
+This skill addresses `.astro`-file styling specifically (scoping semantics unique to Astro components), not the UI framework setup itself (astro-integrations) or SOLID file-organization rules for style files (solid-astro).
+</objective>
 
 # Astro Styling
 
-> Targets: Astro 7.
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing styles, integrations, and patterns
 2. **research-expert** - Verify latest Astro/Tailwind/UnoCSS docs via Context7/Exa
-3. **Context7 (official docs)** - Check integration compatibility with Astro 7
+3. **mcp__context7__query-docs** - Check integration compatibility with Astro 7
 
 After implementation, run **sniper** for validation.
 

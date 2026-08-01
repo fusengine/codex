@@ -1,10 +1,6 @@
 ---
 name: gsap-scroll-skeletons
 description: Canonical GSAP ScrollTrigger skeletons (Sticky-Stack, Horizontal-Pan) and the motion-claimed/motion-shown honesty rule
-when-to-use: Building scroll-driven sections, pinned narratives, horizontal scroll, when MOTION_INTENSITY is high
-keywords: gsap, scrolltrigger, pin, scrub, sticky-stack, horizontal-pan, scroll-reveal, motion-intensity
-priority: medium
-related: motion-performance.md, animation-decision-framework.md
 ---
 
 # GSAP Scroll Skeletons

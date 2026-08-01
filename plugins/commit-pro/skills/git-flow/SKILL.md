@@ -1,7 +1,11 @@
 ---
 name: git-flow
-description: "Use when committing, branching, opening PRs, or deciding merge strategy. Covers GitHub Flow (default), trunk-based, branch naming conventions, squash vs rebase, branch lifecycle, and protected branch enforcement."
+description: Use when committing, branching, opening PRs, or deciding merge/branch strategy.
 ---
+
+<objective>
+Covers Git workflow strategy end to end: the GitHub Flow (default) vs trunk-based vs Git Flow tradeoff table, the branch naming convention (`<type>/<scope-or-summary>`, kebab-case, <50 chars, no personal prefix), protected-branch enforcement (main/master/develop/production never committed to directly, auto-named feature branch proposed instead), the full branch lifecycle (create → work → push → PR → review → merge → delete), merge strategy (real merge commit is commit-pro's default; rebase vs squash tradeoffs — squash is unused here because it would orphan the release tag's target commit), the CI-gate-before-merge decision tree (three cases by whether required checks are configured, including the `gh pr checks` registration-race workaround), post-merge tag timing, the PR description template, anti-patterns, and solo-dev mode.
+</objective>
 
 # Git Flow Best Practices (2026)
 
@@ -40,7 +44,7 @@ Format: `<type>/<scope-or-summary>` (kebab-case).
 
 ## Protected Branches
 
-`main`, `master`, `develop`, `production` → **never commit directly**. Under Codex this is not left to the model's discretion: enforce it with the runtime `approval_policy` (a commit/push touching a protected branch requires explicit owner approval) plus a hard-deny guard on direct writes to those branches.
+`main`, `master`, `develop`, `production` → **never commit directly**.
 
 `commit` enforces this in Step 0:
 - Detects current branch
@@ -108,7 +112,7 @@ Determine which of the three cases applies from what actually exists on the PR �
 
 **Note on `--required`**: the poll loop in case 2 intentionally queries `gh pr checks` *without* `--required` — it only needs to know "has *any* check registered yet." If a future revision adds `--required` to that same loop, the zero-checks message becomes `no required checks reported on the '<branch>' branch`, which does **not** contain the substring `no checks reported` (the inserted word "required" breaks the contiguous match) — the grep would need to change to `checks reported on the` (matches both variants) or handle both strings explicitly.
 
-Merge is always `--merge` (real merge commit) — **never a squash merge**, it would orphan the release tag's target (see Tagging timing below).
+Merge is always `--merge` (real merge commit) — **never `--squash`**, it would orphan the release tag's target (see Tagging timing below).
 
 **Tagging timing**: never push the tag before the merge is validated — CI could still fail or branch protection could still block the merge, and a tag pushed early would point at a commit that never lands on `main`. Tag `vX.Y.Z` on `main` AFTER the merge completes, then push the tag (`commit` does this automatically in Step 8 — see also `commands/commit.md` Step 8 and `post-commit/references/tag-timing.md`).
 
@@ -140,7 +144,7 @@ None / <description with migration path>
 
 - ❌ **Long-lived feature branches** (> 1 week) — rebase early or split
 - ❌ **Commits on main "to save time"** — bypasses review, breaks CI gates
-- ❌ **Force push to main** — never. Hard-denied under Codex (a hard-deny guard on `git push --force`/`--force-with-lease` to protected branches, backed by `approval_policy`), not merely discouraged.
+- ❌ **Force push to main** — never. Forbidden in commit-pro.
 - ❌ **Branch named `wip`, `temp`, `test123`** — meaningless, can't be found later
 - ❌ **PR without description** — reviewers can't context-switch
 - ❌ **Merging your own PR without review** (when working in a team)

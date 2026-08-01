@@ -1,10 +1,6 @@
 ---
 name: typography-pairs
 description: 18 validated font pairs organized by sector — display + body, personality descriptors, CSS ready
-when-to-use: Selecting display and body fonts for a project identity
-keywords: typography, fonts, display, body, pair, google-fonts, personality, sector
-priority: high
-related: identity-brief.md, spacing-density.md
 ---
 
 # Typography Pairs

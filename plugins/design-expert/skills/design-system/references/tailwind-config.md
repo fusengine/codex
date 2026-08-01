@@ -1,10 +1,6 @@
 ---
 name: tailwind-config
 description: Tailwind CSS v4 configuration and theme setup
-when-to-use: Configuring Tailwind, setting up theme variables, customizing design tokens
-keywords: tailwind, configuration, theme, variables, custom, setup, v4
-priority: high
-related: tailwind-utilities.md, tailwind-performance.md, color-system.md
 ---
 
 # Tailwind CSS Configuration

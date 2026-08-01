@@ -1,7 +1,15 @@
 ---
 name: swift-core
-description: "Swift 6 fundamentals for all Apple platforms. Use when implementing concurrency, architecture, testing, i18n, or performance optimization across iOS, macOS, iPadOS, watchOS, visionOS."
+description: Use when implementing Swift 6 fundamentals — concurrency, architecture, testing, i18n, or performance — across any Apple platform.
 ---
+
+<objective>
+Covers Swift 6 language and platform fundamentals shared across iOS, macOS, iPadOS, watchOS, and visionOS: async/await and actors with strict concurrency checking, Sendable typing, app architecture (MVVM with @Observable as the recommended default, Clean Architecture for complex apps), async testing with XCTest, String Catalog-based localization, and performance profiling with Instruments.
+
+References cover each area in depth: concurrency, architecture/DI, testing, i18n, and performance.
+
+Best practices: prefer actors over classes with locks for shared state, @Observable over ObservableObject, structured concurrency over completion handlers, String Catalogs for all user-facing text, profiling in Release (-O) builds, and value types (structs) over classes where possible.
+</objective>
 
 # Swift Core
 
@@ -9,7 +17,7 @@ Swift 6 fundamentals shared across all Apple platforms.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing Swift patterns
 2. **research-expert** - Verify latest Swift 6 docs via Context7/Exa

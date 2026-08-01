@@ -17,6 +17,7 @@ import {
 import {
   checkDesignSystemWrite, checkGeminiCreate, checkBrowserNavigate,
 } from "./lib/pipeline-checks";
+import { tasteFirstBypassActive } from "./lib/taste-first";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
 let data: { agent_id?: string; tool_name?: string; tool_input?: { file_path?: string } };
@@ -29,6 +30,10 @@ try {
 if (!existsSync(FLAG_FILE)) process.exit(0);
 const agentId = data.agent_id || "";
 if (!agentId) process.exit(0);
+if (tasteFirstBypassActive(process.cwd(), agentId)) {
+  allowPass("pipeline-gate", "taste-first bypass");
+  process.exit(0);
+}
 
 let state: DesignState | null = loadState(agentId);
 if (!state) {

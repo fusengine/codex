@@ -48,15 +48,15 @@ src/
 
 ## Dual-Agent Analysis
 
-### Launch in Parallel (one dispatch)
+### Launch in Parallel (ONE message)
 
 ```text
-spawn_agent: explore-codebase
+Agent 1: explore-codebase
 → Map App Router structure
 → Identify Server vs Client Components
 → Find existing patterns
 
-spawn_agent: research-expert
+Agent 2: research-expert
 → Verify Next.js 16 APIs
 → Confirm Server Actions patterns
 → Check Prisma 7 methods
@@ -198,13 +198,12 @@ Check for 'use server' functions:
 
 ## Update Task Phase
 
-At the **start** of this phase, record it in `.harness/apex/task.json`:
+At the **start** of this phase, record it in `.codex/apex/task.json`:
 
 ```bash
-jq --arg p "analyze-code" '.tasks[.current_task].phase = $p' .harness/apex/task.json
+jq --arg p "analyze-code" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
-
-Persist that STDOUT output over `.harness/apex/task.json` with your native write tool (`apply_patch` under Codex, `Write` under Claude Code) — never a shell redirect (`>`); see `init-tracking.md` for why.
 
 ---
 

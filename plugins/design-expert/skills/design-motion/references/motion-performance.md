@@ -1,10 +1,6 @@
 ---
 name: motion-performance
 description: Performance guardrails — transform/opacity only, the Framer Motion hardware-acceleration caveat, CSS-var recalc trap, drag velocity dismissal
-when-to-use: Animating anything that must stay at 60fps, building drag/gesture interactions, debugging dropped frames
-keywords: performance, transform, opacity, hardware-acceleration, framer-motion, gpu, drag, velocity, waapi
-priority: high
-related: motion-tokens.md, motion-physics.md
 ---
 
 # Motion Performance

@@ -1,17 +1,21 @@
 ---
 name: prisma-7
-description: Prisma 7 ORM with Rust-free client, 90% smaller bundles, TypedSQL, Omit API, and ESM-first architecture. Use when working with database, schema, migrations, queries, or relations.
+description: Use when working with database schema, migrations, queries, or relations via Prisma 7 (Rust-free client, TypedSQL, Omit API).
 ---
 
-# Prisma 7 ORM
+<objective>
+Covers Prisma 7's Rust-free TypeScript ORM: the v6→v7 breaking changes (provider renamed `prisma-client-js` → `prisma-client`, output path now REQUIRED, import moves from `@prisma/client` to the generated path, database driver adapters now required — e.g. `@prisma/adapter-pg` for PostgreSQL — and config moved to `prisma.config.ts`), schema modeling, CRUD/relations/filtering/pagination/transactions, TypedSQL for type-safe raw queries, and the Omit API for excluding sensitive fields.
 
-> Targets: Prisma 7.3, Nodejs 20.19, Typescript 5.4.
+Also spans migrations (baselining, shadow database, squashing, zero-downtime), performance (N+1 detection, connection pooling, Accelerate), security (SQL injection prevention, row-level security, encryption), per-database guides (PostgreSQL, MySQL, SQLite, CockroachDB, Turso — MongoDB unsupported in 7.0-7.3), framework integrations (Next.js, Astro, SvelteKit, Remix, and more), and deployment across Vercel/Netlify/Railway/AWS Lambda/Cloudflare Workers/Docker. Includes SOLID-compliant TypeScript interface references for schema design. Does not cover Better Auth's own database adapter configuration in depth (better-auth) — this skill is the ORM layer itself.
+</objective>
+
+# Prisma 7 ORM
 
 Rust-free TypeScript ORM with 90% smaller bundles and 3x faster queries.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing schema and database patterns
 2. **research-expert** - Verify latest Prisma 7 docs via Context7/Exa

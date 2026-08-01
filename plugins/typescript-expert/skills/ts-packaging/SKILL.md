@@ -1,23 +1,32 @@
 ---
 name: ts-packaging
-description: "Use when publishing a TypeScript library — exports map, JSR vs npm, dual ESM/CJS, type validation, provenance. Covers modern package.json, jsr.json, and release CI. Do NOT use for application deployment (not a library) or framework build pipelines (use the framework expert's skills)."
+description: Use when publishing a TypeScript library — exports map, JSR vs npm, dual ESM/CJS, type validation, provenance. Not for application deployment.
 ---
 
-# TypeScript Packaging
+<objective>
+This skill covers shipping a TypeScript library correctly: designing the exports map and its
+conditions ordering (types first, default last), choosing JSR (ESM-only, publishes TS source
+directly, fixes 'slow types') versus npm (built .js + .d.ts, optionally dual ESM/CJS for
+CommonJS consumers), validating resolved types with arethetypeswrong (attw) before every
+publish, and enabling provenance on public releases via CI with id-token: write.
 
-_Targets: node 26, attw 0.18.4._
+Out of scope: application deployment (not a library) and framework-owned build pipelines
+belong to the framework expert's own skills.
+</objective>
+
+# TypeScript Packaging
 
 Ship a TypeScript library with a correct exports map, on the right registry.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Inspect package.json, build output, targets
-2. `research-expert` - Verify latest JSR / npm / Node exports docs via Context7/Exa
-3. `mcp__context7__query-docs` - Check conditions ordering, attw usage
+1. **explore-codebase** - Inspect package.json, build output, targets
+2. **research-expert** - Verify latest JSR / npm / Node exports docs via Context7/Exa
+3. **mcp__context7__query-docs** - Check conditions ordering, attw usage
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ---
 

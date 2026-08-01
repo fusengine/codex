@@ -1,10 +1,6 @@
 ---
 name: copy-saas
 description: "SaaS copy examples — feature descriptions, upgrade prompts, value-led benefit framing."
-when-to-use: "Writing copy for a SaaS product (features, pricing, upgrade flows)."
-keywords: copy, saas, features, benefit
-priority: medium
-related: voice-tone-sectors.md, microcopy-patterns.md, ../../design-method/references/register/brand.md, ../../design-method/references/register/product.md, ../../design-method/references/register/copy.md
 ---
 
 # UX Copy — SaaS

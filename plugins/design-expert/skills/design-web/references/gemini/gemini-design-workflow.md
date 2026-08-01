@@ -1,10 +1,6 @@
 ---
 name: gemini-design-workflow
-description: "Optional workflow for using Gemini Design MCP as an alternate HTML/CSS generation path — the default path is Claude generating HTML/CSS directly."
-when-to-use: "Choosing to route generation through Gemini Design MCP instead of generating HTML/CSS directly (e.g. Gemini available and a second opinion or faster first draft is wanted)."
-keywords: gemini, design, mcp, create_frontend, snippet_frontend, modify_frontend, workflow, optional
-priority: low
-related: ../ui-visual-design.md, gemini-feedback-loop.md, gemini-tool-signatures.md
+description: "Optional workflow for using Gemini Design MCP as an alternate HTML/CSS generation path — the default path is Codex generating HTML/CSS directly."
 ---
 
 # Gemini Design MCP Workflow (Optional Path)

@@ -1,21 +1,27 @@
 ---
 name: php-language-modern
-description: "Use when writing or reviewing modern PHP (8.1–8.5) outside a framework — property hooks, asymmetric visibility, the pipe operator, native attributes, enums, readonly, lazy objects. Covers language features that LLMs frequently get wrong or write in a pre-8.0 style. Do NOT use for coding style/PSR/autoloading (use php-standards) or Laravel-specific syntax (use the laravel plugin)."
+description: Use when writing modern non-framework PHP 8.1-8.5 — property hooks, asymmetric visibility, pipe operator, attributes, enums, readonly. Do NOT use for style (php-standards) or Laravel.
 ---
+
+<objective>
+Covers modern PHP language features from 8.1 through 8.5 outside any framework: backed enums with methods/interfaces, first-class callable syntax, readonly properties/classes, the #[\Override] attribute, property hooks (get/set), asymmetric visibility, lazy objects (newLazyGhost()), the pipe operator (8.5), the clone() function with $withProperties, and #[\NoDiscard].
+
+Its focus is language features that LLMs frequently get wrong or write in a pre-8.0 style — most notably using docblock annotations (@Route, @ORM\Column) instead of native #[Attribute] syntax, which is the #1 mistake this skill exists to prevent.
+
+Do NOT use this skill for coding style, PSR compliance, or autoloading — that is php-standards. Do NOT use it for Laravel-specific syntax conventions — that lives in the Laravel plugin.
+</objective>
 
 # Modern PHP Language (8.1 → 8.5)
 
-_Targets: php 8.5._
-
 ## Agent Workflow (MANDATORY)
 
-Before writing PHP, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before writing PHP, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect the project's minimum PHP version (`composer.json` `require.php`, CI matrix)
-2. `research-expert` - Verify a feature's version + syntax on php.net before using it
-3. `mcp__context7__query-docs` - Cross-check idiomatic usage
+1. **explore-codebase** - Detect the project's minimum PHP version (`composer.json` `require.php`, CI matrix)
+2. **research-expert** - Verify a feature's version + syntax on php.net before using it
+3. **mcp__context7__query-docs** - Cross-check idiomatic usage
 
-After writing, run the `sniper` agent via `spawn_agent` for validation.
+After writing, run **sniper** for validation.
 
 ---
 

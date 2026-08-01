@@ -1,21 +1,25 @@
 ---
 name: astro-starlight
-description: Astro Starlight documentation theme — setup, sidebar config, Pagefind search, dark/light mode, plugins (DocSearch, blog, openapi, typedoc, versions), multi-language, Content Layer API, llms.txt, customization. Use for building documentation sites.
+description: Use when building a documentation site with Astro Starlight — sidebar config, Pagefind search, plugins (blog/openapi/typedoc), i18n, llms.txt.
 ---
 
-# Astro Starlight
+<objective>
+Sets up and customizes Astro Starlight (0.41+), the documentation theme built on Astro 7: filesystem-based or manual sidebar configuration, built-in Pagefind full-text search (or DocSearch for high-traffic/large docs), automatic dark/light mode, and the plugin ecosystem — `starlight-blog`, `starlight-openapi`, `starlight-typedoc`, `starlight-versions`, `starlight-llms-txt` for AI discoverability.
 
-> Targets: Astro 7, Starlight 0.41+.
+Also covers multi-language documentation with hreflang support and Content Layer API integration (`docsLoader`, schema) specific to Starlight's content model, plus CSS custom property theming. Does not cover generic Astro Content Layer usage outside Starlight (astro-content) or non-Starlight i18n routing (astro-i18n) — those are handled by their own skills.
+</objective>
+
+# Astro Starlight
 
 Production-ready documentation theme for Astro with built-in search, dark mode, i18n, and rich plugin ecosystem.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 parallel agents (Codex `spawn_agent`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing Starlight config, sidebar, and content structure
 2. **research-expert** - Verify Starlight plugin APIs via Context7/Exa
-3. **Context7 (official docs)** - Check Starlight docs for Content Layer and i18n patterns
+3. **mcp__context7__query-docs** - Check Starlight docs for Content Layer and i18n patterns
 
 After implementation, run **sniper** for validation.
 

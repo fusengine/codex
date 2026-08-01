@@ -1,10 +1,6 @@
 ---
 name: command-palette
 description: Command palette (Cmd+K) with fuzzy search and keyboard navigation
-when-to-use: Adding command palette, search overlay, quick navigation
-keywords: command-palette, cmdk, cmd-k, search, fuzzy, keyboard, navigation
-priority: high
-related: ../../../../design-web/references/layouts/navigation/navbar.md, data-table.md
 ---
 
 # Command Palette Spec

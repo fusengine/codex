@@ -1,10 +1,6 @@
 ---
 name: motion-patterns
 description: Framer Motion animation patterns and timing guidelines
-when-to-use: Adding animations, implementing transitions, creating micro-interactions
-keywords: motion, animation, framer-motion, timing, easing, stagger
-priority: high
-related: ../../design-web/references/buttons-guide.md, ../../design-web/references/ui-visual-design.md
 ---
 
 # Motion Patterns

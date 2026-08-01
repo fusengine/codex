@@ -1,10 +1,6 @@
 ---
 name: 21st-dev
 description: 21st.dev MCP integration for component inspiration and generation
-when-to-use: Searching for design inspiration, generating components with 21st.dev Magic
-keywords: 21st.dev, magic, component, inspiration, builder, refiner
-priority: high
-related: shadcn.md, gemini/gemini-design-workflow.md
 ---
 
 # 21st.dev Reference

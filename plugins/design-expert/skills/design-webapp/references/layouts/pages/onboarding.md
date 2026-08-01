@@ -1,10 +1,6 @@
 ---
 name: onboarding
 description: Onboarding flow with progress bar and stepped wizard pattern
-when-to-use: Designing first-time user experience, setup wizards, welcome flows
-keywords: onboarding, wizard, steps, progress, welcome, setup, tour
-priority: high
-related: auth-register.md, profile.md
 ---
 
 # Onboarding Spec

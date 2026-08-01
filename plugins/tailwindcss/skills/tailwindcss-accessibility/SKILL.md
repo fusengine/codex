@@ -1,7 +1,13 @@
 ---
 name: tailwindcss-accessibility
-description: "Tailwind CSS v4.1 accessibility utilities. focus-visible, sr-only, reduced-motion, WCAG enforcement, touch targets, contrast ratios. Use when: implementing keyboard-accessible components, screen-reader-only content, prefers-reduced-motion support, WCAG 2.2 AA/AAA compliance, or accessible touch targets."
+description: "Use when implementing keyboard-accessible components, screen-reader-only content, prefers-reduced-motion support, or WCAG 2.2 AA/AAA compliance."
 ---
+
+<objective>
+Documents Tailwind CSS v4.1 accessibility utilities: `focus-visible` for keyboard-only focus rings, `sr-only` for screen-reader-only content, `motion-safe`/`motion-reduce` for `prefers-reduced-motion` support, and touch-target/contrast-ratio patterns for WCAG 2.2 AA/AAA compliance.
+
+Covers focus-state patterns, minimum touch target sizing (44×44px via `min-h-11 min-w-11`), and the 4.5:1/3:1 contrast floors — semantic HTML first, Tailwind utilities enhance rather than replace it.
+</objective>
 
 # Tailwind CSS Accessibility
 
@@ -9,7 +15,7 @@ Accessible-by-default patterns using Tailwind CSS v4.1 utility classes.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, spawn 3 sub-agents in parallel — one `spawn_agent` call each:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing a11y patterns
 2. **research-expert** - Verify latest WCAG 2.2 guidelines

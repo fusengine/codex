@@ -1,10 +1,6 @@
 ---
 name: forbidden-fonts
 description: Canonical banned/flagged font tiers and the font self-hosting rule — the single source every other file in this plugin must point to instead of restating its own list.
-when-to-use: Choosing or auditing a typography pair, grepping font-family for a design-review pass.
-keywords: fonts, forbidden, banned, flag, self-hosting, woff2, font-display, typography
-priority: critical
-related: typography-pairs.md, contrast-ratios.md
 ---
 
 # Forbidden Fonts

@@ -1,10 +1,6 @@
 ---
 name: onboarding-copy
 description: "Welcome flow and first-run copy patterns — headings, subheadings, progress framing."
-when-to-use: "Writing onboarding, welcome screen, or first-run wizard copy."
-keywords: onboarding, copy, welcome, first-run
-priority: medium
-related: cta-patterns.md, ../empty-states-copy.md
 ---
 
 # Onboarding Copy Patterns

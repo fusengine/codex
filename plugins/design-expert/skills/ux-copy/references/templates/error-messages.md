@@ -1,10 +1,6 @@
 ---
 name: error-messages
 description: "Error message formula (what happened + why + what to do) with good/bad examples."
-when-to-use: "Writing validation, API failure, or system error copy."
-keywords: error, copy, validation, messaging
-priority: high
-related: ../microcopy-patterns.md, ../empty-states-copy.md
 ---
 
 # Error Message Patterns

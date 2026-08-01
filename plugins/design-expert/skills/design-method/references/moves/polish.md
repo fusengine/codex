@@ -1,10 +1,6 @@
 ---
 name: polish
 description: "Final finishing pass — hard precondition (only polish functionally complete work), placeholder/TODO/Lorem sweep, last consistency check before shipping."
-when-to-use: "Last move before shipping/reporting a body done — after harden.md, after audit.md's Critical/Major findings are resolved."
-keywords: polish, finishing, placeholder, precondition, shipping
-priority: high
-related: audit.md, harden.md, ../../design-review/references/consistency-checks.md
 ---
 
 # Polish — Final Finishing Pass

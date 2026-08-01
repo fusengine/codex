@@ -1,12 +1,13 @@
 ---
-description: "Full design pipeline for a web or web-app target: brief → tokens → generation → motion → review. Use /prompts:design-mobile for iOS/Android instead."
+description: "Routes a full web or web-app design by register and move: taste-first for brand generate/redesign, generic design-method otherwise. Use /prompts:design-mobile for iOS/Android."
 ---
 
 # /prompts:design — Full Pipeline (FULL scope)
 
 Generate a complete design from scratch — no `design-system.md` exists yet, or a full redesign was requested.
 
-**Complete documentation**: `skills/design-method/SKILL.md`
+**Complete documentation**: `skills/taste-first/SKILL.md` or
+`skills/design-method/SKILL.md`, selected by register + move.
 
 ## Usage
 
@@ -18,14 +19,16 @@ Generate a complete design from scratch — no `design-system.md` exists yet, or
 
 ## Workflow
 
-1. Read `skills/design-method/SKILL.md` — answer the 4-question brief, name the signature element, run the two-pass process.
-2. Read `skills/design-system/SKILL.md` — build `design-system.md` (OKLCH tokens, typography, spacing, motion profile) and run the Mechanical Contrast Check.
-3. Route per `design-method`'s table: `skills/design-web/SKILL.md` (marketing/landing) or `skills/design-webapp/SKILL.md` (dashboard/app). Browse 4 inspiration sites if web/marketing.
-4. Read `skills/design-motion/SKILL.md` — gate every animation candidate; mandatory states (hover/focus/disabled) regardless of gate outcome.
-5. Read `skills/design-review/SKILL.md` — deterministic checks, then the bounded screenshot loop (light+dark, max 2 fix cycles), report.
+1. Resolve register and move from the request.
+2. For `brand` + `generate`/`redesign`, read `skills/taste-first/SKILL.md` and follow it
+   exclusively.
+3. For every other route, read `skills/design-method/SKILL.md` and follow its generic
+   move and target-skill chain.
 
 ## Copy
-If the brief needs dedicated UX copy work, read `skills/ux-copy/SKILL.md` at any point in the pipeline above — it isn't tied to a fixed step.
+Outside taste-first, `design-method` decides when `skills/ux-copy/SKILL.md` applies.
+Inside taste-first, load it only if the canonical skill requests it after concept lock.
 
 ## Forbidden
-Skipping the `design-method` brief. Restating fonts/contrast/screenshot procedure instead of pointing to their canonical skill. Reporting a review as passed when `design-review` wasn't actually run.
+Bypassing register + move routing. Loading generic creative requirements into
+taste-first. Restating either workflow instead of following its canonical skill.

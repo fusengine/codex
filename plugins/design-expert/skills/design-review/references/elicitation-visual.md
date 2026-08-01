@@ -1,10 +1,6 @@
 ---
 name: elicitation-visual
 description: Named visual elicitation techniques for self-critiquing a design deliverable before/during design-review's Part 2 visual loop
-when-to-use: During design-review Part 2 (Bounded Visual Review), or whenever the elicitation skill's eLicit phase needs a named technique for a design/UI deliverable
-keywords: elicitation, self-review, squint-test, subtraction-test, competitor-lineup, five-second-test, persona-lens
-priority: high
-related: ../SKILL.md, anti-ai-slop-audit.md, motion-verdict.md
 ---
 
 # Visual Elicitation Techniques

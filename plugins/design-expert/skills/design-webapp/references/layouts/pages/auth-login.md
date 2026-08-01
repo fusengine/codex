@@ -1,10 +1,6 @@
 ---
 name: auth-login
 description: Login page with social login priority and magic link support
-when-to-use: Designing login pages, authentication flows
-keywords: login, auth, social, oauth, magic-link, password, form
-priority: high
-related: auth-register.md, ../../../../design-web/references/layouts/navigation/navbar.md
 ---
 
 # Auth Login Spec

@@ -1,10 +1,6 @@
 ---
 name: icons-guide
 description: Icon usage guide with types, sizing, and consistency rules
-when-to-use: Choosing icons, sizing icons, ensuring icon consistency
-keywords: icons, lucide, favicons, interactive icons, scalability, line-width
-priority: medium
-related: buttons-guide.md, ui-visual-design.md
 ---
 
 # Icon Design Guide

@@ -1,7 +1,15 @@
 ---
 name: watchos
-description: "watchOS platform-specific development with complications, workouts, HealthKit, and Watch Connectivity. Use when building Apple Watch apps, health features, or iPhone-Watch communication."
+description: Use when building Apple Watch apps — complications, workouts, HealthKit, or iPhone-Watch connectivity.
 ---
+
+<objective>
+Covers watchOS-specific development for Apple Watch: watch-face complications for glanceable data, workout sessions and fitness tracking, HealthKit access to health metrics, and Watch Connectivity for iPhone-Watch sync.
+
+Includes design considerations specific to the platform — small display with large touch targets, glanceable information with minimal text, Digital Crown scrolling/input, Force Touch on older watches, swipe/tap gestures, and battery-conscious background work.
+
+Best practices: keep information glanceable, use large tap targets, minimize text input, drive watch-face updates through complications, use efficient background refresh, and always validate on real hardware since the simulator behaves differently.
+</objective>
 
 # watchOS Platform
 
@@ -9,7 +17,7 @@ watchOS-specific development for Apple Watch experiences.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these agents in parallel:
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
 1. **explore-codebase** - Analyze existing watchOS patterns
 2. **research-expert** - Verify latest watchOS 26 docs via Context7/Exa

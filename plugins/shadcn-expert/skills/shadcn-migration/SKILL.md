@@ -1,13 +1,17 @@
 ---
 name: shadcn-migration
-description: "Migration guide between Radix UI and Base UI primitives for shadcn/ui. Covers step-by-step migration, API transformations, and validation checklists. Use when: migrating a project between Radix UI and Base UI primitives, or validating a migration's API transformations."
+description: "Use when migrating a shadcn/ui project between Radix UI and Base UI primitives, or validating a migration's API transformations."
 ---
+
+<objective>
+A step-by-step migration guide between Radix UI and Base UI primitives for shadcn/ui: pre-migration checklist (detection, backup branch, component inventory), migration order (leaf components first — Tooltip/Switch/Checkbox, then Accordion/Tabs, then Dialog/Select/Popover/Menu), the API transformation table (`asChild`→`render`, `DialogContent`→`Dialog.Popup`, `data-state`→`data-[open]`, etc.), and a post-migration validation checklist.
+</objective>
 
 # shadcn Migration
 
 ## Agent Workflow (MANDATORY)
 
-Before migration, spawn sub-agents in parallel via `spawn_agent`:
+Before migration, use `TeamCreate` to spawn agents:
 
 1. **explore-codebase** - Inventory all affected components
 2. **research-expert** - Verify migration patterns via Context7

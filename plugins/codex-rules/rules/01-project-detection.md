@@ -1,16 +1,23 @@
 ## Project Detection -> Domain Agent
-Scan workspace first (plugin paths/`${PLUGIN_ROOT}`/cache — never hardcode versions). Priority: Custom > Framework (Next.js > Astro > Laravel > TanStack Start > React) > Language (TS/PHP/Rust/Go/Swift) > UI library > default; never default when a match exists.
-`next.config.*`/`app/layout.tsx` -> `nextjs-expert`
-`astro.config.*`/`src/pages/*.astro` -> `astro-expert`
-`composer.json`+`artisan` -> `laravel-expert`
-`composer.json` no `artisan` -> `php-expert`
-`@tanstack/react-start`/`tanstackStart()` -> `tanstack-start-expert`
-`package.json`+React -> `react-expert`
-`tsconfig.json` no framework -> `typescript-expert`
-`Package.swift`/`*.xcodeproj` -> `swift-expert`
-`Cargo.toml` -> `rust-expert`
-`go.mod` -> `go-expert`
-`tailwind.config.*`/`@import "tailwindcss"` -> `tailwindcss-expert`
-`components.json`/`@radix-ui`/`@base-ui` -> `shadcn-ui-expert`
-Custom Codex agent/skill metadata -> matching custom capability
-No match -> default available coding agent
+
+Scan: plugin agents (paths injected at SessionStart — never hardcode marketplace paths) + `~/.codex/agents/*.md`
+
+| Project Indicator | Agent |
+|-------------------|-------|
+| `next.config.*`, `app/layout.tsx` | `nextjs-expert` |
+| `astro.config.*`, `src/pages/*.astro` | `astro-expert` |
+| `composer.json` + `artisan` | `laravel-expert` |
+| `composer.json` WITHOUT artisan file | `php-expert` |
+| `@tanstack/react-start` in package.json, `tanstackStart()` in vite.config.* | `tanstack-start-expert` |
+| `package.json` + React | `react-expert` |
+| `tsconfig.json` with NO framework config (no next/astro/vite-react/tanstackStart) | `typescript-expert` |
+| `Package.swift`, `*.xcodeproj` | `swift-expert` |
+| `Cargo.toml` | `rust-expert` |
+| `go.mod` | `go-expert` |
+| `tailwind.config.*` | `tailwindcss-expert` |
+| `components.json`, `@radix-ui/*` | `shadcn-ui-expert` |
+| Custom `~/.codex/agents/*.md` | Use matching custom agent |
+| **No match** | `general-purpose` |
+
+Priority: Custom > Framework (Next.js > Astro > Laravel > TanStack Start > React) > Language (TypeScript, PHP, Swift, Rust, Go) > UI library > `general-purpose`
+**FORBIDDEN:** `general-purpose` when domain agent exists.

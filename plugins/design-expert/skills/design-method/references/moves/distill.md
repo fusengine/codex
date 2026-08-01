@@ -1,10 +1,6 @@
 ---
 name: distill
 description: "Strip an overloaded body to its single job — classify every element against a 6-item complexity taxonomy, remove what doesn't serve that job."
-when-to-use: "The body reads as overloaded/cluttered with unclear priority, flagged by critique.md, or when bolder/quieter alone can't fix it because the problem is scope, not intensity."
-keywords: distill, complexity, taxonomy, removal, single-job
-priority: high
-related: critique.md, bolder.md, quieter.md, ../SKILL.md
 ---
 
 # Distill — Strip to the Single Job

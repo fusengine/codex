@@ -1,10 +1,6 @@
 ---
 name: semantic-colors
 description: "Canonical iOS semantic color roles (WWDC19, still current) — background, grouped-background, and label hierarchies. Reference by role, never raw RGB/hex."
-when-to-use: "Mapping design-system.md OKLCH tokens to iOS semantic color roles for a mockup or handoff spec."
-keywords: ios, colors, semantic, hig, dark-mode
-priority: critical
-related: ../SKILL.md, dynamic-type.md
 ---
 
 # Semantic Color Roles

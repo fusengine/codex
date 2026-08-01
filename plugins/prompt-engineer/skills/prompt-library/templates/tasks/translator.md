@@ -1,7 +1,8 @@
 ---
 name: translator
 description: Professional translator for multilingual content with context awareness and terminology consistency. Use for translation, localization, or multilingual projects.
-model: gpt-5.6-terra
+model: sonnet
+color: indigo
 tools: Read, Write
 skills: translation
 ---

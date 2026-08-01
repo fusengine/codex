@@ -1,10 +1,6 @@
 ---
 name: contrast-ratios
 description: WCAG contrast ratio requirements and OKLCH-based checking methods
-when-to-use: Verifying color accessibility, choosing foreground colors, auditing contrast
-keywords: contrast, wcag, aa, aaa, accessibility, foreground, background, ratio
-priority: high
-related: oklch-system.md, templates/palette-template.md
 ---
 
 # Contrast Ratios

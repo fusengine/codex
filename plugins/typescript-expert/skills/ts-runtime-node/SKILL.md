@@ -1,21 +1,34 @@
 ---
 name: ts-runtime-node
-description: "Use when running TypeScript directly on Node.js without a build step — native type stripping, its limits, when to reach for tsx, ESM setup, watch mode, and node:test. Covers Node 24 LTS. Do NOT use for Bun runtime specifics (ts-runtime-bun) or tsconfig details (ts-config)."
+description: Use when running TypeScript directly on Node.js without a build step — native type stripping, its limits, or when to reach for tsx. Not for Bun (ts-runtime-bun).
 ---
+
+<objective>
+This skill covers running .ts/.mts/.cts files directly on Node 24 LTS via native type
+stripping: what erases cleanly versus what throws ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX (enum,
+namespace with runtime code, parameter properties, import aliases), why tsconfig.json
+paths/downleveling are ignored at runtime, and mandatory explicit file extensions and import
+type usage.
+
+It also covers when native stripping is insufficient and a full loader (tsx) is needed —
+paths, decorators, enum, or .tsx — plus setting up an ESM-only Node project, --watch mode,
+and node:test, and migrating a script/CLI off ts-node.
+
+Out of scope: Bun runtime specifics belong to ts-runtime-bun; tsconfig configuration details
+belong to ts-config.
+</objective>
 
 # TypeScript on Node.js
 
-_Targets: node 24 LTS, typescript 5.8+ (latest stable 6.0), tsx 4.x._
-
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before ANY implementation, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Inspect existing `package.json`, `tsconfig.json`, entry scripts
-2. `research-expert` - Verify latest Node LTS + type-stripping behavior via Context7/Exa
-3. `mcp__context7__query-docs` - Check Node `Modules: TypeScript` and CLI flag docs
+1. **explore-codebase** - Inspect existing `package.json`, `tsconfig.json`, entry scripts
+2. **research-expert** - Verify latest Node LTS + type-stripping behavior via Context7/Exa
+3. **mcp__context7__query-docs** - Check Node `Modules: TypeScript` and CLI flag docs
 
-After implementation, run the `sniper` agent via `spawn_agent` for validation.
+After implementation, run **sniper** for validation.
 
 ## Use when
 

@@ -1,21 +1,34 @@
 ---
 name: ts-language-patterns
-description: "Use when: writing or reviewing modern TypeScript syntax and idioms — const type parameters, using / await using resource management, standard ECMAScript decorators, satisfies, or fixing LLM-authored anti-patterns (legacy enum/namespace, missing import type). Covers TS 6.0 language features and inference. Do NOT use for: tsconfig / compiler flags (use ts-config), SOLID structure and file-size rules (use solid-generic), or framework-specific APIs."
+description: "Use when writing or reviewing modern TS syntax — const type parameters, using/await using, standard decorators, satisfies, or LLM anti-patterns (legacy enum/namespace). Not for tsconfig (ts-config)."
 ---
+
+<objective>
+This skill covers TypeScript 6.0 language features and idioms: const type parameters
+(<const T>) for narrowest-literal inference without as const, using/await using for
+deterministic Symbol.dispose/asyncDispose cleanup, standard ECMAScript decorators (never
+experimentalDecorators), satisfies for narrow-type validation, and the 6.0 inference change
+making method-syntax callbacks order-independent.
+
+It also covers fixing LLM-authored anti-patterns: legacy enum (un-erasable by Node's type
+stripper, replace with const objects as const), namespace wrapping runtime code, and missing
+import type under verbatimModuleSyntax.
+
+Out of scope: tsconfig/compiler flags belong to ts-config; SOLID structure and file-size
+rules belong to solid-generic; framework-specific APIs are not covered.
+</objective>
 
 # TypeScript Language Patterns (TS 6.0)
 
-_Targets: typescript 6.0._
-
 ## Agent Workflow (MANDATORY)
 
-Before writing non-trivial TypeScript, use `spawn_agent` to run these checks in parallel (agent definitions live in `.codex/agents/`):
+Before writing non-trivial TypeScript, use `TeamCreate` to spawn 3 agents:
 
-1. `explore-codebase` - Detect existing idioms, `verbatimModuleSyntax`, tsconfig
-2. `research-expert` - Verify current syntax on typescriptlang.org
-3. `mcp__context7__query-docs` - `/microsoft/typescript` for exact API shapes
+1. **explore-codebase** - Detect existing idioms, `verbatimModuleSyntax`, tsconfig
+2. **research-expert** - Verify current syntax on typescriptlang.org
+3. **mcp__context7__query-docs** - `/microsoft/typescript` for exact API shapes
 
-After writing, run the `sniper` agent via `spawn_agent` for validation.
+After writing, run **sniper** for validation.
 
 ---
 

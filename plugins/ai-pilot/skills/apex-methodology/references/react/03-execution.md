@@ -12,7 +12,7 @@ next_step: references/react/03.5-elicit.md
 ## When to Use
 
 - After plan is complete and approved
-- Follow the `update_plan` step order
+- Follow update_plan task order
 - Update progress as you go
 
 ---
@@ -197,13 +197,12 @@ import { useUser } from '../src/hooks/useUser'
 
 ## Update Task Phase
 
-At the **start** of this phase, record it in `.harness/apex/task.json`:
+At the **start** of this phase, record it in `.codex/apex/task.json`:
 
 ```bash
-jq --arg p "execution" '.tasks[.current_task].phase = $p' .harness/apex/task.json
+jq --arg p "execution" '.tasks[.current_task].phase = $p' .codex/apex/task.json \
+  > .codex/apex/task.json.tmp && mv .codex/apex/task.json.tmp .codex/apex/task.json
 ```
-
-Persist that STDOUT output over `.harness/apex/task.json` with your native write tool (`apply_patch` under Codex, `Write` under Claude Code) — never a shell redirect (`>`); see `init-tracking.md` for why.
 
 ---
 
