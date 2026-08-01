@@ -17,6 +17,8 @@ import {
 import { skillMd } from "../../core-guards/scripts/_shared/skill-paths";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 import { detectRequiredSkills } from "./lib/design-triggers";
+import { tasteFirstBypassActive } from "./lib/taste-first";
+import { flagAgentId } from "./lib/design-state";
 
 const FILE_RE = /\.(tsx|jsx|css|scss|html)$/;
 const SKIP_RE = /\/(node_modules|dist|build)\//;
@@ -24,13 +26,20 @@ const HTML_CSS_RE = /\.(html|css)$/;
 const UI_PATH_RE = /(components|ui|styles|page|layout|content|view|feature|section|hero|footer|header|sidebar|nav|modal|dialog)/;
 const TAILWIND_RE = /className\s*=.*(?:flex|grid|p-|m-|bg-|text-|rounded|shadow|border|gap-|w-|h-)/;
 
-let data: { session_id?: string; tool_name?: string; tool_input?: Record<string, unknown> };
+let data: {
+  agent_id?: string; session_id?: string;
+  tool_name?: string; tool_input?: Record<string, unknown>;
+};
 try {
   data = JSON.parse(await Bun.stdin.text());
 } catch {
   process.exit(0);
 }
 
+if (tasteFirstBypassActive(process.cwd(), data.agent_id ?? flagAgentId())) {
+  allowPass("check-design-skill", "taste-first bypass");
+  process.exit(0);
+}
 const target = editTargets(data).find((t) => FILE_RE.test(t.filePath) && !SKIP_RE.test(t.filePath));
 if (!target) process.exit(0);
 const filePath = target.filePath;

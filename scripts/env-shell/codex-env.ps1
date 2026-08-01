@@ -11,6 +11,10 @@ if (Test-Path $EnvFile) {
         $line = $line -replace '^\s*export\s+', ''
         if ($line -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
             $name = $Matches[1]
+            # FUSE_* are PER-HARNESS (refs dirs, marketplaces, SOLID ceiling,
+            # TTLs): set globally they leak Codex's values into Claude/Kimi,
+            # whose harness never overwrites an already-set key.
+            if ($name -like 'FUSE_*') { return }
             $value = ($Matches[2] -replace '\s+#.*$', '').Trim()
             $value = $value.Trim('"').Trim("'")
             [Environment]::SetEnvironmentVariable($name, $value, 'Process')

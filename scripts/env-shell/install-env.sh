@@ -32,20 +32,34 @@ detect_user_shell() {
 install_posix() {
     local shell="$1" rc="$2"
     touch "$rc" 2>/dev/null || true
-    if grep -q "codex/.env" "$rc" 2>/dev/null; then
+    if grep -q "fusengine-codex — Load API keys" "$rc" 2>/dev/null; then
         echo -e "  ${YELLOW}$shell: Already installed${NC}"; return 0
     fi
+    # FUSE_* are skipped on purpose: per-harness vars (refs dirs, marketplaces,
+    # SOLID ceiling, TTLs) exported globally leak Codex's values into
+    # Claude/Kimi, whose harness never overwrites an already-set key.
     cat >> "$rc" <<'EOF'
 
 # fusengine-codex — Load API keys
 _codex_home="${CODEX_HOME:-$HOME/.codex}"
 _codex_env_file="$_codex_home/.env"
 if [ -f "$_codex_env_file" ]; then
-    set -a
-    . "$_codex_env_file"
-    set +a
+    while IFS= read -r _codex_line || [ -n "$_codex_line" ]; do
+        case "$_codex_line" in "" | "#"*) continue ;; esac
+        _codex_line="${_codex_line#export }"
+        case "$_codex_line" in [A-Za-z_]*=*) ;; *) continue ;; esac
+        _codex_key="${_codex_line%%=*}"
+        case "$_codex_key" in FUSE_*) continue ;; esac
+        _codex_val="${_codex_line#*=}"
+        case "$_codex_val" in
+            \"*\") _codex_val="${_codex_val#\"}"; _codex_val="${_codex_val%\"}" ;;
+            \'*\') _codex_val="${_codex_val#\'}"; _codex_val="${_codex_val%\'}" ;;
+            *" #"*) _codex_val="${_codex_val%% #*}" ;;
+        esac
+        export "$_codex_key=$_codex_val"
+    done <"$_codex_env_file"
 fi
-unset _codex_home _codex_env_file
+unset _codex_home _codex_env_file _codex_line _codex_key _codex_val
 EOF
     echo -e "  ${GREEN}$shell: Installed ($rc)${NC}"
 }
@@ -80,6 +94,9 @@ if (Test-Path $codexEnvFile) {
         $line = $line -replace '^\s*export\s+', ''
         if ($line -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
             $name = $Matches[1]
+            # FUSE_* are PER-HARNESS: set globally they leak Codex's values into
+            # Claude/Kimi, whose harness never overwrites an already-set key.
+            if ($name -like 'FUSE_*') { return }
             $value = ($Matches[2] -replace '\s+#.*$', '').Trim()
             $value = $value.Trim('"').Trim("'")
             [System.Environment]::SetEnvironmentVariable($name, $value, "Process")

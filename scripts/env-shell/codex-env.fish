@@ -16,6 +16,13 @@ if test -f "$codex_env_file"
             continue
         end
         set -l key (string split -m1 '=' "$line")[1]
+        # FUSE_* are PER-HARNESS (refs dirs, marketplaces, SOLID ceiling, TTLs).
+        # Exported globally they leak Codex's values into Claude/Kimi, whose
+        # harness never overwrites an already-set key — each harness loads its
+        # own <home>/.env directly, so it must not inherit Codex's.
+        if string match -q 'FUSE_*' "$key"
+            continue
+        end
         set -l val (string split -m1 '=' "$line")[2]
         set val (string trim "$val")
         set val (string replace -r '\s+#.*$' '' "$val")
