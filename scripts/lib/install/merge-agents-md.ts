@@ -3,12 +3,17 @@
  *
  * Codex loads ~/.codex/AGENTS.md NATIVELY and SILENTLY at session start
  * (codex-rs/core/src/agents_md.rs) — no TUI card, unlike hook
- * `hookSpecificOutput.additionalContext`, which Codex always prints and the
- * owner rejected. So the codex-rules corpus (plugins/codex-rules/rules/*.md,
- * ~9.4 KiB) is merged into AGENTS.md at install time instead of injected by
- * hook every session. Idempotent: re-running replaces only the fenced
- * section, byte-identical when inputs are unchanged; content outside the
- * fence (any user edits to AGENTS.md) is preserved untouched.
+ * `hookSpecificOutput.additionalContext`, which Codex always prints. The
+ * owner initially rejected the card and the runtime hook was muted; that
+ * decision was later REVERTED for parity with the Kimi ecosystem, so both
+ * mechanisms now COEXIST: this install-time merge gives the native silent
+ * baseline, and plugins/codex-rules/scripts/inject-rules.native.ts
+ * re-injects the same corpus (00→08) at runtime on SessionStart /
+ * SubagentStart / UserPromptSubmit (kill switch: FUSE_RULES_INJECT=0). The
+ * codex-rules corpus (plugins/codex-rules/rules/*.md, ~17 KiB) is merged
+ * into AGENTS.md at install time. Idempotent: re-running replaces only the
+ * fenced section, byte-identical when inputs are unchanged; content outside
+ * the fence (any user edits to AGENTS.md) is preserved untouched.
  *
  * Also raises config.toml's `project_doc_max_bytes` (native default 32 KiB,
  * silent cumulative truncation past it) so the merged file — existing

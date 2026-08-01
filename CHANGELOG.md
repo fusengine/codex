@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.44] - 2026-08-01
+
+- feat(codex-rules): restore AGENTS.md template fidelity and reactivate runtime rules injection — root `AGENTS.md` realigned with the Claude template (Critical Rules 8-rule section and Directives restored verbatim, Identity/Non-Negotiables/SOLID de-condensed, `SessionEnd` added for 11 hook events, 13501 -> 17257 bytes), `plugins/codex-rules/scripts/inject-rules.native.ts` is no longer a no-op: it serves the concatenated `rules/*.md` corpus via `hookSpecificOutput.additionalContext` (parity with the Kimi ecosystem) with a `FUSE_RULES_INJECT=0` kill switch, `plugins/codex-rules/templates/AGENTS.md.template` regenerated as the mirror, and the `scripts/lib/install/merge-agents-md.ts` doc header updated (install-time merge and runtime injection coexist)
+- docs(readme): align badges with the 1.0.43 release (commit carried over from the unmerged `docs/readme-badges-1.0.43` branch)
+- chore(release): bump codex-rules 1.0.26 + suite to 1.0.44
+
 ## [1.0.43] - 2026-08-01
 
 - feat(codex): restore the full verbatim Claude -> Codex port — 37 agent TOMLs rewritten with the integral verbatim body (`<role>` restored) plus the new `lessons-compactor` agent, 196 skills re-ported verbatim (frontmatter name/description, objective blocks restored, mechanical adaptations only: `fuse-*:` prefixes -> bare names, `.claude` -> `.codex`, `Task` -> `spawn_agent`), `plugins/codex-rules/rules/*.md` restored in full (5855 -> 17663 bytes), root `AGENTS.md` HARD STOPS + RECURRING TRAPS sections restored, `templates/AGENTS.md.template` regenerated as its mirror
