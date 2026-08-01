@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.43] - 2026-08-01
+
+- feat(codex): restore the full verbatim Claude -> Codex port — 37 agent TOMLs rewritten with the integral verbatim body (`<role>` restored) plus the new `lessons-compactor` agent, 196 skills re-ported verbatim (frontmatter name/description, objective blocks restored, mechanical adaptations only: `fuse-*:` prefixes -> bare names, `.claude` -> `.codex`, `Task` -> `spawn_agent`), `plugins/codex-rules/rules/*.md` restored in full (5855 -> 17663 bytes), root `AGENTS.md` HARD STOPS + RECURRING TRAPS sections restored, `templates/AGENTS.md.template` regenerated as its mirror
+- feat(design-expert): add the `taste-first` skill (brand generate/redesign pipeline) with its hook library (`scripts/lib/taste-first.ts` + contract/ownership/unit tests), the `body-sequence-bank.md` (ten body sequences; `macrostructure-bank.md` re-scoped to hero treatments), the `design-web/references/refs-design/` recode corpus, a taste-first bypass across the design hook scripts, an agent-id stack in `design-agent-flag`, register+move routing in the `/prompts:design*` commands, and `scripts/env-shell/` installer updates (owner work, separate commit)
+- chore(deps): bump `@fusengine/harness` 0.1.83 -> 0.1.87 and align `HARNESS_VERSION`; new `scripts/sync-agents.ts` + `sync:agents` script; Codex hook wiring for `spawn_agent`/`update_plan` matchers (`plugins/ai-pilot/hooks/hooks.json`, `harness-hook-routes.json`, `inject-apex-context.native.ts`)
+- chore(release): bump 23 touched plugins (ai-pilot 1.2.50, astro-expert 1.0.15, cartographer 1.0.18, changelog-watcher 1.0.20, codex-rules 1.0.25, commit-pro 1.2.30, design-expert 2.1.39, go-expert 1.0.12, laravel-expert 1.2.15, lessons 1.0.6, nextjs-expert 1.1.31, php-expert 1.0.12, prompt-engineer 1.1.18, react-expert 1.0.27, rust-expert 1.0.12, security-expert 1.0.26, seo 1.0.16, shadcn-expert 1.0.24, solid 1.0.24, swift-apple-expert 1.1.27, tailwindcss 1.1.17, tanstack-start-expert 1.0.12, typescript-expert 1.0.12) + suite to 1.0.43
+
 ## [1.0.42] - 2026-07-25
 
 - feat(codex): wire the 4 missing Codex 0.145 hook events the harness already implements (7 -> 11) — `PreCompact` (`saveApexState`, core), `PostCompact` (`postCompactContext`, core, scope-gated), `SessionEnd` on two disjoint carriers (core `cleanupSession`, aipilot `cacheAnalyticsSave`, 3s timeout cap), and `PermissionRequest` (core); routes declared in `harness-hook-routes.json` (87 -> 92) and `SessionEnd` added to the validation allowlist
