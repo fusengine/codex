@@ -1,0 +1,10 @@
+{
+  "//": "Browser-side layout probes: these files run INSIDE the page via Playwright page.evaluate(), not in Bun/Node. They need the DOM lib, which the repo-root tsconfig deliberately omits — hence this local config and the matching exclude in the root tsconfig.",
+  "extends": "../../../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["bun-types"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["**/node_modules/**"]
+}
