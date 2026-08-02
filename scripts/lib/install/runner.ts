@@ -5,7 +5,7 @@ import * as p from "@clack/prompts";
 import { hasCodexCli, addMarketplace } from "./codex-cli";
 import { writeMarketplaceFallback } from "./marketplace-fallback";
 import { installAgentsMd } from "./agents-md";
-import { mergeAgentsMd } from "./merge-agents-md";
+import { syncAgentsMdRules } from "./sync-agents-md-rules";
 import { ensureFeaturesEnabled } from "./features";
 import { promptCodexConfig } from "./config-prompt";
 import { depositExecPolicy } from "./exec-policy";
@@ -80,10 +80,13 @@ export async function runCodexSetup(opts: SetupOptions): Promise<void> {
 	reportInstalledState(opts);
 	await ensureFeaturesEnabled(opts.codexHome);
 	await installAgentsMd(join(opts.projectRoot, "AGENTS.md"), join(opts.codexHome, "AGENTS.md"));
-	// Runs AFTER installAgentsMd, not right after installRuntimeDeps: installAgentsMd can
-	// overwrite AGENTS.md wholesale (user confirms "yes" on the overwrite prompt), which would
-	// wipe a rules section merged before it. Merging last guarantees it's never clobbered.
-	await mergeAgentsMd(opts.projectRoot, opts.codexHome);
+	// Runs AFTER installAgentsMd, which can overwrite AGENTS.md wholesale (user confirms "yes"
+	// on the overwrite prompt). Default action is PRUNE: the codex-rules corpus is delivered by
+	// the codex-rules hook alone, so any fence left by an older install is stripped here.
+	// FUSE_RULES_MERGE_AGENTS_MD=1 restores the legacy merge.
+	const rulesFence = await syncAgentsMdRules(opts.projectRoot, opts.codexHome);
+	if (rulesFence === "pruned") p.log.info("AGENTS.md: removed the legacy codex-rules fence (the hook injects the corpus)");
+	if (rulesFence === "merged") p.log.warn("AGENTS.md: codex-rules corpus merged (FUSE_RULES_MERGE_AGENTS_MD=1) — duplicated with the hook injection");
 	await installPluginsStrict(opts, mode);
 	if (!opts.skipPluginInstall) {
 		assertInstalledState(opts.projectRoot, opts.codexHome, opts.marketplaceName);

@@ -1,24 +1,26 @@
 /**
- * merge-agents-md.ts — merge the codex-rules corpus into ~/.codex/AGENTS.md.
+ * merge-agents-md.ts — AGENTS.md rules-fence lifecycle (prune by default).
  *
- * Codex loads ~/.codex/AGENTS.md NATIVELY and SILENTLY at session start
- * (codex-rs/core/src/agents_md.rs) — no TUI card, unlike hook
- * `hookSpecificOutput.additionalContext`, which Codex always prints. The
- * owner initially rejected the card and the runtime hook was muted; that
- * decision was later REVERTED for parity with the Kimi ecosystem, so both
- * mechanisms now COEXIST: this install-time merge gives the native silent
- * baseline, and plugins/codex-rules/scripts/inject-rules.native.ts
- * re-injects the same corpus (00→08) at runtime on SessionStart /
- * SubagentStart / UserPromptSubmit (kill switch: FUSE_RULES_INJECT=0). The
- * codex-rules corpus (plugins/codex-rules/rules/*.md, ~17 KiB) is merged
- * into AGENTS.md at install time. Idempotent: re-running replaces only the
- * fenced section, byte-identical when inputs are unchanged; content outside
- * the fence (any user edits to AGENTS.md) is preserved untouched.
+ * The codex-rules corpus (plugins/codex-rules/rules/*.md, ~18 KiB) reaches
+ * agents through ONE mechanism: the `codex-rules` hook, which injects it via
+ * `hookSpecificOutput.additionalContext` on SessionStart / SubagentStart /
+ * UserPromptSubmit (kill switch: FUSE_RULES_INJECT=0).
  *
- * Also raises config.toml's `project_doc_max_bytes` (native default 32 KiB,
- * silent cumulative truncation past it) so the merged file — existing
- * AGENTS.md plus the rules corpus — is never silently cut off as either
- * grows.
+ * It used to ALSO be merged into `${codexHome}/AGENTS.md` between the
+ * `fusengine:codex-rules` fences at install time. Codex loads that file
+ * natively at session start AND every sub-agent re-reads it from disk, so
+ * every agent paid the corpus TWICE (measured: 245 of 391 AGENTS.md lines
+ * duplicating the 18 078 bytes the hook already returns). Owner decision:
+ * inject, do not merge — the merge is off.
+ *
+ * `syncAgentsMdRules` is therefore a CLEANUP step by default: it strips any
+ * fenced section a previous install left behind. `FUSE_RULES_MERGE_AGENTS_MD=1`
+ * restores the legacy merge (escape hatch if hook trust ever fails and the
+ * native silent baseline is needed again).
+ *
+ * The merge path also raises config.toml's `project_doc_max_bytes` (native
+ * default 32 KiB, silent cumulative truncation past it). The prune path never
+ * touches config.toml — it must not lower a value already set.
  */
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
@@ -45,6 +47,18 @@ export function mergeRulesSection(body: string, rulesCorpus: string): string {
 	return base.length > 0 ? `${base}\n\n${section}\n` : `${section}\n`;
 }
 
+/**
+ * Remove the fenced rules section from an AGENTS.md body, collapsing the blank
+ * lines it leaves behind. Content outside the fence is preserved verbatim;
+ * returns the body unchanged when no fence is present.
+ */
+export function stripRulesSection(body: string): string {
+	const pattern = new RegExp(`\\n*${START}[\\s\\S]*?${END}\\n*`);
+	if (!pattern.test(body)) return body;
+	const next = body.replace(pattern, "\n");
+	return next.trim().length === 0 ? "" : next.replace(/^\n+/, "");
+}
+
 /** Ensure config.toml declares project_doc_max_bytes; no-op if already present (never lowers a user value). */
 export function ensureProjectDocMaxBytes(configSrc: string): string {
 	if (hasKey(configSrc, MAX_BYTES_KEY)) return configSrc;
@@ -52,7 +66,8 @@ export function ensureProjectDocMaxBytes(configSrc: string): string {
 }
 
 /**
- * Merge plugins/codex-rules/rules/*.md into `${codexHome}/AGENTS.md` and bump
+ * LEGACY, opt-in only (`FUSE_RULES_MERGE_AGENTS_MD=1`). Merge
+ * plugins/codex-rules/rules/*.md into `${codexHome}/AGENTS.md` and bump
  * `${codexHome}/config.toml`'s doc size cap. No-op if the rules dir is missing
  * (e.g. a stripped install) so this stays a clean pass-through on any harness.
  */
