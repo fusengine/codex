@@ -4,19 +4,38 @@ import { identityNicknames, normalizeSkillNames } from "./agent-names.ts";
 import { skillConfigLines, tomlArray, tomlMultiline, tomlString } from "./agent-toml-format.ts";
 import type { AgentTomlOptions } from "./agent.types.ts";
 
-const MODEL_MAP: Record<string, string> = {
-	opus: "gpt-5.6-sol",
-	sonnet: "gpt-5.6-terra",
-	haiku: "gpt-5.6-terra",
+/**
+ * Strict 3-tier model/effort matrix. Each Claude source model maps to a
+ * single tier, and a tier's model and reasoning effort are always derived
+ * together so no caller can produce a model/effort pair outside the matrix.
+ *
+ * Tiers: `sol` (judgment/refutation/security, high effort), `terra` (domain
+ * experts/explorers, medium effort), `luna` (mechanical agents, max effort —
+ * intentional: cheapest model paired with the highest effort setting).
+ */
+const TIERS = {
+	sol: { model: "gpt-5.6-sol", effort: "high" },
+	terra: { model: "gpt-5.6-terra", effort: "medium" },
+	luna: { model: "gpt-5.6-luna", effort: "max" },
+} as const;
+
+type Tier = keyof typeof TIERS;
+
+const CLAUDE_MODEL_TIER: Record<string, Tier> = {
+	opus: "sol",
+	sonnet: "terra",
+	haiku: "luna",
 };
 const LEGACY_CODEX_MODEL_RE = new RegExp(String.raw`^gpt-5\.(?:3|4|5)(?:-|$)`);
+const FALLBACK_TIER: Tier = "terra";
 
 const WRITE_TOOLS = new Set(["Edit", "Write", "MultiEdit", "NotebookEdit"]);
 
-function mapModel(claudeModel: string | undefined): string {
-	if (!claudeModel) return "gpt-5.6-terra";
-	if (LEGACY_CODEX_MODEL_RE.test(claudeModel)) return "gpt-5.6-terra";
-	return MODEL_MAP[claudeModel] ?? claudeModel;
+/** Resolve the {model, effort} pair for a Claude source `model` frontmatter value. */
+function resolveTier(claudeModel: string | undefined): typeof TIERS[Tier] {
+	if (!claudeModel || LEGACY_CODEX_MODEL_RE.test(claudeModel)) return TIERS[FALLBACK_TIER];
+	const tier = CLAUDE_MODEL_TIER[claudeModel];
+	return tier ? TIERS[tier] : TIERS[FALLBACK_TIER];
 }
 
 function sandboxFor(tools: string[] | undefined): string {
@@ -29,7 +48,7 @@ export function buildAgentToml(raw: string, options?: AgentTomlOptions): string 
 	const { data, body } = parseFrontmatter(raw);
 	const name = String(data.name ?? "unnamed");
 	const description = adaptAgentDescription(String(data.description ?? ""));
-	const model = mapModel(String(data.model ?? ""));
+	const tier = resolveTier(String(data.model ?? ""));
 	const nicknames = identityNicknames(name, data.nickname_candidates);
 	const declaredSkills = normalizeSkillNames(data.skills);
 	const skillNames = declaredSkills.length > 0 ? declaredSkills : options?.fallbackSkillNames ?? [];
@@ -41,8 +60,8 @@ export function buildAgentToml(raw: string, options?: AgentTomlOptions): string 
 	const lines = [
 		`name = ${tomlString(name)}`,
 		`description = ${tomlString(description)}`,
-		`model = ${tomlString(model)}`,
-		`model_reasoning_effort = "high"`,
+		`model = ${tomlString(tier.model)}`,
+		`model_reasoning_effort = ${tomlString(tier.effort)}`,
 		`nickname_candidates = ${tomlArray(nicknames)}`,
 		`sandbox_mode = ${tomlString(sandbox)}`,
 		...tomlMultiline("developer_instructions", instructions),

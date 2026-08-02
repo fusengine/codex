@@ -1,15 +1,16 @@
 # Agents
 
-34 specialized Codex agents across all plugins.
+37 specialized Codex agents across all plugins.
 
 ## Model Policy
 
-Demanding planning, implementation, validation, design, security, framework,
-and architecture agents use `model = "gpt-5.6-sol"` (16 agents).
-Read-heavy, research, detection, focused SEO, and narrow support agents use
-`model = "gpt-5.6-terra"` (18 agents).
-
-All 34 custom agents set `model_reasoning_effort = "high"` explicitly.
+Model and reasoning effort are aligned in three role tiers across all 37 agents.
+Judgement, refutation, and security agents use `model = "gpt-5.6-sol"` with
+`model_reasoning_effort = "high"` (7 agents).
+Domain experts and explorers use `model = "gpt-5.6-terra"` with
+`model_reasoning_effort = "medium"` (23 agents).
+Mechanical agents use `model = "gpt-5.6-luna"` with
+`model_reasoning_effort = "max"` (7 agents).
 
 Every agent defines identity-based `nickname_candidates`; generic placeholder
 pools are not valid defaults.

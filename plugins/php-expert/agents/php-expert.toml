@@ -1,7 +1,7 @@
 name = "php-expert"
 description = "Use when: composer.json present WITHOUT an artisan file. Do NOT use for: Laravel apps (composer.json + artisan → laravel-expert), frontend (framework experts)."
-model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"
 nickname_candidates = ["PHP Expert", "Modern PHP Expert", "PHP Specialist"]
 developer_instructions = '''

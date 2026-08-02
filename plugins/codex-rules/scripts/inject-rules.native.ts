@@ -7,10 +7,11 @@
  * SessionStart / SubagentStart / UserPromptSubmit via
  * `hookSpecificOutput.additionalContext` — PARITY with the Kimi ecosystem,
  * where the same corpus is re-injected at each prompt. The owner reverted the
- * earlier mute (the TUI card additionalContext prints is now accepted). This
- * COEXISTS with the install-time merge into ~/.codex/AGENTS.md
- * (scripts/lib/install/merge-agents-md.ts): AGENTS.md is the native silent
- * baseline, this hook re-surfaces the rules in-context on every event.
+ * earlier mute (the TUI card additionalContext prints is now accepted). This is
+ * the ONLY delivery path: the install-time merge into ~/.codex/AGENTS.md is off
+ * (scripts/lib/install/sync-agents-md-rules.ts prunes any leftover fence),
+ * because Codex loads AGENTS.md natively and every sub-agent re-reads it, so
+ * merging made each agent pay the corpus twice.
  *
  * Rules-dir resolution: `PLUGIN_ROOT` first (Codex sets it for plugin hooks =
  * installed plugin root in the cache), else script-relative `../rules`

@@ -1,6 +1,18 @@
 export type Choice = { value: string; label: string; hint?: string };
 
-export const FALLBACK_EFFORTS: Choice[] = ["minimal", "low", "medium", "high", "xhigh"]
+/**
+ * Fallback reasoning-effort choices, used when a model's catalog entry
+ * doesn't list `supportedReasoningEfforts`.
+ *
+ * Source of truth: `codex-rs/protocol/src/openai_models.rs`, enum
+ * `ReasoningEffort`, which accepts the wire values `none | minimal | low |
+ * medium | high | xhigh | max | ultra` (ascending order) plus an untyped
+ * `Custom(String)` variant that never rejects an unknown value. The public
+ * `developers.openai.com/codex/config-reference` page only documents
+ * `minimal|low|medium|high|xhigh` — it lags behind the Rust source, so this
+ * list follows the source, not the doc page.
+ */
+export const FALLBACK_EFFORTS: Choice[] = ["none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"]
 	.map((value) => ({ value, label: value }));
 export const PERSONALITIES: Choice[] = ["none", "friendly", "pragmatic"]
 	.map((value) => ({ value, label: value }));

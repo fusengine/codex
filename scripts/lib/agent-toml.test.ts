@@ -6,16 +6,18 @@ import { buildAgentToml } from "./agent-toml";
 import { agentRoleViolations } from "./agent-role-validation";
 
 const SOL = [
-	"astro-expert", "brainstorming", "challenger", "changelog-watcher", "commit", "design-expert",
-	"go-expert", "laravel-expert", "nextjs-expert", "php-expert", "prompt-engineer", "react-expert",
-	"research-expert", "rust-expert", "security-expert", "seo-expert", "shadcn-ui-expert", "sniper",
-	"solid-orchestrator", "swift-expert", "tailwindcss-expert", "tanstack-start-expert",
-	"typescript-expert",
+	"challenger", "brainstorming", "sniper", "prompt-engineer", "research-expert",
+	"security-expert", "solid-orchestrator",
 ];
 const TERRA = [
-	"cartographer", "commit-detector", "explore-codebase", "seo-cluster", "seo-content", "seo-geo",
-	"seo-images", "seo-local", "seo-schema", "seo-sitemap", "seo-technical", "sniper-faster",
-	"websearch",
+	"astro-expert", "explore-codebase", "changelog-watcher", "design-expert", "go-expert", "websearch",
+	"nextjs-expert", "laravel-expert", "php-expert", "rust-expert", "seo-geo", "seo-cluster",
+	"seo-expert", "react-expert", "seo-schema", "seo-local", "seo-content", "shadcn-ui-expert",
+	"swift-expert", "seo-technical", "tanstack-start-expert", "typescript-expert", "tailwindcss-expert",
+];
+const LUNA = [
+	"commit", "sniper-faster", "cartographer", "commit-detector", "lessons-compactor",
+	"seo-images", "seo-sitemap",
 ];
 
 function agentSource(model?: string, effort?: string, effortKey = "effort"): string {
@@ -25,21 +27,20 @@ function agentSource(model?: string, effort?: string, effortKey = "effort"): str
 	return `---\n${metadata.join("\n")}\n---\nTest instructions.`;
 }
 
-test("selects the agent model tier and always uses high reasoning", () => {
+test("selects the agent model tier with its strictly-paired reasoning effort", () => {
 	const scenarios = [
-		{ input: "opus", expected: "gpt-5.6-sol", effort: "xhigh", effortKey: "effort" },
-		{ input: "opus", expected: "gpt-5.6-sol", effort: "xhigh", effortKey: "model_reasoning_effort" },
-		{ input: "sonnet", expected: "gpt-5.6-terra", effort: undefined, effortKey: undefined },
-		{ input: "haiku", expected: "gpt-5.6-terra", effort: undefined, effortKey: undefined },
-		{ input: "gpt-5.4", expected: "gpt-5.6-terra", effort: undefined, effortKey: undefined },
-		{ input: "gpt-5.5", expected: "gpt-5.6-terra", effort: undefined, effortKey: undefined },
-		{ input: undefined, expected: "gpt-5.6-terra", effort: undefined, effortKey: undefined },
+		{ input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "high" },
+		{ input: "sonnet", expectedModel: "gpt-5.6-terra", expectedEffort: "medium" },
+		{ input: "haiku", expectedModel: "gpt-5.6-luna", expectedEffort: "max" },
+		{ input: "gpt-5.4", expectedModel: "gpt-5.6-terra", expectedEffort: "medium" },
+		{ input: "gpt-5.5", expectedModel: "gpt-5.6-terra", expectedEffort: "medium" },
+		{ input: undefined, expectedModel: "gpt-5.6-terra", expectedEffort: "medium" },
 	];
 
 	for (const scenario of scenarios) {
-		const toml = buildAgentToml(agentSource(scenario.input, scenario.effort, scenario.effortKey));
-		expect(toml).toContain(`model = "${scenario.expected}"`);
-		expect(toml).toContain('model_reasoning_effort = "high"');
+		const toml = buildAgentToml(agentSource(scenario.input));
+		expect(toml).toContain(`model = "${scenario.expectedModel}"`);
+		expect(toml).toContain(`model_reasoning_effort = "${scenario.expectedEffort}"`);
 	}
 });
 
@@ -58,13 +59,23 @@ function shippedAgentConfigs(): Map<string, Record<string, unknown>> {
 	return configs;
 }
 
-test("ships the exact Sol and Terra agent matrix with high reasoning", () => {
+test("ships the exact Sol/Terra/Luna agent matrix with strictly-paired reasoning effort", () => {
 	const configs = shippedAgentConfigs();
 
-	expect([...configs.keys()].sort()).toEqual([...SOL, ...TERRA].sort());
+	expect([...configs.keys()].sort()).toEqual([...SOL, ...TERRA, ...LUNA].sort());
 	for (const name of SOL) expect(configs.get(name)?.model).toBe("gpt-5.6-sol");
 	for (const name of TERRA) expect(configs.get(name)?.model).toBe("gpt-5.6-terra");
-	for (const config of configs.values()) expect(config.model_reasoning_effort).toBe("high");
+	for (const name of LUNA) expect(configs.get(name)?.model).toBe("gpt-5.6-luna");
+
+	// Invariant: model tier and reasoning effort are strictly paired — never mixed.
+	for (const config of configs.values()) {
+		const model = String(config.model);
+		const effort = config.model_reasoning_effort;
+		if (model === "gpt-5.6-sol") expect(effort).toBe("high");
+		else if (model === "gpt-5.6-terra") expect(effort).toBe("medium");
+		else if (model === "gpt-5.6-luna") expect(effort).toBe("max");
+		else throw new Error(`unexpected model tier: ${model}`);
+	}
 });
 
 test("every shipped agent survives Codex agent role validation", () => {

@@ -57,10 +57,17 @@ There is **no** `color`, `tools`, or `hooks` frontmatter on a Codex agent. Tool 
 |-----------------|------------------------------------------|------------|
 | `opus` | `gpt-5.6-sol` / `high` | complex reasoning, architecture |
 | `sonnet` (orchestrator / heavy reasoning / critical verifier) | `gpt-5.6-sol` / `high` | sniper, challenger, research-expert, brainstorming, `*-orchestrator`, security-expert, apex, deep-analysis |
-| `sonnet` (domain expert / execution sub-agent) | `gpt-5.6-terra` / `high` | laravel-expert, react-expert, seo-technical, go-expert, tailwindcss, … |
-| `haiku` (fast/simple) | `gpt-5.6-terra` / `high` | quick sub-agents |
+| `sonnet` (domain expert / execution sub-agent) | `gpt-5.6-terra` / `medium` | laravel-expert, react-expert, seo-technical, go-expert, tailwindcss, … |
+| `haiku` (fast/simple) | `gpt-5.6-luna` / `max` | quick sub-agents |
 
-Reasoning effort is `high` across the board in this port; `luna` is not used.
+Model and reasoning effort are aligned in three role tiers, never uniform:
+`gpt-5.6-sol` / `high` for the 7 judgement, refutation, and security agents
+(sniper, challenger, research-expert, brainstorming, security-expert,
+solid-orchestrator, prompt-engineer); `gpt-5.6-terra` / `medium` for the 23
+domain experts and explorers; `gpt-5.6-luna` / `max` for the 7 mechanical agents
+(commit, commit-detector, cartographer, sniper-faster, lessons-compactor,
+seo-images, seo-sitemap). The pairing is strict — `sol` always carries `high`,
+`terra` always `medium`, `luna` always `max`.
 
 ---
 

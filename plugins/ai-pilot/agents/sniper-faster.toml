@@ -1,7 +1,7 @@
 name = "sniper-faster"
 description = "Use when: applying already-identified fixes (linter output, sniper report, user-specified) of 1-10 lines. Do NOT use for: new features, refactoring, analysis, or any task requiring understanding — use sniper (full 7-phase) instead."
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
+model = "gpt-5.6-luna"
+model_reasoning_effort = "max"
 nickname_candidates = ["Sniper Faster", "Micro-Fix"]
 sandbox_mode = "workspace-write"
 developer_instructions = '''

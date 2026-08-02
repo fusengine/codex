@@ -57,3 +57,4 @@ plugins/*/.cartographer
 
 # fuse-lessons dev memory — internal session notes, not package content.
 /MEMORY/
+.kimi-code/
