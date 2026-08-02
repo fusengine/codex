@@ -1,7 +1,7 @@
 name = "websearch"
 description = "Use when: current events, real-time info, quick factual lookup where speed > depth. Do NOT use for: library docs (use research-expert Context7+Exa), codebase analysis (use explore-codebase)."
 model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 nickname_candidates = ["Websearch", "Web Researcher"]
 sandbox_mode = "read-only"
 developer_instructions = '''
