@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.46] - 2026-08-03
+
+- chore(design-expert): anonymize source-site references in the design refs corpus — replace identifying mentions of three third-party sites (used as design references) with neutral wording ("the source page" / "the source", "la page source" / "la source") across 11 files under `refs-design/{dispatch,parley,stash}-recode`, 22 occurrences, pure substitution, no measured value or technical detail lost
+- chore(deps): bump `@fusengine/harness` `^0.1.87` -> `^0.1.89` and regenerate `bun.lock` (diff scoped to the harness entry, no other dependency drift)
+- chore(release): bump design-expert 2.1.40 -> 2.1.41 + suite to 1.0.46
+
 ## [1.0.45] - 2026-08-02
 
 - refactor(agents): enforce strict 3-tier model/effort matrix across 37 agent TOMLs — `gpt-5.6-sol`+`high` for judgment/refutation/security (sniper, challenger, research-expert, brainstorming, security-expert, solid-orchestrator, prompt-engineer), `gpt-5.6-terra`+`medium` for business/framework experts and explorers, `gpt-5.6-luna`+`max` for mechanical agents (commit, sniper-faster, cartographer, commit-detector, lessons-compactor, seo-images, seo-sitemap); `scripts/lib/agent-toml.ts` replaces two independent model/effort constants with a single `TIERS` object so no out-of-matrix pairing can be produced; `scripts/lib/install/config-options.ts` `FALLBACK_EFFORTS` extended 5 -> 8 values to match the full Codex `ReasoningEffort` enum (Rust source ahead of the public config-reference docs); fixtures and docs (`docs/workflow/agents.md`, `docs/GAP-HARNESS.md`, `docs/reference/creating-skills-agents.md`) updated accordingly
