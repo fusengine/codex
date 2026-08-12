@@ -12,6 +12,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { FLAG_FILE, flagAgentId, loadState, saveState, deny } from "./lib/design-state";
+import { isMcpTool } from "./lib/mcp-names";
 import { tasteFirstPreLock } from "./lib/taste-first";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
@@ -54,7 +55,7 @@ try {
   process.exit(0);
 }
 
-if (data.tool_name !== "mcp__gemini-design__create_frontend") process.exit(0);
+if (!isMcpTool(data.tool_name, "gemini-design", "create_frontend")) process.exit(0);
 if (tasteFirstPreLock(process.cwd(), data.agent_id ?? flagAgentId())) {
   allowPass("validate-design-system", "taste-first pre-lock bypass");
   process.exit(0);

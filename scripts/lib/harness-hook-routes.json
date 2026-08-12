@@ -230,25 +230,25 @@
   {
     "plugin": "design-expert",
     "event": "PreToolUse",
-    "matcher": "mcp__fuse-browser__browser_navigate",
+    "matcher": "mcp__fuse[-_]browser__browser_navigate",
     "scope": "core"
   },
   {
     "plugin": "design-expert",
     "event": "PreToolUse",
-    "matcher": "mcp__fuse-browser__browser_screenshot",
+    "matcher": "mcp__fuse[-_]browser__browser_screenshot",
     "scope": "core"
   },
   {
     "plugin": "design-expert",
     "event": "PreToolUse",
-    "matcher": "mcp__gemini-design__",
+    "matcher": "mcp__gemini[-_]design__",
     "scope": "core"
   },
   {
     "plugin": "design-expert",
     "event": "PreToolUse",
-    "matcher": "mcp__gemini-design__create_frontend",
+    "matcher": "mcp__gemini[-_]design__create_frontend",
     "scope": "core"
   },
   {
@@ -260,13 +260,13 @@
   {
     "plugin": "design-expert",
     "event": "PostToolUse",
-    "matcher": "mcp__fuse-browser__browser_screenshot",
+    "matcher": "mcp__fuse[-_]browser__browser_screenshot",
     "scope": "core"
   },
   {
     "plugin": "design-expert",
     "event": "PostToolUse",
-    "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__fuse-browser__|mcp__gemini-design__",
+    "matcher": "mcp__context7__|mcp__exa__|mcp__magic__|mcp__shadcn__|mcp__fuse[-_]browser__|mcp__gemini[-_]design__",
     "scope": "core"
   },
   {

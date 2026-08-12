@@ -6,17 +6,15 @@ import { findTasteFirstMarker, tasteFirstBypassActive, tasteFirstPreLock } from 
 
 const SCRIPTS = join(import.meta.dir, "..");
 const EVENT_NAV = {
-  session_id: "taste-test", agent_id: "agent-1",
+  session_id: "taste-test", agent_id: "agent-1", tool_input: { url: "https://example.com" },
   tool_name: "mcp__fuse-browser__browser_navigate",
-  tool_input: { url: "https://example.com" },
 };
+const EVENT_NAV_US = { ...EVENT_NAV, tool_name: "mcp__fuse_browser__browser_navigate" };
 const EVENT_GEMINI = { agent_id: "agent-1", tool_name: "mcp__gemini-design__create_frontend" };
+const EVENT_GEMINI_US = { agent_id: "agent-1", tool_name: "mcp__gemini_design__create_frontend" };
 const EVENT_TSX = {
   agent_id: "agent-1", session_id: "taste-test", tool_name: "Write",
-  tool_input: {
-    file_path: "src/components/Hero.tsx",
-    content: "export const Hero = () => <section className=\"flex\">Hero</section>;",
-  },
+  tool_input: { file_path: "src/components/Hero.tsx", content: "export const Hero = () => <section className=\"flex\">Hero</section>;" },
 };
 
 interface Fixture { codexHome: string; cwd: string; markerPath: string }
@@ -70,23 +68,25 @@ test("marker state is fail-closed and supports deep paths", () => {
 test("pre-lock bypasses obsolete gates and lock restores design-system validation", () => {
   const f = fixture();
   marker(f, false, true);
-  expect(hook(f, "check-inspiration-read.native.ts", EVENT_NAV)).toBe("");
-  expect(hook(f, "pipeline-gate.native.ts", EVENT_NAV)).toBe("");
-  expect(hook(f, "validate-design-system.native.ts", EVENT_GEMINI)).toBe("");
+  for (const ev of [EVENT_NAV, EVENT_NAV_US]) expect(hook(f, "check-inspiration-read.native.ts", ev)).toBe("");
+  for (const ev of [EVENT_NAV, EVENT_NAV_US]) expect(hook(f, "pipeline-gate.native.ts", ev)).toBe("");
+  for (const ev of [EVENT_GEMINI, EVENT_GEMINI_US]) expect(hook(f, "validate-design-system.native.ts", ev)).toBe("");
   expect(hook(f, "check-design-skill.native.ts", EVENT_TSX)).toBe("");
   marker(f, true, true);
-  expect(hook(f, "validate-design-system.native.ts", EVENT_GEMINI))
-    .toContain("design-system.md not found");
+  for (const ev of [EVENT_GEMINI, EVENT_GEMINI_US]) expect(hook(f, "validate-design-system.native.ts", ev)).toContain("design-system.md not found");
   const lockedBypasses = [hook(f, "check-inspiration-read.native.ts", EVENT_NAV), hook(f, "pipeline-gate.native.ts", EVENT_NAV), hook(f, "check-design-skill.native.ts", EVENT_TSX)];
   expect(lockedBypasses).toEqual(["", "", ""]);
 });
 
-test("inactive marker preserves the legacy pipeline gate", () => {
+test("inactive marker preserves the legacy pipeline gate (dash + underscore)", () => {
   const f = fixture();
   marker(f, true, false);
-  const output = hook(f, "pipeline-gate.native.ts", EVENT_NAV);
-  expect(output).not.toContain("taste-first bypass");
-  expect(output).toContain("BLOCKED:");
+  for (const ev of [EVENT_NAV, EVENT_NAV_US]) {
+    const output = hook(f, "pipeline-gate.native.ts", ev);
+    expect(output).not.toContain("taste-first bypass");
+    expect(output).toContain("BLOCKED:");
+    expect(hook(f, "check-inspiration-read.native.ts", ev)).toContain("BLOCKED: Phase 0 not done");
+  }
 });
 
 test("cleanup deactivates an interrupted task marker", () => {

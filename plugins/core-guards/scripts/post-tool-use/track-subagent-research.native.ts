@@ -15,7 +15,7 @@ import { bashExecutable } from "../_shared/track-shell";
 import { extractText } from "../_shared/track-mcp-response";
 import { normalizeCommand } from "../_shared/normalize-command";
 import {
-  CACHE_READ_RE, EXPLORE_BASH_CMDS, EXPLORE_TOOLS, RESEARCH_TOOLS,
+  CACHE_READ_RE, EXPLORE_BASH_CMDS, EXPLORE_TOOLS, RESEARCH_TOOLS, RESEARCH_TOOLS_CODEX,
 } from "../_shared/apex-constants";
 
 interface Payload {
@@ -28,7 +28,7 @@ interface Payload {
 
 /** Map (tool_name, tool_input) to [phase, cacheHit] or null to skip. */
 function classify(tool: string, ti: { file_path?: string; command?: unknown }): [string, boolean] | null {
-  if (RESEARCH_TOOLS.has(tool)) return ["subagent-research-expert", false];
+  if (RESEARCH_TOOLS.has(tool) || RESEARCH_TOOLS_CODEX.has(tool)) return ["subagent-research-expert", false];
   if (EXPLORE_TOOLS.has(tool)) return ["subagent-explore-codebase", false];
   if (tool === "Read") {
     const path = ti.file_path ?? "";

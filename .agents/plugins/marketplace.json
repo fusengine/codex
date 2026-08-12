@@ -54,7 +54,7 @@
 				"source": "local",
 				"path": "./plugins/changelog-watcher"
 			},
-			"version": "1.0.21",
+			"version": "1.0.22",
 			"category": "Productivity",
 			"policy": {
 				"installation": "AVAILABLE",
@@ -93,7 +93,7 @@
 				"source": "local",
 				"path": "./plugins/core-guards"
 			},
-			"version": "1.1.51",
+			"version": "1.1.52",
 			"category": "Security",
 			"policy": {
 				"installation": "AVAILABLE",
@@ -106,7 +106,7 @@
 				"source": "local",
 				"path": "./plugins/design-expert"
 			},
-			"version": "2.1.41",
+			"version": "2.1.42",
 			"category": "Design",
 			"policy": {
 				"installation": "AVAILABLE",

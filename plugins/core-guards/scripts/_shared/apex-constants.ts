@@ -10,6 +10,11 @@ export const RESEARCH_TOOLS = new Set<string>([
 	"WebFetch",
 ]);
 
+/** Codex sanitizes `-` → `_` across the full MCP tool id; accept that form too. */
+export const RESEARCH_TOOLS_CODEX = new Set<string>(
+	[...RESEARCH_TOOLS].map((t) => t.replaceAll("-", "_")),
+);
+
 export const EXPLORE_TOOLS = new Set<string>(["Glob", "Grep"]);
 
 export const EXPLORE_BASH_CMDS = new Set<string>([

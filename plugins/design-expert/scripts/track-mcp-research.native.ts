@@ -11,6 +11,7 @@
  */
 import { trackMcpResearch } from "../../core-guards/scripts/_shared/expert-skill-tracking";
 import { appendAgentTrack } from "./lib/skill-tracking";
+import { mcpServerMatches } from "./lib/mcp-names";
 
 let data: { session_id?: string; agent_id?: string; tool_name?: string; tool_input?: Record<string, unknown> };
 try {
@@ -24,7 +25,7 @@ if (!/^mcp__/.test(toolName)) process.exit(0);
 
 const ti = (data.tool_input ?? {}) as Record<string, unknown>;
 let query = String(ti.query || ti.topic || "");
-if (toolName.includes("fuse-browser") && !query) {
+if (mcpServerMatches(toolName, "fuse-browser") && !query) {
   query = String(ti.url || toolName);
   if (toolName.includes("screenshot")) query = `fuse_browser_screenshot ${ti.fullPage ?? false}`;
 }
@@ -38,7 +39,7 @@ else if (toolName.includes("exa")) source = "exa";
 
 trackMcpResearch(source, toolName, query, sessionId);
 
-if (agentId && (toolName.includes("fuse-browser") || toolName.includes("gemini-design"))) {
+if (agentId && (mcpServerMatches(toolName, "fuse-browser") || mcpServerMatches(toolName, "gemini-design"))) {
   const ts = new Date().toISOString().replace(/\.\d+Z$/, "Z");
   appendAgentTrack(agentId, `${ts} ${source}:${toolName} ${query}`);
 }

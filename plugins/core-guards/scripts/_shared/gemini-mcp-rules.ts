@@ -7,6 +7,8 @@ import { readFileSync } from "node:fs";
 export const UI_EXT = /\.(tsx|jsx|vue|svelte)$/;
 export const EXEMPT_DIRS = /(node_modules|dist|build|\.next|\.codex)\//;
 export const GEMINI_PREFIX = "mcp__gemini-design__";
+/** Dual-form prefix: Codex normalizes the server name `-` → `_` at runtime. */
+export const GEMINI_PREFIX_RE = /^mcp__gemini[-_]design__/;
 export const MIN_TAILWIND_CLASSES = 3;
 export const MIN_LINES_FOR_EDIT = 2;
 export const BLOCK_MSG =
@@ -57,7 +59,7 @@ export function geminiWasCalled(transcriptPath: string): boolean {
       const content = JSON.parse(line.trim())?.message?.content;
       if (!Array.isArray(content)) continue;
       for (const block of content) {
-        if (block?.type === "tool_use" && String(block?.name ?? "").startsWith(GEMINI_PREFIX)) return true;
+        if (block?.type === "tool_use" && GEMINI_PREFIX_RE.test(String(block?.name ?? ""))) return true;
       }
     } catch {
       continue;

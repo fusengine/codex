@@ -24,7 +24,7 @@ try {
 }
 
 const tool = data.tool_name ?? "";
-if (!["exa", "fuse-browser", "browser_fetch", "web.run"].some((k) => tool.includes(k))) process.exit(0);
+if (!["exa", "fuse-browser", "fuse_browser", "browser_fetch", "web.run"].some((k) => tool.includes(k))) process.exit(0);
 
 const ti = data.tool_input ?? {};
 const query = ti.query || ti.url || ti.prompt || "";
