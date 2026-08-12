@@ -17,6 +17,7 @@ import {
 import {
   checkDesignSystemWrite, checkGeminiCreate, checkBrowserNavigate,
 } from "./lib/pipeline-checks";
+import { isMcpTool } from "./lib/mcp-names";
 import { tasteFirstBypassActive } from "./lib/taste-first";
 import { allowPass } from "../../core-guards/scripts/_shared/hook-output-post";
 
@@ -48,9 +49,9 @@ const fp = data.tool_input?.file_path ?? "";
 
 if ((tool === "Write" || tool === "Edit") && basename(fp) === "design-system.md") {
   checkDesignSystemWrite(state);
-} else if (tool === "mcp__gemini-design__create_frontend") {
+} else if (isMcpTool(tool, "gemini-design", "create_frontend")) {
   checkGeminiCreate(state);
-} else if (tool === "mcp__fuse-browser__browser_navigate") {
+} else if (isMcpTool(tool, "fuse-browser", "browser_navigate")) {
   checkBrowserNavigate(state);
 }
 
