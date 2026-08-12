@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.47] - 2026-08-13
+
+- fix(design-expert): accept Codex-sanitized MCP tool names in hooks — Codex sanitizes `-` -> `_` in MCP tool ids, so hooks matching `mcp__gemini-design__*` never fired; `hooks.json` + `scripts/lib/harness-hook-routes.json` dual-form `[-_]` matchers (byte-identical mirror), new `scripts/lib/mcp-names.ts` helper (`isMcpTool`, `mcpServerMatches`) used by `pipeline-gate`, `check-inspiration-read`, `validate-design-system` and `track-mcp-research`, core-guards `GEMINI_PREFIX_RE` accepts `[-_]`, changelog-watcher `fuse_browser` keyword (design-expert 2.1.42, core-guards 1.1.52, changelog-watcher 1.0.22)
+- chore(deps): bump `@fusengine/harness` `^0.1.89` -> `^0.1.90` and align `HARNESS_VERSION` (0.1.87 -> 0.1.90, all 11 hook scopes audited on 0.1.90); root `fast-xml-parser` `^5.10.1`, `lighthouse` `^13.4.1`, `smol-toml` `^1.8.0`, `@types/bun` `^1.3.14`; core-guards/statusline `@clack/prompts` `^1.7.0`, `terminal-kit` `^3.1.4`, `zod` `^4.4.3`, `@biomejs/biome` `^2.5.8`, `typescript` `^7.0.2`; `bun.lock` regenerated
+
 ## [1.0.46] - 2026-08-03
 
 - chore(design-expert): anonymize source-site references in the design refs corpus — replace identifying mentions of three third-party sites (used as design references) with neutral wording ("the source page" / "the source", "la page source" / "la source") across 11 files under `refs-design/{dispatch,parley,stash}-recode`, 22 occurrences, pure substitution, no measured value or technical detail lost
