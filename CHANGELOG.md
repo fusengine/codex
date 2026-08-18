@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.48] - 2026-08-18
+
+- chore(repo): sync agent policy and runtime pins
+
 ## [1.0.47] - 2026-08-13
 
 - fix(design-expert): accept Codex-sanitized MCP tool names in hooks — Codex sanitizes `-` -> `_` in MCP tool ids, so hooks matching `mcp__gemini-design__*` never fired; `hooks.json` + `scripts/lib/harness-hook-routes.json` dual-form `[-_]` matchers (byte-identical mirror), new `scripts/lib/mcp-names.ts` helper (`isMcpTool`, `mcpServerMatches`) used by `pipeline-gate`, `check-inspiration-read`, `validate-design-system` and `track-mcp-research`, core-guards `GEMINI_PREFIX_RE` accepts `[-_]`, changelog-watcher `fuse_browser` keyword (design-expert 2.1.42, core-guards 1.1.52, changelog-watcher 1.0.22)
