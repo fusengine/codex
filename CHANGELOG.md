@@ -3,6 +3,7 @@
 ## [1.0.48] - 2026-08-18
 
 - chore(repo): sync agent policy and runtime pins
+- chore(release): bump 17 touched plugins + suite to 1.0.48 — ai-pilot 1.2.51 -> 1.2.52, astro-expert 1.0.16 -> 1.0.17, changelog-watcher 1.0.22 -> 1.0.23, codex-rules 1.0.27 -> 1.0.28, design-expert 2.1.42 -> 2.1.43, go-expert 1.0.13 -> 1.0.14, laravel-expert 1.2.16 -> 1.2.17, nextjs-expert 1.1.32 -> 1.1.33, php-expert 1.0.13 -> 1.0.14, react-expert 1.0.28 -> 1.0.29, rust-expert 1.0.13 -> 1.0.14, seo 1.0.17 -> 1.0.18, shadcn-expert 1.0.25 -> 1.0.26, swift-apple-expert 1.1.28 -> 1.1.29, tailwindcss 1.1.18 -> 1.1.19, tanstack-start-expert 1.0.13 -> 1.0.14, typescript-expert 1.0.13 -> 1.0.14; mirrored in `.agents/plugins/marketplace.json`
 
 ## [1.0.47] - 2026-08-13
 
