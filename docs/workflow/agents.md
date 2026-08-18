@@ -4,13 +4,23 @@
 
 ## Model Policy
 
-Model and reasoning effort are aligned in three role tiers across all 37 agents.
-Judgement, refutation, and security agents use `model = "gpt-5.6-sol"` with
-`model_reasoning_effort = "high"` (7 agents).
-Domain experts and explorers use `model = "gpt-5.6-terra"` with
-`model_reasoning_effort = "medium"` (23 agents).
-Mechanical agents use `model = "gpt-5.6-luna"` with
-`model_reasoning_effort = "max"` (7 agents).
+The 37-agent policy assigns model and effort by named role, not by the Claude
+source tier. Standard implementation and domain specialists use
+`gpt-5.6-sol` / `medium` (22); high-stakes reasoning roles use
+`gpt-5.6-sol` / `high` (7); `design-expert` uses `gpt-5.6-sol` / `xhigh`.
+Six bounded mechanical roles use `gpt-5.6-luna` / `max`; `commit` remains
+`gpt-5.6-terra` / `high`.
+
+The exact groups are: Sol/medium — `astro-expert`, `changelog-watcher`,
+`explore-codebase`, `go-expert`, `laravel-expert`, `nextjs-expert`,
+`php-expert`, `react-expert`, `rust-expert`, `seo-cluster`, `seo-content`,
+`seo-expert`, `seo-geo`, `seo-local`, `seo-schema`, `seo-technical`,
+`shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`,
+`tanstack-start-expert`, `typescript-expert`, `websearch`; Sol/high —
+`brainstorming`, `challenger`, `prompt-engineer`, `research-expert`,
+`security-expert`, `sniper`, `solid-orchestrator`; Luna/max —
+`cartographer`, `commit-detector`, `lessons-compactor`, `seo-images`,
+`seo-sitemap`, `sniper-faster`.
 
 Every agent defines identity-based `nickname_candidates`; generic placeholder
 pools are not valid defaults.

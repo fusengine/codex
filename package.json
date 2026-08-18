@@ -25,7 +25,7 @@
 		"@fusengine/harness": "^0.1.90",
 		"cheerio": "^1.2.0",
 		"chrome-launcher": "^1.2.1",
-		"fast-xml-parser": "^5.10.1",
+		"fast-xml-parser": "^5.11.0",
 		"lighthouse": "^13.4.1"
 	}
 }

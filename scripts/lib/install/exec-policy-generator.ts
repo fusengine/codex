@@ -14,7 +14,7 @@ export interface GeneratedRules {
 /**
  * Reads the RESOLVED harness version from `node_modules/@fusengine/harness/package.json`
  * under `codexHome`. Deliberately not the semver range pinned in the repo manifest (e.g.
- * `^0.1.79`, see `harnessRange` in runtime-deps.ts) nor the hardcoded `HARNESS_VERSION` in
+ * `^0.1.90`, see `harnessRange` in runtime-deps.ts) nor the hardcoded `HARNESS_VERSION` in
  * harness-hook-policy.ts (a manually-tracked pin for a different concern, hook-wiring
  * assertions) — only the installed package's own `package.json` reflects what `bun install`
  * actually resolved this run.
