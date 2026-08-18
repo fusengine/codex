@@ -42,8 +42,8 @@ enabled = true
 | `name` | yes | kebab-case, unique across the ecosystem, referenced by `spawn_agent`. |
 | `description` | yes | Keep the `Use when… / Do NOT use for…` routing pattern — it drives agent selection. |
 | `developer_instructions` | yes | Triple-quoted (`'''…'''`) string holding the full agent brief. No truncation of source substance. |
-| `model` | recommended | One of `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`. Use explicit `-sol`/`-terra` ids, never the bare `gpt-5.6` alias. |
-| `model_reasoning_effort` | recommended | One of `minimal`, `low`, `medium`, `high`, `xhigh`. |
+| `model` | recommended | One of `gpt-5.6-sol`, `gpt-5.6-terra`, or `gpt-5.6-luna`. Use an explicit tier id, never the bare `gpt-5.6` alias. |
+| `model_reasoning_effort` | recommended | One of `minimal`, `low`, `medium`, `high`, `xhigh`, or `max`. |
 | `sandbox_mode` | recommended | One of `read-only`, `workspace-write`, `danger-full-access`. Use `workspace-write` for agents that edit; `read-only` for audit/explore/research/challenger agents; `danger-full-access` only when a task genuinely needs it. |
 | `nickname_candidates` | optional | Array of display names; the configured nickname is identity evidence when spawning. |
 | `mcp_servers` | optional | MCP servers this agent may reach; declare only servers configured for Codex. |
@@ -51,23 +51,26 @@ enabled = true
 
 There is **no** `color`, `tools`, or `hooks` frontmatter on a Codex agent. Tool access is governed by `sandbox_mode` and the runtime, not a per-agent tool list. Hooks live in the plugin's `hooks/hooks.json`, never in the agent TOML.
 
-### Model mapping (from Claude source agents)
+### Model policy
 
-| Claude `model:` | Codex `model` / `model_reasoning_effort` | Applies to |
-|-----------------|------------------------------------------|------------|
-| `opus` | `gpt-5.6-sol` / `high` | complex reasoning, architecture |
-| `sonnet` (orchestrator / heavy reasoning / critical verifier) | `gpt-5.6-sol` / `high` | sniper, challenger, research-expert, brainstorming, `*-orchestrator`, security-expert, apex, deep-analysis |
-| `sonnet` (domain expert / execution sub-agent) | `gpt-5.6-terra` / `medium` | laravel-expert, react-expert, seo-technical, go-expert, tailwindcss, … |
-| `haiku` (fast/simple) | `gpt-5.6-luna` / `max` | quick sub-agents |
+The generator classifies by the Codex agent's `name`, because a Claude source
+model is too coarse to preserve the shipped role policy. Unknown future agents
+default to `gpt-5.6-sol` / `medium` until explicitly classified.
 
-Model and reasoning effort are aligned in three role tiers, never uniform:
-`gpt-5.6-sol` / `high` for the 7 judgement, refutation, and security agents
-(sniper, challenger, research-expert, brainstorming, security-expert,
-solid-orchestrator, prompt-engineer); `gpt-5.6-terra` / `medium` for the 23
-domain experts and explorers; `gpt-5.6-luna` / `max` for the 7 mechanical agents
-(commit, commit-detector, cartographer, sniper-faster, lessons-compactor,
-seo-images, seo-sitemap). The pairing is strict — `sol` always carries `high`,
-`terra` always `medium`, `luna` always `max`.
+| Codex profile | Agents | Rationale |
+|---------------|--------|-----------|
+| `gpt-5.6-sol` / `medium` | 22 implementation, framework, SEO, explorer, and web-search specialists | Balanced daily development execution. |
+| `gpt-5.6-sol` / `high` | `brainstorming`, `challenger`, `prompt-engineer`, `research-expert`, `security-expert`, `sniper`, `solid-orchestrator` | Extra deliberation for ideation, adversarial review, research, security, and final quality gates. |
+| `gpt-5.6-sol` / `xhigh` | `design-expert` | Highest visual and product-direction judgment. |
+| `gpt-5.6-luna` / `max` | `cartographer`, `commit-detector`, `lessons-compactor`, `seo-images`, `seo-sitemap`, `sniper-faster` | Bounded mechanical or narrowly scoped work. |
+| `gpt-5.6-terra` / `high` | `commit` | Deliberate release and repository operations. |
+
+The 22 Sol/medium agents are `astro-expert`, `changelog-watcher`,
+`explore-codebase`, `go-expert`, `laravel-expert`, `nextjs-expert`,
+`php-expert`, `react-expert`, `rust-expert`, `seo-cluster`, `seo-content`,
+`seo-expert`, `seo-geo`, `seo-local`, `seo-schema`, `seo-technical`,
+`shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`,
+`tanstack-start-expert`, `typescript-expert`, and `websearch`.
 
 ---
 

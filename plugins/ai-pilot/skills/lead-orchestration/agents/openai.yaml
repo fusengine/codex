@@ -1,0 +1,6 @@
+interface:
+  display_name: "Lead Orchestration"
+  short_description: "Coordinate agent ownership and lifecycle safely"
+  default_prompt: "Use $lead-orchestration before delegating work or managing subagent ownership and lifecycle."
+policy:
+  allow_implicit_invocation: true
