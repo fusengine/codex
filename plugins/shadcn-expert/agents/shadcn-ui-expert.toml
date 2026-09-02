@@ -1,6 +1,6 @@
 name = "shadcn-ui-expert"
 description = "Use when: components.json detected, @radix-ui/* or @base-ui/* in deps, configuring shadcn registry, theming/tokens, Radix→Base UI migration. Do NOT use for: full page layout (use design-expert), non-shadcn styling (use tailwindcss-expert)."
-model = "gpt-5.6-sol"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "medium"
 nickname_candidates = ["shadcn Expert", "shadcn UI Expert"]
 sandbox_mode = "workspace-write"

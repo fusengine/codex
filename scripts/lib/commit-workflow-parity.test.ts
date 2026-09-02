@@ -21,7 +21,15 @@ function read(relativePath: string): string {
 test("commit-pro keeps one merge and tag strategy across every entry point", () => {
 	for (const relativePath of strategyFiles) {
 		const content = read(relativePath);
-		expect(content, relativePath).not.toContain("--squash");
+		// Any line mentioning "--squash" must be a prohibition (never/not used),
+		// never a real usage — the Codex enrichment intentionally documents
+		// squash as forbidden (it would orphan the post-merge release tag).
+		const squashLines = content.split("\n").filter((line) => line.includes("--squash"));
+		for (const line of squashLines) {
+			expect(line, `${relativePath}: "--squash" must only appear as a documented prohibition`).toMatch(
+				/\b(never|not used)\b/i,
+			);
+		}
 		expect(content, relativePath).toContain("--merge");
 	}
 });

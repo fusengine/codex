@@ -20,3 +20,4 @@
 3. **Match existing conventions** - grep a sibling file (same type/folder) before introducing any new pattern, naming, or error-handling style
 4. **Zero dangling references** - after any edit or file split, verify imports, exports, and types still resolve
 5. **NEVER report done with failing checks** - done = sniper ZERO errors (lint + types). A hidden failure is a lie, not a completion
+6. **Challenger before any claim (lead)** - before reporting a root cause, a done/verified claim, an irreversible action (commit/deploy/rm/push) or a second attempt at a fix, the LEAD runs the `challenger` agent in a fresh context and gets CONFIRMED / REFUTED / UNCERTAIN; a REFUTED is resolved or owner-accepted before the claim reaches the owner; also at every eLicit and Verify gate (AGENTS.md l.51)

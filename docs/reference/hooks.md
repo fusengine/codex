@@ -116,6 +116,13 @@ Use only the route registered for the exact plugin/event/matcher tuple. Unknown
 scopes are unsafe because the CLI can fall back silently. Do not wire a new
 direct script; port its behavior to Harness and add parity tests first.
 
+Optional per-handler keys accepted by the validator: `timeout`, `async`,
+`statusMessage`, `commandWindows` and `additionalContextLimit` (approximate
+token threshold above which Codex spills the handler's `additionalContext` to
+disk; default 2,500; `0` disables spilling; only on SessionStart,
+SubagentStart, PreToolUse, PostToolUse and UserPromptSubmit). `codex-rules`
+sets 6000 because its 9 rule files total ≈ 18.6 KB.
+
 ## Harness Input
 
 Hooks receive JSON input through stdin:

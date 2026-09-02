@@ -23,7 +23,8 @@ const SESSION_END_DEFAULT_TIMEOUT_SEC = 1;
 const SESSION_END_MAX_TIMEOUT_SEC = 3;
 const DEFAULT_ADDITIONAL_CONTEXT_LIMIT = 2_500;
 const EVENTS_WITHOUT_MATCHER = new Set(["UserPromptSubmit", "Stop"]);
-const EVENTS_WITH_ADDITIONAL_CONTEXT = new Set([
+/** Events whose handlers may carry `additionalContextLimit` (Codex hook_config.rs). */
+export const EVENTS_WITH_ADDITIONAL_CONTEXT = new Set([
 	"PreToolUse",
 	"PostToolUse",
 	"SessionStart",

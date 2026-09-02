@@ -120,6 +120,15 @@ non-visual move), the brief (Register, tone, signature element, the Gate 0 artef
 depth 5, where the tool is withdrawn) → report **"not judged"/escalate to owner**, never a
 silent "done".
 
+**Owner verdicts outrank every critic verdict — taste-first lane included.** For
+`register: brand` with `move: generate`/`redesign`, `skills/taste-first/SKILL.md` is the
+canonical lane and owns both Promotion Checkpoints and their critic; this router only
+carries their outcome and never re-defines them. The owner's latest verdict is ground
+truth: an owner rejection immediately supersedes every prior critic `PASS`, at either
+Promotion Checkpoint and at the challenger gate above. Record it as `BLOCK` and failure
+without defending or rationalizing it, and never re-promote a rejected category on the
+strength of an earlier `PASS`.
+
 ## Forbidden
 
 Skipping `design-method`'s Gate 0 — Brief Lock. Writing SwiftUI or Compose code (delegate
@@ -142,6 +151,12 @@ Report back to the lead with:
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa/Apple-docs/Android-docs references consulted for any
   platform fact cited
+
+When the taste-first lane ran, append its verdict trail, oldest first:
+- `owner_verdicts` — every owner verdict in order, the latest one flagged as ground truth;
+  a rejection is recorded as `BLOCK` and failure, never softened.
+- `checkpoint_verdicts` — the `PASS`/`BLOCK` returned at Promotion Checkpoint 1 and
+  Promotion Checkpoint 2, each one void as soon as a later owner rejection lands.
 '''
 
 [[skills.config]]
@@ -186,4 +201,8 @@ enabled = true
 
 [[skills.config]]
 path = "plugins/ai-pilot/skills/fuse-browser-usage/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "plugins/design-expert/skills/taste-first/SKILL.md"
 enabled = true

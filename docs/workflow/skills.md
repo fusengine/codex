@@ -7,7 +7,7 @@
 | Skill | Description |
 |-------|-------------|
 | `apex` | Full APEX workflow |
-| `apex-quick` | Quick APEX flow for trivial/read-only tasks |
+| `apex-quick` | Quick APEX flow for bounded fixes — same agents and gates as full APEX, Brainstorm skipped, one-task Plan |
 | `research` | Technical research methodology |
 | `exploration` | Codebase discovery techniques |
 | `code-quality` | Validation with linters, DRY detection (jscpd) |

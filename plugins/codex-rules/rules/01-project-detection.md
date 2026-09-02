@@ -1,6 +1,6 @@
 ## Project Detection -> Domain Agent
 
-Scan: plugin agents (paths injected at SessionStart — never hardcode marketplace paths) + `~/.codex/agents/*.md`
+Scan: plugin agents (paths injected at SessionStart — never hardcode marketplace paths) + `~/.codex/agents/*.toml`
 
 | Project Indicator | Agent |
 |-------------------|-------|
@@ -16,8 +16,8 @@ Scan: plugin agents (paths injected at SessionStart — never hardcode marketpla
 | `go.mod` | `go-expert` |
 | `tailwind.config.*` | `tailwindcss-expert` |
 | `components.json`, `@radix-ui/*` | `shadcn-ui-expert` |
-| Custom `~/.codex/agents/*.md` | Use matching custom agent |
-| **No match** | `general-purpose` |
+| Custom `~/.codex/agents/*.toml` | Use matching custom agent |
+| **No match** | closest-stack domain expert, named in the brief |
 
-Priority: Custom > Framework (Next.js > Astro > Laravel > TanStack Start > React) > Language (TypeScript, PHP, Swift, Rust, Go) > UI library > `general-purpose`
-**FORBIDDEN:** `general-purpose` when domain agent exists.
+Priority: Custom > Framework (Next.js > Astro > Laravel > TanStack Start > React) > Language (TypeScript, PHP, Swift, Rust, Go) > UI library
+**FORBIDDEN:** using a generic agent when a domain agent exists — no match falls back to the closest-stack expert, named in the brief.

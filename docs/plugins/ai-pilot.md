@@ -18,7 +18,7 @@ APEX workflow orchestrator with sniper validation and research capabilities.
 | Command | Description |
 |---------|-------------|
 | `/apex` | Full APEX workflow |
-| `/apex-quick` | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
+| `/apex-quick` | Quick APEX: Analyze (trio) -> Plan (one task) -> Execute (delegated) -> eLicit + challenger -> Verify + challenger -> full sniper — only Brainstorm is skipped |
 | `/research` | Technical research |
 | `/exploration` | Codebase discovery |
 | `/code-quality` | Linters, SOLID validation, DRY detection |

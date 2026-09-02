@@ -1,8 +1,8 @@
 ---
 name: registration
-description: How to register agents in marketplace.json
-when-to-use: Making agent available after creation
-keywords: registration, marketplace, json, plugin, manifest
+description: How a new agent actually becomes discoverable (no per-agent manifest entry)
+when-to-use: Making an agent available after creation
+keywords: registration, marketplace, plugin.json, manifest, auto-discovery
 priority: high
 related: architecture.md, frontmatter.md
 ---
@@ -11,87 +11,116 @@ related: architecture.md, frontmatter.md
 
 ## Overview
 
-Agents must be registered in marketplace.json to be discoverable.
+A Codex agent does **not** need a per-agent entry anywhere. Drop a valid
+`plugins/<plugin>/agents/<name>.toml` on disk (see [frontmatter.md](frontmatter.md)
+for required keys) and the setup/update installer picks it up automatically,
+copying every `agents/*.toml` in the plugin into `~/.codex/agents/` on
+install/update. There is no manifest file that lists agents one by one —
+neither the plugin's own manifest nor the repo-root marketplace registry
+declares an `"agents"` array; that key does not exist in either file today.
+
+Two real manifests exist, at two different scopes, and neither is about
+individual agents:
 
 ---
 
-## Marketplace.json Structure
+## `.codex-plugin/plugin.json` (per plugin)
+
+Local manifest for a single plugin. Verified fields, e.g.
+`plugins/typescript-expert/.codex-plugin/plugin.json`:
 
 ```json
 {
-  "name": "fusengine-plugins",
-  "plugins": [
-    {
-      "name": "fuse-nextjs",
-      "source": "./plugins/nextjs-expert",
-      "description": "Expert Next.js 16 with App Router...",
-      "version": "1.1.0",
-      "agents": [
-        "./agents/nextjs-expert.md"
-      ],
-      "skills": [
-        "./skills/nextjs-16",
-        "./skills/solid-nextjs",
-        "./skills/prisma-7"
-      ]
-    }
-  ]
+  "name": "typescript-expert",
+  "version": "1.0.14",
+  "description": "Expert TypeScript for pure TS projects: CLI tools, libraries, scripts, and backends on Node or Bun with SOLID principles.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "repository": "https://github.com/fusengine/agents",
+  "homepage": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": ["typescript", "node", "bun", "cli", "library", "backend"],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "TypeScript Expert",
+    "shortDescription": "Pure TypeScript, Node, Bun, tooling, tests, and packaging",
+    "developerName": "Fusengine"
+  }
 }
 ```
+
+`skills` and `hooks` are single path strings pointing at the plugin's skills
+directory and hook config — not arrays of individual files. There is no field
+here that enumerates agent files.
+
+---
+
+## `.agents/plugins/marketplace.json` (repo root)
+
+Lists **plugins**, not agents. Each entry:
+
+```json
+{
+  "name": "typescript-expert",
+  "source": { "source": "local", "path": "./plugins/typescript-expert" },
+  "version": "1.0.14",
+  "category": "Framework",
+  "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+}
+```
+
+Adding a new agent to an existing plugin requires **no change** to this file
+— only a new plugin (a new `plugins/<name>/` directory with its own
+`.codex-plugin/plugin.json`) needs a new entry here.
 
 ---
 
 ## Required Fields
 
+### `.codex-plugin/plugin.json`
+
 | Field | Description |
 |-------|-------------|
-| `name` | Plugin identifier (fuse-*) |
-| `source` | Path to plugin directory |
+| `name` | Plugin identifier, matches the folder name |
+| `version` | Semantic version — bump on any change inside the plugin |
 | `description` | Plugin description |
-| `version` | Semantic version |
-| `agents` | Array of agent file paths |
-| `skills` | Array of skill directory paths |
+| `skills` | Path to the skills directory (`"./skills/"`) |
+| `hooks` | Path to the hook config, if the plugin ships one (`"./hooks/hooks.json"`) |
+
+### `.agents/plugins/marketplace.json` entry
+
+| Field | Description |
+|-------|-------------|
+| `name` | Plugin identifier, matches `plugin.json`'s `name` |
+| `source.path` | Relative path to the plugin directory |
+| `version` | Must track `plugin.json`'s `version` |
+| `category` | e.g. `Framework`, `Productivity` |
+| `policy` | `installation` / `authentication` flags |
 
 ---
 
 ## Registration Steps
 
-### 1. Add Plugin Entry
+### New agent in an existing plugin
 
-```json
-{
-  "name": "fuse-new",
-  "source": "./plugins/new-expert",
-  "agents": ["./agents/new-expert.md"],
-  "skills": ["./skills/skill-a"]
-}
-```
+1. Write `plugins/<plugin>/agents/<name>.toml` (see [frontmatter.md](frontmatter.md)).
+2. Bump `version` in the plugin's `.codex-plugin/plugin.json`.
+3. Nothing to add to `.agents/plugins/marketplace.json` — the plugin entry
+   already covers every agent inside it.
+4. Validate with `sniper`.
 
-### 2. Verify Paths
+### Brand-new plugin
 
-- Agent path: `./agents/<name>.md`
-- Skill path: `./skills/<name>`
-- Paths relative to plugin source
-
-### 3. Validate
-
-Run sniper to verify registration.
-
----
-
-## Plugin.json (Local)
-
-Also update `.codex-plugin/plugin.json` in the plugin:
-
-```json
-{
-  "name": "fuse-new",
-  "version": "1.0.0",
-  "description": "...",
-  "agents": ["./agents/new-expert.md"],
-  "skills": ["./skills/skill-a"]
-}
-```
+1. Create `plugins/<new-plugin>/` with `agents/`, `skills/`, and
+   `.codex-plugin/plugin.json`.
+2. Add one entry for the plugin to `.agents/plugins/marketplace.json`
+   (`name`, `source.path`, `version`, `category`, `policy`).
+3. Keep both versions in sync.
+4. Validate with `sniper`.
 
 ---
 
@@ -99,20 +128,22 @@ Also update `.codex-plugin/plugin.json` in the plugin:
 
 | Mistake | Fix |
 |---------|-----|
-| Wrong path prefix | Use `./` for relative paths |
-| Missing skill | Add to skills array |
-| Typo in agent name | Match filename exactly |
-| Forgot plugin.json | Update both files |
+| Adding an agent-file array to `plugin.json` or `marketplace.json` | Do nothing — `agents/*.toml` files are auto-discovered, no array to maintain |
+| Forgetting to bump `plugin.json`'s `version` after a change | Bump it — stale versions make doc/version parity checks fail |
+| Mismatched plugin name between `plugin.json` and its folder | Keep the folder name and `name` field identical |
+| Assuming a new plugin appears without a `marketplace.json` entry | Add the plugin entry — this step is real, only the per-agent entry is not |
 
 ---
 
 ## Verification
 
-After registration:
+After adding an agent or plugin:
 
-1. Agent appears in available agents list
-2. Skills are accessible via `/skill-name`
-3. No errors on plugin load
+1. `ls plugins/<plugin>/agents/*.toml` shows the new file.
+2. `grep -c '"name"' .agents/plugins/marketplace.json` — for a new plugin, the
+   count increases by one; for a new agent in an existing plugin, it does not
+   change.
+3. Run `sniper` — no manifest edit is required for the agent itself.
 
 ---
 
@@ -120,7 +151,7 @@ After registration:
 
 | DO | DON'T |
 |----|-------|
-| Match folder names | Use different names |
-| Update version on changes | Keep stale version |
-| List all skills | Forget dependencies |
-| Test after registration | Assume it works |
+| Match plugin folder name to `plugin.json`'s `name` | Use a different name in the two places |
+| Bump `plugin.json`'s `version` on every change | Keep a stale version |
+| Add a `marketplace.json` entry only for a genuinely new plugin | Add one per agent — there is no such granularity |
+| Test discovery after install/update | Assume a dropped `.toml` works without ever running the installer |
