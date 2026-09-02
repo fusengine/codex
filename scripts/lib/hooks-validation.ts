@@ -1,3 +1,5 @@
+import { EVENTS_WITH_ADDITIONAL_CONTEXT } from "./install/hook-hash";
+
 const EVENTS = new Set([
 	"PreToolUse", "PermissionRequest", "PostToolUse", "PreCompact", "PostCompact",
 	"SessionStart", "UserPromptSubmit", "SubagentStart", "SubagentStop", "Stop", "SessionEnd",
@@ -6,6 +8,7 @@ const ROOT_KEYS = new Set(["description", "hooks"]);
 const GROUP_KEYS = new Set(["matcher", "hooks"]);
 const HANDLER_KEYS = new Set([
 	"type", "command", "commandWindows", "command_windows", "timeout", "async", "statusMessage",
+	"additionalContextLimit",
 ]);
 const UNSAFE_CODEX_HOME_RE = /\$\{CODEX_HOME\}|\$CODEX_HOME\b/;
 
@@ -17,7 +20,11 @@ function unknownKeys(value: Record<string, unknown>, allowed: Set<string>): stri
 	return Object.keys(value).filter((key) => !allowed.has(key));
 }
 
-/** Validate the supported Codex hooks schema and runtime-safe home paths. */
+/**
+ * Validate the supported Codex hooks schema and runtime-safe home paths, including the
+ * optional `additionalContextLimit` handler key (non-negative integer, only supported on
+ * context-producing events; see `EVENTS_WITH_ADDITIONAL_CONTEXT`).
+ */
 export function validateHooksConfig(file: string, value: unknown): string[] {
 	const errors: string[] = [];
 	if (!object(value)) return [`${file}: root must be an object`];
@@ -51,6 +58,15 @@ export function validateHooksConfig(file: string, value: unknown): string[] {
 					continue;
 				}
 				for (const key of unknownKeys(handler, HANDLER_KEYS)) errors.push(`${handlerPath}: unsupported key '${key}'`);
+				if (handler.additionalContextLimit !== undefined) {
+					const limit = handler.additionalContextLimit;
+					if (!(Number.isInteger(limit) && (limit as number) >= 0)) {
+						errors.push(`${handlerPath}: additionalContextLimit must be a non-negative integer (tokens; 0 disables spilling)`);
+					}
+					if (!EVENTS_WITH_ADDITIONAL_CONTEXT.has(event)) {
+						errors.push(`${handlerPath}: additionalContextLimit is only supported on ${[...EVENTS_WITH_ADDITIONAL_CONTEXT].join(", ")}`);
+					}
+				}
 				if (handler.type !== "command" || typeof handler.command !== "string") {
 					errors.push(`${handlerPath} must define a command hook`);
 				} else if (UNSAFE_CODEX_HOME_RE.test(handler.command)) {

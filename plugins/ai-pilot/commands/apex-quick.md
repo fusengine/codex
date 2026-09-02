@@ -1,15 +1,17 @@
 ---
-description: Quick Flow for simple fixes - Single expert handles explore, code, review, and validate in one pass. Inspired by BMAD Barry.
+description: Quick Flow for bounded fixes - the full APEX route with Brainstorm skipped and Plan compressed to one task; Analyze trio, delegated execution, eLicit, Verify, challenger and full sniper always run.
 argument-hint: "<fix description>"
 ---
 
 # APEX Quick Flow
 
-Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-agent orchestration.
+Fast-track workflow for simple bug fixes, typos, and minor changes. Same phases, same agents, same gates as full APEX — only Brainstorm is skipped and Plan is compressed to a single task entry. Inspired by BMAD Barry.
 
 ---
 
 ## When to Use
+
+The shortcut removes only Brainstorm and the multi-task Plan breakdown — Analyze (explore-codebase + research-expert + domain expert), delegated Execute (domain experts, disjoint file lots), eLicit, Verify, challenger, and full sniper eXamine always run in full, exactly as in full APEX.
 
 ✅ **Use APEX Quick:**
 - Typo fixes
@@ -31,48 +33,56 @@ Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-age
 ## Quick Flow Workflow
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│             APEX QUICK (Single Pass)                    │
-│                                                         │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌────────┐ │
-│  │ LOCATE  │ → │  FIX    │ → │ REVIEW  │ → │ VERIFY │ │
-│  └─────────┘   └─────────┘   └─────────┘   └────────┘ │
-│      │             │             │             │       │
-│      ▼             ▼             ▼             ▼       │
-│   Find file     Apply        1 quick      Linter      │
-│   + line        minimal      technique    check       │
-│                 change                                 │
-└─────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────┐
+│         APEX QUICK (Brainstorm skipped, Plan = 1 task)                        │
+│                                                                                │
+│ ┌─────────┐  ┌──────┐  ┌─────────┐  ┌────────┐  ┌────────┐  ┌─────────┐    │
+│ │ ANALYZE │→ │ PLAN │→ │ EXECUTE │→ │ ELICIT │→ │ VERIFY │→ │ EXAMINE │    │
+│ └─────────┘  └──────┘  └─────────┘  └────────┘  └────────┘  └─────────┘    │
+│      │           │          │            │           │            │         │
+│      ▼           ▼          ▼            ▼           ▼            ▼         │
+│  explore-     update_plan ≥3 domain    --auto      $ai-pilot:    full       │
+│  codebase +   (1 task)    experts,     elicit +   verification + sniper     │
+│  research +               disjoint     challenger  challenger    (7-phase)  │
+│  domain expert            file lots                                         │
+└────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Total: 4 steps, 1 expert, no handoffs**
+**Total: 6 phases, no Brainstorm, one-task Plan — same agents and gates as full APEX**
 
 ---
 
 ## Execution
 
-### Step 1: LOCATE
+### Step 1: ANALYZE
 
 ```
-Expert does quick search:
-- Grep for relevant code
-- Read the file
-- Identify exact location
+Lead launches, in ONE parallel message (never sequentially):
+- fuse-ai-pilot:explore-codebase
+- fuse-ai-pilot:research-expert
+- the matching domain expert(s) for the stack
+This trio always runs, even for a 1-line fix.
+PLAN — the lead records ONE `update_plan` entry (files, owner expert, acceptance check) before spawning executors; no multi-task breakdown.
 ```
 
-### Step 2: FIX
+### Step 2: EXECUTE
 
 ```
-Expert applies minimal change:
-- Only change what's necessary
-- Preserve existing style
-- No refactoring scope creep
+Delegated to domain experts on disjoint file lots, per
+$ai-pilot:lead-orchestration §2:
+- Any code change → minimum 3 expert instances, split by concern
+  (same specialty runs as separate instances when the stack yields
+  only one matching expert)
+- The lead never edits directly
+- Only change what's necessary, preserve existing style, no
+  refactoring scope creep
 ```
 
-### Step 3: REVIEW (Auto-Elicit)
+### Step 3: eLicit
 
 ```
-Expert applies 1 quick technique based on fix type:
+Each executor runs $ai-pilot:elicitation in --auto mode on its own
+lot with a NAMED technique (never left to the user to pick):
 
 | Fix Type | Quick Technique |
 |----------|-----------------|
@@ -81,15 +91,25 @@ Expert applies 1 quick technique based on fix type:
 | Style    | MAINT-02 (Convention) |
 | Security | SEC-02 (Validation) |
 | Config   | DATA-01 (Schema) |
+
+Then the lead runs the challenger agent (fresh context) on the
+findings before reporting. --skip-elicit is ignored (AGENTS.md l.50).
 ```
 
 ### Step 4: VERIFY
 
 ```
-Quick verification:
-- Run linter on changed file(s)
-- TypeScript check (if applicable)
-- No full test suite
+$ai-pilot:verification checks the functional fix (references ⇔
+declarations, executed/functional check) — no shortcutting to a
+linter-only pass. Then the lead runs the challenger again before any
+done/verified claim reaches the owner.
+```
+
+### Step 5: eXAMINE
+
+```
+Full sniper (7-phase), never linter-only, run after eLicit +
+challenger and Verify + challenger.
 ```
 
 ---
@@ -100,14 +120,17 @@ Quick verification:
 /prompts:apex-quick Fix typo in login button text
 ```
 
-**Expert executes:**
+**Lead executes:**
 ```
-1. LOCATE: Grep "login" → Found LoginButton.tsx:23
-2. FIX: Change "Logi" → "Login"
-3. REVIEW: DOC-03 check → OK
-4. VERIFY: eslint LoginButton.tsx → 0 errors
+1. ANALYZE: explore-codebase + research-expert + domain expert
+   (parallel) → LoginButton.tsx:23
+2. EXECUTE: ≥3 domain expert instances on disjoint lots →
+   "Logi" → "Login"
+3. eLicit: DOC-03 (Consistency) --auto → OK; challenger → CONFIRMED
+4. VERIFY: $ai-pilot:verification → OK; challenger → CONFIRMED
+5. eXAMINE: full sniper (7-phase) → 0 errors
 
-✅ Done in single pass
+✅ Done — same gates as full APEX, Brainstorm skipped, Plan = 1 task
 ```
 
 ---
@@ -116,18 +139,19 @@ Quick verification:
 
 | Aspect | APEX Full | APEX Quick |
 |--------|-----------|------------|
-| Agents | 3+ parallel | 1 expert |
-| Phases | 4-5 (A-P-E-L-X) | 4 (Locate-Fix-Review-Verify) |
-| Plan tracking (`update_plan`) | Yes | No |
-| Sniper | Full 6-phase | Linter only |
-| Use case | Features, refactoring | Fixes, typos |
+| Brainstorm | Yes | Skipped |
+| Agents | Analyze trio + domain experts (≥3 on code) | Analyze trio + domain experts (≥3 on code) |
+| Phases | 7 (Brainstorm-Analyze-Plan-Execute-eLicit-Verify-eXamine) | 6 (Analyze-Plan(1 task)-Execute-eLicit-Verify-eXamine) |
+| Plan tracking (`update_plan`) | Multi-task | Yes, single task |
+| Sniper | Full sniper | Full sniper |
+| Use case | Features, refactoring | Bounded fixes, typos |
 
 ---
 
 ## Quick Flow Rules
 
 ### DO:
-- ✅ Use for changes <20 lines
+- ✅ Use for bounded fixes (one concern, clear repro) — no size cap: `FUSE_SOLID_MAX_LINES` is the only ceiling (AGENTS.md l.32)
 - ✅ Single file preferred
 - ✅ Quick self-review
 - ✅ Immediate verification
@@ -137,6 +161,7 @@ Quick verification:
 - ❌ Refactor surrounding code
 - ❌ Skip the review step
 - ❌ Use for security changes
+- ❌ Skip Analyze, eLicit, Verify, challenger or sniper — `--skip-elicit` is ignored (AGENTS.md l.50)
 
 ---
 
@@ -149,13 +174,13 @@ Quick verification:
 **File**: {file_path}:{line}
 **Change**: {summary}
 
-### Quick Review
-- Technique: {technique_id}
+### eLicitation ({technique_id})
 - Result: ✅ OK
 
 ### Verification
 - Linter: ✅ 0 errors
 - TypeScript: ✅ OK
+- challenger_verdict: {CONFIRMED|REFUTED|UNCERTAIN}
 
 **Status**: ✅ Fixed
 ```

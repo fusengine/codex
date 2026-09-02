@@ -1,6 +1,6 @@
 name = "astro-expert"
 description = "Use when: astro.config.* detected, src/pages/ Astro structure, building content sites, blogs, docs, or migrating to Astro. Do NOT use for: pure React/Next.js (no astro.config), Laravel/PHP, Swift, UI-only tasks (use design-expert)."
-model = "gpt-5.6-sol"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "medium"
 nickname_candidates = ["Astro Expert", "Astro Specialist", "Astro Expert Agent"]
 sandbox_mode = "workspace-write"
@@ -90,7 +90,7 @@ This agent activates when ANY of the following are detected:
 **Prefer Astro components (`.astro`) for static content.** For interactive UI:
 - Use **shadcn/ui** components via `@astrojs/react` integration
 - Use **Gemini Design MCP** for layout composition
-- **NEVER write raw JSX/Tailwind manually** — always go through shadcn + Gemini
+- **Direct JSX/Tailwind is the default** — shadcn/ui + Gemini Design MCP are optional accelerators, never a requirement (rule 05)
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: required-sections
-description: Mandatory content sections for agent files
-when-to-use: Writing agent markdown content after frontmatter
-keywords: sections, mandatory, workflow, skills, solid, documentation
+description: Mandatory content sections inside an agent's developer_instructions
+when-to-use: Writing developer_instructions after the TOML keys are set
+keywords: sections, mandatory, workflow, skills, solid, inherited-rules
 priority: high
 related: frontmatter.md, architecture.md
 ---
@@ -11,7 +11,9 @@ related: frontmatter.md, architecture.md
 
 ## Overview
 
-Every agent file must include these sections after the frontmatter.
+A Codex agent has no separate "file body" — every mandatory section below is
+Markdown content INSIDE the `developer_instructions` triple-quoted string of
+the agent's `.toml` file (see [frontmatter.md](frontmatter.md)).
 
 ---
 
@@ -20,10 +22,11 @@ Every agent file must include these sections after the frontmatter.
 1. Agent Workflow (MANDATORY)
 2. MANDATORY SKILLS USAGE
 3. SOLID Rules
-4. Local Documentation
-5. Quick Reference
-6. Gemini Design (UI agents only)
-7. Forbidden Patterns
+4. Inherited rules (from AGENTS.md)
+5. Local Documentation
+6. Quick Reference
+7. Gemini Design (UI agents only)
+8. Forbidden Patterns
 
 ---
 
@@ -32,14 +35,22 @@ Every agent file must include these sections after the frontmatter.
 ```markdown
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `TeamCreate` to spawn 3 agents:
+Before ANY implementation, use `spawn_agent` to launch 2 agents in PARALLEL
+(single message, two `spawn_agent` calls):
 
 1. **explore-codebase** - Analyze [domain] patterns
 2. **research-expert** - Verify latest [tech] docs via Context7/Exa
-3. **mcp__context7__query-docs** - Check [specific] patterns
+
+Then call `mcp__context7__query-docs` directly (MCP tool call, not a spawned
+agent) to confirm [specific] patterns against the official docs.
 
 After implementation, run **sniper** for validation.
 ```
+
+Do not reference Claude Code's old multi-agent spawn command or its built-in
+orchestration tool by name — Codex agents only carry `spawn_agent`, so a
+generated agent's own workflow section must describe the primitive it will
+actually have access to at runtime.
 
 ---
 
@@ -73,30 +84,69 @@ After implementation, run **sniper** for validation.
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | Respect `FUSE_SOLID_MAX_LINES` (default 200) — never invent a stricter or looser cap |
 | Interfaces | `[location]` ONLY |
-| Documentation | JSDoc on every function |
+| Documentation | JSDoc/PHPDoc on every exported function |
 | Validation | `sniper` after changes |
 ```
 
+`FUSE_SOLID_MAX_LINES` is the **only** authority on file-size ceiling. If a
+legitimate fix cannot fit under it, the agent reports the blocker to the
+owner — who tunes the variable at runtime — instead of skipping the fix or
+working around the limit.
+
 ---
 
-## 4. Local Documentation
+## 4. Inherited rules (from AGENTS.md)
+
+Every generated agent inherits a fixed set of ecosystem rules it cannot
+override. State them explicitly so the agent does not have to infer them from
+the injected context:
+
+```markdown
+## Inherited rules (from AGENTS.md)
+
+- **Workflow**: reach other agents through `spawn_agent`; there is no
+  Claude-only team-spawn command in Codex.
+- **Never self-declare done**: every deliverable is reviewed by `challenger`
+  then validated by `sniper` before the lead accepts it.
+- **Report**: write status to `.codex/apex/prd/<your-agent-name>.json`; never
+  edit `prd.json` or another agent's report file.
+- **Never commit**: no commit/push/reset/branch/tag/merge without the owner's
+  explicit order — read-only git is always allowed.
+- **Regression = failure**: re-confirm pre-change behavior still holds before
+  reporting completion.
+- **Collaborate via messages**: discover peers with `list_agents`, coordinate
+  with `send_message` — never assume another agent's state.
+- **File-size ceiling**: `FUSE_SOLID_MAX_LINES` only (see SOLID Rules above).
+```
+
+Traceability for maintainers of this reference (not required inside the
+generated agent body itself): `spawn_agent` / no team-spawn primitive —
+`docs/reference/creating-skills-agents.md:142-143`; challenger-then-sniper
+before "done" — `plugins/ai-pilot/skills/lead-orchestration/SKILL.md:24`; prd
+report path — `SKILL.md:22`; never commit without an order — `AGENTS.md:23`;
+regression = failure — `AGENTS.md:40`; `list_agents`/`send_message` —
+`SKILL.md:49`; size ceiling — `AGENTS.md:32`.
+
+---
+
+## 5. Local Documentation
 
 ```markdown
 ## Local Documentation (PRIORITY)
 
 **Check local skills first before Context7:**
 
-```
+\`\`\`
 skills/[skill-a]/       # Description
 skills/[skill-b]/       # Description
-```
+\`\`\`
 ```
 
 ---
 
-## 5. Quick Reference
+## 6. Quick Reference
 
 ```markdown
 ## Quick Reference
@@ -110,12 +160,12 @@ skills/[skill-b]/       # Description
 
 ---
 
-## 6. Gemini Design (UI Agents)
+## 7. Gemini Design (UI Agents)
 
 ```markdown
-## GEMINI DESIGN MCP (MANDATORY FOR ALL UI)
+## GEMINI DESIGN MCP (OPTIONAL FOR UI)
 
-**NEVER write UI code yourself. ALWAYS use Gemini Design MCP.**
+**Direct HTML/CSS/JSX generation is the default. Gemini Design MCP is an optional accelerator, never a requirement (rule 05-frontend-rules, design-expert).**
 
 | Tool | Usage |
 |------|-------|
@@ -126,7 +176,7 @@ skills/[skill-b]/       # Description
 
 ---
 
-## 7. Forbidden Patterns
+## 8. Forbidden Patterns
 
 ```markdown
 ## Forbidden
@@ -135,4 +185,4 @@ skills/[skill-b]/       # Description
 - **[Anti-pattern]** - [Alternative]
 ```
 
-→ See [templates/agent-template.md](templates/agent-template.md) for complete example
+→ See [templates/agent-template.md](templates/agent-template.md) for a complete example.

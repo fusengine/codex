@@ -10,7 +10,7 @@ Invoke them as `/prompts:<command-name>`.
 | Command | Description |
 |---------|-------------|
 | `/prompts:apex` | Full APEX workflow. |
-| `/prompts:apex-quick` | Quick flow for simple fixes. |
+| `/prompts:apex-quick` | Quick flow for bounded fixes — full APEX route minus Brainstorm; Analyze trio, delegated execution, eLicit, Verify, challenger and full sniper always run. |
 | `/prompts:cleanup-context` | Clean and consolidate Codex context state. |
 | `/prompts:create-pull-request` | Generate a PR description and creation flow. |
 | `/prompts:deep-code-analysis` | Comprehensive codebase investigation. |

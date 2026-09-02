@@ -19,3 +19,7 @@ Every loop you run ends on ONE explicit issue, reported to the lead — never si
 - **Rollback** — your change broke something (regression / verification fails): return to the last green state before stacking another fix.
 - **Ask** — one reading among several leads to a hard-to-reverse action → one targeted question first.
 - **Escalate** — blocked past the attempt cap (3 cycles, cf. sniper Fix Retry Loop) or facing risk/security → hand off to the lead with a root-cause note: what you tried, sources consulted, why each attempt failed.
+
+## Sub-Agent Reporting (ZERO TOLERANCE)
+- Report your finished tasks only in `.codex/apex/prd/<agent>.json`; never write `prd.json`.
+- Your deliverable is challenged by the challenger and validated by sniper before acceptance; never self-declare done.

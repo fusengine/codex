@@ -48,7 +48,7 @@ EOF
 )"
 ```
 
-STOP. Output summary. **No tag here** — it is created POST-MERGE by the `commit` command's Step 8 (or locally-only in LOCAL/DEGRADED mode when no remote/`gh` is available — see the Step 7 decision tree in `commands/commit.md`). Load `references/tag-timing.md` for the full post-merge rationale and the standalone-use exception.
+STOP. Output summary. **No tag here** — Do not create or push a tag here; it is created POST-MERGE by the `commit` command's Step 8 after a confirmed FULL-mode merge, or as a local-only tag in LOCAL/DEGRADED mode when no remote/`gh` is available (see the Step 7 decision tree in `commands/commit.md`). Load `references/tag-timing.md` for the full post-merge rationale and the standalone-use exception.
 
 ## Marketplace Path (repo with .codex-plugin/marketplace.json)
 
@@ -95,7 +95,7 @@ EOF
 )"
 ```
 
-This MUST be a separate commit from the code changes. Never combine. **No tag here** — same post-merge rationale as Step S2. Load `references/tag-timing.md` for details.
+This MUST be a separate commit from the code changes. Never combine. **No tag here** — Do not create or push a tag here; same post-merge rationale as Step S2. Load `references/tag-timing.md` for details.
 
 ## Version Bump Rules
 

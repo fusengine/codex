@@ -5,23 +5,25 @@ import { parse } from "smol-toml";
 import { buildAgentToml } from "./agent-toml";
 import { agentRoleViolations } from "./agent-role-validation";
 
-const SOL_MEDIUM = [
-	"astro-expert", "changelog-watcher", "explore-codebase", "go-expert", "laravel-expert", "nextjs-expert",
-	"php-expert", "react-expert", "rust-expert", "seo-cluster", "seo-content", "seo-expert", "seo-geo",
-	"seo-local", "seo-schema", "seo-technical", "shadcn-ui-expert", "swift-expert", "tailwindcss-expert",
-	"tanstack-start-expert", "typescript-expert", "websearch",
+const TERRA_MEDIUM = [
+	"astro-expert", "go-expert", "laravel-expert", "nextjs-expert", "php-expert", "react-expert", "rust-expert",
+	"shadcn-ui-expert", "swift-expert", "tailwindcss-expert", "tanstack-start-expert", "typescript-expert",
 ];
-const SOL_HIGH = ["brainstorming", "challenger", "prompt-engineer", "research-expert", "security-expert", "sniper", "solid-orchestrator"];
+const SOL_MEDIUM = [
+	"explore-codebase", "research-expert", "brainstorming", "solid-orchestrator", "commit", "changelog-watcher",
+	"lessons-compactor", "seo-expert", "seo-content", "seo-geo", "seo-local", "seo-cluster", "seo-technical",
+	"seo-schema", "websearch", "sniper",
+];
+const SOL_HIGH = ["challenger", "security-expert", "prompt-engineer"];
 const SOL_XHIGH = ["design-expert"];
-const LUNA_MAX = ["cartographer", "commit-detector", "lessons-compactor", "seo-images", "seo-sitemap", "sniper-faster"];
-const TERRA_HIGH = ["commit"];
+const LUNA_MAX = ["sniper-faster", "commit-detector", "cartographer", "seo-images", "seo-sitemap"];
 
 const EXPECTED_PROFILES: Record<string, readonly [string, string]> = Object.fromEntries([
+	...TERRA_MEDIUM.map((name) => [name, ["gpt-5.6-terra", "medium"]]),
 	...SOL_MEDIUM.map((name) => [name, ["gpt-5.6-sol", "medium"]]),
 	...SOL_HIGH.map((name) => [name, ["gpt-5.6-sol", "high"]]),
 	...SOL_XHIGH.map((name) => [name, ["gpt-5.6-sol", "xhigh"]]),
 	...LUNA_MAX.map((name) => [name, ["gpt-5.6-luna", "max"]]),
-	...TERRA_HIGH.map((name) => [name, ["gpt-5.6-terra", "high"]]),
 ]);
 
 function agentSource(name: string, model?: string): string {
@@ -33,9 +35,10 @@ function agentSource(name: string, model?: string): string {
 test("selects name-specific profiles over Claude source model tiers", () => {
 	const scenarios = [
 		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-5.6-sol", expectedEffort: "xhigh" },
-		{ name: "commit", input: "opus", expectedModel: "gpt-5.6-terra", expectedEffort: "high" },
+		{ name: "commit", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
 		{ name: "sniper-faster", input: "haiku", expectedModel: "gpt-5.6-luna", expectedEffort: "max" },
-		{ name: "typescript-expert", input: "sonnet", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
+		{ name: "sniper", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
+		{ name: "typescript-expert", input: "sonnet", expectedModel: "gpt-5.6-terra", expectedEffort: "medium" },
 		{ name: "future-agent", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
 	];
 
@@ -71,11 +74,11 @@ test("ships the exact 37-agent model and reasoning-effort matrix", () => {
 		expect(configs.get(name)?.model_reasoning_effort).toBe(effort);
 	}
 
-	expect(SOL_MEDIUM).toHaveLength(22);
-	expect(SOL_HIGH).toHaveLength(7);
+	expect(TERRA_MEDIUM).toHaveLength(12);
+	expect(SOL_MEDIUM).toHaveLength(16);
+	expect(SOL_HIGH).toHaveLength(3);
 	expect(SOL_XHIGH).toHaveLength(1);
-	expect(LUNA_MAX).toHaveLength(6);
-	expect(TERRA_HIGH).toHaveLength(1);
+	expect(LUNA_MAX).toHaveLength(5);
 });
 
 test("every shipped agent survives Codex agent role validation", () => {

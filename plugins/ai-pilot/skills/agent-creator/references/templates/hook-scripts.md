@@ -1,268 +1,67 @@
 ---
 name: hook-scripts
-description: Complete hook script templates for agent validation
-keywords: hooks, scripts, bash, validation, solid
+description: Real Codex/Harness hook attach point — how the SOLID validation scripts actually get wired
+keywords: hooks, scripts, harness, native-ts, validation, solid
 ---
 
-# Hook Scripts Templates
+# Hook Scripts — Attach Point
 
 ## Usage
 
-Copy these scripts to `plugins/<plugin>/scripts/` and make executable with `chmod +x`.
+The scripts referenced below (`hook-scripts-reference.md`) are a **validation-logic reference**, not directly wireable hook commands. In this Codex marketplace, `plugins/<plugin>/hooks/hooks.json` NEVER invokes a hand-written script — every entry calls the canonical Harness CLI route. Per `docs/reference/hooks.md:115-117`: "Do not wire a new direct script; port its behavior to Harness and add parity tests first." To enforce a check, port its logic into a `*.native.ts` hook entry (below), then bundle and validate.
 
 ---
 
-## SOLID Validation Script (PreToolUse)
+## Real Attach Point (Codex / Harness)
 
-### File: scripts/validate-solid.sh
+1. **`plugins/<plugin>/hooks/hooks.json`** registers only the canonical Harness command per `(plugin, event, matcher)` tuple:
+
+   ```json
+   {
+     "hooks": {
+       "PreToolUse": [
+         {
+           "matcher": "apply_patch",
+           "hooks": [
+             { "type": "command", "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex <scope>" }
+           ]
+         }
+       ]
+     }
+   }
+   ```
+
+   (Real example: `plugins/typescript-expert/hooks/hooks.json`, scope `core`.) `<scope>` is one of `HARNESS_SCOPES` (`scripts/lib/harness-hook-policy.ts`: `core`, `solid`, `rules`, `carto`, `security`, `changelog`, `aipilot`, `lessons`, `seo`, `memory`, `tailwindcss`). `bun run validate` runs `validateHarnessHookWiring` and fails the build on any command that is not byte-identical to `canonicalHarnessCommand(plugin, event, matcher)`.
+
+2. **Per-check logic** lives as a native TypeScript hook entry: `plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts`, first line `// @hook-entry`. It reads JSON from stdin (`await Bun.stdin.text()`), and resolves its own paths from `process.env.PLUGIN_ROOT` — **never** `import.meta.path` (broken post-bundle, `oven-sh/bun#15994`; `scripts/build-hooks.ts:13`). To block, it prints `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"..."}}` and still calls `process.exit(0)`; to allow, it exits `0` with no output. There is **no** `exit 1`-to-block / stderr protocol (`docs/reference/hooks.md:132-141`). Live, on-disk example: `plugins/solid/scripts/validate-solid.native.ts`.
+
+3. **Build**: `bun scripts/build-hooks.ts <plugin>` bundles every `@hook-entry` file into the `@fusengine/harness` package.
+
+4. **Validate**: `bun run validate` checks schema, matcher legality, and the exact canonical route (`scripts/lib/hook-config-validation.ts`, `scripts/lib/harness-hook-validation.ts`).
+
+### Gap vs. the reference scripts
+
+Every script in `hook-scripts-reference.md` uses a Claude-era contract — `FILE_PATH="${1:-}"` positional arg, `exit 1` to block — that matches **neither** the Codex hook input (stdin JSON) **nor** its blocking signal (`permissionDecision`, always `exit 0`). Treat them as size/interface-location CHECK LOGIC to port into a `.native.ts` entry per step 2 above; never `chmod +x` and wire one of them as-is.
+
+---
+
+## Installation (of the ported `.native.ts` logic, not of the reference `.sh` files)
 
 ```bash
-#!/bin/bash
-# SOLID Validation Script for PreToolUse hooks
-# Validates file size and interface location before Write/Edit
-
-set -e
-
-# Configuration - adjust per stack
-MAX_LINES=100
-INTERFACE_DIR="src/interfaces"  # Or app/Contracts for Laravel
-
-# Get file being written/edited
-FILE_PATH="${1:-}"
-
-if [ -z "$FILE_PATH" ]; then
-    exit 0  # No file specified, allow
-fi
-
-# Skip non-code files
-case "$FILE_PATH" in
-    *.md|*.json|*.yml|*.yaml|*.txt|*.env*)
-        exit 0
-        ;;
-esac
-
-# Check if file exists (for Edit)
-if [ -f "$FILE_PATH" ]; then
-    LINE_COUNT=$(wc -l < "$FILE_PATH" | tr -d ' ')
-
-    if [ "$LINE_COUNT" -gt "$MAX_LINES" ]; then
-        echo "ERROR: File exceeds $MAX_LINES lines ($LINE_COUNT lines)"
-        echo "Split into smaller files following SOLID principles"
-        exit 1
-    fi
-fi
-
-# Check interface location
-if [[ "$FILE_PATH" == *"/interfaces/"* ]] || [[ "$FILE_PATH" == *"/Contracts/"* ]]; then
-    # Interface file - verify correct location
-    if [[ "$FILE_PATH" != *"$INTERFACE_DIR"* ]]; then
-        echo "ERROR: Interfaces must be in $INTERFACE_DIR"
-        exit 1
-    fi
-fi
-
-exit 0
+# 1. Write the check as plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts
+#    first line: // @hook-entry — read stdin JSON, use process.env.PLUGIN_ROOT
+# 2. Bundle it
+bun scripts/build-hooks.ts <plugin>
+# 3. hooks.json already points at the canonical Harness route for (plugin, event, matcher)
+#    — do not add or edit a "command" by hand
+# 4. Validate
+bun run validate
 ```
-
----
-
-## Next.js SOLID Validation
-
-### File: scripts/validate-nextjs-solid.sh
-
-```bash
-#!/bin/bash
-# Next.js SOLID Validation
-# Interfaces in modules/[feature]/src/interfaces/
-
-set -e
-
-FILE_PATH="${1:-}"
-MAX_LINES=100
-INTERFACE_PATTERN="modules/*/src/interfaces/"
-
-if [ -z "$FILE_PATH" ]; then
-    exit 0
-fi
-
-# Skip non-code files
-case "$FILE_PATH" in
-    *.md|*.json|*.yml|*.yaml|*.txt|*.env*|*.css)
-        exit 0
-        ;;
-esac
-
-# Check file size
-if [ -f "$FILE_PATH" ]; then
-    LINE_COUNT=$(wc -l < "$FILE_PATH" | tr -d ' ')
-
-    if [ "$LINE_COUNT" -gt "$MAX_LINES" ]; then
-        echo "ERROR: File exceeds $MAX_LINES lines ($LINE_COUNT lines)"
-        echo "Split: main.ts + validators.ts + types.ts + utils.ts"
-        exit 1
-    fi
-fi
-
-# Check interface in component
-if [[ "$FILE_PATH" == *"/components/"* ]]; then
-    if grep -q "^interface\|^type.*=" "$FILE_PATH" 2>/dev/null; then
-        echo "ERROR: Interfaces/types in components"
-        echo "Move to: $INTERFACE_PATTERN"
-        exit 1
-    fi
-fi
-
-exit 0
-```
-
----
-
-## Laravel SOLID Validation
-
-### File: scripts/validate-php-solid.sh
-
-```bash
-#!/bin/bash
-# Laravel SOLID Validation
-# Interfaces in app/Contracts/
-
-set -e
-
-FILE_PATH="${1:-}"
-MAX_LINES=100
-
-if [ -z "$FILE_PATH" ]; then
-    exit 0
-fi
-
-# Only check PHP files
-case "$FILE_PATH" in
-    *.php)
-        ;;
-    *)
-        exit 0
-        ;;
-esac
-
-# Check file size
-if [ -f "$FILE_PATH" ]; then
-    LINE_COUNT=$(wc -l < "$FILE_PATH" | tr -d ' ')
-
-    if [ "$LINE_COUNT" -gt "$MAX_LINES" ]; then
-        echo "ERROR: File exceeds $MAX_LINES lines ($LINE_COUNT lines)"
-        echo "Split: Service + Repository + Action + DTO"
-        exit 1
-    fi
-fi
-
-# Check interface location
-if grep -q "^interface " "$FILE_PATH" 2>/dev/null; then
-    if [[ "$FILE_PATH" != *"app/Contracts/"* ]]; then
-        echo "ERROR: Interfaces must be in app/Contracts/"
-        exit 1
-    fi
-fi
-
-exit 0
-```
-
----
-
-## Swift SOLID Validation
-
-### File: scripts/validate-swift-solid.sh
-
-```bash
-#!/bin/bash
-# Swift SOLID Validation
-# Protocols in Sources/Interfaces/
-
-set -e
-
-FILE_PATH="${1:-}"
-MAX_LINES=100
-
-if [ -z "$FILE_PATH" ]; then
-    exit 0
-fi
-
-# Only check Swift files
-case "$FILE_PATH" in
-    *.swift)
-        ;;
-    *)
-        exit 0
-        ;;
-esac
-
-# Check file size
-if [ -f "$FILE_PATH" ]; then
-    LINE_COUNT=$(wc -l < "$FILE_PATH" | tr -d ' ')
-
-    if [ "$LINE_COUNT" -gt "$MAX_LINES" ]; then
-        echo "ERROR: File exceeds $MAX_LINES lines ($LINE_COUNT lines)"
-        echo "Split: ViewModel + View + Service"
-        exit 1
-    fi
-fi
-
-# Check protocol location
-if grep -q "^protocol " "$FILE_PATH" 2>/dev/null; then
-    if [[ "$FILE_PATH" != *"Sources/Interfaces/"* ]] && [[ "$FILE_PATH" != *"Protocols/"* ]]; then
-        echo "ERROR: Protocols must be in Sources/Interfaces/"
-        exit 1
-    fi
-fi
-
-exit 0
-```
-
----
-
-## Skill Read Tracker (PostToolUse)
-
-### File: scripts/track-skill-read.sh
-
-```bash
-#!/bin/bash
-# Track skill usage for analytics
-# PostToolUse on Read
-
-FILE_PATH="${1:-}"
-LOG_FILE="${PLUGIN_ROOT:-/tmp}/skill-reads.log"
-
-if [ -z "$FILE_PATH" ]; then
-    exit 0
-fi
-
-# Only track skill reads
-if [[ "$FILE_PATH" == *"/skills/"* ]]; then
-    echo "$(date '+%Y-%m-%d %H:%M:%S') READ: $FILE_PATH" >> "$LOG_FILE"
-fi
-
-exit 0
-```
-
----
-
-## Installation
-
-```bash
-# Copy scripts to plugin
-cp scripts/*.sh plugins/<plugin>/scripts/
-
-# Make executable
-chmod +x plugins/<plugin>/scripts/*.sh
-
-# Verify
-ls -la plugins/<plugin>/scripts/
-```
-
----
 
 ## Notes
 
-- Always `exit 0` for success
-- Non-zero exit blocks the tool
-- Use `$PLUGIN_ROOT` for paths
-- Keep scripts fast (<1s execution)
+- `hooks/hooks.json` never contains a hand-written command — only the canonical Harness route for the plugin's declared `(event, matcher)` tuples.
+- Blocking = `permissionDecision: "deny"` JSON on stdout + `exit 0`; there is no `exit 1` protocol.
+- Use `process.env.PLUGIN_ROOT` inside the `.native.ts` file — a shell `$PLUGIN_ROOT` never reaches the process (hooks.json has no per-command env injection for it).
+- Keep ported logic fast (< 1s) — same constraint the original scripts documented.
+- Reference check-logic scripts (SOLID size/interface rules per stack, skill-read tracker): `hook-scripts-reference.md`, continued in `hook-scripts-reference-2.md` (Swift SOLID validation, skill-read tracker).

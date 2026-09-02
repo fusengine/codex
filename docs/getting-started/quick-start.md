@@ -49,12 +49,12 @@ Codex:
 | Command | Description |
 |---------|-------------|
 | `/apex` | Full APEX workflow |
-| `/apex-quick` | Quick APEX: Analyze -> Plan -> Execute/Answer -> Verify |
+| `/apex-quick` | Quick APEX: Analyze (trio) -> Plan (one task) -> Execute (delegated) -> eLicit + challenger -> Verify + challenger -> full sniper — only Brainstorm is skipped |
 | `/commit` | Smart conventional commit |
 | `/research` | Research with Context7/Exa |
 
 ## Tips
 
 1. **Let Codex detect** - Don't specify agent, let it auto-detect
-2. **Use APEX for every task** - Full for risky work, Quick for trivial/read-only
+2. **Use APEX for every task** - Full for risky work, Quick for bounded fixes (same gates, Brainstorm skipped)
 3. **Trust sniper** - It catches errors before you

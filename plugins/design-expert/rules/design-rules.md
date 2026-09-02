@@ -104,8 +104,8 @@ Background text: ALWAYS add overlay `bg-gradient-to-t from-black/60 to-transpare
 
 | File | Stack | UI Approach |
 |------|-------|-------------|
-| No framework files | HTML/CSS | Gemini `create_frontend` — NEVER write HTML manually |
-| `next.config.*` | Next.js | Gemini Design + shadcn |
+| No framework files | HTML/CSS | Direct HTML/CSS by default; Gemini `create_frontend` optional accelerator |
+| `next.config.*` | Next.js | Direct JSX/Tailwind by default; shadcn/ui + Gemini Design optional accelerators |
 | `composer.json` + `artisan` | Laravel | Check Inertia → React or Livewire Flux |
 | `Package.swift` | Swift | SwiftUI visual specs |
 

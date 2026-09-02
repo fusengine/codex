@@ -14,13 +14,22 @@ Coordinate executors without overlapping ownership, stale writers, redundant per
 3. Ask only before an irreversible action or a material scope expansion. State reversible assumptions and continue.
 4. **ALWAYS DELEGATE:** the lead orchestrates and never executes task work. Assign at least one executor for every modification.
 
-## 2. Choose the smallest useful delegation
+## 2. Delegate the full APEX workflow every time
 
-- Use one qualified executor for a bounded concern or coupled files.
-- Add exploration, research, or domain specialists only when uncertainty, the routed workflow, or the user requires them.
+- Every task runs the routed APEX workflow in full; there is no scope ladder and no "too small to delegate" case.
+- Analyze always starts the trio in one parallel message: `explore-codebase` for code analysis, `research-expert` for web or documentation research, and the matching domain expert.
+- Any code change is executed by at least three domain experts matching the project stack, on disjoint file lots — the same specialty runs as separate instances when the stack yields only one matching expert type; never fill the remaining slots with a generic agent. They communicate with each other by message, and each receives a self-contained brief with a generated PRD of tasks.
+- The coordinator alone writes that PRD to `<project>/.codex/apex/prd.json` before spawning: one key per task, one sub-key per assigned agent (never a single agent per task) holding its target files and status. Each sub-agent reports only in its own file `<project>/.codex/apex/prd/<agent>.json`, same task keys, marking each finished task with the files it modified and the files left unchanged; it never writes `prd.json` or another agent's file, so no write can overwrite another. The coordinator merges those files into `prd.json`; then the coordinator checks every task against the disk before accepting the result. Every agent may read `prd.json` and every `prd/*.json` at any time to know exactly what is done, in progress, or untouched — that shared read is the collaboration channel alongside messages; only the owner writes each file. As tasks close, the coordinator compacts `prd.json`: each verified task's per-agent entry collapses to one line per agent (agent, files, verified-at) — never merging multiple agents of the same task into a single line — so the file stays small and every later reader sees the current state without the history.
+- When a change touches fewer files than experts, split the work by concern (implementation, tests, verification or docs) so every expert still owns a disjoint lot; exclusive ownership (§3) always prevails, and two writers on one file are never allowed.
+- Every executor is told in its brief that its deliverable is challenged by the challenger and validated by sniper before acceptance; a self-declared "done" is never accepted.
 - Use parallel agents only for independent batches with disjoint ownership. Do not parallelize dependent work.
 - A team is for genuinely independent batches. When the user explicitly asks for a team, start one immediately; a team means at least four agents when capacity permits.
 - Select the matching domain expert whenever one exists. Never substitute a generic agent for an available domain expert.
+
+<example>
+prd.json: { "task-1": { "agent-1": { "files": ["src/a.ts"], "status": "assigned" }, "agent-2": { "files": ["src/b.ts"], "status": "assigned" } } }
+prd/agent-1.json: { "task-1": { "status": "done", "modified": ["src/a.ts"], "unchanged": [] } }
+</example>
 
 ## 3. Establish exclusive ownership
 
@@ -37,6 +46,7 @@ Before assigning any folder:
 
 - When multi-agent V2 is applicable, require `[features.multi_agent_v2]`, its configured `tool_namespace`, an exact `agent_type`, and bounded `fork_turns`. Never omit `fork_turns` or use `"all"` with `agent_type`.
 - Treat the returned nickname as identity evidence. A task path alone is insufficient to establish agent identity.
+- Agents discover each other with `list_agents` and can message any agent, sibling or parent, with `send_message` targeted by agent path or name (the lead is `/root`). A message only enters the receiver's mailbox; it never stops or waits for it.
 
 ## 5. Write a self-contained mandate
 
