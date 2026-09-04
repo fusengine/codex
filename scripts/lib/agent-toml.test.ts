@@ -8,21 +8,20 @@ import { agentRoleViolations } from "./agent-role-validation";
 const TERRA_MEDIUM = [
 	"astro-expert", "go-expert", "laravel-expert", "nextjs-expert", "php-expert", "react-expert", "rust-expert",
 	"shadcn-ui-expert", "swift-expert", "tailwindcss-expert", "tanstack-start-expert", "typescript-expert",
+	"explore-codebase", "research-expert", "websearch",
 ];
 const SOL_MEDIUM = [
-	"explore-codebase", "research-expert", "brainstorming", "solid-orchestrator", "commit", "changelog-watcher",
+	"brainstorming", "solid-orchestrator", "commit", "changelog-watcher",
 	"lessons-compactor", "seo-expert", "seo-content", "seo-geo", "seo-local", "seo-cluster", "seo-technical",
-	"seo-schema", "websearch", "sniper",
+	"seo-schema", "sniper", "prompt-engineer", "challenger",
 ];
-const SOL_HIGH = ["challenger", "security-expert", "prompt-engineer"];
-const SOL_XHIGH = ["design-expert"];
+const SOL_HIGH = ["security-expert", "design-expert"];
 const LUNA_MAX = ["sniper-faster", "commit-detector", "cartographer", "seo-images", "seo-sitemap"];
 
 const EXPECTED_PROFILES: Record<string, readonly [string, string]> = Object.fromEntries([
 	...TERRA_MEDIUM.map((name) => [name, ["gpt-5.6-terra", "medium"]]),
 	...SOL_MEDIUM.map((name) => [name, ["gpt-5.6-sol", "medium"]]),
 	...SOL_HIGH.map((name) => [name, ["gpt-5.6-sol", "high"]]),
-	...SOL_XHIGH.map((name) => [name, ["gpt-5.6-sol", "xhigh"]]),
 	...LUNA_MAX.map((name) => [name, ["gpt-5.6-luna", "max"]]),
 ]);
 
@@ -34,7 +33,7 @@ function agentSource(name: string, model?: string): string {
 
 test("selects name-specific profiles over Claude source model tiers", () => {
 	const scenarios = [
-		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-5.6-sol", expectedEffort: "xhigh" },
+		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-5.6-sol", expectedEffort: "high" },
 		{ name: "commit", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
 		{ name: "sniper-faster", input: "haiku", expectedModel: "gpt-5.6-luna", expectedEffort: "max" },
 		{ name: "sniper", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
@@ -74,10 +73,9 @@ test("ships the exact 37-agent model and reasoning-effort matrix", () => {
 		expect(configs.get(name)?.model_reasoning_effort).toBe(effort);
 	}
 
-	expect(TERRA_MEDIUM).toHaveLength(12);
-	expect(SOL_MEDIUM).toHaveLength(16);
-	expect(SOL_HIGH).toHaveLength(3);
-	expect(SOL_XHIGH).toHaveLength(1);
+	expect(TERRA_MEDIUM).toHaveLength(15);
+	expect(SOL_MEDIUM).toHaveLength(15);
+	expect(SOL_HIGH).toHaveLength(2);
 	expect(LUNA_MAX).toHaveLength(5);
 });
 

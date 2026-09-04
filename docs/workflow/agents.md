@@ -8,25 +8,26 @@ The 37-agent policy (revised 2026-09-02, following a 15-run `codex exec`
 0.152.1 benchmark comparing Terra medium, Terra high, Sol medium, Sol high,
 and Luna max on bounded coding tasks — see "Benchmark 2026-09-02" below)
 assigns model and effort by named role, not by the Claude source tier. The
-12 framework/language experts now use `gpt-5.6-terra` / `medium`, the
-fastest and cheapest tier at equal measured quality on bounded, briefed
-executor work; 16 other implementation, orchestration, and release
-specialists stay on `gpt-5.6-sol` / `medium`; gate/judgment roles use
-`gpt-5.6-sol` / `high` (3); `design-expert` uses `gpt-5.6-sol` / `xhigh`
-(1); five bounded, strictly-contracted mechanical roles use
-`gpt-5.6-luna` / `max` (5).
+12 framework/language experts, plus 3 high-volume read/search agents added
+2026-09-02, now use `gpt-5.6-terra` / `medium` (15 total), the fastest and
+cheapest tier at equal measured quality on bounded, briefed executor work;
+15 other implementation, orchestration, and release specialists stay on
+`gpt-5.6-sol` / `medium`; two judgment/gate roles use `gpt-5.6-sol` /
+`high` (2); five bounded, strictly-contracted mechanical roles use
+`gpt-5.6-luna` / `max` (5). Sol `xhigh` is retired fleet-wide as of
+2026-09-02 (0 agents).
 
 The exact groups are: Terra/medium — `astro-expert`, `go-expert`,
 `laravel-expert`, `nextjs-expert`, `php-expert`, `react-expert`,
 `rust-expert`, `shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`,
-`tanstack-start-expert`, `typescript-expert` (12); Sol/medium —
-`explore-codebase`, `research-expert`, `brainstorming`,
-`solid-orchestrator`, `commit`, `changelog-watcher`, `lessons-compactor`,
-`seo-expert`, `seo-content`, `seo-geo`, `seo-local`, `seo-cluster`,
-`seo-technical`, `seo-schema`, `websearch`, `sniper` (16); Sol/high —
-`challenger`, `security-expert`, `prompt-engineer` (3); Sol/xhigh —
-`design-expert` (1); Luna/max — `sniper-faster`, `commit-detector`,
-`cartographer`, `seo-images`, `seo-sitemap` (5). Totals: 20 Sol, 12 Terra,
+`tanstack-start-expert`, `typescript-expert`, `explore-codebase`,
+`research-expert`, `websearch` (15); Sol/medium —
+`brainstorming`, `solid-orchestrator`, `commit`, `changelog-watcher`,
+`lessons-compactor`, `seo-expert`, `seo-content`, `seo-geo`, `seo-local`,
+`seo-cluster`, `seo-technical`, `seo-schema`, `sniper`, `prompt-engineer`,
+`challenger` (15); Sol/high — `security-expert`, `design-expert` (2);
+Luna/max — `sniper-faster`, `commit-detector`,
+`cartographer`, `seo-images`, `seo-sitemap` (5). Totals: 17 Sol, 15 Terra,
 5 Luna. The coordinator (the owner's own Codex session) is not a shipped
 agent TOML and stays outside this policy — Sol/high, unchanged.
 
@@ -40,16 +41,24 @@ gpt-5-6-luna and the Sol launch article, July 2026): Sol low 51, Sol medium
 shipped agent and is not asserted here (published figures diverge between
 AA pages). Against the owner's 1-point
 non-regression threshold: Sol medium↔high (56→57) is the only in-threshold
-gap. `challenger`, `security-expert`, and `prompt-engineer` are the three
-Sol/high judgment gates and stay on `high`, unchanged. `sniper` moved to
-Sol/medium on 2026-09-02 (owner decision): it validates code with tooling
-and tests, where the benchmark showed medium equal to high; the challenger
-keeps high for adversarial, fresh-context review. `design-expert` stays on
-`xhigh` (59) — a move to `high` (57) is a 2-point drop, over threshold.
-`seo-technical`, `seo-schema`, and `websearch` stay on Sol `medium` (56) —
-a move to Luna `max` (52) is a 4-point drop, over threshold; being a
-bounded, deterministic, strict-contract task is necessary but not
-sufficient for a Sol→Luna move, and the measured regression vetoes it.
+gap. Until 2026-09-02, `challenger` and `security-expert` were the two
+remaining Sol/high judgment gates. `sniper` moved to Sol/medium on
+2026-09-02 (owner decision): it validates code with tooling and tests,
+where the benchmark showed medium equal to high. `prompt-engineer` —
+previously a third Sol/high judgment gate — also moved to Sol/medium on
+2026-09-02 (owner decision: "il est assez intelligent"), joining the
+analysis/research/coordination roles below. Later the same day, owner
+decision "seul le designer en high" moved `design-expert` from `xhigh`
+(59) to `high` (57) and `challenger`/`security-expert` from `high` to
+`medium`, retiring Sol `xhigh` fleet-wide; a same-day correction,
+"security-expert en high", reinstated `security-expert` at `high` while
+`challenger`'s move to `medium` stood. Current Sol/high (2): only
+`security-expert` and `design-expert`. `seo-technical` and `seo-schema`
+stay on Sol `medium` (56) — a move to Luna `max` (52) is a 4-point drop,
+over threshold; being a bounded, deterministic, strict-contract task is
+necessary but not sufficient for a Sol→Luna move, and the measured
+regression vetoes it. `websearch` made the opposite move instead — see
+below.
 
 The 12 framework/language experts moved from Sol medium to Terra medium on
 2026-09-02: the benchmark below found Terra medium equal to Sol medium on
@@ -59,11 +68,25 @@ publish a directly comparable Terra score, so this move is evidence-based
 on the benchmark, not the index. `commit` stays on Sol medium rather than
 Terra because an irreversible git flow (write, tags, merges) is not the
 bounded-executor shape the benchmark covered.
-`research-expert`, `brainstorming`, and `solid-orchestrator` moved from Sol
+`brainstorming` and `solid-orchestrator` moved from Sol
 high to Sol medium (57→56, -1): within threshold. `lessons-compactor`
 moved from Luna max to Sol medium (52→56, +4): a strict quality increase,
 not a regression risk, for a role needing long-horizon dedup/merge judgment
 rather than a bounded mechanical task.
+
+Later the same day (owner decision "passe en terra medium"), `research-expert`,
+`websearch`, and `explore-codebase` moved from Sol/medium to Terra/medium,
+joining the 12 framework experts. Unlike those 12, this move is NOT
+covered by the 2026-09-02 benchmark below — that benchmark scored 3
+bounded *coding* tasks only, while these three are high-volume read/search
+agents (doc lookup, live web search, codebase exploration), a workload
+shape the benchmark never measured. The known Terra risk below therefore
+carries over unverified for this trio; it is mitigated procedurally by the
+lead-orchestration relaunch rule (an empty or truncated research/
+exploration report is relaunched immediately with the same brief, never
+accepted as "nothing found" — see `plugins/ai-pilot/skills/
+lead-orchestration/SKILL.md` and `plugins/codex-rules/rules/
+03-agent-teams.md`).
 
 Known risk on Terra, kept: openai/codex#32389 is still open in 0.152
 ("GPT-5.6 Terra intermittently returns an empty successful final response

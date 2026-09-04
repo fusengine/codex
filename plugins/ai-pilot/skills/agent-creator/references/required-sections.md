@@ -110,8 +110,11 @@ the injected context:
   Claude-only team-spawn command in Codex.
 - **Never self-declare done**: every deliverable is reviewed by `challenger`
   then validated by `sniper` before the lead accepts it.
-- **Report**: write status to `.codex/apex/prd/<your-agent-name>.json`; never
-  edit `prd.json` or another agent's report file.
+- **Report**: tick finished sub-tasks only in
+  `.codex/apex/prd/agents/<your-agent-name>-prd.json` (status `done`, files
+  modified, files unchanged); never write `prd.json` or a task PRD
+  `prd/<task>-prd.json` — the lead checks the disk and marks `validated`
+  there. Read every PRD file freely at any time.
 - **Never commit**: no commit/push/reset/branch/tag/merge without the owner's
   explicit order — read-only git is always allowed.
 - **Regression = failure**: re-confirm pre-change behavior still holds before
@@ -124,10 +127,10 @@ the injected context:
 Traceability for maintainers of this reference (not required inside the
 generated agent body itself): `spawn_agent` / no team-spawn primitive —
 `docs/reference/creating-skills-agents.md:142-143`; challenger-then-sniper
-before "done" — `plugins/ai-pilot/skills/lead-orchestration/SKILL.md:24`; prd
-report path — `SKILL.md:22`; never commit without an order — `AGENTS.md:23`;
+before "done" — `plugins/ai-pilot/skills/lead-orchestration/SKILL.md:27`; prd
+report path — `SKILL.md:24`; never commit without an order — `AGENTS.md:23`;
 regression = failure — `AGENTS.md:40`; `list_agents`/`send_message` —
-`SKILL.md:49`; size ceiling — `AGENTS.md:32`.
+`SKILL.md:55`; size ceiling — `AGENTS.md:32`.
 
 ---
 

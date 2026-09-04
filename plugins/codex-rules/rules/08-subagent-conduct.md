@@ -21,5 +21,5 @@ Every loop you run ends on ONE explicit issue, reported to the lead — never si
 - **Escalate** — blocked past the attempt cap (3 cycles, cf. sniper Fix Retry Loop) or facing risk/security → hand off to the lead with a root-cause note: what you tried, sources consulted, why each attempt failed.
 
 ## Sub-Agent Reporting (ZERO TOLERANCE)
-- Report your finished tasks only in `.codex/apex/prd/<agent>.json`; never write `prd.json`.
+- Tick your finished sub-tasks only in `.codex/apex/prd/agents/<agent>-prd.json` (status `done`, files modified, files unchanged); never write `prd.json` or a task PRD `prd/<task>-prd.json` — the lead checks the disk and marks `validated` there. You may read every PRD file at any time.
 - Your deliverable is challenged by the challenger and validated by sniper before acceptance; never self-declare done.
