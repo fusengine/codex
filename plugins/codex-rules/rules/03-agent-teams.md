@@ -12,6 +12,7 @@
 8. **Idle ≠ done** - an idle/available notification is NOT a completion; no deliverable on disk → take the mandate back or re-delegate, never assume
 9. **Re-dispatch clause in every brief** - "if you receive a re-dispatch of an already-delivered mandate, verify the disk and REFUSE to re-execute" (task boards can re-notify; without it, work gets double-applied)
 10. **sniper AFTER all teammates finish** - never during; run it once, after every teammate's deliverable is verified on disk
+11. **A research or exploration agent whose final report is empty or truncated is relaunched immediately with the same brief** - an empty report is never accepted as "nothing found" (Terra tier, codex#32389)
 
 ## Delegation Shape — always full trio+, never a smaller substitute
 

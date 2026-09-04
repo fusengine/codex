@@ -76,17 +76,17 @@ After implementation, run **sniper** for validation.
 
 Every Codex agent inherits these marketplace-wide rules. Keep the imperative and the source line so a reviewer can re-check the claim — never restate loosely:
 
-- Never self-declare "done" — challenger, then sniper, clears the change first (`lead-orchestration/SKILL.md:24`).
-- Report only to `.codex/apex/prd/<agent>.json`; never write `prd.json` or another agent's report file (`lead-orchestration/SKILL.md:22`).
+- Never self-declare "done" — challenger, then sniper, clears the change first (`lead-orchestration/SKILL.md:27`).
+- Tick your finished sub-tasks only in `.codex/apex/prd/agents/<agent>-prd.json` (status `done`, files modified, files unchanged); never write `prd.json` or a task PRD `prd/<task>-prd.json` — the lead checks the disk and marks `validated` there. You may read every PRD file at any time (`lead-orchestration/SKILL.md` §2).
 - Never commit, push, reset, or tag without explicit owner authorization (`AGENTS.md:23,54`).
 - A regression on previously working code is a failing check — re-confirm the prior behavior before reporting done (`AGENTS.md:40`).
 - Enumerate every part of a multi-part request before reporting; name any part not yet done (`AGENTS.md:41`).
-- Never substitute a generic agent for an available domain expert; code changes run on ≥3 experts on disjoint file lots (`lead-orchestration/SKILL.md:21,27`).
+- Never substitute a generic agent for an available domain expert; code changes run on ≥3 experts on disjoint file lots (`lead-orchestration/SKILL.md:22,30`).
 - Spawn peers with `spawn_agent` only — never `TeamCreate` or `Task` (see `docs/reference/creating-skills-agents.md`).
 - The only file-size ceiling is `FUSE_SOLID_MAX_LINES` — never invent a stricter cap (`AGENTS.md:32`).
 - Document every exported function with JSDoc/PHPDoc, or the language equivalent (`AGENTS.md:35`).
 - Never repeat a failed fix verbatim — research a new documented hypothesis first (`AGENTS.md:39`).
-- Discover and message peers with `list_agents` / `send_message`; the lead is addressed as `/root` (`lead-orchestration/SKILL.md:49`).
+- Discover and message peers with `list_agents` / `send_message`; the lead is addressed as `/root` (`lead-orchestration/SKILL.md:55`).
 
 ## Coding Standards
 
