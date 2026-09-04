@@ -71,25 +71,41 @@ that — never add `color`, a `tools` list, or a `hooks` table here.
 
 | `model` / effort | When to use |
 |-------------------|-------------|
-| `gpt-5.6-terra` / `medium` | The 12 framework/stack experts (astro, go, laravel, nextjs, php, react, rust, shadcn-ui, swift, tailwindcss, tanstack-start, typescript) |
-| `gpt-5.6-sol` / `medium` | The 16 analysis/research/orchestration/release/validation agents (explore-codebase, research-expert, brainstorming, solid-orchestrator, commit, changelog-watcher, lessons-compactor, seo-expert, seo-content, seo-geo, seo-local, seo-cluster, seo-technical, seo-schema, websearch, sniper) |
-| `gpt-5.6-sol` / `high` | One-shot-correctness gates: `challenger`, `security-expert`, `prompt-engineer` |
-| `gpt-5.6-sol` / `xhigh` | Highest visual/product-direction judgment (`design-expert`) |
+| `gpt-5.6-terra` / `medium` | The 12 framework/stack experts (astro, go, laravel, nextjs, php, react, rust, shadcn-ui, swift, tailwindcss, tanstack-start, typescript) + 3 volume read/search agents added 2026-09-02 (`explore-codebase`, `research-expert`, `websearch`) — 15 total |
+| `gpt-5.6-sol` / `medium` | 15 orchestration/release/validation/prompt-design agents (brainstorming, solid-orchestrator, commit, changelog-watcher, lessons-compactor, seo-expert, seo-content, seo-geo, seo-local, seo-cluster, seo-technical, seo-schema, sniper, prompt-engineer, challenger) |
+| `gpt-5.6-sol` / `high` | Highest-judgment gates: `design-expert`, `security-expert` |
 | `gpt-5.6-luna` / `max` | Bounded, deterministic, verifiable-output work (`sniper-faster`, `commit-detector`, `cartographer`, `seo-images`, `seo-sitemap`) |
 
 `gpt-5.6-terra`/`medium` (Terra's default effort) is the executor tier for the
 12 framework experts above: a 15-run `codex exec` 0.152.1 benchmark on
 2026-09-02 (3 bounded coding tasks x 5 configs, hidden tests) passed every
 test on every tier while Terra medium was 1.7x faster and half the cost of
-Sol medium, and a 6-run repetition passed 6/6. Sol keeps the judgment roles
-(`high`/`xhigh` above) and the analysis/research/coordination agents
-(`medium`); the coordinator session itself stays Sol `high`. `sniper` moved
-to Sol/medium on 2026-09-02 (owner decision): it validates code with
-tooling and tests, where the benchmark showed medium equal to high; the
-challenger keeps high for adversarial, fresh-context review. Known risk:
+Sol medium, and a 6-run repetition passed 6/6. Later the same day, owner
+decision "passe en terra medium" added `explore-codebase`,
+`research-expert`, and `websearch` to Terra/medium too — volume/read work
+(doc lookup, web search, codebase exploration) that the coding-task
+benchmark never measured, so the known Terra risk below is unverified
+rather than measured for this trio. Until 2026-09-02, Sol kept 3 judgment
+gates at `high` (`challenger`, `security-expert`, plus `design-expert` at
+`xhigh`); two same-day owner decisions ("seul le designer en high", then
+"security-expert en high") retired Sol `xhigh` fleet-wide and left exactly
+2 agents at Sol/high — `design-expert` and `security-expert` — while
+`challenger` joined Sol/medium. Sol/medium also covers the
+analysis/research/coordination agents (`medium`); the coordinator session
+itself stays Sol `high`. `sniper` moved to Sol/medium on 2026-09-02 (owner
+decision): it validates code with tooling and tests, where the benchmark
+showed medium equal to high.
+`prompt-engineer` — previously a Sol/high judgment gate — also moved to
+Sol/medium the same day (owner decision: "il est assez intelligent").
+Known risk:
 openai/codex#32389 (Terra intermittently returns an empty final response
 after tool use) is still open — the coordinator's on-disk PRD check plus the
-challenger and sniper gates turn it into a retry, never a silent bad merge.
+challenger and sniper gates turn it into a retry, never a silent bad merge;
+for the 3 volume agents, the mitigation is procedural instead: a
+research/exploration agent whose final report is empty or truncated is
+relaunched immediately with the same brief, never accepted as "nothing
+found" (see `plugins/ai-pilot/skills/lead-orchestration/SKILL.md` and
+`plugins/codex-rules/rules/03-agent-teams.md`).
 The authoritative, up-to-date per-agent classification lives in
 `docs/reference/creating-skills-agents.md` (model policy section) — this
 table mirrors it, don't let the two drift.
