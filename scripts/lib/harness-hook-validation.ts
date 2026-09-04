@@ -2,14 +2,10 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { canonicalHarnessCommand, HARNESS_VERSION } from "./harness-hook-policy";
 import type { HookHandlerTuple, WiringValidationOptions } from "./harness-hook.types";
+import { installedHarnessVersion } from "./install/harness-update";
 
 const tupleKey = ({ plugin, event, matcher, command }: HookHandlerTuple): string =>
 	JSON.stringify([plugin, event, matcher, command]);
-
-function installedVersion(root: string): string {
-	const file = join(root, "node_modules", "@fusengine", "harness", "package.json");
-	return JSON.parse(readFileSync(file, "utf8")).version;
-}
 
 function handlers(root: string): HookHandlerTuple[] {
 	const result: HookHandlerTuple[] = [];
@@ -29,7 +25,7 @@ function handlers(root: string): HookHandlerTuple[] {
 /** Validate that every live handler uses its exact Harness route. */
 export function validateHarnessHookWiring(root: string, options: WiringValidationOptions = {}): string[] {
 	const errors: string[] = [];
-	const version = options.installedHarnessVersion ?? installedVersion(root);
+	const version = options.installedHarnessVersion ?? installedHarnessVersion(root);
 	if (version !== HARNESS_VERSION) errors.push(`Harness ${version} installed; re-audit for ${HARNESS_VERSION}`);
 
 	const seen = new Set<string>();

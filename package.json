@@ -8,7 +8,8 @@
 		"migrate": "bun run scripts/migrate.ts",
 		"sync:agents": "bun run scripts/sync-agents.ts",
 		"validate": "bun run scripts/validate.ts",
-		"conformance:fix": "bun run scripts/final-conformance.ts"
+		"conformance:fix": "bun run scripts/final-conformance.ts",
+		"update-harness": "bun run scripts/update-harness.ts"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
@@ -18,7 +19,7 @@
 		"yaml": "^2.9.0"
 	},
 	"engines": {
-		"bun": ">=1.1.0"
+		"bun": ">=1.2.15"
 	},
 	"dependencies": {
 		"@clack/prompts": "^1.7.0",

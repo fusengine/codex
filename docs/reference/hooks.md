@@ -27,6 +27,13 @@ Every configured command handler uses a canonical Harness route. There is no
 legacy-command exception path: an unregistered plugin/event/matcher tuple is
 rejected by validation and skipped by generation.
 
+To bump the installed `@fusengine/harness` version, run `bun run update-harness`
+(`--check` for a read-only report). It reinstalls, then automatically exercises
+all 11 `HARNESS_SCOPES` against the installed binary — with a negative-control
+probe run first — before rewriting the `HARNESS_VERSION` tripwire in
+`harness-hook-policy.ts` — never by hand, and never on a failed audit. See
+`plugins/ai-pilot/commands/update-harness.md`.
+
 ### Harness 0.1.79 Runtime Limits
 
 Harness-only wiring guarantees that the handler enters Harness; it does not
