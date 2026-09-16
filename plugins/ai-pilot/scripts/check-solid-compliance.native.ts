@@ -16,6 +16,7 @@ import { countFileCodeLines } from "./lib/solid-lines";
 import type { HookInput } from "./lib/interfaces/hook.interface";
 
 const CODE_EXT = /\.(ts|tsx|js|jsx|py|php|swift|go|rs|rb|java|astro)$/;
+const DEFAULT_MAX_LINES = 200;
 
 /** Read a file, returning "" on failure. */
 function readOrEmpty(fp: string): string {
@@ -24,6 +25,17 @@ function readOrEmpty(fp: string): string {
   } catch {
     return "";
   }
+}
+
+/**
+ * Resolve the SOLID file-size ceiling from `FUSE_SOLID_MAX_LINES`, falling
+ * back to {@link DEFAULT_MAX_LINES}. This is the only authority on file-size
+ * limits (AGENTS.md); it must never be hard-coded past this one read.
+ * @returns The configured max lines per file.
+ */
+function resolveMaxLines(): number {
+  const raw = Number.parseInt(process.env.FUSE_SOLID_MAX_LINES ?? "", 10);
+  return Number.isFinite(raw) && raw > 0 ? raw : DEFAULT_MAX_LINES;
 }
 
 let data: HookInput;
@@ -39,8 +51,10 @@ for (const target of editTargets(data)) {
 
   const violations: string[] = [];
   const lc = countFileCodeLines(fp);
-  if (lc > 100) violations.push(`FILE SIZE: ${lc} lines (max: 100)`);
-  else if (lc > 90) violations.push(`FILE SIZE WARNING: ${lc} lines (split at 90)`);
+  const maxLines = resolveMaxLines();
+  const warnAt = Math.round(maxLines * 0.9);
+  if (lc > maxLines) violations.push(`FILE SIZE: ${lc} lines (max: ${maxLines})`);
+  else if (lc > warnAt) violations.push(`FILE SIZE WARNING: ${lc} lines (split at ${warnAt})`);
 
   if (/(components|pages|views)\//.test(fp)) {
     if (/^(export )?(interface|type) [A-Z]/m.test(readOrEmpty(fp))) {
