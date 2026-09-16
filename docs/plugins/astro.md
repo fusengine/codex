@@ -38,7 +38,7 @@ Expert Astro 6 with Islands Architecture, Content Layer API, Server Actions, Ser
 
 ## SOLID Rules
 
-- Files < 100 lines
+- Files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 - Interfaces in `src/interfaces/`
 - JSDoc mandatory
 - Business logic in `src/lib/`, not in pages

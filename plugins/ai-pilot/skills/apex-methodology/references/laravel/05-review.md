@@ -160,8 +160,8 @@ User::chunk(100, function ($users) {
 ```text
 [ ] Controllers < 50 lines
 [ ] Models < 80 lines
-[ ] Services < 100 lines
-[ ] ALL files < 100 lines
+[ ] Services within `FUSE_SOLID_MAX_LINES` (default 200) lines
+[ ] ALL files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 ```
 
 ### Split If Needed

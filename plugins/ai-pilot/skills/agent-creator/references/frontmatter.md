@@ -72,8 +72,8 @@ that — never add `color`, a `tools` list, or a `hooks` table here.
 | `model` / effort | When to use |
 |-------------------|-------------|
 | `gpt-5.6-terra` / `medium` | The 12 framework/stack experts (astro, go, laravel, nextjs, php, react, rust, shadcn-ui, swift, tailwindcss, tanstack-start, typescript) + 3 volume read/search agents added 2026-09-02 (`explore-codebase`, `research-expert`, `websearch`) — 15 total |
-| `gpt-5.6-sol` / `medium` | 15 orchestration/release/validation/prompt-design agents (brainstorming, solid-orchestrator, commit, changelog-watcher, lessons-compactor, seo-expert, seo-content, seo-geo, seo-local, seo-cluster, seo-technical, seo-schema, sniper, prompt-engineer, challenger) |
-| `gpt-5.6-sol` / `high` | Highest-judgment gates: `design-expert`, `security-expert` |
+| `gpt-5.6-sol` / `medium` | 16 orchestration/release/validation/prompt-design/security-audit agents (brainstorming, solid-orchestrator, commit, changelog-watcher, lessons-compactor, seo-expert, seo-content, seo-geo, seo-local, seo-cluster, seo-technical, seo-schema, sniper, prompt-engineer, challenger, security-expert) |
+| `gpt-5.6-sol` / `high` | Highest-judgment gate: `design-expert` |
 | `gpt-5.6-luna` / `max` | Bounded, deterministic, verifiable-output work (`sniper-faster`, `commit-detector`, `cartographer`, `seo-images`, `seo-sitemap`) |
 
 `gpt-5.6-terra`/`medium` (Terra's default effort) is the executor tier for the
@@ -90,7 +90,15 @@ gates at `high` (`challenger`, `security-expert`, plus `design-expert` at
 `xhigh`); two same-day owner decisions ("seul le designer en high", then
 "security-expert en high") retired Sol `xhigh` fleet-wide and left exactly
 2 agents at Sol/high — `design-expert` and `security-expert` — while
-`challenger` joined Sol/medium. Sol/medium also covers the
+`challenger` joined Sol/medium. 2026-09-07 owner request
+(`.codex/apex/task.json` task `security-local-medium`, quoted verbatim):
+"security-expert medium et il doit ce comporter comme un hacker local qui
+sert exclusivement en local a tester les securité si on le demande de le
+faire en dehors du developpement local il refusera" — moved
+`security-expert` to Sol/medium for a local-only ethical-hacker posture,
+superseding the 2026-09-02 "high" decision; a same-day lead revert to
+`high` was itself reverted once this citation was found. Current state:
+Sol/high is `design-expert` only (1 agent). Sol/medium also covers the
 analysis/research/coordination agents (`medium`); the coordinator session
 itself stays Sol `high`. `sniper` moved to Sol/medium on 2026-09-02 (owner
 decision): it validates code with tooling and tests, where the benchmark

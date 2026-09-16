@@ -13,20 +13,9 @@ Fast-track workflow for simple bug fixes, typos, and minor changes. Same phases,
 
 The shortcut removes only Brainstorm and the multi-task Plan breakdown — Analyze (explore-codebase + research-expert + domain expert), delegated Execute (domain experts, disjoint file lots), eLicit, Verify, challenger, and full sniper eXamine always run in full, exactly as in full APEX.
 
-✅ **Use APEX Quick:**
-- Typo fixes
-- Single-line bug fixes
-- Simple refactoring (rename, move)
-- Minor UI tweaks
-- Config changes
-- Documentation updates
+✅ **Use APEX Quick:** bounded fixes, typos, minor UI or config changes, documentation updates, and simple refactors.
 
-❌ **Use Full APEX instead:**
-- New features
-- Multi-file changes
-- Security-related code
-- Database migrations
-- API changes
+❌ **Use Full APEX instead:** new features, security or API changes, database migrations, and work that needs a multi-task plan.
 
 ---
 
@@ -41,10 +30,10 @@ The shortcut removes only Brainstorm and the multi-task Plan breakdown — Analy
 │ └─────────┘  └──────┘  └─────────┘  └────────┘  └────────┘  └─────────┘    │
 │      │           │          │            │           │            │         │
 │      ▼           ▼          ▼            ▼           ▼            ▼         │
-│  explore-     update_plan ≥3 domain    --auto      $ai-pilot:    full       │
-│  codebase +   (1 task)    experts,     elicit +   verification + sniper     │
-│  research +               disjoint     challenger  challenger    (7-phase)  │
-│  domain expert            file lots                                         │
+│  explore-     one plan    dependency-  --auto      functional   full       │
+│  codebase +   entry       allocated    elicit +   evidence +   sniper     │
+│  research +               writers      challenger  challenger   workflow   │
+│  domain expert            per lead-orchestration                            │
 └────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -69,13 +58,10 @@ PLAN — the lead records ONE `update_plan` entry (files, owner expert, acceptan
 
 ```
 Delegated to domain experts on disjoint file lots, per
-$ai-pilot:lead-orchestration §2:
-- Any code change → minimum 3 expert instances, split by concern
-  (same specialty runs as separate instances when the stack yields
-  only one matching expert)
-- The lead never edits directly
-- Only change what's necessary, preserve existing style, no
-  refactoring scope creep
+`$ai-pilot:lead-orchestration`. That canonical skill governs dependency-based
+writer allocation, exclusive ownership, mandate and report fields, research
+freshness, lifecycle, convergence, and escalation. The lead does not edit.
+Executors preserve existing style and avoid refactoring scope creep.
 ```
 
 ### Step 3: eLicit
@@ -124,7 +110,7 @@ challenger and Verify + challenger.
 ```
 1. ANALYZE: explore-codebase + research-expert + domain expert
    (parallel) → LoginButton.tsx:23
-2. EXECUTE: ≥3 domain expert instances on disjoint lots →
+2. EXECUTE: one writer for this coupled lot →
    "Logi" → "Login"
 3. eLicit: DOC-03 (Consistency) --auto → OK; challenger → CONFIRMED
 4. VERIFY: $ai-pilot:verification → OK; challenger → CONFIRMED
@@ -140,7 +126,7 @@ challenger and Verify + challenger.
 | Aspect | APEX Full | APEX Quick |
 |--------|-----------|------------|
 | Brainstorm | Yes | Skipped |
-| Agents | Analyze trio + domain experts (≥3 on code) | Analyze trio + domain experts (≥3 on code) |
+| Agents | Analyze trio + dependency-allocated executors | Analyze trio + dependency-allocated executors |
 | Phases | 7 (Brainstorm-Analyze-Plan-Execute-eLicit-Verify-eXamine) | 6 (Analyze-Plan(1 task)-Execute-eLicit-Verify-eXamine) |
 | Plan tracking (`update_plan`) | Multi-task | Yes, single task |
 | Sniper | Full sniper | Full sniper |
@@ -181,6 +167,9 @@ challenger and Verify + challenger.
 - Linter: ✅ 0 errors
 - TypeScript: ✅ OK
 - challenger_verdict: {CONFIRMED|REFUTED|UNCERTAIN}
+- evidence: {commands_or_artifacts}
+- unresolved: {items_or_none}
+- escalation: {action_or_none}
 
 **Status**: ✅ Fixed
 ```
@@ -191,8 +180,4 @@ challenger and Verify + challenger.
 
 - `$ARGUMENTS`: Description of the fix to apply
 
-**Examples:**
-- `/prompts:apex-quick Fix typo in header`
-- `/prompts:apex-quick Rename getUserData to fetchUser`
-- `/prompts:apex-quick Update copyright year to 2025`
-- `/prompts:apex-quick Fix missing null check in handler`
+Example: `/prompts:apex-quick Fix missing null check in handler`

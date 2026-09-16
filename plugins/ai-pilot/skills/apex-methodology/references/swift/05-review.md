@@ -21,8 +21,8 @@ next_step: references/swift/06-fix-issue.md
 
 - [ ] No file exceeds 150 lines
 - [ ] Views under 80 lines
-- [ ] ViewModels under 100 lines
-- [ ] Services under 100 lines
+- [ ] ViewModels under `FUSE_SOLID_MAX_LINES` (default 200) lines
+- [ ] Services under `FUSE_SOLID_MAX_LINES` (default 200) lines
 - [ ] Subviews extracted at 30+ lines
 
 ### Swift 6 Concurrency

@@ -7,11 +7,13 @@ next_step: steps/step-03-apply-review.md
 
 # Step 2: Select Techniques
 
+Per `elicitation/SKILL.md`'s top-level contract, `{elicit_mode}` is always `"auto"` (I3, `lead-orchestration/SKILL.md` §2) — manual presentation below is legacy and superseded, kept for history only.
+
 ## MANDATORY EXECUTION RULES:
 
-- 🔴 NEVER present more than 5 techniques in manual mode
+- 🔴 NEVER present more than 5 techniques (legacy manual-mode cap, unreachable since mode is always auto)
 - ✅ ALWAYS base selection on Step 1 analysis
-- ✅ ALWAYS respect user's mode choice
+- ✅ ALWAYS auto-select without asking the user to choose (I3 — no mode to "respect", auto is the only path)
 - 🔍 FOCUS on most impactful techniques
 
 ---
@@ -19,7 +21,7 @@ next_step: steps/step-03-apply-review.md
 ## Context Boundaries
 
 **Input from Step 1:**
-- `{elicit_mode}`: manual | auto
+- `{elicit_mode}`: always `"auto"` (manual/skip are legacy, superseded, I3)
 - `{code_categories}`: detected categories
 - `{risk_areas}`: identified risks
 - `{recommended_techniques}`: initial recommendations

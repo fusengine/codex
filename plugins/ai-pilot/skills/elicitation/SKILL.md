@@ -4,7 +4,7 @@ description: "Use when an expert agent self-reviews and self-corrects code after
 ---
 
 <objective>
-Elicitation lets an expert agent self-review and self-correct its own code before external validation, drawing on 75 elicitation techniques across 12 categories (code quality, security, performance, architecture, testing, docs, UX, data, concurrency, integration, observability, maintainability) inspired by BMAD-METHOD. Three modes control how techniques are chosen: MANUAL (default, user picks from 5 presented options), AUTO (auto-detected and applied silently), and SKIP (bypass straight to sniper).
+Elicitation lets an expert agent self-review and self-correct its own work after Execute. In APEX it always runs automatically: the expert selects and names techniques from the catalog, records evidence and unresolved findings, persists the artifact, then hands the claim to challenger before Verify. Manual selection and skip flags cannot bypass this gate.
 
 It sits between Execute and eXamine in the APEX flow, scores itself against an exit threshold (>=90% proceed, 70-89% document gaps, <70% iterate), and persists its findings to `.codex/apex/docs/elicit-{task-slug}.json` so a later pass can diff against prior verdicts instead of restarting.
 </objective>
@@ -17,38 +17,9 @@ Enable expert agents to **self-review and self-correct** their code before exter
 
 ---
 
-## 3 Execution Modes
+## Execution Mode
 
-### Mode 1: MANUAL (default)
-```
-Expert presents 5 relevant techniques → User chooses → Expert applies
-```
-
-### Mode 2: AUTO (--auto)
-```
-Expert auto-detects code type → Auto-selects techniques → Applies silently
-```
-
-### Mode 3: SKIP (--skip)
-```
-Skip elicitation → Go directly to sniper validation
-```
-
----
-
-## Quick Start
-
-**After Execute phase, expert runs:**
-```bash
-# Manual mode (default)
-> Apply elicitation skill
-
-# Auto mode (no prompts)
-> Apply elicitation skill --auto
-
-# Skip self-review
-> Apply elicitation skill --skip
-```
+After Execute, run this skill in `--auto` mode. Detect the artifact type, select at least one named technique, apply it without asking the user to choose, and record its evidence. Any legacy reference that describes manual or skip behavior is superseded by this top-level contract inside APEX.
 
 ---
 
@@ -63,7 +34,7 @@ Skip elicitation → Go directly to sniper validation
 │  Step 2: Select         → Choose techniques (or auto)  │
 │  Step 3: Apply Review   → Execute techniques           │
 │  Step 4: Self-Correct   → Fix own issues               │
-│  Step 5: Report         → Summary before sniper        │
+│  Step 5: Report         → Artifact before challenger   │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -108,11 +79,7 @@ Full catalog: `references/techniques-catalog.md`
 ## Integration with APEX
 
 ```
-A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
-                       │          │           │
-                       ▼          ▼           ▼
-                    Expert    Expert       sniper
-                     code    self-review   (final)
+Analyze → Plan → Execute → [eLicit] → challenger → Verify → challenger → eXamine
 ```
 
 **Benefits:**
@@ -129,6 +96,8 @@ A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
 - ❌ Self-correct without documenting changes
 - ❌ Report without listing applied techniques
 - ❌ Use techniques outside expertise domain
+- ❌ Ask the user to select a technique during APEX
+- ❌ Honor any flag or legacy reference that skips eLicit, Verify, challenger, or sniper
 
 ---
 
@@ -138,19 +107,17 @@ A-nalyze → P-lan → E-xecute → [ELICIT] → X-amine
 
 | Score | Status | Action |
 |-------|--------|--------|
-| ≥ 90% | 🟢 | Proceed to sniper |
-| 70-89% | 🟡 | Document gaps, then proceed |
-| < 70% | 🔴 | Iterate before sniper |
+| ≥ 90% | 🟢 | Persist evidence, then proceed to challenger |
+| 70-89% | 🟡 | Document and escalate gaps, then proceed to challenger |
+| < 70% | 🔴 | Iterate and refresh evidence before challenger |
 
-**Self-correction failure**: If a self-correction breaks the code → revert that correction and keep the finding as a report item instead.
+**Self-correction failure**: If a self-correction breaks the code, safely restore only that correction, retain the finding, and escalate it. Never use destructive Git or disturb unrelated work.
 
 ---
 
 ## Artifact Contract
 
-Step 5 persists `.codex/apex/docs/elicit-{task-slug}.json` so a later pass
-diffs against prior verdicts instead of restarting from scratch. Full
-contract, `{task-slug}` derivation, and JSON schema: `references/artifact-contract.md`.
+Step 5 persists `.codex/apex/docs/elicit-{task-slug}.json`. The report records inputs, named techniques, findings, corrections, evidence, unresolved items, escalation, and status. Reuse a prior artifact only when its input revision and task scope match the current frozen artifacts; otherwise refresh it. Then send the claim and evidence only to challenger. Verify starts after the challenger report. Full schema: `references/artifact-contract.md`.
 
 ---
 

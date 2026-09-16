@@ -78,7 +78,7 @@ pnpm build
 
 ```text
 Verify:
-[ ] All files <100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] No interfaces in component files
 [ ] Correct directory structure
@@ -264,7 +264,7 @@ Red flags:
 - Build time: 12s
 
 ### File Checks
-- All files <100 lines: PASS
+- All files within `FUSE_SOLID_MAX_LINES` (default 200) lines: PASS
 - Interfaces location: PASS
 - JSDoc coverage: PASS
 
@@ -282,7 +282,7 @@ Red flags:
 [ ] tsc --noEmit passes
 [ ] eslint passes
 [ ] build succeeds
-[ ] All files <100 lines verified
+[ ] All files within `FUSE_SOLID_MAX_LINES` (default 200) lines verified
 [ ] No hydration warnings
 [ ] Bundle size acceptable
 ```

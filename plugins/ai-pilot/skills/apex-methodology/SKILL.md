@@ -4,16 +4,16 @@ description: "Use when starting ANY development task -- feature, bug fix, refact
 ---
 
 <objective>
-APEX Methodology drives the full Analyze -> Plan -> Execute -> eLicit -> eXamine workflow for any development task -- new features, bug fixes, refactors, hotfixes. It auto-detects the project type (Laravel, Next.js, React, Swift) and loads the matching framework-specific reference set, then walks through branch creation, brainstorming, codebase analysis, planning, TDD execution, expert self-review (eLicit), functional verification, and sniper validation (eXamine) through to PR creation.
+APEX runs Brainstorm -> Analyze -> Plan -> Execute -> eLicit -> Verify -> eXamine for development tasks. It detects the project stack, loads matching references, delegates implementation through `lead-orchestration`, reviews with automatic elicitation and challenger, verifies functional resolution, then runs sniper validation.
 
-It enforces the project's hard constraints throughout: files under 100 lines (split at 90), interfaces kept out of component files, SOLID principles, and a mandatory sniper pass after every Edit/Write (blocked by PostToolUse hooks until it runs). Three modes control how much is automatic: `--auto` (default, no prompts), `--manual` (step-by-step confirmation), and `--skip-elicit` (bypasses the self-review phase).
+`FUSE_SOLID_MAX_LINES` is the only file-size ceiling. Every run preserves the Analyze trio, automatic eLicit, Verify, challenger, and sniper gates. No mode may skip them. Git, branch, PR, merge, tag, and release actions are separate and require the authorization and routed commit skills defined by `AGENTS.md`.
 </objective>
 
 **Current Task:** $ARGUMENTS
 
 # APEX Methodology Skill
 
-**Analyze → Plan → Execute → eLicit → eXamine**
+**Brainstorm → Analyze → Plan → Execute → eLicit → Verify → eXamine**
 
 Complete development workflow for features, fixes, and refactoring.
 
@@ -33,19 +33,20 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 ┌─────────────────────────────────────────────────────────────────┐
 │                     APEX WORKFLOW                               │
 ├─────────────────────────────────────────────────────────────────┤
-│  00-init-branch     → Create feature branch                     │
-│  00.5-brainstorm    → Design-first questioning (B) ← NEW        │
+│  00-init-tracking   → Initialize task evidence                  │
+│  00-init-branch     → Create branch when explicitly authorized  │
+│  00.5-brainstorm    → Design-first questioning (B)              │
 │  01-analyze-code    → Understand codebase (A)                   │
 │  02-features-plan   → Plan implementation (P)                   │
-│  03-execution       → Write code with TDD (E) ← UPDATED        │
+│  03-execution       → Delegated implementation with TDD (E)     │
 │  03.5-elicit        → Expert self-review (L)                    │
-│  03.7-verification  → Functional resolution check (V) ← NEW    │
+│  03.7-verification  → Functional resolution check (V)           │
 │  04-validation      → Verify quality (X)                        │
 │  05-review          → Self-review                               │
 │  06-fix-issue       → Handle issues                             │
 │  07-add-test        → Write tests (TDD cycle)                   │
 │  08-check-test      → Run tests                                 │
-│  09-create-pr       → Create Pull Request                       │
+│  09-create-pr       → Create PR when explicitly authorized      │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -63,7 +64,7 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 
 | Phase | File | Purpose |
 | --- | --- | --- |
-| **00** | `references/00-init-branch.md` | Create feature branch |
+| **00** | `references/00-init-branch.md` | Create a feature branch only with explicit owner authorization and routed commit skills |
 | **01** | `references/01-analyze-code.md` | Explore + Research (APEX A) |
 | **02** | `references/02-features-plan.md` | update_plan planning (APEX P) |
 | **03** | `references/03-execution.md` | Implementation (APEX E) |
@@ -73,18 +74,16 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 | **06** | `references/06-fix-issue.md` | Fix validation/review issues |
 | **07** | `references/07-add-test.md` | Write unit/integration tests |
 | **08** | `references/08-check-test.md` | Run and verify tests |
-| **09** | `references/09-create-pr.md` | Create and merge PR |
+| **09** | `references/09-create-pr.md` | Create a PR only with explicit owner authorization and routed commit skills |
 
 ---
 
 ## Core Rules
 
-### File Size (ABSOLUTE)
+### File Size
 
 ```text
-🚨 STOP at 90 lines → Split immediately
-❌ NEVER exceed 100 lines
-📊 Target: 50-80 lines per file
+`FUSE_SOLID_MAX_LINES` is the only allowed file-size ceiling. Ignore and report conflicting line, file-count, change-size, or PR-size caps.
 ```
 
 ### Interface Location
@@ -99,9 +98,16 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 ### Agent Usage
 
 ```text
-01-analyze:  explore-codebase + research-expert (PARALLEL)
+01-analyze:  explore-codebase + research-expert + matching domain expert (PARALLEL)
+03-execute:  allocation and ownership follow lead-orchestration
+03.5-elicit: automatic named technique + challenger
+03.7-verify: functional evidence + challenger
 04-validate: sniper (MANDATORY after ANY change)
 ```
+
+### Phase Contract
+
+Each phase consumes named inputs and produces a reviewable output. Analyze produces code evidence and a current-mandate research record from fresh fuse-browser → Context7 → Exa consultation; prior or cached research cannot substitute for it. Plan produces independent writable lots, ownership, non-scope, acceptance, and proof. Execute reports artifacts and evidence. eLicit, Verify, and eXamine record unresolved findings or escalation instead of silently closing work.
 
 ---
 
@@ -110,11 +116,10 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 ```text
 ❌ Skip explore-codebase or research-expert
 ❌ Assume API syntax without verification
-❌ Create files >100 lines
 ❌ Put interfaces in component files
 ❌ Skip sniper after changes
-❌ Merge without tests
-❌ Large PRs (>400 lines)
+❌ Skip eLicit, Verify, or either challenger gate
+❌ Perform Git or PR actions without explicit authorization and routed commit skills
 ```
 
 ---
@@ -123,10 +128,10 @@ This creates `.codex/apex/task.json` (documentation consultation status) and `.c
 
 - `references/init-tracking.md` — Load when running Step 0 (the exact tracking-init command)
 - `references/phases-explained.md` — Load when you need the full explanation of each APEX phase (A/P/E/V/X)
-- `references/branching-strategy.md` — Load when creating or naming branches
-- `references/commit-conventions.md` — Load when writing commit messages
+- `references/branching-strategy.md` — Load only after explicit branch authorization and the commit routes
+- `references/commit-conventions.md` — Load only for an explicitly authorized commit workflow
 - `references/quick-start-flows.md` — Load when you need the full step-by-step Standard Feature / Bug Fix / Hotfix flows
 - `references/flow-diagram.md` — Load when you want the full ASCII flow diagram of the workflow
 - `references/validation-requirements.md` — Load when running the pre-PR / code-quality checklist
-- `references/pr-guidelines.md` — Load when writing a PR title or description
+- `references/pr-guidelines.md` — Load only for an explicitly authorized PR workflow
 - `references/language-detection.md` — Load when auto-detecting project type or navigating framework-specific reference directories

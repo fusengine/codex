@@ -5,7 +5,7 @@ description: "Coordinate lead delegation safely. Use before any lead delegation,
 
 # Lead Orchestration
 
-Coordinate executors without overlapping ownership, stale writers, redundant permission prompts, or unverified handoffs. This skill governs the lead; a spawned executor performs its bounded mandate directly and does not create another delegation tree unless explicitly assigned that responsibility.
+Coordinate executors without overlapping ownership, stale writers, redundant permission prompts, or unverified handoffs. This is the canonical source for delegation procedure. The lead retains responsibility for the requested outcome after delegation; executors own bounded deliverables, not convergence of the whole request. A spawned executor performs its mandate directly and does not create another delegation tree unless explicitly assigned that responsibility. An executor starts from the lead's Analyze evidence (explore-codebase, research-expert, domain expert) and does not re-run it by reflex; when it doubts that evidence — missing, stale past the freshness window, or contradicted by the disk or by the docs it reads — it launches explore-codebase and/or research-expert itself, states in its report what it verified and why, and never treats an unverified claim as fact. What it never launches: challenger and sniper (lead-owned gates), or a full delegation tree of its own. Targeted explore/research on doubt is not delegation.
 
 ## 1. Apply authority and precedence
 
@@ -19,14 +19,14 @@ Coordinate executors without overlapping ownership, stale writers, redundant per
 - Every task runs the routed APEX workflow in full; there is no scope ladder and no "too small to delegate" case.
 - Analyze always starts the trio in one parallel message: `explore-codebase` for code analysis, `research-expert` for web or documentation research, and the matching domain expert.
 - A research or exploration agent whose final report is empty or truncated is relaunched immediately with the same brief; an empty report is never accepted as "nothing found" (Terra tier, codex#32389).
-- Any code change is executed by at least three domain experts matching the project stack, on disjoint file lots — the same specialty runs as separate instances when the stack yields only one matching expert type; never fill the remaining slots with a generic agent. They communicate with each other by message, and each receives a self-contained brief with a generated PRD of tasks.
-- The coordinator alone writes two PRD layers before spawning. The router `<project>/.codex/apex/prd.json` holds one key per task pointing at its task PRD: `{ "task-1": { "prd": "prd/task-1-prd.json", "status": "assigned" } }`. For each task, the coordinator alone writes the task PRD `<project>/.codex/apex/prd/<task>-prd.json`: one sub-key per assigned agent (never a single agent per task) holding its target files and its sub-tasks, each sub-task's status set by the coordinator, `assigned` moving to `validated` only after the coordinator checks every task against the disk.
+- Any code change is executed by at least three domain experts matching the project stack, on disjoint file lots — the same specialty runs as separate instances when the stack yields only one matching expert type; never fill the remaining slots with a generic agent. Derive those writers from the dependency graph: assign one matching domain executor to each genuinely independent writable lot, with at least one executor for every modification. Keep coupled files with one writer; never invent extra write lots to meet a headcount.
+- The coordinator alone writes two PRD layers before spawning. The router `<project>/.codex/apex/prd.json` holds one key per task pointing at its task PRD: `{ "task-1": { "prd": "prd/task-1-prd.json", "status": "assigned" } }`. For each task, the coordinator alone writes the task PRD `<project>/.codex/apex/prd/<task>-prd.json`: one sub-key per assigned executor holding its target files and sub-tasks, with `assigned` moving to `validated` only after the coordinator checks the result against the disk.
 - Each agent reports only in its own file `<project>/.codex/apex/prd/agents/<agent>-prd.json`, keyed by task name, then by the sub-task keys the task PRD assigns to that agent, and ticks each finished sub-task `done` with the files it modified and the files left unchanged; it never writes `prd.json`, a task PRD, or another agent's report file, so no write can overwrite another.
-- The coordinator reads every agent report, checks every task against the disk, marks each verified sub-task `validated` in the task PRD, and rolls the task's status up into the router. Every agent may read the router, every task PRD, and every agent report at any time to know exactly what is done, in progress, or untouched — that shared read is the collaboration channel alongside messages; only the owner of each file writes it. As a task closes, the coordinator compacts its task PRD: each validated agent's entry collapses to one line (agent, files, validated-at) — never merging multiple agents of the same task into a single line — and collapses the router's line for that task, so every file stays small and every later reader sees the current state without the history.
+- The coordinator reads every agent report, checks every task against the disk, marks each verified sub-task `validated` in the task PRD, and rolls the task's status up into the router. Every agent may read the router, every task PRD, and every agent report at any time to know exactly what is done, in progress, or untouched — that shared read is the collaboration channel alongside messages; only the owner of each file writes it. As a task closes, the coordinator compacts its task PRD: each validated agent's entry collapses to one line (agent, files, validated-at) — never merging multiple agents of the same task into a single line — and collapses the router's line for that task, so every file stays small and every later reader sees the current state without the history. The coordinator rolls the router up at every `validated` mark and keeps `task.json` `current_task` in step — never at session end; a router that lags the task PRDs is a defect. A model or effort tier of any agent TOML changes only on an owner decision quoted, with its date, in the task PRD entry that touches the file; a tier change without that citation is refused at Verify.
 - When a change touches fewer files than experts, split the work by concern (implementation, tests, verification or docs) so every expert still owns a disjoint lot; exclusive ownership (§3) always prevails, and two writers on one file are never allowed.
 - Every executor is told in its brief that its deliverable is challenged by the challenger and validated by sniper before acceptance; a self-declared "done" is never accepted.
 - Use parallel agents only for independent batches with disjoint ownership. Do not parallelize dependent work.
-- A team is for genuinely independent batches. When the user explicitly asks for a team, start one immediately; a team means at least four agents when capacity permits.
+- A team is for genuinely independent batches; a team means at least four agents when capacity permits. When the user explicitly asks for a team, start one immediately and size it to the independent lots and available capacity.
 - Select the matching domain expert whenever one exists. Never substitute a generic agent for an available domain expert.
 
 <example>
@@ -58,25 +58,34 @@ Before assigning any folder:
 
 Put the owner-corrections block first. Copy every owner correction verbatim into every current and future mandate, including respawns.
 
-Include:
+Include every field below. A missing field makes the mandate incomplete:
 
-- objective and verified context;
-- exclusive files or folders and explicit non-ownership boundaries;
+- **Inputs:** owner request and corrections, verified local context, dependencies, and a current-mandate research record with newly consulted sources, versions, and captured-at time;
+- **Expected outputs:** observable deliverables and required report artifacts;
+- **Scope and ownership:** exclusive writable files or folders, read-only dependencies, and explicit non-scope;
 - instruction to start from current on-disk state, preserve unrelated edits, and never revert another contributor;
-- acceptance criteria and forbidden actions;
-- exact proof commands;
-- expected report: changed files, evidence, failures, residual risks, and one Exit Contract outcome.
+- instruction that a re-dispatched already-delivered mandate must be verified against the current disk and reported with its existing evidence, then refused without duplicate execution; a materially new or corrected mandate remains legitimate new work and must proceed;
+- **Acceptance:** criteria tied to the original request and forbidden actions;
+- **Evidence:** exact proof commands or artifact checks;
+- **Escalation:** conditions that require Retry, Ask, Rollback, or Escalate;
+- **Report:** inputs used, outputs produced, changed and unchanged files, evidence, failures, residual risks, and exactly one Exit Contract outcome.
+
+Consult documentation afresh for every mandate through fuse-browser, Context7, and Exa. Prior or cached research may identify questions and sources, but it never satisfies the current mandate's research requirement. Share the resulting current-mandate research record with executors so they can use the same findings during that mandate without repeating consultation in every phase.
 
 <example>
 OWNER CORRECTIONS (verbatim):
 - "<exact correction>"
 
 Objective: <bounded result>
+Inputs: <request, corrections, local context, current-mandate research record>
+Expected outputs: <observable deliverables>
 Exclusive ownership: <paths>
-Do not touch: <paths or systems>
+Read-only dependencies: <paths>
+Non-scope: <paths, systems, or behavior>
 Acceptance: <observable criteria>
-Proof: <commands or artifact checks>
-Report: <files, results, risks, Exit Contract outcome>
+Evidence: <commands or artifact checks>
+Escalation: <conditions and destination>
+Report: <inputs, outputs, files, evidence, failures, risks, one Exit outcome>
 </example>
 
 ## 6. Manage active agents
@@ -84,6 +93,7 @@ Report: <files, results, risks, Exit Contract outcome>
 - A message does not stop an agent; it only enters its mailbox. Use `interrupt_agent` or TaskStop, then confirm target mtimes are stable before treating the writer as stopped.
 - Never assign a second writer to an owned folder. If a collision occurs, name one owner and instruct it to continue from the current on-disk state while preserving both contributions.
 - Verify the artifact on disk after every report. A report or idle notification is not proof of delivery.
+- Compare every report with the original request, absorb owner corrections into all active mandates, and keep unresolved parts assigned. Delegation never transfers outcome responsibility away from the lead.
 - Do not run final validation while writers are active. A delta sent after spawn is unapplied until the writer explicitly confirms it was integrated.
 - Never report "still waiting" twice. On the next turn, make a decision: verify, interrupt and relaunch, reroute, or escalate.
 - After two failed delegations on a localized, measured defect, reroute to another qualified executor with a new hypothesis or escalate. The lead still does not edit it.
@@ -91,7 +101,7 @@ Report: <files, results, risks, Exit Contract outcome>
 ## 7. Converge before validation
 
 1. Wait for every writer to report and explicitly confirm that all queued deltas are integrated.
-2. Verify each deliverable on disk against its named acceptance criteria.
+2. Verify each deliverable on disk against its named acceptance criteria and enumerate every part of the original request; an omitted part remains open.
 3. Stop or close every writer before the final sniper pass, then confirm relevant mtimes remain stable.
 4. Run no validation mid-flight. Hand off to the eLicit, Verify, challenge, and code-quality routes required by `AGENTS.md` only after execution is frozen.
 
@@ -110,6 +120,7 @@ Never reopen a settled instruction as Ask. Never produce two consecutive Ask out
 ## Forbidden
 
 - Never let the lead execute task work after a delegated failure.
+- Never treat delegation, an executor report, or idle state as completion of the owner's outcome.
 - Never overlap folder ownership or validate a moving worktree.
 - Never treat a mailbox message, idle state, recent mtime, or agent assertion as proof.
 - Never omit owner corrections from a respawn or future mandate.

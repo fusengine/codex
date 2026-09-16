@@ -11,11 +11,14 @@ related: solid-validation.md, architecture-patterns.md
 
 ## Limits
 
-| Metric | Limit | Action |
-|--------|-------|--------|
-| **LoC** (code only) | < 100 | ✅ OK |
-| **LoC** >= 100, **Total** < 200 | | ✅ OK (well-documented) |
-| **Total** >= 200 | | ❌ SPLIT required |
+`FUSE_SOLID_MAX_LINES` is the only file-size ceiling. Use its positive integer value when set; otherwise use the default of 200 total lines.
+
+| Measurement | Result | Action |
+|-------------|--------|--------|
+| **Total lines** <= effective `FUSE_SOLID_MAX_LINES` | Within the file-size ceiling | Validate responsibilities normally |
+| **Total lines** > effective `FUSE_SOLID_MAX_LINES` | Above the file-size ceiling | Split by responsibility until every resulting file complies |
+
+Do not introduce a separate code-only, comment, blank-line, file-count, or change-size limit.
 
 ## LoC Calculation
 
@@ -30,13 +33,17 @@ Comment patterns:
 - Rust: //, /* */, ///
 ```
 
+Code-only LoC can describe code density, but it is diagnostic only. Comments and blank lines remain part of the total-line comparison against `FUSE_SOLID_MAX_LINES`; the calculation above never creates another pass/fail threshold.
+
 ## Split Strategy
 
 ```
-component.tsx (150 lines) → SPLIT INTO:
-├── Component.tsx (40 lines) - orchestrator
-├── ComponentHeader.tsx (30 lines)
-├── ComponentContent.tsx (35 lines)
-├── useComponentLogic.ts (45 lines) - hook
-└── index.ts (5 lines) - barrel export
+component.tsx exceeds the configured ceiling and mixes responsibilities
+├── Component.tsx - composition and orchestration
+├── ComponentHeader.tsx - header rendering
+├── ComponentContent.tsx - content rendering
+├── useComponentLogic.ts - state and behavior
+└── index.ts - public exports
 ```
+
+Split only along real responsibility boundaries. File length identifies when a split is required; it does not justify arbitrary fragments or speculative abstractions.

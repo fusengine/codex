@@ -26,7 +26,7 @@ next_step: null
 [ ] Pint passes (no style issues)
 [ ] All Pest tests pass
 [ ] Coverage > 80%
-[ ] All files < 100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 [ ] Self-review completed
 ```
 
@@ -183,7 +183,7 @@ Architecture:
 [ ] SOLID principles followed
 [ ] Interfaces in Contracts/
 [ ] Services handle business logic
-[ ] Files < 100 lines
+[ ] Files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 
 Security:
 [ ] Input validated via FormRequest

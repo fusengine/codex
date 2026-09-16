@@ -262,7 +262,7 @@ Server Actions:
 
 Structure:
 [ ] SOLID principles followed
-[ ] Files <100 lines
+[ ] Files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 [ ] Interfaces separated
 
 Quality:

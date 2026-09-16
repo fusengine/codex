@@ -1,6 +1,6 @@
 ---
 description: APEX Methodology - The systematic Analyze-Plan-Execute-eLicit-eXamine approach for intelligent development. Eliminates hallucinations, errors, and bugs to produce clean, maintainable code.
-argument-hint: "[--auto] [--skip-elicit] <task description>"
+argument-hint: "[--auto] <task description>" # --skip-elicit is a legacy flag, IGNORED (I3: eLicit is always automatic, never skippable)
 ---
 
 # APEX: Analyze-Plan-Execute-eLicit-eXamine
@@ -16,10 +16,8 @@ Execute the comprehensive APEX methodology for professional-grade development.
 > Use explore-codebase to understand relevant parts of the system
 
 **Goals**:
-- Identify where changes need to be made
-- Understand existing patterns and conventions
-- Map dependencies and impacts
-- Locate relevant tests
+- Identify where changes need to be made; understand existing patterns and conventions
+- Map dependencies and impacts; locate relevant tests
 
 **Deliverable**: Exploration summary with affected components
 
@@ -30,10 +28,8 @@ Execute the comprehensive APEX methodology for professional-grade development.
 > Use research-expert to validate approach against best practices
 
 **Goals**:
-- Design solution following project patterns
-- Identify edge cases and error handling
-- Plan test strategy
-- Estimate impact and complexity
+- Design solution following project patterns; identify edge cases and error handling
+- Plan test strategy; estimate impact and complexity
 
 **Deliverable**: Implementation plan with step-by-step approach
 
@@ -67,7 +63,7 @@ Implement the solution:
 **Quality Standards**:
 - SOLID principles without exception
 - DRY, KISS, YAGNI
-- Max 100 lines per file
+- Max `FUSE_SOLID_MAX_LINES` (default 200) lines per file
 - Separate types/interfaces
 - Security validation (OWASP Top 10)
 
@@ -78,9 +74,10 @@ Implement the solution:
 > Expert agent self-reviews and self-corrects before sniper validation
 
 **Modes**:
-- `--auto`: Auto-select techniques based on code type (default)
-- `--manual`: Present 5 techniques, user chooses
-- `--skip-elicit`: Skip directly to eXamine
+eLicit is always automatic — no manual or skip mode exists (I3, `lead-orchestration/SKILL.md` §2; `elicitation/SKILL.md`).
+- `--auto`: Auto-select techniques based on code type (default, and the only live path)
+- `--manual`: legacy flag, IGNORED — superseded by `--auto`
+- `--skip-elicit`: legacy flag, IGNORED — eLicit never skips to eXamine
 
 **Workflow**:
 ```

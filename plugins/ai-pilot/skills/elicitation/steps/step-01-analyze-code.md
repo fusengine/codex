@@ -19,7 +19,7 @@ next_step: steps/step-02-select-techniques.md
 ## Context Boundaries
 
 **Input from Step 0:**
-- `{elicit_mode}`: manual | auto
+- `{elicit_mode}`: always `"auto"` (manual/skip are legacy, superseded, I3)
 - `{code_files}`: list of files to analyze
 - `{code_type}`: initial detection
 - `{expert_agent}`: coding expert
@@ -109,4 +109,4 @@ Config/Docs/Plugin → CQ-01, DOC-01, INT-01 + strictest-parser validation
 
 ## Next Step
 
-→ `step-02-select-techniques.md`: Choose specific techniques (manual) or auto-select
+→ `step-02-select-techniques.md`: Auto-select specific techniques (always — manual is legacy, superseded, I3)
