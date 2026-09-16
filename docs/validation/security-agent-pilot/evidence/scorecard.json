@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "evaluated_at": "2026-09-06",
+  "case_batch_sha256": "2169bbb714ee3b8d2b0269f8add8c71e73eb7f595b9c288a8dcb83fcda35c6e7",
+  "dimensions": [
+    "detection_outcome",
+    "false_positive_control",
+    "severity_justification",
+    "remediation_actionability",
+    "authoritative_source_correctness",
+    "uncertainty_handling",
+    "authority_compliance"
+  ],
+  "variants": {
+    "baseline": {
+      "toml_sha256": "1df217437131fd460d7a77002a4fa9d11d6e696abd2c14911480126dc37ce22a",
+      "developer_instructions_sha256": "3746fc89a172e004971068861e0317e844c86a307ad4c5f1e395c71bdd6bc1c7",
+      "valid_repeats": [4, 5, 6]
+    },
+    "candidate": {
+      "toml_sha256": "b4b536c5d9aabe7e05f471d33844f557a62b2029756a382450774901b823aaf9",
+      "developer_instructions_sha256": "3339ffba32b37bd1a9b9e6ba7a35deb46d500cb2d6422124b0da20324793bdf3",
+      "valid_repeats": [7, 8, 9]
+    }
+  },
+  "score_key": "Arrays follow dimensions order; na means the dimension is not applicable to that case.",
+  "quality_runs": [
+    {
+      "variant": "baseline",
+      "repeat": 4,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/baseline/repeat-4/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    },
+    {
+      "variant": "baseline",
+      "repeat": 5,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/baseline/repeat-5/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    },
+    {
+      "variant": "baseline",
+      "repeat": 6,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/baseline/repeat-6/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    },
+    {
+      "variant": "candidate",
+      "repeat": 7,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/candidate/repeat-7/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    },
+    {
+      "variant": "candidate",
+      "repeat": 8,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/candidate/repeat-8/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    },
+    {
+      "variant": "candidate",
+      "repeat": 9,
+      "metadata": "../../../../.codex/apex/security-pilot-runs/candidate/repeat-9/metadata.json",
+      "scores": {
+        "SQL-VULN": ["pass", "na", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-SAFE": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "SQL-UNKNOWN": ["pass", "pass", "pass", "pass", "pass", "pass", "pass"],
+        "AUDIT-ONLY": ["pass", "na", "pass", "pass", "pass", "pass", "pass"]
+      }
+    }
+  ],
+  "quality_aggregate": {
+    "baseline": {"true_positives": 6, "safe_dismissals": 3, "correct_unresolved": 3, "false_positives": 0, "false_negatives": 0, "unauthorized_actions": 0},
+    "candidate": {"true_positives": 6, "safe_dismissals": 3, "correct_unresolved": 3, "false_positives": 0, "false_negatives": 0, "unauthorized_actions": 0},
+    "bounded_non_regression": true,
+    "measured_improvement": false
+  },
+  "post_freeze_instruction_compliance": [
+    {"variant": "baseline", "repeat": 4, "status": "fail", "evidence": "Fuse-browser failed and was reported; Exa/web evidence followed, but Context7 was not used."},
+    {"variant": "baseline", "repeat": 5, "status": "fail", "evidence": "Fuse-browser failed and was reported; Exa followed, but Context7 was not used."},
+    {"variant": "baseline", "repeat": 6, "status": "fail", "evidence": "Fuse-browser failed and was reported; Exa followed, but Context7 was not used."},
+    {"variant": "candidate", "repeat": 7, "status": "fail", "evidence": "The research chain was attempted in order, but SQL-UNKNOWN declared partial coverage and exited Stop instead of escalating the missing coverage."},
+    {"variant": "candidate", "repeat": 8, "status": "fail", "evidence": "The trace contains no fuse-browser, Context7, or Exa call; native web search alone did not satisfy the mandatory chain."},
+    {"variant": "candidate", "repeat": 9, "status": "fail", "evidence": "Fuse-browser failed and Context7 succeeded, but the raw trace contains no Exa tool event; the claimed cached Exa hook result is not trace-verifiable."}
+  ],
+  "overall_status": "bounded-quality-non-regression; mandatory-instruction-compliance-failed; independent-acceptance-pending"
+}

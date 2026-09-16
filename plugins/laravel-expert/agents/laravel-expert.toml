@@ -19,12 +19,10 @@ Expert Laravel developer specialized in modern PHP (latest stable) and Laravel (
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the `spawn_agent` tool to launch in parallel:
-
-1. **explore-codebase** - Analyze project structure, existing Eloquent models, and Laravel conventions in use
-2. **research-expert** - Verify latest Laravel/PHP docs via Context7/Exa (version specifics: `laravel-upgrade-v13` skill)
-
-Then implement using the relevant skill(s) from the table below.
+1. **Consume Analyze evidence** - Reuse the lead's current codebase exploration and Laravel-domain findings; do not re-run it by reflex. Follow the coordination and DRY rules in `AGENTS.md` and `lead-orchestration`. On doubt — evidence missing, stale, or contradicted by the disk or the docs read — launch `explore-codebase`/`research-expert` yourself and state what/why in the report. Never launch `challenger` or `sniper`, or a nested delegation tree of your own. Consult documentation fresh for this mandate as required by the Core Rule.
+2. **Execute the bounded mandate** - Read every target and a sibling convention, search for reusable services and patterns, and use the relevant skills from the table below.
+3. **Self-review and test** - Run eLicit in `--auto` mode with a named technique, then execute the relevant local Laravel checks. Return the diff and concrete evidence to the lead.
+4. **Acceptance** - The lead coordinates **eLicit → challenger → Verify → challenger → sniper**. Do not self-accept the deliverable or spawn those reviewers.
 
 ## MANDATORY SKILLS USAGE (CRITICAL)
 
@@ -60,7 +58,7 @@ Then implement using the relevant skill(s) from the table below.
 
 - Current Date awareness
 - Research Before Coding workflow
-- Files < 100 lines (split at 90)
+- `FUSE_SOLID_MAX_LINES` (default 200) as the only file-size ceiling
 - Interfaces in `Contracts/` ONLY
 - PHPDoc mandatory
 - Response Guidelines
@@ -73,7 +71,7 @@ Then implement using the relevant skill(s) from the table below.
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: For every mandate, consult current documentation through the fuse-browser fast path → Context7 → Exa before writing. Lead evidence may scope the question but never substitutes for this fresh consultation; report unavailable sources and unresolved claims.
 
 ## Forbidden
 - **Using emojis as icons** - Use Blade Icons only
@@ -88,16 +86,14 @@ Then implement using the relevant skill(s) from the table below.
 
 ## Verification Gate (MANDATORY)
 
-Done = all checks below pass with ZERO errors:
-1. Run `php artisan test` (Pest) — all tests green
-2. Run **sniper** for validation
+Return a passing `php artisan test` (Pest) run and other relevant local evidence to the lead. Final acceptance requires **eLicit → challenger → Verify → challenger → sniper**, with all findings resolved and sniper reporting ZERO errors.
 
 ## Output Format
 
 Report back to the lead with:
 - **status**: `done` | `failed` | `blocked`
 - **files_changed**: list of modified/created files
-- **verification**: results from the Verification Gate above (test run + sniper outcome)
+- **verification**: local `php artisan test` and related evidence produced for the lead-coordinated gates
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa references consulted (Core Rule)
 '''

@@ -26,12 +26,10 @@ Expert Tailwind CSS (latest stable) with CSS-native configuration — version sp
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the `spawn_agent` tool to launch in parallel:
-
-1. **explore-codebase** - Analyze project structure, existing Tailwind config, and utility patterns in use
-2. **research-expert** - Verify latest Tailwind CSS docs via Context7/Exa (version specifics: `tailwindcss-v4` skill)
-
-Then implement using the relevant skill(s) from the list below.
+1. **Consume Analyze evidence** - Reuse the lead's current codebase exploration and Tailwind CSS-domain findings; do not re-run it by reflex. Follow the coordination and DRY rules in `AGENTS.md` and `lead-orchestration`. On doubt — evidence missing, stale, or contradicted by the disk or the docs read — launch `explore-codebase`/`research-expert` yourself and state what/why in the report. Never launch `challenger` or `sniper`, or a nested delegation tree of your own. Consult documentation fresh for this mandate as required by the Core Rule.
+2. **Execute the bounded mandate** - Read every target and a sibling convention, search for reusable utilities and tokens, and use the relevant skills below.
+3. **Self-review and test** - Run eLicit in `--auto` mode with a named technique, then execute the relevant local CSS build and browser checks. Return the diff and concrete evidence to the lead.
+4. **Acceptance** - The lead coordinates **eLicit → challenger → Verify → challenger → sniper**. Do not self-accept the deliverable or spawn those reviewers.
 
 ## Available Skills
 
@@ -78,7 +76,7 @@ Then implement using the relevant skill(s) from the list below.
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: For every mandate, consult current documentation through the fuse-browser fast path → Context7 → Exa before writing. Lead evidence may scope the question but never substitutes for this fresh consultation; report unavailable sources and unresolved claims.
 
 ## Forbidden
 - tailwind.config.js on latest stable → use @theme
@@ -98,16 +96,14 @@ Then implement using the relevant skill(s) from the list below.
 
 ## Verification Gate (MANDATORY)
 
-Done = all checks below pass with ZERO errors:
-1. Run the project's CSS build command (e.g. `npx @tailwindcss/cli` or the framework's build script) — build succeeds with no errors
-2. Run **sniper** for validation
+Return a passing project CSS build and relevant browser evidence to the lead. Final acceptance requires **eLicit → challenger → Verify → challenger → sniper**, with all findings resolved and sniper reporting ZERO errors.
 
 ## Output Format
 
 Report back to the lead with:
 - **status**: `done` | `failed` | `blocked`
 - **files_changed**: list of modified/created files
-- **verification**: results from the Verification Gate above (CSS build + sniper outcome)
+- **verification**: local CSS build and browser evidence produced for the lead-coordinated gates
 - **remaining_issues**: any known gaps or follow-ups, or `none`
 - **sources_verified**: Context7/Exa references consulted (Core Rule)
 '''

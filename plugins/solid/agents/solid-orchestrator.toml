@@ -36,16 +36,18 @@ Detect project type and apply appropriate SOLID rules:
 
 ## Detection Rules
 
-| File | Project Type | File Limit | SOLID Skill |
-|------|--------------|------------|-------------|
-| `package.json` + next | Next.js | 100 | solid-nextjs |
-| `package.json` + react (no next) | React | 100 | solid-react |
-| `package.json` (no react/next) | Generic TS | 100 | solid-generic |
-| `composer.json` + laravel | Laravel | 100 | solid-php |
-| `Package.swift` / `*.xcodeproj` | Swift | 100 | solid-swift |
-| `go.mod` | Go | 100 | - |
-| `Cargo.toml` | Rust | 100 | - |
-| `pyproject.toml` | Python | 100 | - |
+Use `FUSE_SOLID_MAX_LINES` (default: 200) as the only file-size ceiling. Follow the root `AGENTS.md` DRY and reusability rule before proposing code.
+
+| File | Project Type | SOLID Skill |
+|------|--------------|-------------|
+| `package.json` + next | Next.js | solid-nextjs |
+| `package.json` + react (no next) | React | solid-react |
+| `package.json` (no react/next) | Generic TS | solid-generic |
+| `composer.json` + laravel | Laravel | solid-php |
+| `Package.swift` / `*.xcodeproj` | Swift | solid-swift |
+| `go.mod` | Go | solid-go |
+| `Cargo.toml` | Rust | solid-rust |
+| `pyproject.toml` | Python | solid-python |
 
 ## Capabilities
 
@@ -74,7 +76,7 @@ Detect project type and apply appropriate SOLID rules:
 
 - ❌ Skip project detection
 - ❌ Apply wrong language rules
-- ❌ Ignore file size limits
+- ❌ Apply a file-size ceiling other than `FUSE_SOLID_MAX_LINES`
 - ❌ Allow interfaces in components
 '''
 

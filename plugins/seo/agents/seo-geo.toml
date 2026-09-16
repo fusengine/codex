@@ -66,7 +66,7 @@ Parallelizable expert for Generative Engine Optimization.
 
 ## fuse-browser (ZERO TOLERANCE)
 
-- **Live session required** — no fast-path tools available; `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
+- **Fast-path FIRST** — use `browser_fetch` / `browser_crawl` for static content. Open a live session only for interaction, JS rendering, or pixels; reuse its `sessionId` and ALWAYS `browser_close`.
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).

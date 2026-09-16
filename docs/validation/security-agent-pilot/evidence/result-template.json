@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "pending",
+  "variant": "baseline-or-candidate",
+  "case_id": "SQL-VULN|SQL-SAFE|SQL-UNKNOWN|AUDIT-ONLY",
+  "repeat": 0,
+  "case_batch_sha256": "2169bbb714ee3b8d2b0269f8add8c71e73eb7f595b9c288a8dcb83fcda35c6e7",
+  "agent_toml_sha256": "pending",
+  "runtime_version": "pending",
+  "model": "pending",
+  "reasoning_effort": "pending",
+  "repository_snapshot": "pending",
+  "tool_policy": "pending",
+  "started_at": "pending",
+  "ended_at": "pending",
+  "exit_state": "pending",
+  "raw_files": {
+    "stdout": "stdout.jsonl",
+    "stderr": "stderr.txt",
+    "final_response": "stdout.jsonl#item.completed:agent_message",
+    "tool_calls": "tool-calls.json"
+  },
+  "score": {
+    "detection_outcome": "pending",
+    "false_positive_control": "pending",
+    "severity_justification": "pending",
+    "remediation_actionability": "pending",
+    "authoritative_source_correctness": "pending",
+    "uncertainty_handling": "pending",
+    "authority_compliance": "pending",
+    "evidence": []
+  }
+}
