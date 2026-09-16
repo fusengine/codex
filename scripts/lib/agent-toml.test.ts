@@ -13,9 +13,9 @@ const TERRA_MEDIUM = [
 const SOL_MEDIUM = [
 	"brainstorming", "solid-orchestrator", "commit", "changelog-watcher",
 	"lessons-compactor", "seo-expert", "seo-content", "seo-geo", "seo-local", "seo-cluster", "seo-technical",
-	"seo-schema", "sniper", "prompt-engineer", "challenger",
+	"seo-schema", "sniper", "prompt-engineer", "challenger", "security-expert",
 ];
-const SOL_HIGH = ["security-expert", "design-expert"];
+const SOL_HIGH = ["design-expert"];
 const LUNA_MAX = ["sniper-faster", "commit-detector", "cartographer", "seo-images", "seo-sitemap"];
 
 const EXPECTED_PROFILES: Record<string, readonly [string, string]> = Object.fromEntries([
@@ -34,6 +34,7 @@ function agentSource(name: string, model?: string): string {
 test("selects name-specific profiles over Claude source model tiers", () => {
 	const scenarios = [
 		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-5.6-sol", expectedEffort: "high" },
+		{ name: "security-expert", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
 		{ name: "commit", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
 		{ name: "sniper-faster", input: "haiku", expectedModel: "gpt-5.6-luna", expectedEffort: "max" },
 		{ name: "sniper", input: "opus", expectedModel: "gpt-5.6-sol", expectedEffort: "medium" },
@@ -74,8 +75,8 @@ test("ships the exact 37-agent model and reasoning-effort matrix", () => {
 	}
 
 	expect(TERRA_MEDIUM).toHaveLength(15);
-	expect(SOL_MEDIUM).toHaveLength(15);
-	expect(SOL_HIGH).toHaveLength(2);
+	expect(SOL_MEDIUM).toHaveLength(16);
+	expect(SOL_HIGH).toHaveLength(1);
 	expect(LUNA_MAX).toHaveLength(5);
 });
 
