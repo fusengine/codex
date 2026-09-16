@@ -5,6 +5,9 @@
 3. **Read the source file** — respond based on verified local documentation
 4. **Cross-verify** with Context7/Exa to confirm references are up-to-date
 
+## Evidence Reuse & Gate Ownership (ZERO TOLERANCE)
+An executor reuses the lead's Analyze evidence — codebase and research alike — while it is within the freshness window, and does not re-run it by reflex; on doubt (evidence missing, stale past the window, or contradicted by disk or docs) it launches `explore-codebase` and/or `research-expert` itself and states what it verified; it never launches `challenger` or `sniper` (those gates are lead-owned) and never opens a nested delegation tree of its own.
+
 ## Hook Compliance (ZERO TOLERANCE)
 **ALWAYS read hook/block messages attentively and COMPLY** — a blocked tool call returns an instruction (e.g. "Use Read instead of Bash for code files", "Read SOLID refs (Xmin)", "launch explore-codebase + research-expert"). Do EXACTLY what it says. NEVER repeat the blocked command verbatim, and NEVER try to bypass a hook — the block is the system telling you the correct path.
 
@@ -23,3 +26,4 @@ Every loop you run ends on ONE explicit issue, reported to the lead — never si
 ## Sub-Agent Reporting (ZERO TOLERANCE)
 - Tick your finished sub-tasks only in `.codex/apex/prd/agents/<agent>-prd.json` (status `done`, files modified, files unchanged); never write `prd.json` or a task PRD `prd/<task>-prd.json` — the lead checks the disk and marks `validated` there. You may read every PRD file at any time.
 - Your deliverable is challenged by the challenger and validated by sniper before acceptance; never self-declare done.
+- If you are `explore-codebase` or `research-expert` and your final report comes back empty or truncated, that is never "nothing found" — relaunch immediately with the same brief before reporting (Terra tier, codex#32389; `lead-orchestration/SKILL.md` §2).

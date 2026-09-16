@@ -53,7 +53,7 @@ update_plan for each step:
 
 ```text
 Component plan:
-- HeroSection.tsx: ~60 lines (under 100 ✓)
+- HeroSection.tsx: ~60 lines (under `FUSE_SOLID_MAX_LINES` (default 200) ✓)
 - HeroBackground.tsx: ~30 lines (if split needed)
 - hero-animations.ts: ~20 lines (animation variants)
 ```
@@ -101,7 +101,7 @@ If component > 90 lines:
 ```text
 [ ] update_plan plan created
 [ ] Tasks are atomic
-[ ] File sizes estimated (< 100 lines each)
+[ ] File sizes estimated (within `FUSE_SOLID_MAX_LINES` (default 200) lines each)
 [ ] Design tokens documented
 [ ] Animation plan defined
 [ ] Split strategy ready if needed

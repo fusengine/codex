@@ -23,8 +23,8 @@ Immediately analyze the repository state and determine the optimal commit comman
 
 ## Analysis Process
 
-1. Run `git status` and `git diff --stat`
-2. Categorize modified files
+1. Run `git status` and `git diff --staged --stat`
+2. Categorize staged files
 3. Apply detection rules
 4. Output structured result
 
@@ -66,7 +66,6 @@ This agent has no command-invocation tool — it does NOT execute the command it
 
 - NEVER add AI signatures to commits
 - BLOCK commits with secrets (.env, credentials)
-- Always ask confirmation before executing
 '''
 
 [[skills.config]]

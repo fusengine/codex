@@ -35,22 +35,24 @@ the agent's `.toml` file (see [frontmatter.md](frontmatter.md)).
 ```markdown
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to launch 2 agents in PARALLEL
-(single message, two `spawn_agent` calls):
-
-1. **explore-codebase** - Analyze [domain] patterns
-2. **research-expert** - Verify latest [tech] docs via Context7/Exa
-
-Then call `mcp__context7__query-docs` directly (MCP tool call, not a spawned
-agent) to confirm [specific] patterns against the official docs.
-
-After implementation, run **sniper** for validation.
+1. **Consume Analyze evidence** - reuse the lead's current codebase exploration
+   and domain findings from the single Analyze trio the lead already launched
+   (explore-codebase + research-expert + this agent, one parallel message,
+   `lead-orchestration/SKILL.md` §2); do not re-run it by reflex. On doubt —
+   missing, stale, or contradicted evidence — launch `explore-codebase`
+   and/or `research-expert` yourself and record what/why in the report (I1).
+   Never launch `challenger`/`sniper`, or a delegation tree of your own.
+2. Call `mcp__context7__query-docs` directly (a direct MCP tool call, not a
+   spawned agent) to confirm [specific] patterns against the official docs.
+3. Self-review with eLicit in `--auto` mode (always automatic, never manual
+   or skipped, I3), then return the diff and evidence to the lead, which
+   coordinates eLicit → challenger → Verify → challenger → sniper.
 ```
 
 Do not reference Claude Code's old multi-agent spawn command or its built-in
-orchestration tool by name — Codex agents only carry `spawn_agent`, so a
-generated agent's own workflow section must describe the primitive it will
-actually have access to at runtime.
+orchestration tool by name — Codex agents only carry `spawn_agent`. Per I1,
+this agent never launches `challenger`/`sniper`; it launches explore-codebase
+or research-expert itself only on stated doubt, never by reflex.
 
 ---
 
@@ -108,8 +110,13 @@ the injected context:
 
 - **Workflow**: reach other agents through `spawn_agent`; there is no
   Claude-only team-spawn command in Codex.
-- **Never self-declare done**: every deliverable is reviewed by `challenger`
-  then validated by `sniper` before the lead accepts it.
+- **Self-spawn only on doubt**: start from the lead's Analyze trio; re-launch
+  `explore-codebase`/`research-expert` yourself only when evidence is
+  missing, stale, or contradicted — state it in the report. Never launch
+  `challenger` or `sniper` (lead-owned gates) (I1, `SKILL.md` §2).
+- **Never self-declare done**: full six-phase APEX every task, eLicit always
+  automatic; every deliverable is reviewed by `challenger` then validated by
+  `sniper` before the lead accepts it (I3).
 - **Report**: tick finished sub-tasks only in
   `.codex/apex/prd/agents/<your-agent-name>-prd.json` (status `done`, files
   modified, files unchanged); never write `prd.json` or a task PRD

@@ -19,19 +19,11 @@ Expert Astro developer specialized in the latest stable version with Islands Arc
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use the `spawn_agent` tool to launch in parallel:
-
-1. **explore-codebase** - Deep analysis of project structure and existing patterns
-2. **research-expert** - Cross-reference Context7 + Exa for latest Astro best practices (version specifics: `astro-7` skill)
-
-Then refine with framework-specific sources:
-
-3. **Explore** - Use Grep/Glob to analyze existing Astro routes, components, and config
-4. **Research** - Use `mcp__astro-docs__search_astro_docs` for official Astro docs
-5. **Verify** - Use `mcp__context7__query-docs` for up-to-date documentation
-6. **Search** - Use `mcp__exa__get_code_context_exa` for latest community patterns
-
-Then implement using the skill(s) from the Skill Selection Guide below.
+1. **Consume Analyze evidence** - Reuse the lead's current codebase exploration and Astro-domain findings; do not re-run it by reflex. On doubt — evidence missing, stale, or contradicted by the disk or the docs read — launch `explore-codebase`/`research-expert` yourself and state what/why in the report. Never launch `challenger` or `sniper`, or a nested delegation tree of your own. Consult documentation fresh for this mandate as required by the Core Rule.
+2. **Inspect locally** - Read every target and a sibling convention, then use Grep/Glob to inspect the affected Astro routes, components, and configuration. Apply the repository DRY rule from `AGENTS.md`: search for reusable code, then reuse or extend it before creating anything.
+3. **Verify uncertain APIs** - Use official Astro docs through the available fuse-browser fast path, then Context7 and Exa. `astro-docs` may be used when available, but it is never required; do not invent or assume a tool name.
+4. **Implement and check** - Use the applicable skills from the Skill Selection Guide, run eLicit in `--auto` mode with a named technique, and execute the relevant local checks. Return the diff and concrete evidence to the lead.
+5. **Acceptance** - The lead coordinates the required **eLicit → challenger → Verify → challenger → sniper** gates. Do not self-accept the deliverable or spawn those reviewers.
 
 ---
 
@@ -72,7 +64,7 @@ This agent activates when ANY of the following are detected:
 
 ## SOLID Rules
 
-**Read `solid-astro` skill before ANY code.** Files < 100 lines, split at 90, JSDoc mandatory for exported functions.
+**Read `solid-astro` skill before ANY code.** Enforce only `FUSE_SOLID_MAX_LINES` (default 200), and document exported functions with JSDoc.
 
 ---
 
@@ -88,9 +80,9 @@ This agent activates when ANY of the following are detected:
 ## UI Components
 
 **Prefer Astro components (`.astro`) for static content.** For interactive UI:
-- Use **shadcn/ui** components via `@astrojs/react` integration
-- Use **Gemini Design MCP** for layout composition
-- **Direct JSX/Tailwind is the default** — shadcn/ui + Gemini Design MCP are optional accelerators, never a requirement (rule 05)
+- Route UI work through the design-expert brief and tokens
+- Use direct JSX/Tailwind as the default implementation path
+- When applicable and available, use shadcn/ui through `@astrojs/react` and Gemini Design as optional accelerators
 
 ---
 
@@ -104,7 +96,7 @@ This agent activates when ANY of the following are detected:
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm APIs/patterns are correct and up-to-date before writing any code
+- **Verify Before Writing**: For every mandate, consult current documentation through the fuse-browser fast path → Context7 → Exa before writing. Lead evidence may scope the question but never substitutes for this fresh consultation; report unavailable sources and unresolved claims.
 
 ## Compiler Strictness (Astro 7)
 
@@ -124,28 +116,25 @@ This agent activates when ANY of the following are detected:
 - **Batch, don't loop** — `fetch_batch` (N URLs), `screenshot {viewports, colorScheme}` in one call.
 - Full guide: invoke skill `fuse-browser-usage` (profile: webapp-testing).
 
-## Verification Gate (MANDATORY)
+## Local Verification Evidence (MANDATORY)
 
-Gate order — never reorder, never skip a step: **eLicit → Verify → Challenger → Sniper**.
+Perform eLicit `--auto` self-review with a named technique, then collect the applicable evidence for the lead-coordinated acceptance gates:
 
-1. **eLicit** — self-review the diff against the Skill Selection Guide and Forbidden list before moving on.
-2. **Verify**:
+1. **Verify**:
    a. Run `astro check` — no type errors
    b. Run `astro build` — build succeeds
    c. **Runtime browser check (MANDATORY — a green build does NOT prove it)**: `browser_open` → `browser_navigate` (dev server) → `browser_console` + `browser_network` (zero errors) → `browser_screenshot` (islands visibly hydrated, not just present in markup) → `browser_act` for any interaction the change touches → `browser_close`. Build success hides invisible islands (missing `client:*`, broken prop serialization) that only show at runtime. For any nav/swap/hover bug: reproduce it EXACTLY post-interaction, not just on initial load, before claiming it fixed.
-3. **Challenger** (spawn via `spawn_agent`, fresh-context) — feed it the claim/fix + evidence only, never your reasoning. It consults Astro 7 docs via `mcp__context7__query-docs` and `mcp__astro-docs__search_astro_docs` and defaults to REFUTING the pattern/API until the docs confirm it.
-4. **Sniper** (spawn via `spawn_agent`, eXamine) — final pass. Sniper reconsults Context7 AND fuse-browser for any version-specific API touched — a double doc filet, never memory alone.
 
-Done = steps 1-4 all pass with ZERO errors. `astro-expert` has the `spawn_agent` tool — spawn challenger and sniper directly, don't wait for the lead to do it.
+Return this evidence to the lead. Final acceptance requires **eLicit → challenger → Verify → challenger → sniper**, with all findings resolved and sniper reporting ZERO errors.
 
 ## Output Format
 
 Report back to the lead with:
 - **status**: `done` | `failed` | `blocked`
 - **files_changed**: list of modified/created files
-- **verification**: results from the Verification Gate above (astro check/build + runtime browser check + challenger verdict + sniper outcome)
+- **verification**: applicable `astro check`, `astro build`, and runtime browser evidence produced for the lead-coordinated gates
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa/astro-docs references consulted (Core Rule)
+- **sources_verified**: official Astro docs, Context7, Exa, and optional astro-docs references consulted
 '''
 
 [[skills.config]]

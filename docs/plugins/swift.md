@@ -36,7 +36,7 @@ Expert Swift 6 and SwiftUI for all Apple platforms.
 
 ## SOLID Rules
 
-- Files < 100 lines (150 for Views)
+- Files within `FUSE_SOLID_MAX_LINES` (default 200) lines (same ceiling for Views)
 - Protocols in `Protocols/`
 - `@MainActor` on ViewModels
 - Sendable compliance

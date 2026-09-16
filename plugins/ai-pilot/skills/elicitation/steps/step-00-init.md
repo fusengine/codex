@@ -7,6 +7,8 @@ next_step: steps/step-01-analyze-code.md
 
 # Step 0: Initialize Elicitation
 
+Per `elicitation/SKILL.md`'s top-level contract, eLicit always runs in auto mode (I3, `lead-orchestration/SKILL.md` §2): the manual/skip branches described below are legacy and superseded — they are documented for history only and must never actually skip or hand technique choice to the user.
+
 ## MANDATORY EXECUTION RULES:
 
 - 🔴 NEVER skip this step
@@ -37,11 +39,11 @@ next_step: steps/step-01-analyze-code.md
 ### 1. Detect Execution Mode
 
 ```
-Check arguments:
+Check arguments (superseded — always resolves to "auto", I3):
 - --auto   → {elicit_mode} = "auto"
-- --manual → {elicit_mode} = "manual"
-- --skip   → {elicit_mode} = "skip"
-- (none)   → {elicit_mode} = "manual" (default)
+- --manual → {elicit_mode} = "auto" (legacy flag IGNORED, never "manual")
+- --skip   → {elicit_mode} = "auto" (legacy flag IGNORED, never "skip")
+- (none)   → {elicit_mode} = "auto" (default)
 ```
 
 ### 2. Load Execute Context
@@ -75,10 +77,11 @@ Required for next steps:
 ✓ Expert agent known
 ```
 
-### 5. Handle Skip Mode
+### 5. Handle Skip Mode (dead branch — kept for history, never fires)
 
 ```
-IF {elicit_mode} == "skip":
+{elicit_mode} can never be "skip" (see Step 1: superseded, I3) — eLicit never ends here.
+IF {elicit_mode} == "skip":  # unreachable
   → Output: "Elicitation skipped. Proceeding to sniper validation."
   → END (do not continue to step 1)
 ```

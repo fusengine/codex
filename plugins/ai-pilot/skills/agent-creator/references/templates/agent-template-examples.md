@@ -36,7 +36,7 @@ You own next.config.* / app/-directory projects specifically. Pure React/Vite wo
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to launch explore-codebase and research-expert in PARALLEL. Then call `mcp__context7__query-docs` directly. After implementation, run sniper for validation.
+Consume the lead's Analyze evidence (explore-codebase + research-expert already ran once, per `lead-orchestration/SKILL.md` §2); do not re-run it by reflex. On doubt — evidence missing, stale, or contradicted — launch `explore-codebase`/`research-expert` yourself and state what/why in the report (I1). Call `mcp__context7__query-docs` directly as needed. Self-review with eLicit `--auto` (always automatic, I3); the lead coordinates challenger then sniper — never launch those reviewers yourself or self-accept.
 
 ## UI Components (MANDATORY)
 
@@ -90,7 +90,7 @@ You own composer.json + artisan projects specifically. React/Vue, Next.js, UI de
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to launch explore-codebase and research-expert in parallel, then implement using the relevant skill(s).
+Consume the lead's Analyze evidence (explore-codebase + research-expert already ran once, per `lead-orchestration/SKILL.md` §2); do not re-run it by reflex. On doubt — evidence missing, stale, or contradicted — launch `explore-codebase`/`research-expert` yourself and state what/why in the report (I1). Implement using the relevant skill(s), then let the lead coordinate eLicit → challenger → Verify → challenger → sniper — never launch those reviewers yourself.
 
 ## Coding Standards
 

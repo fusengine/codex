@@ -63,7 +63,7 @@ this file is for the machine one.
 {
   "task_slug": "{task-slug}",
   "generated_at": "{ISO-8601 UTC}",
-  "mode": "manual|auto",
+  "mode": "auto",
   "expert_agent": "{expert_name}",
   "techniques": [
     {
@@ -98,7 +98,7 @@ Rules:
 ### Execution Summary
 | Metric | Value |
 |--------|-------|
-| **Mode** | {manual/auto} |
+| **Mode** | auto (always — I3) |
 | **Expert Agent** | {expert_name} |
 | **Techniques Applied** | {count} |
 | **Issues Found** | {count} |

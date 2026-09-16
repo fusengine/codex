@@ -24,7 +24,7 @@ next_step: references/03-execution.md
 ```text
 Use update_plan tool to create:
 1. Ordered list of implementation steps
-2. Each step <100 lines of code
+2. Each step within `FUSE_SOLID_MAX_LINES` (default 200) lines of code
 3. Clear acceptance criteria
 4. Dependencies between tasks (addBlockedBy)
 Use update_plan to track status (in_progress/completed).
@@ -62,7 +62,7 @@ Use update_plan to track status (in_progress/completed).
 | < 50 | Single file OK |
 | 50-80 | Monitor during implementation |
 | 80-100 | Plan split points NOW |
-| > 100 | MUST split before starting |
+| above `FUSE_SOLID_MAX_LINES` (default 200) | MUST split before starting |
 
 ### Split Strategy
 
@@ -144,7 +144,7 @@ tests
 ### Identify Risks
 
 ```text
-□ Complex logic requiring >100 lines?
+□ Complex logic requiring above `FUSE_SOLID_MAX_LINES` (default 200) lines?
    → Plan split NOW
 
 □ Multiple external dependencies?
@@ -203,7 +203,7 @@ tests
 
 ```text
 □ update_plan plan created
-□ All tasks <100 lines each
+□ All tasks within `FUSE_SOLID_MAX_LINES` (default 200) lines each
 □ Interfaces planned FIRST
 □ File splits pre-planned
 □ Dependencies mapped

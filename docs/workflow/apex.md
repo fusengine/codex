@@ -47,13 +47,13 @@ Implement with the relevant domain patterns:
 
 ### L - eLicit
 
-Self-review before final validation:
+Self-review before final validation. eLicit is always automatic — no manual or skip mode exists (I3, `lead-orchestration/SKILL.md` §2; `elicitation/SKILL.md`):
 
 | Mode | Flag | Description |
 |------|------|-------------|
-| Auto | `--auto` | Auto-select review techniques |
-| Manual | `--manual` | User chooses techniques |
-| Skip | `--skip-elicit` | Go directly to eXamine |
+| Auto | `--auto` | Auto-select review techniques (the only live path) |
+| Manual | `--manual` | legacy flag, IGNORED — superseded by Auto |
+| Skip | `--skip-elicit` | legacy flag, IGNORED — eLicit never skips to eXamine |
 
 ### Verify
 

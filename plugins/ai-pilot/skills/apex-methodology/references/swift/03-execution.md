@@ -33,7 +33,7 @@ struct ProfileView: View {
 #Preview { NavigationStack { ProfileView() } }
 ```
 
-## ViewModel Pattern (< 100 lines)
+## ViewModel Pattern (within `FUSE_SOLID_MAX_LINES` (default 200) lines)
 
 ```swift
 @MainActor @Observable

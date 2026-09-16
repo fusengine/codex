@@ -4,16 +4,16 @@
 
 ## Model Policy
 
-The 37-agent policy (revised 2026-09-02, following a 15-run `codex exec`
+The 37-agent policy (revised 2026-09-07, building on a 15-run `codex exec`
 0.152.1 benchmark comparing Terra medium, Terra high, Sol medium, Sol high,
 and Luna max on bounded coding tasks — see "Benchmark 2026-09-02" below)
 assigns model and effort by named role, not by the Claude source tier. The
 12 framework/language experts, plus 3 high-volume read/search agents added
 2026-09-02, now use `gpt-5.6-terra` / `medium` (15 total), the fastest and
 cheapest tier at equal measured quality on bounded, briefed executor work;
-15 other implementation, orchestration, and release specialists stay on
-`gpt-5.6-sol` / `medium`; two judgment/gate roles use `gpt-5.6-sol` /
-`high` (2); five bounded, strictly-contracted mechanical roles use
+16 other implementation, orchestration, release, and audit specialists use
+`gpt-5.6-sol` / `medium`; one judgment/gate role uses `gpt-5.6-sol` /
+`high` (1); five bounded, strictly-contracted mechanical roles use
 `gpt-5.6-luna` / `max` (5). Sol `xhigh` is retired fleet-wide as of
 2026-09-02 (0 agents).
 
@@ -25,11 +25,11 @@ The exact groups are: Terra/medium — `astro-expert`, `go-expert`,
 `brainstorming`, `solid-orchestrator`, `commit`, `changelog-watcher`,
 `lessons-compactor`, `seo-expert`, `seo-content`, `seo-geo`, `seo-local`,
 `seo-cluster`, `seo-technical`, `seo-schema`, `sniper`, `prompt-engineer`,
-`challenger` (15); Sol/high — `security-expert`, `design-expert` (2);
-Luna/max — `sniper-faster`, `commit-detector`,
-`cartographer`, `seo-images`, `seo-sitemap` (5). Totals: 17 Sol, 15 Terra,
-5 Luna. The coordinator (the owner's own Codex session) is not a shipped
-agent TOML and stays outside this policy — Sol/high, unchanged.
+`challenger`, `security-expert` (16); Sol/high — `design-expert` (1);
+Luna/max — `sniper-faster`, `commit-detector`, `cartographer`, `seo-images`,
+`seo-sitemap` (5). Totals: 17 Sol, 15 Terra, 5 Luna. The coordinator (the
+owner's own Codex session) is not a shipped agent TOML and stays outside
+this policy — Sol/high, unchanged.
 
 Rationale: Codex 0.152.0's model catalog describes Sol as the frontier
 agentic model, Terra as balanced-for-everyday-work, and Luna as fast/
@@ -39,12 +39,11 @@ The Artificial Analysis Intelligence Index (artificialanalysis.ai/models/
 gpt-5-6-luna and the Sol launch article, July 2026): Sol low 51, Sol medium
 56, Sol high 57, Sol xhigh 59, Luna max 52. Sol max is not used by any
 shipped agent and is not asserted here (published figures diverge between
-AA pages). Against the owner's 1-point
-non-regression threshold: Sol medium↔high (56→57) is the only in-threshold
-gap. Until 2026-09-02, `challenger` and `security-expert` were the two
-remaining Sol/high judgment gates. `sniper` moved to Sol/medium on
-2026-09-02 (owner decision): it validates code with tooling and tests,
-where the benchmark showed medium equal to high. `prompt-engineer` —
+AA pages). Against the owner's 1-point non-regression threshold: Sol
+medium↔high (56→57) is the only in-threshold gap. Until 2026-09-02,
+`challenger` and `security-expert` were the two remaining Sol/high judgment
+gates. `sniper` moved to Sol/medium on 2026-09-02 (owner decision): it
+validates code with tooling and tests, where the benchmark showed medium equal to high. `prompt-engineer` —
 previously a third Sol/high judgment gate — also moved to Sol/medium on
 2026-09-02 (owner decision: "il est assez intelligent"), joining the
 analysis/research/coordination roles below. Later the same day, owner
@@ -52,13 +51,19 @@ decision "seul le designer en high" moved `design-expert` from `xhigh`
 (59) to `high` (57) and `challenger`/`security-expert` from `high` to
 `medium`, retiring Sol `xhigh` fleet-wide; a same-day correction,
 "security-expert en high", reinstated `security-expert` at `high` while
-`challenger`'s move to `medium` stood. Current Sol/high (2): only
-`security-expert` and `design-expert`. `seo-technical` and `seo-schema`
-stay on Sol `medium` (56) — a move to Luna `max` (52) is a 4-point drop,
-over threshold; being a bounded, deterministic, strict-contract task is
-necessary but not sufficient for a Sol→Luna move, and the measured
-regression vetoes it. `websearch` made the opposite move instead — see
-below.
+`challenger`'s move to `medium` stood. 2026-09-07 owner request
+(`.codex/apex/task.json` task `security-local-medium`, quoted verbatim):
+"security-expert medium et il doit ce comporter comme un hacker local qui
+sert exclusivement en local a tester les securité si on le demande de le
+faire en dehors du developpement local il refusera" — moved `security-expert`
+to Sol/medium for a local-only ethical-hacker posture, superseding the
+2026-09-02 "high" decision; a same-day lead revert to `high` was itself
+reverted once this citation was found. Current Sol/high (1): `design-expert`
+only. `seo-technical` and `seo-schema` stay on Sol `medium` (56) — a move to
+Luna `max` (52) is a 4-point drop, over threshold; being a bounded,
+deterministic, strict-contract task is necessary but not sufficient for a
+Sol→Luna move, and the measured regression vetoes it. `websearch` made the
+opposite move instead — see below.
 
 The 12 framework/language experts moved from Sol medium to Terra medium on
 2026-09-02: the benchmark below found Terra medium equal to Sol medium on

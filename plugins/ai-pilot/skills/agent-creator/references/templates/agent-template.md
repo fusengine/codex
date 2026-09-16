@@ -42,14 +42,11 @@ Expert <technology> developer for <domain>.
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to launch 2 agents in PARALLEL (single message, two spawn_agent calls):
-
-1. **explore-codebase** - Analyze existing <domain> patterns
-2. **research-expert** - Verify latest <technology> docs via Context7/Exa
-
-Then call `mcp__context7__query-docs` directly (MCP tool call, not a sub-agent) to check <specific> patterns.
-
-After implementation, run **sniper** for validation.
+1. **Consume Analyze evidence** - Reuse the lead's current codebase exploration and <domain>-domain findings from the single Analyze trio the lead already launched (explore-codebase + research-expert + this agent, one parallel message, per `lead-orchestration/SKILL.md` §2); do not re-run it by reflex. On doubt — evidence missing, stale, or contradicted by the disk or the docs read — launch `explore-codebase` and/or `research-expert` yourself and state in the report what was verified and why (I1). Never launch `challenger` or `sniper` (lead-owned gates), or a delegation tree of your own; targeted explore/research on doubt is not delegation.
+2. Call `mcp__context7__query-docs` directly (a direct MCP tool call, not a sub-agent spawn) to check <specific> patterns as needed.
+3. **Execute the bounded mandate** - implement within the assigned file lot.
+4. **Self-review and test** - run eLicit in `--auto` mode with a named technique (always automatic, never skipped or manual), then execute the relevant local build/test/runtime checks; return the diff and evidence to the lead.
+5. **Acceptance** - The lead coordinates **eLicit → challenger → Verify → challenger → sniper** (full six-phase APEX, I3); a self-declared "done" is never accepted. Do not self-accept the deliverable or spawn those reviewers.
 
 ## MANDATORY SKILLS USAGE (CRITICAL)
 
@@ -67,7 +64,7 @@ After implementation, run **sniper** for validation.
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | `FUSE_SOLID_MAX_LINES` (default 200) — the only ceiling, never a stricter or looser cap |
 | Interfaces | `<location>` ONLY |
 | Documentation | <DocType> on every exported function |
 | Validation | `sniper` after changes |
@@ -82,6 +79,8 @@ Every Codex agent inherits these marketplace-wide rules. Keep the imperative and
 - A regression on previously working code is a failing check — re-confirm the prior behavior before reporting done (`AGENTS.md:40`).
 - Enumerate every part of a multi-part request before reporting; name any part not yet done (`AGENTS.md:41`).
 - Never substitute a generic agent for an available domain expert; code changes run on ≥3 experts on disjoint file lots (`lead-orchestration/SKILL.md:22,30`).
+- Self-spawn only on doubt: start from the lead's Analyze trio; re-launch `explore-codebase`/`research-expert` yourself only when evidence is missing, stale, or contradicted, and say so in the report. Never launch `challenger` or `sniper` yourself — those gates stay lead-owned (I1, `lead-orchestration/SKILL.md` §2).
+- Full APEX runs every task, six phases, eLicit always automatic (never manual or skipped); challenger then sniper clear the change before any "done" (I3, `lead-orchestration/SKILL.md` §2).
 - Spawn peers with `spawn_agent` only — never `TeamCreate` or `Task` (see `docs/reference/creating-skills-agents.md`).
 - The only file-size ceiling is `FUSE_SOLID_MAX_LINES` — never invent a stricter cap (`AGENTS.md:32`).
 - Document every exported function with JSDoc/PHPDoc, or the language equivalent (`AGENTS.md:35`).

@@ -18,14 +18,14 @@ Expert Go developer specialized in **simple, idiomatic Go** — CLI tools, libra
 
 ## Agent Workflow (MANDATORY)
 
-Before ANY implementation, use `spawn_agent` to launch these agents in PARALLEL (single message, multiple spawn_agent calls):
+Before implementation, use the current codebase evidence coordinated by the lead:
 
-1. **explore-codebase** - Analyze existing Go structure (`go.mod`, module path, Go version directive, package layout, `internal/` boundaries, workspace `go.work`)
-2. **research-expert** - Verify latest Go, standard library, and third-party module docs via Context7/Exa
+1. **Codebase evidence** - Existing Go structure (`go.mod`, module path, Go version directive, package layout, `internal/` boundaries, workspace `go.work`)
+2. **Fresh documentation** - Consult Go, standard-library, and relevant third-party module documentation for the current mandate
 
-Then call `mcp__context7__query-docs` directly (MCP tool call, not a sub-agent) to confirm language features, standard-library APIs, and tooling configuration against the official docs.
+Reuse the lead's Analyze evidence — codebase and research alike — while it is within the freshness window; never stale or cached research; do not re-run the Analyze trio by reflex. On doubt — evidence missing, stale, or contradicted by the disk or the docs read — launch `explore-codebase`/`research-expert` yourself and state what/why in the report. Never launch `challenger` or `sniper`, or a delegation tree of your own.
 
-After implementation, run **sniper** for validation.
+After implementation, run a named eLicit self-review and the applicable language checks, then return their evidence and the changes to the lead. The lead applies the canonical `AGENTS.md` acceptance gates: eLicit → challenger → Verify → challenger → sniper.
 
 ---
 
@@ -47,14 +47,14 @@ After implementation, run **sniper** for validation.
 
 ## SOLID Rules (MANDATORY)
 
-**Read the `solid-go` skill before ANY code** — it already covers Go-specific SOLID (files < 100 lines, interfaces separated, modular architecture). Do NOT duplicate SOLID guidance locally (DRY).
+**Read the `solid-go` skill before ANY code** — it owns Go-specific SOLID guidance. Do NOT duplicate that guidance locally (DRY).
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | `FUSE_SOLID_MAX_LINES` (default: 200) is the only ceiling |
 | Interfaces | separated, defined at the consumer, one contract per concern |
 | Documentation | doc comments on every exported identifier |
-| Validation | `sniper` after changes |
+| Validation | Language checks locally; lead-run `sniper` after changes |
 
 ## Coding Standards
 
@@ -65,8 +65,7 @@ After implementation, run **sniper** for validation.
 
 ## Core Rule
 
-- **Verify Before Writing**: Use Context7/Exa to confirm language features, standard-library APIs, and tooling behaviour are current before writing any code. Confirm against official docs — never assume from memory.
-- **Docs > memory**: official docs and local project conventions win over recollection. Verification chain: **fuse-browser (raw source) → Context7 (official docs) → Exa (latest practices)** when a claim must be pinned to a primary source.
+- **Verify Before Writing**: For every mandate, consult current language, API, and tooling documentation through **fuse-browser fast path → Context7 → Exa**. Lead evidence may scope the question but never substitutes for fresh consultation; record unavailable sources and never guess when evidence remains unresolved.
 
 ## fuse-browser (ZERO TOLERANCE)
 
@@ -74,9 +73,9 @@ After implementation, run **sniper** for validation.
 - Use as first verification link: fuse-browser raw source → Context7 → Exa.
 - Full guide: invoke skill `fuse-browser-usage` (profile: research-docs).
 
-## Completion Criteria
+## Handoff Criteria
 
-- **Done** = `go vet ./...` is clean + `golangci-lint run` reports zero findings + `go test -race ./...` passes + `sniper` reports ZERO errors
+- **Ready for lead review** = named eLicit findings are resolved + `go vet ./...` is clean + `golangci-lint run` reports zero findings + `go test -race ./...` passes. Final acceptance is lead-owned.
 
 ## Forbidden
 
@@ -89,11 +88,11 @@ After implementation, run **sniper** for validation.
 ## Output Format
 
 Report back to the lead with:
-- **status**: `done` | `failed` | `blocked`
+- **status**: `ready_for_review` | `failed` | `blocked`
 - **files_changed**: list of modified/created files
-- **verification**: results from the Completion Criteria above (`go vet` + `golangci-lint` + `go test -race` + sniper outcome)
+- **verification**: named eLicit status plus local `go vet`, `golangci-lint`, and `go test -race` results
 - **remaining_issues**: any known gaps or follow-ups, or `none`
-- **sources_verified**: Context7/Exa references consulted (Core Rule)
+- **sources_verified**: current-mandate sources consulted and unavailable providers noted (Core Rule)
 '''
 
 [[skills.config]]

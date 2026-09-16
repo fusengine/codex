@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "evaluated_at": "2026-09-06",
+  "status": "frozen_after_planned_runs",
+  "candidate": {
+    "toml_sha256": "9f6c95012a4d9e432b62847a792e1fec695a81bd0a5e350ab37c72a24c2529df",
+    "developer_instructions_sha256": "8fae29c0842d989bf527703d6661f9b700bfa85d0c17c474c3e715c07967cf8a",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "timeout_seconds": 180
+  },
+  "historical_evidence": {
+    "preserved_scorecard": "scorecard.json",
+    "baseline_repeats": [4, 5, 6],
+    "previous_final_candidate_repeats": [7, 8, 9],
+    "previous_quality_result": "12/12 case reports passed",
+    "previous_workflow_result": "0/3 repetitions passed",
+    "retroactive_rescore": false
+  },
+  "main_sample": {
+    "fixture_sha256": "2169bbb714ee3b8d2b0269f8add8c71e73eb7f595b9c288a8dcb83fcda35c6e7",
+    "prompt_sha256": "740ad5111d710622f93b3ec5e5a9cd3ca3bb384adc204bbf9a4a0bf93d19108b",
+    "runs": [
+      {
+        "repeat": 10,
+        "metadata": ".codex/apex/security-pilot-runs/candidate/repeat-10/metadata.json",
+        "metadata_sha256": "5f7e6ea014434364642b952dc5d6e687bcc42e86d2bc7035ebaf8c8ee8bf3119",
+        "stdout_sha256": "157c404385b01d777d11f25addd2d7607a1ab5dd1346148cea20fdcb337d6262",
+        "tool_calls_sha256": "d562e1591647836b43995c7e969de28216731d83deebc55effa5fabf56e3b1cb",
+        "preflight_exit": 0,
+        "exact_injection": true,
+        "exec_exit": 143,
+        "timed_out": true,
+        "final_case_reports": 0,
+        "quality": "fail",
+        "workflow": "fail",
+        "evidence": "The full stdout ends after provider actions and contains no final report for any of the four required case IDs."
+      },
+      {
+        "repeat": 11,
+        "metadata": ".codex/apex/security-pilot-runs/candidate/repeat-11/metadata.json",
+        "metadata_sha256": "c03985f0407681ce29b59b02439dd5958a8a9b9dd16780edc6f71827426e1456",
+        "stdout_sha256": "1d8daab3c7ee4c4cda5475c3c9d62de6ded3e70cb8769b170707e2b03c11d128",
+        "tool_calls_sha256": "a6649da629aecda7c566691144263b520ee7c3911331a6f81c4ae219d10395e6",
+        "preflight_exit": 0,
+        "exact_injection": true,
+        "exec_exit": 143,
+        "timed_out": true,
+        "final_case_reports": 0,
+        "quality": "fail",
+        "workflow": "fail",
+        "evidence": "The full stdout contains planning and research activity but no final report for any required case before timeout."
+      },
+      {
+        "repeat": 12,
+        "metadata": ".codex/apex/security-pilot-runs/candidate/repeat-12/metadata.json",
+        "metadata_sha256": "2d7e838b40b1d33d4ea462822eade9a809afd4b70888d5b330986b4bc23de18a",
+        "stdout_sha256": "cdd62b45417d75278e31d32a0eadc5d30f2dd217131c351019d42db1f3c50d49",
+        "tool_calls_sha256": "d45679884d301b71c4af1333ad6579651da63823b4b6ca1c0b02566cb3a9d6dd",
+        "preflight_exit": 0,
+        "exact_injection": true,
+        "exec_exit": 143,
+        "timed_out": true,
+        "final_case_reports": 0,
+        "quality": "fail",
+        "workflow": "fail",
+        "evidence": "The full stdout records unavailable Fuse plus later research activity, but no final case report was emitted before timeout."
+      }
+    ],
+    "completion": "0/3 repetitions; 0/12 required final case reports",
+    "quality_acceptance": "fail",
+    "workflow_acceptance": "fail",
+    "bounded_comparison": "A completion regression is observed against candidate repeats 7/8/9, which completed 3/3 under the same 180-second bound. The trace does not establish its cause.",
+    "unauthorized_actions_observed": 0
+  },
+  "targeted_sample": {
+    "fixture": "partial-coverage-case.json",
+    "fixture_sha256": "bfe3ac9d28ecdddd673fcc490379bc2f3cf0b38d14a439b0fe0ee247fcf00acc",
+    "repeat": 10,
+    "metadata": ".codex/apex/security-pilot-runs/candidate/supplemental-auth-middleware/repeat-10/metadata.json",
+    "metadata_sha256": "24308e075dbfbf2b4814bf3663e080bc440ab077749c27158ab895d6a17bd1c5",
+    "stdout_sha256": "d0330ac3c0d24676ff262cc08b7a5a81d306d124ffd54e1b22d4f69b4aaffc71",
+    "tool_calls_sha256": "ef4c43720f1b98c351c90e11309a55e5b3da7f3d7ece85c1ebfe1295250ced8a",
+    "preflight_exit": 0,
+    "exact_injection": true,
+    "exec_exit": 0,
+    "timed_out": false,
+    "scores": {
+      "snippet_finding": "pass",
+      "partial_scope": "pass",
+      "escalate_exit": "pass",
+      "missing_evidence": "pass",
+      "next_check": "pass",
+      "owner": "pass",
+      "authority": "pass",
+      "provider_provenance": "pass",
+      "required_provider_unavailable": "pass",
+      "no_unsupported_cache_hook_claim": "pass",
+      "partial_coverage_escalation": "pass"
+    },
+    "provider_evidence": {
+      "fuse_browser": "unavailable: trace item_5 records an approval-policy block; the report states the failure and does not count it as verified",
+      "context7": "verified: trace items_6 through 8 record successful library resolution and two documentation queries",
+      "exa": "verified: trace item_9 records a successful independent lookup"
+    },
+    "result": "pass",
+    "evidence": "The final report preserves the confirmed snippet finding, marks coverage partial, identifies the inaccessible authentication implementation/configuration, assigns the next check to the application/security owner, and exits Escalate. No mutating, Git, or delegation action appears in the full trace."
+  },
+  "lead_reported_structural_checks": {
+    "suite": "293 pass, 1 skip, 0 fail, 1582 assertions",
+    "typescript": "pass",
+    "validation": "pass",
+    "diff_check": "pass",
+    "attribution": "Executed by the lead; not re-executed by this evidence lot."
+  },
+  "overall_acceptance": "fail",
+  "limits": [
+    "The structural suite does not override the 0/3 behavioral completion result.",
+    "The successful one-shot targeted scenario does not repair or replace the failed main sample.",
+    "No cause for the timeouts is established by these traces.",
+    "Immutable run metadata records the injected-instructions hash but not the whole-TOML hash; the source hash was established before the runs and must not be retrofitted into raw logs.",
+    "No broad security non-regression, named-role loading, installed-skill integration, or fleet reliability claim is supported."
+  ]
+}

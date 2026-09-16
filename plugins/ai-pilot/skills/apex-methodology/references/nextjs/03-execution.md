@@ -238,7 +238,7 @@ export default async function UsersPage() {
 
 ```text
 MUST:
-[ ] Files < 100 lines (split at 90)
+[ ] Files within `FUSE_SOLID_MAX_LINES` (default 200) lines (split well before the ceiling)
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] JSDoc on all exports
 [ ] TypeScript strict (no any)
@@ -250,7 +250,7 @@ MUST NOT:
 [ ] Database calls in components
 [ ] useEffect for data fetching
 [ ] Inline interfaces in components
-[ ] Files > 100 lines
+[ ] Files above `FUSE_SOLID_MAX_LINES` (default 200) lines
 ```
 
 ---
@@ -259,7 +259,7 @@ MUST NOT:
 
 ```text
 [ ] All planned tasks implemented
-[ ] File sizes verified (<100 lines)
+[ ] File sizes verified (within `FUSE_SOLID_MAX_LINES` (default 200) lines)
 [ ] Interfaces properly separated
 [ ] JSDoc on all functions
 [ ] TypeScript passes (no errors)

@@ -46,14 +46,14 @@ next_step: references/03.5-elicit.md
 
 ```text
 🚨 STOP at 90 lines → Split immediately
-❌ NEVER exceed 100 lines
+❌ NEVER exceed `FUSE_SOLID_MAX_LINES` (default 200) lines
 📊 Target: 50-80 lines per file
 ```
 
 ### Split Triggers
 
 ```text
-If approaching 90 lines:
+If approaching the ceiling lines:
 1. STOP writing
 2. Identify logical boundaries
 3. Extract to new file
@@ -183,7 +183,7 @@ If you encounter:
 
 ```text
 ❌ Skip interfaces, write inline types
-❌ Create files >100 lines
+❌ Create files above `FUSE_SOLID_MAX_LINES` (default 200) lines
 ❌ Duplicate existing utilities
 ❌ Ignore existing patterns
 ❌ Large commits with multiple features
@@ -197,7 +197,7 @@ If you encounter:
 
 ```text
 □ Interfaces/types created first
-□ All files <100 lines
+□ All files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 □ Documentation on all functions
 □ Existing patterns followed
 □ No duplicate utilities

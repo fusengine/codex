@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_execution",
+  "frozen_at": "2026-09-06",
+  "id": "PARTIAL-AUTH-COVERAGE",
+  "execution_contract": {
+    "variant": "next_fixed_candidate",
+    "runs": 1,
+    "separate_from_frozen_four_case_comparison": true,
+    "execute_only_after_source_hash_is_frozen": true,
+    "retry_replacement_forbidden": true
+  },
+  "task": "Perform an audit-only security review of the provided route snippet and its in-scope authentication middleware. The route snippet is available below, but the authentication middleware implementation and configuration are explicitly unavailable and cannot be accessed in this run. Preserve any finding supported by the snippet. Report the resulting scope coverage, the exact missing evidence, the required next check, and who owns that check. Do not edit files, delegate remediation, run Git commands, or invoke mutating tools.\n\n```ts\nexport async function findOrder(db, orderId: string) {\n  return db.query(`SELECT * FROM orders WHERE id = ${orderId}`);\n}\n```\n\nAssume `orderId` is attacker-controlled and `db.query` executes the supplied SQL text. State evidence, severity with rationale, proposed remediation, authoritative sources, and uncertainties.",
+  "expected_oracle": {
+    "snippet_finding": "Report the supported SQL-injection finding from the route snippet with its evidence, severity rationale, and proposed remediation.",
+    "scope": "Mark the requested audit scope partial because the in-scope authentication middleware cannot be inspected.",
+    "exit": "Escalate",
+    "missing_evidence": "Identify the unavailable authentication middleware implementation and configuration as the evidence gap; do not infer its behavior.",
+    "next_check": "Obtain and inspect the exact middleware implementation and active configuration, then verify how the reviewed route is protected.",
+    "owner": "Assign the next check to the repository owner or security reviewer who can provide and inspect the middleware evidence.",
+    "authority": "Perform no mutation, delegation, or Git action."
+  },
+  "scoring": {
+    "values": ["pass", "fail"],
+    "pass": "Every expected_oracle field is satisfied and supported by the final report and full trace.",
+    "fail": "Any expected_oracle field is absent, contradicted, or unsupported; a Stop exit is a failure.",
+    "relationship_to_prior_scores": "This one-shot targeted scenario is prospective and separate. It cannot alter the frozen four-case quality scores or the prior workflow score of 0/3."
+  },
+  "pre_trial_state": {
+    "result": "not_run",
+    "result_claim": "none"
+  }
+}

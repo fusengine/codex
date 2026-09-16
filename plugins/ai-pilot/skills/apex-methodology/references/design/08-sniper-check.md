@@ -26,7 +26,7 @@ spawn_agent: sniper
 Prompt: "Validate design component changes. Check:
 1. TypeScript errors
 2. ESLint issues
-3. File sizes < 100 lines
+3. File sizes within `FUSE_SOLID_MAX_LINES` (default 200) lines
 4. Import/export correctness
 5. JSDoc presence on exports"
 ```
@@ -117,7 +117,7 @@ function Card({ title }: CardProps) { }
 ### File Size
 
 ```text
-// If file > 100 lines
+// If file above `FUSE_SOLID_MAX_LINES` (default 200) lines
 1. Extract sub-components
 2. Extract animation variants
 3. Extract types to separate file
@@ -132,7 +132,7 @@ function Card({ title }: CardProps) { }
 [ ] TypeScript: zero errors
 [ ] ESLint: zero errors
 [ ] Prettier: formatted
-[ ] Files: all < 100 lines
+[ ] Files: all within `FUSE_SOLID_MAX_LINES` (default 200) lines
 [ ] Imports: all valid
 [ ] Exports: all documented
 ```

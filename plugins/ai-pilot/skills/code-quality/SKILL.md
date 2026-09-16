@@ -4,14 +4,14 @@ description: "Use when validating code quality after modifications -- SOLID comp
 ---
 
 <objective>
-Code Quality is the canonical 7-phase validation workflow shared with the `sniper` agent (this skill and `agents/sniper.md` must stay in sync): explore architecture, research documentation, analyze impact via Grep usages, detect duplication with jscpd (DRY), detect errors via linters, apply precision corrections informed by docs/impact/DRY findings, then re-verify until linters, tests, and duplication are all clean. It covers SOLID compliance, DRY thresholds, error priority (security/logic/performance/style), file-size limits, and architecture-pattern violations across all languages.
+Code Quality is the canonical 7-phase validation workflow shared with the [`sniper` agent](../../agents/sniper.toml) (this skill and the agent must stay in sync): explore architecture, research documentation, analyze impact via Grep usages, detect duplication with jscpd (DRY), detect errors via linters, apply precision corrections informed by docs/impact/DRY findings, then re-verify until linters, tests, and duplication are all clean. It covers SOLID compliance, DRY thresholds, error priority (security/logic/performance/style), file-size limits, and architecture-pattern violations across all languages.
 
 It validates quality AFTER the fact -- it does not confirm the original problem was actually solved. Run the `verification` skill first to confirm functional resolution, then code-quality to confirm the fix is clean.
 </objective>
 
 # Code Quality Skill
 
-Canonical workflow definition: `agents/sniper.md` (this skill and the sniper agent share the same 7-phase workflow — update both together).
+Canonical workflow definition: [`../../agents/sniper.toml`](../../agents/sniper.toml) (this skill and the sniper agent share the same 7-phase workflow — update both together).
 
 ## 🚨 MANDATORY 7-PHASE WORKFLOW
 
@@ -118,7 +118,7 @@ See [references/solid-validation.md](references/solid-validation.md) for S-O-L-I
 ---
 
 ## File Size Rules
-See [references/file-size-rules.md](references/file-size-rules.md) for LoC limits, calculation, and split strategies.
+See [references/file-size-rules.md](references/file-size-rules.md) for the file-size ceiling, diagnostic LoC calculation, and split strategies.
 
 ---
 
@@ -159,7 +159,7 @@ See [references/examples.md](references/examples.md) for detailed walkthrough.
 - ❌ Interfaces in component files (ZERO TOLERANCE)
 - ❌ Business logic in components (must be in hooks)
 - ❌ Monolithic components (must section)
-- ❌ Files >100 LoC without split
+- ❌ Files above `FUSE_SOLID_MAX_LINES` (default 200) without a responsibility-based split
 - ❌ Local state for global data (use stores)
 
 ### Safety Violations

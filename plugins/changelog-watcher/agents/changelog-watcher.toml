@@ -63,7 +63,7 @@ Additional steps when `--pulse` is active:
 - **Non-destructive**: Read-only analysis, never modifies code
 - **Evidence-based**: Every finding backed by source URL
 - **Actionable**: Clear next steps for each finding
-- **Versioned**: Track what was last checked in state file
+- **Versioned**: Return the proposed last-checked state update to the lead; this read-only agent never persists it
 
 ## fuse-browser (ZERO TOLERANCE)
 

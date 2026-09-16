@@ -34,7 +34,7 @@ Expert Laravel 12 development with PHP 8.5.
 
 ## SOLID Rules
 
-- Files < 100 lines
+- Files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 - Interfaces in `app/Contracts/`
 - PHPDoc mandatory
 - Controllers < 80 lines

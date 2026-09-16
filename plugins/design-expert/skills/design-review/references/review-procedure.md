@@ -187,7 +187,7 @@ taken wrong reviews the wrong pixels.
      `design-inspiration.md`).
    - Counts inside the same 2-cycle cap as item 8. Still `[indistinguishable]` at the cap →
      report it as a P1 finding naming every sequence already tried; do not chase it further.
-9. **Challenger gate (mandatory, in-loop — not a trailing consultation)** — before any "done" claim, the design-expert invokes `challenger` (it holds the `spawn_agent` tool) to judge blind (PNG + brief, named elicitation lenses, fresh-context — never this procedure's own reasoning). A Block must be resolved or owner-accepted before "done" (consultative, not a veto — CLAUDE.md Rule 5). **Fallback**: only if `spawn_agent`/`Agent` is unavailable (agent at max nesting depth 5) → report "not judged"/escalate to owner, never a silent "done".
+9. **Challenger gate (mandatory, in-loop — not a trailing consultation)** — before any "done" claim, the design-expert hands the **lead** the PNG + brief; the **lead** invokes `challenger` (it holds the `spawn_agent` tool) to judge blind (named elicitation lenses, fresh-context — never this procedure's own reasoning), never the design-expert itself. A Block must be resolved or owner-accepted before "done" (consultative, not a veto — CLAUDE.md Rule 5). **Fallback**: only if `spawn_agent`/`Agent` is withdrawn at max nesting depth 5 → the design-expert marks the check `unverified` and escalates to the lead, never claiming it ran.
 
 ## Failure Handling
 - All server ports 8899-8905 busy → stop, report the deliverable unreviewed, and say so

@@ -49,9 +49,16 @@ const TERRA_MEDIUM: ModelProfile = { model: "gpt-5.6-terra", effort: "medium" };
  *   first "seul le designer en high" (`design-expert` xhigh -> high,
  *   `challenger` and `security-expert` high -> medium, xhigh retired
  *   fleet-wide), then a same-day correction reinstating `security-expert`
- *   at `high` ("security-expert en high") — `challenger`'s move to medium
- *   stood. Current state: Sol `xhigh` is unused (0 agents); Sol `high` is
- *   `design-expert` and `security-expert` only (2 agents).
+ *   at `high` ("security-expert en high"). 2026-09-07 owner request
+ *   (`.codex/apex/task.json` task `security-local-medium`, quoted
+ *   verbatim): "security-expert medium et il doit ce comporter comme un
+ *   hacker local qui sert exclusivement en local a tester les securité si
+ *   on le demande de le faire en dehors du developpement local il
+ *   refusera" — moves `security-expert` to `medium` for a local-only
+ *   ethical-hacker posture, superseding the 2026-09-02 "high" decision; a
+ *   same-day lead revert to `high` was itself reverted once this citation
+ *   was found. Current state: Sol `xhigh` unused (0 agents); Sol `high` is
+ *   `design-expert` only (1 agent).
  * - `seo-technical` and `seo-schema` stay on Sol `medium` (56): moving them
  *   to Luna `max` (52) is a 4-point drop, over threshold. (`websearch` was
  *   in this group until 2026-09-02 — see the Terra/medium move below.)
@@ -68,16 +75,10 @@ const TERRA_MEDIUM: ModelProfile = { model: "gpt-5.6-terra", effort: "medium" };
  *   / $20 out, Terra $2 / $0.20 / $12, Luna $0.20 / $0.02 / $1.20). Terra
  *   medium — Terra's default effort — is therefore the executor tier for
  *   the 12 framework experts, which run bounded, briefed lots on disjoint
- *   file lots. Sol stays on judgment roles: as of 2026-09-02, only
- *   `security-expert` and `design-expert` remain at `high` (owner decision
- *   "seul le designer en high" moved `design-expert` xhigh -> high and
- *   `challenger`/`security-expert` high -> medium; a same-day correction,
- *   "security-expert en high", reinstated `security-expert` at `high`
- *   while `challenger`'s move to medium stood — sniper had already moved
- *   to medium earlier the same day: it validates code with tooling and
- *   tests, where the benchmark showed medium equal to high, while
- *   `security-expert` keeps high for adversarial review (`challenger` kept
- *   it until the same-day move to medium)). Sol medium also covers the
+ *   file lots. Sol stays on judgment roles: `design-expert` is `high`;
+ *   `security-expert` is `medium` since 2026-09-07 (local-only
+ *   ethical-hacker posture — see the dated owner-request history above).
+ *   Sol medium also covers the
  *   analysis/research/coordination
  *   agents — including `commit`, whose irreversible git flow (write,
  *   tags, merges) keeps it on a coordination-tier model rather than an
@@ -114,7 +115,7 @@ const TERRA_MEDIUM: ModelProfile = { model: "gpt-5.6-terra", effort: "medium" };
  *   relaunched immediately with the same brief, never accepted as
  *   "nothing found".
  */
-const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
+export const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
 	"astro-expert": TERRA_MEDIUM,
 	"go-expert": TERRA_MEDIUM,
 	"laravel-expert": TERRA_MEDIUM,
@@ -145,7 +146,7 @@ const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
 	sniper: SOL_MEDIUM,
 	"prompt-engineer": SOL_MEDIUM,
 	challenger: SOL_MEDIUM,
-	"security-expert": SOL_HIGH,
+	"security-expert": SOL_MEDIUM,
 	"design-expert": SOL_HIGH,
 	"sniper-faster": LUNA_MAX,
 	"commit-detector": LUNA_MAX,

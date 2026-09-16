@@ -37,7 +37,7 @@ next_step: references/react/03.5-elicit.md
 
 ```text
 STOP at 90 lines -> Split immediately
-NEVER exceed 100 lines
+NEVER exceed `FUSE_SOLID_MAX_LINES` (default 200) lines
 Target: 50-80 lines per file
 ```
 
@@ -171,7 +171,7 @@ import { useUser } from '../src/hooks/useUser'
 
 ```text
 - Skip interfaces, write inline types
-- Create files >100 lines
+- Create files above `FUSE_SOLID_MAX_LINES` (default 200) lines
 - Put logic in components (extract to hooks)
 - useEffect for data fetching (use loaders/Query)
 - Class components
@@ -185,7 +185,7 @@ import { useUser } from '../src/hooks/useUser'
 
 ```text
 [ ] Interfaces created first
-[ ] All files <100 lines
+[ ] All files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 [ ] JSDoc on all exports
 [ ] Hooks extract logic from components
 [ ] React 19 patterns used

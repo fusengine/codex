@@ -4,7 +4,7 @@ description: Use when creating a feature/component or adding functionality. Fire
 ---
 
 <objective>
-Brainstorming runs a design-first, no-code-before-approval process ahead of any non-trivial feature, component, or behavior change: explore project context, ask clarifying questions one at a time, diverge to 6-8 approaches via a named technique before converging on 2-3 with a trade-off table, present the design for explicit approval, save it to `docs/plans/`, then hand off to APEX Analyze along with the research already gathered (so Analyze doesn't repeat it).
+Brainstorming runs a design-first, no-code-before-approval process ahead of any non-trivial feature, component, or behavior change: explore project context, consult documentation afresh for this mandate, ask clarifying questions one at a time, diverge to 6-8 approaches via a named technique before converging on 2-3 with a trade-off table, present the design for explicit approval, save it to `docs/plans/`, then hand the resulting current-mandate research record to APEX Analyze.
 
 Skip it entirely for trivial fixes, typos, or simple renames -- those go straight to APEX.
 </objective>
@@ -22,7 +22,7 @@ Before ANY brainstorming session, use `TeamCreate` to spawn agents:
 1. **explore-codebase** - Understand project context, patterns, constraints
 2. **research-expert** - Fetch best practices and documentation
 
-After design approval, transition to **APEX Analyze** phase, **passing along the explore-codebase and research-expert findings** in the handoff (not just the design doc). APEX Analyze re-runs those same agents by default — carrying forward what was already gathered here avoids re-doing the same research twice.
+After design approval, transition to **APEX Analyze** with the design, local codebase findings, and the research record produced by fresh fuse-browser → Context7 → Exa consultation for this same mandate. Prior or cached research from another mandate may guide queries but cannot replace that record. Sharing the current-mandate record across phases does not require repeating the consultation.
 
 ---
 
@@ -107,7 +107,7 @@ Hand off to APEX Analyze phase with the approved design as input.
 3. Diverge   → 6-8 options (named technique), converge to 2-3 with trade-offs table
 4. Design    → Present sections, get approval
 5. Save      → docs/plans/YYYY-MM-DD-<topic>-design.md
-6. Handoff   → APEX Analyze with approved design + prior research (no re-research)
+6. Handoff   → APEX Analyze with approved design + fresh current-mandate research record
 ```
 
 ---

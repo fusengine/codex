@@ -4,7 +4,7 @@ description: "Use before a root-cause, done/verified claim, irreversible action,
 ---
 
 <objective>
-Challenge is the adversarial verification protocol behind the `challenger` agent: refute-by-default, fresh-context intake (claim + evidence only, never the author's reasoning), sources-backed (Context7 -> Exa -> fuse-browser -> code), bounded to 2 refutation rounds ending in a mandatory verdict (CONFIRMED / REFUTED / UNCERTAIN). It is consultative, not a veto -- it reports the strongest objection and leaves the decision to the lead/owner.
+Challenge is the adversarial verification protocol behind the `challenger` agent: refute-by-default, fresh-context intake (claim + evidence only, never the author's reasoning), sources-backed (fuse-browser -> Context7 -> Exa -> code), bounded to 2 refutation rounds ending in a mandatory verdict (CONFIRMED / REFUTED / UNCERTAIN). It is consultative, not a veto -- it reports the strongest objection and leaves the decision to the lead/owner.
 
 It fires systematically by claim TYPE, not by a stakes judgment: before a root-cause conclusion, a done/verified claim, an irreversible action (commit/deploy/rm/push), or a 2nd-time fix reaches the owner, whether inside an APEX task or in plain conversation -- plus automatically at every APEX eLicit round and Verify gate. It does not cover code correctness, lint, or type validation -- that stays sniper's lane at eXamine.
 </objective>
@@ -17,7 +17,7 @@ Reusable protocol behind the `challenger` agent. Also usable directly inside any
 
 1. **Refute by default** -- a claim is FALSE until proven otherwise. Never "are you sure?" -- always a concrete failure scenario + the untested hypothesis it exposes.
 2. **Fresh context mandatory** -- intake is the claim + its evidence ONLY, never the author's reasoning. Inheriting the author's angle reproduces the author's blind spot.
-3. **Real sources, never memory** -- Context7 -> Exa -> fuse-browser fast-path (`browser_fetch`/`browser_fetch_batch`/`browser_serp_batch`/`browser_crawl`) -> Read/Grep/Glob on actual code. Docs and code beat recollection.
+3. **Real sources, never memory** -- fuse-browser fast-path (`browser_fetch`/`browser_fetch_batch`/`browser_serp_batch`/`browser_crawl`) -> Context7 -> Exa -> Read/Grep/Glob on actual code. Docs and code beat recollection.
 4. **Systematic by claim TYPE, in APEX or in plain conversation -- never a stakes judgment** -- see Trigger Conditions below. The TYPE (or the APEX gate) is the trigger, exactly like sniper triggers on every code modification.
 5. **Bounded** -- max 2 refutation rounds, then a mandatory verdict. No open-ended ping-pong.
 6. **Consultative, not veto** -- report the strongest objection; the lead/owner decides. Read-only, edits nothing.
@@ -43,7 +43,7 @@ This is a scope by claim TYPE, not a reduced-coverage shortcut -- the 3 real fai
 |------|--------|
 | 0. Intake | Receive claim + evidence verbatim. Discard any leaked reasoning/narrative before starting. |
 | 1. Hypotheses | List every assumption the claim silently depends on (persistence, environment, tool behavior, scope, timing, exclusivity). |
-| 2. Counter-example hunt | Per hypothesis, search Context7 -> Exa -> fuse-browser -> Read/Grep/Glob for the source or scenario that falsifies it. |
+| 2. Counter-example hunt | Per hypothesis, search fuse-browser -> Context7 -> Exa -> Read/Grep/Glob for the source or scenario that falsifies it. |
 | 3. Round 1 | State the concrete failure scenario found, or "none found this round." If unresolved, round 2 uses a DIFFERENT angle/source -- never repeat the same check. |
 | 4. Round 2 + verdict | Deepen once more, then ALWAYS produce a verdict. Never continue past round 2. |
 
@@ -54,7 +54,7 @@ VERDICT: CONFIRMED | REFUTED | UNCERTAIN
 Claim challenged: <verbatim claim>
 Failure scenario (concrete): <exact breaking input/condition, or "none found">
 Untested hypotheses: [...]
-Sources checked: [Context7: ..., Exa: ..., fuse-browser: ..., code read: <file:line>]
+Sources checked: [fuse-browser: ..., Context7: ..., Exa: ..., code read: <file:line>]
 What remains to verify (if UNCERTAIN): <the specific check that resolves it>
 Recommendation: <escalate to owner / safe to proceed / block until re-verified>
 ```

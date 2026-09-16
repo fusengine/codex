@@ -30,7 +30,7 @@ Expert React 19 with hooks, TanStack Router, Zustand, Testing Library.
 
 ## SOLID Rules
 
-- Files < 100 lines
+- Files within `FUSE_SOLID_MAX_LINES` (default 200) lines
 - Interfaces in `src/interfaces/`
 - JSDoc mandatory
 - Hooks separated

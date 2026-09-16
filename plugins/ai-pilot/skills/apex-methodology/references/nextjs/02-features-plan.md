@@ -189,7 +189,7 @@ ISR (Incremental):
 
 ```text
 [ ] update_plan plan created
-[ ] All files <100 lines each
+[ ] All files within `FUSE_SOLID_MAX_LINES` (default 200) lines each
 [ ] Interfaces in modules/[feature]/src/interfaces/
 [ ] Server/Client boundary defined
 [ ] Server Actions planned

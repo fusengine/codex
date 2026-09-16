@@ -56,25 +56,32 @@ There is **no** `color`, `tools`, or `hooks` frontmatter on a Codex agent. Tool 
 The generator classifies by the Codex agent's `name`, because a Claude source
 model is too coarse to preserve the shipped role policy. Unknown future agents
 default to `gpt-5.6-sol` / `medium` until explicitly classified. Revised
-2026-09-02, following a 15-run `codex exec` 0.152.1 benchmark (see
+2026-09-07, building on a 15-run `codex exec` 0.152.1 benchmark (see
 `docs/workflow/agents.md` § Benchmark 2026-09-02): the 12 framework/language
 experts use `gpt-5.6-terra` / `medium`, the fastest and cheapest tier at
 equal measured quality on bounded, briefed executor work. Later the same
 day, owner decision "passe en terra medium" moved 3 more agents
 (`explore-codebase`, `research-expert`, `websearch`) onto the same
 Terra/medium tier — unbenchmarked (see below) — bringing Terra/medium to
-15. Two more same-day owner decisions ("seul le designer en high", then
-"security-expert en high") retired Sol `xhigh` fleet-wide and left exactly
-2 agents on Sol/high; every other role keeps its prior tier.
+15. Two same-day owner decisions ("seul le designer en high", then
+"security-expert en high") retired Sol `xhigh` fleet-wide and left 2
+agents on Sol/high. 2026-09-07 owner request (`.codex/apex/task.json`
+task `security-local-medium`, quoted verbatim): "security-expert medium
+et il doit ce comporter comme un hacker local qui sert exclusivement en
+local a tester les securité si on le demande de le faire en dehors du
+developpement local il refusera" — moved `security-expert` to Sol/medium
+for a local-only ethical-hacker posture; a same-day lead revert to `high`
+was itself reverted once this citation was found. Current state: 1 agent
+on Sol/high.
 
 | Codex profile | Agents | Rationale |
 |---------------|--------|-----------|
 | `gpt-5.6-terra` / `medium` | 12 framework/language experts (`astro-expert`, `go-expert`, `laravel-expert`, `nextjs-expert`, `php-expert`, `react-expert`, `rust-expert`, `shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`, `tanstack-start-expert`, `typescript-expert`) + 3 volume read/search agents added 2026-09-02 (`explore-codebase`, `research-expert`, `websearch`) — 15 total | Executor tier for bounded, briefed coding work: a 15-run `codex exec` 0.152.1 benchmark found Terra medium equal in measured quality to Sol medium (every run passed every hidden test on both tiers), 1.7× faster and at roughly half the token cost. The 3 volume agents were added the same day by owner decision ("passe en terra medium"), NOT covered by that benchmark — it scored coding tasks only, not doc-lookup/web-search/codebase-exploration workloads. |
-| `gpt-5.6-sol` / `medium` | 15 orchestration, release, SEO, code-validation, and prompt-design specialists (incl. `sniper`, `prompt-engineer`, `challenger`) | Balanced daily development execution; Artificial Analysis Sol index (July 2026, artificialanalysis.ai/models/gpt-5-6-luna and the Sol launch article) puts medium 1 point below high (56 vs 57) — the only gap within the owner's 1-point non-regression threshold. `sniper` moved to Sol/medium on 2026-09-02 (owner decision): it validates code with tooling and tests, where the benchmark showed medium equal to high. `prompt-engineer` also moved to Sol/medium the same day (owner decision: "il est assez intelligent"). Later the same day, `challenger` moved here too (owner decision "seul le designer en high"). |
-| `gpt-5.6-sol` / `high` | `security-expert`, `design-expert` | One-shot-correctness / highest-judgment gates. Until 2026-09-02 the roster here was `challenger` + `security-expert` (adversarial review, security validation) with `design-expert` on `xhigh`. Owner decision "seul le designer en high" moved `design-expert` xhigh→high and `challenger`/`security-expert` high→medium; a same-day correction, "security-expert en high", reinstated `security-expert`, while `challenger`'s move to medium stood. Current state: 2 agents, `design-expert` and `security-expert` only. |
+| `gpt-5.6-sol` / `medium` | 16 orchestration, release, SEO, code-validation, prompt-design, and security-audit specialists (incl. `sniper`, `prompt-engineer`, `challenger`, `security-expert`) | Balanced daily development execution; Artificial Analysis Sol index (July 2026, artificialanalysis.ai/models/gpt-5-6-luna and the Sol launch article) puts medium 1 point below high (56 vs 57) — the only gap within the owner's 1-point non-regression threshold. `sniper` moved to Sol/medium on 2026-09-02 (owner decision): it validates code with tooling and tests, where the benchmark showed medium equal to high. `prompt-engineer` also moved to Sol/medium the same day (owner decision: "il est assez intelligent"). Later the same day, `challenger` moved here too (owner decision "seul le designer en high"). `security-expert` moved here 2026-09-07 (owner request, `.codex/apex/task.json` task `security-local-medium`, quoted verbatim: "security-expert medium et il doit ce comporter comme un hacker local qui sert exclusivement en local a tester les securité si on le demande de le faire en dehors du developpement local il refusera") for a local-only ethical-hacker posture; a same-day lead revert to `high` was itself reverted once this citation was found. |
+| `gpt-5.6-sol` / `high` | `design-expert` | Highest-judgment gate. Until 2026-09-02 the roster here was `challenger` + `security-expert` (adversarial review, security validation) with `design-expert` on `xhigh`. Owner decision "seul le designer en high" moved `design-expert` xhigh→high and `challenger`/`security-expert` high→medium; a same-day correction, "security-expert en high", reinstated `security-expert` at `high` — superseded 2026-09-07 by the owner's local-only ethical-hacker request above, which moved `security-expert` to Sol/medium for good. Current state: `design-expert` only (1). |
 | `gpt-5.6-luna` / `max` | `sniper-faster`, `commit-detector`, `cartographer`, `seo-images`, `seo-sitemap` | Bounded, deterministic work with a strict contract and a verifiable output; Luna has no `ultra` effort and is weak on long multi-step instruction-following, so it is reserved for this narrow shape. Luna max scores 52 on the same index — `seo-technical` and `seo-schema` fit the task shape but a Sol medium (56) → Luna max (52) move is a 4-point drop, over threshold, so they stay on Sol/medium instead. |
 
-Sol `xhigh` and Sol max are not used by any shipped agent as of 2026-09-02
+Sol `xhigh` and Sol max are not used by any shipped agent as of 2026-09-07
 (xhigh retired fleet-wide the same day it was last used; published Sol max
 figures diverge between AA pages and it was never asserted here). Terra is
 the executor tier as of 2026-09-02: the benchmark above found it equal in

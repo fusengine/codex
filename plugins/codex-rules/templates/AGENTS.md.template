@@ -14,7 +14,8 @@
 
 ## Always-on orchestration
 
-- **ALWAYS DELEGATE.** Before the first delegation, subagent, team, ownership, mtime, or agent-lifecycle action, MUST invoke, fully read, and follow `$ai-pilot:lead-orchestration`. Keep delegation procedure out of this file.
+- **ALWAYS DELEGATE.** Before the first delegation, subagent, team, ownership, mtime, or agent-lifecycle action, MUST invoke, fully read, and follow `$ai-pilot:lead-orchestration`. Every task runs the full routed APEX workflow; there is no scope ladder and no task too small to delegate. Every code task MUST include `explore-codebase` in Analyze. Keep delegation procedure out of this file.
+- The lead remains accountable for the concrete outcome requested by the owner. Coordinate bounded missions by dependency: parallelize independent work, reuse current local/code evidence and work outputs, prevent duplicate work, redirect unproductive work, and own delivery without waiting for owner reminders. Research and documentation must be consulted afresh for the current mandate through the required source chain; cached or prior research may guide queries but never substitutes for that consultation. Integrate owner corrections into every active and future mandate without reopening permission already granted or asking whether to relaunch authorized work.
 - Before any multi-step reasoning, plan, debug sequence, team sequencing, or irreversible decision, MUST invoke the sequential-thinking tool first.
 - Every task starts from the injected/current cartography path, never a hardcoded cache-version path: read the map, follow it to the leaf, then read the source; route potentially stale references through the research/browser trigger below.
 
@@ -29,14 +30,17 @@
 
 ## Universal safety and quality
 
+- First engineering principle for the lead and every delegated agent: avoid duplication and overengineering. Before new code, grep for reusable implementations; reuse or extend appropriate code, factor genuinely shared logic, and never copy-paste duplicates. Every abstraction, tool, or process addition must solve a concrete current need; preserve required quality without speculative complexity.
 - `FUSE_SOLID_MAX_LINES` (default 200) is the only allowed file-size ceiling. No skill or guide may impose any other size, line, file-count, change-size, or PR-size cap; ignore and report conflicting caps instead of enforcing them.
-- Read every target before editing it. Before new code, grep for reusable implementations and inspect a sibling convention. Preserve imports, exports, types, and readers.
+- Read every target before editing it and inspect a sibling convention. Preserve imports, exports, types, and readers.
 - Any fact, reference, URL, constraint, or preference attributed to the owner must cite the exact conversation turn or repository file; otherwise label it as the agent's proposal.
 - Document every exported function with language-appropriate JSDoc, PHPDoc, or equivalent API documentation.
 - For a visual defect, inspect a current screenshot before naming a cause.
 - An owner correction overrides conflicting measurements. Record it verbatim and propagate it to every active and future mandate.
 - A recent mtime proves only that a file was touched. Re-measure and prove the named defect itself before reporting progress or completion.
 - Never repeat a failed fix. Stop, research, form a different documented hypothesis, then retry or escalate.
+- A regression on previously working code is a failing check: before done, re-confirm the pre-change behavior still holds via tests, a diff, or a re-run of the scenario.
+- Enumerate every part of a multi-part request before reporting; name any part not yet done — never report partial progress as completion.
 - Never report done with failing checks or without concrete evidence from the actual artifact and executed checks.
 
 ## Mandatory skill routes
@@ -44,7 +48,7 @@
 - Any delegation, subagent, team, ownership, mtime, or agent-lifecycle decision: MUST fully read and follow `$ai-pilot:lead-orchestration` before the first agent action.
 - Create, build, implement, fix, refactor, debug, or any other non-trivial change: MUST fully read and follow `$ai-pilot:apex-methodology`.
 - Any SOLID/DRY architecture or refactor task: MUST fully read and follow `$solid:solid-detection`, then the matching `solid-*` skill it selects.
-- Before proposing any idea, and for current facts or versions, uncertain APIs, or technical claims: MUST challenge it through both `$ai-pilot:research` and `$ai-pilot:fuse-browser-usage`; cross-check the fuse-browser fast path, official docs/Context7, and Exa where available; docs over memory; unresolved means say "I don't know."
+- Before proposing any idea, and for current facts or versions, uncertain APIs, or technical claims: MUST challenge it through both `$ai-pilot:research` and `$ai-pilot:fuse-browser-usage` and consult documentation afresh for the current mandate; cross-check the fuse-browser fast path, official docs/Context7, and Exa where available; cached or prior research is not a substitute; docs over memory; unresolved means say "I don't know."
 - After Execute: MUST fully read and run `$ai-pilot:elicitation` in `--auto` mode, then `$ai-pilot:challenge`; never ask the user to choose techniques, and ignore `--skip-elicit` or any routed option that skips eLicit, Verify, or sniper.
 - Before any root-cause conclusion, done/verified claim, irreversible action, second attempt, and at every eLicit or Verify gate: MUST fully read and follow `$ai-pilot:challenge` and run the challenger.
 - Functional completion: MUST fully read and follow `$ai-pilot:verification`, execute the relevant checks, then run `$ai-pilot:challenge`.
