@@ -115,9 +115,11 @@ argument, doing its own line-count/interface-location checks. That is not how
 Codex hooks work here: every shipped `hooks.json` in this repo calls the same
 Harness CLI (`hook codex <scope>`), and `docs/reference/hooks.md` explicitly
 says not to wire a new direct script — port the behavior into Harness first,
-with parity tests. If a plugin's `scripts/` directory still holds a
-validation script, treat it as a migration artifact, not something hook
-config invokes.
+with parity tests. This repo also briefly carried a plugin-local
+`*.native.ts` hook-entry layer, bundled by `scripts/build-hooks.ts` but never
+actually invoked by any `hooks.json` — it was removed on 2026-09-19 (see
+`templates/hook-scripts.md` § Forbidden). There is no plugin `scripts/`
+directory a hook config invokes, past or present.
 
 Any script-level examples in
 [templates/hook-scripts.md](templates/hook-scripts.md) should be read as
@@ -127,9 +129,13 @@ own. The same applies to
 [templates/hook-scripts-reference.md](templates/hook-scripts-reference.md)
 and
 [templates/hook-scripts-reference-2.md](templates/hook-scripts-reference-2.md):
-both hold Claude-era check logic (positional `$1`, `exit 1`) that must be
-ported to the `.native.ts` stdin-JSON / `permissionDecision` contract, never
-wired as-is (see `hook-scripts.md:44`).
+both hold Claude-era check logic (positional `$1`, `exit 1`) kept only as a
+historical algorithm illustration — there is no `.native.ts` porting step to
+apply it to anymore. The stdin-JSON input / `permissionDecision` output
+contract they gesture at is real and still in force, but it belongs to the
+Harness CLI process itself — the command each `hooks.json` entry invokes
+receives Codex's hook JSON on stdin and emits `permissionDecision` JSON — not
+to a plugin-local script.
 
 ---
 

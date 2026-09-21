@@ -1,6 +1,6 @@
 {
   "name": "fusengine-codex",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "description": "Fusengine plugin ecosystem for Codex CLI: expert agents, APEX workflow, SOLID/DRY enforcement, cartography, security",
   "author": {
     "name": "Fusengine",
@@ -15,7 +15,7 @@
         "source": "local",
         "path": "./plugins/ai-pilot"
       },
-      "version": "1.2.55",
+      "version": "1.2.56",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -41,7 +41,7 @@
         "source": "local",
         "path": "./plugins/cartographer"
       },
-      "version": "1.0.20",
+      "version": "1.0.21",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -54,7 +54,7 @@
         "source": "local",
         "path": "./plugins/changelog-watcher"
       },
-      "version": "1.0.24",
+      "version": "1.0.25",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -67,7 +67,7 @@
         "source": "local",
         "path": "./plugins/codex-rules"
       },
-      "version": "1.0.31",
+      "version": "1.0.32",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -93,7 +93,7 @@
         "source": "local",
         "path": "./plugins/core-guards"
       },
-      "version": "1.1.53",
+      "version": "1.1.54",
       "category": "Security",
       "policy": {
         "installation": "AVAILABLE",
@@ -106,7 +106,7 @@
         "source": "local",
         "path": "./plugins/design-expert"
       },
-      "version": "2.1.46",
+      "version": "2.1.47",
       "category": "Design",
       "policy": {
         "installation": "AVAILABLE",
@@ -119,7 +119,7 @@
         "source": "local",
         "path": "./plugins/laravel-expert"
       },
-      "version": "1.2.19",
+      "version": "1.2.20",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",
@@ -145,7 +145,7 @@
         "source": "local",
         "path": "./plugins/memory-neural"
       },
-      "version": "1.0.9",
+      "version": "1.0.10",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -158,7 +158,7 @@
         "source": "local",
         "path": "./plugins/nextjs-expert"
       },
-      "version": "1.1.35",
+      "version": "1.1.36",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",
@@ -197,7 +197,7 @@
         "source": "local",
         "path": "./plugins/react-expert"
       },
-      "version": "1.0.31",
+      "version": "1.0.32",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",
@@ -223,7 +223,7 @@
         "source": "local",
         "path": "./plugins/security-expert"
       },
-      "version": "1.0.27",
+      "version": "1.0.28",
       "category": "Security",
       "policy": {
         "installation": "AVAILABLE",
@@ -236,7 +236,7 @@
         "source": "local",
         "path": "./plugins/seo"
       },
-      "version": "1.0.19",
+      "version": "1.0.20",
       "category": "Marketing",
       "policy": {
         "installation": "AVAILABLE",
@@ -249,7 +249,7 @@
         "source": "local",
         "path": "./plugins/shadcn-expert"
       },
-      "version": "1.0.28",
+      "version": "1.0.29",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",
@@ -262,7 +262,7 @@
         "source": "local",
         "path": "./plugins/solid"
       },
-      "version": "1.0.26",
+      "version": "1.0.27",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -275,7 +275,7 @@
         "source": "local",
         "path": "./plugins/swift-apple-expert"
       },
-      "version": "1.1.31",
+      "version": "1.1.32",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",
@@ -288,7 +288,7 @@
         "source": "local",
         "path": "./plugins/tailwindcss"
       },
-      "version": "1.1.21",
+      "version": "1.1.22",
       "category": "Framework",
       "policy": {
         "installation": "AVAILABLE",

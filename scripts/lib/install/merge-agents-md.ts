@@ -31,7 +31,7 @@ const END = "<!-- fusengine:codex-rules:end -->";
 const MAX_BYTES_KEY = "project_doc_max_bytes";
 const MAX_BYTES_VALUE = "65536";
 
-/** Concatenate plugins/codex-rules/rules/*.md, sorted — same order as inject-rules.native.ts. */
+/** Concatenate plugins/codex-rules/rules/*.md, sorted — same order as the harness `rules` scope injection. */
 export function readRulesCorpus(rulesDir: string): string {
 	if (!existsSync(rulesDir)) return "";
 	const files = readdirSync(rulesDir).filter((f) => f.endsWith(".md")).sort();
