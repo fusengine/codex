@@ -1,9 +1,10 @@
 /**
  * agents-resync.ts — logique de resync SessionStart : décide si l'empreinte du
  * cache d'agents a changé depuis la dernière fois, sans effet de bord tant que
- * ce n'est pas le cas. Extrait du hook (`resync-agents.native.ts`) qui, lui,
- * a un effet de bord top-level et n'est donc pas unit-testable — convention
- * déjà en vigueur pour les autres hooks session-start de ce repo.
+ * ce n'est pas le cas. Ce même resync tourne désormais côté runtime dans
+ * `@fusengine/harness` (`src/runtime/lifecycle/codex-resync/resync.ts`) ; cette
+ * copie installer ne sert que le chemin premier-setup (avant que le harness
+ * ne soit staged dans `$CODEX_HOME/node_modules`).
  */
 import {
 	existsSync, readdirSync, lstatSync, readFileSync, writeFileSync, mkdirSync, renameSync, unlinkSync,

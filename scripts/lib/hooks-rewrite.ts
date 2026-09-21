@@ -56,6 +56,5 @@ export function rewriteCommand(cmd: string): string {
 	out = out.replace(/\.py(\b|$)/g, ".ts$1");
 	out = out.replace(/\bscripts\/session-start\/inject-claude-md\.ts\b/g, "scripts/session-start/inject-agents-md.ts");
 	out = out.replace(/\bscripts\/user-prompt\/read-claude-md\.ts\b/g, "scripts/user-prompt/read-agents-md.ts");
-	out = out.replace(/\bafplay\s+/g, "bun ${PLUGIN_ROOT}/scripts/sound/play.ts ");
 	return out;
 }
