@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.52] - 2026-09-21
+
+- chore(hooks): remove dead native-hook layer and codex-hooks package — 135 files: every `plugins/*/scripts/**/*.native.ts`, `plugins/seo/scripts/validate-seo.ts`, the 10 deleted co-located `*.test.ts` under `plugins/*/scripts` that imported them, `scripts/build-hooks.ts`, `packages/codex-hooks/package.json`, `.gitignore`, `scripts/lib/install/{runtime-deps,plugin-cache}.ts` (+ new `plugin-cache.test.ts`), `scripts/tests/runtime-shared.test.mts`, `scripts/lib/hooks-rewrite.ts`, `scripts/lib/install/{agents-resync,merge-agents-md}.ts`
+- chore(scripts): purge orphaned plugin lib modules (90 files) — every remaining deleted file under `plugins/*/scripts/**`: ai-pilot lib/cache/apex trees (incl. `package.json`/`tsconfig.json`), core-guards `_shared/**` + `sound/play.ts`, design-expert lib + `pipeline_state.ts`, seo `cannibalization-audit.ts`/`track-rank.ts`, `plugins/_shared/scripts/*`, the 4 `*-triggers.ts`, memory-neural `lib/neural.ts`
+- docs: drop native-hook and plugin-script references — `docs/GAP-HARNESS.md`, `docs/plugins/ai-pilot.md`, `docs/reference/cache-system.md`, `docs/reference/architecture.md`, `README.md`, `plugins/ai-pilot/skills/agent-creator/{SKILL.md,references/hooks.md,references/templates/hook-scripts*.md}` (3), `plugins/shadcn-expert/skills/shadcn-detection/references/templates/detection-script.md`
+- chore(release): bump 16 touched plugins + suite to 1.0.52 — ai-pilot 1.2.55 -> 1.2.56, cartographer 1.0.20 -> 1.0.21, changelog-watcher 1.0.24 -> 1.0.25, codex-rules 1.0.31 -> 1.0.32, core-guards 1.1.53 -> 1.1.54, design-expert 2.1.46 -> 2.1.47, laravel-expert 1.2.19 -> 1.2.20, memory-neural 1.0.9 -> 1.0.10, nextjs-expert 1.1.35 -> 1.1.36, react-expert 1.0.31 -> 1.0.32, security-expert 1.0.27 -> 1.0.28, seo 1.0.19 -> 1.0.20, shadcn-expert 1.0.28 -> 1.0.29, solid 1.0.26 -> 1.0.27, swift-apple-expert 1.1.31 -> 1.1.32, tailwindcss 1.1.21 -> 1.1.22; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.51] - 2026-09-16
 
 - chore(agents): doubt rule and tier matrix across the 37 agent TOMLs — every `plugins/*/agents/*.toml` (ai-pilot 8, seo 4, 19 single-agent plugins incl. security-expert medium per owner decision 2026-09-07) gains the executor doubt rule and tier-matrix wording; `scripts/lib/security-agent-pilot-run.ts` + `.test.ts` add the pilot-run harness; new `docs/validation/` (agent fleet corrections, security-agent-pilot baseline/cases/evidence with sha256 manifests)
