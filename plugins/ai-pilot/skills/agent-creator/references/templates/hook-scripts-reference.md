@@ -1,12 +1,20 @@
 ---
 name: hook-scripts-reference
-description: Check-logic reference scripts (SOLID size/interface rules) to port into native-TS Codex hook entries
+description: Historical check-logic reference scripts (SOLID size/interface rules) — algorithm illustration only, superseded by the harness's `solid` scope
 keywords: hooks, scripts, bash, validation, solid, reference
 ---
 
 # Hook Scripts — Check-Logic Reference
 
-Split out of `hook-scripts.md` to stay under the `FUSE_SOLID_MAX_LINES` ceiling. Read `hook-scripts.md` first: none of these scripts are directly wireable in this Codex marketplace — `hooks/hooks.json` only ever calls the canonical Harness route. Each block below is the CHECK LOGIC (what to detect, what message to raise) to port into a `plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts` file (`// @hook-entry`, stdin JSON in, `permissionDecision` JSON out, always `exit 0`) — not a file to `chmod +x` and reference from a hook command.
+Split out of `hook-scripts.md` to stay under the `FUSE_SOLID_MAX_LINES` ceiling. Read
+`hook-scripts.md` first: none of these scripts are, or ever were, wireable in this Codex
+marketplace — `hooks/hooks.json` only ever calls the canonical Harness route. Each block below
+is a **historical illustration** of the check logic (what to detect, what message to raise),
+kept only as a language-per-stack reference. The equivalent live behavior is implemented as the
+harness's `solid` scope handler (`fuse-harness` repo, `src/runtime/lifecycle/solid-detect.ts`,
+`check-file-size.ts`) — see `hook-scripts.md` §(c) for how to change that logic. There is no
+porting step from these snippets into this repo; they are not a template for a file to write
+here.
 
 ---
 

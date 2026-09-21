@@ -1,12 +1,17 @@
 ---
 name: hook-scripts-reference-2
-description: Check-logic reference scripts (Swift SOLID, skill-read tracker) — continued from hook-scripts-reference.md
+description: Historical check-logic reference scripts (Swift SOLID, skill-read tracker) — algorithm illustration only, continued from hook-scripts-reference.md
 keywords: hooks, scripts, bash, validation, solid, reference, swift
 ---
 
 # Hook Scripts — Check-Logic Reference (continued)
 
-Continued from `hook-scripts-reference.md` (split to stay under the `FUSE_SOLID_MAX_LINES` ceiling). Read `hook-scripts.md` first: neither script below is directly wireable in this Codex marketplace — port its logic into a `plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts` file (`// @hook-entry`, stdin JSON in, `permissionDecision` JSON out, always `exit 0`).
+Continued from `hook-scripts-reference.md` (split to stay under the `FUSE_SOLID_MAX_LINES`
+ceiling). Read `hook-scripts.md` first: neither script below is, or ever was, wireable in this
+Codex marketplace. Both are **historical illustrations** of check logic only — the Swift SOLID
+check is superseded by the harness's `solid` scope handler (`fuse-harness` repo,
+`src/runtime/lifecycle/solid-detect.ts`, `check-file-size.ts`); see `hook-scripts.md` §(c) for
+how to change that logic. There is no porting step from these snippets into this repo.
 
 ---
 

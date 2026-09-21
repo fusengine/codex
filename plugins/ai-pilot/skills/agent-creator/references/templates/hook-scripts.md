@@ -1,67 +1,101 @@
 ---
 name: hook-scripts
-description: Real Codex/Harness hook attach point — how the SOLID validation scripts actually get wired
-keywords: hooks, scripts, harness, native-ts, validation, solid
+description: Real Codex/Harness hook attach point — how plugin hooks are wired end-to-end
+keywords: hooks, harness, hooks.json, routes, scopes, validate, trust
 ---
 
 # Hook Scripts — Attach Point
 
 ## Usage
 
-The scripts referenced below (`hook-scripts-reference.md`) are a **validation-logic reference**, not directly wireable hook commands. In this Codex marketplace, `plugins/<plugin>/hooks/hooks.json` NEVER invokes a hand-written script — every entry calls the canonical Harness CLI route. Per `docs/reference/hooks.md:115-117`: "Do not wire a new direct script; port its behavior to Harness and add parity tests first." To enforce a check, port its logic into a `*.native.ts` hook entry (below), then bundle and validate.
+In this Codex marketplace, `plugins/<plugin>/hooks/hooks.json` NEVER invokes a hand-written
+script. Every entry calls the canonical Harness CLI route for its `(plugin, event, matcher)`
+tuple. There is no plugin-local hook-script layer in this repo — see **Forbidden** below for
+what that used to look like and why it's gone.
 
 ---
 
-## Real Attach Point (Codex / Harness)
+## (a) `hooks.json` — canonical command only
 
-1. **`plugins/<plugin>/hooks/hooks.json`** registers only the canonical Harness command per `(plugin, event, matcher)` tuple:
-
-   ```json
-   {
-     "hooks": {
-       "PreToolUse": [
-         {
-           "matcher": "apply_patch",
-           "hooks": [
-             { "type": "command", "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex <scope>" }
-           ]
-         }
-       ]
-     }
-   }
-   ```
-
-   (Real example: `plugins/typescript-expert/hooks/hooks.json`, scope `core`.) `<scope>` is one of `HARNESS_SCOPES` (`scripts/lib/harness-hook-policy.ts`: `core`, `solid`, `rules`, `carto`, `security`, `changelog`, `aipilot`, `lessons`, `seo`, `memory`, `tailwindcss`). `bun run validate` runs `validateHarnessHookWiring` and fails the build on any command that is not byte-identical to `canonicalHarnessCommand(plugin, event, matcher)`.
-
-2. **Per-check logic** lives as a native TypeScript hook entry: `plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts`, first line `// @hook-entry`. It reads JSON from stdin (`await Bun.stdin.text()`), and resolves its own paths from `process.env.PLUGIN_ROOT` — **never** `import.meta.path` (broken post-bundle, `oven-sh/bun#15994`; `scripts/build-hooks.ts:13`). To block, it prints `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"..."}}` and still calls `process.exit(0)`; to allow, it exits `0` with no output. There is **no** `exit 1`-to-block / stderr protocol (`docs/reference/hooks.md:132-141`). Live, on-disk example: `plugins/solid/scripts/validate-solid.native.ts`.
-
-3. **Build**: `bun scripts/build-hooks.ts <plugin>` bundles every `@hook-entry` file into the `@fusengine/harness` package.
-
-4. **Validate**: `bun run validate` checks schema, matcher legality, and the exact canonical route (`scripts/lib/hook-config-validation.ts`, `scripts/lib/harness-hook-validation.ts`).
-
-### Gap vs. the reference scripts
-
-Every script in `hook-scripts-reference.md` uses a Claude-era contract — `FILE_PATH="${1:-}"` positional arg, `exit 1` to block — that matches **neither** the Codex hook input (stdin JSON) **nor** its blocking signal (`permissionDecision`, always `exit 0`). Treat them as size/interface-location CHECK LOGIC to port into a `.native.ts` entry per step 2 above; never `chmod +x` and wire one of them as-is.
-
----
-
-## Installation (of the ported `.native.ts` logic, not of the reference `.sh` files)
-
-```bash
-# 1. Write the check as plugins/<plugin>/scripts/<event-kebab>/<name>.native.ts
-#    first line: // @hook-entry — read stdin JSON, use process.env.PLUGIN_ROOT
-# 2. Bundle it
-bun scripts/build-hooks.ts <plugin>
-# 3. hooks.json already points at the canonical Harness route for (plugin, event, matcher)
-#    — do not add or edit a "command" by hand
-# 4. Validate
-bun run validate
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "apply_patch",
+        "hooks": [
+          { "type": "command", "command": "bun \"${CODEX_HOME:-$HOME/.codex}/node_modules/@fusengine/harness/dist/cli/bin.mjs\" hook codex core" }
+        ]
+      }
+    ]
+  }
+}
 ```
+
+(Real example: `plugins/typescript-expert/hooks/hooks.json` — `PreToolUse`/`apply_patch` and
+`PostToolUse`/`""`, both scope `core`.) One entry per `(event, matcher)`. `<scope>` is one of
+the 11 `HARNESS_SCOPES` (`scripts/lib/harness-hook-policy.ts`): `core`, `solid`, `rules`,
+`carto`, `security`, `changelog`, `aipilot`, `lessons`, `seo`, `memory`, `tailwindcss`.
+`bun run validate` runs `validateHarnessHookWiring` (`scripts/lib/harness-hook-validation.ts`)
+and fails the build on any command that is not byte-identical to
+`canonicalHarnessCommand(plugin, event, matcher)`, on a duplicate handler, or on a handler with
+no registered route.
+
+---
+
+## (b) Adding a NEW event/matcher for a plugin
+
+1. Edit `plugins/<plugin>/hooks/hooks.json` — add the `(event, matcher)` block using the
+   canonical command for the scope you're targeting (copy the shape in (a), swap `<scope>`).
+2. Add the matching route to `scripts/lib/harness-hook-routes.json`
+   (`{ "plugin", "event", "matcher", "scope" }`) — `canonicalHarnessCommand` reads this file to
+   decide what command is legal for that tuple.
+3. Run `bun run validate`. It rejects: an unregistered tuple, a duplicate handler, or a command
+   that doesn't match the route exactly.
+4. **IMPORTANT**: a changed `command` string invalidates the Codex hook-trust hash. Trust is a
+   bit-exact SHA-256 over the normalized `(event, matcher, command, timeout)` tuple, persisted
+   as `[hooks.state."<key>"].trusted_hash` in `config.toml`
+   (`scripts/lib/install/hooks-trust.ts`). After wiring a new or changed tuple, the installer's
+   "Trust all fusengine hooks" prompt (or a manual `/hooks` review in Codex) must run again —
+   an untrusted hook is skipped **silently**, it does not error.
+
+---
+
+## (c) Where hook LOGIC lives
+
+Never in this repo. New check logic is written in the `@fusengine/harness` package (repo
+`fuse-harness`), as a scope handler under `src/runtime/lifecycle/**` — one scope per
+plugin/domain (e.g. `solid-detect.ts`, `check-file-size.ts`). To ship a change:
+
+1. Land the handler + its tests in the harness repo, release to npm.
+2. Back here, run `bun run update-harness` (`scripts/update-harness.ts`): bumps the
+   `@fusengine/harness` dependency, reinstalls, re-audits all 11 scopes, and advances the
+   `HARNESS_VERSION` tripwire (`scripts/lib/harness-hook-policy.ts`).
+   `validateHarnessHookWiring` fails the build if the installed harness version doesn't match
+   the last-audited one — this is what forces a re-audit on every harness bump, not a manual
+   reminder.
+
+---
+
+## Forbidden
+
+- A plugin-local hook script of any kind — a `hooks.json` command must always be the canonical
+  Harness route, never a hand-rolled one.
+- `*.native.ts` hook entries, `// @hook-entry` files, `scripts/build-hooks.ts`.
+- `dist/hooks` bundle output, `packages/codex-hooks`.
+
+These made up a Claude-era layer (stdin-JSON input, `permissionDecision` output contract) that
+Codex's `hooks.json` never actually invoked once every plugin was routed through the harness
+(commit `ca01ff99`, 2026-07-11 — "route all plugins through harness"). They sat dead — bundled
+but unwired — until removed on 2026-09-19. Any reference to them elsewhere in the docs is
+stale; fix it, don't resurrect the pattern.
+
+---
 
 ## Notes
 
-- `hooks/hooks.json` never contains a hand-written command — only the canonical Harness route for the plugin's declared `(event, matcher)` tuples.
-- Blocking = `permissionDecision: "deny"` JSON on stdout + `exit 0`; there is no `exit 1` protocol.
-- Use `process.env.PLUGIN_ROOT` inside the `.native.ts` file — a shell `$PLUGIN_ROOT` never reaches the process (hooks.json has no per-command env injection for it).
-- Keep ported logic fast (< 1s) — same constraint the original scripts documented.
-- Reference check-logic scripts (SOLID size/interface rules per stack, skill-read tracker): `hook-scripts-reference.md`, continued in `hook-scripts-reference-2.md` (Swift SOLID validation, skill-read tracker).
+- `hooks/hooks.json` never contains a hand-written command — only the canonical Harness route
+  for the plugin's declared `(event, matcher)` tuples.
+- Reference check-logic scripts (SOLID size/interface rules per stack, skill-read tracker) —
+  now historical illustrations only, not a porting target — live in
+  `hook-scripts-reference.md`, continued in `hook-scripts-reference-2.md`.

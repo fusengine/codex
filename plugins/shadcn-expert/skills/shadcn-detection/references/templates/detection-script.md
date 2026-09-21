@@ -8,13 +8,15 @@ keywords: detection, script, usage, example
 
 ## Complete Detection Example
 
-### Running the Script
+### Running Detection
+
+There is no standalone detection script — the shadcn-expert agent applies the
+5-signal algorithm from [detection-algorithm.md](../detection-algorithm.md)
+directly (via `Grep`/`Read` on `package.json`, `components.json`, source
+imports, and the lockfile) and produces the JSON verdict below itself.
 
 ```bash
-# From project root
-bash /path/to/plugins/shadcn-expert/scripts/detect-primitive-lib.sh /path/to/project
-
-# Example output
+# Example output (produced by the agent, not a script)
 # {"primitive":"radix","confidence":85,"pm":"bun","runner":"bunx","signals":["pkg:radix-ui","style:new-york","import:radix","attr:data-state","pm:bun"]}
 ```
 
@@ -49,14 +51,12 @@ const addCommand = `${result.runner} shadcn@latest add button`
 
 ### Agent Workflow Integration
 
+1. Run the 5-signal scan (package.json, components.json, imports, data
+   attributes, lockfile) as described in detection-algorithm.md.
+2. Build the `DetectionResult` JSON shown above from the scan.
+3. Use the detected `runner` for CLI commands, e.g.:
+
 ```bash
-# Step 1: Detect primitive
-RESULT=$(bash detect-primitive-lib.sh .)
-
-# Step 2: Extract values
-PRIMITIVE=$(echo "$RESULT" | jq -r '.primitive')
-RUNNER=$(echo "$RESULT" | jq -r '.runner')
-
-# Step 3: Use runner for CLI
+# Step 3: Use runner for CLI (RUNNER derived from the scan, e.g. "bunx")
 $RUNNER shadcn@latest add dialog
 ```

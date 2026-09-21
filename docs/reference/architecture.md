@@ -23,12 +23,11 @@ codex-plugins/
 │   ├── ai-pilot/
 │   │   ├── agents/              # sniper, explore-codebase, research-expert, etc.
 │   │   ├── commands/
-│   │   ├── hooks/hooks.json     # 15 hook entries (5 types)
-│   │   ├── scripts/             # 17 bash scripts (cache, APEX, SOLID)
+│   │   ├── hooks/hooks.json     # 11 hook entries, all routed to the harness `aipilot` scope
 │   │   └── skills/
 │   ├── core-guards/
-│   │   ├── hooks/hooks.json     # Security, SOLID, sounds, lifecycle
-│   │   ├── scripts/             # Organized by hook type
+│   │   ├── hooks/hooks.json     # Security, SOLID, sounds, lifecycle — routed to the harness
+│   │   ├── scripts/             # A few test helpers only, no hook scripts
 │   │   ├── statusline/          # Real-time status bar (Bun)
 │   │   └── song/                # Sound notifications
 │   ├── commit-pro/
@@ -129,8 +128,10 @@ Modular knowledge packages with documentation. Defined under `skills/` with a `S
 
 ### Scripts
 
-Bash scripts executed by hooks for automation. Located in `scripts/` per plugin. Key categories:
-- **Cache scripts**: Capture and inject cached data (explore, doc, lessons)
-- **APEX scripts**: Enforce workflow phases and context injection
-- **SOLID scripts**: Validate compliance on file modifications
-- **Tracking scripts**: Monitor documentation reads and task state
+Hooks execute the harness CLI (`hook codex <scope>` from `@fusengine/harness`),
+not plugin-local scripts — cache, APEX, SOLID, and tracking behavior all live
+in the harness. Per-plugin `scripts/` directories, where present, hold
+agent-invoked CLI tools only: the design-expert `layout-check/` tool, the seo
+CLI tools (`parse-meta`, `validate-schema`, `check-cwv`, `parse-sitemap`,
+`parse-robots`, `parse-hreflang`, `geo-score`, `analyze-keywords`, `diff-seo`),
+and a handful of core-guards test helpers.

@@ -35,11 +35,11 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 24 hours |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/explore/{hash}/` |
-| Capture | `SubagentStart` (`explore-cache-check.ts`) |
+| Capture | `SubagentStart` (harness `aipilot` scope) |
 | Format | `metadata.json` + `snapshot.md` |
 
 **Flow**:
-1. `explore-codebase` starts → `SubagentStart` fires `explore-cache-check.ts`
+1. `explore-codebase` starts → `SubagentStart` fires the harness `aipilot` scope
 2. If cache hit (< 24h old) → inject snapshot via `additionalContext`, agent skips scan
 3. If cache miss → agent runs normally, saves result for next time
 
@@ -51,15 +51,15 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 7 days |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/doc/{hash}/` |
-| Capture | `SubagentStop` (`cache-doc-from-transcript.ts`) |
-| Inject | `SubagentStart` (`doc-cache-inject.ts`) |
+| Capture | `SubagentStop` (harness `aipilot` scope) |
+| Inject | `SubagentStart` (harness `aipilot` scope) |
 | Format | `index.json` manifest + `docs/{doc-hash}.md` synthesis files |
 | Limits | Max 15 docs, max 20KB/doc |
 
 **Flow**:
-1. `research-expert` starts → `doc-cache-inject.ts` injects cached doc summaries (soft guidance)
+1. `research-expert` starts → the harness `aipilot` scope injects cached doc summaries (soft guidance)
 2. Agent queries Context7/Exa freely (no blocking gate)
-3. When agent completes → `cache-doc-from-transcript.ts` extracts full synthesis from transcript
+3. When agent completes → the harness `aipilot` scope extracts full synthesis from transcript
 
 **index.json**:
 ```json
@@ -85,20 +85,20 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 30 days |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/lessons/{hash}/` |
-| Capture | `SubagentStop` (`cache-sniper-lessons.ts`) |
-| Inject | `SubagentStart` (`lessons-cache-inject.ts`) → ALL agents |
-| Promotion | `promote-global-lessons.ts` → `_global/{stack}.json` (3+ occurrences) |
+| Capture | `SubagentStop` (harness `aipilot` scope) |
+| Inject | `SubagentStart` (harness `aipilot` scope) → ALL agents |
+| Promotion | harness `aipilot` scope, background → `_global/{stack}.json` (3+ occurrences) |
 | Format | Per-timestamp JSON files (`{timestamp}.json`) |
 | Limits | Auto-cleanup files > 30 days, top 10 injected |
 
 **Flow**:
-1. Sniper finishes with `SubagentStop` → `cache-sniper-lessons.ts`
-2. Script reads `agent_transcript_path` (JSONL)
+1. Sniper finishes with `SubagentStop` → the harness `aipilot` scope runs
+2. It reads `agent_transcript_path` (JSONL)
 3. Extracts all Edit tool_use entries (file, old_string, new_string)
 4. Categorizes errors by code diff analysis (missing_directive, type_any, etc.)
 5. Saves as `{timestamp}.json` with one error per line
-6. Runs `promote-global-lessons.ts` in background (promotes errors seen 3+ times to `_global/`)
-7. Next agent start → `lessons-cache-inject.ts` aggregates local + global lessons, injects top 10
+6. Runs the promotion step in background (promotes errors seen 3+ times to `_global/`)
+7. Next agent start → `SubagentStart` aggregates local + global lessons, injects top 10
 
 **Lesson file format** (`2026-02-09T01-14-44.json`):
 ```json
@@ -132,13 +132,13 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 |----------|-------|
 | TTL | 48 hours |
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/tests/{hash}/` |
-| Capture | `SubagentStop` (`cache-test-results.ts`) |
-| Inject | `SubagentStart` (`test-cache-inject.ts`) → sniper |
+| Capture | `SubagentStop` (harness `aipilot` scope) |
+| Inject | `SubagentStart` (harness `aipilot` scope) → sniper |
 | Format | `results.json` with file checksums |
 
 **Flow**:
-1. Sniper completes → `cache-test-results.ts` saves test results with file hashes
-2. Next sniper start → `test-cache-inject.ts` injects previous results
+1. Sniper completes → the harness `aipilot` scope saves test results with file hashes
+2. Next sniper start → the harness `aipilot` scope injects previous results
 3. Sniper can skip re-testing unchanged files
 
 ## Analytics
@@ -148,7 +148,7 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 | Property | Value |
 |----------|-------|
 | Location | `${CODEX_HOME:-~/.codex}/fusengine/analytics/` |
-| Capture | `Stop` (`cache-analytics-save.ts`) |
+| Capture | `Stop` (harness `aipilot` scope) |
 | Format | `sessions.jsonl` (one event per line) |
 
 **Event format**:
@@ -158,7 +158,7 @@ Each project gets a unique hash (first 16 chars of SHA-256 of the project path).
 
 ## Injection Format
 
-When agents start, `lessons-cache-inject.ts` outputs:
+When agents start, the harness `aipilot` scope outputs:
 
 ```
 ## KNOWN PROJECT ISSUES (from previous sniper validations)
@@ -173,42 +173,23 @@ INSTRUCTION: Check your code against these known issues BEFORE submitting.
 
 ## Scripts Reference
 
-All scripts are TypeScript (Bun runtime) with shared `lib/` modules.
-
-| Script | Hook Type | Trigger |
-|--------|-----------|---------|
-| `explore-cache-check.ts` | `SubagentStart` | explore-codebase agent |
-| `doc-cache-inject.ts` | `SubagentStart` | research-expert agent |
-| `cache-doc-from-transcript.ts` | `SubagentStop` | research-expert agent |
-| `lessons-cache-inject.ts` | `SubagentStart` | All agents |
-| `cache-sniper-lessons.ts` | `SubagentStop` | sniper agent |
-| `promote-global-lessons.ts` | Background | After sniper lessons capture |
-| `test-cache-inject.ts` | `SubagentStart` | sniper agent |
-| `cache-test-results.ts` | `SubagentStop` | sniper agent |
-| `cache-analytics-save.ts` | `Stop` | All sessions |
+`plugins/ai-pilot/scripts/` ships no scripts anymore (removed 2026-09-19,
+along with the orphaned `lib/` tier below it). Every cache capture/inject
+path described above (explore, doc, lessons, tests, analytics) is implemented
+by the harness `aipilot` scope in `@fusengine/harness`; `hooks/hooks.json`
+invokes it uniformly via `hook codex aipilot` for every hook type, with no
+plugin-local script per hook.
 
 ## Shared Library (`lib/`)
 
-```
-plugins/ai-pilot/scripts/lib/
-├── core.ts                        # readStdin, outputHookResponse, env helpers
-├── json.ts                        # safeJsonParse
-├── analytics.ts                   # logCacheEvent
-├── cache/
-│   ├── project-detect.ts          # getProjectHash, computeProjectHash
-│   ├── lesson-helpers.ts          # categorizeError, formatLessonEntry
-│   ├── lesson-aggregator.ts       # dedupLessons, aggregateLocal, loadGlobal, merge
-│   └── source-collector.ts        # collectSources from transcript
-├── apex/
-│   ├── detection.ts               # detectApexTrigger
-│   ├── state.ts                   # readApexState, writeApexState
-│   ├── enforce-helpers.ts         # checkPhaseAllowed
-│   └── task-helpers.ts            # syncTaskState
-└── interfaces/
-    ├── hook.interface.ts           # HookInput, HookResponse types
-    ├── cache.interface.ts          # CacheIndex, LessonEntry types
-    └── apex.interface.ts           # ApexState, ApexPhase types
-```
+`plugins/ai-pilot/scripts/lib/` no longer exists — the cache/APEX helper
+modules it used to hold (`core.ts`, `json.ts`, `analytics.ts`,
+`cache/project-detect.ts`, `cache/lesson-helpers.ts`,
+`cache/lesson-aggregator.ts`, `cache/source-collector.ts`,
+`apex/detection.ts`, `apex/state.ts`, `apex/enforce-helpers.ts`, and the
+`interfaces/` types) were dead code by the time they were removed: `hooks.json`
+already routed every hook to the harness `aipilot` scope, so this logic now
+lives in `@fusengine/harness` (`src/runtime/lifecycle/**`), not in this repo.
 
 ## Troubleshooting
 

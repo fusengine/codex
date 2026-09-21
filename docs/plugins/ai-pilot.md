@@ -65,29 +65,12 @@ ${CODEX_HOME:-~/.codex}/fusengine/
 | **Lessons** | Sniper Edit corrections | 30d | `SubagentStart` → all agents/sniper | ~50-70% |
 | **Tests** | Sniper test results | 48h | `SubagentStart` → sniper | ~60% |
 
-### Cache Scripts (TypeScript/Bun)
+### Cache Scripts
 
-All scripts are in `scripts/` with shared `lib/` modules.
-
-| Script | Hook | Role |
-|--------|------|------|
-| `explore-cache-check.ts` | `SubagentStart` | Inject cached architecture for explore-codebase |
-| `doc-cache-inject.ts` | `SubagentStart` | Inject cached doc summaries for research-expert |
-| `cache-doc-from-transcript.ts` | `SubagentStop` | Extract synthesis from research-expert transcript |
-| `lessons-cache-inject.ts` | `SubagentStart` | Inject known error patterns for all agents |
-| `cache-sniper-lessons.ts` | `SubagentStop` | Extract Edit corrections from sniper transcript |
-| `promote-global-lessons.ts` | Background | Promote lessons seen 3+ times to _global/ |
-| `test-cache-inject.ts` | `SubagentStart` | Inject previous test results for sniper |
-| `cache-test-results.ts` | `SubagentStop` | Save sniper test results with file hashes |
-| `cache-analytics-save.ts` | `Stop` | Save cache hit/miss analytics |
-| `inject-subagent-context.ts` | `SubagentStart` | Inject general context to all subagents |
-| `inject-apex-context.sh` | PreToolUse | Inject APEX context for Task tool |
-| `enforce-apex-phases.ts` | PreToolUse | Enforce APEX phase ordering |
-| `detect-and-inject-apex.ts` | UserPromptSubmit | Auto-detect APEX triggers |
-| `check-solid-compliance.sh` | PostToolUse | SOLID validation on Write/Edit |
-| `check-solid-from-transcript.sh` | `SubagentStop` | SOLID check from agent transcript |
-| `track-doc-consultation.sh` | PostToolUse | Track documentation reads |
-| `sync-task-tracking.ts` | PostToolUse | Sync task tracking when supported |
+The plugin ships no scripts anymore (removed 2026-09-19). All cache/APEX hook
+behavior (explore/doc/lessons/test caches, APEX phase enforcement, analytics)
+is provided by the harness `aipilot` scope in `@fusengine/harness`, invoked
+from `hooks/hooks.json` via `hook codex aipilot`.
 
 ### Lessons Format (per-timestamp)
 
@@ -103,16 +86,20 @@ Each sniper run creates a `{timestamp}.json` with Edit-extracted corrections:
 }
 ```
 
-## Hooks (14 entries)
+## Hooks (11 entries)
 
-| Hook Type | Count | Scripts |
-|-----------|-------|---------|
-| UserPromptSubmit | 1 | detect-and-inject-apex |
-| SubagentStart | 5 | inject-subagent-context, explore-cache-check, doc-cache-inject, lessons-cache-inject, test-cache-inject |
-| PreToolUse | 2 | enforce-apex-phases, inject-apex-context |
-| SubagentStop | 4 | cache-sniper-lessons, cache-test-results, cache-doc-from-transcript, check-solid-from-transcript |
-| PostToolUse | 3 | check-solid-compliance, track-doc-consultation, sync-task-tracking |
-| Stop | 1 | cache-analytics-save |
+All entries invoke the same command, `hook codex aipilot`, routed to the
+harness `aipilot` scope — no plugin-local script per hook.
+
+| Hook Type | Count | Matchers |
+|-----------|-------|----------|
+| UserPromptSubmit | 1 | (none) |
+| SubagentStart | 1 | (none) |
+| PreToolUse | 3 | `Bash`, `apply_patch`, `spawn_agent\|multi_agent_v1.spawn_agent` |
+| SubagentStop | 1 | (none) |
+| PostToolUse | 3 | `apply_patch`, `context7\|exa\|Bash`, `update_plan` |
+| Stop | 1 | (none) |
+| SessionEnd | 1 | (none) |
 
 ## MCP Servers
 

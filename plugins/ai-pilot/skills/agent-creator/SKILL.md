@@ -81,8 +81,8 @@ plugins/<plugin-name>/
 |----------|-------------|
 | [agent-template.md](references/templates/agent-template.md) | Creating a new agent (TOML format) |
 | [agent-template-examples.md](references/templates/agent-template-examples.md) | Worked Codex TOML agent examples (Next.js, Laravel) — abbreviated from the real shipped files |
-| [hook-scripts.md](references/templates/hook-scripts.md) | Porting check logic into `*.native.ts` hook entries — hooks.json only calls the Harness route |
-| [hook-scripts-reference.md](references/templates/hook-scripts-reference.md) | Check-logic reference scripts (SOLID size/interface rules) to port into native-TS Codex hook entries |
+| [hook-scripts.md](references/templates/hook-scripts.md) | How `hooks.json` wires to the canonical Harness route — adding a new event/matcher, where hook logic actually lives (harness repo) |
+| [hook-scripts-reference.md](references/templates/hook-scripts-reference.md) | Historical check-logic reference scripts (SOLID size/interface rules) — illustration only, not a porting target |
 | [hook-scripts-reference-2.md](references/templates/hook-scripts-reference-2.md) | Check-logic reference scripts (Swift SOLID, skill-read tracker) — continued from hook-scripts-reference.md |
 
 ---

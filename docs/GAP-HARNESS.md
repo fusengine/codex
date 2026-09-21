@@ -62,8 +62,8 @@ Aucune entrée du CHANGELOG harness 0.1.68→0.1.77 ne mentionne de fix « fenê
 - `edit-targets.ts:25/26` (TS2322/TS2532) + `hook-output.ts:9` (TS2532) → fixées via guards `?? ""` (cause : `noUncheckedIndexedAccess` dans `plugins/ai-pilot/scripts/tsconfig.json`). tsc EXIT 0.
 - RESTE OUVERT : `plugins/core-guards/statusline/` `TS2307 Cannot find module 'terminal-kit'` (`configure.ts:7`, `src/configure/render.ts:6`) — types manquants pour `terminal-kit`, cosmétique, tsconfig exclu de la racine.
 
-### B2. Scripts `.ts` vestigiaux (dead-code Phase 3)
-`build-hooks.ts` bundle encore ~103 scripts `@hook-entry` / ~114 `*.native.ts`, mais `hooks.json` route tout vers le harness → ces `.ts` ne sont PAS exécutés au runtime. Décision à prendre : purger (le harness porte la logique) ou garder comme source de référence du harness. Non bloquant.
+### B2. Scripts `.ts` vestigiaux (dead-code Phase 3) — ✅ RÉSOLU (2026-09-19)
+`build-hooks.ts` bundlait encore ~103 scripts `@hook-entry` / ~114 `*.native.ts`, mais `hooks.json` routait déjà tout vers le harness → ces `.ts` n'étaient PAS exécutés au runtime. Décision tranchée : purge (le harness porte seule la logique, `src/runtime/lifecycle/**` côté `fuse-harness`). Supprimés le 2026-09-19 : tous les `plugins/*/scripts/**/*.native.ts`, `scripts/build-hooks.ts`, `packages/codex-hooks/`, et leurs dépendances (`file:`/tgz) dans l'installeur. Seule surface hook exécutable restante : la commande `bun .../@fusengine/harness/.../bin.mjs hook codex <scope>` dans chaque `hooks/hooks.json`. Le même 2026-09-19, la strate `lib/` orpheline (helpers non-`.native.ts` sous `plugins/*/scripts/lib/**`, `_shared/scripts/**`, et les `*-triggers.ts` par framework — 91 fichiers, 5600 lignes au total) a été purgée pour la même raison : zéro consommateur, toute la logique déjà portée par le harness.
 
 ### B3. Trust des hooks à l'install
 Codex skippe les hooks non-managés tant qu'ils ne sont pas trustés. L'install propose `bypass_hook_trust=true` ; sinon `/hooks` review manuel. À valider au test.

@@ -180,8 +180,9 @@ codex-plugins/
 │       ├── agents/<name>.toml
 │       ├── hooks/hooks.json
 │       ├── mcp.json.bak               # MCP defs (installer source for config.toml)
-│       ├── scripts/                   # Bun TS + Bun-to-Python wrappers
-│       │   └── _legacy_py/            # archived Python originals
+│       ├── scripts/                   # agent-invoked CLI tools only (design-expert
+│       │                              #   layout-check/, seo parse/validate/audit tools,
+│       │                              #   a few core-guards test helpers) — no hook scripts
 │       └── .cartographer/             # generated maps
 └── scripts/                           # Bun tooling
     ├── migrate.ts                     # claude-plugins to codex-plugins
@@ -201,7 +202,6 @@ codex-plugins/
 |---|---|
 | `codex plugin add NAME@MARKETPLACE` | Not available in 0.130.0; fallback patches `config.toml` directly |
 | Command-backed statusline (`["bun", "/path"]`) | Removed from runtime since PR #10546; feature request open (issue #20244). Statusline code is preserved in `core-guards/statusline/` for future support |
-| 134 hook scripts | Bun wrappers call `python3` and preserve Python originals. Native Bun rewrite is pending |
 
 > **`@fusengine/harness` guard on Codex — `git commit`/`git add` and installs
 > are hard-denied outside Ralph mode.** Codex has no interactive approval
