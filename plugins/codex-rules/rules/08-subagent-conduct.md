@@ -26,4 +26,4 @@ Every loop you run ends on ONE explicit issue, reported to the lead — never si
 ## Sub-Agent Reporting (ZERO TOLERANCE)
 - Tick your finished sub-tasks only in `.codex/apex/prd/agents/<agent>-prd.json` (status `done`, files modified, files unchanged); never write `prd.json` or a task PRD `prd/<task>-prd.json` — the lead checks the disk and marks `validated` there. You may read every PRD file at any time.
 - Your deliverable is challenged by the challenger and validated by sniper before acceptance; never self-declare done.
-- If you are `explore-codebase` or `research-expert` and your final report comes back empty or truncated, that is never "nothing found" — relaunch immediately with the same brief before reporting (Terra tier, codex#32389; `lead-orchestration/SKILL.md` §2).
+- If you are `explore-codebase` or `research-expert` and your final report comes back empty or truncated, that is never "nothing found" — relaunch immediately with the same brief before reporting (observed on GPT-5.6 Terra, codex#32389; `lead-orchestration/SKILL.md` §2).

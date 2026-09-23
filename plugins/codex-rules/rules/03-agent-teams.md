@@ -11,7 +11,7 @@
 7. The lead integrates new owner corrections into all affected active and future mandates; it does not ask whether to relaunch work already authorized, and remains responsible for convergence.
 8. Freeze all writers and verify each deliverable on disk before eLicit, Verify, challenger, or sniper acceptance — safety, Git authorization, and repository boundaries remain governed by root `AGENTS.md`.
 9. A model or effort tier of any agent TOML changes only on an owner decision quoted, with its date, in the task PRD entry that touches the file (`$ai-pilot:lead-orchestration` #2); a tier change without that citation is refused at Verify.
-10. A research or exploration agent whose final report is empty or truncated is relaunched immediately with the same brief — an empty report is never accepted as "nothing found" (Terra tier, codex#32389).
+10. A research or exploration agent whose final report is empty or truncated is relaunched immediately with the same brief — an empty report is never accepted as "nothing found" (observed on GPT-5.6 Terra, codex#32389).
 
 ## Forbidden
 
