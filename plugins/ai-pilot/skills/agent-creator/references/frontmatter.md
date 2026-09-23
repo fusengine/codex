@@ -28,7 +28,7 @@ Hooks live in the plugin's `hooks/hooks.json`, never in the agent TOML — see
 ```toml
 name = "sniper"
 description = "Elite code error detection and correction. Use after ANY code modification. Do NOT use for: new features, read-only analysis."
-model = "gpt-5.6-sol"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"
 nickname_candidates = ["Sniper", "Code Sniper", "Sniper Agent"]
@@ -54,7 +54,7 @@ Real reference: `plugins/typescript-expert/agents/typescript-expert.toml`.
 | `name` | Yes | kebab-case, unique across the ecosystem, referenced by `spawn_agent`. Blank/missing drops the whole file at Codex startup (one-line warning only — the agent silently never becomes spawnable). |
 | `description` | Yes | Keep the "Use when… / Do NOT use for…" routing pattern — it drives agent selection. |
 | `developer_instructions` | Yes | Triple-quoted (`'''…'''`) string holding the full agent brief. No truncation of source substance. |
-| `model` | Recommended | Explicit tier id only: `gpt-5.6-sol`, `gpt-5.6-terra` or `gpt-5.6-luna`, chosen per Model Selection below. Never the bare `gpt-5.6` alias. |
+| `model` | Recommended | Explicit tier id only: `gpt-6-sol` or `gpt-6-luna`, chosen per Model Selection below. Never the bare `gpt-6` alias. GPT-6 has no `terra` tier and `gpt-6-astra` is excluded fleet-wide on cost. |
 | `model_reasoning_effort` | Recommended | One of `minimal`, `low`, `medium`, `high`, `xhigh`, `max`. |
 | `sandbox_mode` | Recommended | One of `read-only`, `workspace-write`, `danger-full-access`. See `sandbox_mode` Guidance below. |
 | `nickname_candidates` | Optional | Array of display names, identity evidence when spawning. See rules below. |
@@ -69,54 +69,46 @@ that — never add `color`, a `tools` list, or a `hooks` table here.
 
 ## Model Selection
 
+**Current, since 2026-09-23** (owner decision, verbatim, in order: "supprime
+astra il coute chere" · "j'ai trouvé luna medium plus performant" · "donc on
+répartie comment les model et raisonnement sur luna le high on oublie je
+pense non?" · "appliquer"). The fleet moved from GPT-5.6 (Sol/Terra/Luna) to
+GPT-6 (Sol/Astra/Luna); `gpt-6-astra` is excluded fleet-wide on cost, and
+GPT-6 has no `terra` tier.
+
 | `model` / effort | When to use |
 |-------------------|-------------|
-| `gpt-5.6-terra` / `medium` | The 12 framework/stack experts (astro, go, laravel, nextjs, php, react, rust, shadcn-ui, swift, tailwindcss, tanstack-start, typescript) + 3 volume read/search agents added 2026-09-02 (`explore-codebase`, `research-expert`, `websearch`) — 15 total |
-| `gpt-5.6-sol` / `medium` | 16 orchestration/release/validation/prompt-design/security-audit agents (brainstorming, solid-orchestrator, commit, changelog-watcher, lessons-compactor, seo-expert, seo-content, seo-geo, seo-local, seo-cluster, seo-technical, seo-schema, sniper, prompt-engineer, challenger, security-expert) |
-| `gpt-5.6-sol` / `high` | Highest-judgment gate: `design-expert` |
-| `gpt-5.6-luna` / `max` | Bounded, deterministic, verifiable-output work (`sniper-faster`, `commit-detector`, `cartographer`, `seo-images`, `seo-sitemap`) |
+| `gpt-6-sol` / `medium` | 18 orchestration/release/exploration/research/validation/prompt-design/security-audit agents (brainstorming, challenger, commit, explore-codebase, research-expert, sniper, changelog-watcher, lessons-compactor, prompt-engineer, security-expert, seo-cluster, seo-content, seo-expert, seo-geo, seo-local, seo-schema, seo-technical, solid-orchestrator) |
+| `gpt-6-sol` / `high` | Highest-judgment gate: `design-expert` |
+| `gpt-6-luna` / `medium` | The 12 framework/stack experts (astro, go, laravel, nextjs, php, react, rust, shadcn-ui, swift, tailwindcss, tanstack-start, typescript) + `sniper-faster`, `websearch`, `cartographer`, `commit-detector`, `seo-images`, `seo-sitemap` — 18 total, bounded/mechanical work with a strict, verifiable contract |
 
-`gpt-5.6-terra`/`medium` (Terra's default effort) is the executor tier for the
-12 framework experts above: a 15-run `codex exec` 0.152.1 benchmark on
-2026-09-02 (3 bounded coding tasks x 5 configs, hidden tests) passed every
-test on every tier while Terra medium was 1.7x faster and half the cost of
-Sol medium, and a 6-run repetition passed 6/6. Later the same day, owner
-decision "passe en terra medium" added `explore-codebase`,
-`research-expert`, and `websearch` to Terra/medium too — volume/read work
-(doc lookup, web search, codebase exploration) that the coding-task
-benchmark never measured, so the known Terra risk below is unverified
-rather than measured for this trio. Until 2026-09-02, Sol kept 3 judgment
-gates at `high` (`challenger`, `security-expert`, plus `design-expert` at
-`xhigh`); two same-day owner decisions ("seul le designer en high", then
-"security-expert en high") retired Sol `xhigh` fleet-wide and left exactly
-2 agents at Sol/high — `design-expert` and `security-expert` — while
-`challenger` joined Sol/medium. 2026-09-07 owner request
-(`.codex/apex/task.json` task `security-local-medium`, quoted verbatim):
-"security-expert medium et il doit ce comporter comme un hacker local qui
-sert exclusivement en local a tester les securité si on le demande de le
-faire en dehors du developpement local il refusera" — moved
-`security-expert` to Sol/medium for a local-only ethical-hacker posture,
-superseding the 2026-09-02 "high" decision; a same-day lead revert to
-`high` was itself reverted once this citation was found. Current state:
-Sol/high is `design-expert` only (1 agent). Sol/medium also covers the
-analysis/research/coordination agents (`medium`); the coordinator session
-itself stays Sol `high`. `sniper` moved to Sol/medium on 2026-09-02 (owner
-decision): it validates code with tooling and tests, where the benchmark
-showed medium equal to high.
-`prompt-engineer` — previously a Sol/high judgment gate — also moved to
-Sol/medium the same day (owner decision: "il est assez intelligent").
-Known risk:
-openai/codex#32389 (Terra intermittently returns an empty final response
-after tool use) is still open — the coordinator's on-disk PRD check plus the
-challenger and sniper gates turn it into a retry, never a silent bad merge;
-for the 3 volume agents, the mitigation is procedural instead: a
-research/exploration agent whose final report is empty or truncated is
-relaunched immediately with the same brief, never accepted as "nothing
-found" (see `plugins/ai-pilot/skills/lead-orchestration/SKILL.md` and
-`plugins/codex-rules/rules/03-agent-teams.md`).
+Rationale: Luna medium writes code and does mechanical work — measured the
+same correctness as Sol on debugging/typed-code tasks, roughly 30x cheaper
+than Sol, fastest, and does not loop at medium effort. Sol medium judges,
+validates, explores, and researches — the only arm with zero edge-case
+misses in testing; `challenger` and `sniper` (both Sol/medium) review
+Luna's output. `research-expert` and `explore-codebase` sit on Sol/medium
+(not Luna) because exploration/research is judgment-adjacent under this
+rationale; `websearch` sits on Luna/medium as bounded mechanical lookup.
+`gpt-6-luna` / `high` is dropped (slow and erratic at that effort);
+`gpt-6-sol` / `low` is dropped (no better than Luna medium, at 14x the
+cost). Valid efforts per the GPT-6 catalog: `gpt-6-sol` supports `low`
+through `ultra`; `gpt-6-luna` supports `low` through `max` — this fleet
+uses only Sol medium (plus one Sol high) and Luna medium. Prices per 1M
+tokens (input/cached/output, developers.openai.com/api/docs/pricing):
+`gpt-6-sol` $2.00/$0.20/$10.00, `gpt-6-luna` $0.10/$0.01/$0.50.
 The authoritative, up-to-date per-agent classification lives in
 `docs/reference/creating-skills-agents.md` (model policy section) — this
 table mirrors it, don't let the two drift.
+
+### History (GPT-5.6 tiers, superseded 2026-09-23)
+
+For the full prior GPT-5.6 Sol/Terra/Luna policy (per-tier rationale, the
+owner decision timeline, and the known Terra risk) see
+[`docs/workflow/agents.md` § History (GPT-5.6 policy, superseded
+2026-09-23)](../../../../../docs/workflow/agents.md#history-gpt-56-policy-superseded-2026-09-23)
+— condensed here to a pointer, not reproduced, to avoid the two copies
+drifting.
 
 ---
 

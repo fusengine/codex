@@ -6,134 +6,82 @@ import type { AgentTomlOptions } from "./agent.types.ts";
 
 /** A supported Codex model and reasoning-effort pair. */
 type ModelProfile = {
-	model: "gpt-5.6-sol" | "gpt-5.6-terra" | "gpt-5.6-luna";
-	effort: "medium" | "high" | "xhigh" | "max";
+	model: "gpt-6-sol" | "gpt-6-luna";
+	effort: "medium" | "high";
 };
 
-const SOL_MEDIUM: ModelProfile = { model: "gpt-5.6-sol", effort: "medium" };
-const SOL_HIGH: ModelProfile = { model: "gpt-5.6-sol", effort: "high" };
-const LUNA_MAX: ModelProfile = { model: "gpt-5.6-luna", effort: "max" };
-const TERRA_MEDIUM: ModelProfile = { model: "gpt-5.6-terra", effort: "medium" };
+const SOL_MEDIUM: ModelProfile = { model: "gpt-6-sol", effort: "medium" };
+const SOL_HIGH: ModelProfile = { model: "gpt-6-sol", effort: "high" };
+const LUNA_MEDIUM: ModelProfile = { model: "gpt-6-luna", effort: "medium" };
 
 /**
- * Canonical shipped-agent policy (37 agents, revised 2026-09-01, corrected
- * same day after re-checking the Artificial Analysis figures our own first
- * pass cited against the source page). Source Claude tiers are not
- * sufficiently expressive for the intentional per-role Codex model and
- * effort choices.
+ * Canonical shipped-agent policy (37 agents, GPT-6 fleet, applied
+ * 2026-09-23). Prior gpt-5.6 sol/terra/luna tiers (2026-09-01, -02, -07:
+ * Terra medium for the 12 framework experts + explore-codebase/research-expert/
+ * websearch; Sol high only for design-expert; security-expert moved to Sol
+ * medium 2026-09-07 for a local-only ethical-hacker posture, per
+ * `.codex/apex/task.json` task `security-local-medium`) are superseded
+ * wholesale by this matrix — condensed here as history, not reproduced.
  *
- * Verified facts backing this matrix:
- * - Codex 0.152.0 model catalog: Sol is the "Latest frontier agentic coding
- *   model", Terra the "Balanced agentic coding model for everyday work", Luna
- *   the "Fast and affordable agentic coding model". Luna has no `ultra`
- *   effort; `ultra` itself means "Maximum reasoning with automatic task
- *   delegation" and is never appropriate for a sub-agent.
- * - Artificial Analysis Intelligence Index (artificialanalysis.ai/models/
- *   gpt-5-6-luna and the Sol launch article, July 2026): Sol low 51, Sol
- *   medium 56, Sol high 57, Sol xhigh 59, Luna max 52. Sol max is not
- *   used by any shipped agent and is not asserted here (published figures
- *   diverge between AA pages). Sol medium<->high (56->57, -1/+1) is the
- *   only gap within the
- *   owner's 1-point non-regression threshold: the three gates (challenger,
- *   sniper, security-expert) stayed on `high` in that revision;
- *   `prompt-engineer` was already `high`. Superseded on 2026-09-02 for
- *   `sniper` (moved to medium), later the same day for `prompt-engineer`
- *   (moved to medium, owner decision: "il est assez intelligent"), and
- *   again later the same day for `challenger` (moved to medium, owner
- *   decision "seul le designer en high" — see below) — see the
- *   judgment-roles sentence below.
- * - Until 2026-09-02, `design-expert` stayed on Sol `xhigh` (59): moving it
- *   to `high` (57) was treated as a 2-point drop, over threshold, so it was
- *   not reclassified despite being a one-shot-correctness gate like the
- *   other two. Superseded the same day by two successive owner decisions:
- *   first "seul le designer en high" (`design-expert` xhigh -> high,
- *   `challenger` and `security-expert` high -> medium, xhigh retired
- *   fleet-wide), then a same-day correction reinstating `security-expert`
- *   at `high` ("security-expert en high"). 2026-09-07 owner request
- *   (`.codex/apex/task.json` task `security-local-medium`, quoted
- *   verbatim): "security-expert medium et il doit ce comporter comme un
- *   hacker local qui sert exclusivement en local a tester les securité si
- *   on le demande de le faire en dehors du developpement local il
- *   refusera" — moves `security-expert` to `medium` for a local-only
- *   ethical-hacker posture, superseding the 2026-09-02 "high" decision; a
- *   same-day lead revert to `high` was itself reverted once this citation
- *   was found. Current state: Sol `xhigh` unused (0 agents); Sol `high` is
- *   `design-expert` only (1 agent).
- * - `seo-technical` and `seo-schema` stay on Sol `medium` (56): moving them
- *   to Luna `max` (52) is a 4-point drop, over threshold. (`websearch` was
- *   in this group until 2026-09-02 — see the Terra/medium move below.)
- *   Being a bounded, deterministic, strict-contract task is necessary but
- *   not sufficient for a Sol -> Luna move; the measured regression vetoes it
- *   here, so they are NOT reclassified.
- * - A 2026-09-02 15-run `codex exec` 0.152.1 benchmark (3 bounded coding
- *   tasks — a bug fix with 7 hidden tests, a spec-driven feature with 25
- *   hidden tests, and a 3-file CLI change with 8 hidden tests — each run
- *   across 5 configs) passed every hidden test on every config. Wall time
- *   totals: Terra medium 210s, Terra high 225s, Sol medium 353s, Sol high
- *   370s, Luna max 427s. Estimated 3-task cost: Terra medium $0.31 vs Sol
- *   medium $0.64 (published pricing per 1M tokens: Sol $4 in / $0.40 cached
- *   / $20 out, Terra $2 / $0.20 / $12, Luna $0.20 / $0.02 / $1.20). Terra
- *   medium — Terra's default effort — is therefore the executor tier for
- *   the 12 framework experts, which run bounded, briefed lots on disjoint
- *   file lots. Sol stays on judgment roles: `design-expert` is `high`;
- *   `security-expert` is `medium` since 2026-09-07 (local-only
- *   ethical-hacker posture — see the dated owner-request history above).
- *   Sol medium also covers the
- *   analysis/research/coordination
- *   agents — including `commit`, whose irreversible git flow (write,
- *   tags, merges) keeps it on a coordination-tier model rather than an
- *   executor one, and `prompt-engineer` (moved from Sol/high to
- *   Sol/medium on 2026-09-02, owner decision: "il est assez intelligent")
- *   — and the coordinator session itself stays Sol high. Luna max stays on
- *   the 5
- *   mechanical agents. The risk is not closed: openai/codex#32389 is still
- *   open in 0.152 — Terra intermittently returns an empty final response
- *   after tool use, ending the loop early, reported at medium effort. The
- *   mitigation is the doctrine itself: the coordinator verifies every
- *   deliverable on disk against the PRD and gates acceptance on challenger
- *   + sniper, so the failure mode is a retry, not a silent bad merge. The
- *   earlier field report of Terra burning Codex usage quota faster than Sol
- *   without a matching quality gain is kept as context but was not
- *   reproduced by this benchmark.
- * - `research-expert`, `brainstorming`, and `solid-orchestrator` moved from
- *   Sol high to Sol medium (57->56, -1): within threshold.
- * - `lessons-compactor` moved from Luna max to Sol medium (52->56, +4): a
- *   strict quality increase, not a regression risk, for a role needing
- *   long-horizon dedup/merge judgment rather than a bounded mechanical task.
- * - 2026-09-02 (later the same day, owner decision "passe en terra
- *   medium"): `research-expert`, `websearch`, and `explore-codebase` moved
- *   from Sol/medium to Terra/medium alongside the 12 framework experts.
- *   Unlike the framework experts, this move is NOT covered by the
- *   15-run `codex exec` benchmark above — that benchmark scored 3 bounded
- *   *coding* tasks only, while these three are high-volume read/search
- *   agents (doc lookup, live web search, codebase exploration), an
- *   unbenchmarked workload shape. The known risk carries over unverified
- *   for this trio: openai/codex#32389 (Terra intermittently returns an
- *   empty final response after tool use). Mitigation is procedural, not
- *   measured — see the lead-orchestration relaunch rule: a research or
- *   exploration agent whose final report is empty or truncated is
- *   relaunched immediately with the same brief, never accepted as
- *   "nothing found".
+ * Owner decision (verbatim, 2026-09-23, in order): "supprime astra il
+ * coute chere" · "j'ai trouvé luna medium plus performant" · "donc on
+ * répartie comment les model et raisonnement sur luna le high on oublie je
+ * pense non?" · "appliquer". Astra (GPT-6's mid-tier, would-be Terra
+ * successor) is dropped fleet-wide on cost; Luna `high` is dropped too —
+ * every former Terra/medium and Luna/max agent regroups onto Luna
+ * `medium`.
+ *
+ * Benchmark evidence backing the move (24 runs, codex-cli 0.156.1,
+ * `--ignore-user-config --ignore-rules`, 3 hidden-test tasks x 2 reps):
+ * semver edge cases — Luna6/medium 0.931, Sol6/low 0.938, Luna6/high 0.992,
+ * Sol6/medium 1.000; real-repo debugging and strict typed emitter — 100%
+ * for all four configs except Sol6/low, whose emitter did not compile
+ * under strict tsconfig (0/2). Mean wall time: Luna6/medium 63s, Sol6/medium
+ * 160s, Luna6/high 302s (max 1068s). USD/run: Luna6/medium 0.007,
+ * Luna6/high 0.021, Sol6/low 0.098, Sol6/medium 0.210. Prices per 1M
+ * tokens (developers.openai.com/api/docs/pricing, confirmed 2026-09-23 via
+ * fuse-browser + Exa, standard tier short context): gpt-6-sol 2.00 in /
+ * 0.20 cached / 10.00 out; gpt-6-luna 0.10 / 0.01 / 0.50; gpt-6-astra
+ * excluded on cost.
+ *
+ * Resulting matrix: Sol `high` is `design-expert` only (1 agent) —
+ * one-shot-correctness gate, unchanged. Sol `medium` (18) covers judgment,
+ * coordination, and irreversible-action roles: `brainstorming`,
+ * `challenger`, `commit`, `explore-codebase`, `research-expert`, `sniper`,
+ * `changelog-watcher`, `lessons-compactor`, `prompt-engineer`,
+ * `security-expert`, the six deterministic/analysis `seo-*` roles
+ * (`seo-cluster`, `seo-content`, `seo-expert`, `seo-geo`, `seo-local`,
+ * `seo-schema`, `seo-technical`), and `solid-orchestrator`. Luna `medium`
+ * (18) covers the 12 framework experts plus the mechanical/high-volume
+ * roles: `sniper-faster`, `websearch`, `cartographer`, `commit-detector`,
+ * `seo-images`, `seo-sitemap` — Luna/medium's near-Sol/medium accuracy at
+ * ~2.5x lower wall time and ~30x lower cost makes it the default executor
+ * tier; Luna/high is not assigned to any shipped agent.
  */
 export const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
-	"astro-expert": TERRA_MEDIUM,
-	"go-expert": TERRA_MEDIUM,
-	"laravel-expert": TERRA_MEDIUM,
-	"nextjs-expert": TERRA_MEDIUM,
-	"php-expert": TERRA_MEDIUM,
-	"react-expert": TERRA_MEDIUM,
-	"rust-expert": TERRA_MEDIUM,
-	"shadcn-ui-expert": TERRA_MEDIUM,
-	"swift-expert": TERRA_MEDIUM,
-	"tailwindcss-expert": TERRA_MEDIUM,
-	"tanstack-start-expert": TERRA_MEDIUM,
-	"typescript-expert": TERRA_MEDIUM,
-	"explore-codebase": TERRA_MEDIUM,
-	"research-expert": TERRA_MEDIUM,
-	websearch: TERRA_MEDIUM,
+	"astro-expert": LUNA_MEDIUM,
+	"go-expert": LUNA_MEDIUM,
+	"laravel-expert": LUNA_MEDIUM,
+	"nextjs-expert": LUNA_MEDIUM,
+	"php-expert": LUNA_MEDIUM,
+	"react-expert": LUNA_MEDIUM,
+	"rust-expert": LUNA_MEDIUM,
+	"shadcn-ui-expert": LUNA_MEDIUM,
+	"swift-expert": LUNA_MEDIUM,
+	"tailwindcss-expert": LUNA_MEDIUM,
+	"tanstack-start-expert": LUNA_MEDIUM,
+	"typescript-expert": LUNA_MEDIUM,
+	"sniper-faster": LUNA_MEDIUM,
+	websearch: LUNA_MEDIUM,
+	cartographer: LUNA_MEDIUM,
+	"commit-detector": LUNA_MEDIUM,
+	"seo-images": LUNA_MEDIUM,
+	"seo-sitemap": LUNA_MEDIUM,
 	brainstorming: SOL_MEDIUM,
 	"solid-orchestrator": SOL_MEDIUM,
 	commit: SOL_MEDIUM,
+	"explore-codebase": SOL_MEDIUM,
+	"research-expert": SOL_MEDIUM,
 	"changelog-watcher": SOL_MEDIUM,
 	"lessons-compactor": SOL_MEDIUM,
 	"seo-expert": SOL_MEDIUM,
@@ -148,11 +96,6 @@ export const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
 	challenger: SOL_MEDIUM,
 	"security-expert": SOL_MEDIUM,
 	"design-expert": SOL_HIGH,
-	"sniper-faster": LUNA_MAX,
-	"commit-detector": LUNA_MAX,
-	cartographer: LUNA_MAX,
-	"seo-images": LUNA_MAX,
-	"seo-sitemap": LUNA_MAX,
 };
 
 /** New agents default to the standard execution profile until explicitly classified. */

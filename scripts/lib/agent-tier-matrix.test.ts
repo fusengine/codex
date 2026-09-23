@@ -7,7 +7,9 @@
  * the wrong revert until the owner did.
  *
  * Three checks: (a) every `plugins/*\/agents/*.toml` on disk sums to the
- * exact 1/16/15/5 tier counts; (b) `agent-toml.ts`'s `AGENT_MODEL_PROFILES`
+ * exact 1/18/18 tier counts (GPT-6 fleet, applied 2026-09-23 — astra and
+ * luna/high both dropped, see `agent-toml.ts`'s JSDoc for the owner
+ * decision and benchmark); (b) `agent-toml.ts`'s `AGENT_MODEL_PROFILES`
  * map matches what is actually shipped on disk, 0 mismatches; (c) any agent
  * whose tier has drifted from its frozen v1.0.50 baseline carries a dated
  * citation in `agent-toml.ts`'s JSDoc.
@@ -22,9 +24,11 @@ type ShippedProfile = { model: string; effort: string };
 
 const SOL_HIGH_NAMES = ["design-expert"];
 const AGENT_TOML_SOURCE = "scripts/lib/agent-toml.ts";
-/** Frozen v1.0.50 Sol/high set — kept distinct from {@link SOL_HIGH_NAMES}
- *  (today's actual tier) so `security-expert`'s 2026-09-07 move to `medium`
- *  still counts as a divergence the JSDoc-citation test below must catch. */
+/** Frozen v1.0.50 Sol/high set (pre-GPT-6, gpt-5.6-sol/high) — kept distinct
+ *  from {@link SOL_HIGH_NAMES} (today's actual tier) so `security-expert`'s
+ *  2026-09-07 move to `medium`, and the fleet-wide 2026-09-23 GPT-6 move
+ *  (astra dropped, luna/high dropped, see `agent-toml.ts`'s JSDoc), still
+ *  count as divergences the JSDoc-citation test below must catch. */
 const V1_0_50_SOL_HIGH_NAMES = ["design-expert", "security-expert"];
 
 /** Every `plugins/*\/agents/*.toml` on disk, keyed by its declared `name`. */
@@ -61,18 +65,17 @@ function baselineV1_0_50(): Record<string, ShippedProfile> {
 	);
 }
 
-test("shipped agent TOMLs match the exact 1/16/15/5 tier matrix", () => {
+test("shipped agent TOMLs match the exact 1/18/18 tier matrix", () => {
 	const profiles = shippedProfiles();
-	const byTier: Record<string, string[]> = { "gpt-5.6-sol|high": [], "gpt-5.6-sol|medium": [], "gpt-5.6-terra|medium": [], "gpt-5.6-luna|max": [] };
+	const byTier: Record<string, string[]> = { "gpt-6-sol|high": [], "gpt-6-sol|medium": [], "gpt-6-luna|medium": [] };
 	for (const [name, profile] of profiles) {
 		const key = `${profile.model}|${profile.effort}`;
 		if (key in byTier) byTier[key]!.push(name);
 	}
 
-	expect(byTier["gpt-5.6-sol|high"]!.sort()).toEqual([...SOL_HIGH_NAMES].sort());
-	expect(byTier["gpt-5.6-sol|medium"]).toHaveLength(16);
-	expect(byTier["gpt-5.6-terra|medium"]).toHaveLength(15);
-	expect(byTier["gpt-5.6-luna|max"]).toHaveLength(5);
+	expect(byTier["gpt-6-sol|high"]!.sort()).toEqual([...SOL_HIGH_NAMES].sort());
+	expect(byTier["gpt-6-sol|medium"]).toHaveLength(18);
+	expect(byTier["gpt-6-luna|medium"]).toHaveLength(18);
 });
 
 test("every agent-toml.ts profile matches its shipped TOML on disk (0 mismatches)", () => {

@@ -17,7 +17,7 @@ name = "nextjs-expert"
 
 description = "Use when: next.config.* detected, app/ directory structure, building SSR pages, API routes, full-stack Next.js. Do NOT use for: pure React/Vite (no next.config), Laravel/PHP, UI-only tasks (use design-expert), read-only questions."
 
-model = "gpt-5.6-terra"
+model = "gpt-6-luna"
 
 model_reasoning_effort = "medium"
 
@@ -71,7 +71,7 @@ name = "laravel-expert"
 
 description = "Use when: composer.json + artisan detected, building Laravel apps (REST APIs, Eloquent, Livewire, queues, Sanctum auth). Do NOT use for: React/Vue frontend (use react-expert), Next.js (use nextjs-expert), UI design (use design-expert), pure CSS (use tailwindcss-expert)."
 
-model = "gpt-5.6-terra"
+model = "gpt-6-luna"
 
 model_reasoning_effort = "medium"
 
@@ -118,4 +118,4 @@ The real file adds 21 more `[[skills.config]]` entries (fusecore, architecture, 
 
 ## Model/effort note
 
-Both examples use `gpt-5.6-terra` / `medium` — the framework-expert tier per the Model Tier Matrix section of the model policy doc (`creating-skills-agents.md`); `nextjs-expert` and `laravel-expert` are both named in the 12-agent Terra/medium list there, alongside the separate 15-agent Sol/medium list for the analysis/research/orchestration/release agents.
+Both examples use `gpt-6-luna` / `medium` — the framework-expert tier per the Model Tier Matrix section of the model policy doc (`creating-skills-agents.md`), current since the 2026-09-23 owner decision that moved the fleet from GPT-5.6 (Sol/Terra/Luna) to GPT-6 (Sol/Astra/Luna, with Astra excluded on cost and no `terra` tier). `nextjs-expert` and `laravel-expert` are both named in the 12-agent Luna/medium framework-expert list there, alongside the separate 18-agent Sol/medium list for the judgment/analysis/research/orchestration/release agents. Before 2026-09-23 both examples used `gpt-5.6-terra` / `medium` — see the History subsection of `creating-skills-agents.md` for that superseded tier.
