@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.53] - 2026-09-24
+
+- feat(agents): switch all 37 Codex agents to the GPT-6 tier matrix — gpt-6-luna/medium x18 (code/framework experts, sniper-faster, websearch, cartographer, commit-detector, seo-images, seo-sitemap), gpt-6-sol/medium x18 (ai-pilot judgment/validation agents, research, explore, security, prompt-engineer, seo core, solid-orchestrator, lessons-compactor, changelog-watcher), gpt-6-sol/high x1 (design-expert); no gpt-6-astra (cost); owner decision 2026-09-23 backed by measured benchmarks (greenfield + debug: Luna/medium 100% hidden-test pass on debug tasks at ~1/50 of Sol cost)
+- chore(scripts): agent-toml.ts profiles + agent-toml.test.ts + agent-tier-matrix.test.ts aligned to 1/18/18 (no test loosened)
+- docs: agent policy docs, agent-creator skill references, lead-orchestration + codex-rules attribution; single canonical GPT-5.6 history in `docs/workflow/agents.md`; task-list/GAP-HARNESS current-state fixes
+- docs(validation): security-agent-pilot baseline.toml model line updated to gpt-6-sol with its sha256 re-recorded (`baseline.toml.sha256`, `security-agent-pilot.md`); scorecard keeps the original run hash
+- chore(release): bump 23 touched plugins + suite to 1.0.53 — ai-pilot 1.2.56 -> 1.2.57, astro-expert 1.0.19 -> 1.0.20, cartographer 1.0.21 -> 1.0.22, changelog-watcher 1.0.25 -> 1.0.26, codex-rules 1.0.32 -> 1.0.33, commit-pro 1.2.33 -> 1.2.34, design-expert 2.1.47 -> 2.1.48, go-expert 1.0.16 -> 1.0.17, laravel-expert 1.2.20 -> 1.2.21, lessons 1.0.8 -> 1.0.9, nextjs-expert 1.1.36 -> 1.1.37, php-expert 1.0.16 -> 1.0.17, prompt-engineer 1.1.20 -> 1.1.21, react-expert 1.0.32 -> 1.0.33, rust-expert 1.0.16 -> 1.0.17, security-expert 1.0.28 -> 1.0.29, seo 1.0.20 -> 1.0.21, shadcn-expert 1.0.29 -> 1.0.30, solid 1.0.27 -> 1.0.28, swift-apple-expert 1.1.32 -> 1.1.33, tailwindcss 1.1.22 -> 1.1.23, tanstack-start-expert 1.0.16 -> 1.0.17, typescript-expert 1.0.16 -> 1.0.17; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.52] - 2026-09-21
 
 - chore(hooks): remove dead native-hook layer and codex-hooks package — 135 files: every `plugins/*/scripts/**/*.native.ts`, `plugins/seo/scripts/validate-seo.ts`, the 10 deleted co-located `*.test.ts` under `plugins/*/scripts` that imported them, `scripts/build-hooks.ts`, `packages/codex-hooks/package.json`, `.gitignore`, `scripts/lib/install/{runtime-deps,plugin-cache}.ts` (+ new `plugin-cache.test.ts`), `scripts/tests/runtime-shared.test.mts`, `scripts/lib/hooks-rewrite.ts`, `scripts/lib/install/{agents-resync,merge-agents-md}.ts`
