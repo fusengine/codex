@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.56] - 2026-09-27
+
+- fix(rules): let the owner re-authorize a blocked approval and an install run — the "never retry around a hook/policy block" rule (AGENTS.md, AGENTS.md.template, 08-subagent-conduct.md) allows one unchanged rerun when the block asked for approval (or failed for a missing approval token) and the owner then explicitly authorizes that exact command in their own chat message (never an agent relay); the `setup.sh`/`install*.ts` hard stop allows that exact run when the owner explicitly orders it in their own chat message
+- chore(release): bump codex-rules 1.0.34 -> 1.0.35 + suite to 1.0.56; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.55] - 2026-09-27
 
 - docs(skills): refresh skills and agent guidance across 18 plugins to current stable versions — TypeScript 7.0, Bun 1.4, Node 26 LTS, Astro 7.3.5, Next.js 16.3, React 19.3, Prisma 7.10, Tailwind 4.3, Laravel 13.33, Go 1.27, Rust 1.98, Swift 6.4, shadcn CLI 4.21 with Base UI as default; fixes wrong Astro `output: 'hybrid'`, `@astrojs/db` status and Sanctum ^5.0 guidance

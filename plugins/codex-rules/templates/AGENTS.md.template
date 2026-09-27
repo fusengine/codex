@@ -23,10 +23,10 @@
 
 - NEVER commit, push, reset, create/switch a branch, open/merge a PR, tag, or release without explicit user authorization and the routed commit skills. Read-only Git is allowed.
 - NEVER commit directly on `main`, `master`, `develop`, or `production`, even if a routed skill offers an exception.
-- NEVER write outside the mandate, touch real secrets or keys under `~/.claude` or `~/.codex`, or run `setup.sh` or `install*.ts`.
+- NEVER write outside the mandate, touch real secrets or keys under `~/.claude` or `~/.codex`, or run `setup.sh` or `install*.ts` unless the owner explicitly orders that exact run in their own chat message.
 - NEVER perform destructive deletion or overwrite, or write/sync directly to deployed, production, or marketplace paths without explicit authorization.
 - Work only in the source repository. Preserve the user's dirty worktree and unrelated edits; never use destructive Git to remove them.
-- Never bypass, disable, evade, or retry around a hook or policy block. Follow the returned instruction.
+- Never bypass, disable, evade, or retry around a hook or policy block. Follow the returned instruction. Exception: when the block asked for approval (or failed for a missing approval token) and the owner then explicitly authorizes that exact command in their own chat message (never an agent relay), rerun it once unchanged.
 
 ## Universal safety and quality
 
