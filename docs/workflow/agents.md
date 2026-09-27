@@ -4,58 +4,45 @@
 
 ## Model Policy
 
-**Current, since 2026-09-23 (owner decision, verbatim, in order): "supprime
-astra il coute chere" · "j'ai trouvé luna medium plus performant" · "donc on
-répartie comment les model et raisonnement sur luna le high on oublie je
-pense non?" · "appliquer".** The fleet moved from GPT-5.6 (Sol/Terra/Luna)
-to GPT-6 (Sol/Astra/Luna). `gpt-6-astra` is excluded fleet-wide on cost.
-GPT-5.6 Terra has no GPT-6 successor — GPT-6 has no `terra` tier — so the
-former Terra roles are redistributed between Sol and Luna by role shape,
-not carried forward as a tier. The 37-agent policy now assigns every agent
-to `gpt-6-sol` or `gpt-6-luna`, both at `medium` effort except one
-`gpt-6-sol` / `high` judgment gate: `gpt-6-luna` / `high` is dropped (slow
-and erratic at that effort in the owner's testing) and `gpt-6-sol` / `low`
-is dropped (no better than Luna medium, at 14x the cost).
+**Current, since 2026-09-27 (owner decision, verbatim, in order): "je pense
+plus pertinent sol medium" · "je dirais les luna medium => sol medium".**
+Every shipped agent runs on `gpt-6-sol`: 36 at `medium`, plus
+`design-expert` alone at `high` (the sole highest-judgment gate). No
+shipped agent uses `gpt-6-luna` any more — it remains a valid Codex model
+id, but is no longer used in this fleet. The owner made this call knowing
+the 2026-09-23 measurements favoured Luna on cost and speed (see History
+below): the decision overrides those measurements, it does not refute
+them. `gpt-6-astra` stays excluded fleet-wide on cost; GPT-6 has no `terra`
+tier. The coordinator (the owner's own Codex session) is not a shipped
+agent TOML and stays outside this policy.
 
-Rationale: Luna medium writes code and does mechanical work — measured the
-same correctness as Sol on debugging/typed-code tasks, roughly 30x cheaper
-than Sol, fastest, and does not loop at medium effort. Sol medium judges,
-validates, explores, and researches — the only arm with zero edge-case
-misses in testing; `challenger` and `sniper` (both Sol/medium) review
-Luna's output.
-
-The exact groups (37 total): `gpt-6-sol` / `high` (1) — `design-expert`.
-`gpt-6-sol` / `medium` (18) — `brainstorming`, `challenger`, `commit`,
-`explore-codebase`, `research-expert`, `sniper`, `changelog-watcher`,
-`lessons-compactor`, `prompt-engineer`, `security-expert`, `seo-cluster`,
-`seo-content`, `seo-expert`, `seo-geo`, `seo-local`, `seo-schema`,
-`seo-technical`, `solid-orchestrator`. `gpt-6-luna` / `medium` (18) — the
-12 framework/language code experts (`astro-expert`, `go-expert`,
-`laravel-expert`, `nextjs-expert`, `php-expert`, `react-expert`,
-`rust-expert`, `shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`,
-`tanstack-start-expert`, `typescript-expert`) plus `sniper-faster`,
-`websearch`, `cartographer`, `commit-detector`, `seo-images`,
-`seo-sitemap`. Totals: 19 Sol, 18 Luna. The coordinator (the owner's own
-Codex session) is not a shipped agent TOML and stays outside this policy.
-
-Tier reshuffle vs the superseded GPT-5.6 policy below: `research-expert`
-and `explore-codebase` move from the old Terra volume-work tier to
-Sol/medium — they now sit with the judgment/exploration roles per the new
-rationale, not the mechanical-executor roles. `websearch` moves the other
-way, into Luna/medium, as bounded mechanical lookup work. The 12 framework
-experts move from Terra/medium to Luna/medium (no GPT-6 Terra tier
-exists). `sniper-faster`, `cartographer`, `commit-detector`, `seo-images`,
-`seo-sitemap` keep the fast/cheap mechanical assignment, now `gpt-6-luna` /
-`medium` (GPT-6 Luna's usable ceiling for this fleet is `medium`; `high` is
-dropped as slow and erratic — see owner decision above). Valid efforts per
-the GPT-6 catalog: `gpt-6-sol` supports `low` through `ultra`; `gpt-6-luna`
-supports `low` through `max`. This fleet uses only Sol medium (plus one Sol
-high) and Luna medium — never assign an effort outside those without a new
-owner decision.
-
-Prices per 1M tokens (input / cached input / output;
+The exact groups (37 total): `gpt-6-sol` / `high` (1) — `design-expert`;
+`gpt-6-sol` / `medium` (36) — every other agent in the Inventory below.
+New agents default to `gpt-6-sol` / `medium`; `high` is reserved for
+`design-expert`. Valid efforts per the GPT-6 catalog: `gpt-6-sol` supports
+`low` through `ultra` — never assign an effort other than `medium` (or
+`high` for `design-expert`) without a new owner decision. Prices per 1M
+tokens (input / cached input / output;
 developers.openai.com/api/docs/pricing): `gpt-6-sol` $2.00 / $0.20 /
-$10.00; `gpt-6-luna` $0.10 / $0.01 / $0.50.
+$10.00.
+
+### History (GPT-6 Sol/Luna split, superseded 2026-09-27)
+
+The 2026-09-23 owner decision ("supprime astra il coute chere" · "j'ai
+trouvé luna medium plus performant" · "donc on répartie comment les model
+et raisonnement sur luna le high on oublie je pense non?" · "appliquer")
+moved the fleet from GPT-5.6 to GPT-6 and split it by role shape: 18
+`gpt-6-sol` / `medium` (judgment, validation, exploration, research,
+release, SEO analysis), `design-expert` on `gpt-6-sol` / `high`, and 18
+`gpt-6-luna` / `medium` (the 12 framework/language experts plus
+`sniper-faster`, `websearch`, `cartographer`, `commit-detector`,
+`seo-images`, `seo-sitemap`). Measured basis at the time: debug bench —
+Luna/medium 100% hidden-test pass at ~1/50 of Sol's cost, total wall 205 s
+vs 1 158 s over 6 runs each;
+semver task — Luna 0.931 vs Sol 1.000 (Sol the only arm with zero
+edge-case misses). Luna/high was dropped (slow, erratic) and Sol/low
+dropped (no better than Luna medium). Luna price: $0.10 / $0.01 / $0.50
+per 1M tokens. Superseded by the 2026-09-27 all-Sol decision above.
 
 ### History (GPT-5.6 policy, superseded 2026-09-23)
 

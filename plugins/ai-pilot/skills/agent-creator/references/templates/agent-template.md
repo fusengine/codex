@@ -19,7 +19,7 @@ name = "<agent-name>"
 
 description = "Use when: <trigger A>, <trigger B>. Do NOT use for: <excluded case> (route to <other-agent>)."
 
-model = "gpt-6-luna"
+model = "gpt-6-sol"
 
 model_reasoning_effort = "medium"
 
@@ -135,8 +135,8 @@ Compact view — the exhaustive rules (all valid `model`/`sandbox_mode`/`model_r
 | `name` | yes | kebab-case, unique across the ecosystem, referenced by `spawn_agent`. |
 | `description` | yes | Keep the `Use when… / Do NOT use for…` routing pattern — it drives selection. |
 | `developer_instructions` | yes | Triple-single-quoted (`'''…'''`); full brief, no truncation of substance. |
-| `model` | recommended | Explicit tier: `gpt-6-luna`/`medium` for a framework/stack executor or other bounded mechanical agent, `gpt-6-sol`/`medium` for a judgment, analysis, exploration, or coordination role (`gpt-6-sol`/`high` only for the sole `design-expert` gate) — never the bare `gpt-6` alias. GPT-6 has no `terra` tier and `gpt-6-astra` is excluded fleet-wide on cost (model policy: the Model Tier Matrix section of `docs/reference/creating-skills-agents.md`). |
-| `model_reasoning_effort` | recommended | `minimal` / `low` / `medium` / `high` / `xhigh` / `max`. |
+| `model` | recommended | Explicit tier: `gpt-6-sol` for every agent — never the bare `gpt-6` alias. `gpt-6-luna` is a valid id but no longer used in this fleet; GPT-6 has no `terra` tier and `gpt-6-astra` is excluded fleet-wide on cost (model policy section of `docs/reference/creating-skills-agents.md`). |
+| `model_reasoning_effort` | recommended | `medium` by default; `high` only for the sole `design-expert` gate. |
 | `sandbox_mode` | recommended | `read-only` (audit/explore/research/challenger), `workspace-write` (edits), `danger-full-access` (rare). |
 | `nickname_candidates` | optional | See constraints below — a bad value silently drops the whole agent. |
 | `mcp_servers` | optional | Declare only servers configured for Codex; shipped agents currently omit it and describe MCP usage in prose instead (see Gemini Design note). |

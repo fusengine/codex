@@ -42,8 +42,8 @@ enabled = true
 | `name` | yes | kebab-case, unique across the ecosystem, referenced by `spawn_agent`. |
 | `description` | yes | Keep the `Use when… / Do NOT use for…` routing pattern — it drives agent selection. |
 | `developer_instructions` | yes | Triple-quoted (`'''…'''`) string holding the full agent brief. No truncation of source substance. |
-| `model` | recommended | One of `gpt-6-sol` or `gpt-6-luna`, chosen per the model policy below; never a bare alias. |
-| `model_reasoning_effort` | recommended | Per the GPT-6 catalog: `gpt-6-sol` accepts `low`, `medium`, `high`, `xhigh`, `max`, `ultra`; `gpt-6-luna` accepts `low`, `medium`, `high`, `xhigh`, `max`. Never assign `ultra` to a sub-agent (fleet uses only Sol medium/high and Luna medium — see the Model policy section). |
+| `model` | recommended | `gpt-6-sol` for every shipped agent, per the model policy below; never a bare alias. `gpt-6-luna` is a valid Codex id but no longer used in this fleet. |
+| `model_reasoning_effort` | recommended | `medium` by default; `high` only for `design-expert`. The GPT-6 catalog lets `gpt-6-sol` accept `low` through `ultra`, but any other effort needs a new owner decision (see the Model policy section). |
 | `sandbox_mode` | recommended | One of `read-only`, `workspace-write`, `danger-full-access`. Use `workspace-write` for agents that edit; `read-only` for audit/explore/research/challenger agents; `danger-full-access` only when a task genuinely needs it. |
 | `nickname_candidates` | optional | Array of display names; the configured nickname is identity evidence when spawning. |
 | `mcp_servers` | optional | MCP servers this agent may reach; declare only servers configured for Codex. |
@@ -53,59 +53,35 @@ There is **no** `color`, `tools`, or `hooks` frontmatter on a Codex agent. Tool 
 
 ### Model policy
 
-**Current, since 2026-09-23** (owner decision, verbatim, in order: "supprime
-astra il coute chere" · "j'ai trouvé luna medium plus performant" · "donc on
-répartie comment les model et raisonnement sur luna le high on oublie je
-pense non?" · "appliquer"). The fleet moved from GPT-5.6 (Sol/Terra/Luna) to
-GPT-6 (Sol/Astra/Luna). `gpt-6-astra` is excluded fleet-wide on cost. GPT-6
-has no `terra` tier — the former Terra roles are redistributed between Sol
-and Luna by role shape, not carried forward as a tier. The generator
-classifies by the Codex agent's `name`; unknown future agents default to
-`gpt-6-sol` / `medium` until explicitly classified. Every agent now sits on
-`gpt-6-sol` or `gpt-6-luna` at `medium` effort, except one `gpt-6-sol` /
-`high` judgment gate: `gpt-6-luna` / `high` is dropped (slow and erratic at
-that effort) and `gpt-6-sol` / `low` is dropped (no better than Luna medium,
-at 14x the cost). Rationale: Luna medium writes code and does mechanical
-work — measured the same correctness as Sol on debugging/typed-code tasks,
-roughly 30x cheaper, fastest, and does not loop at medium effort; Sol
-medium judges, validates, explores, and researches — the only arm with zero
-edge-case misses in testing; `challenger` and `sniper` (both Sol/medium)
-review Luna's output. Prices per 1M tokens (input / cached / output,
-developers.openai.com/api/docs/pricing): `gpt-6-sol` $2.00 / $0.20 /
-$10.00; `gpt-6-luna` $0.10 / $0.01 / $0.50.
+**Current, since 2026-09-27** (owner decision, verbatim, in order: "je pense
+plus pertinent sol medium" · "je dirais les luna medium => sol medium").
+Every shipped agent runs on `gpt-6-sol`; `gpt-6-luna` is no longer used in
+this fleet (it remains a valid Codex model id), `gpt-6-astra` is excluded
+on cost, and GPT-6 has no `terra` tier. The generator classifies by the
+Codex agent's `name`; unknown future agents default to `gpt-6-sol` /
+`medium`. The owner chose this knowing the superseded 2026-09-23 split's
+measurements favoured Luna on cost and speed — see History below.
 
 | Codex profile | Agents | Rationale |
 |---------------|--------|-----------|
-| `gpt-6-sol` / `medium` | 18 orchestration, release, exploration, research, SEO, code-validation, prompt-design, and security-audit specialists: `brainstorming`, `challenger`, `commit`, `explore-codebase`, `research-expert`, `sniper`, `changelog-watcher`, `lessons-compactor`, `prompt-engineer`, `security-expert`, `seo-cluster`, `seo-content`, `seo-expert`, `seo-geo`, `seo-local`, `seo-schema`, `seo-technical`, `solid-orchestrator` | Sol medium judges, validates, explores, and researches — the only arm with zero measured edge-case misses. `research-expert` and `explore-codebase` sit here (not on Luna) because exploration/research is a judgment-adjacent role in the new rationale, not bounded mechanical work. |
+| `gpt-6-sol` / `medium` | 36 — every agent except `design-expert` | Owner decision 2026-09-27: one tier for judgment, validation, research, orchestration, release, SEO, and framework/code execution alike. |
 | `gpt-6-sol` / `high` | `design-expert` | Sole remaining highest-judgment gate. |
-| `gpt-6-luna` / `medium` | 18 total: the 12 framework/language experts (`astro-expert`, `go-expert`, `laravel-expert`, `nextjs-expert`, `php-expert`, `react-expert`, `rust-expert`, `shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`, `tanstack-start-expert`, `typescript-expert`) + `sniper-faster`, `websearch`, `cartographer`, `commit-detector`, `seo-images`, `seo-sitemap` | Bounded, deterministic, code-writing/mechanical work with a strict, verifiable contract — Luna medium matches Sol's measured correctness on this shape at roughly 30x lower cost and does not loop. `websearch` moved here from the old volume-work tier as bounded mechanical lookup; the 12 framework experts move here because no GPT-6 Terra tier exists to hold them. |
 
 Valid efforts per the GPT-6 catalog: `gpt-6-sol` supports `low` through
-`ultra`; `gpt-6-luna` supports `low` through `max`. This fleet uses only Sol
-medium (plus one Sol high) and Luna medium — never assign an effort outside
-those without a new owner decision. `commit` (an irreversible git flow —
-write, tags, merges) stays on Sol/medium: judgment/validation is still the
-right shape for an irreversible action, independent of the old Terra
-question.
+`ultra`. This fleet uses only Sol medium (plus `design-expert` at Sol
+high) — never assign another model or effort without a new owner
+decision. Prices per 1M tokens (input / cached / output,
+developers.openai.com/api/docs/pricing): `gpt-6-sol` $2.00 / $0.20 /
+$10.00.
 
-The 18 Sol/medium agents are `brainstorming`, `challenger`, `commit`,
-`explore-codebase`, `research-expert`, `sniper`, `changelog-watcher`,
-`lessons-compactor`, `prompt-engineer`, `security-expert`, `seo-cluster`,
-`seo-content`, `seo-expert`, `seo-geo`, `seo-local`, `seo-schema`,
-`seo-technical`, and `solid-orchestrator`.
-The 18 Luna/medium agents are `astro-expert`, `go-expert`, `laravel-expert`,
-`nextjs-expert`, `php-expert`, `react-expert`, `rust-expert`,
-`shadcn-ui-expert`, `swift-expert`, `tailwindcss-expert`,
-`tanstack-start-expert`, `typescript-expert`, `sniper-faster`, `websearch`,
-`cartographer`, `commit-detector`, `seo-images`, and `seo-sitemap`.
+#### History
 
-#### History (GPT-5.6 policy, superseded 2026-09-23)
-
-For the full prior GPT-5.6 Sol/Terra/Luna policy (per-tier table, the owner
-decision timeline, the AA index rationale, and the known Terra risk) see
-[`docs/workflow/agents.md` § History (GPT-5.6 policy, superseded
-2026-09-23)](../workflow/agents.md#history-gpt-56-policy-superseded-2026-09-23) —
-condensed here to a pointer, not reproduced, to avoid the two copies drifting.
+Superseded policies live only in `docs/workflow/agents.md`, not reproduced
+here, to avoid the copies drifting:
+[GPT-6 Sol/Luna split (2026-09-23, superseded
+2026-09-27)](../workflow/agents.md#history-gpt-6-solluna-split-superseded-2026-09-27)
+and [GPT-5.6 Sol/Terra/Luna policy (superseded
+2026-09-23)](../workflow/agents.md#history-gpt-56-policy-superseded-2026-09-23).
 
 ---
 

@@ -4,79 +4,55 @@ import { identityNicknames, normalizeSkillNames } from "./agent-names.ts";
 import { skillConfigLines, tomlArray, tomlMultiline, tomlString } from "./agent-toml-format.ts";
 import type { AgentTomlOptions } from "./agent.types.ts";
 
-/** A supported Codex model and reasoning-effort pair. */
+/** A supported Codex model and reasoning-effort pair (Sol only since 2026-09-27). */
 type ModelProfile = {
-	model: "gpt-6-sol" | "gpt-6-luna";
+	model: "gpt-6-sol";
 	effort: "medium" | "high";
 };
 
 const SOL_MEDIUM: ModelProfile = { model: "gpt-6-sol", effort: "medium" };
 const SOL_HIGH: ModelProfile = { model: "gpt-6-sol", effort: "high" };
-const LUNA_MEDIUM: ModelProfile = { model: "gpt-6-luna", effort: "medium" };
 
 /**
  * Canonical shipped-agent policy (37 agents, GPT-6 fleet, applied
- * 2026-09-23). Prior gpt-5.6 sol/terra/luna tiers (2026-09-01, -02, -07:
- * Terra medium for the 12 framework experts + explore-codebase/research-expert/
- * websearch; Sol high only for design-expert; security-expert moved to Sol
- * medium 2026-09-07 for a local-only ethical-hacker posture, per
- * `.codex/apex/task.json` task `security-local-medium`) are superseded
- * wholesale by this matrix — condensed here as history, not reproduced.
+ * 2026-09-27): 36 Sol `medium` + 1 Sol `high`, zero Luna.
  *
- * Owner decision (verbatim, 2026-09-23, in order): "supprime astra il
- * coute chere" · "j'ai trouvé luna medium plus performant" · "donc on
- * répartie comment les model et raisonnement sur luna le high on oublie je
- * pense non?" · "appliquer". Astra (GPT-6's mid-tier, would-be Terra
- * successor) is dropped fleet-wide on cost; Luna `high` is dropped too —
- * every former Terra/medium and Luna/max agent regroups onto Luna
- * `medium`.
- *
- * Benchmark evidence backing the move (24 runs, codex-cli 0.156.1,
- * `--ignore-user-config --ignore-rules`, 3 hidden-test tasks x 2 reps):
- * semver edge cases — Luna6/medium 0.931, Sol6/low 0.938, Luna6/high 0.992,
- * Sol6/medium 1.000; real-repo debugging and strict typed emitter — 100%
- * for all four configs except Sol6/low, whose emitter did not compile
- * under strict tsconfig (0/2). Mean wall time: Luna6/medium 63s, Sol6/medium
- * 160s, Luna6/high 302s (max 1068s). USD/run: Luna6/medium 0.007,
- * Luna6/high 0.021, Sol6/low 0.098, Sol6/medium 0.210. Prices per 1M
- * tokens (developers.openai.com/api/docs/pricing, confirmed 2026-09-23 via
- * fuse-browser + Exa, standard tier short context): gpt-6-sol 2.00 in /
- * 0.20 cached / 10.00 out; gpt-6-luna 0.10 / 0.01 / 0.50; gpt-6-astra
- * excluded on cost.
+ * Owner decision (verbatim, 2026-09-27, in order): "je pense plus pertinent
+ * sol medium" · "je dirais les luna medium => sol medium". All 18 former
+ * Luna/medium agents move to Sol/medium: the 12 framework experts plus
+ * `sniper-faster`, `websearch`, `cartographer`, `commit-detector`,
+ * `seo-images`, `seo-sitemap`. The 2026-09-23 benchmark (see History) was known
+ * when the owner decided and is deliberately overridden — it is not a
+ * reason to move any agent back to Luna.
  *
  * Resulting matrix: Sol `high` is `design-expert` only (1 agent) —
- * one-shot-correctness gate, unchanged. Sol `medium` (18) covers judgment,
- * coordination, and irreversible-action roles: `brainstorming`,
- * `challenger`, `commit`, `explore-codebase`, `research-expert`, `sniper`,
- * `changelog-watcher`, `lessons-compactor`, `prompt-engineer`,
- * `security-expert`, the six deterministic/analysis `seo-*` roles
- * (`seo-cluster`, `seo-content`, `seo-expert`, `seo-geo`, `seo-local`,
- * `seo-schema`, `seo-technical`), and `solid-orchestrator`. Luna `medium`
- * (18) covers the 12 framework experts plus the mechanical/high-volume
- * roles: `sniper-faster`, `websearch`, `cartographer`, `commit-detector`,
- * `seo-images`, `seo-sitemap` — Luna/medium's near-Sol/medium accuracy at
- * ~2.5x lower wall time and ~30x lower cost makes it the default executor
- * tier; Luna/high is not assigned to any shipped agent.
+ * one-shot-correctness gate, unchanged. Sol `medium` (36) is every other
+ * agent, including `security-expert` (Sol medium since 2026-09-07,
+ * local-only ethical-hacker posture, `.codex/apex/task.json` task
+ * `security-local-medium`), `challenger`, `commit`, and `sniper`.
+ *
+ * Superseded policies (GPT-5.6 tiers; the 2026-09-23 GPT-6 Sol/Luna split
+ * and its benchmark) live only in docs/workflow/agents.md § History.
  */
 export const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
-	"astro-expert": LUNA_MEDIUM,
-	"go-expert": LUNA_MEDIUM,
-	"laravel-expert": LUNA_MEDIUM,
-	"nextjs-expert": LUNA_MEDIUM,
-	"php-expert": LUNA_MEDIUM,
-	"react-expert": LUNA_MEDIUM,
-	"rust-expert": LUNA_MEDIUM,
-	"shadcn-ui-expert": LUNA_MEDIUM,
-	"swift-expert": LUNA_MEDIUM,
-	"tailwindcss-expert": LUNA_MEDIUM,
-	"tanstack-start-expert": LUNA_MEDIUM,
-	"typescript-expert": LUNA_MEDIUM,
-	"sniper-faster": LUNA_MEDIUM,
-	websearch: LUNA_MEDIUM,
-	cartographer: LUNA_MEDIUM,
-	"commit-detector": LUNA_MEDIUM,
-	"seo-images": LUNA_MEDIUM,
-	"seo-sitemap": LUNA_MEDIUM,
+	"astro-expert": SOL_MEDIUM,
+	"go-expert": SOL_MEDIUM,
+	"laravel-expert": SOL_MEDIUM,
+	"nextjs-expert": SOL_MEDIUM,
+	"php-expert": SOL_MEDIUM,
+	"react-expert": SOL_MEDIUM,
+	"rust-expert": SOL_MEDIUM,
+	"shadcn-ui-expert": SOL_MEDIUM,
+	"swift-expert": SOL_MEDIUM,
+	"tailwindcss-expert": SOL_MEDIUM,
+	"tanstack-start-expert": SOL_MEDIUM,
+	"typescript-expert": SOL_MEDIUM,
+	"sniper-faster": SOL_MEDIUM,
+	websearch: SOL_MEDIUM,
+	cartographer: SOL_MEDIUM,
+	"commit-detector": SOL_MEDIUM,
+	"seo-images": SOL_MEDIUM,
+	"seo-sitemap": SOL_MEDIUM,
 	brainstorming: SOL_MEDIUM,
 	"solid-orchestrator": SOL_MEDIUM,
 	commit: SOL_MEDIUM,
