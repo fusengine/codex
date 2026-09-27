@@ -1,7 +1,7 @@
 /**
- * Context Segment - Affiche le pourcentage de contexte
+ * Context Segment - Displays the context percentage
  *
- * @description SRP: Affichage contexte uniquement
+ * @description SRP: Context display only
  */
 
 import type { StatuslineConfig } from "../config/schema";

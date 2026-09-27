@@ -14,7 +14,7 @@ to prevent is a "redesign" that is really a copy-paste of the old design lightly
 
 ### When to use
 
-- The owner asks to **redesign / refonte / rebuild / rework** a surface that **already
+- The owner asks to **redesign / overhaul / rebuild / rework** a surface that **already
   exists** (a live page/screen, existing HTML/CSS, or a running app view).
 - **Not for:** a brand-new surface with nothing built (→ `generate` FULL); an incremental
   fix or quality pass on a design you want to keep (→ `critique`/`audit`/`polish`); a tone

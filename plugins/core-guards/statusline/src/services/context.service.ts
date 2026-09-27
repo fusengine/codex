@@ -1,7 +1,7 @@
 /**
- * Context Service - Calcul du contexte utilise
+ * Context Service - Computes the context used
  *
- * @description SRP: Calcul contexte uniquement
+ * @description SRP: Context computation only
  * @see https://github.com/anthropics/claude-code/issues/14830
  */
 
@@ -19,10 +19,10 @@ function _calculateTotalTokens(usage: TokenUsage): number {
 function _calculateSystemOverhead(estimateOverhead: boolean, overheadTokens?: number): number {
 	if (!estimateOverhead) return 0;
 
-	// Si un overhead custom est défini, l'utiliser
+	// If a custom overhead is defined, use it
 	if (overheadTokens !== undefined) return overheadTokens;
 
-	// Sinon, calculer avec les constantes par défaut
+	// Otherwise, compute with the default constants
 	const mcpTokens = OVERHEAD_ESTIMATION.MCP_PER_SERVER * OVERHEAD_ESTIMATION.DEFAULT_MCP_SERVERS;
 
 	return (
@@ -46,11 +46,11 @@ export function getContextFromInput(
 	}
 
 	const windowSize = contextWindow.context_window_size || TOKEN_LIMITS.CONTEXT_WINDOW;
-	// Espace utilisable = taille totale - buffer autocompact (16.5%)
+	// Usable space = total size - autocompact buffer (16.5%)
 	const usableSpace = windowSize - OVERHEAD_ESTIMATION.AUTOCOMPACT_BUFFER;
 
-	// Utiliser used_percentage pré-calculé par Claude Code (le plus précis)
-	// Sinon fallback sur le calcul manuel
+	// Use used_percentage precomputed by Claude Code (the most accurate)
+	// Otherwise fall back to the manual computation
 	// @see https://code.claude.com/docs/en/statusline
 	if (contextWindow.used_percentage !== undefined) {
 		const tokens = Math.round((contextWindow.used_percentage / 100) * windowSize);
@@ -58,7 +58,7 @@ export function getContextFromInput(
 		return { tokens, maxTokens: usableSpace, percentage };
 	}
 
-	// Fallback: calcul depuis totaux (moins précis car inclut tokens compactés)
+	// Fallback: computed from totals (less accurate, includes compacted tokens)
 	const totalTokens = contextWindow.total_input_tokens + contextWindow.total_output_tokens;
 	const percentage = Math.min((totalTokens / usableSpace) * 100, 100);
 

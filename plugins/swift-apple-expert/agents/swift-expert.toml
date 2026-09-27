@@ -67,7 +67,7 @@ Use these MCPs when available. Otherwise, use `xcodebuild` or SwiftPM for build/
 
 ## SOLID Rules (MANDATORY)
 
-**See `solid-swift` skill for complete Apple 2025 best practices including:**
+**See `solid-swift` skill for complete Apple 2026 best practices including:**
 
 - Current Date awareness
 - Research Before Coding workflow

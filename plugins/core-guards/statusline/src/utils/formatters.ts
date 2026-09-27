@@ -1,7 +1,7 @@
 /**
- * Formatters Module - Fonctions de formatage
+ * Formatters Module - Formatting functions
  *
- * @description SRP: Responsabilite unique de formatage
+ * @description SRP: Single responsibility of formatting
  */
 
 import { basename } from "node:path";

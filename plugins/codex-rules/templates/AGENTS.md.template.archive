@@ -1,5 +1,5 @@
-<!-- MIROIR de /AGENTS.md (racine du repo) — la source de vérité est la RACINE.
-     Éditer /AGENTS.md, jamais ce fichier. Régénérer : cp AGENTS.md plugins/codex-rules/templates/AGENTS.md.template -->
+<!-- MIRROR of /AGENTS.md (repo root) — the source of truth is the ROOT.
+     Edit /AGENTS.md, never this file. Regenerate: cp AGENTS.md plugins/codex-rules/templates/AGENTS.md.template -->
 
 # AGENTS.md - Fusengine Codex Rules
 
@@ -70,7 +70,7 @@ Read `.cartographer/project/index.md`, navigate to the leaf source file, read it
 | Trivial / read-only / 1 targeted file, bounded change | Direct edit (or 1 domain-expert) + sniper. NO team, NO mandatory ANALYZE trio. | Orchestration cost (spawn, briefs, FIFO cross-checks) exceeds the gain. |
 | Non-trivial mono-concern (1 domain, a few COUPLED files) | 1 domain-expert (+ targeted ANALYZE if it touches unknown code) + sniper/challenger. | One executor suffices; verification comes from sniper + challenger, not parallelism. |
 | Truly parallelizable: INDEPENDENT batches, multi-domain, or large multi-file with no cross-dependency | **Propose a subagent team** — ask user first. A team is **MINIMUM 4 agents in parallel**, NEVER 1 (1 agent = not a team). | Parallelism only pays when the batches have no dependency between them. |
-| User says "team" / "crée une team" | **Spawn the team immediately** — team of min 4, no debate. | Owner's explicit call overrides the ladder. |
+| User says "team" / "create a team" | **Spawn the team immediately** — team of min 4, no debate. | Owner's explicit call overrides the ladder. |
 
 **Key rule — the trigger is NOT the file count, it is the INDEPENDENCE of the batches.** 2 coupled files = 1 executor; 6 independent files = team.
 
