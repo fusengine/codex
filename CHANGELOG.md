@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.54] - 2026-09-27
+
+- feat(agents): move the 18 gpt-6-luna/medium agents to gpt-6-sol/medium — fleet is now 36 gpt-6-sol/medium + 1 gpt-6-sol/high (design-expert), zero Luna; owner decision 2026-09-27, knowingly overriding the 2026-09-23 benchmark that favoured Luna on cost/speed
+- chore(scripts): agent-toml.ts profiles (Luna constant and union member removed); agent-toml.test.ts and agent-tier-matrix.test.ts aligned to 1/36 — assertions tightened, none loosened
+- docs: current matrix in all policy docs (`docs/GAP-HARNESS.md`, `docs/reference/creating-skills-agents.md`, `docs/task-list.md`, `docs/workflow/agents.md`, agent-creator skill + references); the 2026-09-23 Sol/Luna split recorded once as superseded history in `docs/workflow/agents.md`
+- chore(release): bump 16 touched plugins + suite to 1.0.54 — ai-pilot 1.2.57 -> 1.2.58, astro-expert 1.0.20 -> 1.0.21, cartographer 1.0.22 -> 1.0.23, commit-pro 1.2.34 -> 1.2.35, go-expert 1.0.17 -> 1.0.18, laravel-expert 1.2.21 -> 1.2.22, nextjs-expert 1.1.37 -> 1.1.38, php-expert 1.0.17 -> 1.0.18, react-expert 1.0.33 -> 1.0.34, rust-expert 1.0.17 -> 1.0.18, seo 1.0.21 -> 1.0.22, shadcn-expert 1.0.30 -> 1.0.31, swift-apple-expert 1.1.33 -> 1.1.34, tailwindcss 1.1.23 -> 1.1.24, tanstack-start-expert 1.0.17 -> 1.0.18, typescript-expert 1.0.17 -> 1.0.18; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.53] - 2026-09-24
 
 - feat(agents): switch all 37 Codex agents to the GPT-6 tier matrix — gpt-6-luna/medium x18 (code/framework experts, sniper-faster, websearch, cartographer, commit-detector, seo-images, seo-sitemap), gpt-6-sol/medium x18 (ai-pilot judgment/validation agents, research, explore, security, prompt-engineer, seo core, solid-orchestrator, lessons-compactor, changelog-watcher), gpt-6-sol/high x1 (design-expert); no gpt-6-astra (cost); owner decision 2026-09-23 backed by measured benchmarks (greenfield + debug: Luna/medium 100% hidden-test pass on debug tasks at ~1/50 of Sol cost)
