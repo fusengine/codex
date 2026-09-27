@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.55] - 2026-09-27
+
+- docs(skills): refresh skills and agent guidance across 18 plugins to current stable versions — TypeScript 7.0, Bun 1.4, Node 26 LTS, Astro 7.3.5, Next.js 16.3, React 19.3, Prisma 7.10, Tailwind 4.3, Laravel 13.33, Go 1.27, Rust 1.98, Swift 6.4, shadcn CLI 4.21 with Base UI as default; fixes wrong Astro `output: 'hybrid'`, `@astrojs/db` status and Sanctum ^5.0 guidance
+- chore(i18n): translate remaining French content to English — design references, design scripts, statusline strings
+- chore(release): bump 18 touched plugins + suite to 1.0.55 — astro-expert 1.0.21 -> 1.0.22, cartographer 1.0.23 -> 1.0.24, codex-rules 1.0.33 -> 1.0.34, core-guards 1.1.54 -> 1.1.55, design-expert 2.1.48 -> 2.1.49, go-expert 1.0.18 -> 1.0.19, laravel-expert 1.2.22 -> 1.2.23, nextjs-expert 1.1.38 -> 1.1.39, php-expert 1.0.18 -> 1.0.19, react-expert 1.0.34 -> 1.0.35, rust-expert 1.0.18 -> 1.0.19, seo 1.0.22 -> 1.0.23, shadcn-expert 1.0.31 -> 1.0.32, solid 1.0.28 -> 1.0.29, swift-apple-expert 1.1.34 -> 1.1.35, tailwindcss 1.1.24 -> 1.1.25, tanstack-start-expert 1.0.18 -> 1.0.19, typescript-expert 1.0.18 -> 1.0.19; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.54] - 2026-09-27
 
 - feat(agents): move the 18 gpt-6-luna/medium agents to gpt-6-sol/medium — fleet is now 36 gpt-6-sol/medium + 1 gpt-6-sol/high (design-expert), zero Luna; owner decision 2026-09-27, knowingly overriding the 2026-09-23 benchmark that favoured Luna on cost/speed
