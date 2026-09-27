@@ -8,7 +8,7 @@ description: Button component patterns and sizing variants
 ## Size Variants
 
 ```tsx
-// Sizes — hauteur = valeur fixe, plancher tactile 44px (WCAG 2.5.5)
+// Sizes — height = fixed value, 44px touch floor (WCAG 2.5.5)
 <Button size="sm">Small</Button>   // h-11 px-3 text-sm   (44px)
 <Button size="default">Default</Button>  // h-11 px-4      (44px)
 <Button size="lg">Large</Button>   // h-12 px-6 text-lg   (48px)
@@ -113,4 +113,4 @@ description: Button component patterns and sizing variants
 - [ ] Loading states with spinners
 - [ ] Icon buttons accessible (sr-only)
 - [ ] Proper focus-visible styling
-- [ ] Touch targets : **web = 44×44px (WCAG 2.5.5)** ; **Android/Material = 48×48dp** (convention plateforme). Ne pas confondre les deux planchers.
+- [ ] Touch targets: **web = 44×44px (WCAG 2.5.5)**; **Android/Material = 48×48dp** (platform convention). Do not confuse the two floors.

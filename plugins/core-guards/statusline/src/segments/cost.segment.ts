@@ -1,7 +1,7 @@
 /**
- * Cost Segment - Affiche le cout de session
+ * Cost Segment - Displays the session cost
  *
- * @description SRP: Affichage cout uniquement
+ * @description SRP: Cost display only
  */
 
 import type { StatuslineConfig } from "../config/schema";
@@ -21,8 +21,8 @@ export class CostSegment implements ISegment {
 		const totalCost = context.input.cost.total_cost_usd;
 		const costStr = formatCost(totalCost, cost.decimals);
 
-		// Si label texte (cost:), afficher label + coût
-		// Si icône $ (défaut), formatCost inclut déjà le $, pas besoin de label
+		// Text label (cost:): show label + cost
+		// $ icon (default): formatCost already includes the $, no label needed
 		if (global.showLabels || cost.showLabel) {
 			return `${colors.yellow("cost:")} ${costStr}`;
 		}
