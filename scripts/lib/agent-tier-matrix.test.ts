@@ -69,7 +69,7 @@ function baselineV1_0_50(): Record<string, ShippedProfile> {
 
 test("shipped agent TOMLs match the exact 1/36 tier matrix", () => {
 	const profiles = shippedProfiles();
-	const byTier: Record<string, string[]> = { "gpt-6-sol|high": [], "gpt-6-sol|medium": [] };
+	const byTier: Record<string, string[]> = { "gpt-6.1-sol|high": [], "gpt-6.1-sol|medium": [] };
 	const outsideMatrix: string[] = [];
 	for (const [name, profile] of profiles) {
 		const key = `${profile.model}|${profile.effort}`;
@@ -77,8 +77,8 @@ test("shipped agent TOMLs match the exact 1/36 tier matrix", () => {
 		else outsideMatrix.push(`${name}: ${key}`);
 	}
 
-	expect(byTier["gpt-6-sol|high"]!.sort()).toEqual([...SOL_HIGH_NAMES].sort());
-	expect(byTier["gpt-6-sol|medium"]).toHaveLength(36);
+	expect(byTier["gpt-6.1-sol|high"]!.sort()).toEqual([...SOL_HIGH_NAMES].sort());
+	expect(byTier["gpt-6.1-sol|medium"]).toHaveLength(36);
 	expect(outsideMatrix).toEqual([]);
 });
 

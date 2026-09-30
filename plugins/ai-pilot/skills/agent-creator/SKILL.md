@@ -89,20 +89,20 @@ plugins/<plugin-name>/
 
 ## Model Tier Matrix
 
-Choose the tier explicitly — never the bare `gpt-6` alias. Full rationale: `docs/reference/creating-skills-agents.md` (model policy section).
+Choose the tier explicitly — never a bare `gpt-6`/`gpt-6.1` alias. Full rationale: `docs/reference/creating-skills-agents.md` (model policy section).
 
-**Current, since 2026-09-27** (owner decision, verbatim, in order: "je pense plus pertinent sol medium" · "je dirais les luna medium => sol medium"). Every shipped agent runs on `gpt-6-sol`; `gpt-6-luna` is no longer used in this fleet (it remains a valid Codex model id), `gpt-6-astra` is excluded on cost, and GPT-6 has no `terra` tier.
+**Current, since 2026-09-30** (owner decision, verbatim: "okay passe les tous en v 6.1"). Every shipped agent runs on `gpt-6.1-sol`; `gpt-6-luna` is not used in this fleet, no GPT-6.1 Luna or Astra id is published, `gpt-6-astra` is excluded on cost, and GPT-6 has no `terra` tier.
 
 | Profile | Use for | Reasoning effort |
 |---------|---------|-------------------|
-| `gpt-6-sol` | Every agent except `design-expert` (36) — the default for any new agent | `medium` |
-| `gpt-6-sol` | Highest-judgment gate (`design-expert` only) | `high` |
+| `gpt-6.1-sol` | Every agent except `design-expert` (36) — the default for any new agent | `medium` |
+| `gpt-6.1-sol` | Highest-judgment gate (`design-expert` only) | `high` |
 
-Valid efforts per the GPT-6 catalog: `gpt-6-sol` supports `low` through `ultra` — this fleet uses only Sol medium (plus `design-expert` at Sol high); any other model or effort needs a new owner decision. Prices per 1M tokens (input/cached/output, developers.openai.com/api/docs/pricing): `gpt-6-sol` $2.00/$0.20/$10.00.
+Valid efforts: the Codex catalog lists `low` through `ultra` for `gpt-6.1-sol` — this fleet uses only Sol medium (plus `design-expert` at Sol high); any other model or effort needs a new owner decision. Prices per 1M tokens (input/cached/output, standard ≤272K input, developers.openai.com/api/docs/pricing): `gpt-6.1-sol` $2.00/$0.10/$10.00.
 
 ### History
 
-Superseded policies (the 2026-09-23 GPT-6 Sol/Luna split and its measurements, and the GPT-5.6 Sol/Terra/Luna tiers) live only in [`docs/workflow/agents.md` § Model Policy](../../../../docs/workflow/agents.md#model-policy) — not reproduced here, to avoid the copies drifting.
+Superseded policies (the 2026-09-27 all-GPT-6-Sol fleet, the 2026-09-23 GPT-6 Sol/Luna split and its measurements, and the GPT-5.6 Sol/Terra/Luna tiers) live only in [`docs/workflow/agents.md` § Model Policy](../../../../docs/workflow/agents.md#model-policy) — not reproduced here, to avoid the copies drifting.
 
 ---
 
@@ -180,4 +180,4 @@ Use **`skill-creator`** to create skills for the agent:
 - Skip the Agent Workflow section inside `developer_instructions`
 - Put a hooks table, a tool list, or a display color on the agent TOML
 - Create an agent without its skills
-- Assign the bare `gpt-6` alias, any model other than `gpt-6-sol` (Luna is no longer used for shipped agents), or `high` effort to any agent other than `design-expert`
+- Assign a bare `gpt-6`/`gpt-6.1` alias, any model other than `gpt-6.1-sol` (Luna is not used for shipped agents), or `high` effort to any agent other than `design-expert`

@@ -4,27 +4,32 @@
 
 ## Model Policy
 
-**Current, since 2026-09-27 (owner decision, verbatim, in order): "je pense
-plus pertinent sol medium" · "je dirais les luna medium => sol medium".**
-Every shipped agent runs on `gpt-6-sol`: 36 at `medium`, plus
-`design-expert` alone at `high` (the sole highest-judgment gate). No
-shipped agent uses `gpt-6-luna` any more — it remains a valid Codex model
-id, but is no longer used in this fleet. The owner made this call knowing
-the 2026-09-23 measurements favoured Luna on cost and speed (see History
-below): the decision overrides those measurements, it does not refute
-them. `gpt-6-astra` stays excluded fleet-wide on cost; GPT-6 has no `terra`
-tier. The coordinator (the owner's own Codex session) is not a shipped
-agent TOML and stays outside this policy.
+**Current, since 2026-09-30 (owner decision, verbatim): "okay passe les tous
+en v 6.1".** Every shipped agent runs on `gpt-6.1-sol`: 36 at `medium`, plus
+`design-expert` alone at `high` (the sole highest-judgment gate) — the
+2026-09-27 efforts, unchanged. No shipped agent uses `gpt-6-luna`; no GPT-6.1
+Luna or Astra id is published (Codex catalog, 2026-09-30). `gpt-6-astra`
+stays excluded fleet-wide on cost; GPT-6 has no `terra` tier. The
+coordinator (the owner's own Codex session) is not a shipped agent TOML and
+stays outside this policy.
 
-The exact groups (37 total): `gpt-6-sol` / `high` (1) — `design-expert`;
-`gpt-6-sol` / `medium` (36) — every other agent in the Inventory below.
-New agents default to `gpt-6-sol` / `medium`; `high` is reserved for
-`design-expert`. Valid efforts per the GPT-6 catalog: `gpt-6-sol` supports
-`low` through `ultra` — never assign an effort other than `medium` (or
-`high` for `design-expert`) without a new owner decision. Prices per 1M
-tokens (input / cached input / output;
-developers.openai.com/api/docs/pricing): `gpt-6-sol` $2.00 / $0.20 /
-$10.00.
+The exact groups (37 total): `gpt-6.1-sol` / `high` (1) — `design-expert`;
+`gpt-6.1-sol` / `medium` (36) — every other agent in the Inventory below.
+New agents default to `gpt-6.1-sol` / `medium`; `high` is reserved for
+`design-expert`, and any other effort needs a new owner decision. Valid
+efforts: the Codex catalog lists `low` through `ultra` (catalog default
+`low`); the API model page lists `low`, `medium` (API default), `high`,
+`xhigh`, `max`. Prices per 1M tokens, standard, ≤272K input (input / cached
+input / output; developers.openai.com/api/docs/models/gpt-6.1-sol and
+/api/docs/pricing): `gpt-6.1-sol` $2.00 / $0.10 / $10.00.
+
+### History (all gpt-6-sol, superseded 2026-09-30)
+
+The 2026-09-27 owner decision ("je pense plus pertinent sol medium" · "je
+dirais les luna medium => sol medium") put all 37 agents on `gpt-6-sol` (36
+`medium`, `design-expert` `high`) and retired Luna, knowingly overriding the
+2026-09-23 cost/speed measurements below. `gpt-6-sol` price: $2.00 / $0.20 /
+$10.00 per 1M tokens. Superseded by the 2026-09-30 move to `gpt-6.1-sol`.
 
 ### History (GPT-6 Sol/Luna split, superseded 2026-09-27)
 
