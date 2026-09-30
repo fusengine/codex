@@ -16,8 +16,8 @@ const SOL_MEDIUM = [
 const SOL_HIGH = ["design-expert"];
 
 const EXPECTED_PROFILES: Record<string, readonly [string, string]> = Object.fromEntries([
-	...SOL_MEDIUM.map((name) => [name, ["gpt-6-sol", "medium"]]),
-	...SOL_HIGH.map((name) => [name, ["gpt-6-sol", "high"]]),
+	...SOL_MEDIUM.map((name) => [name, ["gpt-6.1-sol", "medium"]]),
+	...SOL_HIGH.map((name) => [name, ["gpt-6.1-sol", "high"]]),
 ]);
 
 function agentSource(name: string, model?: string): string {
@@ -28,13 +28,13 @@ function agentSource(name: string, model?: string): string {
 
 test("selects name-specific profiles over Claude source model tiers", () => {
 	const scenarios = [
-		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-6-sol", expectedEffort: "high" },
-		{ name: "security-expert", input: "opus", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
-		{ name: "commit", input: "opus", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
-		{ name: "sniper-faster", input: "haiku", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
-		{ name: "sniper", input: "opus", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
-		{ name: "typescript-expert", input: "sonnet", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
-		{ name: "future-agent", input: "opus", expectedModel: "gpt-6-sol", expectedEffort: "medium" },
+		{ name: "design-expert", input: "sonnet", expectedModel: "gpt-6.1-sol", expectedEffort: "high" },
+		{ name: "security-expert", input: "opus", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
+		{ name: "commit", input: "opus", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
+		{ name: "sniper-faster", input: "haiku", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
+		{ name: "sniper", input: "opus", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
+		{ name: "typescript-expert", input: "sonnet", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
+		{ name: "future-agent", input: "opus", expectedModel: "gpt-6.1-sol", expectedEffort: "medium" },
 	];
 
 	for (const scenario of scenarios) {
@@ -71,7 +71,7 @@ test("ships the exact 37-agent model and reasoning-effort matrix", () => {
 
 	expect(SOL_MEDIUM).toHaveLength(36);
 	expect(new Set(SOL_MEDIUM).size).toBe(36);
-	expect([...configs.values()].filter((config) => String(config.model) !== "gpt-6-sol")).toEqual([]);
+	expect([...configs.values()].filter((config) => String(config.model) !== "gpt-6.1-sol")).toEqual([]);
 	expect(SOL_HIGH).toHaveLength(1);
 });
 

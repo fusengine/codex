@@ -4,35 +4,29 @@ import { identityNicknames, normalizeSkillNames } from "./agent-names.ts";
 import { skillConfigLines, tomlArray, tomlMultiline, tomlString } from "./agent-toml-format.ts";
 import type { AgentTomlOptions } from "./agent.types.ts";
 
-/** A supported Codex model and reasoning-effort pair (Sol only since 2026-09-27). */
+/** A supported Codex model and reasoning-effort pair (Sol 6.1 only since 2026-09-30). */
 type ModelProfile = {
-	model: "gpt-6-sol";
+	model: "gpt-6.1-sol";
 	effort: "medium" | "high";
 };
 
-const SOL_MEDIUM: ModelProfile = { model: "gpt-6-sol", effort: "medium" };
-const SOL_HIGH: ModelProfile = { model: "gpt-6-sol", effort: "high" };
+const SOL_MEDIUM: ModelProfile = { model: "gpt-6.1-sol", effort: "medium" };
+const SOL_HIGH: ModelProfile = { model: "gpt-6.1-sol", effort: "high" };
 
 /**
- * Canonical shipped-agent policy (37 agents, GPT-6 fleet, applied
- * 2026-09-27): 36 Sol `medium` + 1 Sol `high`, zero Luna.
+ * Canonical shipped-agent policy (37 agents, GPT-6.1 fleet, applied
+ * 2026-09-30): 36 `gpt-6.1-sol` `medium` + 1 `gpt-6.1-sol` `high`, zero Luna.
  *
- * Owner decision (verbatim, 2026-09-27, in order): "je pense plus pertinent
- * sol medium" · "je dirais les luna medium => sol medium". All 18 former
- * Luna/medium agents move to Sol/medium: the 12 framework experts plus
- * `sniper-faster`, `websearch`, `cartographer`, `commit-detector`,
- * `seo-images`, `seo-sitemap`. The 2026-09-23 benchmark (see History) was known
- * when the owner decided and is deliberately overridden — it is not a
- * reason to move any agent back to Luna.
+ * Owner decision (verbatim, 2026-09-30): "okay passe les tous en v 6.1".
+ * Every agent moves from `gpt-6-sol` to `gpt-6.1-sol`; efforts are unchanged.
  *
- * Resulting matrix: Sol `high` is `design-expert` only (1 agent) —
- * one-shot-correctness gate, unchanged. Sol `medium` (36) is every other
- * agent, including `security-expert` (Sol medium since 2026-09-07,
- * local-only ethical-hacker posture, `.codex/apex/task.json` task
- * `security-local-medium`), `challenger`, `commit`, and `sniper`.
+ * Resulting matrix: `high` is `design-expert` only (1 agent) —
+ * one-shot-correctness gate, unchanged. `medium` (36) is every other
+ * agent, including `security-expert`, `challenger`, `commit`, and `sniper`.
  *
- * Superseded policies (GPT-5.6 tiers; the 2026-09-23 GPT-6 Sol/Luna split
- * and its benchmark) live only in docs/workflow/agents.md § History.
+ * Superseded policies (GPT-5.6 tiers; the 2026-09-23 GPT-6 Sol/Luna split and
+ * its benchmark; the 2026-09-27 all-`gpt-6-sol` state) live only in
+ * docs/workflow/agents.md § History.
  */
 export const AGENT_MODEL_PROFILES: Record<string, ModelProfile> = {
 	"astro-expert": SOL_MEDIUM,

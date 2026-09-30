@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.57] - 2026-09-30
+
+- feat(agents): move all 37 Codex agents to `gpt-6.1-sol` — reasoning efforts unchanged (36 medium, design-expert high); `scripts/lib/agent-toml.ts` and its tests aligned with no assertion loosened; security-agent-pilot baseline model line and sha256 re-recorded (scorecard keeps the original run hash); docs state the 6.1 policy with verified pricing ($2.00 input / $0.10 cached / $10.00 output per 1M tokens, <=272K input) and mark the all-`gpt-6-sol` history as superseded
+- chore(release): bump 22 touched plugins + suite to 1.0.57 — ai-pilot 1.2.58 -> 1.2.59, astro-expert 1.0.22 -> 1.0.23, cartographer 1.0.24 -> 1.0.25, changelog-watcher 1.0.26 -> 1.0.27, commit-pro 1.2.35 -> 1.2.36, design-expert 2.1.49 -> 2.1.50, go-expert 1.0.19 -> 1.0.20, laravel-expert 1.2.23 -> 1.2.24, lessons 1.0.9 -> 1.0.10, nextjs-expert 1.1.39 -> 1.1.40, php-expert 1.0.19 -> 1.0.20, prompt-engineer 1.1.21 -> 1.1.22, react-expert 1.0.35 -> 1.0.36, rust-expert 1.0.19 -> 1.0.20, security-expert 1.0.29 -> 1.0.30, seo 1.0.23 -> 1.0.24, shadcn-expert 1.0.32 -> 1.0.33, solid 1.0.29 -> 1.0.30, swift-apple-expert 1.1.35 -> 1.1.36, tailwindcss 1.1.25 -> 1.1.26, tanstack-start-expert 1.0.19 -> 1.0.20, typescript-expert 1.0.19 -> 1.0.20; mirrored in `.agents/plugins/marketplace.json`
+
 ## [1.0.56] - 2026-09-27
 
 - fix(rules): let the owner re-authorize a blocked approval and an install run — the "never retry around a hook/policy block" rule (AGENTS.md, AGENTS.md.template, 08-subagent-conduct.md) allows one unchanged rerun when the block asked for approval (or failed for a missing approval token) and the owner then explicitly authorizes that exact command in their own chat message (never an agent relay); the `setup.sh`/`install*.ts` hard stop allows that exact run when the owner explicitly orders it in their own chat message
